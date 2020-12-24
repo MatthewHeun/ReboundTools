@@ -7,7 +7,7 @@
 \format{
 A string list with 1 entries.
 \describe{
-\item{eeu_data_sheet}{The name of the sheet in an Excel file contining EEU data.}
+\item{eeu_data_sheet}{The name of the sheet in an Excel file containing EEU data.}
 }
 }
 \usage{

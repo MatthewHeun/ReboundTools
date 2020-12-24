@@ -8,7 +8,7 @@
 #' 
 #' @format A string list with `r length(eeu_data_table)` entries.
 #' \describe{
-#' \item{eeu_data_sheet}{The name of the sheet in an Excel file contining EEU data.}
+#' \item{eeu_data_sheet}{The name of the sheet in an Excel file containing EEU data.}
 #' }
 #' 
 #' @examples
