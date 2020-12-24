@@ -1,0 +1,24 @@
+Package: ReboundTools
+Title: Analyze and Display Energy Rebound Estimates
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Matthew",
+           family = "Heun",
+           role = c("aut", "cre"),
+           email = "matthew.heun@me.com",
+           comment = c(ORCID = "0000-0002-7438-214X"))
+Description: Energy rebound is the unanticipated reduction of energy savings
+             from an energy efficiency upgrade resulting from 
+             behavior change and economy-wide effects.
+             `ReboundTools` provides assistance for energy rebound analysis.
+             Many functions perform analysis calculations to move from 
+             known parameters to rebound estimates.
+             Other functions create rebound graphs in 
+             energy, cost, and preference spaces.
+             The functions in this package were used for the 
+             analyses and graphs in the paper **********.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
