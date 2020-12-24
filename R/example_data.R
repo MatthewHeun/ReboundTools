@@ -20,6 +20,7 @@ sample_eeu_data_path <- function() {
 }
 
 
-load_eeu_data <- function(path = sample_eeu_data_path(), sheet = ReboundTools::eeu_data_table$eeu_data_sheet) {
+load_eeu_data <- function(path = sample_eeu_data_path(), 
+                          sheet = ReboundTools::eeu_data_table$eeu_data_sheet) {
   
 }
