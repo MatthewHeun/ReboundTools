@@ -2,23 +2,29 @@
 % Please edit documentation in R/example_data.R
 \name{load_eeu_data}
 \alias{load_eeu_data}
-\title{Load EED data from a sheet in an Excel workbook}
+\title{Load EEU data from a sheet in an Excel workbook}
 \usage{
 load_eeu_data(
   path = sample_eeu_data_path(),
   sheet = ReboundTools::eeu_data_table$eeu_data_sheet,
-  expected_cols = ReboundTools::eeu_base_data
+  expected_col_names = ReboundTools::eeu_base_data
 )
 }
 \arguments{
-\item{path}{}
+\item{path}{The path to the sample data spreadsheet. Default is \code{sample_eeu_data_path()}.}
 
-\item{sheet}{}
+\item{sheet}{The name of the tab in the sample data spreadsheet. See \code{ReboundTools::eeu_data_table}.}
+
+\item{expected_col_names}{Names of columns that must be present in the target worksheet.}
 }
 \value{
-
+A data frame of EEU data.
 }
 \description{
 Energy efficiency upgrade (EEU) data are often stored in an Excel workbook.
-This function reads those data.
+This function reads those data and confirms that all required columns are present.
+If not all columns are present, an error is thrown.
+}
+\examples{
+load_eeu_data()
 }

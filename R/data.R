@@ -69,6 +69,8 @@
 #' \item{t_orig}{The expected lifetime of the original device \[year\].}
 #' \item{C_cap_star}{The net capital cost of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{t_star}{The expected lifetime of the upgraded device \[year\].}
+#' \item{C_dot_md_orid}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate \[$/year\].}
 #' }
 #' 
 #' @examples
