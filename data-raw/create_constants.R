@@ -38,3 +38,12 @@ eeu_base_data <- list(case = "Case",
                       C_dot_md_orig = "C_dot_md_orig", 
                       C_dot_md_star = "C_dot_md_star")
 usethis::use_data(eeu_base_data, overwrite = TRUE)
+
+
+#
+# Names of calculated variables
+# 
+
+eeu_derived_data <- list(eta_ratio = "eta_ratio"
+)
+usethis::use_data(eeu_derived_data, overwrite = TRUE)

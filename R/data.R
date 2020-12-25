@@ -76,3 +76,18 @@
 #' @examples
 #' eeu_base_data
 "eeu_base_data"
+
+
+
+#' EEU derived data 
+#' 
+#' This is the list of the derived parameters for a rebound analysis. 
+#' Each of these parameters is calculated data in `ReboundTools::eeu_base_data`.
+#' 
+#' @format A string list with `r length(eeu_base_data)` entries.
+#' \describe{
+#' \item{eta_ratio}{The ratio `eta_tilde/eta_orig`.}
+#' }
+#' @examples
+#' eeu_derived_data
+"eeu_derived_data"
