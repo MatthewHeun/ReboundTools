@@ -13,22 +13,45 @@
 #' @examples
 calc_rebound_data <- function(.eeu_data = NULL,
                               # Input names
-                              eta_orig = ReboundTools::eeu_base_data$eta_orig,
-                              eta_tilde = ReboundTools::eeu_base_data$eta_tilde,
+                              MJ_engr_unit = ReboundTools::eeu_base_data$MJ_engr_unit,
+                              eta_orig_engr_units = ReboundTools::eeu_base_data$eta_orig_engr_units,
+                              eta_tilde_engr_units = ReboundTools::eeu_base_data$eta_tilde_engr_units,
+                              q_dot_s_orig = ReboundTools::eeu_base_data$q_dot_s_orig,
                               # Output names
-                              eta_ratio = ReboundTools::eeu_derived_data$eta_ratio) {
+                              eta_orig = ReboundTools::eeu_derived_data$eta_orig,
+                              eta_tilde = ReboundTools::eeu_derived_data$eta_tilde,
+                              eta_ratio = ReboundTools::eeu_derived_data$eta_ratio,
+                              E_dot_s_orig = ReboundTools::eeu_derived_data$E_dot_s_orig,
+                              S_dot_dev = ReboundTools::eeu_derived_data$S_dot_dev) {
 
-  rebound_calcs_fun <- function(eta_orig_val, eta_tilde_val) {
+  rebound_calcs_fun <- function(MJ_engr_unit_val, 
+                                eta_orig_engr_units_val, 
+                                eta_tilde_engr_units_val, 
+                                q_dot_s_orig_val) {
+    eta_orig_val <- eta_orig_engr_units_val / MJ_engr_unit_val
+    eta_tilde_val <- eta_tilde_engr_units_val / MJ_engr_unit_val
     eta_ratio_val <- eta_tilde_val / eta_orig_val
+    E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
+    S_dot_dev_val <- (eta_ratio_val - 1) * (1/eta_ratio_val) * E_dot_s_orig_val
     
     
-    list(eta_ratio_val) %>% magrittr::set_names(eta_ratio)
+    list(eta_orig_val, 
+         eta_tilde_val, 
+         eta_ratio_val,
+         E_dot_s_orig_val, 
+         S_dot_dev_val) %>% magrittr::set_names(c(eta_orig, 
+                                                  eta_tilde, 
+                                                  eta_ratio, 
+                                                  E_dot_s_orig,
+                                                  S_dot_dev))
   }
   
   
   matsindf::matsindf_apply(.eeu_data, FUN = rebound_calcs_fun, 
-                           eta_orig_val = eta_orig,
-                           eta_tilde_val = eta_tilde)
+                           MJ_engr_unit_val = MJ_engr_unit,
+                           eta_orig_engr_units_val = eta_orig_engr_units,
+                           eta_tilde_engr_units_val = eta_tilde_engr_units,
+                           q_dot_s_orig_val = q_dot_s_orig)
   
 }
 

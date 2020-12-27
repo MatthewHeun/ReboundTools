@@ -5,9 +5,13 @@
 \alias{eeu_derived_data}
 \title{EEU derived data}
 \format{
-A string list with 19 entries.
+A string list with 22 entries.
 \describe{
-\item{eta_ratio}{The ratio \code{eta_tilde/eta_orig}.}
+\item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basks [service/MJ].}
+\item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ].}
+\item{eta_ratio}{The ratio \code{eta_tilde/eta_orig} [--].}
+\item{E_dot_s_orig}{\code{q_dot_s_orig / eta_orig}. [MJ/year].}
+\item{S_dot_dev}{The expected device-level energy savings rate [MJ/year].}
 }
 }
 \usage{

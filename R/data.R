@@ -55,22 +55,25 @@
 #' \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 #' \item{original}{A string to identify the original device, e.g., "Incandescent".}
 #' \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}
+#' \item{MJ_engr_unit}{A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, `MJ_engr_unit` should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.}
 #' \item{I_E}{The energy intensity of the economy \[MJ/$\].}
 #' \item{k}{The productivity effect factor \[--\].}
 #' \item{p_E}{The price of energy \[$/MJ\].}
-#' \item{eta_orig}{The original (pre-EEU) energy service efficiency \[miles/gallon\] \[lumens/W\]. Note that the service can be in any units, such as lumens/W or miles/gallon. Only the energy service efficiency ratio (`eta_tilde/eta_orig`) matters.}
-#' \item{eta_tilde}{The upgraded (post-EEU) energy service efficiency \[miles/gallon\] \[lumens/W\]. Note that the service can be in any units, such as lumens/W or miles/gallon. Only the energy service efficiency ratio (`eta_tilde/eta_orig`) matters.}
-#' \item{eps_ps_qs_UC}{The uncompensated energy service price elasticity of energy service consumption (own-price elasticity) \[--\].}
-#' \item{eps_qs_M}{The income elasticity of energy service consumption \[--\].}
-#' \item{eps_qo_M}{The income elasticity of other goods consumption \[--\].}
-#' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service \[miles/year\] \[lumen-hours/year\].}
+#' \item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
+#' \item{eta_tilde_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
+#' \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
+#' \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption \[--\].}
+#' \item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption \[--\].}
+#' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/year\] \[lumen-hours/year\].}
 #' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/year\].}
 #' \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{t_orig}{The expected lifetime of the original device \[year\].}
 #' \item{C_cap_star}{The net capital cost of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{t_star}{The expected lifetime of the upgraded device \[year\].}
-#' \item{C_dot_md_orid}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
 #' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device \[MJ\].}
+#' \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device \[MJ\].}
 #' }
 #' 
 #' @examples
@@ -86,7 +89,11 @@
 #' 
 #' @format A string list with `r length(eeu_base_data)` entries.
 #' \describe{
-#' \item{eta_ratio}{The ratio `eta_tilde/eta_orig`.}
+#' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_orig_engr_units / MJ_engr_unit`.}
+#' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_tilde_engr_units / MJ_engr_unit`.}
+#' \item{eta_ratio}{The ratio `eta_tilde/eta_orig` \[--\].}
+#' \item{E_dot_s_orig}{`q_dot_s_orig / eta_orig`. \[MJ/year\].}
+#' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\].}
 #' }
 #' @examples
 #' eeu_derived_data
