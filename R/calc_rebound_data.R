@@ -265,6 +265,8 @@ calc_hat <- function(.star_data = NULL,
                      eta_ratio = ReboundTools::star_vars$eta_ratio,
                      q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
+                     C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                     e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
                      
                      # Output names
                      eta_hat = ReboundTools::hat_vars$eta_hat, 
@@ -272,7 +274,8 @@ calc_hat <- function(.star_data = NULL,
                      C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
                      C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
                      E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
-                     q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat
+                     q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                     C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat
 ) {
   
   calc_hat_fun <- function(eta_star_val, 
@@ -282,7 +285,9 @@ calc_hat <- function(.star_data = NULL,
                            E_dot_emb_star_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
-                           e_qs_ps_val
+                           e_qs_ps_val,
+                           C_dot_o_star_val,
+                           e_qo_ps_val
                            ) {
     eta_hat_val <- eta_star_val
     p_s_hat_val <- p_s_star_val
@@ -290,9 +295,8 @@ calc_hat <- function(.star_data = NULL,
     C_dot_md_hat_val <- C_dot_md_star_val
     E_dot_emb_hat_val <- E_dot_emb_star_val
     q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
     
-    # Rearrange names: all orig in orig, all star in star, etc.
-    # C_dot_o_hat_val
     # N_dot_hat_val
     
     list(eta_hat_val, 
@@ -300,13 +304,15 @@ calc_hat <- function(.star_data = NULL,
          C_dot_cap_hat_val,
          C_dot_md_hat_val,
          E_dot_emb_hat_val,
-         q_dot_s_hat_val) %>% 
+         q_dot_s_hat_val,
+         C_dot_o_hat_val) %>% 
       magrittr::set_names(c(eta_hat,
                             p_s_hat,
                             C_dot_cap_hat,
                             C_dot_md_hat,
                             E_dot_emb_hat,
-                            q_dot_s_hat))
+                            q_dot_s_hat,
+                            C_dot_o_hat))
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
@@ -317,7 +323,9 @@ calc_hat <- function(.star_data = NULL,
                            E_dot_emb_star_val = E_dot_emb_star,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
-                           e_qs_ps_val = e_qs_ps)
+                           e_qs_ps_val = e_qs_ps,
+                           C_dot_o_star_val = C_dot_o_star,
+                           e_qo_ps_val = e_qo_ps)
 }
 
 
