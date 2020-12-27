@@ -92,8 +92,9 @@
 #' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_orig_engr_units / MJ_engr_unit`.}
 #' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_tilde_engr_units / MJ_engr_unit`.}
 #' \item{eta_ratio}{The ratio `eta_tilde/eta_orig` \[--\].}
-#' \item{E_dot_s_orig}{`q_dot_s_orig / eta_orig`. \[MJ/year\].}
-#' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\].}
+#' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
+#' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\], calculated by `(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig`.}
+#' \item{G_dot}{The expected device-level energy gross cost savings rate \[MJ/year\], calculated by `p_E * S_dot_dev`.}
 #' }
 #' @examples
 #' eeu_derived_data

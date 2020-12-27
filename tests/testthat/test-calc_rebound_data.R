@@ -18,6 +18,8 @@ test_that("calc_rebound_data() works as expected", {
   expect_equal(res[[ReboundTools::eeu_derived_data$S_dot_dev]][[1]], 29572.18)
   expect_equal(res[[ReboundTools::eeu_derived_data$S_dot_dev]][[2]], 210.97892420537905877609)
 
+  expect_equal(res[[ReboundTools::eeu_derived_data$G_dot]][[1]], 516.14023809523826002987)
+  expect_equal(res[[ReboundTools::eeu_derived_data$G_dot]][[2]], 7.94101863887340275738)
   
   
   

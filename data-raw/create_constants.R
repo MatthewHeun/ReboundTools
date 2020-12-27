@@ -51,5 +51,6 @@ eeu_derived_data <- list(eta_orig = "eta_orig",
                          eta_tilde = "eta_tilde", 
                          eta_ratio = "eta_ratio", 
                          E_dot_s_orig = "E_dot_s_orig",
-                         S_dot_dev = "S_dot_dev")
+                         S_dot_dev = "S_dot_dev", 
+                         G_dot = "G_dot")
 usethis::use_data(eeu_derived_data, overwrite = TRUE)

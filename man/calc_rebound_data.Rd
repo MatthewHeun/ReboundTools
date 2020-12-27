@@ -7,6 +7,7 @@
 calc_rebound_data(
   .eeu_data = NULL,
   MJ_engr_unit = ReboundTools::eeu_base_data$MJ_engr_unit,
+  p_E = ReboundTools::eeu_base_data$p_E,
   eta_orig_engr_units = ReboundTools::eeu_base_data$eta_orig_engr_units,
   eta_tilde_engr_units = ReboundTools::eeu_base_data$eta_tilde_engr_units,
   q_dot_s_orig = ReboundTools::eeu_base_data$q_dot_s_orig,
@@ -14,7 +15,8 @@ calc_rebound_data(
   eta_tilde = ReboundTools::eeu_derived_data$eta_tilde,
   eta_ratio = ReboundTools::eeu_derived_data$eta_ratio,
   E_dot_s_orig = ReboundTools::eeu_derived_data$E_dot_s_orig,
-  S_dot_dev = ReboundTools::eeu_derived_data$S_dot_dev
+  S_dot_dev = ReboundTools::eeu_derived_data$S_dot_dev,
+  G_dot = ReboundTools::eeu_derived_data$G_dot
 )
 }
 \arguments{
