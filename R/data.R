@@ -127,3 +127,16 @@
 #' @examples
 #' star_vars
 "star_vars"
+
+
+#' EEU hat data 
+#' 
+#' This is the list of the derived variables at the hat stage (after emplacement) of a rebound analysis.
+#' 
+#' @format A string list with `r length(hat_vars)` entries.
+#' \describe{
+#' \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_star`.}
+#' }
+#' @examples
+#' hat_vars
+"hat_vars"

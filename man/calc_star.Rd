@@ -45,7 +45,7 @@ A list or data frame of derived rebound values for the star stage (after the emp
 }
 \description{
 This function calculates energy rebound information for the star
-stage (immediately after the EEU, with no behavior change).
+stage (immediately after the emplacement effect, with no behavior change).
 }
 \examples{
 load_eeu_data() \%>\% 

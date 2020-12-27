@@ -87,7 +87,13 @@ test_that("calc_star() works as expected", {
 
 
 test_that("calc_hat() works as expected", {
-
-    
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat()
+  
+  expect_equal(res[[ReboundTools::hat_vars$eta_hat]][[1]], 0.33169688306808242650)
+  expect_equal(res[[ReboundTools::hat_vars$eta_hat]][[2]], 22722.222222222)
+  
   
 })

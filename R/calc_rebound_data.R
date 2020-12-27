@@ -106,14 +106,10 @@ calc_orig <- function(.eeu_data = NULL,
 }
 
 
-
-
-
-
 #' Calculate energy rebound data at the star stage
 #' 
 #' This function calculates energy rebound information for the star 
-#' stage (immediately after the EEU, with no behavior change).
+#' stage (immediately after the emplacement effect, with no behavior change).
 #'
 #' @param .orig_data An optional data frame containing EEU base data and original data, 
 #'                   likely calculated by `calc_orig()`.
@@ -240,14 +236,42 @@ calc_star <- function(.orig_data = NULL,
 
 
 
-calc_hat <- function(.star_data = NULL
+#' Calculate energy rebound data at the hat stage
+#' 
+#' This function calculates energy rebound information for the hat
+#' stage (immediately after the substitution effect).
+#'
+#'
+#' @param .star_data An optional data frame containing EEU base data, original data, 
+#'                   and star data, 
+#'                   likely calculated by `calc_star()`.
+#'                   
+#' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
+#' 
+#' @export
+#'
+#' @examples
+#' load_eeu_data() %>% 
+#'   calc_orig() %>% 
+#'   calc_star() %>% 
+#'   calc_hat()
+calc_hat <- function(.star_data = NULL,
                      # Input names
-                     # 
-                     # 
+                     eta_star = ReboundTools::star_vars$eta_star,
+                     
                      # Output names
+                     eta_hat = ReboundTools::hat_vars$eta_hat
 ) {
-  eta_tilde_val <- eta_tilde_engr_units_val / MJ_engr_unit_val
   
+  calc_hat_fun <- function(eta_star_val) {
+    eta_hat_val <- eta_star_val
+    
+    list(eta_hat_val) %>% 
+      magrittr::set_names(c(eta_hat))
+  }
+  
+  matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
+                           eta_star_val = eta_star)
 }
 
 
