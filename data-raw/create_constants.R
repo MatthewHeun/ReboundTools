@@ -15,10 +15,10 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 
 #
-# Names of required columns in an EEU data table.
+# Names of base parameters for a rebound analysis.
 # 
 
-eeu_base_data <- list(case = "Case", 
+eeu_base_params <- list(case = "Case", 
                       original = "Original", 
                       upgrade = "Upgrade", 
                       MJ_engr_unit = "MJ/engr_unit",
@@ -40,12 +40,25 @@ eeu_base_data <- list(case = "Case",
                       C_dot_md_star = "C_dot_md_star", 
                       E_emb_orig = "E_emb_orig", 
                       E_emb_star = "E_emb_star")
-usethis::use_data(eeu_base_data, overwrite = TRUE)
+usethis::use_data(eeu_base_params, overwrite = TRUE)
 
 
 #
-# Names of calculated variables
+# Names of calculated variables at the "orig" stage.
 # 
+
+eeu_orig_vars <- list(eta_orig = "eta_orig", 
+                      E_dot_s_orig = "E_dot_s_orig",
+                      C_dot_cap_orig = "C_dot_cap_orig",
+                      p_s_orig = "p_s_orig", 
+                      C_dot_s_orig = "C_dot_s_orig",
+                      C_dot_o_orig = "C_dot_o_orig",
+                      f_Cs_orig = "f_Cs_orig",
+                      e_qs_ps = "e_qs_ps",
+                      e_qo_ps = "e_qo_ps", 
+                      E_dot_emb_orig = "E_dot_emb_orig")
+usethis::use_data(eeu_orig_vars, overwrite = TRUE)
+
 
 eeu_derived_data <- list(eta_orig = "eta_orig", 
                          eta_tilde = "eta_tilde", 
@@ -60,7 +73,7 @@ eeu_derived_data <- list(eta_orig = "eta_orig",
                          q_dot_s_star = "q_dot_s_star", 
                          C_dot_s_orig = "C_dot_s_orig",
                          C_dot_o_orig = "C_dot_o_orig",
-                         f_qs_orig = "f_qs_orig",
+                         f_Cs_orig = "f_Cs_orig",
                          e_qs_ps = "e_qs_ps",
                          q_dot_s_hat = "q_dot_s_hat")
 usethis::use_data(eeu_derived_data, overwrite = TRUE)

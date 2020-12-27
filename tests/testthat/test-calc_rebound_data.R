@@ -4,17 +4,35 @@ test_that("calc_orig() works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig()
 
-  expect_equal(res[[ReboundTools::eeu_derived_data$eta_orig]][[1]], 0.19743862087385857795)
-  expect_equal(res[[ReboundTools::eeu_derived_data$eta_orig]][[2]], 2453.7037037)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$eta_orig]][[1]], 0.19743862087385857795)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$eta_orig]][[2]], 2453.7037037)
 
-  expect_equal(res[[ReboundTools::eeu_derived_data$E_dot_s_orig]][[1]], 73060.68051000000559724867)
-  expect_equal(res[[ReboundTools::eeu_derived_data$E_dot_s_orig]][[2]], 236.52)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$E_dot_s_orig]][[1]], 73060.68051000000559724867)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$E_dot_s_orig]][[2]], 236.52)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_orig]][[1]], 4030.87142857142816865235)
-  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_orig]][[2]], 1.04444444444444428655)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$C_dot_cap_orig]][[1]], 4030.87142857142816865235)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$C_dot_cap_orig]][[2]], 1.04444444444444428655)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_orig]][[1]], 0.0884)
-  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_orig]][[2]], 0.00001533963491320755)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$p_s_orig]][[1]], 0.0884)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$p_s_orig]][[2]], 0.00001533963491320755)
+  
+  expect_equal(res[[ReboundTools::eeu_orig_vars$C_dot_s_orig]][[1]], 1275.17)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$C_dot_s_orig]][[2]], 8.902357)
+  
+  expect_equal(res[[ReboundTools::eeu_orig_vars$C_dot_o_orig]][[1]], 19234.10200768475260701962)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$C_dot_o_orig]][[2]], 27391.33089146313432138413)
+  
+  expect_equal(res[[ReboundTools::eeu_orig_vars$f_Cs_orig]][[1]], 0.06217529318067448879)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$f_Cs_orig]][[2]], 0.00032490077880412691)
+
+  expect_equal(res[[ReboundTools::eeu_orig_vars$e_qs_ps]][[1]], -0.03782470681932551676)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$e_qs_ps]][[2]], -0.39967509922119587307)
+  
+  expect_equal(res[[ReboundTools::eeu_orig_vars$e_qo_ps]][[1]], 0.00250767784092693468)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$e_qo_ps]][[2]], 0.00012989695462730592)
+  
+  expect_equal(res[[ReboundTools::eeu_orig_vars$E_dot_emb_orig]][[1]], 4857.14285714285688300151)
+  expect_equal(res[[ReboundTools::eeu_orig_vars$E_dot_emb_orig]][[2]], 1.22222222222222232091)
 })
 
 

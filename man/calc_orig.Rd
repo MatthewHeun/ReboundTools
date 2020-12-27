@@ -6,15 +6,31 @@
 \usage{
 calc_orig(
   .eeu_data = NULL,
-  eta_orig_engr_units = ReboundTools::eeu_base_data$eta_orig_engr_units,
-  MJ_engr_unit = ReboundTools::eeu_base_data$MJ_engr_unit,
-  q_dot_s_orig = ReboundTools::eeu_base_data$q_dot_s_orig,
-  eta_orig = ReboundTools::eeu_derived_data$eta_orig,
-  E_dot_s_orig = ReboundTools::eeu_derived_data$E_dot_s_orig
+  eta_orig_engr_units = ReboundTools::eeu_base_params$eta_orig_engr_units,
+  MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
+  q_dot_s_orig = ReboundTools::eeu_base_params$q_dot_s_orig,
+  C_cap_orig = ReboundTools::eeu_base_params$C_cap_orig,
+  t_orig = ReboundTools::eeu_base_params$t_orig,
+  p_E = ReboundTools::eeu_base_params$p_E,
+  M_dot_orig = ReboundTools::eeu_base_params$M_dot_orig,
+  C_dot_md_orig = ReboundTools::eeu_base_params$C_dot_md_orig,
+  e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
+  e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+  E_emb_orig = ReboundTools::eeu_base_params$E_emb_orig,
+  eta_orig = ReboundTools::eeu_orig_vars$eta_orig,
+  E_dot_s_orig = ReboundTools::eeu_orig_vars$E_dot_s_orig,
+  C_dot_cap_orig = ReboundTools::eeu_orig_vars$C_dot_cap_orig,
+  p_s_orig = ReboundTools::eeu_orig_vars$p_s_orig,
+  C_dot_s_orig = ReboundTools::eeu_orig_vars$C_dot_s_orig,
+  C_dot_o_orig = ReboundTools::eeu_orig_vars$C_dot_o_orig,
+  f_Cs_orig = ReboundTools::eeu_orig_vars$f_Cs_orig,
+  e_qs_ps = ReboundTools::eeu_orig_vars$e_qs_ps,
+  e_qo_ps = ReboundTools::eeu_orig_vars$e_qo_ps,
+  E_dot_emb_orig = ReboundTools::eeu_orig_vars$E_dot_emb_orig
 )
 }
 \arguments{
-\item{eta_orig, eta_tilde}{See \code{ReboundTools::eeu_base_data}.}
+\item{eta_orig, eta_tilde}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{.rebound_data}{An optional data frame containing EEU base data. See \code{ReboundTools::eeu_base_data}.}
 }
