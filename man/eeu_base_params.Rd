@@ -15,7 +15,7 @@ A string list with 22 entries.
 \item{k}{The productivity effect factor [--].}
 \item{p_E}{The price of energy [$/MJ].}
 \item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_orig_engr_units} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
-\item{eta_tilde_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_orig_engr_units} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
+\item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_orig_engr_units} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
 \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption [--].}
 \item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption [--].}

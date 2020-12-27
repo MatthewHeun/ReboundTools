@@ -2,6 +2,7 @@
 
 export("%>%")
 export(calc_orig)
+export(calc_star)
 export(load_eeu_data)
 export(sample_eeu_data_path)
 importFrom(magrittr,"%>%")

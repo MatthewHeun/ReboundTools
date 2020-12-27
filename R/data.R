@@ -60,7 +60,7 @@
 #' \item{k}{The productivity effect factor \[--\].}
 #' \item{p_E}{The price of energy \[$/MJ\].}
 #' \item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
-#' \item{eta_tilde_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
+#' \item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption \[--\].}
 #' \item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption \[--\].}
@@ -86,7 +86,7 @@
 #' 
 #' This is the list of the derived variables at the original (pre-EEU) stage of a rebound analysis. 
 #' 
-#' @format A string list with `r length(eeu_orig_vars)` entries.
+#' @format A string list with `r length(orig_vars)` entries.
 #' \describe{
 #' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_orig_engr_units / MJ_engr_unit`.}
 #' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
@@ -100,8 +100,8 @@
 #' \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand\[MJ/year\], calculated by `E_dot_emb_val / t_orig_val`.}
 #' }
 #' @examples
-#' eeu_orig_vars
-"eeu_orig_vars"
+#' orig_vars
+"orig_vars"
 
 
 
@@ -111,10 +111,14 @@
 #' 
 #' This is the list of the derived variables at the star (post-emplacement) stage of a rebound analysis. 
 #' 
-#' @format A string list with `r length(eeu_star_vars)` entries.
+#' @format A string list with `r length(star_vars)` entries.
 #' \describe{
 #' \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_tilde_engr_units / MJ_engr_unit`.}
-#' \item{eta_ratio}{The ratio `eta_star/eta_orig` \[--\].}
+#' \item{eta_ratio}{The energy service efficiency ratio \[--\], calculated by `eta_star/eta_orig`.}
+#' 
+#' 
+#' 
+#' 
 #' \item{E_dot_s_star}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
 #' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\], calculated by `(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig`.}
 #' \item{G_dot}{The expected device-level energy gross cost savings rate \[MJ/year\], calculated by `p_E * S_dot_dev`.}
@@ -123,5 +127,5 @@
 #' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/year\], same as `q_dot_s_orig`.}
 #' }
 #' @examples
-#' eeu_star_vars
-# "eeu_star_vars"
+#' star_vars
+# "star_vars"

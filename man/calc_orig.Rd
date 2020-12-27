@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_rebound_data.R
 \name{calc_orig}
 \alias{calc_orig}
-\title{Calculate energy rebound derived data}
+\title{Calculate original energy rebound data}
 \usage{
 calc_orig(
   .eeu_data = NULL,
@@ -17,28 +17,30 @@ calc_orig(
   e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
   E_emb_orig = ReboundTools::eeu_base_params$E_emb_orig,
-  eta_orig = ReboundTools::eeu_orig_vars$eta_orig,
-  E_dot_s_orig = ReboundTools::eeu_orig_vars$E_dot_s_orig,
-  C_dot_cap_orig = ReboundTools::eeu_orig_vars$C_dot_cap_orig,
-  p_s_orig = ReboundTools::eeu_orig_vars$p_s_orig,
-  C_dot_s_orig = ReboundTools::eeu_orig_vars$C_dot_s_orig,
-  C_dot_o_orig = ReboundTools::eeu_orig_vars$C_dot_o_orig,
-  f_Cs_orig = ReboundTools::eeu_orig_vars$f_Cs_orig,
-  e_qs_ps = ReboundTools::eeu_orig_vars$e_qs_ps,
-  e_qo_ps = ReboundTools::eeu_orig_vars$e_qo_ps,
-  E_dot_emb_orig = ReboundTools::eeu_orig_vars$E_dot_emb_orig
+  eta_orig = ReboundTools::orig_vars$eta_orig,
+  E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
+  C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
+  p_s_orig = ReboundTools::orig_vars$p_s_orig,
+  C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
+  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
+  e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
+  e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+  E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig
 )
 }
 \arguments{
-\item{eta_orig, eta_tilde}{See \code{ReboundTools::eeu_base_params}.}
+\item{eta_orig_engr_units, MJ_engr_unit, q_dot_s_orig, C_cap_orig, t_orig, p_E, M_dot_orig, C_dot_md_orig, e_qs_ps_UC, e_qs_m, E_emb_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{.rebound_data}{An optional data frame containing EEU base data. See \code{ReboundTools::eeu_base_data}.}
+\item{.rebound_data}{An optional data frame containing EEU base data.
+See \code{ReboundTools::eeu_base_data}.}
 }
 \value{
 A list or data frame of derived rebound values.
 }
 \description{
-Calculate energy rebound derived data
+This function calculates energy rebound information for the original
+stage (pre-EEU).
 }
 \examples{
 load_eeu_data() \%>\% 
