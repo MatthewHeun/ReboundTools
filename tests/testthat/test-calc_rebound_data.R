@@ -21,7 +21,17 @@ test_that("calc_rebound_data() works as expected", {
   expect_equal(res[[ReboundTools::eeu_derived_data$G_dot]][[1]], 516.14023809523826002987)
   expect_equal(res[[ReboundTools::eeu_derived_data$G_dot]][[2]], 7.94101863887340275738)
   
+  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_orig]][[1]], 4030.87142857142816865235)
+  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_orig]][[2]], 1.04444444444444428655)
   
+  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_star]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_star]][[2]], 0.121)
+  
+  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_orig]][[1]], 0.0884)
+  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_orig]][[2]], 0.00001533963491320755)
+  
+  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_star]][[1]], 0.05261904761904762085)
+  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_star]][[2]], 0.00000165648054278729)
   
   
 })

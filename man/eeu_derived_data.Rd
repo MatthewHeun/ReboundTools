@@ -12,7 +12,11 @@ A string list with 22 entries.
 \item{eta_ratio}{The ratio \code{eta_tilde/eta_orig} [--].}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/year], calculated by \code{q_dot_s_orig / eta_orig}.}
 \item{S_dot_dev}{The expected device-level energy savings rate [MJ/year], calculated by \code{(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig}.}
-\item{G_dot}{The expected device-level energy cost savings rate [MJ/year], calculated by \code{p_E * S_dot_dev}.}
+\item{G_dot}{The expected device-level energy gross cost savings rate [MJ/year], calculated by \code{p_E * S_dot_dev}.}
+\item{C_dot_cap_orig}{The original (pre-EEU) capital cost rate [$/year], calculated by \code{C_cap_orig / t_orig}.}
+\item{C_dot_cap_star}{The upgraded (post-EEU) capital cost rate [$/year], calculated by \code{C_cap_star / t_star}.}
+\item{p_s_orig}{The original (pre-EEU) energy service price [$/service], calculated by \code{p_E / eta_orig}.}
+\item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
 }
 }
 \usage{
