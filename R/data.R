@@ -139,6 +139,7 @@
 #' \item{p_s_hat}{The energy service price after the substitution effect \[$/service\], exactly `p_s_star`.}
 #' \item{C_dot_cap_hat}{The capital expenditure rate after the substitution effect \[$/year\], exactly `C_dot_cap_star`.}
 #' \item{C_dot_md_hat}{The maintenance and disposal expenditure rate after the substitution effect \[$/year\], exactly `C_dot_md_star`.}
+#' \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect\[MJ/year\], exactly `E_dot_emb_star`.}
 #' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\[service/year\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps)`.}
 #' }
 #' @examples

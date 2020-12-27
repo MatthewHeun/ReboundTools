@@ -261,6 +261,7 @@ calc_hat <- function(.star_data = NULL,
                      p_s_star = ReboundTools::star_vars$p_s_star,
                      C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
                      C_dot_md_star = ReboundTools::eeu_base_params$C_dot_md_star,
+                     E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
                      eta_ratio = ReboundTools::star_vars$eta_ratio,
                      q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
@@ -270,6 +271,7 @@ calc_hat <- function(.star_data = NULL,
                      p_s_hat = ReboundTools::hat_vars$p_s_hat,
                      C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
                      C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
+                     E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
                      q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat
 ) {
   
@@ -277,6 +279,7 @@ calc_hat <- function(.star_data = NULL,
                            p_s_star_val,
                            C_dot_cap_star_val,
                            C_dot_md_star_val,
+                           E_dot_emb_star_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
                            e_qs_ps_val
@@ -285,17 +288,20 @@ calc_hat <- function(.star_data = NULL,
     p_s_hat_val <- p_s_star_val
     C_dot_cap_hat_val <- C_dot_cap_star_val
     C_dot_md_hat_val <- C_dot_md_star_val
+    E_dot_emb_hat_val <- E_dot_emb_star_val
     q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
     
     list(eta_hat_val, 
          p_s_hat_val,
          C_dot_cap_hat_val,
          C_dot_md_hat_val,
+         E_dot_emb_hat_val,
          q_dot_s_hat_val) %>% 
       magrittr::set_names(c(eta_hat,
                             p_s_hat,
                             C_dot_cap_hat,
                             C_dot_md_hat,
+                            E_dot_emb_hat,
                             q_dot_s_hat))
   }
   
@@ -304,6 +310,7 @@ calc_hat <- function(.star_data = NULL,
                            p_s_star_val = p_s_star,
                            C_dot_cap_star_val = C_dot_cap_star,
                            C_dot_md_star_val = C_dot_md_star,
+                           E_dot_emb_star_val = E_dot_emb_star,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps)
