@@ -258,31 +258,38 @@ calc_star <- function(.orig_data = NULL,
 calc_hat <- function(.star_data = NULL,
                      # Input names
                      eta_star = ReboundTools::star_vars$eta_star,
+                     p_s_star = ReboundTools::star_vars$p_s_star,
                      eta_ratio = ReboundTools::star_vars$eta_ratio,
                      q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                      
                      # Output names
                      eta_hat = ReboundTools::hat_vars$eta_hat, 
+                     p_s_hat = ReboundTools::hat_vars$p_s_hat,
                      q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat
 ) {
   
   calc_hat_fun <- function(eta_star_val, 
+                           p_s_star_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
                            e_qs_ps_val
                            ) {
     eta_hat_val <- eta_star_val
+    p_s_hat_val <- p_s_star_val
     q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
     
     list(eta_hat_val, 
+         p_s_hat_val,
          q_dot_s_hat_val) %>% 
       magrittr::set_names(c(eta_hat,
+                            p_s_hat,
                             q_dot_s_hat))
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
                            eta_star_val = eta_star, 
+                           p_s_star_val = p_s_star,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps)

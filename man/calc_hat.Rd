@@ -7,10 +7,12 @@
 calc_hat(
   .star_data = NULL,
   eta_star = ReboundTools::star_vars$eta_star,
+  p_s_star = ReboundTools::star_vars$p_s_star,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
   eta_hat = ReboundTools::hat_vars$eta_hat,
+  p_s_hat = ReboundTools::hat_vars$p_s_hat,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat
 )
 }

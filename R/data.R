@@ -136,6 +136,7 @@
 #' @format A string list with `r length(hat_vars)` entries.
 #' \describe{
 #' \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_star`.}
+#' \item{p_s_hat}{The energy service price after the substitution effect \[$/service\], exactly `p_s_star`.}
 #' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\[service/year\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps)`.}
 #' }
 #' @examples
