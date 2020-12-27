@@ -14,13 +14,15 @@ calc_star(
   q_dot_s_orig = ReboundTools::eeu_base_params$q_dot_s_orig,
   C_cap_star = ReboundTools::eeu_base_params$C_cap_star,
   t_star = ReboundTools::eeu_base_params$t_star,
+  E_emb_star = ReboundTools::eeu_base_params$E_emb_star,
   eta_star = ReboundTools::star_vars$eta_star,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
   G_dot = ReboundTools::star_vars$G_dot,
   p_s_star = ReboundTools::star_vars$p_s_star,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-  C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star
+  C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
+  E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star
 )
 }
 \arguments{

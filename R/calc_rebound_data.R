@@ -129,12 +129,10 @@ calc_star <- function(.orig_data = NULL,
                       q_dot_s_orig = ReboundTools::eeu_base_params$q_dot_s_orig,
                       C_cap_star = ReboundTools::eeu_base_params$C_cap_star,
                       t_star = ReboundTools::eeu_base_params$t_star,
+                      E_emb_star = ReboundTools::eeu_base_params$E_emb_star,
                       
                       
                       
-                      # e_qs_ps_UC = ReboundTools::eeu_base_$e_qs_ps_UC, 
-                      # e_qs_M = ReboundTools::eeu_base_$e_qs_M, 
-                      # e_qo_M = ReboundTools::eeu_base_$e_qo_M, 
                       # q_dot_s_orig = ReboundTools::eeu_base_$q_dot_s_orig,
                       # M_dot_orig = ReboundTools::eeu_base_$M_dot_orig, 
                       # C_cap_orig = ReboundTools::eeu_base_$C_cap_orig, 
@@ -153,7 +151,8 @@ calc_star <- function(.orig_data = NULL,
                       G_dot = ReboundTools::star_vars$G_dot,
                       p_s_star = ReboundTools::star_vars$p_s_star,
                       q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-                      C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star
+                      C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
+                      E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star
                       
                       
                       ) {
@@ -166,7 +165,8 @@ calc_star <- function(.orig_data = NULL,
                             p_E_val, 
                             q_dot_s_orig_val, 
                             C_cap_star_val,
-                            t_star_val
+                            t_star_val,
+                            E_emb_star_val
                             ) {
     eta_star_val <- eta_star_engr_units_val / MJ_engr_unit_val
     eta_ratio_val <- eta_star_val / eta_orig_val
@@ -175,16 +175,18 @@ calc_star <- function(.orig_data = NULL,
     p_s_star_val <- p_E_val / eta_star_val
     q_dot_s_star_val <- q_dot_s_orig_val
     C_dot_cap_star_val <- C_cap_star_val / t_star_val
+    E_dot_emb_star_val <- E_emb_star_val / t_star_val
     
-    
-    
+
+        
     list(eta_star_val,
          eta_ratio_val,
          S_dot_dev_val,
          G_dot_val, 
          p_s_star_val,
          q_dot_s_star_val,
-         C_dot_cap_star_val
+         C_dot_cap_star_val,
+         E_dot_emb_star_val
     ) %>% 
       magrittr::set_names(c(eta_star,
                             eta_ratio,
@@ -192,7 +194,8 @@ calc_star <- function(.orig_data = NULL,
                             G_dot,
                             p_s_star,
                             q_dot_s_star,
-                            C_dot_cap_star
+                            C_dot_cap_star,
+                            E_dot_emb_star
                             ))
     
   }
@@ -206,7 +209,8 @@ calc_star <- function(.orig_data = NULL,
                            p_E_val = p_E, 
                            q_dot_s_orig_val = q_dot_s_orig, 
                            C_cap_star_val = C_cap_star,
-                           t_star_val = t_star
+                           t_star_val = t_star,
+                           E_emb_star_val = E_emb_star
                            )
   
     

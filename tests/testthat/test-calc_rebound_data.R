@@ -46,27 +46,27 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[2]], 22722.222222222)
 
-  expect_equal(res[[ReboundTools::eeu_derived_data$eta_ratio]][[1]], 1.68)
-  expect_equal(res[[ReboundTools::eeu_derived_data$eta_ratio]][[2]], 9.260377359)
+  expect_equal(res[[ReboundTools::star_vars$eta_ratio]][[1]], 1.68)
+  expect_equal(res[[ReboundTools::star_vars$eta_ratio]][[2]], 9.260377359)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$S_dot_dev]][[1]], 29572.18)
-  expect_equal(res[[ReboundTools::eeu_derived_data$S_dot_dev]][[2]], 210.97892420537905877609)
+  expect_equal(res[[ReboundTools::star_vars$S_dot_dev]][[1]], 29572.18)
+  expect_equal(res[[ReboundTools::star_vars$S_dot_dev]][[2]], 210.97892420537905877609)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$G_dot]][[1]], 516.14023809523826002987)
-  expect_equal(res[[ReboundTools::eeu_derived_data$G_dot]][[2]], 7.94101863887340275738)
+  expect_equal(res[[ReboundTools::star_vars$G_dot]][[1]], 516.14023809523826002987)
+  expect_equal(res[[ReboundTools::star_vars$G_dot]][[2]], 7.94101863887340275738)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_star]][[1]], 0.05261904761904762085)
-  expect_equal(res[[ReboundTools::eeu_derived_data$p_s_star]][[2]], 0.00000165648054278729)
+  expect_equal(res[[ReboundTools::star_vars$p_s_star]][[1]], 0.05261904761904762085)
+  expect_equal(res[[ReboundTools::star_vars$p_s_star]][[2]], 0.00000165648054278729)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$q_dot_s_star]][[1]], 14425)
-  expect_equal(res[[ReboundTools::eeu_derived_data$q_dot_s_star]][[2]], 580350)
+  expect_equal(res[[ReboundTools::star_vars$q_dot_s_star]][[1]], 14425)
+  expect_equal(res[[ReboundTools::star_vars$q_dot_s_star]][[2]], 580350)
   
-  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_star]][[1]], 3931.91428571428605209803)
-  expect_equal(res[[ReboundTools::eeu_derived_data$C_dot_cap_star]][[2]], 0.121)
-
-
+  expect_equal(res[[ReboundTools::star_vars$C_dot_cap_star]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_cap_star]][[2]], 0.121)
   
-    
+  expect_equal(res[[ReboundTools::star_vars$E_dot_emb_star]][[1]], 5714.28571428571467549773)
+  expect_equal(res[[ReboundTools::star_vars$E_dot_emb_star]][[2]], 0.65)
+  
 })
 
 

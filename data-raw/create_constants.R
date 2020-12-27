@@ -70,7 +70,8 @@ star_vars <- list(eta_star = "eta_star",
                   G_dot = "G_dot", 
                   p_s_star = "p_s_star",
                   q_dot_s_star = "q_dot_s_star",
-                  C_dot_cap_star = "C_dot_cap_star")
+                  C_dot_cap_star = "C_dot_cap_star",
+                  E_dot_emb_star = "E_dot_emb_star")
 usethis::use_data(star_vars, overwrite = TRUE)
 
 
