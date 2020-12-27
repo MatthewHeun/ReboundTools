@@ -98,7 +98,13 @@ test_that("calc_hat() works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$p_s_hat]][[1]], 0.05261904761904762085)
   expect_equal(res[[ReboundTools::hat_vars$p_s_hat]][[2]], 0.00000165648054278729)
   
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_cap_hat]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_cap_hat]][[2]], 0.121)
+  
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_md_hat]][[1]], 2774.66812079094552245806)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_md_hat]][[2]], 0)
+  
   expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[1]], 14710.86057365263695828617)
   expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[2]], 1412626.67908869450911879539)
-  
+
 })
