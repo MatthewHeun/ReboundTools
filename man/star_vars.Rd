@@ -19,7 +19,7 @@ A string list with 13 entries.
 \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/year], exactly \code{M_dot_orig}.}
 \item{N_dot_star}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
 \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate [$/year], exactly \code{C_dot_o_orig}.}
-\item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/year], calculated by \code{q_dot_s_star_val / eta_star_val}.}
+\item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/year], calculated by \code{q_dot_s_star / eta_star}.}
 }
 }
 \usage{

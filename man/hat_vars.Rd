@@ -5,9 +5,10 @@
 \alias{hat_vars}
 \title{EEU hat data}
 \format{
-A string list with 1 entries.
+A string list with 2 entries.
 \describe{
 \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_star}.}
+\item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect[service/year], calculated by \code{q_dot_s_star * eta_ratio^(-e_qs_ps)}.}
 }
 }
 \usage{

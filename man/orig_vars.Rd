@@ -14,9 +14,9 @@ A string list with 11 entries.
 \item{C_dot_s_orig}{The original (pre-EEU) rate of energy cost expenditures for the device [$/year], calculated by \code{p_E * E_dot_s_orig}.}
 \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods [$/year], calculated by \code{M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig}.}
 \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)}.}
-\item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val}.}
-\item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)}.}
-\item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand[MJ/year], calculated by \code{E_dot_emb_val / t_orig_val}.}
+\item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC + f_Cs_orig*e_qs_M}.}
+\item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)}.}
+\item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand[MJ/year], calculated by \code{E_dot_emb / t_orig}.}
 \item{N_dot_orig}{The original (pre-EEU) freed cash rate [$/year], exactly \code{0}.}
 }
 }

@@ -85,7 +85,8 @@ usethis::use_data(star_vars, overwrite = TRUE)
 # Names of calculated variables at the "hat" stage.
 # 
 
-hat_vars <- list(eta_hat = "eta_hat")
+hat_vars <- list(eta_hat = "eta_hat",
+                 q_dot_s_hat = "q_dot_s_hat")
 usethis::use_data(hat_vars, overwrite = TRUE)
 
 
