@@ -99,6 +99,11 @@
 #' \item{C_dot_cap_star}{The upgraded (post-EEU) capital cost rate \[$/year\], calculated by `C_cap_star / t_star`.}
 #' \item{p_s_orig}{The original (pre-EEU) energy service price \[$/service\], calculated by `p_E / eta_orig`.}
 #' \item{p_s_star}{The upgraded (post-EEU) energy service price \[$/service\], calculated by `p_E / eta_star = p_E / eta_tilde`.}
+#' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/year\], same as `q_dot_s_orig`.}
+#' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy cost expenditures for the device \[$/year\], calculated by `p_E * E_dot_s_orig`.}
+#' \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods \[$/year\], calculated by `M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig`.}
+#' \item{f_qs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.}
+#' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect \[service/year\], calculated by `q_dot_s_star * (eta_ratio)^e_qs_ps`.}
 #' }
 #' @examples
 #' eeu_derived_data
