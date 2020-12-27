@@ -5,7 +5,7 @@
 \alias{star_vars}
 \title{EEU star data}
 \format{
-A string list with 13 entries.
+A string list with 18 entries.
 \describe{
 \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], calculated by \code{eta_tilde_engr_units / MJ_engr_unit}.}
 \item{eta_ratio}{The energy service efficiency ratio [--], calculated by \code{eta_star/eta_orig}.}

@@ -5,7 +5,7 @@
 \alias{eeu_base_params}
 \title{EEU base parameters}
 \format{
-A string list with 22 entries.
+A string list with 10 entries.
 \describe{
 \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 \item{original}{A string to identify the original device, e.g., "Incandescent".}

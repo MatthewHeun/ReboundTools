@@ -9,7 +9,7 @@ calc_hat(
   eta_star = ReboundTools::star_vars$eta_star,
   p_s_star = ReboundTools::star_vars$p_s_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
-  C_dot_md_star = ReboundTools::eeu_base_params$C_dot_md_star,
+  C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
   E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,

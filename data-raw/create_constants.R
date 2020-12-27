@@ -25,21 +25,9 @@ eeu_base_params <- list(case = "Case",
                       I_E = "I_E", 
                       k = "k", 
                       p_E = "p_E",
-                      eta_orig_engr_units = "eta_orig_engr_units", 
-                      eta_star_engr_units = "eta_star_engr_units", 
                       e_qs_ps_UC = "e_qs_ps_UC", 
                       e_qs_M = "e_qs_M", 
-                      e_qo_M = "e_qo_M", 
-                      q_dot_s_orig = "q_dot_s_orig",
-                      M_dot_orig = "M_dot_orig", 
-                      C_cap_orig = "C_cap_orig", 
-                      t_orig = "t_orig", 
-                      C_cap_star	= "C_cap_star", 
-                      t_star = "t_star", 
-                      C_dot_md_orig = "C_dot_md_orig", 
-                      C_dot_md_star = "C_dot_md_star", 
-                      E_emb_orig = "E_emb_orig", 
-                      E_emb_star = "E_emb_star")
+                      e_qo_M = "e_qo_M")
 usethis::use_data(eeu_base_params, overwrite = TRUE)
 
 
@@ -47,7 +35,13 @@ usethis::use_data(eeu_base_params, overwrite = TRUE)
 # Names of calculated variables at the "orig" stage.
 # 
 
-orig_vars <- list(eta_orig = "eta_orig", 
+orig_vars <- list(q_dot_s_orig = "q_dot_s_orig",
+                  M_dot_orig = "M_dot_orig", 
+                  C_cap_orig = "C_cap_orig", 
+                  t_orig = "t_orig", 
+                  C_dot_md_orig = "C_dot_md_orig", 
+                  eta_orig_engr_units = "eta_orig_engr_units", 
+                  eta_orig = "eta_orig", 
                   E_dot_s_orig = "E_dot_s_orig",
                   C_dot_cap_orig = "C_dot_cap_orig",
                   p_s_orig = "p_s_orig", 
@@ -56,6 +50,7 @@ orig_vars <- list(eta_orig = "eta_orig",
                   f_Cs_orig = "f_Cs_orig",
                   e_qs_ps = "e_qs_ps",
                   e_qo_ps = "e_qo_ps", 
+                  E_emb_orig = "E_emb_orig",
                   E_dot_emb_orig = "E_dot_emb_orig", 
                   N_dot_orig = "N_dot_orig")
 usethis::use_data(orig_vars, overwrite = TRUE)
@@ -65,7 +60,12 @@ usethis::use_data(orig_vars, overwrite = TRUE)
 # Names of calculated variables at the "star" stage.
 # 
 
-star_vars <- list(eta_star = "eta_star",
+star_vars <- list(C_cap_star	= "C_cap_star", 
+                  t_star = "t_star", 
+                  C_dot_md_star = "C_dot_md_star", 
+                  E_emb_star = "E_emb_star",
+                  eta_star_engr_units = "eta_star_engr_units", 
+                  eta_star = "eta_star",
                   eta_ratio = "eta_ratio", 
                   S_dot_dev = "S_dot_dev",
                   G_dot = "G_dot", 
