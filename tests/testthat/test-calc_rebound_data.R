@@ -33,6 +33,10 @@ test_that("calc_orig() works as expected", {
   
   expect_equal(res[[ReboundTools::orig_vars$E_dot_emb_orig]][[1]], 4857.14285714285688300151)
   expect_equal(res[[ReboundTools::orig_vars$E_dot_emb_orig]][[2]], 1.22222222222222232091)
+  
+  expect_equal(res[[ReboundTools::orig_vars$N_dot_orig]][[1]], 0)
+  expect_equal(res[[ReboundTools::orig_vars$N_dot_orig]][[2]], 0)
+  
 })
 
 
@@ -41,7 +45,6 @@ test_that("calc_star() works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star()
-  
   
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[2]], 22722.222222222)
@@ -66,8 +69,39 @@ test_that("calc_star() works as expected", {
   
   expect_equal(res[[ReboundTools::star_vars$E_dot_emb_star]][[1]], 5714.28571428571467549773)
   expect_equal(res[[ReboundTools::star_vars$E_dot_emb_star]][[2]], 0.65)
+
+  expect_equal(res[[ReboundTools::star_vars$C_dot_s_star]][[1]], 759.02976190476192641654)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_s_star]][[2]], 0.96133848300660162955)
+
+  expect_equal(res[[ReboundTools::star_vars$M_dot_star]][[1]], 27401.27769302945671370253)
+  expect_equal(res[[ReboundTools::star_vars$M_dot_star]][[2]], 27401.27769302945671370253)
   
+  expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[1]], 701.56351693471481212327)
+  expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[2]], 8.86446308331784749157)
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

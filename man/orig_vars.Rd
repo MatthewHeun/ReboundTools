@@ -5,7 +5,7 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 10 entries.
+A string list with 11 entries.
 \describe{
 \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_orig_engr_units / MJ_engr_unit}.}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/year], calculated by \code{q_dot_s_orig / eta_orig}.}
@@ -17,6 +17,7 @@ A string list with 10 entries.
 \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val}.}
 \item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)}.}
 \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand[MJ/year], calculated by \code{E_dot_emb_val / t_orig_val}.}
+\item{N_dot_orig}{The original (pre-EEU) freed cash rate [$/year], exactly \code{0}.}
 }
 }
 \usage{

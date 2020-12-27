@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_rebound_data.R
 \name{calc_star}
 \alias{calc_star}
-\title{Title}
+\title{Calculate energy rebound data at the star stage}
 \usage{
 calc_star(
   .orig_data = NULL,
@@ -15,6 +15,10 @@ calc_star(
   C_cap_star = ReboundTools::eeu_base_params$C_cap_star,
   t_star = ReboundTools::eeu_base_params$t_star,
   E_emb_star = ReboundTools::eeu_base_params$E_emb_star,
+  M_dot_orig = ReboundTools::eeu_base_params$M_dot_orig,
+  C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
+  C_dot_md_orig = ReboundTools::eeu_base_params$C_dot_md_orig,
+  C_dot_md_star = ReboundTools::eeu_base_params$C_dot_md_star,
   eta_star = ReboundTools::star_vars$eta_star,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
@@ -22,18 +26,23 @@ calc_star(
   p_s_star = ReboundTools::star_vars$p_s_star,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
-  E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star
+  E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
+  C_dot_s_star = ReboundTools::star_vars$C_dot_s_star,
+  M_dot_star = ReboundTools::star_vars$M_dot_star,
+  N_dot_star = ReboundTools::star_vars$N_dot_star
 )
 }
 \arguments{
-\item{.orig_data}{An optional data frame containing EEU base data and original data.
+\item{.orig_data}{An optional data frame containing EEU base data and original data,
+likely calculated by \code{calc_orig()}.
 See \code{ReboundTools::eeu_base_params} and \code{ReboundTools::orig_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the star stage (after the emplacement effect).
 }
 \description{
-Title
+This function calculates energy rebound information for the star
+stage (immediately after the EEU, with no behavior change).
 }
 \examples{
 load_eeu_data() \%>\% 

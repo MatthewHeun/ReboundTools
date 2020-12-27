@@ -48,15 +48,16 @@ usethis::use_data(eeu_base_params, overwrite = TRUE)
 # 
 
 orig_vars <- list(eta_orig = "eta_orig", 
-                      E_dot_s_orig = "E_dot_s_orig",
-                      C_dot_cap_orig = "C_dot_cap_orig",
-                      p_s_orig = "p_s_orig", 
-                      C_dot_s_orig = "C_dot_s_orig",
-                      C_dot_o_orig = "C_dot_o_orig",
-                      f_Cs_orig = "f_Cs_orig",
-                      e_qs_ps = "e_qs_ps",
-                      e_qo_ps = "e_qo_ps", 
-                      E_dot_emb_orig = "E_dot_emb_orig")
+                  E_dot_s_orig = "E_dot_s_orig",
+                  C_dot_cap_orig = "C_dot_cap_orig",
+                  p_s_orig = "p_s_orig", 
+                  C_dot_s_orig = "C_dot_s_orig",
+                  C_dot_o_orig = "C_dot_o_orig",
+                  f_Cs_orig = "f_Cs_orig",
+                  e_qs_ps = "e_qs_ps",
+                  e_qo_ps = "e_qo_ps", 
+                  E_dot_emb_orig = "E_dot_emb_orig", 
+                  N_dot_orig = "N_dot_orig")
 usethis::use_data(orig_vars, overwrite = TRUE)
 
 
@@ -71,7 +72,10 @@ star_vars <- list(eta_star = "eta_star",
                   p_s_star = "p_s_star",
                   q_dot_s_star = "q_dot_s_star",
                   C_dot_cap_star = "C_dot_cap_star",
-                  E_dot_emb_star = "E_dot_emb_star")
+                  E_dot_emb_star = "E_dot_emb_star",
+                  C_dot_s_star = "C_dot_s_star", 
+                  M_dot_star = "M_dot_star",
+                  N_dot_star = "N_dot_star")
 usethis::use_data(star_vars, overwrite = TRUE)
 
 

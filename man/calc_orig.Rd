@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_rebound_data.R
 \name{calc_orig}
 \alias{calc_orig}
-\title{Calculate original energy rebound data}
+\title{Calculate energy rebound data at the original stage}
 \usage{
 calc_orig(
   .eeu_data = NULL,
@@ -26,7 +26,8 @@ calc_orig(
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
   e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
-  E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig
+  E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
+  N_dot_orig = ReboundTools::orig_vars$N_dot_orig
 )
 }
 \arguments{

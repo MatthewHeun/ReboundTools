@@ -98,6 +98,7 @@
 #' \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val`.}
 #' \item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)`.}
 #' \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand\[MJ/year\], calculated by `E_dot_emb_val / t_orig_val`.}
+#' \item{N_dot_orig}{The original (pre-EEU) freed cash rate \[$/year\], exactly `0`.}
 #' }
 #' @examples
 #' orig_vars
