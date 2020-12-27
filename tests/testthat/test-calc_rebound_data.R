@@ -40,7 +40,6 @@ test_that("calc_orig() works as expected", {
 })
 
 
-
 test_that("calc_star() works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
@@ -79,35 +78,16 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[1]], 701.56351693471481212327)
   expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[2]], 8.86446308331784749157)
 
+  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[1]], 19234.10200768475260701962)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[2]], 27391.33089146313432138413)
+  
+  expect_equal(res[[ReboundTools::star_vars$E_dot_s_star]][[1]], 43488.50030357143259607255)
+  expect_equal(res[[ReboundTools::star_vars$E_dot_s_star]][[2]], 25.54107579462102606271)
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 test_that("calc_hat() works as expected", {
-  expect_equal(res[[ReboundTools::eeu_derived_data$q_dot_s_hat]][[1]], )
-  expect_equal(res[[ReboundTools::eeu_derived_data$q_dot_s_hat]][[2]], )
-  
+
+    
   
 })

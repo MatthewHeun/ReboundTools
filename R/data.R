@@ -81,7 +81,6 @@
 "eeu_base_params"
 
 
-
 #' EEU orig data 
 #' 
 #' This is the list of the derived variables at the original (pre-EEU) stage of a rebound analysis. 
@@ -105,9 +104,6 @@
 "orig_vars"
 
 
-
-
-
 #' EEU star data 
 #' 
 #' This is the list of the derived variables at the star (post-emplacement) stage of a rebound analysis. 
@@ -121,11 +117,12 @@
 #' \item{p_s_star}{The upgraded (post-EEU) energy service price \[$/service\], calculated by `p_E / eta_star = p_E / eta_tilde`.}
 #' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/year\], same as `q_dot_s_orig`.}
 #' \item{C_dot_cap_star}{The upgraded (post-EEU) capital cost rate \[$/year\], calculated by `C_cap_star / t_star`.}
-#' 
-#' 
-#' 
-#' 
-#' \item{E_dot_s_star}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
+#' \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate \[MJ/year\], calculated by `E_emb_star / t_star`.}
+#' \item{C_dot_s_star}{The upgraded (post-EEU) energy cost rate \[$/year\], calculated by `p_s_star * q_dot_s_star`.}
+#' \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings \[$/year\], exactly `M_dot_orig`.}
+#' \item{N_dot_star}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
+#' \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate \[$/year\], exactly `C_dot_o_orig`.}
+#' \item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate \[MJ/year\], calculated by `q_dot_s_star_val / eta_star_val`.}
 #' }
 #' @examples
 #' star_vars

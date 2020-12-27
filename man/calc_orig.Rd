@@ -34,7 +34,7 @@ calc_orig(
 \item{eta_orig_engr_units, MJ_engr_unit, q_dot_s_orig, C_cap_orig, t_orig, p_E, M_dot_orig, C_dot_md_orig, e_qs_ps_UC, e_qs_m, E_emb_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{.rebound_data}{An optional data frame containing EEU base data.
-See \code{ReboundTools::eeu_base_data}.}
+See \code{ReboundTools::eeu_base_params}.}
 }
 \value{
 A list or data frame of derived rebound values.

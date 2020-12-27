@@ -76,32 +76,11 @@ star_vars <- list(eta_star = "eta_star",
                   C_dot_s_star = "C_dot_s_star", 
                   M_dot_star = "M_dot_star",
                   N_dot_star = "N_dot_star",
-                  C_dot_o_star = "C_dot_o_star")
+                  C_dot_o_star = "C_dot_o_star", 
+                  E_dot_s_star = "E_dot_s_star")
 usethis::use_data(star_vars, overwrite = TRUE)
 
 
 
 
 
-
-
-
-
-
-eeu_derived_data <- list(eta_orig = "eta_orig", 
-                         eta_tilde = "eta_tilde", 
-                         eta_ratio = "eta_ratio", 
-                         E_dot_s_orig = "E_dot_s_orig",
-                         S_dot_dev = "S_dot_dev", 
-                         G_dot = "G_dot", 
-                         C_dot_cap_orig = "C_dot_cap_orig",
-                         C_dot_cap_star = "C_dot_cap_star", 
-                         p_s_orig = "p_s_orig", 
-                         p_s_star = "p_s_star", 
-                         q_dot_s_star = "q_dot_s_star", 
-                         C_dot_s_orig = "C_dot_s_orig",
-                         C_dot_o_orig = "C_dot_o_orig",
-                         f_Cs_orig = "f_Cs_orig",
-                         e_qs_ps = "e_qs_ps",
-                         q_dot_s_hat = "q_dot_s_hat")
-usethis::use_data(eeu_derived_data, overwrite = TRUE)

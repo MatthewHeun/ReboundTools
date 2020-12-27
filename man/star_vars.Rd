@@ -5,7 +5,7 @@
 \alias{star_vars}
 \title{EEU star data}
 \format{
-A string list with 12 entries.
+A string list with 13 entries.
 \describe{
 \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], calculated by \code{eta_tilde_engr_units / MJ_engr_unit}.}
 \item{eta_ratio}{The energy service efficiency ratio [--], calculated by \code{eta_star/eta_orig}.}
@@ -14,8 +14,12 @@ A string list with 12 entries.
 \item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
 \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/year], same as \code{q_dot_s_orig}.}
 \item{C_dot_cap_star}{The upgraded (post-EEU) capital cost rate [$/year], calculated by \code{C_cap_star / t_star}.}
-
-\item{E_dot_s_star}{The final energy consumption rate of the original (pre-EEU) device [MJ/year], calculated by \code{q_dot_s_orig / eta_orig}.}
+\item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate [MJ/year], calculated by \code{E_emb_star / t_star}.}
+\item{C_dot_s_star}{The upgraded (post-EEU) energy cost rate [$/year], calculated by \code{p_s_star * q_dot_s_star}.}
+\item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/year], exactly \code{M_dot_orig}.}
+\item{N_dot_star}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
+\item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate [$/year], exactly \code{C_dot_o_orig}.}
+\item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/year], calculated by \code{q_dot_s_star_val / eta_star_val}.}
 }
 }
 \usage{
