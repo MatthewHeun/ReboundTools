@@ -7,24 +7,24 @@
 calc_rebound(
   .Deltas_data = NULL,
   tol = 1e-06,
-  S_dot_dev = ReboundTools::star_vars$S_dot_dev,
-  Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
-  Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
   I_E = ReboundTools::eeu_base_params$I_E,
-  eta_ratio = ReboundTools::star_vars$eta_ratio,
+  e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+  k = ReboundTools::eeu_base_params$k,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
-  Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
   e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
+  S_dot_dev = ReboundTools::star_vars$S_dot_dev,
+  eta_ratio = ReboundTools::star_vars$eta_ratio,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
-  e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+  Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
+  Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
+  Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
+  Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
   Delta_E_dot_s_bar = ReboundTools::Delta_vars[["∆E_dot_s_bar"]],
-  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
   Delta_C_dot_o_bar = ReboundTools::Delta_vars[["∆C_dot_o_bar"]],
-  k = ReboundTools::eeu_base_params$k,
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
   Re_md = ReboundTools::rebound_terms$Re_md,
@@ -42,11 +42,11 @@ calc_rebound(
 )
 }
 \arguments{
-\item{.Deltas_data}{}
-
-\item{eta_ratio}{}
+\item{.Deltas_data}{A data frame containing ∆ values, likely created by \code{ReboundTools::calc_Deltas()}}
 
 \item{e_qs_ps}{}
+
+\item{eta_ratio}{}
 }
 \value{
 
