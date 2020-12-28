@@ -385,26 +385,40 @@ calc_bar <- function(.hat_data = NULL,
                      # Input names
                      eta_hat = ReboundTools::hat_vars$eta_hat,
                      p_s_hat = ReboundTools::hat_vars$p_s_hat,
+                     C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
+                     C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
 
                      # Output names
                      eta_bar = ReboundTools::bar_vars$eta_bar,
-                     p_s_bar = ReboundTools::bar_vars$p_s_bar
+                     p_s_bar = ReboundTools::bar_vars$p_s_bar,
+                     C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
+                     C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar
 ) {
   
   calc_bar_fun <- function(eta_hat_val, 
-                           p_s_hat_val) {
+                           p_s_hat_val,
+                           C_dot_cap_hat_val,
+                           C_dot_md_hat_val) {
     eta_bar_val <- eta_hat_val
     p_s_bar_val <- p_s_hat_val
+    C_dot_cap_bar_val <- C_dot_cap_hat_val
+    C_dot_md_bar_val <- C_dot_md_hat_val
     
     list(eta_bar_val,
-         p_s_bar_val) %>% 
+         p_s_bar_val,
+         C_dot_cap_bar_val,
+         C_dot_md_bar_val) %>% 
       magrittr::set_names(c(eta_bar,
-                            p_s_bar))
+                            p_s_bar, 
+                            C_dot_cap_bar,
+                            C_dot_md_bar))
   }
   
   matsindf::matsindf_apply(.hat_data, FUN = calc_bar_fun,
                            eta_hat_val = eta_hat, 
-                           p_s_hat_val = p_s_hat
+                           p_s_hat_val = p_s_hat,
+                           C_dot_cap_hat_val = C_dot_cap_hat,
+                           C_dot_md_hat_val = C_dot_md_hat
                            )
   
 }
