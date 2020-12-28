@@ -170,4 +170,124 @@ test_that("calc_bar() works as expected", {
   expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[1]], 0)
   expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[2]], 0)
 })
+
+
+test_that("calc_tilde() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde()
+  
+  expect_equal(res[[ReboundTools::tilde_vars$eta_tilde]][[1]], 0.33169688306808242650)
+  expect_equal(res[[ReboundTools::tilde_vars$eta_tilde]][[2]], 22722.222222222)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$p_s_tilde]][[1]], 0.05261904761904762085)
+  expect_equal(res[[ReboundTools::tilde_vars$p_s_tilde]][[2]], 0.00000165648054278729)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_cap_tilde]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_cap_tilde]][[2]], 0.121)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_md_tilde]][[1]], 2774.66812079094552245806)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_md_tilde]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_emb_tilde]][[1]], 2857.14285714285733774886)
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_emb_tilde]][[2]], 0.65)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$M_dot_tilde]][[1]], 27401.27769302945671370253)
+  expect_equal(res[[ReboundTools::tilde_vars$M_dot_tilde]][[2]], 27401.27769302945671370253)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[1]], 15234.66124970508462865837)
+  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[2]], 1413421.25553010916337370872)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[1]], 45929.46761751178564736620)
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[2]], 62.20435843408792919718)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[1]], 801.63336575829134744708)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[2]], 2.34130480854760270049)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[1]], 19893.06192076593652018346)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[2]], 27398.81538822091170004569)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[1]], 0)
+  expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[2]], 0)
+})
+
+
+test_that("calc_Deltas() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde() %>% 
+    calc_Deltas()
+  
+  # Check a couple Delta values. 
+  # Note that there are over 40 values calculated, so this is just a sample.
+  expect_equal(res[[ReboundTools::Delta_vars[["∆p_s_star"]]]][[1]], -0.03578095238095238551)
+  expect_equal(res[[ReboundTools::Delta_vars[["∆p_s_star"]]]][[2]], -0.00001368315437042027)
+
+  expect_equal(res[[ReboundTools::Delta_vars[["∆C_dot_o_bar"]]]][[1]], 683.96658856147041660734)
+  expect_equal(res[[ReboundTools::Delta_vars[["∆C_dot_o_bar"]]]][[2]], 15.40266438258913694881)
+
+  expect_equal(res[[ReboundTools::Delta_vars[["∆E_dot_s_star"]]]][[1]], -29572.18020642857300117612)
+  expect_equal(res[[ReboundTools::Delta_vars[["∆E_dot_s_star"]]]][[2]], -210.97892420537903035438)
+  
+  expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[1]], -711.52848127756499252428)
+  expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[2]], -15.40398058300356609607)
+})
+
+
+test_that("calc_rebound() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde() %>% 
+    calc_Deltas() %>% 
+    calc_rebound()
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dempl]][[1]], 0)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dempl]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[1]], 0.01449238526141076108)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[2]], -0.00271222457113862387)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_md]][[1]], -0.00991009287347477917)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_md]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[1]], 0.00458229238793599059)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[2]], -0.00271222457113862300)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[1]], 0.02914268260298064420)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[2]], 0.17361124407606612352)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[1]], -0.00286607552946620226)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[2]], -0.12720396096300989885)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[1]], 0.02627660707351444150)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[2]], 0.04640728311305622467)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[1]], 0.05340000775333344357)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[2]], 0.00016574705019797769)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[1]], 0.07839106417780371261)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[2]], 0.24744107622950298198)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_prod]][[1]], 0.08154999933180497040)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_prod]][[2]], 0.24746222075612700486)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_d]][[1]], 0.08254269035631409124)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_d]][[2]], 0.17377699112626410205)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_i]][[1]], 0.16165728036807847090)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_i]][[2]], 0.36498711145148143853)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[1]], 0.24419997072439253438)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[2]], 0.53876410257774554058)
+  
+})
   

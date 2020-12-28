@@ -45,7 +45,6 @@ Note the following meanings for the default parameter names:
 \item{E}{Energy, typically final energy.}
 \item{s}{Energy service.}
 \item{o}{Other goods.}
-\item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}
 \item{eps}{Elasticity.}
 \item{UC}{Uncompensated.}
 \item{dot}{Signifies a rate, typically per year.}

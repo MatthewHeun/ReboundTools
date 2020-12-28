@@ -16,6 +16,46 @@
 "eeu_data_table"
 
 
+#' Key analysis variables 
+#' 
+#' This is the list of key rebound analysis variables.
+#' These variables are differenced later in the analysis.
+#' 
+#' @format A string list with `r length(key_analysis_vars)` entries.
+#' \describe{
+#' \item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}
+#' \item{p_s}{Energy service price \[service/MJ\], calculated by `p_E/eta`.}
+#' \item{q_dot_s}{The rate of energy service consumption \[service/year\], calculated by `eta*E_dot_s`.}
+#' \item{E_dot_s}{The rate of final energy consumption by the energy conversion device \[MJ/year\].}
+#' \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device \[MJ/year\], calculated by `E_emb/t_life`.}
+#' \item{C_dot_s}{The cost rate of energy consumption by the device \[$/year\], calculated by `p_s*q_dot_s`.}
+#' \item{C_dot_cap}{The capital cost rateof the device \[$/year\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_md}{The maintenance and disposal cost rateof the device \[$/year\].}
+#' \item{C_dot_o}{The other goods consumption rate \[$/year\], calculated, initially, as a residual of the budget constraint.}
+#' \item{M_dot}{Real income \[$/year\].}
+#' }
+#' 
+#' @examples
+#' key_analysis_vars
+"key_analysis_vars"
+
+
+#' Rebound stages
+#' 
+#' This is the list of rebound stages.
+#' 
+#' @format A string list with `r length(rebound_stages)` entries.
+#' \describe{
+#' \item{orig}{The original (pre-EEU) stage.}
+#' \item{star}{The upgraded condition (post-EEU), before any behavior changes.}
+#' \item{hat}{After the substitution effect but before the income effect.}
+#' \item{bar}{After the income effect but before the productivity effect.}
+#' \item{tilde}{After the productivity effect.}
+#' }
+#' 
+#' @examples
+#' rebound_stages
+"rebound_stages"
 
 
 #' EEU base parameters 
@@ -40,7 +80,6 @@
 #' \item{E}{Energy, typically final energy.}
 #' \item{s}{Energy service.}
 #' \item{o}{Other goods.}
-#' \item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}
 #' \item{eps}{Elasticity.}
 #' \item{UC}{Uncompensated.}
 #' \item{dot}{Signifies a rate, typically per year.}
@@ -174,3 +213,53 @@
 #' @examples
 #' bar_vars
 "bar_vars"
+
+
+#' EEU tilde data 
+#' 
+#' This is the list of the derived variables at the tilde stage (after productivity effect) of a rebound analysis.
+#' 
+#' @format A string list with `r length(tilde_vars)` entries.
+#' \describe{
+#' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_bar`.}
+#' \item{p_s_tilde}{The energy service price after the productivity effect \[$/service\], exactly `p_s_bar`.}
+#' \item{C_dot_cap_tilde}{The capital expenditure rate after the productivity effect \[$/year\], exactly `C_dot_cap_bar`.}
+#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the productivity effect \[$/year\], exactly `C_dot_md_bar`.}
+#' \item{E_dot_emb_tilde}{The embodied energy rate after the productivity effect \[MJ/year\], exactly `E_dot_emb_bar`.}
+#' \item{M_dot_tilde}{Real income after the productivity effect \[MJ/year\], exactly `M_dot_bar`.}
+#' \item{q_dot_s_tilde}{The rate of energy service consumption after the productivity effect\ [service/year\], exactly `q_dot_s_bar`.}
+#' \item{C_dot_o_tilde}{The rate of other goods expenditures after the productivity effect \[$/year\], exactly `C_dot_o_bar`.}
+#' \item{N_dot_tilde}{The freed cash rate after the productivity effect \[$/year\], exactly `0`.}
+#' }
+#' @examples
+#' tilde_vars
+"tilde_vars"
+
+
+#' Rebound terms
+#' 
+#' This is the list of the rebound terms 
+#' 
+#' @format A string list with `r length(rebound_terms)` entries.
+#' \describe{
+#' \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
+#' \item{Re_emb}{Indirect embodied energy effect rebound.}
+#' \item{Re_md}{Indirect maintenance and disposal effect rebound.}
+#' \item{Re_empl}{Emplacement effect rebound.}
+#' \item{Re_dsub}{Direct substitution effect rebound.}
+#' \item{Re_isub}{Indirect substitution effect rebound.}
+#' \item{Re_sub}{Substitution effect rebound.}
+#' \item{Re_dinc}{Direct income effect rebound.}
+#' \item{Re_iinc}{Indirect income effect rebound.}
+#' \item{Re_inc}{Income effect rebound.}
+#' \item{Re_prod}{Indirect productivity effect rebound.}
+#' \item{Re_d}{Sum of all direct rebound effects.}
+#' \item{Re_i}{Sum of all indirect rebound effects.}
+#' \item{Re_tot}{Total rebound.}
+#' }
+#' @examples
+#' rebound_terms
+"rebound_terms"
+
+
+

@@ -15,6 +15,40 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 
 #
+# Names of key rebound variables
+# 
+
+key_analysis_vars <- c("eta", "p_s", "q_dot_s", "E_dot_s", "E_dot_emb", 
+                       "C_dot_s", "C_dot_cap", "C_dot_md", "C_dot_o", "M_dot", "N_dot")
+usethis::use_data(key_analysis_vars, overwrite = TRUE)
+
+
+#
+# Names of stages
+# 
+
+rebound_stages <- c("orig", "star", "hat", "bar", "tilde")
+usethis::use_data(rebound_stages, overwrite = TRUE)
+
+
+#
+# Delta variables
+# 
+
+Delta_vars <- expand.grid(key_analysis_vars, rebound_stages) %>% 
+  magrittr::set_names(c("key_analysis_vars", "rebound_stages")) %>% 
+  dplyr::mutate(
+    Delta_vars = paste0("∆", .data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
+  ) %>% 
+  dplyr::select(.data[["Delta_vars"]]) %>% 
+  unlist()
+Delta_vars <- Delta_vars %>% 
+  magrittr::set_names(Delta_vars) %>% 
+  as.list()
+usethis::use_data(Delta_vars, overwrite = TRUE)
+
+
+#
 # Names of base parameters for a rebound analysis.
 # 
 
@@ -121,3 +155,40 @@ bar_vars <- list(eta_bar = "eta_bar",
 usethis::use_data(bar_vars, overwrite = TRUE)
 
 
+#
+# Names of calculated variables at the "tilde" stage.
+# 
+
+tilde_vars <- list(eta_tilde = "eta_tilde",
+                   p_s_tilde = "p_s_tilde",
+                   C_dot_cap_tilde = "C_dot_cap_tilde",
+                   C_dot_md_tilde = "C_dot_md_tilde",
+                   E_dot_emb_tilde = "E_dot_emb_tilde",
+                   M_dot_tilde = "M_dot_tilde",
+                   q_dot_s_tilde = "q_dot_s_tilde",
+                   E_dot_s_tilde = "E_dot_s_tilde",
+                   C_dot_s_tilde = "C_dot_s_tilde",
+                   C_dot_o_tilde = "C_dot_o_tilde", 
+                   N_dot_tilde = "N_dot_tilde")
+usethis::use_data(tilde_vars, overwrite = TRUE)
+
+
+#
+# Names of rebound terms calculated after all ∆ variables are calculated.
+# 
+
+rebound_terms <- list(Re_dempl = "Re_dempl",
+                      Re_emb = "Re_emb",
+                      Re_md = "Re_md",
+                      Re_empl = "Re_empl",
+                      Re_dsub = "Re_dsub", 
+                      Re_isub = "Re_isub",
+                      Re_sub = "Re_sub",
+                      Re_dinc = "Re_dinc", 
+                      Re_iinc = "Re_iinc", 
+                      Re_inc = "Re_inc",
+                      Re_prod = "Re_prod", 
+                      Re_d = "Re_d",
+                      Re_i = "Re_i",
+                      Re_tot = "Re_tot")
+usethis::use_data(rebound_terms, overwrite = TRUE)
