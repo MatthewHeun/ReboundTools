@@ -275,6 +275,7 @@ calc_hat <- function(.star_data = NULL,
                      C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
                      E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
                      q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                     C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
                      C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat
 ) {
   
@@ -295,6 +296,7 @@ calc_hat <- function(.star_data = NULL,
     C_dot_md_hat_val <- C_dot_md_star_val
     E_dot_emb_hat_val <- E_dot_emb_star_val
     q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    C_dot_s_hat_val <- p_s_hat_val * q_dot_s_hat_val
     C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
     
     # N_dot_hat_val
@@ -305,6 +307,7 @@ calc_hat <- function(.star_data = NULL,
          C_dot_md_hat_val,
          E_dot_emb_hat_val,
          q_dot_s_hat_val,
+         C_dot_s_hat_val,
          C_dot_o_hat_val) %>% 
       magrittr::set_names(c(eta_hat,
                             p_s_hat,
@@ -312,6 +315,7 @@ calc_hat <- function(.star_data = NULL,
                             C_dot_md_hat,
                             E_dot_emb_hat,
                             q_dot_s_hat,
+                            C_dot_s_hat,
                             C_dot_o_hat))
   }
   
