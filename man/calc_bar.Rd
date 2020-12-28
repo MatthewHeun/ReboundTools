@@ -10,10 +10,14 @@ calc_bar(
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
   C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
+  E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
+  M_dot_hat = ReboundTools::hat_vars$M_dot_hat,
   eta_bar = ReboundTools::bar_vars$eta_bar,
   p_s_bar = ReboundTools::bar_vars$p_s_bar,
   C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
-  C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar
+  C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar,
+  E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,
+  M_dot_bar = ReboundTools::bar_vars$M_dot_bar
 )
 }
 \arguments{

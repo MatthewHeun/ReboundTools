@@ -146,6 +146,11 @@ test_that("calc_bar() works as expected", {
   expect_equal(res[[ReboundTools::bar_vars$C_dot_md_bar]][[1]], 2774.66812079094552245806)
   expect_equal(res[[ReboundTools::bar_vars$C_dot_md_bar]][[2]], 0)
   
+  expect_equal(res[[ReboundTools::bar_vars$E_dot_emb_bar]][[1]], 5714.28571428571467549773)
+  expect_equal(res[[ReboundTools::bar_vars$E_dot_emb_bar]][[2]], 0.65)
+  
+  expect_equal(res[[ReboundTools::bar_vars$M_dot_bar]][[1]], 27401.27769302945671370253)
+  expect_equal(res[[ReboundTools::bar_vars$M_dot_bar]][[2]], 27401.27769302945671370253)
   
 })
   
