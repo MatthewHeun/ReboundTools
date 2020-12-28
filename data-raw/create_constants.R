@@ -90,9 +90,11 @@ hat_vars <- list(eta_hat = "eta_hat",
                  C_dot_cap_hat = "C_dot_cap_hat",
                  C_dot_md_hat = "C_dot_md_hat",
                  E_dot_emb_hat = "E_dot_emb_hat",
-                 q_dot_s_hat = "q_dot_s_hat", 
+                 q_dot_s_hat = "q_dot_s_hat",
+                 E_dot_s_hat = "E_dot_s_hat",
                  C_dot_s_hat = "C_dot_s_hat",
-                 C_dot_o_hat = "C_dot_o_hat")
+                 C_dot_o_hat = "C_dot_o_hat", 
+                 N_dot_hat = "N_dot_hat")
 usethis::use_data(hat_vars, overwrite = TRUE)
 
 

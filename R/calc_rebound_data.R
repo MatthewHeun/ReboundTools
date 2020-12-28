@@ -262,11 +262,14 @@ calc_hat <- function(.star_data = NULL,
                      C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
                      C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
                      E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
-                     eta_ratio = ReboundTools::star_vars$eta_ratio,
                      q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
+                     eta_ratio = ReboundTools::star_vars$eta_ratio,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                      C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
                      e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+                     N_dot_star = ReboundTools::star_vars$N_dot_star,
+                     p_E = ReboundTools::eeu_base_params$p_E,
+                     E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
                      
                      # Output names
                      eta_hat = ReboundTools::hat_vars$eta_hat, 
@@ -275,8 +278,10 @@ calc_hat <- function(.star_data = NULL,
                      C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
                      E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
                      q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                     E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
                      C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
-                     C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat
+                     C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+                     N_dot_hat = ReboundTools::hat_vars$N_dot_hat
 ) {
   
   calc_hat_fun <- function(eta_star_val, 
@@ -288,7 +293,10 @@ calc_hat <- function(.star_data = NULL,
                            eta_ratio_val,
                            e_qs_ps_val,
                            C_dot_o_star_val,
-                           e_qo_ps_val
+                           e_qo_ps_val, 
+                           N_dot_star_val,
+                           p_E_val,
+                           E_dot_s_star_val
                            ) {
     eta_hat_val <- eta_star_val
     p_s_hat_val <- p_s_star_val
@@ -296,10 +304,10 @@ calc_hat <- function(.star_data = NULL,
     C_dot_md_hat_val <- C_dot_md_star_val
     E_dot_emb_hat_val <- E_dot_emb_star_val
     q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    E_dot_s_hat_val <- q_dot_s_hat_val / eta_hat_val
     C_dot_s_hat_val <- p_s_hat_val * q_dot_s_hat_val
     C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
-    
-    # N_dot_hat_val
+    N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
     
     list(eta_hat_val, 
          p_s_hat_val,
@@ -307,16 +315,20 @@ calc_hat <- function(.star_data = NULL,
          C_dot_md_hat_val,
          E_dot_emb_hat_val,
          q_dot_s_hat_val,
+         E_dot_s_hat_val,
          C_dot_s_hat_val,
-         C_dot_o_hat_val) %>% 
+         C_dot_o_hat_val,
+         N_dot_hat_val) %>% 
       magrittr::set_names(c(eta_hat,
                             p_s_hat,
                             C_dot_cap_hat,
                             C_dot_md_hat,
                             E_dot_emb_hat,
                             q_dot_s_hat,
+                            E_dot_s_hat,
                             C_dot_s_hat,
-                            C_dot_o_hat))
+                            C_dot_o_hat,
+                            N_dot_hat))
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
@@ -329,7 +341,10 @@ calc_hat <- function(.star_data = NULL,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps,
                            C_dot_o_star_val = C_dot_o_star,
-                           e_qo_ps_val = e_qo_ps)
+                           e_qo_ps_val = e_qo_ps,
+                           N_dot_star_val = N_dot_star,
+                           p_E_val = p_E, 
+                           E_dot_s_star_val = E_dot_s_star)
 }
 
 

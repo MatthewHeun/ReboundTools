@@ -142,6 +142,7 @@
 #' \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect\[MJ/year\], exactly `E_dot_emb_star`.}
 #' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/year\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps)`.}
 #' \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect \[$/year\], calculated by `C_dot_o_star * eta_ratio^(-e_qo_ps)`.}
+#' \item{N_dot_hat}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
 #' }
 #' @examples
 #' hat_vars
