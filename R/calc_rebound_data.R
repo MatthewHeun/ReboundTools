@@ -606,3 +606,53 @@ calc_tilde <- function(.bar_data = NULL,
 }
 
 
+#' Calculate differences between stages
+#'
+#' @param .tilde_data 
+#' @param rebound_vars 
+#' @param rebound_stages 
+#'
+#' @return
+#' 
+#' @export
+#'
+#' @examples
+#' load_eeu_data() %>% 
+#'   calc_orig() %>% 
+#'   calc_star() %>% 
+#'   calc_hat() %>% 
+#'   calc_bar() %>% 
+#'   calc_tilde() %>% 
+#'   calc_Deltas()
+calc_Deltas <- function(.tilde_data = NULL, 
+                        rebound_vars = ReboundTools::rebound_vars,
+                        rebound_stages = ReboundTools::rebound_stages) {
+  
+  # Eliminate the first stage, because we're dealing with Deltas between stages.
+  vars <- expand.grid(rebound_vars, rebound_stages) %>% 
+    magrittr::set_names(c("rebound_vars", "rebound_stages")) %>% 
+    dplyr::mutate(
+      all_vars = paste0(.data[["rebound_vars"]], "_", .data[["rebound_stages"]])
+    ) %>% 
+    dplyr::select(.data[["all_vars"]])
+  
+  n_vars <- length(rebound_vars)
+  n_stages <- length(rebound_stages)
+  
+  minuends <- vars[(n_vars+1):(n_vars*n_stages), ]
+  subtrahends <- vars[1:(n_vars*(n_stages-1)), ]
+  subtraction_df <- tibble::tibble(minuend = minuends, 
+                                   subtrahend = subtrahends) %>% 
+    dplyr::mutate(
+      var_name = paste0("∆", .data[["minuend"]])
+    )
+  
+  for (i in 1:nrow(subtraction_df)) {
+    col_name <- subtraction_df[[i, "var_name"]]
+    minuend_name <- subtraction_df[[i, "minuend"]]
+    subtrahend_name <- subtraction_df[[i, "subtrahend"]]
+    .tilde_data[[col_name]] <- .tilde_data[[minuend_name]] - .tilde_data[[subtrahend_name]]
+  }  
+  
+  .tilde_data
+}

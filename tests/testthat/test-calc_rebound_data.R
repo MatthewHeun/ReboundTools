@@ -213,3 +213,20 @@ test_that("calc_tilde() works as expected", {
   expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[1]], 0)
   expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[2]], 0)
 })
+
+
+test_that("calc_tilde() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde() %>% 
+    calc_Deltas()
+  
+  # Check a couple Delta values. 
+  # Note that there are over 40 values calculated, so this is just a sample.
+  expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[1]], -711.52848127756499252428)
+  expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[2]], -15.40398058300356609607)
+})
+  

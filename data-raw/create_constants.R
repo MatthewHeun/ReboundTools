@@ -15,6 +15,40 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 
 #
+# Names of key rebound variables
+# 
+
+rebound_vars <- c("eta", "p_s", "q_dot_s", "E_dot_s", "E_dot_emb", 
+                  "C_dot_s", "C_dot_cap", "C_dot_md", "C_dot_o", "M_dot", "N_dot")
+usethis::use_data(rebound_vars, overwrite = TRUE)
+
+
+#
+# Delta variables
+# 
+
+Delta_vars <- expand.grid(rebound_vars, rebound_stages) %>% 
+  magrittr::set_names(c("rebound_vars", "rebound_stages")) %>% 
+  dplyr::mutate(
+    Delta_vars = paste0("∆", .data[["rebound_vars"]], "_", .data[["rebound_stages"]])
+  ) %>% 
+  dplyr::select(.data[["Delta_vars"]]) %>% 
+  unlist()
+Delta_vars <- Delta_vars %>% 
+  magrittr::set_names(Delta_vars) %>% 
+  as.list()
+usethis::use_data(Delta_vars, overwrite = TRUE)
+
+
+#
+# Names of stages
+# 
+
+rebound_stages <- c("orig", "star", "hat", "bar", "tilde")
+usethis::use_data(rebound_stages, overwrite = TRUE)
+
+
+#
 # Names of base parameters for a rebound analysis.
 # 
 
