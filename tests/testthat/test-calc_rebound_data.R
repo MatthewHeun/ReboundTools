@@ -238,4 +238,33 @@ test_that("calc_Deltas() works as expected", {
   expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[1]], -711.52848127756499252428)
   expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[2]], -15.40398058300356609607)
 })
+
+
+test_that("calc_rebound() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde() %>% 
+    calc_Deltas() %>% 
+    calc_rebound()
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dempl]][[1]], 0)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dempl]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[1]], 0.01449238526141076108)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[2]], -0.00271222457113862387)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_md]][[1]], -0.00991009287347477917)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_md]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[1]], 0.02914268260298064420)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[2]], 0.17361124407606612352)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[1]], -0.00286607552946620226)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[2]], -0.12720396096300989885)
+  
+  
+})
   

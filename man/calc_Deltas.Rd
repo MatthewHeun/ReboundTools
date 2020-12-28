@@ -6,14 +6,14 @@
 \usage{
 calc_Deltas(
   .tilde_data = NULL,
-  rebound_vars = ReboundTools::rebound_vars,
+  key_analysis_vars = ReboundTools::key_analysis_vars,
   rebound_stages = ReboundTools::rebound_stages
 )
 }
 \arguments{
 \item{.tilde_data}{}
 
-\item{rebound_vars}{}
+\item{key_analysis_vars}{}
 
 \item{rebound_stages}{}
 }

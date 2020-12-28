@@ -609,7 +609,7 @@ calc_tilde <- function(.bar_data = NULL,
 #' Calculate differences between stages
 #'
 #' @param .tilde_data 
-#' @param rebound_vars 
+#' @param key_analysis_vars 
 #' @param rebound_stages 
 #'
 #' @return
@@ -625,18 +625,18 @@ calc_tilde <- function(.bar_data = NULL,
 #'   calc_tilde() %>% 
 #'   calc_Deltas()
 calc_Deltas <- function(.tilde_data = NULL, 
-                        rebound_vars = ReboundTools::rebound_vars,
+                        key_analysis_vars = ReboundTools::key_analysis_vars,
                         rebound_stages = ReboundTools::rebound_stages) {
   
   # Eliminate the first stage, because we're dealing with Deltas between stages.
-  vars <- expand.grid(rebound_vars, rebound_stages) %>% 
-    magrittr::set_names(c("rebound_vars", "rebound_stages")) %>% 
+  vars <- expand.grid(key_analysis_vars, rebound_stages) %>% 
+    magrittr::set_names(c("key_analysis_vars", "rebound_stages")) %>% 
     dplyr::mutate(
-      all_vars = paste0(.data[["rebound_vars"]], "_", .data[["rebound_stages"]])
+      all_vars = paste0(.data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
     ) %>% 
     dplyr::select(.data[["all_vars"]])
   
-  n_vars <- length(rebound_vars)
+  n_vars <- length(key_analysis_vars)
   n_stages <- length(rebound_stages)
   
   minuends <- vars[(n_vars+1):(n_vars*n_stages), ]
@@ -655,4 +655,118 @@ calc_Deltas <- function(.tilde_data = NULL,
   }  
   
   .tilde_data
+}
+
+
+#' Calculate rebound terms.
+#' 
+#' This function calculates rebound terms from a data frame that already contains ∆ terms.
+#' Note that each rebound term is calculated twice as a way of validating the 
+#' derived expression for rebound.
+#'
+#' @param .Deltas_data 
+#' @param eta_ratio 
+#' @param e_qs_ps 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+calc_rebound <- function(.Deltas_data = NULL, 
+                         tol = 1e-6,
+                         # Input names
+                         # Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
+                         S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
+                         # E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
+                         # E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
+                         Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
+                         # C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
+                         # C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                         Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
+                         I_E = ReboundTools::eeu_base_params$I_E,
+                         eta_ratio = ReboundTools::star_vars$eta_ratio, 
+                         e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
+                         Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
+                         e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+                         C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                         E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
+                         Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
+                         
+                         # Output names
+                         Re_dempl = ReboundTools::rebound_terms$Re_dempl,
+                         Re_emb = ReboundTools::rebound_terms$Re_emb, 
+                         Re_md = ReboundTools::rebound_terms$Re_md,
+                         Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
+                         Re_isub = ReboundTools::rebound_terms$Re_isub
+                         ) {
+  
+  
+  rebound_fun <- function(# E_dot_emb_star_val,
+                          # E_dot_emb_orig_val,
+                          Delta_E_dot_emb_star_val, 
+                          S_dot_dev_val,
+                          # C_dot_md_star_val,
+                          # C_dot_md_orig_val,
+                          Delta_C_dot_md_star_val, 
+                          I_E_val,
+                          eta_ratio_val, 
+                          e_qs_ps_val,
+                          Delta_E_dot_s_hat_val,
+                          e_qo_ps_val,
+                          C_dot_o_orig_val,
+                          E_dot_s_orig_val,
+                          Delta_C_dot_o_hat_val
+                          ) {
+    # Direct emplacement rebound
+    Re_dempl_val <- 0
+    # Indirect embodied energy rebound. 
+    # Note: this formulation avoids a division-by-zero error if E_dot_emb_orig = 0
+    Re_emb_val <- Delta_E_dot_emb_star_val / S_dot_dev_val
+    # Re_emb_val <- (E_dot_emb_star_val/E_dot_emb_orig_val - 1) * E_dot_emb_orig_val / S_dot_dev_val
+    
+    # Indirect maintenance and disposal energy rebound
+    # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
+    Re_md_val <- Delta_C_dot_md_star_val * I_E_val / S_dot_dev_val
+    # Note: this formulation can give divide by zero error.
+    # Re_md_val <- (C_dot_md_star_val/C_dot_md_orig_val - 1) * C_dot_md_orig_val * I_E_val / S_dot_dev_val
+
+    # Direct substitution rebound
+    Re_dsub_val <- (eta_ratio_val^(-e_qs_ps_val) - 1) / (eta_ratio_val - 1)
+    Re_dsub_check <- Delta_E_dot_s_hat_val / S_dot_dev_val
+    assertthat::assert_that(all(abs(Re_dsub_check - Re_dsub_val) < tol), msg = "Re_dsub failed consistency check in calc_rebound().")
+    
+    # Indirect substitution rebound
+    Re_isub_val <- (eta_ratio_val^(-e_qo_ps_val) - 1) * eta_ratio_val * C_dot_o_orig_val * I_E_val / (eta_ratio_val - 1) / E_dot_s_orig_val
+    Re_isub_check <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
+    assertthat::assert_that(all(abs(Re_isub_check - Re_isub_val) < tol), msg = "Re_isub failed consistency check in calc_rebound().")
+    
+      list(Re_dempl_val,
+           Re_emb_val,
+           Re_md_val,
+           Re_dsub_val,
+           Re_isub_val) %>% 
+      magrittr::set_names(c(Re_dempl,
+                            Re_emb,
+                            Re_md,
+                            Re_dsub,
+                            Re_isub))
+  }
+  
+  matsindf::matsindf_apply(.Deltas_data, FUN = rebound_fun, 
+                           # E_dot_emb_star_val = E_dot_emb_star,
+                           # E_dot_emb_orig_val = E_dot_emb_orig,
+                           S_dot_dev_val = S_dot_dev,
+                           Delta_E_dot_emb_star_val = Delta_E_dot_emb_star,
+                           # C_dot_md_star_val = C_dot_md_star,
+                           # C_dot_md_orig_val = C_dot_md_orig,
+                           Delta_C_dot_md_star_val = Delta_C_dot_md_star,
+                           I_E_val = I_E,
+                           eta_ratio_val = eta_ratio, 
+                           e_qs_ps_val = e_qs_ps,
+                           Delta_E_dot_s_hat_val = Delta_E_dot_s_hat,
+                           e_qo_ps_val = e_qo_ps,
+                           C_dot_o_orig_val = C_dot_o_orig,
+                           E_dot_s_orig_val = E_dot_s_orig,
+                           Delta_C_dot_o_hat_val = Delta_C_dot_o_hat
+  ) 
 }
