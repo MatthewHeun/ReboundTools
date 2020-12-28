@@ -691,13 +691,29 @@ calc_rebound <- function(.Deltas_data = NULL,
                          C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
+                         N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
+                         M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
+                         e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+                         Delta_E_dot_s_bar = ReboundTools::Delta_vars[["∆E_dot_s_bar"]],
+                         e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+                         Delta_C_dot_o_bar = ReboundTools::Delta_vars[["∆C_dot_o_bar"]],
+                         k = ReboundTools::eeu_base_params$k,
                          
                          # Output names
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,
                          Re_emb = ReboundTools::rebound_terms$Re_emb, 
                          Re_md = ReboundTools::rebound_terms$Re_md,
+                         Re_empl = ReboundTools::rebound_terms$Re_empl,
                          Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
-                         Re_isub = ReboundTools::rebound_terms$Re_isub
+                         Re_isub = ReboundTools::rebound_terms$Re_isub,
+                         Re_sub = ReboundTools::rebound_terms$Re_sub,
+                         Re_dinc = ReboundTools::rebound_terms$Re_dinc,
+                         Re_iinc = ReboundTools::rebound_terms$Re_iinc,
+                         Re_inc = ReboundTools::rebound_terms$Re_inc,
+                         Re_prod = ReboundTools::rebound_terms$Re_prod,
+                         Re_d = ReboundTools::rebound_terms$Re_d,
+                         Re_i = ReboundTools::rebound_terms$Re_i,
+                         Re_tot = ReboundTools::rebound_terms$Re_tot
                          ) {
   
   
@@ -715,41 +731,101 @@ calc_rebound <- function(.Deltas_data = NULL,
                           e_qo_ps_val,
                           C_dot_o_orig_val,
                           E_dot_s_orig_val,
-                          Delta_C_dot_o_hat_val
+                          Delta_C_dot_o_hat_val,
+                          N_dot_hat_val,
+                          M_dot_hat_prime_val,
+                          e_qs_M_val,
+                          Delta_E_dot_s_bar_val, 
+                          e_qo_M_val,
+                          Delta_C_dot_o_bar_val, 
+                          k_val
                           ) {
     # Direct emplacement rebound
     Re_dempl_val <- 0
-    # Indirect embodied energy rebound. 
+    # Indirect embodied energy effect rebound. 
     # Note: this formulation avoids a division-by-zero error if E_dot_emb_orig = 0
     Re_emb_val <- Delta_E_dot_emb_star_val / S_dot_dev_val
     # Re_emb_val <- (E_dot_emb_star_val/E_dot_emb_orig_val - 1) * E_dot_emb_orig_val / S_dot_dev_val
     
-    # Indirect maintenance and disposal energy rebound
+    # Indirect maintenance and disposal effect energy rebound
     # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
     Re_md_val <- Delta_C_dot_md_star_val * I_E_val / S_dot_dev_val
     # Note: this formulation can give divide by zero error.
     # Re_md_val <- (C_dot_md_star_val/C_dot_md_orig_val - 1) * C_dot_md_orig_val * I_E_val / S_dot_dev_val
 
-    # Direct substitution rebound
+    # Emplacement effect rebound
+    Re_empl_val <- Re_emb_val + Re_md_val
+    
+    # Direct substitution effect rebound
     Re_dsub_val <- (eta_ratio_val^(-e_qs_ps_val) - 1) / (eta_ratio_val - 1)
     Re_dsub_check <- Delta_E_dot_s_hat_val / S_dot_dev_val
     assertthat::assert_that(all(abs(Re_dsub_check - Re_dsub_val) < tol), msg = "Re_dsub failed consistency check in calc_rebound().")
     
-    # Indirect substitution rebound
+    # Indirect substitution effect rebound
     Re_isub_val <- (eta_ratio_val^(-e_qo_ps_val) - 1) * eta_ratio_val * C_dot_o_orig_val * I_E_val / (eta_ratio_val - 1) / E_dot_s_orig_val
     Re_isub_check <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
     assertthat::assert_that(all(abs(Re_isub_check - Re_isub_val) < tol), msg = "Re_isub failed consistency check in calc_rebound().")
     
-      list(Re_dempl_val,
-           Re_emb_val,
-           Re_md_val,
-           Re_dsub_val,
-           Re_isub_val) %>% 
+    # Substitution effect rebound
+    Re_sub_val = Re_dsub_val + Re_isub_val
+    
+    # Direct income effect rebound 
+    Re_dinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qs_M_val) - 1) * eta_ratio_val^(-e_qs_ps_val) / (eta_ratio_val - 1)
+    Re_dinc_check <- Delta_E_dot_s_bar_val / S_dot_dev_val
+    assertthat::assert_that(all(abs(Re_dinc_check - Re_dinc_val) < tol), msg = "Re_dinc failed consistency check in calc_rebound().")
+    
+    # Indirect income effect rebound 
+    Re_iinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qo_M_val) - 1) * eta_ratio_val^(1-e_qo_ps_val) * (C_dot_o_orig_val * I_E_val / E_dot_s_orig_val) / (eta_ratio_val - 1)
+    Re_iinc_check <- Delta_C_dot_o_bar_val * I_E_val / S_dot_dev_val
+    assertthat::assert_that(all(abs(Re_iinc_check - Re_iinc_val) < tol), msg = "Re_iinc failed consistency check in calc_rebound().")
+    
+    # Income effect rebound
+    Re_inc_val <- Re_dinc_val + Re_iinc_val
+    
+    # Productivity effect rebound
+    Re_prod_val <- k_val * N_dot_hat_val * I_E_val / S_dot_dev_val
+    
+    # Direct rebound
+    Re_d_val <- Re_dsub_val + Re_dinc_val
+    
+    # Indirect rebound
+    Re_i_val <- Re_emb_val + Re_md_val + Re_isub_val + Re_iinc_val + Re_prod_val
+    
+    # Total rebound
+    Re_tot_val <- Re_dempl_val + Re_emb_val + Re_md_val + Re_dsub_val + Re_isub_val + Re_dinc_val + Re_iinc_val + Re_prod_val
+    
+    # Double-check the sums
+    Re_tot_check <- Re_d_val + Re_i_val
+    assertthat::assert_that(all(abs(Re_tot_check - Re_tot_val) < tol), msg = "Re_tot failed consistency check in calc_rebound().")
+    
+    list(Re_dempl_val,
+         Re_emb_val,
+         Re_md_val,
+         Re_empl_val,
+         Re_dsub_val,
+         Re_isub_val,
+         Re_sub_val,
+         Re_dinc_val,
+         Re_iinc_val,
+         Re_inc_val,
+         Re_prod_val,
+         Re_d_val,
+         Re_i_val,
+         Re_tot_val) %>% 
       magrittr::set_names(c(Re_dempl,
                             Re_emb,
                             Re_md,
+                            Re_empl,
                             Re_dsub,
-                            Re_isub))
+                            Re_isub,
+                            Re_sub,
+                            Re_dinc,
+                            Re_iinc,
+                            Re_inc,
+                            Re_prod,
+                            Re_d,
+                            Re_i,
+                            Re_tot))
   }
   
   matsindf::matsindf_apply(.Deltas_data, FUN = rebound_fun, 
@@ -767,6 +843,13 @@ calc_rebound <- function(.Deltas_data = NULL,
                            e_qo_ps_val = e_qo_ps,
                            C_dot_o_orig_val = C_dot_o_orig,
                            E_dot_s_orig_val = E_dot_s_orig,
-                           Delta_C_dot_o_hat_val = Delta_C_dot_o_hat
+                           Delta_C_dot_o_hat_val = Delta_C_dot_o_hat,
+                           N_dot_hat_val = N_dot_hat,
+                           M_dot_hat_prime_val = M_dot_hat_prime,
+                           e_qs_M_val = e_qs_M,
+                           Delta_E_dot_s_bar_val = Delta_E_dot_s_bar,
+                           e_qo_M_val = e_qo_M,
+                           Delta_C_dot_o_bar_val = Delta_C_dot_o_bar,
+                           k_val = k
   ) 
 }

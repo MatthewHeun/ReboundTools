@@ -259,12 +259,35 @@ test_that("calc_rebound() works as expected", {
   expect_equal(res[[ReboundTools::rebound_terms$Re_md]][[1]], -0.00991009287347477917)
   expect_equal(res[[ReboundTools::rebound_terms$Re_md]][[2]], 0)
   
+  expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[1]], 0.00458229238793599059)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[2]], -0.00271222457113862300)
+  
   expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[1]], 0.02914268260298064420)
   expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[2]], 0.17361124407606612352)
   
   expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[1]], -0.00286607552946620226)
   expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[2]], -0.12720396096300989885)
   
+  expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[1]], 0.02627660707351444150)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[2]], 0.04640728311305622467)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[1]], 0.05340000775333344357)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[2]], 0.00016574705019797769)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[1]], 0.07839106417780371261)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[2]], 0.24744107622950298198)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_prod]][[1]], 0.08154999933180497040)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_prod]][[2]], 0.24746222075612700486)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_d]][[1]], 0.08254269035631409124)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_d]][[2]], 0.17377699112626410205)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_i]][[1]], 0.16165728036807847090)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_i]][[2]], 0.36498711145148143853)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[1]], 0.24419997072439253438)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[2]], 0.53876410257774554058)
   
 })
   

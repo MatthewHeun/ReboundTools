@@ -18,11 +18,27 @@ calc_rebound(
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
+  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
+  M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
+  e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+  Delta_E_dot_s_bar = ReboundTools::Delta_vars[["∆E_dot_s_bar"]],
+  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars[["∆C_dot_o_bar"]],
+  k = ReboundTools::eeu_base_params$k,
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
   Re_md = ReboundTools::rebound_terms$Re_md,
+  Re_empl = ReboundTools::rebound_terms$Re_empl,
   Re_dsub = ReboundTools::rebound_terms$Re_dsub,
-  Re_isub = ReboundTools::rebound_terms$Re_isub
+  Re_isub = ReboundTools::rebound_terms$Re_isub,
+  Re_sub = ReboundTools::rebound_terms$Re_sub,
+  Re_dinc = ReboundTools::rebound_terms$Re_dinc,
+  Re_iinc = ReboundTools::rebound_terms$Re_iinc,
+  Re_inc = ReboundTools::rebound_terms$Re_inc,
+  Re_prod = ReboundTools::rebound_terms$Re_prod,
+  Re_d = ReboundTools::rebound_terms$Re_d,
+  Re_i = ReboundTools::rebound_terms$Re_i,
+  Re_tot = ReboundTools::rebound_terms$Re_tot
 )
 }
 \arguments{
