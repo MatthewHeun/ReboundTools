@@ -151,6 +151,9 @@ test_that("calc_bar() works as expected", {
   
   expect_equal(res[[ReboundTools::bar_vars$M_dot_bar]][[1]], 27401.27769302945671370253)
   expect_equal(res[[ReboundTools::bar_vars$M_dot_bar]][[2]], 27401.27769302945671370253)
+
+  expect_equal(res[[ReboundTools::bar_vars$q_dot_s_bar]][[1]], 15234.66124970508462865837)
+  expect_equal(res[[ReboundTools::bar_vars$q_dot_s_bar]][[2]], 1413421.25553010916337370872)
   
 })
   

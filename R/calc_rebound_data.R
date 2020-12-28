@@ -389,6 +389,10 @@ calc_bar <- function(.hat_data = NULL,
                      C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
                      E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
                      M_dot_hat = ReboundTools::hat_vars$M_dot_hat,
+                     q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                     N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
+                     M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
+                     e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
 
                      # Output names
                      eta_bar = ReboundTools::bar_vars$eta_bar,
@@ -396,7 +400,8 @@ calc_bar <- function(.hat_data = NULL,
                      C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
                      C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar,
                      E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,
-                     M_dot_bar = ReboundTools::bar_vars$M_dot_bar
+                     M_dot_bar = ReboundTools::bar_vars$M_dot_bar,
+                     q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar
 ) {
   
   calc_bar_fun <- function(eta_hat_val, 
@@ -404,26 +409,33 @@ calc_bar <- function(.hat_data = NULL,
                            C_dot_cap_hat_val,
                            C_dot_md_hat_val,
                            E_dot_emb_hat_val,
-                           M_dot_hat_val) {
+                           M_dot_hat_val,
+                           q_dot_s_hat_val,
+                           N_dot_hat_val,
+                           M_dot_hat_prime_val,
+                           e_qs_M_val) {
     eta_bar_val <- eta_hat_val
     p_s_bar_val <- p_s_hat_val
     C_dot_cap_bar_val <- C_dot_cap_hat_val
     C_dot_md_bar_val <- C_dot_md_hat_val
     E_dot_emb_bar_val <- E_dot_emb_hat_val
     M_dot_bar_val <- M_dot_hat_val
+    q_dot_s_bar_val <- q_dot_s_hat_val * (1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qs_M_val)
     
     list(eta_bar_val,
          p_s_bar_val,
          C_dot_cap_bar_val,
          C_dot_md_bar_val,
          E_dot_emb_bar_val,
-         M_dot_bar_val) %>% 
+         M_dot_bar_val, 
+         q_dot_s_bar_val) %>% 
       magrittr::set_names(c(eta_bar,
                             p_s_bar, 
                             C_dot_cap_bar,
                             C_dot_md_bar, 
                             E_dot_emb_bar,
-                            M_dot_bar))
+                            M_dot_bar, 
+                            q_dot_s_bar))
   }
   
   matsindf::matsindf_apply(.hat_data, FUN = calc_bar_fun,
@@ -432,7 +444,11 @@ calc_bar <- function(.hat_data = NULL,
                            C_dot_cap_hat_val = C_dot_cap_hat,
                            C_dot_md_hat_val = C_dot_md_hat, 
                            E_dot_emb_hat_val = E_dot_emb_hat,
-                           M_dot_hat_val = M_dot_hat
+                           M_dot_hat_val = M_dot_hat,
+                           q_dot_s_hat_val = q_dot_s_hat,
+                           N_dot_hat_val = N_dot_hat,
+                           M_dot_hat_prime_val = M_dot_hat_prime,
+                           e_qs_M_val = e_qs_M
                            )
   
 }
