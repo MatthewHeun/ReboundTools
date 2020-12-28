@@ -6,6 +6,7 @@
 \usage{
 calc_bar(
   .hat_data = NULL,
+  tol = 1e-06,
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
@@ -16,13 +17,21 @@ calc_bar(
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+  p_E = ReboundTools::eeu_base_params$p_E,
+  E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
   eta_bar = ReboundTools::bar_vars$eta_bar,
   p_s_bar = ReboundTools::bar_vars$p_s_bar,
   C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
   C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar,
   E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,
   M_dot_bar = ReboundTools::bar_vars$M_dot_bar,
-  q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar
+  q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar,
+  E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
+  C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
+  C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+  N_dot_bar = ReboundTools::bar_vars$N_dot_bar
 )
 }
 \arguments{

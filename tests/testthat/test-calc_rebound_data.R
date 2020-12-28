@@ -113,6 +113,9 @@ test_that("calc_hat() works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[1]], 14710.86057365263695828617)
   expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[2]], 1412626.67908869450911879539)
 
+  expect_equal(res[[ReboundTools::hat_vars$E_dot_s_hat]][[1]], 44350.31296520552132278681)
+  expect_equal(res[[ReboundTools::hat_vars$E_dot_s_hat]][[2]], 62.16938929974694616476)
+
   expect_equal(res[[ReboundTools::hat_vars$C_dot_s_hat]][[1]], 774.07147304219824945903)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_s_hat]][[2]], 2.33998860813264242253)
 
@@ -154,6 +157,17 @@ test_that("calc_bar() works as expected", {
 
   expect_equal(res[[ReboundTools::bar_vars$q_dot_s_bar]][[1]], 15234.66124970508462865837)
   expect_equal(res[[ReboundTools::bar_vars$q_dot_s_bar]][[2]], 1413421.25553010916337370872)
+
+  expect_equal(res[[ReboundTools::bar_vars$E_dot_s_bar]][[1]], 45929.46761751178564736620)
+  expect_equal(res[[ReboundTools::bar_vars$E_dot_s_bar]][[2]], 62.20435843408792919718)
   
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_s_bar]][[1]], 801.63336575829134744708)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_s_bar]][[2]], 2.34130480854760270049)
+  
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_o_bar]][[1]], 19893.06192076593652018346)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_o_bar]][[2]], 27398.81538822091170004569)
+  
+  expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[1]], 0)
+  expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[2]], 0)
 })
   
