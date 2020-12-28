@@ -56,3 +56,13 @@ This function calculates rebound terms from a data frame that already contains â
 Note that each rebound term is calculated twice as a way of validating the
 derived expression for rebound.
 }
+\examples{
+load_eeu_data() \%>\% 
+  calc_orig() \%>\% 
+  calc_star() \%>\% 
+  calc_hat() \%>\% 
+  calc_bar() \%>\% 
+  calc_tilde() \%>\% 
+  calc_Deltas() \%>\% 
+  calc_rebound()
+}

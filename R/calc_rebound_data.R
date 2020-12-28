@@ -23,7 +23,6 @@ calc_orig <- function(.eeu_data = NULL,
                       p_E = ReboundTools::eeu_base_params$p_E,
                       e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
                       e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
-                      
                       eta_orig_engr_units = ReboundTools::orig_vars$eta_orig_engr_units,
                       q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
                       C_cap_orig = ReboundTools::orig_vars$C_cap_orig, 
@@ -240,9 +239,6 @@ calc_star <- function(.orig_data = NULL,
                            C_dot_md_star_val = C_dot_md_star,
                            C_dot_o_orig_val = C_dot_o_orig)
 }
-
-
-
 
 
 #' Calculate energy rebound data at the hat stage
@@ -672,16 +668,19 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @export
 #'
 #' @examples
+#' load_eeu_data() %>% 
+#'   calc_orig() %>% 
+#'   calc_star() %>% 
+#'   calc_hat() %>% 
+#'   calc_bar() %>% 
+#'   calc_tilde() %>% 
+#'   calc_Deltas() %>% 
+#'   calc_rebound()
 calc_rebound <- function(.Deltas_data = NULL, 
                          tol = 1e-6,
                          # Input names
-                         # Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
                          S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
-                         # E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
-                         # E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
-                         # C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
-                         # C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                          Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
                          I_E = ReboundTools::eeu_base_params$I_E,
                          eta_ratio = ReboundTools::star_vars$eta_ratio, 
@@ -716,13 +715,8 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_tot = ReboundTools::rebound_terms$Re_tot
                          ) {
   
-  
-  rebound_fun <- function(# E_dot_emb_star_val,
-                          # E_dot_emb_orig_val,
-                          Delta_E_dot_emb_star_val, 
+  rebound_fun <- function(Delta_E_dot_emb_star_val, 
                           S_dot_dev_val,
-                          # C_dot_md_star_val,
-                          # C_dot_md_orig_val,
                           Delta_C_dot_md_star_val, 
                           I_E_val,
                           eta_ratio_val, 
@@ -829,12 +823,8 @@ calc_rebound <- function(.Deltas_data = NULL,
   }
   
   matsindf::matsindf_apply(.Deltas_data, FUN = rebound_fun, 
-                           # E_dot_emb_star_val = E_dot_emb_star,
-                           # E_dot_emb_orig_val = E_dot_emb_orig,
                            S_dot_dev_val = S_dot_dev,
                            Delta_E_dot_emb_star_val = Delta_E_dot_emb_star,
-                           # C_dot_md_star_val = C_dot_md_star,
-                           # C_dot_md_orig_val = C_dot_md_orig,
                            Delta_C_dot_md_star_val = Delta_C_dot_md_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 
@@ -852,4 +842,39 @@ calc_rebound <- function(.Deltas_data = NULL,
                            Delta_C_dot_o_bar_val = Delta_C_dot_o_bar,
                            k_val = k
   ) 
+}
+
+
+#' Perform a complete rebound analysis
+#' 
+#' This function calls all rebound analysis functions in the correct order
+#'
+#' @param .eeu_data Energy efficiency upgrade information in a data frame.
+#'                  See `load_eeu_data()` for an example data frame.
+#'
+#' @return `.eeu_data` with all rebound terms added as columns to the right.
+#' 
+#' @export
+#'
+#' @examples
+#' complicated <- load_eeu_data() %>% 
+#'   calc_orig() %>% 
+#'   calc_star() %>% 
+#'   calc_hat() %>% 
+#'   calc_bar() %>% 
+#'   calc_tilde() %>% 
+#'   calc_Deltas() %>% 
+#'   calc_rebound()
+#' simple <- load_eeu_data() %>% 
+#'   rebound_analysis()
+#' all.equal(complicated, simple)
+rebound_analysis <- function(.eeu_data) {
+  .eeu_data %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde() %>% 
+    calc_Deltas() %>% 
+    calc_rebound()
 }
