@@ -253,7 +253,11 @@ calc_star <- function(.orig_data = NULL,
 #' @param .star_data An optional data frame containing EEU base data, original data, 
 #'                   and star data, 
 #'                   likely calculated by `calc_star()`.
-#'                   
+#' @param p_E See `ReboundTools::eeu_base_params`.
+#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig See `ReboundTools::orig_vars`.
+#' @param eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#'      
 #' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
 #' 
 #' @export
@@ -380,8 +384,13 @@ calc_hat <- function(.star_data = NULL,
 #' This function calculates energy rebound information for the bar
 #' stage (immediately after the income effect).
 #'
-#' @param .hat_data 
-#'
+#' @param .hat_data An optional data frame containing rebound calculations, original data, 
+#'                  star data, and hat data,
+#'                  likely calculated by `calc_hat()`.
+#' @param e_qs_M,e_qo_M,p_E See `ReboundTools::eeu_base_params`.
+#' @param eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
+#' @param eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' 
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
 #' @export
@@ -505,7 +514,11 @@ calc_bar <- function(.hat_data = NULL,
 #' This function calculates energy rebound information for the tilde
 #' stage (immediately after the productivity effect).
 #'
-#' @param .bar_data 
+#' @param .bar_data An optional data frame containing rebound calculations, original data, 
+#'                  star data, hat data, and bar data,
+#'                  likely calculated by `calc_bar()`.
+#' @param eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' @param eta_tilde,p_s_tilde,C_dot_cap_tilde,C_dot_md_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,N_dot_tilde See `ReboundTools::tilde_vars`.
 #'
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
@@ -611,11 +624,13 @@ calc_tilde <- function(.bar_data = NULL,
 
 #' Calculate differences between stages
 #'
-#' @param .tilde_data 
-#' @param key_analysis_vars 
-#' @param rebound_stages 
+#' @param .tilde_data A data frame containing rebound calculations, original data, 
+#'                    star data, hat data, and tilde data,
+#'                    likely calculated by `calc_tilde()`.
+#' @param key_analysis_vars See `ReboundTools::key_analysis_vars`.
+#' @param rebound_stages See `ReboundTools::rebound_stages`.
 #'
-#' @return
+#' @return `.tilde_data` with additional columns containing all possible difference terms.
 #' 
 #' @export
 #'
@@ -647,7 +662,7 @@ calc_Deltas <- function(.tilde_data = NULL,
   subtraction_df <- tibble::tibble(minuend = minuends, 
                                    subtrahend = subtrahends) %>% 
     dplyr::mutate(
-      var_name = paste0("∆", .data[["minuend"]])
+      var_name = paste0("Delta_", .data[["minuend"]])
     )
   
   for (i in 1:nrow(subtraction_df)) {
@@ -663,15 +678,20 @@ calc_Deltas <- function(.tilde_data = NULL,
 
 #' Calculate rebound terms.
 #' 
-#' This function calculates rebound terms from a data frame that already contains ∆ terms.
+#' This function calculates rebound terms from a data frame that already contains Delta terms.
 #' Note that each rebound term is calculated twice as a way of validating the 
 #' derived expression for rebound.
 #'
-#' @param .Deltas_data A data frame containing ∆ values, likely created by `ReboundTools::calc_Deltas()`
-#' @param eta_ratio 
-#' @param e_qs_ps 
+#' @param .Deltas_data A data frame containing Delta values, likely created by `ReboundTools::calc_Deltas()`
+#' @param tol The tolerance for checking internal consistency of rebound calculations. Default is `1e-6`.
+#' @param I_E,e_qs_M,e_qo_M,k See `ReboundTools::eeu_base_params`.
+#' @param e_qs_ps,e_qo_ps,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
+#' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
+#' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#' @param Re_dempl,Re_emb,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_d,Re_i,Re_tot See `ReboundTools::rebound_terms`.
 #'
-#' @return
+#' @return A data frame with rebound terms added as columns.
+#' 
 #' @export
 #'
 #' @examples
@@ -702,12 +722,12 @@ calc_rebound <- function(.Deltas_data = NULL,
                          N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                          M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
                          
-                         Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
-                         Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
-                         Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
-                         Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
-                         Delta_E_dot_s_bar = ReboundTools::Delta_vars[["∆E_dot_s_bar"]],
-                         Delta_C_dot_o_bar = ReboundTools::Delta_vars[["∆C_dot_o_bar"]],
+                         Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
+                         Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                         Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
+                         Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+                         Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
+                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
                          
                          # Output names
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,

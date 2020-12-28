@@ -11,14 +11,16 @@ calc_Deltas(
 )
 }
 \arguments{
-\item{.tilde_data}{}
+\item{.tilde_data}{A data frame containing rebound calculations, original data,
+star data, hat data, and tilde data,
+likely calculated by \code{calc_tilde()}.}
 
-\item{key_analysis_vars}{}
+\item{key_analysis_vars}{See \code{ReboundTools::key_analysis_vars}.}
 
-\item{rebound_stages}{}
+\item{rebound_stages}{See \code{ReboundTools::rebound_stages}.}
 }
 \value{
-
+\code{.tilde_data} with additional columns containing all possible difference terms.
 }
 \description{
 Calculate differences between stages

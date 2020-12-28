@@ -19,12 +19,12 @@ calc_rebound(
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
-  Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
-  Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
-  Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
-  Delta_E_dot_s_bar = ReboundTools::Delta_vars[["∆E_dot_s_bar"]],
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars[["∆C_dot_o_bar"]],
+  Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
+  Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+  Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
+  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+  Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
   Re_md = ReboundTools::rebound_terms$Re_md,
@@ -42,17 +42,25 @@ calc_rebound(
 )
 }
 \arguments{
-\item{.Deltas_data}{A data frame containing ∆ values, likely created by \code{ReboundTools::calc_Deltas()}}
+\item{.Deltas_data}{A data frame containing Delta values, likely created by \code{ReboundTools::calc_Deltas()}}
 
-\item{e_qs_ps}{}
+\item{tol}{The tolerance for checking internal consistency of rebound calculations. Default is \code{1e-6}.}
 
-\item{eta_ratio}{}
+\item{I_E, e_qs_M, e_qo_M, k}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{e_qs_ps, e_qo_ps, C_dot_o_orig, E_dot_s_orig}{See \code{ReboundTools::orig_vars}.}
+
+\item{S_dot_dev, eta_ratio}{See \code{ReboundTools::star_vars}.}
+
+\item{N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
+
+\item{Re_dempl, Re_emb, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_prod, Re_d, Re_i, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
-
+A data frame with rebound terms added as columns.
 }
 \description{
-This function calculates rebound terms from a data frame that already contains ∆ terms.
+This function calculates rebound terms from a data frame that already contains Delta terms.
 Note that each rebound term is calculated twice as a way of validating the
 derived expression for rebound.
 }

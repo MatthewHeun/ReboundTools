@@ -38,7 +38,7 @@ usethis::use_data(rebound_stages, overwrite = TRUE)
 Delta_vars <- expand.grid(key_analysis_vars, rebound_stages) %>% 
   magrittr::set_names(c("key_analysis_vars", "rebound_stages")) %>% 
   dplyr::mutate(
-    Delta_vars = paste0("∆", .data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
+    Delta_vars = paste0("Delta_", .data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
   ) %>% 
   dplyr::select(.data[["Delta_vars"]]) %>% 
   unlist()
@@ -174,7 +174,7 @@ usethis::use_data(tilde_vars, overwrite = TRUE)
 
 
 #
-# Names of rebound terms calculated after all ∆ variables are calculated.
+# Names of rebound terms calculated after all Delta variables are calculated.
 # 
 
 rebound_terms <- list(Re_dempl = "Re_dempl",

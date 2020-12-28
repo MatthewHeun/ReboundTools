@@ -35,7 +35,15 @@ calc_bar(
 )
 }
 \arguments{
-\item{.hat_data}{}
+\item{.hat_data}{An optional data frame containing rebound calculations, original data,
+star data, and hat data,
+likely calculated by \code{calc_hat()}.}
+
+\item{e_qs_M, e_qo_M, p_E}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, N_dot_hat, M_dot_hat_prime, C_dot_o_hat, E_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
+
+\item{eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).
