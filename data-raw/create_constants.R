@@ -121,3 +121,20 @@ bar_vars <- list(eta_bar = "eta_bar",
 usethis::use_data(bar_vars, overwrite = TRUE)
 
 
+#
+# Names of calculated variables at the "tilde" stage.
+# 
+
+tilde_vars <- list(eta_tilde = "eta_tilde",
+                   p_s_tilde = "p_s_tilde",
+                   C_dot_cap_tilde = "C_dot_cap_tilde",
+                   C_dot_md_tilde = "C_dot_md_tilde",
+                   E_dot_emb_tilde = "E_dot_emb_tilde",
+                   M_dot_tilde = "M_dot_tilde",
+                   q_dot_s_tilde = "q_dot_s_tilde",
+                   E_dot_s_tilde = "E_dot_s_tilde",
+                   C_dot_s_tilde = "C_dot_s_tilde",
+                   C_dot_o_tilde = "C_dot_o_tilde", 
+                   N_dot_tilde = "N_dot_tilde")
+usethis::use_data(tilde_vars, overwrite = TRUE)
+

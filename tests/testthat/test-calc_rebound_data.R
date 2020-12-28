@@ -170,4 +170,46 @@ test_that("calc_bar() works as expected", {
   expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[1]], 0)
   expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[2]], 0)
 })
+
+
+test_that("calc_tilde() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar() %>% 
+    calc_tilde()
   
+  expect_equal(res[[ReboundTools::tilde_vars$eta_tilde]][[1]], 0.33169688306808242650)
+  expect_equal(res[[ReboundTools::tilde_vars$eta_tilde]][[2]], 22722.222222222)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$p_s_tilde]][[1]], 0.05261904761904762085)
+  expect_equal(res[[ReboundTools::tilde_vars$p_s_tilde]][[2]], 0.00000165648054278729)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_cap_tilde]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_cap_tilde]][[2]], 0.121)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_md_tilde]][[1]], 2774.66812079094552245806)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_md_tilde]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_emb_tilde]][[1]], 2857.14285714285733774886)
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_emb_tilde]][[2]], 0.65)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$M_dot_tilde]][[1]], 27401.27769302945671370253)
+  expect_equal(res[[ReboundTools::tilde_vars$M_dot_tilde]][[2]], 27401.27769302945671370253)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[1]], 15234.66124970508462865837)
+  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[2]], 1413421.25553010916337370872)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[1]], 45929.46761751178564736620)
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[2]], 62.20435843408792919718)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[1]], 801.63336575829134744708)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[2]], 2.34130480854760270049)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[1]], 19893.06192076593652018346)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[2]], 27398.81538822091170004569)
+  
+  expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[1]], 0)
+  expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[2]], 0)
+})

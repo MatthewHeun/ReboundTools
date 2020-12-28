@@ -174,3 +174,26 @@
 #' @examples
 #' bar_vars
 "bar_vars"
+
+
+#' EEU tilde data 
+#' 
+#' This is the list of the derived variables at the tilde stage (after productivity effect) of a rebound analysis.
+#' 
+#' @format A string list with `r length(tilde_vars)` entries.
+#' \describe{
+#' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_bar`.}
+#' \item{p_s_tilde}{The energy service price after the productivity effect \[$/service\], exactly `p_s_bar`.}
+#' \item{C_dot_cap_tilde}{The capital expenditure rate after the productivity effect \[$/year\], exactly `C_dot_cap_bar`.}
+#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the productivity effect \[$/year\], exactly `C_dot_md_bar`.}
+#' \item{E_dot_emb_tilde}{The embodied energy rate after the productivity effect \[MJ/year\], exactly `E_dot_emb_bar`.}
+#' \item{M_dot_tilde}{Real income after the productivity effect \[MJ/year\], exactly `M_dot_bar`.}
+#' \item{q_dot_s_tilde}{The rate of energy service consumption after the productivity effect\ [service/year\], exactly `q_dot_s_bar`.}
+#' \item{C_dot_o_tilde}{The rate of other goods expenditures after the productivity effect \[$/year\], exactly `C_dot_o_bar`.}
+#' \item{N_dot_tilde}{The freed cash rate after the productivity effect \[$/year\], exactly `0`.}
+#' }
+#' @examples
+#' bar_vars
+"bar_vars"
+
+

@@ -497,18 +497,112 @@ calc_bar <- function(.hat_data = NULL,
 }
 
 
-
-calc_tilde <- function(.bar_data = NULL
-                     # Input names
-                     # 
-                     # 
-                     # Output names
+#' Calculate energy rebound data at the tilde stage
+#' 
+#' This function calculates energy rebound information for the tilde
+#' stage (immediately after the productivity effect).
+#'
+#' @param .bar_data 
+#'
+#' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
+#' 
+#' @export
+#'
+#' @examples
+#' load_eeu_data() %>% 
+#'   calc_orig() %>% 
+#'   calc_star() %>% 
+#'   calc_hat() %>% 
+#'   calc_bar() %>% 
+#'   calc_tilde()
+calc_tilde <- function(.bar_data = NULL,
+                       tol = 1e-6,
+                       # Input names
+                       eta_bar = ReboundTools::bar_vars$eta_bar,
+                       p_s_bar = ReboundTools::bar_vars$p_s_bar,
+                       C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
+                       C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar,
+                       E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,
+                       M_dot_bar = ReboundTools::bar_vars$M_dot_bar,
+                       q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar,
+                       E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
+                       C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
+                       C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+                       N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
+                       
+                       # Output names
+                       eta_tilde = ReboundTools::tilde_vars$eta_tilde,
+                       p_s_tilde = ReboundTools::tilde_vars$p_s_tilde,
+                       C_dot_cap_tilde = ReboundTools::tilde_vars$C_dot_cap_tilde,
+                       C_dot_md_tilde = ReboundTools::tilde_vars$C_dot_md_tilde,
+                       E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
+                       M_dot_tilde = ReboundTools::tilde_vars$M_dot_tilde,
+                       q_dot_s_tilde = ReboundTools::tilde_vars$q_dot_s_tilde,
+                       E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
+                       C_dot_s_tilde = ReboundTools::tilde_vars$C_dot_s_tilde,
+                       C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
+                       N_dot_tilde = ReboundTools::tilde_vars$N_dot_tilde
 ) {
   
+  calc_tilde_fun <- function(eta_bar_val, 
+                             p_s_bar_val,
+                             C_dot_cap_bar_val,
+                             C_dot_md_bar_val,
+                             E_dot_emb_bar_val,
+                             M_dot_bar_val,
+                             q_dot_s_bar_val,
+                             E_dot_s_bar_val,
+                             C_dot_s_bar_val,
+                             C_dot_o_bar_val,
+                             N_dot_bar_val) {
+    eta_tilde_val <- eta_bar_val
+    p_s_tilde_val <- p_s_bar_val
+    C_dot_cap_tilde_val <- C_dot_cap_bar_val
+    C_dot_md_tilde_val <- C_dot_md_bar_val
+    E_dot_emb_tilde_val <- E_dot_emb_bar_val
+    M_dot_tilde_val <- M_dot_bar_val
+    q_dot_s_tilde_val <- q_dot_s_bar_val
+    E_dot_s_tilde_val <- E_dot_s_bar_val
+    C_dot_s_tilde_val <- C_dot_s_bar_val
+    C_dot_o_tilde_val <- C_dot_o_bar_val
+    N_dot_tilde_val <- N_dot_bar_val
+    
+    list(eta_tilde_val,
+         p_s_tilde_val,
+         C_dot_cap_tilde_val,
+         C_dot_md_tilde_val,
+         E_dot_emb_tilde_val,
+         M_dot_tilde_val, 
+         q_dot_s_tilde_val,
+         E_dot_s_tilde_val,
+         C_dot_s_tilde_val,
+         C_dot_o_tilde_val,
+         N_dot_tilde_val) %>% 
+      magrittr::set_names(c(eta_tilde,
+                            p_s_tilde, 
+                            C_dot_cap_tilde,
+                            C_dot_md_tilde, 
+                            E_dot_emb_tilde,
+                            M_dot_tilde, 
+                            q_dot_s_tilde,
+                            E_dot_s_tilde,
+                            C_dot_s_tilde,
+                            C_dot_o_tilde, 
+                            N_dot_tilde))
+  }
   
-  
-
-  
+  matsindf::matsindf_apply(.bar_data, FUN = calc_tilde_fun,
+                           eta_bar_val = eta_bar, 
+                           p_s_bar_val = p_s_bar,
+                           C_dot_cap_bar_val = C_dot_cap_bar,
+                           C_dot_md_bar_val = C_dot_md_bar, 
+                           E_dot_emb_bar_val = E_dot_emb_bar,
+                           M_dot_bar_val = M_dot_bar,
+                           q_dot_s_bar_val = q_dot_s_bar,
+                           E_dot_s_bar_val = E_dot_s_bar,
+                           C_dot_s_bar_val = C_dot_s_bar,
+                           C_dot_o_bar_val = C_dot_o_bar,
+                           N_dot_bar_val = N_dot_bar)
 }
-                      
+
 
