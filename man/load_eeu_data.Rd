@@ -7,7 +7,7 @@
 load_eeu_data(
   path = sample_eeu_data_path(),
   sheet = ReboundTools::eeu_data_table$eeu_data_sheet,
-  expected_col_names = ReboundTools::eeu_base_data
+  expected_col_names = ReboundTools::eeu_base_params
 )
 }
 \arguments{

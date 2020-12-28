@@ -38,7 +38,7 @@ sample_eeu_data_path <- function() {
 #' load_eeu_data()
 load_eeu_data <- function(path = sample_eeu_data_path(), 
                           sheet = ReboundTools::eeu_data_table$eeu_data_sheet, 
-                          expected_col_names = ReboundTools::eeu_base_data) {
+                          expected_col_names = ReboundTools::eeu_base_params) {
   eeu_data <- readxl::read_excel(path, sheet = sheet)
   # Grab column names. Make sure each expected_col_name is present.
   cols_present <- which(expected_col_names %in% colnames(eeu_data))
