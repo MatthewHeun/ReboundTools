@@ -19,17 +19,19 @@
 #'   calc_orig()
 calc_orig <- function(.eeu_data = NULL,
                       # Input names
-                      eta_orig_engr_units = ReboundTools::orig_vars$eta_orig_engr_units,
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
-                      q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-                      C_cap_orig = ReboundTools::orig_vars$C_cap_orig, 
-                      t_orig = ReboundTools::orig_vars$t_orig,
                       p_E = ReboundTools::eeu_base_params$p_E,
-                      M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
-                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                       e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
                       e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+                      
+                      eta_orig_engr_units = ReboundTools::orig_vars$eta_orig_engr_units,
+                      q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
+                      C_cap_orig = ReboundTools::orig_vars$C_cap_orig, 
+                      t_own_orig = ReboundTools::orig_vars$t_own_orig,
+                      M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
+                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                       E_emb_orig = ReboundTools::orig_vars$E_emb_orig,
+                      t_life_orig = ReboundTools::orig_vars$t_life_orig,
                       # Output names
                       eta_orig = ReboundTools::orig_vars$eta_orig,
                       E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
@@ -47,24 +49,25 @@ calc_orig <- function(.eeu_data = NULL,
                             eta_orig_engr_units_val,
                             q_dot_s_orig_val,
                             C_cap_orig_val,
-                            t_orig_val,
+                            t_own_orig_val,
                             p_E_val,
                             M_dot_orig_val,
                             C_dot_md_orig_val,
                             e_qs_ps_UC_val,
                             e_qs_M_val,
-                            E_emb_orig_val) {
+                            E_emb_orig_val,
+                            t_life_orig_val) {
     
     eta_orig_val <- eta_orig_engr_units_val / MJ_engr_unit_val
     E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
-    C_dot_cap_orig_val <- C_cap_orig_val / t_orig_val
+    C_dot_cap_orig_val <- C_cap_orig_val / t_own_orig_val
     p_s_orig_val <- p_E_val / eta_orig_val
     C_dot_s_orig_val <- p_E_val * E_dot_s_orig_val
     C_dot_o_orig_val <- M_dot_orig_val - C_dot_s_orig_val - C_dot_cap_orig_val - C_dot_md_orig_val
     f_Cs_orig_val <- C_dot_s_orig_val / (C_dot_s_orig_val + C_dot_o_orig_val)
     e_qs_ps_val <- e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val
     e_qo_ps_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
-    E_dot_emb_orig_val <- E_emb_orig_val / t_orig_val
+    E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
     N_dot_orig_val <- 0
     
     list(eta_orig_val,
@@ -96,13 +99,14 @@ calc_orig <- function(.eeu_data = NULL,
                            q_dot_s_orig_val = q_dot_s_orig,
                            eta_orig_engr_units_val = eta_orig_engr_units,
                            C_cap_orig_val = C_cap_orig,
-                           t_orig_val = t_orig,
+                           t_own_orig_val = t_own_orig,
                            p_E_val = p_E,
                            M_dot_orig_val = M_dot_orig,
                            C_dot_md_orig_val = C_dot_md_orig,
                            e_qs_ps_UC_val = e_qs_ps_UC,
                            e_qs_M_val = e_qs_M,
-                           E_emb_orig_val = E_emb_orig)
+                           E_emb_orig_val = E_emb_orig, 
+                           t_life_orig_val = t_life_orig)
 }
 
 
@@ -125,20 +129,23 @@ calc_orig <- function(.eeu_data = NULL,
 #'   calc_star()
 calc_star <- function(.orig_data = NULL,
                       # Input names
-                      eta_star_engr_units = ReboundTools::star_vars$eta_star_engr_units,
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
+                      p_E = ReboundTools::eeu_base_params$p_E,
+
                       eta_orig = ReboundTools::orig_vars$eta_orig,
                       E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
-                      p_E = ReboundTools::eeu_base_params$p_E,
                       q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-                      C_cap_star = ReboundTools::star_vars$C_cap_star,
-                      t_star = ReboundTools::star_vars$t_star,
-                      E_emb_star = ReboundTools::star_vars$E_emb_star,
                       M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
                       C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                       C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-                      C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
                       C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                      
+                      eta_star_engr_units = ReboundTools::star_vars$eta_star_engr_units,
+                      E_emb_star = ReboundTools::star_vars$E_emb_star,
+                      t_life_star = ReboundTools::star_vars$t_life_star,
+                      C_cap_star = ReboundTools::star_vars$C_cap_star,
+                      t_own_star = ReboundTools::star_vars$t_own_star,
+                      C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
                       
                       # Output names
                       eta_star = ReboundTools::star_vars$eta_star,
@@ -163,8 +170,9 @@ calc_star <- function(.orig_data = NULL,
                             p_E_val, 
                             q_dot_s_orig_val, 
                             C_cap_star_val,
-                            t_star_val,
+                            t_own_star_val,
                             E_emb_star_val,
+                            t_life_star_val,
                             M_dot_orig_val, 
                             C_dot_cap_orig_val,
                             C_dot_md_orig_val,
@@ -177,8 +185,8 @@ calc_star <- function(.orig_data = NULL,
     G_dot_val <- p_E_val * S_dot_dev_val
     p_s_star_val <- p_E_val / eta_star_val
     q_dot_s_star_val <- q_dot_s_orig_val
-    C_dot_cap_star_val <- C_cap_star_val / t_star_val
-    E_dot_emb_star_val <- E_emb_star_val / t_star_val
+    C_dot_cap_star_val <- C_cap_star_val / t_own_star_val
+    E_dot_emb_star_val <- E_emb_star_val / t_life_star_val
     C_dot_s_star_val <- p_s_star_val * q_dot_s_star_val
     M_dot_star_val <- M_dot_orig_val
     N_dot_star_val <- G_dot_val - (C_dot_cap_star_val - C_dot_cap_orig_val) - (C_dot_md_star_val - C_dot_md_orig_val)
@@ -223,8 +231,9 @@ calc_star <- function(.orig_data = NULL,
                            p_E_val = p_E, 
                            q_dot_s_orig_val = q_dot_s_orig, 
                            C_cap_star_val = C_cap_star,
-                           t_star_val = t_star,
+                           t_own_star_val = t_own_star,
                            E_emb_star_val = E_emb_star,
+                           t_life_star_val = t_life_star,
                            M_dot_orig_val = M_dot_orig,
                            C_dot_cap_orig_val = C_dot_cap_orig,
                            C_dot_md_orig_val = C_dot_md_orig,

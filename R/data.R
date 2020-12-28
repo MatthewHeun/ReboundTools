@@ -52,6 +52,7 @@
 #' 
 #' @format A string list with `r length(eeu_base_params)` entries.
 #' \describe{
+#' \item{reference}{A string for a referece for this case, e.g. bibliographic entry for a paper in which this case appears.}
 #' \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 #' \item{original}{A string to identify the original device, e.g., "Incandescent".}
 #' \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}
@@ -59,21 +60,9 @@
 #' \item{I_E}{The energy intensity of the economy \[MJ/$\].}
 #' \item{k}{The productivity effect factor \[--\].}
 #' \item{p_E}{The price of energy \[$/MJ\].}
-#' \item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
-#' \item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption \[--\].}
 #' \item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption \[--\].}
-#' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/year\] \[lumen-hours/year\].}
-#' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/year\].}
-#' \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
-#' \item{t_orig}{The expected lifetime of the original device \[year\].}
-#' \item{C_cap_star}{The net capital cost of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
-#' \item{t_star}{The expected lifetime of the upgraded device \[year\].}
-#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
-#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate \[$/year\].}
-#' \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device \[MJ\].}
-#' \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device \[MJ\].}
 #' }
 #' 
 #' @examples
@@ -87,6 +76,12 @@
 #' 
 #' @format A string list with `r length(orig_vars)` entries.
 #' \describe{
+#' \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
+#' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/year\] \[lumen-hours/year\].}
+#' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/year\].}
+#' \item{t_own_orig}{The expected ownership duration of the original device \[year\].}
+#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_orig_engr_units / MJ_engr_unit`.}
 #' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
 #' \item{C_dot_cap_orig}{The original (pre-EEU) capital cost rate \[$/year\], calculated by `C_cap_orig / t_orig`.}
@@ -96,6 +91,8 @@
 #' \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.}
 #' \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)`.}
+#' \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device \[MJ\].}
+#' \item{t_life_orig}{The expected lifetime of the original (pre-EEU) device \[year\].}
 #' \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand\[MJ/year\], calculated by `E_dot_emb / t_orig`.}
 #' \item{N_dot_orig}{The original (pre-EEU) freed cash rate \[$/year\], exactly `0`.}
 #' }
@@ -110,6 +107,12 @@
 #' 
 #' @format A string list with `r length(star_vars)` entries.
 #' \describe{
+#' \item{C_cap_star}{The net capital cost of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
+#' \item{t_own_star}{The expected ownership duration of the upgraded device \[year\].}
+#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device \[MJ\].}
+#' \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device \[year\].}
+#' \item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_tilde_engr_units / MJ_engr_unit`.}
 #' \item{eta_ratio}{The energy service efficiency ratio \[--\], calculated by `eta_star/eta_orig`.}
 #' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\], calculated by `(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig`.}
