@@ -90,12 +90,31 @@ hat_vars <- list(eta_hat = "eta_hat",
                  C_dot_cap_hat = "C_dot_cap_hat",
                  C_dot_md_hat = "C_dot_md_hat",
                  E_dot_emb_hat = "E_dot_emb_hat",
+                 M_dot_hat = "M_dot_hat",
                  q_dot_s_hat = "q_dot_s_hat",
                  E_dot_s_hat = "E_dot_s_hat",
                  C_dot_s_hat = "C_dot_s_hat",
                  C_dot_o_hat = "C_dot_o_hat", 
-                 N_dot_hat = "N_dot_hat")
+                 N_dot_hat = "N_dot_hat",
+                 M_dot_hat_prime = "M_dot_hat_prime")
 usethis::use_data(hat_vars, overwrite = TRUE)
 
+
+#
+# Names of calculated variables at the "bar" stage.
+# 
+
+bar_vars <- list(eta_bar = "eta_bar",
+                 p_s_bar = "p_s_bar",
+                 C_dot_cap_bar = "C_dot_cap_bar",
+                 C_dot_md_bar = "C_dot_md_bar",
+                 E_dot_emb_bar = "E_dot_emb_bar",
+                 M_dot_bar = "M_dot_bar",
+                 q_dot_s_bar = "q_dot_s_bar",
+                 E_dot_s_bar = "E_dot_s_bar",
+                 C_dot_s_bar = "C_dot_s_bar",
+                 C_dot_o_bar = "C_dot_o_bar", 
+                 N_dot_bar = "N_dot_bar")
+usethis::use_data(bar_vars, overwrite = TRUE)
 
 

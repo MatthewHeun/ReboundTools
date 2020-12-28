@@ -241,7 +241,6 @@ calc_star <- function(.orig_data = NULL,
 #' This function calculates energy rebound information for the hat
 #' stage (immediately after the substitution effect).
 #'
-#'
 #' @param .star_data An optional data frame containing EEU base data, original data, 
 #'                   and star data, 
 #'                   likely calculated by `calc_star()`.
@@ -262,6 +261,7 @@ calc_hat <- function(.star_data = NULL,
                      C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
                      C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
                      E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
+                     M_dot_star = ReboundTools::star_vars$M_dot_star,
                      q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
                      eta_ratio = ReboundTools::star_vars$eta_ratio,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
@@ -270,25 +270,29 @@ calc_hat <- function(.star_data = NULL,
                      N_dot_star = ReboundTools::star_vars$N_dot_star,
                      p_E = ReboundTools::eeu_base_params$p_E,
                      E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
-                     
+                     C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
+                     C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                     G_dot = ReboundTools::star_vars$G_dot,
                      # Output names
                      eta_hat = ReboundTools::hat_vars$eta_hat, 
                      p_s_hat = ReboundTools::hat_vars$p_s_hat,
                      C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
                      C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
                      E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
+                     M_dot_hat = ReboundTools::hat_vars$M_dot_hat,
                      q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
                      E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
                      C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
                      C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
-                     N_dot_hat = ReboundTools::hat_vars$N_dot_hat
-) {
+                     N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
+                     M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime) {
   
   calc_hat_fun <- function(eta_star_val, 
                            p_s_star_val,
                            C_dot_cap_star_val,
                            C_dot_md_star_val,
                            E_dot_emb_star_val,
+                           M_dot_star_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
                            e_qs_ps_val,
@@ -296,39 +300,47 @@ calc_hat <- function(.star_data = NULL,
                            e_qo_ps_val, 
                            N_dot_star_val,
                            p_E_val,
-                           E_dot_s_star_val
-                           ) {
+                           E_dot_s_star_val, 
+                           C_dot_cap_orig_val,
+                           C_dot_md_orig_val,
+                           G_dot_val) {
     eta_hat_val <- eta_star_val
     p_s_hat_val <- p_s_star_val
     C_dot_cap_hat_val <- C_dot_cap_star_val
     C_dot_md_hat_val <- C_dot_md_star_val
     E_dot_emb_hat_val <- E_dot_emb_star_val
+    M_dot_hat_val <- M_dot_star_val
     q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
     E_dot_s_hat_val <- q_dot_s_hat_val / eta_hat_val
     C_dot_s_hat_val <- p_s_hat_val * q_dot_s_hat_val
     C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
+    M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_orig_val - C_dot_md_orig_val - G_dot_val + p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) + (C_dot_o_hat_val - C_dot_o_star_val)
     
     list(eta_hat_val, 
          p_s_hat_val,
          C_dot_cap_hat_val,
          C_dot_md_hat_val,
          E_dot_emb_hat_val,
+         M_dot_hat_val,
          q_dot_s_hat_val,
          E_dot_s_hat_val,
          C_dot_s_hat_val,
          C_dot_o_hat_val,
-         N_dot_hat_val) %>% 
+         N_dot_hat_val,
+         M_dot_hat_prime_val) %>% 
       magrittr::set_names(c(eta_hat,
                             p_s_hat,
                             C_dot_cap_hat,
                             C_dot_md_hat,
                             E_dot_emb_hat,
+                            M_dot_hat,
                             q_dot_s_hat,
                             E_dot_s_hat,
                             C_dot_s_hat,
                             C_dot_o_hat,
-                            N_dot_hat))
+                            N_dot_hat,
+                            M_dot_hat_prime))
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
@@ -337,6 +349,7 @@ calc_hat <- function(.star_data = NULL,
                            C_dot_cap_star_val = C_dot_cap_star,
                            C_dot_md_star_val = C_dot_md_star,
                            E_dot_emb_star_val = E_dot_emb_star,
+                           M_dot_star_val = M_dot_star,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps,
@@ -344,17 +357,55 @@ calc_hat <- function(.star_data = NULL,
                            e_qo_ps_val = e_qo_ps,
                            N_dot_star_val = N_dot_star,
                            p_E_val = p_E, 
-                           E_dot_s_star_val = E_dot_s_star)
+                           E_dot_s_star_val = E_dot_s_star,
+                           C_dot_cap_orig_val = C_dot_cap_orig,
+                           C_dot_md_orig_val = C_dot_md_orig,
+                           G_dot_val = G_dot)
 }
 
 
+#' Calculate energy rebound data at the bar stage
+#' 
+#' This function calculates energy rebound information for the bar
+#' stage (immediately after the income effect).
+#'
+#' @param .hat_data 
+#'
+#' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
+#' 
+#' @export
+#'
+#' @examples
+#' load_eeu_data() %>% 
+#'   calc_orig() %>% 
+#'   calc_star() %>% 
+#'   calc_hat() %>% 
+#'   calc_bar()
+calc_bar <- function(.hat_data = NULL,
+                     # Input names
+                     eta_hat = ReboundTools::hat_vars$eta_hat,
+                     p_s_hat = ReboundTools::hat_vars$p_s_hat,
 
-calc_bar <- function(.hat_data = NULL
-                       # Input names
-                       # 
-                       # 
-                       # Output names
+                     # Output names
+                     eta_bar = ReboundTools::bar_vars$eta_bar,
+                     p_s_bar = ReboundTools::bar_vars$p_s_bar
 ) {
+  
+  calc_bar_fun <- function(eta_hat_val, 
+                           p_s_hat_val) {
+    eta_bar_val <- eta_hat_val
+    p_s_bar_val <- p_s_hat_val
+    
+    list(eta_bar_val,
+         p_s_bar_val) %>% 
+      magrittr::set_names(c(eta_bar,
+                            p_s_bar))
+  }
+  
+  matsindf::matsindf_apply(.hat_data, FUN = calc_bar_fun,
+                           eta_hat_val = eta_hat, 
+                           p_s_hat_val = p_s_hat
+                           )
   
 }
 

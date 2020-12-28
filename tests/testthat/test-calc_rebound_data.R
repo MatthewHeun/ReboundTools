@@ -107,6 +107,9 @@ test_that("calc_hat() works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$E_dot_emb_hat]][[1]], 5714.28571428571467549773)
   expect_equal(res[[ReboundTools::hat_vars$E_dot_emb_hat]][[2]], 0.65)
   
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat]][[1]], 27401.27769302945671370253)
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat]][[2]], 27401.27769302945671370253)
+
   expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[1]], 14710.86057365263695828617)
   expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[2]], 1412626.67908869450911879539)
 
@@ -119,6 +122,23 @@ test_that("calc_hat() works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$N_dot_hat]][[1]], 711.52848127756499252428)
   expect_equal(res[[ReboundTools::hat_vars$N_dot_hat]][[2]], 15.40398058300356609607)
   
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat_prime]][[1]], 19983.16680524666298879310)
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat_prime]][[2]], 27385.75271244645409751683)
+})
+
+
+test_that("calc_bar() works as expected", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat() %>% 
+    calc_bar()
   
+  expect_equal(res[[ReboundTools::bar_vars$eta_bar]][[1]], 0.33169688306808242650)
+  expect_equal(res[[ReboundTools::bar_vars$eta_bar]][[2]], 22722.222222222)
+
+  expect_equal(res[[ReboundTools::bar_vars$p_s_bar]][[1]], 0.05261904761904762085)
+  expect_equal(res[[ReboundTools::bar_vars$p_s_bar]][[2]], 0.00000165648054278729)
   
 })
+  

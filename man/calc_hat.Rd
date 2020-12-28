@@ -11,6 +11,7 @@ calc_hat(
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
   E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
+  M_dot_star = ReboundTools::star_vars$M_dot_star,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
@@ -19,16 +20,21 @@ calc_hat(
   N_dot_star = ReboundTools::star_vars$N_dot_star,
   p_E = ReboundTools::eeu_base_params$p_E,
   E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
+  C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
+  C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+  G_dot = ReboundTools::star_vars$G_dot,
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
   C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
   E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
+  M_dot_hat = ReboundTools::hat_vars$M_dot_hat,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
   E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
   C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
-  N_dot_hat = ReboundTools::hat_vars$N_dot_hat
+  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
+  M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime
 )
 }
 \arguments{
