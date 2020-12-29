@@ -33,6 +33,15 @@ test_that("graphs works as expected", {
     rebound_paths() %>% 
     rebound_graphs() +
     ggplot2::facet_grid(rows = ggplot2::vars(graph_type), cols = ggplot2::vars(Case))
+  
+  
+  
+  load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_paths(indexed = TRUE) %>% 
+    rebound_graphs() +
+    ggplot2::facet_grid(rows = ggplot2::vars(graph_type), cols = ggplot2::vars(Case))
+  
 })
 
 
