@@ -25,6 +25,7 @@ RoxygenNote: 7.1.1
 Imports: 
     assertthat,
     dplyr,
+    ggplot2,
     magrittr,
     matsindf,
     readxl,
