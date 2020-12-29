@@ -77,6 +77,15 @@ rebound_paths <- function(.rebound_data,
                           Delta_C_dot_o_bar_colour = "darkgreen",
                           Delta_C_dot_o_bar_size = 0.5,
                           
+                          q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
+                          C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                          Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
+                          Delta_q_dot_s_hat_colour = "orange",
+                          Delta_q_dot_s_hat_size = 1,
+                          
+                          grid_colour = "gray",
+                          grid_size = "0.5",
+                          
                           energy_type = "Energy",
                           cost_type = "Cost", 
                           prefs_type = "Preferences") {
@@ -101,18 +110,30 @@ rebound_paths <- function(.rebound_data,
     (.rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
   xend <- x_orig_energy - .rebound_data[[S_dot_dev]]
   yend <- y_orig_energy
-  out <- add_segment(indexed = indexed,
-                     colour = S_dot_dev_colour, size = S_dot_dev_size,
-                     meta = meta, graph_type = energy_type, segment_name = S_dot_dev, 
-                     x_orig = x_orig_energy, y_orig = y_orig_energy,
-                     x = x_orig_energy, y = y_orig_energy, xend = xend, yend = yend)
+  paths <- add_segment(indexed = indexed,
+                       colour = S_dot_dev_colour, size = S_dot_dev_size,
+                       meta = meta, graph_type = energy_type, segment_name = S_dot_dev, 
+                       x_orig = x_orig_energy, y_orig = y_orig_energy,
+                       x = x_orig_energy, y = y_orig_energy, xend = xend, yend = yend)
+  
+  # At this point, we know enough information to calculate the 0% line to the energy graph
+  x_Re0_line <- 0
+  y_Re0_line <- x_orig_energy + y_orig_energy
+  xend_Re0_line <- y_Re0_line
+  yend_Re0_line = 0
+  iso_lines <- add_segment(indexed = indexed,
+                           colour = grid_colour, size = grid_size,
+                           meta = meta, graph_type = energy_type, segment_name = "Re = 0%", 
+                           x_orig = x_orig_energy, y_orig = y_orig_energy, 
+                           x = x_Re0_line, y = y_Re0_line, xend = xend_Re0_line, yend = yend_Re0_line)
+  
   
   # Delta_E_dot_emb_star segment for energy graph (iempl)
   x <- xend
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_E_dot_emb_star]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_E_dot_emb_star_colour, size = Delta_E_dot_emb_star_size,
                 meta = meta, graph_type = energy_type, segment_name = Delta_E_dot_emb_star, 
@@ -124,7 +145,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_md_star]] * .rebound_data[[I_E]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_md_star_I_E_colour, size = Delta_C_dot_md_star_I_E_size,
                 meta = meta, graph_type = energy_type, segment_name = paste0(Delta_C_dot_md_star, I_E), 
@@ -138,7 +159,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x + .rebound_data[[Delta_E_dot_s_hat]]
   yend <- y
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_E_dot_s_hat_colour, size = Delta_E_dot_s_hat_size,
                 meta = meta, graph_type = energy_type, segment_name = Delta_E_dot_s_hat, 
@@ -150,7 +171,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_o_hat]] * .rebound_data[[I_E]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_o_hat_I_E_colour, size = Delta_C_dot_o_hat_I_E_size,
                 meta = meta, graph_type = energy_type, segment_name = paste0(Delta_C_dot_o_hat, I_E), 
@@ -164,7 +185,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x + .rebound_data[[Delta_E_dot_s_bar]]
   yend <- y
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_E_dot_s_bar_colour, size = Delta_E_dot_s_bar_size,
                 meta = meta, graph_type = energy_type, segment_name = Delta_E_dot_s_bar, 
@@ -176,7 +197,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_o_bar]] * .rebound_data[[I_E]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_o_bar_I_E_colour, size = Delta_C_dot_o_bar_I_E_size,
                 meta = meta, graph_type = energy_type, segment_name = paste0(Delta_C_dot_o_bar, I_E), 
@@ -189,14 +210,13 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[k]] * .rebound_data[[N_dot_hat]] * .rebound_data[[I_E]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = prod_colour, size = prod_size,
                 meta = meta, graph_type = energy_type, segment_name = "productivity", 
                 x_orig = x_orig_energy, y_orig = y_orig_energy,
                 x = x, y = y, xend = xend, yend = yend)
-  
-  
+
   
   #
   # Start of Cost graph
@@ -209,7 +229,7 @@ rebound_paths <- function(.rebound_data,
   y_orig_cost <- .rebound_data[[C_dot_cap_orig]] + .rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]
   xend <- x_orig_cost - .rebound_data[[G_dot]]
   yend <- y_orig_cost
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = G_dot_colour, size = G_dot_size,
                 meta = meta, graph_type = cost_type, segment_name = G_dot, 
@@ -221,7 +241,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_cap_star_colour, size = Delta_C_dot_cap_star_size,
                 meta = meta, graph_type = cost_type, segment_name = Delta_C_dot_cap_star, 
@@ -233,7 +253,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_md_star]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_md_star_colour, size = Delta_C_dot_md_star_size,
                 meta = meta, graph_type = cost_type, segment_name = Delta_C_dot_md_star, 
@@ -247,7 +267,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x + .rebound_data[[Delta_C_dot_s_hat]]
   yend <- y
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_s_hat_colour, size = Delta_C_dot_s_hat_size,
                 meta = meta, graph_type = cost_type, segment_name = Delta_C_dot_s_hat, 
@@ -259,7 +279,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_o_hat]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_o_hat_colour, size = Delta_C_dot_o_hat_size,
                 meta = meta, graph_type = cost_type, segment_name = Delta_C_dot_o_hat, 
@@ -273,7 +293,7 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x + .rebound_data[[Delta_C_dot_s_bar]]
   yend <- y
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_s_bar_colour, size = Delta_C_dot_s_bar_size,
                 meta = meta, graph_type = cost_type, segment_name = Delta_C_dot_s_bar, 
@@ -285,13 +305,35 @@ rebound_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[Delta_C_dot_o_bar]]
-  out <- out %>% 
+  paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_o_bar_colour, size = Delta_C_dot_o_bar_size,
                 meta = meta, graph_type = cost_type, segment_name = Delta_C_dot_o_bar, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
+  #
+  # Start of Preferences graph
+  # 
+  
+  # Substitution effect
+  x_orig_pref <- .rebound_data[[q_dot_s_star]]
+  y_orig_pref <- .rebound_data[[C_dot_o_star]]
+  x <- x_orig_pref
+  y <- y_orig_pref
+  xend <- x + .rebound_data[[Delta_q_dot_s_hat]]
+  yend <- y + .rebound_data[[Delta_C_dot_o_hat]]
+  paths <- paths %>% 
+    add_segment(indexed = indexed,
+                colour = Delta_q_dot_s_hat_colour, size = Delta_q_dot_s_hat_size,
+                meta = meta, graph_type = prefs_type, segment_name = Delta_q_dot_s_hat, 
+                x_orig = x_orig_pref, y_orig = y_orig_pref,
+                x = x, y = y, xend = xend, yend = yend)
+  
+  
+  out <- dplyr::bind_rows(paths)
+  
+  return(out)
 }
 
 

@@ -57,6 +57,13 @@ rebound_paths(
   Delta_C_dot_s_bar_size = 0.5,
   Delta_C_dot_o_bar_colour = "darkgreen",
   Delta_C_dot_o_bar_size = 0.5,
+  q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
+  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+  Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
+  Delta_q_dot_s_hat_colour = "orange",
+  Delta_q_dot_s_hat_size = 1,
+  grid_colour = "gray",
+  grid_size = "0.5",
   energy_type = "Energy",
   cost_type = "Cost",
   prefs_type = "Preferences"
