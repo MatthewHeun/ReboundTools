@@ -32,10 +32,12 @@ calc_orig(
 )
 }
 \arguments{
-\item{eta_orig_engr_units, MJ_engr_unit, q_dot_s_orig, C_cap_orig, t_orig, p_E, M_dot_orig, C_dot_md_orig, e_qs_ps_UC, e_qs_m, E_emb_orig}{See \code{ReboundTools::orig_vars}.}
-
-\item{.rebound_data}{An optional data frame containing EEU base data.
+\item{.eeu_data}{An optional data frame containing EEU base data.
 See \code{ReboundTools::eeu_base_params}.}
+
+\item{MJ_engr_unit, p_E, e_qs_ps_UC, e_qs_M}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{eta_orig_engr_units, q_dot_s_orig, C_cap_orig, t_own_orig, M_dot_orig, C_dot_md_orig, E_emb_orig, t_life_orig, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_o_orig, f_Cs_orig, e_qs_ps, e_qo_ps, E_dot_emb_orig, N_dot_orig}{See \code{ReboundTools::orig_vars}.}
 }
 \value{
 A list or data frame of derived rebound values.

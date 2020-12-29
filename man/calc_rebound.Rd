@@ -7,24 +7,24 @@
 calc_rebound(
   .Deltas_data = NULL,
   tol = 1e-06,
-  S_dot_dev = ReboundTools::star_vars$S_dot_dev,
-  Delta_E_dot_emb_star = ReboundTools::Delta_vars[["∆E_dot_emb_star"]],
-  Delta_C_dot_md_star = ReboundTools::Delta_vars[["∆C_dot_md_star"]],
   I_E = ReboundTools::eeu_base_params$I_E,
-  eta_ratio = ReboundTools::star_vars$eta_ratio,
+  e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+  k = ReboundTools::eeu_base_params$k,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
-  Delta_E_dot_s_hat = ReboundTools::Delta_vars[["∆E_dot_s_hat"]],
   e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars[["∆C_dot_o_hat"]],
+  S_dot_dev = ReboundTools::star_vars$S_dot_dev,
+  eta_ratio = ReboundTools::star_vars$eta_ratio,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
-  e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
-  Delta_E_dot_s_bar = ReboundTools::Delta_vars[["∆E_dot_s_bar"]],
-  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars[["∆C_dot_o_bar"]],
-  k = ReboundTools::eeu_base_params$k,
+  Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
+  Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+  Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
+  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+  Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
   Re_md = ReboundTools::rebound_terms$Re_md,
@@ -42,17 +42,37 @@ calc_rebound(
 )
 }
 \arguments{
-\item{.Deltas_data}{}
+\item{.Deltas_data}{A data frame containing Delta values, likely created by \code{ReboundTools::calc_Deltas()}}
 
-\item{eta_ratio}{}
+\item{tol}{The tolerance for checking internal consistency of rebound calculations. Default is \code{1e-6}.}
 
-\item{e_qs_ps}{}
+\item{I_E, e_qs_M, e_qo_M, k}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{e_qs_ps, e_qo_ps, C_dot_o_orig, E_dot_s_orig}{See \code{ReboundTools::orig_vars}.}
+
+\item{S_dot_dev, eta_ratio}{See \code{ReboundTools::star_vars}.}
+
+\item{N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
+
+\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
+\item{Re_dempl, Re_emb, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_prod, Re_d, Re_i, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
-
+A data frame with rebound terms added as columns.
 }
 \description{
-This function calculates rebound terms from a data frame that already contains ∆ terms.
+This function calculates rebound terms from a data frame that already contains Delta terms.
 Note that each rebound term is calculated twice as a way of validating the
 derived expression for rebound.
+}
+\examples{
+load_eeu_data() \%>\% 
+  calc_orig() \%>\% 
+  calc_star() \%>\% 
+  calc_hat() \%>\% 
+  calc_bar() \%>\% 
+  calc_tilde() \%>\% 
+  calc_Deltas() \%>\% 
+  calc_rebound()
 }

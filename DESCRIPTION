@@ -26,7 +26,10 @@ Imports:
     assertthat,
     dplyr,
     magrittr,
-    readxl
+    matsindf,
+    readxl,
+    rlang,
+    tibble
 Suggests: 
     testthat (>= 3.0.0),
     covr,

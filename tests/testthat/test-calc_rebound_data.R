@@ -226,17 +226,17 @@ test_that("calc_Deltas() works as expected", {
   
   # Check a couple Delta values. 
   # Note that there are over 40 values calculated, so this is just a sample.
-  expect_equal(res[[ReboundTools::Delta_vars[["∆p_s_star"]]]][[1]], -0.03578095238095238551)
-  expect_equal(res[[ReboundTools::Delta_vars[["∆p_s_star"]]]][[2]], -0.00001368315437042027)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_p_s_star]][[1]], -0.03578095238095238551)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_p_s_star]][[2]], -0.00001368315437042027)
 
-  expect_equal(res[[ReboundTools::Delta_vars[["∆C_dot_o_bar"]]]][[1]], 683.96658856147041660734)
-  expect_equal(res[[ReboundTools::Delta_vars[["∆C_dot_o_bar"]]]][[2]], 15.40266438258913694881)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_C_dot_o_bar]][[1]], 683.96658856147041660734)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_C_dot_o_bar]][[2]], 15.40266438258913694881)
 
-  expect_equal(res[[ReboundTools::Delta_vars[["∆E_dot_s_star"]]]][[1]], -29572.18020642857300117612)
-  expect_equal(res[[ReboundTools::Delta_vars[["∆E_dot_s_star"]]]][[2]], -210.97892420537903035438)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_E_dot_s_star]][[1]], -29572.18020642857300117612)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_E_dot_s_star]][[2]], -210.97892420537903035438)
   
-  expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[1]], -711.52848127756499252428)
-  expect_equal(res[[ReboundTools::Delta_vars[["∆N_dot_bar"]]]][[2]], -15.40398058300356609607)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_N_dot_bar]][[1]], -711.52848127756499252428)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_N_dot_bar]][[2]], -15.40398058300356609607)
 })
 
 

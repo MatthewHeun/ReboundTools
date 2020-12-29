@@ -7,7 +7,7 @@
 \format{
 A string list with 11 entries.
 \describe{
-\item{reference}{A string for a referece for this case, e.g. bibliographic entry for a paper in which this case appears.}
+\item{reference}{A string for a reference for this case, e.g. bibliographic entry for a paper in which this case appears.}
 \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 \item{original}{A string to identify the original device, e.g., "Incandescent".}
 \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}

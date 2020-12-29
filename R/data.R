@@ -29,8 +29,8 @@
 #' \item{E_dot_s}{The rate of final energy consumption by the energy conversion device \[MJ/year\].}
 #' \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device \[MJ/year\], calculated by `E_emb/t_life`.}
 #' \item{C_dot_s}{The cost rate of energy consumption by the device \[$/year\], calculated by `p_s*q_dot_s`.}
-#' \item{C_dot_cap}{The capital cost rateof the device \[$/year\], calculated by `C_cap/t_own`.}
-#' \item{C_dot_md}{The maintenance and disposal cost rateof the device \[$/year\].}
+#' \item{C_dot_cap}{The capital cost rate of the device \[$/year\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_md}{The maintenance and disposal cost rate of the device \[$/year\].}
 #' \item{C_dot_o}{The other goods consumption rate \[$/year\], calculated, initially, as a residual of the budget constraint.}
 #' \item{M_dot}{Real income \[$/year\].}
 #' }
@@ -56,6 +56,28 @@
 #' @examples
 #' rebound_stages
 "rebound_stages"
+
+
+#' Difference variables
+#' 
+#' This is the list of difference variables of the form `Delta_var_stage`, where
+#' `var` is the variable name (from `ReboundTools::key_analysis_vars`) and 
+#' `stage` is the rebound stage being considered (from `ReboundTools::rebound_stages`).
+#' 
+#' @format A string list with `r length(Delta_vars)` entries.
+#' \describe{
+#' \item{Delta_eta_star}{Calculated as `eta_star - eta_orig`.}
+#' \item{Delta_p_s_star}{Calculated as `p_s_star - p_s_orig`.}
+#' \item{.}{Etc.}
+#' \item{.}{Etc.}
+#' \item{.}{Etc.}
+#' \item{Delta_M_dot_tilde}{Calculated as `M_dot_tilde - M_dot_bar`.}
+#' \item{Delta_N_dot_tilde}{Calculated as `N_dot_tilde - N_dot_bar`.}
+#' }
+#' 
+#' @examples
+#' Delta_vars
+"Delta_vars"
 
 
 #' EEU base parameters 
@@ -91,7 +113,7 @@
 #' 
 #' @format A string list with `r length(eeu_base_params)` entries.
 #' \describe{
-#' \item{reference}{A string for a referece for this case, e.g. bibliographic entry for a paper in which this case appears.}
+#' \item{reference}{A string for a reference for this case, e.g. bibliographic entry for a paper in which this case appears.}
 #' \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 #' \item{original}{A string to identify the original device, e.g., "Incandescent".}
 #' \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}
