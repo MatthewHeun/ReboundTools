@@ -6,8 +6,8 @@
 #' This function calculates energy rebound information for the original 
 #' stage (pre-EEU).
 #'
-#' @param .rebound_data An optional data frame containing EEU base data. 
-#'                      See `ReboundTools::eeu_base_params`.
+#' @param .eeu_data An optional data frame containing EEU base data. 
+#'                  See `ReboundTools::eeu_base_params`.
 #' @param MJ_engr_unit,p_E,e_qs_ps_UC,e_qs_M See `ReboundTools::eeu_base_params`.
 #' @param eta_orig_engr_units,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps,e_qo_ps,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
@@ -387,6 +387,7 @@ calc_hat <- function(.star_data = NULL,
 #' @param .hat_data An optional data frame containing rebound calculations, original data, 
 #'                  star data, and hat data,
 #'                  likely calculated by `calc_hat()`.
+#' @param tol The tolerance with which the budget constraint should be satisfied. Default is `1e-6`.
 #' @param e_qs_M,e_qo_M,p_E See `ReboundTools::eeu_base_params`.
 #' @param eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
 #' @param eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
@@ -532,7 +533,6 @@ calc_bar <- function(.hat_data = NULL,
 #'   calc_bar() %>% 
 #'   calc_tilde()
 calc_tilde <- function(.bar_data = NULL,
-                       tol = 1e-6,
                        # Input names
                        eta_bar = ReboundTools::bar_vars$eta_bar,
                        p_s_bar = ReboundTools::bar_vars$p_s_bar,
@@ -688,6 +688,7 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param e_qs_ps,e_qo_ps,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
 #' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
 #' @param Re_dempl,Re_emb,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_d,Re_i,Re_tot See `ReboundTools::rebound_terms`.
 #'
 #' @return A data frame with rebound terms added as columns.

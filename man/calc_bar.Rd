@@ -39,6 +39,8 @@ calc_bar(
 star data, and hat data,
 likely calculated by \code{calc_hat()}.}
 
+\item{tol}{The tolerance with which the budget constraint should be satisfied. Default is \code{1e-6}.}
+
 \item{e_qs_M, e_qo_M, p_E}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, N_dot_hat, M_dot_hat_prime, C_dot_o_hat, E_dot_s_hat}{See \code{ReboundTools::hat_vars}.}

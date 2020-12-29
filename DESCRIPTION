@@ -28,6 +28,7 @@ Imports:
     magrittr,
     matsindf,
     readxl,
+    rlang,
     tibble
 Suggests: 
     testthat (>= 3.0.0),

@@ -18,8 +18,9 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 # Names of key rebound variables
 # 
 
-key_analysis_vars <- c("eta", "p_s", "q_dot_s", "E_dot_s", "E_dot_emb", 
-                       "C_dot_s", "C_dot_cap", "C_dot_md", "C_dot_o", "M_dot", "N_dot")
+key_analysis_vars <- c(eta = "eta", p_s = "p_s", q_dot_s = "q_dot_s", E_dot_s = "E_dot_s",
+                       E_dot_emb = "E_dot_emb", C_dot_s = "C_dot_s", C_dot_cap = "C_dot_cap",
+                       C_dot_md = "C_dot_md", C_dot_o = "C_dot_o", M_dot = "M_dot", N_dot = "N_dot")
 usethis::use_data(key_analysis_vars, overwrite = TRUE)
 
 
@@ -27,7 +28,7 @@ usethis::use_data(key_analysis_vars, overwrite = TRUE)
 # Names of stages
 # 
 
-rebound_stages <- c("orig", "star", "hat", "bar", "tilde")
+rebound_stages <- c(orig = "orig", star = "star", hat = "hat", bar = "bar", tilde = "tilde")
 usethis::use_data(rebound_stages, overwrite = TRUE)
 
 
@@ -41,6 +42,7 @@ Delta_vars <- expand.grid(key_analysis_vars, rebound_stages) %>%
     Delta_vars = paste0("Delta_", .data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
   ) %>% 
   dplyr::select(.data[["Delta_vars"]]) %>% 
+  dplyr::filter(!endsWith(.data[["Delta_vars"]], paste0("_", ReboundTools::rebound_stages[["orig"]]))) %>% 
   unlist()
 Delta_vars <- Delta_vars %>% 
   magrittr::set_names(Delta_vars) %>% 

@@ -54,6 +54,8 @@ calc_rebound(
 
 \item{N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 
+\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
 \item{Re_dempl, Re_emb, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_prod, Re_d, Re_i, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
