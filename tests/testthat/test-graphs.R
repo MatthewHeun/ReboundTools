@@ -6,7 +6,7 @@ test_that("rebound_paths() works as expected", {
   
   # Check values on the car absolute cost path.
   car_cost_path_abs <- paths_abs %>% 
-    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost")
+    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost", segment_name == "G_dot")
   expect_equal(car_cost_path_abs$x, 1275.17)
   expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
   expect_equal(car_cost_path_abs$y, 26126.10769302945845993236)
@@ -17,7 +17,7 @@ test_that("rebound_paths() works as expected", {
     rebound_analysis() %>% 
     rebound_paths(indexed = TRUE)
   car_cost_path_indexed <- paths_indexed %>% 
-    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost")
+    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost", segment_name == "G_dot")
   expect_equal(car_cost_path_indexed$x, 1)
   expect_equal(car_cost_path_indexed$xend, 0.59523809523809512179)
   expect_equal(car_cost_path_indexed$y, 1)
@@ -29,7 +29,7 @@ test_that("rebound_paths() works as expected", {
 
 test_that("graphs works as expected", {
   
-  load_eeu_data() %>% 
+  abs_graph <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     rebound_paths() %>% 
     dplyr::mutate(
@@ -38,9 +38,9 @@ test_that("graphs works as expected", {
     rebound_graphs() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
   
+  expect_true(!is.null(abs_graph))
   
-  
-  load_eeu_data() %>% 
+  indexed_graph <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     rebound_paths(indexed = TRUE) %>% 
     dplyr::mutate(
@@ -50,7 +50,7 @@ test_that("graphs works as expected", {
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free_y")
-  
+  expect_true(!is.null(indexed_graph))
 })
 
 
