@@ -1,10 +1,27 @@
 test_that("rebound_paths() works as expected", {
-  paths <- load_eeu_data() %>% 
+  # Calculate the absolute paths
+  paths_abs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     rebound_paths()
   
+  # Check values on the car absolute cost path.
+  car_cost_path_abs <- paths_abs %>% 
+    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost")
+  expect_equal(car_cost_path_abs$x, 1275.17)
+  expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
+  expect_equal(car_cost_path_abs$y, 26126.10769302945845993236)
+  expect_equal(car_cost_path_abs$yend, 26126.10769302945845993236)
   
-  expect_equal(paths)
+  # Calculate the indexed paths
+  paths_indexed <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_paths(indexed = TRUE)
+  car_cost_path_indexed <- paths_indexed %>% 
+    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost")
+  expect_equal(car_cost_path_indexed$x, 1)
+  expect_equal(car_cost_path_indexed$xend, 0.59523809523809512179)
+  expect_equal(car_cost_path_indexed$y, 1)
+  expect_equal(car_cost_path_indexed$yend, 1)
   
   
 })
