@@ -6,7 +6,7 @@ test_that("rebound_paths() works as expected", {
   
   # Check values on the car absolute cost path.
   car_cost_path_abs <- paths_abs %>% 
-    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost", segment_name == "G_dot")
+    dplyr::filter(Case == "Car", graph_type == "Cost", segment_name == "G_dot")
   expect_equal(car_cost_path_abs$x, 1275.17)
   expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
   expect_equal(car_cost_path_abs$y, 26126.10769302945845993236)
@@ -17,13 +17,11 @@ test_that("rebound_paths() works as expected", {
     rebound_analysis() %>% 
     rebound_paths(indexed = TRUE)
   car_cost_path_indexed <- paths_indexed %>% 
-    dplyr::filter(Case == "Car - 7 yr", graph_type == "Cost", segment_name == "G_dot")
+    dplyr::filter(Case == "Car", graph_type == "Cost", segment_name == "G_dot")
   expect_equal(car_cost_path_indexed$x, 1)
   expect_equal(car_cost_path_indexed$xend, 0.59523809523809512179)
   expect_equal(car_cost_path_indexed$y, 1)
   expect_equal(car_cost_path_indexed$yend, 1)
-  
-  
 })
 
 
