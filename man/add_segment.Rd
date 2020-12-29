@@ -11,6 +11,7 @@ add_segment(
   graph_type,
   segment_name,
   colour = "black",
+  size = 1,
   linetype = "solid",
   x_orig,
   y_orig,
@@ -33,7 +34,7 @@ add_segment(
 
 \item{colour}{}
 
-\item{linetype}{}
+\item{size}{}
 
 \item{x_orig}{}
 
@@ -46,6 +47,8 @@ add_segment(
 \item{xend}{}
 
 \item{yend}{}
+
+\item{arrow}{}
 }
 \value{
 A version of \code{.DF} with line segments added as the final row.

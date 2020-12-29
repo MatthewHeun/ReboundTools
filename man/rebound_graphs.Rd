@@ -4,10 +4,11 @@
 \alias{rebound_graphs}
 \title{Create a path map for rebound analysis}
 \usage{
-rebound_graphs(.path_data)
+rebound_graphs(.path_data, arrow = NULL)
 }
 \arguments{
-\item{.path_data}{The paths to be graphed}
+\item{.path_data}{A data frame of paths to be added to the graph.
+The columns "colour" and "size" control the colour and width of the segment}
 }
 \value{
 A ggplot2 object with the graphs

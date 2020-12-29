@@ -28,19 +28,28 @@ test_that("rebound_paths() works as expected", {
 
 
 test_that("graphs works as expected", {
+  
   load_eeu_data() %>% 
     rebound_analysis() %>% 
     rebound_paths() %>% 
+    dplyr::mutate(
+      graph_type = factor(graph_type, levels = c("Energy", "Cost"))
+    ) %>% 
     rebound_graphs() +
-    ggplot2::facet_grid(rows = ggplot2::vars(graph_type), cols = ggplot2::vars(Case))
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
   
   
   
   load_eeu_data() %>% 
     rebound_analysis() %>% 
     rebound_paths(indexed = TRUE) %>% 
+    dplyr::mutate(
+      graph_type = factor(graph_type, levels = c("Energy", "Cost"))
+    ) %>% 
     rebound_graphs() +
-    ggplot2::facet_grid(rows = ggplot2::vars(graph_type), cols = ggplot2::vars(Case))
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free_y")
   
 })
 
