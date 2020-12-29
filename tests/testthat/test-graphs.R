@@ -49,7 +49,10 @@ test_that("graphs works as expected", {
     rebound_graphs() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free_y")
+                        scales = "free_y") + 
+    MKHthemes::xy_theme()
+  
+  
   expect_true(!is.null(indexed_graph))
 })
 
