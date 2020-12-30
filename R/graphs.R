@@ -84,7 +84,7 @@ rebound_paths <- function(.rebound_data,
                           Delta_q_dot_s_hat_size = 1,
                           
                           grid_colour = "gray",
-                          grid_size = "0.5",
+                          grid_size = 0.5,
                           
                           energy_type = "Energy",
                           cost_type = "Cost", 
@@ -108,25 +108,38 @@ rebound_paths <- function(.rebound_data,
   x_orig_energy <- .rebound_data[[E_dot_s_orig]]
   y_orig_energy <- .rebound_data[[E_dot_emb_orig]] + 
     (.rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
+  x <- x_orig_energy
+  y <- y_orig_energy
   xend <- x_orig_energy - .rebound_data[[S_dot_dev]]
   yend <- y_orig_energy
   paths <- add_segment(indexed = indexed,
                        colour = S_dot_dev_colour, size = S_dot_dev_size,
                        meta = meta, graph_type = energy_type, segment_name = S_dot_dev, 
                        x_orig = x_orig_energy, y_orig = y_orig_energy,
-                       x = x_orig_energy, y = y_orig_energy, xend = xend, yend = yend)
-  
-  # At this point, we know enough information to calculate the 0% line to the energy graph
-  x_Re0_line <- 0
-  y_Re0_line <- x_orig_energy + y_orig_energy
-  xend_Re0_line <- y_Re0_line
-  yend_Re0_line = 0
-  iso_lines <- add_segment(indexed = indexed,
-                           colour = grid_colour, size = grid_size,
-                           meta = meta, graph_type = energy_type, segment_name = "Re = 0%", 
-                           x_orig = x_orig_energy, y_orig = y_orig_energy, 
-                           x = x_Re0_line, y = y_Re0_line, xend = xend_Re0_line, yend = yend_Re0_line)
-  
+                       x = x, y = y, xend = xend, yend = yend)
+
+  # # At this point, we know enough information to calculate the Re = 100% line to the energy graph
+  # x_Re100_line <- rep(0, nrow(.rebound_data))
+  # y_Re100_line <- x_orig_energy + y_orig_energy
+  # xend_Re100_line <- x_orig_energy + y_orig_energy
+  # yend_Re100_line <- rep(0, nrow(.rebound_data))
+  # iso_lines <- add_segment(indexed = indexed,
+  #                          colour = grid_colour, size = grid_size,
+  #                          meta = meta, graph_type = energy_type, segment_name = "Re = 100%", 
+  #                          x_orig = x_orig_energy, y_orig = y_orig_energy, 
+  #                          x = x_Re100_line, y = y_Re100_line, xend = xend_Re100_line, yend = yend_Re100_line)
+  # 
+  # # Calculate the Re = 0% line to the energy graph
+  # x_Re0_line <- rep(0, nrow(.rebound_data))
+  # y_Re0_line <- x_orig_energy + y_orig_energy
+  # xend_Re0_line <- y_Re0_line
+  # yend_Re0_line = rep(0, nrow(.rebound_data))
+  # iso_lines <- iso_lines %>% 
+  #   add_segment(indexed = indexed,
+  #               colour = grid_colour, size = grid_size,
+  #               meta = meta, graph_type = energy_type, segment_name = "Re = 0%", 
+  #               x_orig = x_orig_energy, y_orig = y_orig_energy, 
+  #               x = x_Re0_line, y = y_Re0_line, xend = xend_Re0_line, yend = yend_Re0_line)
   
   # Delta_E_dot_emb_star segment for energy graph (iempl)
   x <- xend
@@ -330,9 +343,12 @@ rebound_paths <- function(.rebound_data,
                 x_orig = x_orig_pref, y_orig = y_orig_pref,
                 x = x, y = y, xend = xend, yend = yend)
   
-  
-  out <- dplyr::bind_rows(paths)
-  
+  out <- paths %>% 
+    # out <- dplyr::bind_rows(iso_lines, paths) %>% 
+    dplyr::mutate(
+      graph_type = factor(graph_type, levels = c(energy_type, cost_type, prefs_type))
+    )
+
   return(out)
 }
 

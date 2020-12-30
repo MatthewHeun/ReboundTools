@@ -63,7 +63,7 @@ rebound_paths(
   Delta_q_dot_s_hat_colour = "orange",
   Delta_q_dot_s_hat_size = 1,
   grid_colour = "gray",
-  grid_size = "0.5",
+  grid_size = 0.5,
   energy_type = "Energy",
   cost_type = "Cost",
   prefs_type = "Preferences"
