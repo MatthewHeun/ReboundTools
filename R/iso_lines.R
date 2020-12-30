@@ -49,9 +49,7 @@ iso_cost_lines <- function(.rebound_data,
             colour = grid_colour, size = grid_size, linetype = grid_linetype, 
             x_orig = x_orig, y_orig = y_orig, 
             x = x, y = y)
-  
-   
-  
+
   return(isos)
 }
 
