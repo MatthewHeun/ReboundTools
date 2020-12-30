@@ -92,8 +92,8 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
       colour = colour, 
       size = size,
       linetype = linetype,
-      m = -1, 
-      b = x + y
+      slope = -1, 
+      intercept = x + y
     )
   if (is.null(.DF)) {
     return(out)
