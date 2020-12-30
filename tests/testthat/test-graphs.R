@@ -66,12 +66,12 @@ test_that("rebound_graphs() works with grids", {
                             rebound_data %>% cost_paths())
   abs_iso_grids <- rebound_data %>% 
     iso_cost_lines()
-  abs_energy_graph <- rebound_graphs(paths, abs_iso_grids) +
+  abs_graph <- rebound_graphs(paths, abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
     MKHthemes::xy_theme()
-  
+  expect_true(!is.null(abs_graph))
     
 })
 

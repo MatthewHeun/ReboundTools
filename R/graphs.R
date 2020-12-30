@@ -22,10 +22,14 @@ rebound_graphs <- function(.path_data, .grid_data, arrow = NULL) {   # arrow = g
   #   ggplot2::scale_size_identity() + 
   #   ggplot2::scale_linetype_identity()
 
-  ggplot2::ggplot() +
-    ggplot2::geom_abline(data = .grid_data, 
-                         mapping = ggplot2::aes(colour = colour, size = size, linetype = linetype,
-                                                slope = slope, intercept = intercept)) +
+  g <- ggplot2::ggplot()
+  if (!missing(.grid_data)) {
+    g <- g + 
+      ggplot2::geom_abline(data = .grid_data, 
+                           mapping = ggplot2::aes(colour = colour, size = size, linetype = linetype,
+                                                  slope = slope, intercept = intercept))
+  }
+  g +
     ggplot2::geom_segment(data = .path_data, 
                           mapping = ggplot2::aes(colour = colour, size = size, linetype = linetype,
                                                  x = x, y = y, xend = xend, yend = yend), 
