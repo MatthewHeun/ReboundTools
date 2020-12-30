@@ -372,8 +372,6 @@ add_segment <- function(.DF = NULL, indexed, meta, graph_type, segment_name,
 }
 
 
-
-
 #' Create a path map for rebound analysis
 #'
 #' @param .path_data A data frame of paths to be added to the graph. 
