@@ -82,8 +82,11 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
         x_orig, y_orig, 
         x, y) {
   if (indexed) {
-    x <- x/x_orig
-    y <- y/y_orig
+    slope <- -x_orig/y_orig
+    intercept <- (x + y)/y_orig
+  } else {
+    slope <- -1
+    intercept <- x + y
   }
   out <- meta %>% 
     dplyr::mutate(
@@ -92,8 +95,8 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
       colour = colour, 
       size = size,
       linetype = linetype,
-      slope = -1, 
-      intercept = x + y
+      slope = slope, 
+      intercept = intercept
     )
   if (is.null(.DF)) {
     return(out)

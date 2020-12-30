@@ -15,8 +15,8 @@ test_that("iso_cost_lines() works as expected", {
       iso_cost_lines(indexed = TRUE)
     car_cost_iso_lines_indexed <- car_cost_iso_lines_indexed %>%
       dplyr::filter(Case == "Car", graph_type == "Cost", iso_name == "orig")
-    expect_equal(car_cost_iso_lines_indexed$slope, -1)
-    expect_equal(car_cost_iso_lines_indexed$intercept, 2)
+    expect_equal(car_cost_iso_lines_indexed$slope, -0.04880826547079648164)
+    expect_equal(car_cost_iso_lines_indexed$intercept, 1.04880826547079641919)
 })
 
 
