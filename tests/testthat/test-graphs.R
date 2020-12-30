@@ -1,11 +1,30 @@
-test_that("rebound_paths() works as expected", {
+
+
+test_that("energy_paths() works as expected", {
   # Calculate the absolute paths
-  paths_abs <- load_eeu_data() %>% 
+  energy_paths_abs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    rebound_paths()
+    energy_paths()
+  
+  # Check values on the car absolute energy path.
+  car_energy_path_abs <- energy_paths_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Energy", segment_name == "S_dot_dev")
+  expect_equal(car_energy_path_abs$x, 73060.68051000000559724867)
+  expect_equal(car_energy_path_abs$xend, 43488.50030357141804415733)
+  expect_equal(car_energy_path_abs$y, 77316.81880725323571823537)
+  expect_equal(car_energy_path_abs$yend, 77316.81880725323571823537)
+  
+})
+
+
+test_that("cost_paths() works as expected", {
+  # Calculate the absolute paths
+  cost_paths_abs <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    cost_paths()
   
   # Check values on the car absolute cost path.
-  car_cost_path_abs <- paths_abs %>% 
+  car_cost_path_abs <- cost_paths_abs %>% 
     dplyr::filter(Case == "Car", graph_type == "Cost", segment_name == "G_dot")
   expect_equal(car_cost_path_abs$x, 1275.17)
   expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
@@ -13,10 +32,10 @@ test_that("rebound_paths() works as expected", {
   expect_equal(car_cost_path_abs$yend, 26126.10769302945845993236)
   
   # Calculate the indexed paths
-  paths_indexed <- load_eeu_data() %>% 
+  cost_paths_indexed <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    rebound_paths(indexed = TRUE)
-  car_cost_path_indexed <- paths_indexed %>% 
+    cost_paths(indexed = TRUE)
+  car_cost_path_indexed <- cost_paths_indexed %>% 
     dplyr::filter(Case == "Car", graph_type == "Cost", segment_name == "G_dot")
   expect_equal(car_cost_path_indexed$x, 1)
   expect_equal(car_cost_path_indexed$xend, 0.59523809523809512179)
@@ -27,31 +46,58 @@ test_that("rebound_paths() works as expected", {
 
 test_that("graphs works as expected", {
   
-  abs_graph <- load_eeu_data() %>% 
+  abs_energy_paths <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    rebound_paths() %>% 
+    energy_paths()
+  abs_energy_graph <- abs_energy_paths %>% 
+    rebound_graphs() +
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
+  expect_true(!is.null(abs_energy_graph))
+  
+  indexed_energy_paths <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    energy_paths(indexed = TRUE)
+  indexed_energy_graph <- indexed_energy_paths %>% 
+    rebound_graphs() +
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free")
+  expect_true(!is.null(indexed_energy_graph))
+
+  abs_cost_paths <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    cost_paths()
+  abs_cost_graph <- abs_cost_paths %>% 
+    rebound_graphs() +
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
+  expect_true(!is.null(abs_cost_graph))
+
+  indexed_cost_paths <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    cost_paths(indexed = TRUE)  
+  indexed_cost_graph <- indexed_cost_paths %>% 
+    rebound_graphs() +
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free")
+  expect_true(!is.null(indexed_cost_graph))
+  
+  abs_graph <- dplyr::bind_rows(abs_energy_paths, abs_cost_paths) %>% 
     dplyr::mutate(
-      graph_type = factor(graph_type, levels = c("Energy", "Cost"))
+      graph_type = factor(graph_type, levels = ReboundTools::graph_types)
     ) %>% 
     rebound_graphs() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
-  
   expect_true(!is.null(abs_graph))
   
-  indexed_graph <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
-    rebound_paths(indexed = TRUE) %>% 
+  indexed_graph <- dplyr::bind_rows(indexed_energy_paths, indexed_cost_paths) %>%  
     rebound_graphs() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
-    # ggplot2::scale_x_continuous(limits = c(0, 2)) +
     MKHthemes::xy_theme()
-  
-  
   expect_true(!is.null(indexed_graph))
 })
-
 
 
 test_that("add_segment() works as expected", {
