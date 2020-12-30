@@ -19,6 +19,13 @@ test_that("iso_cost_lines() works as expected", {
     expect_equal(car_cost_iso_lines_indexed$intercept, 1.04880826547079641919)
 })
 
+test_that("iso_budget_lines_prefs() works as expected", {
+  iso_budget_lines <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    iso_budget_lines_prefs()
+  
+})
+
 
 test_that("add_iso() works as expected", {
   meta <- tibble::tibble(Case = "Test case")
