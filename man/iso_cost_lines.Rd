@@ -6,10 +6,16 @@
 \usage{
 iso_cost_lines(
   .rebound_data,
+  indexed = FALSE,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig
+  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  Delta_C_dot_s_star = ReboundTools::Delta_vars$Delta_C_dot_s_star,
+  cost_type = ReboundTools::graph_types$cost,
+  grid_colour = ReboundTools::graph_colours$grid,
+  grid_size = 0.5,
+  grid_linetype = "solid"
 )
 }
 \arguments{

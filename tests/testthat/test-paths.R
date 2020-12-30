@@ -68,7 +68,7 @@ test_that("add_segment() works as expected", {
   expect_equal(res$xend, 40)
   expect_equal(res$yend, 50)
   
-  # Now try with vectors, adding 
+  # Now try with vectors, adding to the previous data frame
   meta2 <- tibble::tibble(Case = c("Test case 1", "Test case 2"))
   res2 <- res %>% 
     add_segment(indexed = FALSE, meta = meta2, graph_type = "Test type 2", 

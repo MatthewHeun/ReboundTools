@@ -14,11 +14,18 @@
 #'
 #' @examples
 iso_cost_lines <- function(.rebound_data, 
+                           indexed = FALSE,
                            C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                            C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                            C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig, 
-                           C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig
-                           ) {
+                           C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig, 
+                           
+                           Delta_C_dot_s_star = ReboundTools::Delta_vars$Delta_C_dot_s_star,
+                           
+                           cost_type = ReboundTools::graph_types$cost,
+                           grid_colour = ReboundTools::graph_colours$grid,
+                           grid_size = 0.5,
+                           grid_linetype = "solid") {
   
   meta <- extract_meta(.rebound_data)
   
@@ -27,6 +34,25 @@ iso_cost_lines <- function(.rebound_data,
   y_orig <- .rebound_data[[C_dot_cap_orig]] + .rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]
   x <- x_orig
   y <- y_orig
+  isos <- add_iso(indexed = indexed, meta = meta, 
+                  graph_type = cost_type, iso_name = "orig",
+                  colour = grid_colour, size = grid_size, linetype = grid_linetype, 
+                  x_orig = x_orig, y_orig = y_orig, 
+                  x = x, y = y)
+  
+  # Iso-cost line after expected savings
+  x <- x + .rebound_data[[Delta_C_dot_s_star]]
+  y <- y
+  isos <- isos %>% 
+    add_iso(indexed = indexed, meta = meta, 
+            graph_type = cost_type, iso_name = "G_dot",
+            colour = grid_colour, size = grid_size, linetype = grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig, 
+            x = x, y = y)
+  
+   
+  
+  return(isos)
 }
 
 
