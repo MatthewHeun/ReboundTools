@@ -194,3 +194,26 @@ rebound_terms <- list(Re_dempl = "Re_dempl",
                       Re_i = "Re_i",
                       Re_tot = "Re_tot")
 usethis::use_data(rebound_terms, overwrite = TRUE)
+
+
+#
+# Graph types
+# 
+
+graph_types <- list(energy = "Energy",
+                    cost = "Cost",
+                    preferences = "Preferences")
+usethis::use_data(graph_types, overwrite = TRUE)
+
+
+#
+# Graph colours
+#
+
+graph_colours <- list(empl = "red", 
+                      sub = "orange",
+                      inc = "darkgreen",
+                      prod = "darkblue", 
+                      grid = "gray")
+usethis::use_data(graph_colours, overwrite = TRUE)
+

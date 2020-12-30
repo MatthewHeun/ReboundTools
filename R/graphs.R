@@ -18,79 +18,40 @@ energy_paths <- function(.rebound_data,
                           C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                           
                           S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
-                          S_dot_dev_colour = "red", 
+                          S_dot_dev_colour = ReboundTools::graph_colours$empl, 
                           S_dot_dev_size = 0.1,
                           
-                          C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
-                          C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
-                          
-                          G_dot = ReboundTools::star_vars$G_dot,
-                          G_dot_colour = "red",
-                          G_dot_size = 1,
-                          
                           Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
-                          Delta_E_dot_emb_star_colour = "red",
+                          Delta_E_dot_emb_star_colour = ReboundTools::graph_colours$empl,
                           Delta_E_dot_emb_star_size = 1,
                           
                           Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
                           Delta_C_dot_md_star_I_E_colour = "black",
                           Delta_C_dot_md_star_I_E_size = 0.5,
-                          Delta_C_dot_md_star_colour = "red", 
-                          Delta_C_dot_md_star_size = 1,
-                          
-                          Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-                          Delta_C_dot_cap_star_colour = "black", 
-                          Delta_C_dot_cap_star_size = 0.5,
-                          
+
                           Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
-                          Delta_E_dot_s_hat_colour = "orange",
+                          Delta_E_dot_s_hat_colour = ReboundTools::graph_colours$sub,
                           Delta_E_dot_s_hat_size = 1,
                           
                           Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                          Delta_C_dot_o_hat_I_E_colour = "orange",
+                          Delta_C_dot_o_hat_I_E_colour = ReboundTools::graph_colours$empl,
                           Delta_C_dot_o_hat_I_E_size = 1,
                           
                           Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
-                          Delta_E_dot_s_bar_colour = "darkgreen",
+                          Delta_E_dot_s_bar_colour = ReboundTools::graph_colours$inc,
                           Delta_E_dot_s_bar_size = 0.5,
                           
                           Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
-                          Delta_C_dot_o_bar_I_E_colour = "darkgreen",
+                          Delta_C_dot_o_bar_I_E_colour = ReboundTools::graph_colours$inc,
                           Delta_C_dot_o_bar_I_E_size = 0.5,
                           
                           k = ReboundTools::eeu_base_params$k,
                           N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
-                          prod_colour = "darkblue", 
+                          prod_colour = ReboundTools::graph_colours$prod, 
                           prod_size = 1,
                           
-                          Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
-                          Delta_C_dot_s_hat_colour = "orange",
-                          Delta_C_dot_s_hat_size = 1,
-                          
-                          Delta_C_dot_o_hat_colour = "orange",
-                          Delta_C_dot_o_hat_size = 1,
-                          
-                          Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-                          Delta_C_dot_s_bar_colour = "darkgreen",
-                          Delta_C_dot_s_bar_size = 0.5,
-                          
-                          Delta_C_dot_o_bar_colour = "darkgreen",
-                          Delta_C_dot_o_bar_size = 0.5,
-                          
-                          q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-                          C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
-                          Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-                          Delta_q_dot_s_hat_colour = "orange",
-                          Delta_q_dot_s_hat_size = 1,
-                          
-                          grid_colour = "gray",
-                          grid_size = 0.5,
-                          
-                          energy_type = "Energy",
-                          cost_type = "Cost", 
-                          prefs_type = "Preferences") {
-  
-  
+                          graph_type = ReboundTools::graph_types$energy) {
+
   # A metadata data frame for all these segments
   meta <- .rebound_data %>% 
     dplyr::select(eeu_base_params$reference, eeu_base_params$case, 
@@ -111,7 +72,7 @@ energy_paths <- function(.rebound_data,
   yend <- y_orig
   paths <- add_segment(indexed = indexed,
                        colour = S_dot_dev_colour, size = S_dot_dev_size,
-                       meta = meta, graph_type = energy_type, segment_name = S_dot_dev, 
+                       meta = meta, graph_type = graph_type, segment_name = S_dot_dev, 
                        x_orig = x_orig, y_orig = y_orig,
                        x = x, y = y, xend = xend, yend = yend)
   
@@ -123,7 +84,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_E_dot_emb_star_colour, size = Delta_E_dot_emb_star_size,
-                meta = meta, graph_type = energy_type, segment_name = Delta_E_dot_emb_star, 
+                meta = meta, graph_type = graph_type, segment_name = Delta_E_dot_emb_star, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -135,7 +96,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_md_star_I_E_colour, size = Delta_C_dot_md_star_I_E_size,
-                meta = meta, graph_type = energy_type, segment_name = paste0(Delta_C_dot_md_star, I_E), 
+                meta = meta, graph_type = graph_type, segment_name = paste0(Delta_C_dot_md_star, I_E), 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -149,7 +110,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_E_dot_s_hat_colour, size = Delta_E_dot_s_hat_size,
-                meta = meta, graph_type = energy_type, segment_name = Delta_E_dot_s_hat, 
+                meta = meta, graph_type = graph_type, segment_name = Delta_E_dot_s_hat, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -161,7 +122,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_o_hat_I_E_colour, size = Delta_C_dot_o_hat_I_E_size,
-                meta = meta, graph_type = energy_type, segment_name = paste0(Delta_C_dot_o_hat, I_E), 
+                meta = meta, graph_type = graph_type, segment_name = paste0(Delta_C_dot_o_hat, I_E), 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -175,7 +136,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_E_dot_s_bar_colour, size = Delta_E_dot_s_bar_size,
-                meta = meta, graph_type = energy_type, segment_name = Delta_E_dot_s_bar, 
+                meta = meta, graph_type = graph_type, segment_name = Delta_E_dot_s_bar, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -187,7 +148,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = Delta_C_dot_o_bar_I_E_colour, size = Delta_C_dot_o_bar_I_E_size,
-                meta = meta, graph_type = energy_type, segment_name = paste0(Delta_C_dot_o_bar, I_E), 
+                meta = meta, graph_type = graph_type, segment_name = paste0(Delta_C_dot_o_bar, I_E), 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
 
@@ -199,7 +160,7 @@ energy_paths <- function(.rebound_data,
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = prod_colour, size = prod_size,
-                meta = meta, graph_type = energy_type, segment_name = "Productivity", 
+                meta = meta, graph_type = graph_type, segment_name = "Productivity", 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
 
