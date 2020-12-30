@@ -20,7 +20,7 @@ iso_cost_lines <- function(.rebound_data,
                            C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig, 
                            C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig, 
                            
-                           Delta_C_dot_s_star = ReboundTools::Delta_vars$Delta_C_dot_s_star,
+                           G_dot = ReboundTools::star_vars$G_dot,
                            
                            cost_type = ReboundTools::graph_types$cost,
                            grid_colour = ReboundTools::graph_colours$grid,
@@ -41,7 +41,7 @@ iso_cost_lines <- function(.rebound_data,
                   x = x, y = y)
   
   # Iso-cost line after expected savings
-  x <- x + .rebound_data[[Delta_C_dot_s_star]]
+  x <- x - .rebound_data[[G_dot]]
   y <- y
   isos <- isos %>% 
     add_iso(indexed = indexed, meta = meta, 
