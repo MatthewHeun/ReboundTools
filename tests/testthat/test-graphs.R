@@ -105,6 +105,18 @@ test_that("rebound_graphs() works with a cost-only graph with grids", {
 })
 
 
+test_that("rebound_graphs() works with a cost-only graph with grids", {
+  graph <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    prefs_paths() %>% 
+    rebound_graphs() + 
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free") + 
+    MKHthemes::xy_theme()
+  
+  expect_true(!is.null(graph))
+})
 
 
 

@@ -52,6 +52,29 @@ test_that("cost_paths() works as expected", {
 })
 
 
+test_that("prefs_paths() works as expected", {
+  prefs_paths <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    prefs_paths()
+  
+  # Check values on the lighting graph.
+  lighting_prefs_path <- prefs_paths %>% 
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", segment_name == "Delta_C_dot_o_hat")
+  expect_equal(lighting_prefs_path$x, 1)
+  expect_equal(lighting_prefs_path$y, 1)
+  expect_equal(lighting_prefs_path$xend, 1)
+  expect_equal(lighting_prefs_path$yend, 0.99971092431922392585)
+  
+  lighting_prefs_path2 <- prefs_paths %>% 
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", segment_name == "Delta_q_dot_s_hat")
+  expect_equal(lighting_prefs_path2$x, 1)
+  expect_equal(lighting_prefs_path2$y, 0.99971092431922392585)
+  expect_equal(lighting_prefs_path2$xend, 2.43409438974531644462)
+  expect_equal(lighting_prefs_path2$yend, 0.99971092431922392585)
+  
+})
+
+
 test_that("add_segment() works as expected", {
   meta <- tibble::tibble(Case = "Test case")
   res <- add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 
@@ -92,3 +115,4 @@ test_that("add_segment() works as expected", {
   expect_equal(res3$xend, c(40, 4, 5))
   expect_equal(res3$yend, c(50, 5, 6))
 })
+

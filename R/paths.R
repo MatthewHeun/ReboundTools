@@ -343,6 +343,64 @@ cost_paths <- function(.rebound_data,
 }
 
 
+#' Title
+#'
+#' @param .rebound_data 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+prefs_paths <- function(.rebound_data, 
+                        q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
+                        C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                        
+                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+                        Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
+                        Delta_C_dot_o_hat_size = 1,
+                        
+                        Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
+                        Delta_q_dot_s_hat_colour = ReboundTools::graph_colours$sub,
+                        Delta_q_dot_s_hat_size = 1,
+                        
+                        prefs_type = ReboundTools::graph_types$preferences
+                        ) {
+  # A metadata data frame for all these segments
+  meta <- extract_meta(.rebound_data)
+  
+  # Starting point
+  x_star <- .rebound_data[[q_dot_s_star]]
+  y_star <- .rebound_data[[C_dot_o_star]]
+    
+    
+  # Substitution effect.
+  # Delta_C_dot_o_star segment for prefs graph
+  x <- x_star
+  y <- y_star
+  xend <- x
+  yend <- y + .rebound_data[[Delta_C_dot_o_hat]]
+  paths <- add_segment(indexed = TRUE,
+                       colour = Delta_C_dot_o_hat_colour, size = Delta_C_dot_o_hat_size,
+                       meta = meta, graph_type = prefs_type, segment_name = Delta_C_dot_o_hat,
+                       x_orig = x_star, y_orig = y_star, 
+                       x = x, y = y, xend = xend, yend = yend)
+  
+  # Delta_q_dot_s_star segment for prefs graph
+  x <- xend
+  y <- yend
+  xend <- x + .rebound_data[[Delta_q_dot_s_hat]]
+  yend <- y
+  paths <- paths %>% 
+    add_segment(indexed = TRUE,
+                colour = Delta_q_dot_s_hat_colour, size = Delta_q_dot_s_hat_size,
+                meta = meta, graph_type = prefs_type, segment_name = Delta_q_dot_s_hat,
+                x_orig = x_star, y_orig = y_star, 
+                x = x, y = y, xend = xend, yend = yend)
+  
+  return(paths)
+}
+
+
 #' Add a line segment to a data frame
 #'
 #' @param .DF 
