@@ -109,7 +109,7 @@ iso_budget_lines_prefs <- function(.rebound_data) {
 #' @export
 #'
 #' @examples
-add_prefs_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
+add_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
                                   line_name,
                                   colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
                                   slope, intercept) {
@@ -161,21 +161,10 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name,
     slope <- -1
     intercept <- x + y
   }
-  out <- meta %>% 
-    dplyr::mutate(
-      graph_type = graph_type, 
-      line_name = line_name,
-      colour = colour, 
-      size = size,
-      linetype = linetype,
-      slope = slope, 
-      intercept = intercept
-    )
-  if (is.null(.DF)) {
-    return(out)
-  }
-  .DF %>% 
-    dplyr::bind_rows(out)
+  add_budget_line(.DF, meta = meta, graph_type = graph_type,
+                  line_name = line_name, colour = colour, 
+                  size = size, linetype = linetype, 
+                  slope = slope, intercept = intercept)
 }
 
 

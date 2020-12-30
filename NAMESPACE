@@ -2,8 +2,8 @@
 
 export("%>%")
 export(.data)
+export(add_budget_line)
 export(add_iso)
-export(add_prefs_budget_line)
 export(add_segment)
 export(calc_Deltas)
 export(calc_bar)
