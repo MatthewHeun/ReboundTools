@@ -12,14 +12,17 @@ iso_budget_lines_prefs(
   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-  orig_size = 0.5,
   p_s_star = ReboundTools::star_vars$p_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-  grid_colour = ReboundTools::graph_colours$grid
+  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+  q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+  grid_colour = ReboundTools::graph_colours$grid,
+  grid_linetype = "solid",
+  grid_size = 0.2
 )
 }
 \arguments{

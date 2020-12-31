@@ -70,7 +70,6 @@ iso_budget_lines_prefs <- function(.rebound_data,
                                    M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
                                    C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                                    C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-                                   orig_size = 0.5,
                                    
                                    p_s_star = ReboundTools::star_vars$p_s_star,
                                    G_dot = ReboundTools::star_vars$G_dot,
@@ -79,8 +78,13 @@ iso_budget_lines_prefs <- function(.rebound_data,
                                    
                                    Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                                    Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                                   
+                                   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
+                                   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
                                      
-                                   grid_colour = ReboundTools::graph_colours$grid) {
+                                   grid_colour = ReboundTools::graph_colours$grid,
+                                   grid_linetype = "solid",
+                                   grid_size = 0.2) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -95,8 +99,8 @@ iso_budget_lines_prefs <- function(.rebound_data,
                          graph_type = ReboundTools::graph_types$preferences,
                          line_name = ReboundTools::rebound_stages$orig, 
                          colour = grid_colour, 
-                         size = orig_size, 
-                         linetype = "solid", 
+                         size = grid_size, 
+                         linetype = grid_linetype, 
                          slope = slope_orig,
                          intercept = intercept_orig)
   
@@ -111,8 +115,8 @@ iso_budget_lines_prefs <- function(.rebound_data,
                          graph_type = ReboundTools::graph_types$preferences,
                          line_name = ReboundTools::rebound_stages$star, 
                          colour = grid_colour, 
-                         size = orig_size, 
-                         linetype = "solid", 
+                         size = grid_size, 
+                         linetype = grid_linetype, 
                          slope = slope_star,
                          intercept = intercept_star)
   
@@ -130,8 +134,8 @@ iso_budget_lines_prefs <- function(.rebound_data,
                          graph_type = ReboundTools::graph_types$preferences,
                          line_name = ReboundTools::rebound_stages$hat, 
                          colour = grid_colour, 
-                         size = orig_size, 
-                         linetype = "solid", 
+                         size = grid_size, 
+                         linetype = grid_linetype, 
                          slope = slope_hat,
                          intercept = intercept_hat)
   
@@ -146,13 +150,26 @@ iso_budget_lines_prefs <- function(.rebound_data,
                          graph_type = ReboundTools::graph_types$preferences,
                          line_name = ReboundTools::rebound_stages$hat, 
                          colour = grid_colour, 
-                         size = orig_size, 
-                         linetype = "solid", 
+                         size = grid_size, 
+                         linetype = grid_linetype, 
                          slope = slope_bar,
                          intercept = intercept_bar)
+
+  # Add ray from origin through income points.
+  # slope_ray <- (C_dot_o_hat / C_dot_o_orig) / (q_dot_s_hat / q_dot_s_orig)
+  slope_ray <- (.rebound_data[[C_dot_o_hat]] / .rebound_data[[C_dot_o_orig]]) /
+                  (.rebound_data[[q_dot_s_hat]] / .rebound_data[[q_dot_s_orig]])
+  intercept_ray <- 0
+  
+  # Set indexed to FALSE, because we have already indexed the ray by adjusting the slope.
+  out <- add_budget_line(out, meta = meta, 
+          graph_type = ReboundTools::graph_types$preferences, 
+          line_name = "ray",
+          colour = grid_colour, size = grid_size, linetype = grid_linetype, 
+          slope = slope_ray, 
+          intercept = intercept_ray)
   
   return(out)
-  
 }
 
 

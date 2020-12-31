@@ -213,7 +213,7 @@ usethis::use_data(graph_types, overwrite = TRUE)
 graph_colours <- list(empl = "red", 
                       sub = "orange",
                       inc = "darkgreen",
-                      prod = "darkblue", 
+                      prod = "blue", 
                       grid = "gray")
 usethis::use_data(graph_colours, overwrite = TRUE)
 
