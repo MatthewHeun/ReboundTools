@@ -19,8 +19,8 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 # 
 
 key_analysis_vars <- list(eta = "eta", p_s = "p_s", q_dot_s = "q_dot_s", E_dot_s = "E_dot_s",
-                       E_dot_emb = "E_dot_emb", C_dot_s = "C_dot_s", C_dot_cap = "C_dot_cap",
-                       C_dot_md = "C_dot_md", C_dot_o = "C_dot_o", M_dot = "M_dot", N_dot = "N_dot")
+                          E_dot_emb = "E_dot_emb", C_dot_s = "C_dot_s", C_dot_cap = "C_dot_cap",
+                          C_dot_md = "C_dot_md", C_dot_o = "C_dot_o", M_dot = "M_dot", N_dot = "N_dot")
 usethis::use_data(key_analysis_vars, overwrite = TRUE)
 
 
@@ -87,6 +87,7 @@ orig_vars <- list(q_dot_s_orig = "q_dot_s_orig",
                   f_Cs_orig = "f_Cs_orig",
                   e_qs_ps = "e_qs_ps",
                   e_qo_ps = "e_qo_ps", 
+                  sigma = "sigma",
                   E_emb_orig = "E_emb_orig",
                   t_life_orig = "t_life_orig",
                   E_dot_emb_orig = "E_dot_emb_orig", 

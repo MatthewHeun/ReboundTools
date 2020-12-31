@@ -231,6 +231,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
                                    C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
                                    q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
                                      
+                                   prefs_type = ReboundTools::graph_types$preferences,
                                    grid_colour = ReboundTools::graph_colours$grid,
                                    grid_linetype = "solid",
                                    grid_size = 0.2) {
@@ -245,7 +246,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
                        .rebound_data[[C_dot_md_orig]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(meta = meta, 
-                         graph_type = ReboundTools::graph_types$preferences,
+                         graph_type = prefs_type,
                          line_name = ReboundTools::rebound_stages$orig, 
                          colour = grid_colour, 
                          size = grid_size, 
@@ -261,7 +262,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
                        .rebound_data[[C_dot_md_orig]] - .rebound_data[[G_dot]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
-                         graph_type = ReboundTools::graph_types$preferences,
+                         graph_type = prefs_type,
                          line_name = ReboundTools::rebound_stages$star, 
                          colour = grid_colour, 
                          size = grid_size, 
@@ -280,7 +281,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
                       .rebound_data[[Delta_C_dot_o_hat]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
-                         graph_type = ReboundTools::graph_types$preferences,
+                         graph_type = prefs_type,
                          line_name = ReboundTools::rebound_stages$hat, 
                          colour = grid_colour, 
                          size = grid_size, 
@@ -296,7 +297,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
                       .rebound_data[[Delta_C_dot_md_star]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
-                         graph_type = ReboundTools::graph_types$preferences,
+                         graph_type = prefs_type,
                          line_name = ReboundTools::rebound_stages$bar, 
                          colour = grid_colour, 
                          size = grid_size, 
@@ -309,16 +310,107 @@ iso_budget_lines_prefs <- function(.rebound_data,
   slope_ray <- (.rebound_data[[C_dot_o_hat]] / .rebound_data[[C_dot_o_orig]]) /
                   (.rebound_data[[q_dot_s_hat]] / .rebound_data[[q_dot_s_orig]])
   intercept_ray <- 0
-  
-  # Set indexed to FALSE, because we have already indexed the ray by adjusting the slope.
   out <- add_budget_line(out, meta = meta, 
-          graph_type = ReboundTools::graph_types$preferences, 
+          graph_type = prefs_type, 
           line_name = "ray",
           colour = grid_colour, size = grid_size, linetype = grid_linetype, 
           slope = slope_ray, 
           intercept = intercept_ray)
-  
   return(out)
+}
+
+
+#' Indifference curve lines
+#' 
+#' This function calculates parameters for indifference curves 
+#' to be drawn on the preferences graph.
+#'
+#' @param .rebound_data 
+#'
+#' @return
+#' 
+#' @export
+#'
+#' @examples
+indifference_lines <- function(.rebound_data, 
+                               q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
+                               C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                               f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
+                               sigma = ReboundTools::orig_vars$sigma,
+                               
+                               prefs_type = ReboundTools::graph_types$preferences,
+                               grid_colour = ReboundTools::graph_colours$grid,
+                               grid_linetype = "solid",
+                               grid_size = 0.2) {
+  
+  meta <- extract_meta(.rebound_data)
+
+  # Original data.  
+  qs0 <- .rebound_data[[q_dot_s_orig]]
+  Co0 <- .rebound_data[[C_dot_o_orig]]
+  f_Cs <- .rebound_data[[f_Cs_orig]]
+  sigma_val <- .rebound_data[[sigma]]
+  
+  # Indifference line at the orig point
+  qs1 <- qs0
+  Co1 <- Co0
+  qs1_qs0 <- qs1/qs0
+  Co1_Co0 <- Co1/Co0
+  icurves <- add_indifference_curve(meta = meta, 
+                                    graph_type = prefs_type, 
+                                    line_name = ReboundTools::rebound_stages$orig,
+                                    colour = grid_colour, 
+                                    size = grid_size, 
+                                    linetype = grid_linetype,
+                                    qs1_qs0 = qs1_qs0,
+                                    Co1_Co0 = Co1_Co0, 
+                                    f_Cs_orig = f_Cs,
+                                    sigma = sigma_val)
+  
+  
+  return(icurves)
+}
+
+
+#' Title
+#'
+#' @param .DF 
+#' @param meta 
+#' @param graph_type 
+#' @param line_name 
+#' @param colour 
+#' @param size 
+#' @param linetype 
+#' @param qs1_qs0 
+#' @param Co1_Co0 
+#' @param f_Cs_orig 
+#' @param sigma 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+add_indifference_curve <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
+                                   line_name, 
+                                   colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
+                                   qs1_qs0, Co1_Co0, f_Cs_orig, sigma) {
+  out <- meta %>% 
+    dplyr::mutate(
+      graph_type = graph_type, 
+      line_name = line_name, 
+      colour = colour,
+      size = size,
+      linetype = linetype,
+      qs1_qs0 = qs1_qs0,
+      Co1_Co0 = Co1_Co0,
+      f_Cs_orig = f_Cs_orig, 
+      sigma = sigma
+    )
+  if (is.null(.DF)) {
+    return(out)
+  }
+  .DF %>% 
+    dplyr::bind_rows(out)
 }
 
 
@@ -423,26 +515,39 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name,
 #' The indifference curve assumes CES utility. 
 #' The equation of the indifference curve is
 #' `u_dot/u_dot_orig = [f_Cs*(q_dot_s/q_dot_s_orig)^rho + (1-f_Cs)*(C_dot_o/C_dot_o_orig)^rho]^(1/rho)`.
+#' 
+#' This function is vectorized.
 #'
 #' @param qs_qs0 The ratio `q_dot_s/q_dot_s_orig`. Sweeping this variable (x) gives
 #'               the indifference curve parameterized by the other arguments.
 #' @param qs1_qs0 The x coordinate of a point on this indifference curve.
 #' @param Co1_Co0 The y coordinate of a point on this indifference curve.
-#' @param f_Cs The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.
+#' @param f_Cs_orig The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.
 #' @param sigma The elasticity of substitution between the energy service and other goods.
 #' @param rho The exponent in the CES utility function. Default is `(sigma-1)/sigma`.
 #'
-#' @return The value of `C_dot_o/C_dot_o_orig`, given values for remaining arguments.
+#' @return The value of `C_dot_o/C_dot_o_orig`, given values of remaining arguments.
 #' 
 #' @export
 #'
 #' @examples
-#' 
-indifference_fun <- function(qs_qs0, qs1_qs0, Co1_Co0, f_Cs, sigma, rho = (sigma-1)/sigma) {
-  term1 <- f_Cs/(1 - f_Cs)
+#' qs1_qs0 <- 1
+#' Co1_Co0 <- 1
+#' sigma <- 0.3
+#' f_Cs_orig <- 0.01
+#' DF <- data.frame(x = seq(0.5, 1.5, by = 0.1)) %>% 
+#'   dplyr::mutate(
+#'     y = indifference_func(x, qs1_qs0 = qs1_qs0, Co1_Co0 = Co1_Co0, 
+#'                           f_Cs_orig = f_Cs_orig, sigma = sigma)
+#'   )
+#' DF
+indifference_func <- function(qs_qs0, qs1_qs0, Co1_Co0, f_Cs_orig, sigma, rho = (sigma-1)/sigma) {
+  term1 <- f_Cs_orig/(1 - f_Cs_orig)
   term2 <- qs1_qs0^rho
   term3 <- qs_qs0^rho
   term4 <- Co1_Co0^rho
   (term1*(term2 - term3) + term4)^(1/rho)
 }
+
+
 

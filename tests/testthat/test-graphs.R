@@ -154,5 +154,18 @@ test_that("rebound_graphs() works with a preferences graph with grids", {
 })
 
 
-
+test_that("indifference_fun() works as expected", {
+  qs1_qs0 <- 1
+  Co1_Co0 <- 1
+  sigma <- 0.5
+  f_Cs <- 0.01
+  
+  g <- ggplot2::ggplot() +
+    ggplot2::stat_function(data = data.frame(x = c(0.1, 10)),
+                           mapping = ggplot2::aes(x = x), 
+                           fun = indifference_func, 
+                           args = c(qs1_qs0 = qs1_qs0, Co1_Co0 = Co1_Co0,
+                                    f_Cs = f_Cs, sigma = sigma))
+  expect_true(!is.null(g))
+})
 

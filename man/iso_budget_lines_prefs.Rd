@@ -20,6 +20,7 @@ iso_budget_lines_prefs(
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+  prefs_type = ReboundTools::graph_types$preferences,
   grid_colour = ReboundTools::graph_colours$grid,
   grid_linetype = "solid",
   grid_size = 0.2

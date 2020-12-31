@@ -43,6 +43,7 @@ calc_orig <- function(.eeu_data = NULL,
                       f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
                       e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                       e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+                      sigma = ReboundTools::orig_vars$sigma,
                       E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                       N_dot_orig = ReboundTools::orig_vars$N_dot_orig) {
   
@@ -68,6 +69,7 @@ calc_orig <- function(.eeu_data = NULL,
     f_Cs_orig_val <- C_dot_s_orig_val / (C_dot_s_orig_val + C_dot_o_orig_val)
     e_qs_ps_val <- e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val
     e_qo_ps_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
+    sigma_val <- (f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
     N_dot_orig_val <- 0
     
@@ -80,6 +82,7 @@ calc_orig <- function(.eeu_data = NULL,
          f_Cs_orig_val,
          e_qs_ps_val,
          e_qo_ps_val, 
+         sigma_val,
          E_dot_emb_orig_val,
          N_dot_orig_val) %>% 
       magrittr::set_names(c(eta_orig,
@@ -91,6 +94,7 @@ calc_orig <- function(.eeu_data = NULL,
                             f_Cs_orig,
                             e_qs_ps, 
                             e_qo_ps, 
+                            sigma,
                             E_dot_emb_orig,
                             N_dot_orig))
   }
