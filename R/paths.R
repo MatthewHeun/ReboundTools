@@ -363,6 +363,14 @@ prefs_paths <- function(.rebound_data,
                         Delta_q_dot_s_hat_colour = ReboundTools::graph_colours$sub,
                         Delta_q_dot_s_hat_size = 1,
                         
+                        Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
+                        Delta_q_dot_s_bar_colour = ReboundTools::graph_colours$inc,
+                        Delta_q_dot_s_bar_size = 1,
+
+                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                        Delta_C_dot_o_bar_colour = ReboundTools::graph_colours$inc,
+                        Delta_C_dot_o_bar_size = 1,
+                        
                         prefs_type = ReboundTools::graph_types$preferences
                         ) {
   # A metadata data frame for all these segments
@@ -374,6 +382,7 @@ prefs_paths <- function(.rebound_data,
     
     
   # Substitution effect.
+  
   # Delta_C_dot_o_star segment for prefs graph
   x <- x_star
   y <- y_star
@@ -396,6 +405,33 @@ prefs_paths <- function(.rebound_data,
                 meta = meta, graph_type = prefs_type, segment_name = Delta_q_dot_s_hat,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
+  
+  # Income effect
+  
+  # Delta_q_dot_s_bar segment for prefs graph
+  x <- xend
+  y <- yend
+  xend <- x + .rebound_data[[Delta_q_dot_s_bar]]
+  yend <- y
+  paths <- paths %>% 
+    add_segment(indexed = TRUE,
+                colour = Delta_q_dot_s_bar_colour, size = Delta_q_dot_s_bar_size,
+                meta = meta, graph_type = prefs_type, segment_name = Delta_q_dot_s_bar,
+                x_orig = x_star, y_orig = y_star, 
+                x = x, y = y, xend = xend, yend = yend)
+  
+  # Delta_C_dot_o_bar segment for prefs graph
+  x <- xend
+  y <- yend
+  xend <- x
+  yend <- y + .rebound_data[[Delta_C_dot_o_bar]]
+  paths <- paths %>% 
+    add_segment(indexed = TRUE,
+                colour = Delta_C_dot_o_bar_colour, size = Delta_C_dot_o_bar_size,
+                meta = meta, graph_type = prefs_type, segment_name = Delta_C_dot_o_bar,
+                x_orig = x_star, y_orig = y_star, 
+                x = x, y = y, xend = xend, yend = yend)
+  
   
   return(paths)
 }

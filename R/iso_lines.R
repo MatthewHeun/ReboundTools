@@ -133,8 +133,6 @@ iso_budget_lines_prefs <- function(.rebound_data,
                          slope = slope_hat,
                          intercept = intercept_hat)
   
-  
-  
   # Iso-budget line at the bar point (after income, before productivity)
 
   return(out)
