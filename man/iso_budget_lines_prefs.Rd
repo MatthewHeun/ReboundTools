@@ -17,6 +17,8 @@ iso_budget_lines_prefs(
   G_dot = ReboundTools::star_vars$G_dot,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+  Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+  Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
   grid_colour = ReboundTools::graph_colours$grid
 )
 }

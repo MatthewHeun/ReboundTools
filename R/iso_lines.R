@@ -77,7 +77,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
                                    Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
                                    Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                                    
-                                   
+                                   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+                                   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                                     
                                    grid_colour = ReboundTools::graph_colours$grid) {
   
   meta <- extract_meta(.rebound_data)
@@ -134,7 +136,21 @@ iso_budget_lines_prefs <- function(.rebound_data,
                          intercept = intercept_hat)
   
   # Iso-budget line at the bar point (after income, before productivity)
-
+  slope_bar <- slope_hat
+  # intercept_bar <- (M_dot_orig - C_dot_cap_orig - C_dot_md_orig - Delta_C_dot_cap_star - Delta_C_dot_md_star) / C_dot_o_orig
+  intercept_bar <- (.rebound_data[[M_dot_orig]] - .rebound_data[[C_dot_cap_orig]] - 
+                      .rebound_data[[C_dot_md_orig]] - .rebound_data[[Delta_C_dot_cap_star]] - 
+                      .rebound_data[[Delta_C_dot_md_star]]) / 
+    .rebound_data[[C_dot_o_orig]]
+  out <- add_budget_line(out, meta = meta, 
+                         graph_type = ReboundTools::graph_types$preferences,
+                         line_name = ReboundTools::rebound_stages$hat, 
+                         colour = grid_colour, 
+                         size = orig_size, 
+                         linetype = "solid", 
+                         slope = slope_bar,
+                         intercept = intercept_bar)
+  
   return(out)
   
 }
