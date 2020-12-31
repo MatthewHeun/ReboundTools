@@ -13,15 +13,6 @@
 #'   rebound_paths() %>% 
 #'   rebound_graphs()
 rebound_graphs <- function(.path_data, .grid_data, arrow = NULL) {   # arrow = ggplot2::arrow(angle = 20, type = "closed")) {
-  # .path_data %>% 
-  #   ggplot2::ggplot() +
-  #   ggplot2::geom_segment(mapping = ggplot2::aes(colour = colour, size = size, linetype = linetype,
-  #                                                x = x, y = y, xend = xend, yend = yend), 
-  #                         arrow = arrow) +
-  #   ggplot2::scale_colour_identity() + 
-  #   ggplot2::scale_size_identity() + 
-  #   ggplot2::scale_linetype_identity()
-
   g <- ggplot2::ggplot()
   if (!missing(.grid_data)) {
     g <- g + 
@@ -39,8 +30,3 @@ rebound_graphs <- function(.path_data, .grid_data, arrow = NULL) {   # arrow = g
     ggplot2::scale_linetype_identity()
   
 }
-
-
-
-
-

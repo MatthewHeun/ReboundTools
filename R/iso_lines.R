@@ -1,3 +1,152 @@
+#' Title
+#'
+#' @param .rebound_data 
+#' @param indexed 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+iso_energy_lines <- function(.rebound_data, 
+                             indexed = FALSE, 
+                             E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig, 
+                             E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig, 
+                             I_E = ReboundTools::eeu_base_params$I_E, 
+                             C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                             C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                             S_dot_dev = ReboundTools::star_vars$S_dot_dev,
+                             
+                             E_dot_s_star = ReboundTools::star_vars$E_dot_s_star, 
+                             E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star, 
+                             C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
+                             C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+
+                             E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat, 
+                             E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat, 
+                             C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
+                             C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+                             
+                             E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar, 
+                             E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar, 
+                             C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar,
+                             C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+
+                             E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
+                             E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
+                             C_dot_md_tilde = ReboundTools::tilde_vars$C_dot_md_tilde,
+                             C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
+                             k = ReboundTools::eeu_base_params$k,
+                             N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
+
+                             energy_type = ReboundTools::graph_types$energy,
+                             grid_colour = ReboundTools::graph_colours$grid,
+                             grid_size = 0.5,
+                             grid_linetype = "solid") {
+  
+  meta <- extract_meta(.rebound_data)
+  
+  # Iso-energy line at the orig point.
+  # This is the 100% Rebound line.
+  x_orig <- .rebound_data[[E_dot_s_orig]]
+  y_orig <- .rebound_data[[E_dot_emb_orig]] + 
+    (.rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
+  
+  x <- x_orig
+  y <- y_orig
+  isos <- add_iso(indexed = indexed, 
+                  meta = meta, 
+                  graph_type = energy_type, 
+                  line_name = "Re = 100%", 
+                  colour = grid_colour, 
+                  size = grid_size, 
+                  linetype = grid_linetype, 
+                  x_orig = x_orig, y_orig = y_orig,
+                  x = x, y = y)
+  
+  # Iso-energy line at the end of the S_dot_dev line.  
+  # This is the 0% rebound line.
+  x <- x_orig - .rebound_data[[S_dot_dev]]
+  y <- y
+  isos <- isos %>% 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = energy_type, 
+            line_name = "Re = 0%", 
+            colour = grid_colour, 
+            size = grid_size, 
+            linetype = grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig,
+            x = x, y = y)
+  
+  # Iso-energy line at the end of the emplacement effect.
+  # This gives Re_empl.
+  x <- .rebound_data[[E_dot_s_star]]
+  y <- .rebound_data[[E_dot_emb_star]] + 
+    (.rebound_data[[C_dot_md_star]] + .rebound_data[[C_dot_o_star]]) * .rebound_data[[I_E]]
+  isos <- isos %>% 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = energy_type, 
+            line_name = ReboundTools::rebound_terms$Re_empl, 
+            colour = grid_colour, 
+            size = grid_size, 
+            linetype = grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig,
+            x = x, y = y)
+  
+  # Iso-energy line at the end of the substitution effect.
+  # This gives Re_sub.
+  x <- .rebound_data[[E_dot_s_hat]]
+  y <- .rebound_data[[E_dot_emb_hat]] + 
+    (.rebound_data[[C_dot_md_hat]] + .rebound_data[[C_dot_o_hat]]) * .rebound_data[[I_E]]
+  isos <- isos %>% 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = energy_type, 
+            line_name = ReboundTools::rebound_terms$Re_sub, 
+            colour = grid_colour, 
+            size = grid_size, 
+            linetype = grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig,
+            x = x, y = y)
+  
+  # Iso-energy line at the end of the income effect.
+  # This gives Re_inc.
+  x <- .rebound_data[[E_dot_s_bar]]
+  y <- .rebound_data[[E_dot_emb_bar]] + 
+    (.rebound_data[[C_dot_md_bar]] + .rebound_data[[C_dot_o_bar]]) * .rebound_data[[I_E]]
+  isos <- isos %>% 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = energy_type, 
+            line_name = ReboundTools::rebound_terms$Re_inc, 
+            colour = grid_colour, 
+            size = grid_size, 
+            linetype = grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig,
+            x = x, y = y)
+  
+  # Iso-energy line at the end of the path.
+  # This is the Re_tot line.
+  x <- .rebound_data[[E_dot_s_tilde]]
+  y <- .rebound_data[[E_dot_emb_tilde]] + 
+    (.rebound_data[[C_dot_md_tilde]] + .rebound_data[[C_dot_o_tilde]]) * .rebound_data[[I_E]] + 
+    .rebound_data[[k]] * .rebound_data[[N_dot_hat]] * .rebound_data[[I_E]]
+  isos <- isos %>%
+    add_iso(indexed = indexed,
+            meta = meta,
+            graph_type = energy_type,
+            line_name = ReboundTools::rebound_terms$Re_tot,
+            colour = grid_colour,
+            size = grid_size,
+            linetype = grid_linetype,
+            x_orig = x_orig, y_orig = y_orig,
+            x = x, y = y)
+  
+  return(isos)
+}
+
+
 
 #' Create a data frame of iso-cost lines
 #' 
@@ -35,7 +184,7 @@ iso_cost_lines <- function(.rebound_data,
   x <- x_orig
   y <- y_orig
   isos <- add_iso(indexed = indexed, meta = meta, 
-                  graph_type = cost_type, line_name = "orig",
+                  graph_type = cost_type, line_name = ReboundTools::rebound_stages$orig,
                   colour = grid_colour, size = grid_size, linetype = grid_linetype, 
                   x_orig = x_orig, y_orig = y_orig, 
                   x = x, y = y)

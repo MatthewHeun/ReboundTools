@@ -63,7 +63,7 @@ energy_paths <- function(.rebound_data,
                          Delta_E_dot_s_hat_size = 1,
                          
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                         Delta_C_dot_o_hat_I_E_colour = ReboundTools::graph_colours$empl,
+                         Delta_C_dot_o_hat_I_E_colour = ReboundTools::graph_colours$sub,
                          Delta_C_dot_o_hat_I_E_size = 1,
                          
                          Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,

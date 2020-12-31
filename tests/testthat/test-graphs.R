@@ -3,7 +3,7 @@
 
 
 
-test_that("graphs works as expected", {
+test_that("rebound_graphs() graphs works as expected", {
   
   abs_energy_paths <- load_eeu_data() %>% 
     rebound_analysis() %>% 
@@ -72,6 +72,36 @@ test_that("rebound_graphs() works with grids", {
                         scales = "free") + 
     MKHthemes::xy_theme()
   expect_true(!is.null(abs_graph))
+})
+
+
+test_that("rebound_graphs() works with a energy-only graph with grids", {
+  rebound_data <- load_eeu_data() %>% 
+    dplyr::filter(Case == "Car") %>% 
+    rebound_analysis()
+  paths <- rebound_data %>% 
+    energy_paths()
+  abs_iso_grids <- rebound_data %>%
+    iso_energy_lines()
+  abs_car_energy_graph <- rebound_graphs(paths, abs_iso_grids) +
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free") + 
+    MKHthemes::xy_theme()
+  expect_true(!is.null(abs_car_energy_graph))
+  
+  # Now try with indexed data
+  indexed_paths <- rebound_data %>% 
+    energy_paths(indexed = TRUE)
+  indexed_iso_grids <- rebound_data %>% 
+    iso_energy_lines(indexed = TRUE)
+  indexed_car_energy_graph <- rebound_graphs(indexed_paths, indexed_iso_grids) +
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free") + 
+    MKHthemes::xy_theme()
+  expect_true(!is.null(indexed_car_energy_graph))
+  
 })
 
 
