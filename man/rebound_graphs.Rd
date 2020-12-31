@@ -4,7 +4,12 @@
 \alias{rebound_graphs}
 \title{Create a path map for rebound analysis}
 \usage{
-rebound_graphs(.path_data, .grid_data, arrow = NULL)
+rebound_graphs(
+  .path_data,
+  .grid_data = NULL,
+  .indifference_data = NULL,
+  arrow = NULL
+)
 }
 \arguments{
 \item{.path_data}{A data frame of paths to be added to the graph.

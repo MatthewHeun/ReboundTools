@@ -337,6 +337,9 @@ indifference_lines <- function(.rebound_data,
                                C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                                f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
                                sigma = ReboundTools::orig_vars$sigma,
+
+                               q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
+                               C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
                                
                                prefs_type = ReboundTools::graph_types$preferences,
                                grid_colour = ReboundTools::graph_colours$grid,
@@ -351,7 +354,7 @@ indifference_lines <- function(.rebound_data,
   f_Cs <- .rebound_data[[f_Cs_orig]]
   sigma_val <- .rebound_data[[sigma]]
   
-  # Indifference line at the orig point
+  # Indifference curve at the orig point
   qs1 <- qs0
   Co1 <- Co0
   qs1_qs0 <- qs1/qs0
@@ -367,50 +370,25 @@ indifference_lines <- function(.rebound_data,
                                     f_Cs_orig = f_Cs,
                                     sigma = sigma_val)
   
+  # Indifference curve at the star point (after emplacement, before substitution)
+  # qs1 <- .rebound_data[[q_dot_s_star]]
+  # Co1 <- .rebound_data[[C_dot_o_star]]
+  # qs1_qs0 <- qs1/qs0
+  # Co1_Co0 <- Co1/Co0
+  # icurves <- icurves %>% 
+  #   add_indifference_curve(meta = meta, 
+  #                          graph_type = prefs_type, 
+  #                          line_name = ReboundTools::rebound_stages$orig,
+  #                          colour = grid_colour, 
+  #                          size = grid_size, 
+  #                          linetype = grid_linetype,
+  #                          qs1_qs0 = qs1_qs0,
+  #                          Co1_Co0 = Co1_Co0, 
+  #                          f_Cs_orig = f_Cs,
+  #                          sigma = sigma_val)
+  
   
   return(icurves)
-}
-
-
-#' Title
-#'
-#' @param .DF 
-#' @param meta 
-#' @param graph_type 
-#' @param line_name 
-#' @param colour 
-#' @param size 
-#' @param linetype 
-#' @param qs1_qs0 
-#' @param Co1_Co0 
-#' @param f_Cs_orig 
-#' @param sigma 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-add_indifference_curve <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
-                                   line_name, 
-                                   colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
-                                   qs1_qs0, Co1_Co0, f_Cs_orig, sigma) {
-  out <- meta %>% 
-    dplyr::mutate(
-      graph_type = graph_type, 
-      line_name = line_name, 
-      colour = colour,
-      size = size,
-      linetype = linetype,
-      qs1_qs0 = qs1_qs0,
-      Co1_Co0 = Co1_Co0,
-      f_Cs_orig = f_Cs_orig, 
-      sigma = sigma
-    )
-  if (is.null(.DF)) {
-    return(out)
-  }
-  .DF %>% 
-    dplyr::bind_rows(out)
 }
 
 
@@ -505,6 +483,48 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name,
                   line_name = line_name, colour = colour, 
                   size = size, linetype = linetype, 
                   slope = slope, intercept = intercept)
+}
+
+
+#' Title
+#'
+#' @param .DF 
+#' @param meta 
+#' @param graph_type 
+#' @param line_name 
+#' @param colour 
+#' @param size 
+#' @param linetype 
+#' @param qs1_qs0 
+#' @param Co1_Co0 
+#' @param f_Cs_orig 
+#' @param sigma 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+add_indifference_curve <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
+                                   line_name, 
+                                   colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
+                                   qs1_qs0, Co1_Co0, f_Cs_orig, sigma) {
+  out <- meta %>% 
+    dplyr::mutate(
+      graph_type = graph_type, 
+      line_name = line_name, 
+      colour = colour,
+      size = size,
+      linetype = linetype,
+      qs1_qs0 = qs1_qs0,
+      Co1_Co0 = Co1_Co0,
+      f_Cs_orig = f_Cs_orig, 
+      sigma = sigma
+    )
+  if (is.null(.DF)) {
+    return(out)
+  }
+  .DF %>% 
+    dplyr::bind_rows(out)
 }
 
 
