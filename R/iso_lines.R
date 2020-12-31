@@ -351,7 +351,7 @@ indifference_lines <- function(.rebound_data,
   # Original data.  
   qs0 <- .rebound_data[[q_dot_s_orig]]
   Co0 <- .rebound_data[[C_dot_o_orig]]
-  f_Cs <- .rebound_data[[f_Cs_orig]]
+  f_Cs0 <- .rebound_data[[f_Cs_orig]]
   sigma_val <- .rebound_data[[sigma]]
   
   # Indifference curve at the orig point
@@ -359,15 +359,15 @@ indifference_lines <- function(.rebound_data,
   Co1 <- Co0
   qs1_qs0 <- qs1/qs0
   Co1_Co0 <- Co1/Co0
-  icurves <- add_indifference_curve(meta = meta, 
-                                    graph_type = prefs_type, 
+  icurves <- add_indifference_curve(meta = meta,
+                                    graph_type = prefs_type,
                                     line_name = ReboundTools::rebound_stages$orig,
-                                    colour = grid_colour, 
-                                    size = grid_size, 
+                                    colour = grid_colour,
+                                    size = grid_size,
                                     linetype = grid_linetype,
                                     qs1_qs0 = qs1_qs0,
-                                    Co1_Co0 = Co1_Co0, 
-                                    f_Cs_orig = f_Cs,
+                                    Co1_Co0 = Co1_Co0,
+                                    f_Cs_orig = f_Cs0,
                                     sigma = sigma_val)
   
   # Indifference curve at the star point (after emplacement, before substitution)
@@ -375,16 +375,16 @@ indifference_lines <- function(.rebound_data,
   # Co1 <- .rebound_data[[C_dot_o_star]]
   # qs1_qs0 <- qs1/qs0
   # Co1_Co0 <- Co1/Co0
-  # icurves <- icurves %>% 
-  #   add_indifference_curve(meta = meta, 
-  #                          graph_type = prefs_type, 
+  # icurves <- icurves %>%
+  #   add_indifference_curve(meta = meta,
+  #                          graph_type = prefs_type,
   #                          line_name = ReboundTools::rebound_stages$orig,
-  #                          colour = grid_colour, 
-  #                          size = grid_size, 
+  #                          colour = grid_colour,
+  #                          size = grid_size,
   #                          linetype = grid_linetype,
   #                          qs1_qs0 = qs1_qs0,
-  #                          Co1_Co0 = Co1_Co0, 
-  #                          f_Cs_orig = f_Cs,
+  #                          Co1_Co0 = Co1_Co0,
+  #                          f_Cs_orig = f_Cs0,
   #                          sigma = sigma_val)
   
   
