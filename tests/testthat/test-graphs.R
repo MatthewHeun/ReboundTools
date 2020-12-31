@@ -105,11 +105,13 @@ test_that("rebound_graphs() works with a cost-only graph with grids", {
 })
 
 
-test_that("rebound_graphs() works with a cost-only graph with grids", {
-  graph <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
-    prefs_paths() %>% 
-    rebound_graphs() + 
+test_that("rebound_graphs() works with a preferences graph with grids", {
+  rebound_data <- load_eeu_data() %>% 
+    rebound_analysis()
+  prefs_paths <- rebound_data %>% prefs_paths()
+  prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+  
+  rebound_graphs(prefs_paths, prefs_grid) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
@@ -117,6 +119,7 @@ test_that("rebound_graphs() works with a cost-only graph with grids", {
   
   expect_true(!is.null(graph))
 })
+
 
 
 
