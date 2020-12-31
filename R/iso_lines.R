@@ -297,7 +297,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
                          graph_type = ReboundTools::graph_types$preferences,
-                         line_name = ReboundTools::rebound_stages$hat, 
+                         line_name = ReboundTools::rebound_stages$bar, 
                          colour = grid_colour, 
                          size = grid_size, 
                          linetype = grid_linetype, 
@@ -320,7 +320,6 @@ iso_budget_lines_prefs <- function(.rebound_data,
   
   return(out)
 }
-
 
 
 #' Title
@@ -416,4 +415,34 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name,
                   slope = slope, intercept = intercept)
 }
 
+
+#' An indifference curve
+#' 
+#' This function gives points along an indifference curve in 
+#' (q_dot_s/q_dot_s_orig, C_dot_o/C_dot_o_orig) space.
+#' The indifference curve assumes CES utility. 
+#' The equation of the indifference curve is
+#' `u_dot/u_dot_orig = [f_Cs*(q_dot_s/q_dot_s_orig)^rho + (1-f_Cs)*(C_dot_o/C_dot_o_orig)^rho]^(1/rho)`.
+#'
+#' @param qs_qs0 The ratio `q_dot_s/q_dot_s_orig`. Sweeping this variable (x) gives
+#'               the indifference curve parameterized by the other arguments.
+#' @param qs1_qs0 The x coordinate of a point on this indifference curve.
+#' @param Co1_Co0 The y coordinate of a point on this indifference curve.
+#' @param f_Cs The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.
+#' @param sigma The elasticity of substitution between the energy service and other goods.
+#' @param rho The exponent in the CES utility function. Default is `(sigma-1)/sigma`.
+#'
+#' @return The value of `C_dot_o/C_dot_o_orig`, given values for remaining arguments.
+#' 
+#' @export
+#'
+#' @examples
+#' 
+indifference_fun <- function(qs_qs0, qs1_qs0, Co1_Co0, f_Cs, sigma, rho = (sigma-1)/sigma) {
+  term1 <- f_Cs/(1 - f_Cs)
+  term2 <- qs1_qs0^rho
+  term3 <- qs_qs0^rho
+  term4 <- Co1_Co0^rho
+  (term1*(term2 - term3) + term4)^(1/rho)
+}
 

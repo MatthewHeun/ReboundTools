@@ -22,8 +22,13 @@ test_that("iso_cost_lines() works as expected", {
 test_that("iso_budget_lines_prefs() works as expected", {
   iso_budget_lines <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    iso_budget_lines_prefs()
-  
+    iso_budget_lines_prefs() %>% 
+    dplyr::filter(Case == "Lamp")
+  expect_equal(iso_budget_lines$intercept[[1]], 1.00032500637362797846)
+  expect_equal(iso_budget_lines$intercept[[2]], 1.00003509645028976216)
+  expect_equal(iso_budget_lines$intercept[[3]], 0.99979635239197450769)
+  expect_equal(iso_budget_lines$intercept[[4]], 1.00035871939210463388)
+  expect_equal(iso_budget_lines$intercept[[5]], 0.00000000000000000000)
 })
 
 
@@ -60,4 +65,35 @@ test_that("add_iso() works as expected", {
             x = c(20, 30), y = c(30, 40))
   expect_equal(res3$slope, c(-1, -1, -1))
   expect_equal(res3$intercept, c(50, 5, 7))
+})
+
+
+test_that("indifference_fun() works as expected", {
+  expect_equal(indifference_fun(qs_qs0 = 1, qs1_qs0 = 1, Co1_Co0 = 1, f_Cs = 0.25, sigma = 0.3), 1)
+  # At point (1, 1), the result is independent of f_Cs and sigma.
+  expect_equal(indifference_fun(qs_qs0 = 1, qs1_qs0 = 1, Co1_Co0 = 1, f_Cs = 0.5, sigma = 0.3), 1)
+  expect_equal(indifference_fun(qs_qs0 = 1, qs1_qs0 = 1, Co1_Co0 = 1, f_Cs = 0.25, sigma = 0.8), 1)
+  
+  
+  # Get a consistent set of parameters
+  qs1_qs0 <- 1
+  Co1_Co0 <- 1
+  sigma <- 0.3
+  f_Cs <- 0.01
+  rho <- (sigma-1)/sigma
+  u1_u0 <- (f_Cs*(qs1_qs0)^rho + (1 - f_Cs)*(Co1_Co0)^rho)^(1/rho)
+  
+  x <- 1
+  y <- indifference_fun(qs_qs0 = x, qs1_qs0 = 1, Co1_Co0 = 1, f_Cs = 0.01, sigma = 0.3)
+  expect_equal(y, 1)
+  x <- 0.5
+  y <- indifference_fun(qs_qs0 = x, qs1_qs0 = 1, Co1_Co0 = 1, f_Cs = 0.01, sigma = 0.3)
+  expect_equal(y, 1.01801496409513392294)
+  
+  # Make sure the function is vectorized
+  x <- c(1, 0.5)
+  y <- indifference_fun(qs_qs0 = x, qs1_qs0 = 1, Co1_Co0 = 1, f_Cs = 0.01, sigma = 0.3)
+  expect_equal(y, c(1, 1.01801496409513392294))
+  
+  
 })
