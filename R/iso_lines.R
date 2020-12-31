@@ -236,9 +236,25 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name,
         x_orig, y_orig, 
         x, y) {
   if (indexed) {
+    # In the indexed version, the coordinate axes are indexed by their orig values.
+    # The derivation of the equation of the line in indexed space is as follows:
+    # Start with the original iso line that goes through points x1 and y1:
+    # y = -x + (x1 + y1)
+    # Divide and multiply y by y_orig. Divide and multiply x by x_orig.
+    # (y/o_orig) * y_orig = -(x/x_orig) * x_orig + (x1 + y1)
+    # Divide both sides by y_orig
+    # (y/y_orig) = -(x/x_orig)/y_orig * x_orig + (x1 + y1)/y_orig
+    # Rearrange
+    # (y/y_orig) = (-x_orig/y_orig) * (x/x_orig) + (x1 + y1)/y_orig
+    # Thus, the slope of the iso line in indexed space is (-x_orig/y_orig), and
+    # the intercept of the iso line in indexed space is (x1 + y1)/y_orig.
     slope <- -x_orig/y_orig
     intercept <- (x + y)/y_orig
   } else {
+    # In regular (non-indexed) space, 
+    # the slope of the iso line going through point x1, y1 is 
+    # y = -x + (x1 + y1)
+    # Thus, the slope is -1, and the intercept is x1 + y1.
     slope <- -1
     intercept <- x + y
   }
