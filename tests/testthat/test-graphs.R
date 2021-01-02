@@ -136,13 +136,13 @@ test_that("rebound_graphs() works with a cost-only graph with grids", {
 
 
 test_that("rebound_graphs() works with a preferences graph with grids", {
-  graph <- rebound_data <- load_eeu_data() %>% 
+  rebound_data <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     dplyr::filter(Case == "Car")
   prefs_paths <- rebound_data %>% prefs_paths()
   prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
   
-  rebound_graphs(prefs_paths, prefs_grid) + 
+  graph <- rebound_graphs(prefs_paths, prefs_grid) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
@@ -154,5 +154,36 @@ test_that("rebound_graphs() works with a preferences graph with grids", {
 })
 
 
+test_that("indifference_fun() works as expected", {
+  qs1_qs0 <- 1
+  Co1_Co0 <- 1
+  sigma <- 0.5
+  f_Cs <- 0.01
+  
+  g <- ggplot2::ggplot() +
+    ggplot2::stat_function(data = data.frame(x = c(0.1, 10)),
+                           mapping = ggplot2::aes(x = x), 
+                           fun = indifference_func, 
+                           args = c(qs1_qs0 = qs1_qs0, Co1_Co0 = Co1_Co0,
+                                    f_Cs = f_Cs, sigma = sigma))
+  expect_true(!is.null(g))
+})
 
+
+test_that("indifference curves graph properly", {
+  rebound_data <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    dplyr::filter(Case == "Lamp")
+  prefs_paths <- rebound_data %>% prefs_paths()
+  prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+  prefs_indiff <- rebound_data %>% indifference_lines()
+  
+  rebound_graphs(prefs_paths, NULL, prefs_indiff) + 
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free") + 
+    ggplot2::scale_x_continuous(name = "q_dot_s/q_dot_s_orig") +
+    ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")+
+    MKHthemes::xy_theme()
+})
 

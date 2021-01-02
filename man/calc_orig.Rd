@@ -27,6 +27,7 @@ calc_orig(
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
   e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+  sigma = ReboundTools::orig_vars$sigma,
   E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
   N_dot_orig = ReboundTools::orig_vars$N_dot_orig
 )

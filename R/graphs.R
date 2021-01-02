@@ -46,5 +46,3 @@ rebound_graphs <- function(.path_data,
     ggplot2::scale_size_identity() + 
     ggplot2::scale_linetype_identity()
 }
-
-

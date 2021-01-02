@@ -5,7 +5,7 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 19 entries.
+A string list with 20 entries.
 \describe{
 \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/year] [lumen-hours/year].}
@@ -22,6 +22,7 @@ A string list with 19 entries.
 \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)}.}
 \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC + f_Cs_orig*e_qs_M}.}
 \item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)}.}
+\item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption [--].}
 \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device [MJ].}
 \item{t_life_orig}{The expected lifetime of the original (pre-EEU) device [year].}
 \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand[MJ/year], calculated by \code{E_dot_emb / t_orig}.}
