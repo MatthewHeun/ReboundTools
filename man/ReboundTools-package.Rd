@@ -6,9 +6,9 @@
 \alias{ReboundTools-package}
 \title{ReboundTools: Analyze and Display Energy Rebound Estimates}
 \description{
-Energy rebound is the unanticipated reduction of energy savings
-             from an energy efficiency upgrade resulting from 
-             behavior change and economy-wide effects.
+Energy rebound is the unanticipated reduction 
+             of the benefits of energy efficiency 
+             due to behavior change and economy-wide effects.
              `ReboundTools` provides assistance for energy rebound analysis.
              Many functions perform analysis calculations to move from 
              known parameters to rebound estimates.
