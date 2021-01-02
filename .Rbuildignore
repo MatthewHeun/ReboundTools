@@ -1,0 +1,8 @@
+^ReboundTools\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^codecov\.yml$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^data-raw$
