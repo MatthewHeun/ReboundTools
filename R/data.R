@@ -40,6 +40,21 @@
 "key_analysis_vars"
 
 
+#' LaTeX key analysis variables
+#' 
+#' A data frame of key analysis variables in LaTeX formatting.
+#' 
+#' @format A data frame with `r length(latex_key_analysis_vars)` columns.
+#' \describe{
+#' \item{var_name}{The text name for key analysis variables.}
+#' \item{latex_var_name}{The LaTeX key analysis variable name.}
+#' }
+#' 
+#' @examples
+#' latex_key_analysis_vars
+"latex_key_analysis_vars"
+
+
 #' Rebound stages
 #' 
 #' This is the list of rebound stages.
@@ -56,6 +71,21 @@
 #' @examples
 #' rebound_stages
 "rebound_stages"
+
+
+#' LaTeX rebound stages
+#' 
+#' A data frame of rebound stages in LaTeX formatting.
+#' 
+#' @format A data frame with `r ncol(latex_rebound_stages)` columns.
+#' \describe{
+#' \item{stage}{The text name for the stage.}
+#' \item{latex_stage_name}{The LaTeX name for the stage.}
+#' }
+#' 
+#' @examples
+#' latex_rebound_stages
+"latex_rebound_stages"
 
 
 #' Difference variables

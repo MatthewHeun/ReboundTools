@@ -25,11 +25,39 @@ usethis::use_data(key_analysis_vars, overwrite = TRUE)
 
 
 #
+# Names of key rebound variables in LaTeX format
+# 
+
+latex_key_analysis_vars <- data.frame(
+  var_name = ReboundTools::key_analysis_vars %>% unlist() %>% unname(), 
+  latex_var_name = c("$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
+                     "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
+                     "$\\dot{C}_{md}$", "$\\dot{C}_o$", "$\\dot{M}$", "$\\rate{N}$")
+)
+usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
+
+
+#
 # Names of stages
 # 
 
 rebound_stages <- list(orig = "orig", star = "star", hat = "hat", bar = "bar", tilde = "tilde")
 usethis::use_data(rebound_stages, overwrite = TRUE)
+
+
+#
+# Names of stages in LaTeX format
+# 
+
+latex_rebound_stages <- data.frame(
+  stage = ReboundTools::rebound_stages %>% unlist() %>% unname(),
+  latex_stage_name = c("${ }^{\\scriptscriptstyle \\circ}$ (orig)", 
+                       "${ }^*$ (star)", 
+                       "$\\hat{ }$ (hat)",
+                       "$\\bar{ }$ (bar)",
+                       "$\\tilde{ }$ (tilde)")
+)
+usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
