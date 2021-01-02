@@ -1,3 +1,10 @@
+# ReboundTools 0.1.44 (2021-01-02)
+
+* Now at 246 tests, all passing.
+* Test coverage is 99.78 %. 
+  The only line of code not covered by tests
+  requires two indifference curves to be added to the same graph.
+  That line will be covered when more tests are added.
 * Added functions to calculate indifference curves for preferences graph.
 * Added functions to calculate iso lines on energy, cost, and preferences graphs.
 * Added functions to calculate paths for rebound analysis on energy, cost, and preferences graphs.

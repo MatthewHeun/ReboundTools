@@ -1,15 +1,16 @@
 Package: ReboundTools
 Title: Analyze and Display Energy Rebound Estimates
-Version: 0.0.0.9000
+Version: 0.1.1
+Date: 2021-01-02
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",
            role = c("aut", "cre"),
            email = "matthew.heun@me.com",
            comment = c(ORCID = "0000-0002-7438-214X"))
-Description: Energy rebound is the unanticipated reduction of energy savings
-             from an energy efficiency upgrade resulting from 
-             behavior change and economy-wide effects.
+Description: Energy rebound is the unanticipated reduction 
+             of the benefits of energy efficiency 
+             due to behavior change and economy-wide effects.
              `ReboundTools` provides assistance for energy rebound analysis.
              Many functions perform analysis calculations to move from 
              known parameters to rebound estimates.
