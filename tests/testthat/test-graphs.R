@@ -170,20 +170,20 @@ test_that("indifference_fun() works as expected", {
 })
 
 
-test_that("indifference curves graph properly", {
-  rebound_data <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
-    dplyr::filter(Case == "Lamp")
-  prefs_paths <- rebound_data %>% prefs_paths()
-  prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
-  prefs_indiff <- rebound_data %>% indifference_lines()
-  
-  rebound_graphs(prefs_paths, NULL, prefs_indiff) + 
-    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
-                        cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    ggplot2::scale_x_continuous(name = "q_dot_s/q_dot_s_orig") +
-    ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")+
-    MKHthemes::xy_theme()
-})
+# test_that("indifference curves graph properly", {
+#   rebound_data <- load_eeu_data() %>% 
+#     rebound_analysis() %>% 
+#     dplyr::filter(Case == "Lamp")
+#   prefs_paths <- rebound_data %>% prefs_paths()
+#   prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+#   prefs_indiff <- rebound_data %>% indifference_lines()
+#   
+#   rebound_graphs(prefs_paths, NULL, prefs_indiff) + 
+#     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+#                         cols = ggplot2::vars(graph_type), 
+#                         scales = "free") + 
+#     ggplot2::scale_x_continuous(name = "q_dot_s/q_dot_s_orig") +
+#     ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")+
+#     MKHthemes::xy_theme()
+# })
 
