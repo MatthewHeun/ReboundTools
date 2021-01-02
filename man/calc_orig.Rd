@@ -7,7 +7,7 @@
 calc_orig(
   .eeu_data = NULL,
   MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
-  p_E = ReboundTools::eeu_base_params$p_E,
+  p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
   e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
   eta_orig_engr_units = ReboundTools::orig_vars$eta_orig_engr_units,
@@ -18,6 +18,7 @@ calc_orig(
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
   E_emb_orig = ReboundTools::orig_vars$E_emb_orig,
   t_life_orig = ReboundTools::orig_vars$t_life_orig,
+  p_E = ReboundTools::orig_vars$p_E,
   eta_orig = ReboundTools::orig_vars$eta_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,

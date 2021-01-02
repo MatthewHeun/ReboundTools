@@ -21,7 +21,7 @@
 calc_orig <- function(.eeu_data = NULL,
                       # Input names
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
-                      p_E = ReboundTools::eeu_base_params$p_E,
+                      p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
                       e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
                       e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
                       
@@ -34,6 +34,7 @@ calc_orig <- function(.eeu_data = NULL,
                       E_emb_orig = ReboundTools::orig_vars$E_emb_orig,
                       t_life_orig = ReboundTools::orig_vars$t_life_orig,
                       # Output names
+                      p_E = ReboundTools::orig_vars$p_E,
                       eta_orig = ReboundTools::orig_vars$eta_orig,
                       E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                       C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
@@ -52,7 +53,7 @@ calc_orig <- function(.eeu_data = NULL,
                             q_dot_s_orig_val,
                             C_cap_orig_val,
                             t_own_orig_val,
-                            p_E_val,
+                            p_E_engr_units_val,
                             M_dot_orig_val,
                             C_dot_md_orig_val,
                             e_qs_ps_UC_val,
@@ -60,6 +61,7 @@ calc_orig <- function(.eeu_data = NULL,
                             E_emb_orig_val,
                             t_life_orig_val) {
     
+    p_E_val <- p_E_engr_units_val / MJ_engr_unit_val
     eta_orig_val <- eta_orig_engr_units_val / MJ_engr_unit_val
     E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
     C_dot_cap_orig_val <- C_cap_orig_val / t_own_orig_val
@@ -73,7 +75,8 @@ calc_orig <- function(.eeu_data = NULL,
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
     N_dot_orig_val <- 0
     
-    list(eta_orig_val,
+    list(p_E_val,
+         eta_orig_val,
          E_dot_s_orig_val,
          C_dot_cap_orig_val,
          p_s_orig_val,
@@ -85,7 +88,8 @@ calc_orig <- function(.eeu_data = NULL,
          sigma_val,
          E_dot_emb_orig_val,
          N_dot_orig_val) %>% 
-      magrittr::set_names(c(eta_orig,
+      magrittr::set_names(c(p_E, 
+                            eta_orig,
                             E_dot_s_orig,
                             C_dot_cap_orig,
                             p_s_orig,
@@ -105,6 +109,7 @@ calc_orig <- function(.eeu_data = NULL,
                            eta_orig_engr_units_val = eta_orig_engr_units,
                            C_cap_orig_val = C_cap_orig,
                            t_own_orig_val = t_own_orig,
+                           p_E_engr_units_val = p_E_engr_units,
                            p_E_val = p_E,
                            M_dot_orig_val = M_dot_orig,
                            C_dot_md_orig_val = C_dot_md_orig,
@@ -137,8 +142,8 @@ calc_orig <- function(.eeu_data = NULL,
 calc_star <- function(.orig_data = NULL,
                       # Input names
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
-                      p_E = ReboundTools::eeu_base_params$p_E,
-
+                      
+                      p_E = ReboundTools::orig_vars$p_E,
                       eta_orig = ReboundTools::orig_vars$eta_orig,
                       E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                       q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
@@ -273,8 +278,7 @@ calc_star <- function(.orig_data = NULL,
 #'   calc_hat()
 calc_hat <- function(.star_data = NULL,
                      # Input names
-                     p_E = ReboundTools::eeu_base_params$p_E,
-
+                     p_E = ReboundTools::orig_vars$p_E,
                      e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                      C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
@@ -411,8 +415,8 @@ calc_bar <- function(.hat_data = NULL,
                      # Input names
                      e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
                      e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
-                     p_E = ReboundTools::eeu_base_params$p_E, 
                      
+                     p_E = ReboundTools::orig_vars$p_E, 
                      eta_hat = ReboundTools::hat_vars$eta_hat,
                      p_s_hat = ReboundTools::hat_vars$p_s_hat,
                      C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,

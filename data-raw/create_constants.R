@@ -58,10 +58,12 @@ eeu_base_params <- list(reference = "Reference",
                         case = "Case", 
                         original = "Original", 
                         upgrade = "Upgrade", 
+                        service_unit = "service_unit",
+                        energy_engr_unit = "energy_engr_unit",
                         MJ_engr_unit = "MJ/engr_unit",
                         I_E = "I_E", 
                         k = "k", 
-                        p_E = "p_E",
+                        p_E_engr_units = "p_E_engr_units",
                         e_qs_ps_UC = "e_qs_ps_UC", 
                         e_qs_M = "e_qs_M", 
                         e_qo_M = "e_qo_M")
@@ -72,7 +74,8 @@ usethis::use_data(eeu_base_params, overwrite = TRUE)
 # Names of calculated variables at the "orig" stage.
 # 
 
-orig_vars <- list(q_dot_s_orig = "q_dot_s_orig",
+orig_vars <- list(p_E = "p_E",
+                  q_dot_s_orig = "q_dot_s_orig",
                   M_dot_orig = "M_dot_orig", 
                   C_cap_orig = "C_cap_orig", 
                   t_own_orig = "t_own_orig", 

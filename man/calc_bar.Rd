@@ -9,7 +9,7 @@ calc_bar(
   tol = 1e-06,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
   e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
-  p_E = ReboundTools::eeu_base_params$p_E,
+  p_E = ReboundTools::orig_vars$p_E,
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,

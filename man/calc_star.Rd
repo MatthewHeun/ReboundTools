@@ -7,7 +7,7 @@
 calc_star(
   .orig_data = NULL,
   MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
-  p_E = ReboundTools::eeu_base_params$p_E,
+  p_E = ReboundTools::orig_vars$p_E,
   eta_orig = ReboundTools::orig_vars$eta_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,

@@ -5,10 +5,11 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 20 entries.
+A string list with 21 entries.
 \describe{
-\item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
+\item{p_E}{The price of energy [$/MJ], calculated by \code{p_E_engr_units / MJ_engr_unit}.}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/year] [lumen-hours/year].}
+\item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings [$/year].}
 \item{t_own_orig}{The expected ownership duration of the original device [year].}
 \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate [$/year].}
