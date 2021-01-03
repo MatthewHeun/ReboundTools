@@ -9,7 +9,7 @@
 #' @param .eeu_data An optional data frame containing EEU base data. 
 #'                  See `ReboundTools::eeu_base_params`.
 #' @param MJ_engr_unit,p_E,e_qs_ps_UC,e_qs_M See `ReboundTools::eeu_base_params`.
-#' @param eta_orig_engr_units,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps,e_qo_ps,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
+#' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps,e_qo_ps,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
 #' 
@@ -25,7 +25,7 @@ calc_orig <- function(.eeu_data = NULL,
                       e_qs_ps_UC = ReboundTools::eeu_base_params$e_qs_ps_UC,
                       e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
                       
-                      eta_orig_engr_units = ReboundTools::orig_vars$eta_orig_engr_units,
+                      eta_engr_units_orig = ReboundTools::orig_vars$eta_engr_units_orig,
                       q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
                       C_cap_orig = ReboundTools::orig_vars$C_cap_orig, 
                       t_own_orig = ReboundTools::orig_vars$t_own_orig,
@@ -49,7 +49,7 @@ calc_orig <- function(.eeu_data = NULL,
                       N_dot_orig = ReboundTools::orig_vars$N_dot_orig) {
   
   calc_orig_fun <- function(MJ_engr_unit_val,
-                            eta_orig_engr_units_val,
+                            eta_engr_units_orig_val,
                             q_dot_s_orig_val,
                             C_cap_orig_val,
                             t_own_orig_val,
@@ -62,7 +62,7 @@ calc_orig <- function(.eeu_data = NULL,
                             t_life_orig_val) {
     
     p_E_val <- p_E_engr_units_val / MJ_engr_unit_val
-    eta_orig_val <- eta_orig_engr_units_val / MJ_engr_unit_val
+    eta_orig_val <- eta_engr_units_orig_val / MJ_engr_unit_val
     E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
     C_dot_cap_orig_val <- C_cap_orig_val / t_own_orig_val
     p_s_orig_val <- p_E_val / eta_orig_val
@@ -106,7 +106,7 @@ calc_orig <- function(.eeu_data = NULL,
   matsindf::matsindf_apply(.eeu_data, FUN = calc_orig_fun, 
                            MJ_engr_unit_val = MJ_engr_unit,
                            q_dot_s_orig_val = q_dot_s_orig,
-                           eta_orig_engr_units_val = eta_orig_engr_units,
+                           eta_engr_units_orig_val = eta_engr_units_orig,
                            C_cap_orig_val = C_cap_orig,
                            t_own_orig_val = t_own_orig,
                            p_E_engr_units_val = p_E_engr_units,
@@ -177,7 +177,7 @@ calc_star <- function(.orig_data = NULL,
   
   calc_star_fun <- function(MJ_engr_unit_val, 
                             eta_orig_val,
-                            eta_star_engr_units_val,
+                            eta_engr_units_star_val,
                             E_dot_s_orig_val, 
                             p_E_val, 
                             q_dot_s_orig_val, 
@@ -191,7 +191,7 @@ calc_star <- function(.orig_data = NULL,
                             C_dot_md_star_val, 
                             C_dot_o_orig_val) {
     
-    eta_star_val <- eta_star_engr_units_val / MJ_engr_unit_val
+    eta_star_val <- eta_engr_units_star_val / MJ_engr_unit_val
     eta_ratio_val <- eta_star_val / eta_orig_val
     S_dot_dev_val <- (eta_ratio_val - 1) * (1/eta_ratio_val) * E_dot_s_orig_val
     G_dot_val <- p_E_val * S_dot_dev_val
@@ -238,7 +238,7 @@ calc_star <- function(.orig_data = NULL,
   matsindf::matsindf_apply(.orig_data, FUN = calc_star_fun, 
                            MJ_engr_unit_val = MJ_engr_unit,
                            eta_orig_val = eta_orig,
-                           eta_star_engr_units_val = eta_star_engr_units,
+                           eta_engr_units_star_val = eta_star_engr_units,
                            E_dot_s_orig_val = E_dot_s_orig,
                            p_E_val = p_E, 
                            q_dot_s_orig_val = q_dot_s_orig, 

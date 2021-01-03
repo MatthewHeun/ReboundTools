@@ -13,8 +13,8 @@ A string list with 21 entries.
 \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings [$/year].}
 \item{t_own_orig}{The expected ownership duration of the original device [year].}
 \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate [$/year].}
-\item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_orig_engr_units} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
-\item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_orig_engr_units / MJ_engr_unit}.}
+\item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
+\item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_engr_units_orig / MJ_engr_unit}.}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/year], calculated by \code{q_dot_s_orig / eta_orig}.}
 \item{C_dot_cap_orig}{The original (pre-EEU) capital cost rate [$/year], calculated by \code{C_cap_orig / t_orig}.}
 \item{p_s_orig}{The original (pre-EEU) energy service price [$/service], calculated by \code{p_E / eta_orig}.}

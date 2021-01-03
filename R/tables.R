@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' stages_table()
-stages_table <- function(.results = rebound_analysis(load_eeu_data(file)), 
+stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)), 
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 
@@ -41,17 +41,19 @@ stages_table <- function(.results = rebound_analysis(load_eeu_data(file)),
     unlist() %>% 
     unname()
   # Gather the data for the stages table.
-  rebound_table_data <- .results %>% 
-    dplyr::select(.data[[case]], all_of(analysis_vars)) %>% 
+  rebound_table_data <- .analysis_data %>% 
+    dplyr::select(any_of(case), all_of(analysis_vars)) %>% 
     tidyr::pivot_longer(cols = all_of(analysis_vars), names_to = "var_stage", values_to = "value") %>% 
     dplyr::mutate(
+      # Delete everything from the last "_" to the end of the string, inclusive.
       name = sub(x = var_stage, pattern = "_[^_]*$", replacement = ""),
       name = factor(name, levels = vars),
+      # Delete everything from the start of the string to the last "_", inclusive.
       stage = sub(x = var_stage, pattern = ".*_", replacement = ""),
       stage = factor(stage, levels = stages),
       var_stage = NULL
     ) %>% 
-    dplyr::arrange(.data[[case]], name, stage) %>% 
+    dplyr::arrange() %>% 
     tidyr::pivot_wider(names_from = stage, values_from = value)
     
   # Add LaTeX variable names, if not NULL.
@@ -63,16 +65,39 @@ stages_table <- function(.results = rebound_analysis(load_eeu_data(file)),
       dplyr::rename(
         name = latex_var_name
       ) %>% 
-      dplyr::relocate(name, .after = .data[[case]])
+      dplyr::relocate(name, .before = stages[[1]])
   }
   
   # Add LaTeX column names, if not NULL.
   if (!is.null(latex_stages)) {
     rebound_table_data <- rebound_table_data %>% 
-      magrittr::set_names(c(case, "name", latex_stages$latex_stage_name))
+      tidyr::pivot_longer(cols = unlist(stages), names_to = "stage", values_to = "values") %>% 
+      dplyr::left_join(latex_stages, by = "stage") %>% 
+      dplyr::mutate(
+        stage = NULL
+      ) %>% 
+      dplyr::rename(
+        stage = "latex_stage_name"
+      ) %>% 
+      tidyr::pivot_wider(names_from = "stage", values_from = "values")
   }
   
   # Create the xtable and return.
   rebound_table_data %>% 
     xtable::xtable(...)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

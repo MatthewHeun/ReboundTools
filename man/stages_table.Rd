@@ -5,7 +5,7 @@
 \title{Build a stages table}
 \usage{
 stages_table(
-  .results = rebound_analysis(load_eeu_data(file)),
+  .analysis_data = rebound_analysis(load_eeu_data(file)),
   vars = ReboundTools::key_analysis_vars,
   latex_vars = ReboundTools::latex_key_analysis_vars,
   stages = ReboundTools::rebound_stages,
@@ -16,8 +16,6 @@ stages_table(
 )
 }
 \arguments{
-\item{.results}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
-
 \item{vars}{A list of variables for rows of the table. Default is \code{ReboundTools::key_analysis_vars}.
 Variable order is preserved in the table.}
 
@@ -34,6 +32,8 @@ Stage order is preserved in the table.}
 
 \item{...}{Arguments passed to \code{xtable::xtable()}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
+
+\item{.results}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
 }
 \value{
 An \code{xtable} object giving the details of the table.

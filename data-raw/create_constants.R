@@ -29,10 +29,10 @@ usethis::use_data(key_analysis_vars, overwrite = TRUE)
 # 
 
 latex_key_analysis_vars <- data.frame(
-  var_name = ReboundTools::key_analysis_vars %>% unlist() %>% unname(), 
+  var_name = key_analysis_vars %>% unlist() %>% unname(), 
   latex_var_name = c("$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
-                     "$\\dot{C}_{md}$", "$\\dot{C}_o$", "$\\dot{M}$", "$\\rate{N}$")
+                     "$\\dot{C}_{md}$", "$\\dot{C}_o$", "$\\dot{M}$", "$\\dot{N}$")
 )
 usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
 
@@ -108,7 +108,7 @@ orig_vars <- list(p_E = "p_E",
                   C_cap_orig = "C_cap_orig", 
                   t_own_orig = "t_own_orig", 
                   C_dot_md_orig = "C_dot_md_orig", 
-                  eta_orig_engr_units = "eta_orig_engr_units", 
+                  eta_engr_units_orig = "eta_engr_units_orig", 
                   eta_orig = "eta_orig", 
                   E_dot_s_orig = "E_dot_s_orig",
                   C_dot_cap_orig = "C_dot_cap_orig",
@@ -135,7 +135,7 @@ star_vars <- list(C_cap_star	= "C_cap_star",
                   C_dot_md_star = "C_dot_md_star", 
                   E_emb_star = "E_emb_star",
                   t_life_star = "t_life_star",
-                  eta_star_engr_units = "eta_star_engr_units", 
+                  eta_star_engr_units = "eta_engr_units_star", 
                   eta_star = "eta_star",
                   eta_ratio = "eta_ratio", 
                   S_dot_dev = "S_dot_dev",
