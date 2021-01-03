@@ -6,6 +6,7 @@
 #' @param .results A data frame, usually the result of calling `rebound_analysis()`. Default is `rebound_analysis(load_eeu_data(file))`.
 #' @param vars A list of variables for rows of the table. Default is `ReboundTools::key_analysis_vars`.
 #'             Variable order is preserved in the table.
+#' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
 #' @param latex_vars See `ReboundTools::latex_key_analysis_vars`. Set `NULL` to prevent conversion to LaTeX variable names.
 #' @param stages A list of stages for columns of the table. Default is `ReboundTools::rebound_stages`.
 #'               Stage order is preserved in the table.
@@ -22,12 +23,15 @@
 #' @examples
 #' stages_table()
 stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)), 
+                         add_units = TRUE,
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 
                          latex_stages = ReboundTools::latex_rebound_stages,
                          file = sample_eeu_data_path(), 
                          case = ReboundTools::eeu_base_params$case, 
+                         service_unit = ReboundTools::eeu_base_params$service_unit,
+                         energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
                          ...) {
   
   # Build a data frame of all analysis variables.
@@ -40,9 +44,16 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     ) %>% 
     unlist() %>% 
     unname()
+  
+  # if (add_units) {
+  #   analysis_vars <- paste(analysis_vars, units(analysis_vars))
+  # }
+  
+  
+  
   # Gather the data for the stages table.
   rebound_table_data <- .analysis_data %>% 
-    dplyr::select(any_of(case), all_of(analysis_vars)) %>% 
+    dplyr::select(any_of(case), all_of(analysis_vars), any_of(service_unit), any_of(energy_engr_unit)) %>% 
     tidyr::pivot_longer(cols = all_of(analysis_vars), names_to = "var_stage", values_to = "value") %>% 
     dplyr::mutate(
       # Delete everything from the last "_" to the end of the string, inclusive.
@@ -52,6 +63,11 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
       stage = sub(x = var_stage, pattern = ".*_", replacement = ""),
       stage = factor(stage, levels = stages),
       var_stage = NULL
+    ) %>% 
+    dplyr::mutate(
+      unit_col = units(.var_name = .data[["name"]], 
+                       service_unit = .data[[service_unit]],
+                       energy_engr_unit = .data[[energy_engr_unit]]),
     ) %>% 
     dplyr::arrange() %>% 
     tidyr::pivot_wider(names_from = stage, values_from = value)

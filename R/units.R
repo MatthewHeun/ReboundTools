@@ -130,6 +130,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     } 
     
     # Time variables
+    
     else if (startsWith(v, time)) {
       out <- time_unit
     }

@@ -6,16 +6,21 @@
 \usage{
 stages_table(
   .analysis_data = rebound_analysis(load_eeu_data(file)),
+  add_units = TRUE,
   vars = ReboundTools::key_analysis_vars,
   latex_vars = ReboundTools::latex_key_analysis_vars,
   stages = ReboundTools::rebound_stages,
   latex_stages = ReboundTools::latex_rebound_stages,
   file = sample_eeu_data_path(),
   case = ReboundTools::eeu_base_params$case,
+  service_unit = ReboundTools::eeu_base_params$service_unit,
+  energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
   ...
 )
 }
 \arguments{
+\item{add_units}{When \code{TRUE} (the default), adds a unit specification to variable names in the table.}
+
 \item{vars}{A list of variables for rows of the table. Default is \code{ReboundTools::key_analysis_vars}.
 Variable order is preserved in the table.}
 
