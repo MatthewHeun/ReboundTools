@@ -15,4 +15,7 @@ test_that("stages_table() works as expected", {
   t2 <- stages_table(analysis_data)
   expect_true(!is.null(t2))
   expect_true(!("Case" %in% colnames(t2)))
+  
+  # Check that the name of the "name" column is empty.
+  
 })

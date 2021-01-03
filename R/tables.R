@@ -107,6 +107,11 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
       ) %>% 
       tidyr::pivot_wider(names_from = "stage", values_from = "values")
   }
+  # Eliminate "name" title from name column. It looks stupid.
+  rebound_table_data <- rebound_table_data %>% 
+    dplyr::rename(
+      ` ` = name
+    )
   
   # Create the xtable and return.
   rebound_table_data %>% 
