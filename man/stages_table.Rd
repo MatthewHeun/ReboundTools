@@ -7,6 +7,7 @@
 stages_table(
   .analysis_data = rebound_analysis(load_eeu_data(file)),
   add_units = TRUE,
+  escape_latex = TRUE,
   vars = ReboundTools::key_analysis_vars,
   latex_vars = ReboundTools::latex_key_analysis_vars,
   stages = ReboundTools::rebound_stages,

@@ -91,22 +91,22 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     unitless <- unitless_latex
   }
   
-  sapply(.var_name, function(v){
-    
+  Map(.var_name, service_unit, energy_engr_unit, f = function(v, su, eu) {
+
     # Get rid of leading "Delta_", if it exists.
     v <- sub(pattern = leading_delta, replacement = "", v)
     
     # Service unit and energy_engr_unit
     if (startsWith(v, service_unit_name)) {
-      out <- service_unit
+      out <- su
     } else if (startsWith(v, energy_engr_unit_name)) {
-      out <- energy_engr_unit
+      out <- eu
     }
     
     # Price of energy
     
     else if (startsWith(v, p_E_engr_units)) {
-      out <- paste0(currency, "/", energy_engr_unit)
+      out <- paste0(currency, "/", eu)
     } else if (startsWith(v, p_E)) {
       out <- paste0(currency, "/", energy_si)
     } 
@@ -114,13 +114,13 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     # Energy service price
     
     else if (startsWith(v, p_s)) {
-      out <- paste0(currency, "/", service_unit)
+      out <- paste0(currency, "/", su)
     }
     
     # Energy service rate
     
     else if (startsWith(v, q_dot_s)) {
-      out <- paste0(service_unit, "/", time_unit)
+      out <- paste0(su, "/", time_unit)
     }
     
     # Energy intensity of the economy
@@ -154,10 +154,10 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     # Efficiency
     
     else if (startsWith(v, efficiency_engr_units)) {
-      out <- paste0(service_unit, "/", energy_engr_unit)
+      out <- paste0(su, "/", eu)
     }
     else if (startsWith(v, efficiency)) {
-      out <- paste0(service_unit, "/", energy_si)
+      out <- paste0(su, "/", energy_si)
     }
     
     # k or elasticities (both are unitless)
@@ -176,7 +176,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     # Energy conversion factor
     
     else if (startsWith(v, energy_converter)) {
-      out <- paste0(energy_si, "/", energy_engr_unit)
+      out <- paste0(energy_si, "/", eu)
     }
     
     # No valid variable found.
@@ -191,9 +191,11 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     }
     
     return(out)
-  })
+  }) %>% 
+    unlist()
   
   
   
   
 }
+

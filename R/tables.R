@@ -24,6 +24,7 @@
 #' stages_table()
 stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)), 
                          add_units = TRUE,
+                         escape_latex = TRUE,
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 
@@ -44,13 +45,7 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     ) %>% 
     unlist() %>% 
     unname()
-  
-  # if (add_units) {
-  #   analysis_vars <- paste(analysis_vars, units(analysis_vars))
-  # }
-  
-  
-  
+
   # Gather the data for the stages table.
   rebound_table_data <- .analysis_data %>% 
     dplyr::select(any_of(case), all_of(analysis_vars), any_of(service_unit), any_of(energy_engr_unit)) %>% 
@@ -64,13 +59,14 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
       stage = factor(stage, levels = stages),
       var_stage = NULL
     ) %>% 
-    dplyr::mutate(
-      unit_col = units(.var_name = .data[["name"]], 
-                       service_unit = .data[[service_unit]],
-                       energy_engr_unit = .data[[energy_engr_unit]]),
-    ) %>% 
     dplyr::arrange() %>% 
-    tidyr::pivot_wider(names_from = stage, values_from = value)
+    tidyr::pivot_wider(names_from = stage, values_from = value) %>% 
+    dplyr::mutate(
+      unit_col = units(.var_name = name, 
+                       service_unit = .data[[service_unit]],
+                       energy_engr_unit = .data[[energy_engr_unit]], 
+                       escape_latex = escape_latex)
+    )
     
   # Add LaTeX variable names, if not NULL.
   if (!is.null(latex_vars)) {
@@ -83,6 +79,20 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
       ) %>% 
       dplyr::relocate(name, .before = stages[[1]])
   }
+  # Now add the units to the variable name, if desired.
+  if (add_units) {
+    rebound_table_data <- rebound_table_data %>% 
+      dplyr::mutate(
+        name = paste(name, unit_col),
+        unit_col = NULL
+      )
+  }
+  # At this point, we're done with the unit information, so delete those columns, if they exist.
+  rebound_table_data <- rebound_table_data %>% 
+    dplyr::mutate(
+      "{service_unit}" := NULL,
+      "{energy_engr_unit}" := NULL
+    )
   
   # Add LaTeX column names, if not NULL.
   if (!is.null(latex_stages)) {
