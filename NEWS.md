@@ -1,3 +1,11 @@
+# ReboundTools 0.1.2 (2021-01-03)
+
+* Now at 280 tests, all passing.
+* New function `stages_table()` that produces an `xtable` for later printing.
+* New function `units()` that determines units for each variable,
+  using heuristics from the naming system.
+
+
 # ReboundTools 0.1.1 (2021-01-02)
 
 * Now at 246 tests, all passing.

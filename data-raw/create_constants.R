@@ -20,8 +20,21 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 key_analysis_vars <- list(eta = "eta", p_s = "p_s", q_dot_s = "q_dot_s", E_dot_s = "E_dot_s",
                           E_dot_emb = "E_dot_emb", C_dot_s = "C_dot_s", C_dot_cap = "C_dot_cap",
-                          C_dot_md = "C_dot_md", C_dot_o = "C_dot_o", M_dot = "M_dot", N_dot = "N_dot")
+                          C_dot_md = "C_dot_md", C_dot_o = "C_dot_o", N_dot = "N_dot", M_dot = "M_dot")
 usethis::use_data(key_analysis_vars, overwrite = TRUE)
+
+
+#
+# Names of key rebound variables in LaTeX format
+# 
+
+latex_key_analysis_vars <- data.frame(
+  var_name = key_analysis_vars %>% unlist() %>% unname(), 
+  latex_var_name = c("$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
+                     "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
+                     "$\\dot{C}_{md}$", "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
+)
+usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
 
 
 #
@@ -30,6 +43,21 @@ usethis::use_data(key_analysis_vars, overwrite = TRUE)
 
 rebound_stages <- list(orig = "orig", star = "star", hat = "hat", bar = "bar", tilde = "tilde")
 usethis::use_data(rebound_stages, overwrite = TRUE)
+
+
+#
+# Names of stages in LaTeX format
+# 
+
+latex_rebound_stages <- data.frame(
+  stage = ReboundTools::rebound_stages %>% unlist() %>% unname(),
+  latex_stage_name = c("${ }^{\\scriptscriptstyle \\circ}$ (orig)", 
+                       "${ }^*$ (star)", 
+                       "$\\hat{ }$ (hat)",
+                       "$\\bar{ }$ (bar)",
+                       "$\\tilde{ }$ (tilde)")
+)
+usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
@@ -58,10 +86,12 @@ eeu_base_params <- list(reference = "Reference",
                         case = "Case", 
                         original = "Original", 
                         upgrade = "Upgrade", 
-                        MJ_engr_unit = "MJ/engr_unit",
+                        service_unit = "service_unit",
+                        energy_engr_unit = "energy_engr_unit",
+                        MJ_engr_unit = "MJ/energy_engr_unit",
                         I_E = "I_E", 
                         k = "k", 
-                        p_E = "p_E",
+                        p_E_engr_units = "p_E_engr_units",
                         e_qs_ps_UC = "e_qs_ps_UC", 
                         e_qs_M = "e_qs_M", 
                         e_qo_M = "e_qo_M")
@@ -72,12 +102,13 @@ usethis::use_data(eeu_base_params, overwrite = TRUE)
 # Names of calculated variables at the "orig" stage.
 # 
 
-orig_vars <- list(q_dot_s_orig = "q_dot_s_orig",
+orig_vars <- list(p_E = "p_E",
+                  q_dot_s_orig = "q_dot_s_orig",
                   M_dot_orig = "M_dot_orig", 
                   C_cap_orig = "C_cap_orig", 
                   t_own_orig = "t_own_orig", 
                   C_dot_md_orig = "C_dot_md_orig", 
-                  eta_orig_engr_units = "eta_orig_engr_units", 
+                  eta_engr_units_orig = "eta_engr_units_orig", 
                   eta_orig = "eta_orig", 
                   E_dot_s_orig = "E_dot_s_orig",
                   C_dot_cap_orig = "C_dot_cap_orig",
@@ -104,7 +135,7 @@ star_vars <- list(C_cap_star	= "C_cap_star",
                   C_dot_md_star = "C_dot_md_star", 
                   E_emb_star = "E_emb_star",
                   t_life_star = "t_life_star",
-                  eta_star_engr_units = "eta_star_engr_units", 
+                  eta_star_engr_units = "eta_engr_units_star", 
                   eta_star = "eta_star",
                   eta_ratio = "eta_ratio", 
                   S_dot_dev = "S_dot_dev",
