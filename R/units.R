@@ -72,39 +72,40 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     currency <- currency_latex
     unitless <- unitless_latex
   }
-  # Get rid of leading "Delta_"
-  v <- sub(pattern = leading_delta, replacement = "", .var_name)
   
-  sapply(.var_name, function(var){
+  sapply(.var_name, function(v){
+    
+    # Get rid of leading "Delta_", if it exists.
+    v <- sub(pattern = leading_delta, replacement = "", v)
     
     # Price of energy
     
-    if (startsWith(.var_name, p_E_engr_units)) {
+    if (startsWith(v, p_E_engr_units)) {
       out <- paste0(currency, "/", energy_engr_unit)
-    } else if (startsWith(.var_name, p_E)) {
+    } else if (startsWith(v, p_E)) {
       out <- paste0(currency, "/", energy_si)
     } 
     
     # Energy intensity of the economy
     
-    else if (startsWith(.var_name, I_E)) {
+    else if (startsWith(v, I_E)) {
       out <- paste0(energy_si, "/", currency)
     } 
     
     # k or elasticities (both are unitless)
     
-    else if (startsWith(.var_name, k) | startsWith(.var_name, elasticities)) {
+    else if (startsWith(v, k) | startsWith(v, elasticities)) {
       out <- unitless
     }
     
     # Time variables
-    else if (startsWith(.var_name, time)) {
+    else if (startsWith(v, time)) {
       out <- time_unit
     }
     
     # Cost rate and cost
     
-   else if (startsWith(v, cost_rate)) {
+    else if (startsWith(v, cost_rate)) {
       out <- paste0(currency, "/", time_unit)
     } else if (startsWith(v, cost)) {
       out <- currency
@@ -140,8 +141,8 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     return(out)
   })
-
-    
+  
+  
   
   
 }
