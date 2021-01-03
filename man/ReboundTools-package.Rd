@@ -4,7 +4,7 @@
 \name{ReboundTools-package}
 \alias{ReboundTools}
 \alias{ReboundTools-package}
-\title{ReboundTools: Analyze and Display Energy Rebound Estimates}
+\title{ReboundTools: Analyze and Display Estimates of Energy Rebound}
 \description{
 Energy rebound is the unanticipated reduction 
              of the benefits of energy efficiency 

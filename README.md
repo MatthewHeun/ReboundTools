@@ -5,4 +5,4 @@
 [![Codecov test coverage](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg)](https://codecov.io/gh/MatthewHeun/ReboundTools?branch=main)
 <!-- badges: end -->
 
-Analysis and graphing for energy rebound
+Analysis and graphing tools for energy rebound.
