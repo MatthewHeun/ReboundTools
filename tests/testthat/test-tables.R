@@ -17,5 +17,6 @@ test_that("stages_table() works as expected", {
   expect_true(!("Case" %in% colnames(t2)))
   
   # Check that the name of the "name" column is empty.
-  
+  cnames <- colnames(t2)
+  expect_equal(cnames[[1]], " ")
 })
