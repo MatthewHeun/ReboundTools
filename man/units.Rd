@@ -20,6 +20,8 @@ units(
   unitless_latex = "--",
   p_E_engr_units = "p_E_engr_units",
   p_E = "p_E",
+  p_s = "p_s_",
+  q_dot_s = "q_dot_s_",
   efficiency_engr_units = "eta_engr_units",
   efficiency = "eta",
   k = "k",
@@ -34,7 +36,10 @@ units(
   freed_cash = "N_",
   energy_rate = "E_dot",
   energy = "E",
-  rebound = "Re_"
+  S_dot_dev = "S_dot_dev",
+  G_dot = "G_dot",
+  rebound = "Re_",
+  f_Cs_ = "f_Cs_"
 )
 }
 \arguments{

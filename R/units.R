@@ -56,6 +56,8 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   unitless_latex = "--",
                   p_E_engr_units = "p_E_engr_units",
                   p_E = "p_E",
+                  p_s = "p_s_", 
+                  q_dot_s = "q_dot_s_",
                   efficiency_engr_units = "eta_engr_units",
                   efficiency = "eta",
                   k = "k", 
@@ -70,7 +72,10 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   freed_cash = "N_",
                   energy_rate = "E_dot", 
                   energy = "E",
-                  rebound = "Re_"
+                  S_dot_dev = "S_dot_dev",
+                  G_dot = "G_dot",
+                  rebound = "Re_", 
+                  f_Cs_ = "f_Cs_"
                   ) {
   
   if (escape_latex) {
@@ -91,6 +96,18 @@ units <- function(.var_name, service_unit, energy_engr_unit,
       out <- paste0(currency, "/", energy_si)
     } 
     
+    # Energy service price
+    
+    else if (startsWith(v, p_s)) {
+      out <- paste0(currency, "/", service_unit)
+    }
+    
+    # Energy service rate
+    
+    else if (startsWith(v, q_dot_s)) {
+      out <- paste0(service_unit, "/", time_unit)
+    }
+    
     # Energy intensity of the economy
     
     else if (startsWith(v, I_E)) {
@@ -110,7 +127,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     # Cost rate and cost
     
-    else if (startsWith(v, cost_rate) | startsWith(v, income_rate) | startsWith(v, freed_cash_rate)) {
+    else if (startsWith(v, cost_rate) | startsWith(v, income_rate) | startsWith(v, freed_cash_rate) | startsWith(v, G_dot)) {
       out <- paste0(currency, "/", time_unit)
     } else if (startsWith(v, cost) | startsWith(v, income) | startsWith(v, freed_cash)) {
       out <- currency
@@ -118,7 +135,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     # Energy rate and energy
     
-    else if (startsWith(v, energy_rate)) {
+    else if (startsWith(v, energy_rate) | startsWith(v, S_dot_dev)) {
       out <- paste0(energy_si, "/", time_unit)
     } else if (startsWith(v, energy)) {
       out <- energy_si
@@ -135,7 +152,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     # Rebound
     
-    else if (startsWith(v, rebound)) {
+    else if (startsWith(v, rebound) | startsWith(v, f_Cs_)) {
       out <- unitless
     }
     
