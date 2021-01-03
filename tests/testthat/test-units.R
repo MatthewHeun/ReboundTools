@@ -44,5 +44,14 @@ test_that("units() works as expected", {
   expect_equal(units("e_qo_M", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(e_qo_M = "[--]"))
   
+  expect_equal(units("eta_engr_units_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(eta_engr_units_orig = "[service/energy]"))
+  
+  expect_equal(units("eta", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(eta = "[service/MJ]"))
+  
+  expect_equal(units("t_own_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(t_own_orig = "[year]"))
+  
 })
 

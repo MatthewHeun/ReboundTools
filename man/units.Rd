@@ -20,16 +20,17 @@ units(
   unitless_latex = "--",
   p_E_engr_units = "p_E_engr_units",
   p_E = "p_E",
-  efficiency_engy_units = "eta_engr_units",
+  efficiency_engr_units = "eta_engr_units",
+  efficiency = "eta",
   k = "k",
   I_E = "I_E",
   elasticities = "e_",
-  efficiency = "eta",
-  cost_rate = "C_dot",
+  time = "t_",
+  cost_rate = "C_dot_",
   cost = "C_",
   energy_rate = "E_dot",
   energy = "E",
-  time = "year"
+  time_unit = "year"
 )
 }
 \arguments{

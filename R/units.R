@@ -56,16 +56,17 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   unitless_latex = "--",
                   p_E_engr_units = "p_E_engr_units",
                   p_E = "p_E",
-                  efficiency_engy_units = "eta_engr_units",
+                  efficiency_engr_units = "eta_engr_units",
+                  efficiency = "eta",
                   k = "k", 
                   I_E = "I_E",
                   elasticities = "e_",
-                  efficiency = "eta_", 
+                  time = "t_", 
                   cost_rate = "C_dot_",
                   cost = "C_",
                   energy_rate = "E_dot", 
                   energy = "E",
-                  time = "year") {
+                  time_unit = "year") {
   
   if (escape_latex) {
     currency <- currency_latex
@@ -93,6 +94,11 @@ units <- function(.var_name, service_unit, energy_engr_unit,
       out <- unitless
     }
     
+    # Time variables
+    else if (startsWith(.var_name, time)) {
+      out <- time_unit
+    }
+    
     # At this point, assume we have a variable with a leading "Delta_"
     # or a trailing "_<<stage>>". 
     
@@ -105,17 +111,23 @@ units <- function(.var_name, service_unit, energy_engr_unit,
       # Cost rate and cost
       
       if (startsWith(v, cost_rate)) {
-        out <- paste0(currency, "/", time)
+        out <- paste0(currency, "/", time_unit)
       } else if (startsWith(v, cost)) {
         out <- currency
-      } else if (startsWith(v, efficiency_engy_units)) {
+      } 
+      
+      # Efficiency
+      else if (startsWith(v, efficiency_engr_units)) {
         out <- paste0(service_unit, "/", energy_engr_unit)
+      }
+      else if (startsWith(v, efficiency)) {
+        out <- paste0(service_unit, "/", energy_si)
       }
       
       # Energy rate and energy
       
       else if (startsWith(v, energy_rate)) {
-        out <- paste0(energy_si, "/", time)
+        out <- paste0(energy_si, "/", time_unit)
       } else if (startsWith(v, energy)) {
         out <- energy_si
       }
