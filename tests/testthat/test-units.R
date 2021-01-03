@@ -56,6 +56,9 @@ test_that("units() works as expected", {
   
   expect_equal(units("t_own_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(t_own_orig = "[year]"))
+  
+  expect_equal(units("MJ/energy_engr_unit", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(`MJ/energy_engr_unit` = "[MJ/energy]"))
 
   expect_equal(units("service_unit", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(service_unit = paste0("[", su, "]")))

@@ -1,3 +1,4 @@
+* New function `stages_table()` that produces an `xtable` for later printing.
 * New function `units()` that determines units for each variable,
   using heuristics from the naming system.
 

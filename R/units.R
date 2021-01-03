@@ -129,6 +129,12 @@ units <- function(.var_name, service_unit, energy_engr_unit,
       out <- paste0(energy_si, "/", currency)
     } 
     
+    # Energy conversion factor
+    
+    else if (startsWith(v, energy_converter)) {
+      out <- paste0(energy_si, "/", eu)
+    }
+    
     # Time variables
     
     else if (startsWith(v, time)) {
@@ -171,12 +177,6 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     else if (startsWith(v, rebound) | startsWith(v, f_Cs_)) {
       out <- unitless
-    }
-    
-    # Energy conversion factor
-    
-    else if (startsWith(v, energy_converter)) {
-      out <- paste0(energy_si, "/", eu)
     }
     
     # No valid variable found.
