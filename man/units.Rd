@@ -13,6 +13,7 @@ units(
   surround_right = "]",
   leading_delta = "^Delta_",
   energy_si = "MJ",
+  time_unit = "year",
   currency = "$",
   currency_latex = "\\\\$",
   unitless = "-",
@@ -27,9 +28,13 @@ units(
   time = "t_",
   cost_rate = "C_dot_",
   cost = "C_",
+  income_rate = "M_dot_",
+  income = "M_",
+  freed_cash_rate = "N_dot_",
+  freed_cash = "N_",
   energy_rate = "E_dot",
   energy = "E",
-  time_unit = "year"
+  rebound = "Re_"
 )
 }
 \arguments{

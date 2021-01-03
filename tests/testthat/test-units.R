@@ -53,6 +53,9 @@ test_that("units() works as expected", {
   expect_equal(units("t_own_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(t_own_orig = "[year]"))
   
+  expect_equal(units("Re_md", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(Re_md = "[--]"))
+  
 })
 
 
@@ -61,5 +64,19 @@ test_that("units() works with a vector", {
   eu <- "energy"
   expect_equal(units(c("Delta_C_dot_o_hat", "t_own_orig"), service_unit = su, energy_engr_unit = eu), 
                c(Delta_C_dot_o_hat = "[$/year]", t_own_orig = "[year]"))
+})
+
+
+test_that("units() works in a data.frame", {
+  su <- "service"
+  eu <- "energy"
+
+  cnames <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    colnames()
   
+  res <- data.frame(var_names = cnames) %>% 
+    dplyr::mutate(
+      unit = units(var_names, service_unit = su, energy_engr_unit = eu)
+    )
 })

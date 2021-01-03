@@ -48,8 +48,8 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   surround_left = "[", 
                   surround_right = "]",
                   leading_delta = "^Delta_", 
-                  # trailing_stage = "_[^_]*$", 
                   energy_si = "MJ",
+                  time_unit = "year",
                   currency = "$", 
                   currency_latex = "\\$",
                   unitless = "-", 
@@ -64,9 +64,14 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   time = "t_", 
                   cost_rate = "C_dot_",
                   cost = "C_",
+                  income_rate = "M_dot_", 
+                  income = "M_", 
+                  freed_cash_rate = "N_dot_", 
+                  freed_cash = "N_",
                   energy_rate = "E_dot", 
                   energy = "E",
-                  time_unit = "year") {
+                  rebound = "Re_"
+                  ) {
   
   if (escape_latex) {
     currency <- currency_latex
@@ -105,9 +110,9 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     # Cost rate and cost
     
-    else if (startsWith(v, cost_rate)) {
+    else if (startsWith(v, cost_rate) | startsWith(v, income_rate) | startsWith(v, freed_cash_rate)) {
       out <- paste0(currency, "/", time_unit)
-    } else if (startsWith(v, cost)) {
+    } else if (startsWith(v, cost) | startsWith(v, income) | startsWith(v, freed_cash)) {
       out <- currency
     } 
     
@@ -126,6 +131,12 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     }
     else if (startsWith(v, efficiency)) {
       out <- paste0(service_unit, "/", energy_si)
+    }
+    
+    # Rebound
+    
+    else if (startsWith(v, rebound)) {
+      out <- unitless
     }
     
     # No valid variable found.
