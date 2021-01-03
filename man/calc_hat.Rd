@@ -6,7 +6,7 @@
 \usage{
 calc_hat(
   .star_data = NULL,
-  p_E = ReboundTools::eeu_base_params$p_E,
+  p_E = ReboundTools::orig_vars$p_E,
   e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,

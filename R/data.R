@@ -40,6 +40,21 @@
 "key_analysis_vars"
 
 
+#' LaTeX key analysis variables
+#' 
+#' A data frame of key analysis variables in LaTeX formatting.
+#' 
+#' @format A data frame with `r length(latex_key_analysis_vars)` columns.
+#' \describe{
+#' \item{var_name}{The text name for key analysis variables.}
+#' \item{latex_var_name}{The LaTeX key analysis variable name.}
+#' }
+#' 
+#' @examples
+#' latex_key_analysis_vars
+"latex_key_analysis_vars"
+
+
 #' Rebound stages
 #' 
 #' This is the list of rebound stages.
@@ -56,6 +71,21 @@
 #' @examples
 #' rebound_stages
 "rebound_stages"
+
+
+#' LaTeX rebound stages
+#' 
+#' A data frame of rebound stages in LaTeX formatting.
+#' 
+#' @format A data frame with `r ncol(latex_rebound_stages)` columns.
+#' \describe{
+#' \item{stage}{The text name for the stage.}
+#' \item{latex_stage_name}{The LaTeX name for the stage.}
+#' }
+#' 
+#' @examples
+#' latex_rebound_stages
+"latex_rebound_stages"
 
 
 #' Difference variables
@@ -117,10 +147,12 @@
 #' \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 #' \item{original}{A string to identify the original device, e.g., "Incandescent".}
 #' \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}
+#' \item{service_unit}{A string to identify the unit of the energy service, e.g., "miles" in "miles/gal" or "lm-hr" in "lm-hr/kW-hr".}
+#' \item{energy_engr_unit}{A string to identify the energy units of the service, e.g., "gal" in "miles/gal" or "kW-hr" in "lm-hr/kW-hr".}
 #' \item{MJ_engr_unit}{A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, `MJ_engr_unit` should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.}
 #' \item{I_E}{The energy intensity of the economy \[MJ/$\].}
 #' \item{k}{The productivity effect factor \[--\].}
-#' \item{p_E}{The price of energy \[$/MJ\].}
+#' \item{p_E_engr_units}{The price of energy in engineering units, e.g., $/gal or $/kW-hr \[$/energy_engr_unit\].}
 #' \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption \[--\].}
 #' \item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption \[--\].}
@@ -137,13 +169,14 @@
 #' 
 #' @format A string list with `r length(orig_vars)` entries.
 #' \describe{
-#' \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
+#' \item{p_E}{The price of energy \[$/MJ\], calculated by `p_E_engr_units / MJ_engr_unit`.}
 #' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/year\] \[lumen-hours/year\].}
+#' \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/year\].}
 #' \item{t_own_orig}{The expected ownership duration of the original device \[year\].}
 #' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
-#' \item{eta_orig_engr_units}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
-#' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_orig_engr_units / MJ_engr_unit`.}
+#' \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
+#' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_engr_units_orig / MJ_engr_unit`.}
 #' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
 #' \item{C_dot_cap_orig}{The original (pre-EEU) capital cost rate \[$/year\], calculated by `C_cap_orig / t_orig`.}
 #' \item{p_s_orig}{The original (pre-EEU) energy service price \[$/service\], calculated by `p_E / eta_orig`.}
@@ -174,7 +207,7 @@
 #' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate \[$/year\].}
 #' \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device \[MJ\].}
 #' \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device \[year\].}
-#' \item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_orig_engr_units` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
+#' \item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_tilde_engr_units / MJ_engr_unit`.}
 #' \item{eta_ratio}{The energy service efficiency ratio \[--\], calculated by `eta_star/eta_orig`.}
 #' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\], calculated by `(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig`.}
