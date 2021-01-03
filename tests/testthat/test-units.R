@@ -29,6 +29,10 @@ test_that("units() works as expected", {
                c(p_E_engr_units = "[\\$/energy]"))
   expect_equal(units("p_E", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(p_E = "[\\$/MJ]"))
+  expect_equal(units("p_s_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(p_s_orig = "[\\$/service]"))
+  expect_equal(units("p_s", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(p_s = "[\\$/service]"))
   
   expect_equal(units("I_E", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(I_E = "[MJ/\\$]"))
@@ -52,6 +56,11 @@ test_that("units() works as expected", {
   
   expect_equal(units("t_own_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(t_own_orig = "[year]"))
+
+  expect_equal(units("service_unit", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(service_unit = paste0("[", su, "]")))
+  expect_equal(units("energy_engr_unit", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(energy_engr_unit = paste0("[", eu, "]")))
   
   expect_equal(units("Re_md", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(Re_md = "[--]"))
@@ -79,6 +88,7 @@ test_that("units() works in a data.frame", {
     dplyr::mutate(
       unit = units(var_names, service_unit = su, energy_engr_unit = eu)
     )
-  # Nothing should be unknown except for the first 6 items in the list.
-  expect_equal(which(res$unit[7:nrow(res)] == "[unknown]") %>% length(), 0)
+  # Nothing should be unknown except for the first 5 items in the list.
+  # First 6 items are Reference, Case, Original, and Upgrade.
+  expect_equal(which(res$unit[5:nrow(res)] == "[unknown]") %>% length(), 0)
 })

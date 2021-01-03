@@ -12,6 +12,8 @@ units(
   surround_left = "[",
   surround_right = "]",
   leading_delta = "^Delta_",
+  service_unit_name = "service_unit",
+  energy_engr_unit_name = "energy_engr_unit",
   energy_converter = "MJ/energy_engr_unit",
   energy_si = "MJ",
   time_unit = "year",
@@ -21,27 +23,27 @@ units(
   unitless_latex = "--",
   p_E_engr_units = "p_E_engr_units",
   p_E = "p_E",
-  p_s = "p_s_",
-  q_dot_s = "q_dot_s_",
+  p_s = "p_s",
+  q_dot_s = "q_dot_s",
   efficiency_engr_units = "eta_engr_units",
   efficiency = "eta",
   k = "k",
   I_E = "I_E",
-  elasticities = "e_",
+  elasticities = "e",
   sigma = "sigma",
   time = "t_",
-  cost_rate = "C_dot_",
+  cost_rate = "C_dot",
   cost = "C_",
-  income_rate = "M_dot_",
-  income = "M_",
-  freed_cash_rate = "N_dot_",
-  freed_cash = "N_",
+  income_rate = "M_dot",
+  income = "M",
+  freed_cash_rate = "N_dot",
+  freed_cash = "N",
   energy_rate = "E_dot",
   energy = "E",
   S_dot_dev = "S_dot_dev",
   G_dot = "G_dot",
   rebound = "Re_",
-  f_Cs_ = "f_Cs_"
+  f_Cs_ = "f_Cs"
 )
 }
 \arguments{
@@ -51,17 +53,83 @@ units(
 
 \item{energy_engr_unit}{}
 
+\item{escape_latex}{}
+
+\item{surround_left}{}
+
+\item{surround_right}{}
+
 \item{leading_delta}{}
+
+\item{energy_converter}{}
+
+\item{energy_si}{}
+
+\item{time_unit}{}
 
 \item{currency}{}
 
+\item{currency_latex}{}
+
+\item{unitless}{}
+
+\item{unitless_latex}{}
+
+\item{p_E_engr_units}{}
+
+\item{p_E}{}
+
+\item{p_s}{}
+
+\item{q_dot_s}{}
+
+\item{efficiency_engr_units}{}
+
+\item{efficiency}{}
+
+\item{k}{}
+
+\item{I_E}{}
+
+\item{elasticities}{}
+
+\item{sigma}{}
+
 \item{time}{}
 
-\item{trailing_stage}{}
+\item{cost_rate}{}
+
+\item{cost}{}
+
+\item{income_rate}{}
+
+\item{income}{}
+
+\item{freed_cash_rate}{}
+
+\item{freed_cash}{}
+
+\item{energy_rate}{}
+
+\item{energy}{}
+
+\item{S_dot_dev}{}
+
+\item{G_dot}{}
+
+\item{rebound}{}
+
+\item{f_Cs_}{}
 }
 \value{
 
 }
 \description{
 Units for variables
+}
+\examples{
+units("eta_engr_units_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
+units("p_s", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
+units("p_s_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
+units("Delta_C_dot_o_hat", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 }
