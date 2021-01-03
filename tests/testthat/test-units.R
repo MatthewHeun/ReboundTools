@@ -79,4 +79,6 @@ test_that("units() works in a data.frame", {
     dplyr::mutate(
       unit = units(var_names, service_unit = su, energy_engr_unit = eu)
     )
+  # Nothing should be unknown except for the first 6 items in the list.
+  expect_equal(which(res$unit[7:nrow(res)] == "[unknown]") %>% length(), 0)
 })

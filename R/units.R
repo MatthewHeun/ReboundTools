@@ -48,6 +48,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   surround_left = "[", 
                   surround_right = "]",
                   leading_delta = "^Delta_", 
+                  energy_converter = "MJ/energy_engr_unit",
                   energy_si = "MJ",
                   time_unit = "year",
                   currency = "$", 
@@ -63,6 +64,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   k = "k", 
                   I_E = "I_E",
                   elasticities = "e_",
+                  sigma = "sigma",
                   time = "t_", 
                   cost_rate = "C_dot_",
                   cost = "C_",
@@ -116,7 +118,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     # k or elasticities (both are unitless)
     
-    else if (startsWith(v, k) | startsWith(v, elasticities)) {
+    else if (startsWith(v, k) | startsWith(v, elasticities) | startsWith(v, sigma)) {
       out <- unitless
     }
     
@@ -154,6 +156,12 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     else if (startsWith(v, rebound) | startsWith(v, f_Cs_)) {
       out <- unitless
+    }
+    
+    # Energy conversion factor
+    
+    else if (startsWith(v, energy_converter)) {
+      out <- paste0(energy_si, "/", energy_engr_unit)
     }
     
     # No valid variable found.
