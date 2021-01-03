@@ -22,12 +22,27 @@ test_that("units() works as expected", {
   expect_equal(units("E_emb_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(E_emb_orig = "[MJ]"))
   
+  expect_equal(units("Delta_E_emb_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(Delta_E_emb_orig = "[MJ]"))
+
   expect_equal(units("p_E_engr_units", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(p_E_engr_units = "[\\$/energy]"))
   expect_equal(units("p_E", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
-               c(p_E = "[\\$/energy]"))
+               c(p_E = "[\\$/MJ]"))
   
   expect_equal(units("I_E", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(I_E = "[MJ/\\$]"))
   
+  expect_equal(units("e_qs_ps_UC", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(e_qs_ps_UC = "[--]"))
+  expect_equal(units("e_qs_ps", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(e_qs_ps = "[--]"))
+  expect_equal(units("e_qo_ps", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(e_qo_ps = "[--]"))
+  expect_equal(units("e_qs_M", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(e_qs_M = "[--]"))
+  expect_equal(units("e_qo_M", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(e_qo_M = "[--]"))
+  
 })
+
