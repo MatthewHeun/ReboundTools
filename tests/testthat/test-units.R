@@ -55,3 +55,11 @@ test_that("units() works as expected", {
   
 })
 
+
+test_that("units() works with a vector", {
+  su <- "service"
+  eu <- "energy"
+  expect_equal(units(c("Delta_C_dot_o_hat", "t_own_orig"), service_unit = su, energy_engr_unit = eu), 
+               c(Delta_C_dot_o_hat = "[$/year]", t_own_orig = "[year]"))
+  
+})

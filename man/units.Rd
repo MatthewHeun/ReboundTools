@@ -12,7 +12,6 @@ units(
   surround_left = "[",
   surround_right = "]",
   leading_delta = "^Delta_",
-  trailing_stage = "_[^_]*$",
   energy_si = "MJ",
   currency = "$",
   currency_latex = "\\\\$",
@@ -42,11 +41,11 @@ units(
 
 \item{leading_delta}{}
 
-\item{trailing_stage}{}
-
 \item{currency}{}
 
 \item{time}{}
+
+\item{trailing_stage}{}
 }
 \value{
 

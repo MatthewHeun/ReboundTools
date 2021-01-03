@@ -48,7 +48,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   surround_left = "[", 
                   surround_right = "]",
                   leading_delta = "^Delta_", 
-                  trailing_stage = "_[^_]*$", 
+                  # trailing_stage = "_[^_]*$", 
                   energy_si = "MJ",
                   currency = "$", 
                   currency_latex = "\\$",
@@ -72,6 +72,9 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     currency <- currency_latex
     unitless <- unitless_latex
   }
+  # Get rid of leading "Delta_"
+  v <- sub(pattern = leading_delta, replacement = "", .var_name)
+  
   sapply(.var_name, function(var){
     
     # Price of energy
@@ -99,44 +102,35 @@ units <- function(.var_name, service_unit, energy_engr_unit,
       out <- time_unit
     }
     
-    # At this point, assume we have a variable with a leading "Delta_"
-    # or a trailing "_<<stage>>". 
+    # Cost rate and cost
+    
+   else if (startsWith(v, cost_rate)) {
+      out <- paste0(currency, "/", time_unit)
+    } else if (startsWith(v, cost)) {
+      out <- currency
+    } 
+    
+    # Energy rate and energy
+    
+    else if (startsWith(v, energy_rate)) {
+      out <- paste0(energy_si, "/", time_unit)
+    } else if (startsWith(v, energy)) {
+      out <- energy_si
+    }
+    
+    # Efficiency
+    
+    else if (startsWith(v, efficiency_engr_units)) {
+      out <- paste0(service_unit, "/", energy_engr_unit)
+    }
+    else if (startsWith(v, efficiency)) {
+      out <- paste0(service_unit, "/", energy_si)
+    }
+    
+    # No valid variable found.
     
     else {
-      # Get rid of leading "Delta_"
-      v <- sub(pattern = leading_delta, replacement = "", var)
-      # Get rid of trailing "_orig" and similar.
-      v <- sub(pattern = trailing_stage, replacement = "", v)
-      
-      # Cost rate and cost
-      
-      if (startsWith(v, cost_rate)) {
-        out <- paste0(currency, "/", time_unit)
-      } else if (startsWith(v, cost)) {
-        out <- currency
-      } 
-      
-      # Efficiency
-      else if (startsWith(v, efficiency_engr_units)) {
-        out <- paste0(service_unit, "/", energy_engr_unit)
-      }
-      else if (startsWith(v, efficiency)) {
-        out <- paste0(service_unit, "/", energy_si)
-      }
-      
-      # Energy rate and energy
-      
-      else if (startsWith(v, energy_rate)) {
-        out <- paste0(energy_si, "/", time_unit)
-      } else if (startsWith(v, energy)) {
-        out <- energy_si
-      }
-      
-      # No valid variable found.
-      
-      else {
-        stop(paste("Didn't understand", .var_name, "in units()."))
-      }
+      out <- "unknown"
     }
     
     # Deal with surrounding characters, if requested
