@@ -53,8 +53,7 @@ test_that("rebound_graphs() graphs works as expected", {
     rebound_graphs() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    MKHthemes::xy_theme()
+                        scales = "free")
   expect_true(!is.null(indexed_graph))
 })
 
@@ -69,8 +68,7 @@ test_that("rebound_graphs() works with grids", {
   abs_graph <- rebound_graphs(paths, abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    MKHthemes::xy_theme()
+                        scales = "free")
   expect_true(!is.null(abs_graph))
 })
 
@@ -86,8 +84,7 @@ test_that("rebound_graphs() works with a energy-only graph with grids", {
   abs_car_energy_graph <- rebound_graphs(paths, abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    MKHthemes::xy_theme()
+                        scales = "free")
   expect_true(!is.null(abs_car_energy_graph))
   
   # Now try with indexed data
@@ -98,8 +95,7 @@ test_that("rebound_graphs() works with a energy-only graph with grids", {
   indexed_car_energy_graph <- rebound_graphs(indexed_paths, indexed_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    MKHthemes::xy_theme()
+                        scales = "free")
   expect_true(!is.null(indexed_car_energy_graph))
   
 })
@@ -128,8 +124,7 @@ test_that("rebound_graphs() works with a cost-only graph with grids", {
   indexed_car_cost_graph <- rebound_graphs(indexed_paths, indexed_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    MKHthemes::xy_theme()
+                        scales = "free")
   expect_true(!is.null(indexed_car_cost_graph))
   
 })
@@ -147,8 +142,7 @@ test_that("rebound_graphs() works with a preferences graph with grids", {
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
     ggplot2::scale_x_continuous(name = "q_dot_s/q_dot_s_orig") +
-    ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")+
-    MKHthemes::xy_theme()
+    ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")
   
   expect_true(!is.null(graph))
 })
