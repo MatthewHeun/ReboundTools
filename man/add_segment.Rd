@@ -22,12 +22,15 @@ add_segment(
 )
 }
 \arguments{
-\item{.DF}{A data frame that accumulates line segments.}
+\item{.DF}{A data frame that accumulates line segments.
+When \code{NULL}, the default, a new data frame is created and returned.
+When not \code{NULL}, rows for the segment are added to the bottom of \code{.DF}.}
 
 \item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
 at its start.}
 
-\item{meta}{A data frame of metadata for the segment to be added.}
+\item{meta}{A data frame of metadata for the segment to be added.
+This metadata data frame provides the left-most columns of the return value.}
 
 \item{graph_type}{The type of graph associated with this segment. See \code{ReboundTools::graph_types}.}
 

@@ -486,10 +486,13 @@ prefs_paths <- function(.rebound_data,
 #' There is usually no need to call this function directly. 
 #' Functions like `energy_paths()` call `add_segment()` internally.
 #'
-#' @param .DF A data frame that accumulates line segments.
+#' @param .DF A data frame that accumulates line segments. 
+#'            When `NULL`, the default, a new data frame is created and returned.
+#'            When not `NULL`, rows for the segment are added to the bottom of `.DF`.
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
-#' @param meta A data frame of metadata for the segment to be added.
+#' @param meta A data frame of metadata for the segment to be added. 
+#'             This metadata data frame provides the left-most columns of the return value.
 #' @param graph_type The type of graph associated with this segment. See `ReboundTools::graph_types`.
 #' @param segment_name A name for this segment. 
 #' @param colour The colour for this segment. Default is "black".

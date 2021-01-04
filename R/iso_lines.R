@@ -1,21 +1,44 @@
-#' Title
+#' Iso-energy lines for energy rebound paths
+#' 
+#' This function creates a data frame of constant-energy lines 
+#' at various rebound stages.
+#' The iso lines are described by slope and intercept.
 #'
-#' @param .rebound_data 
-#' @param indexed 
+#' @param .rebound_data A data frame of rebound information, 
+#'                      likely created by `rebound_analysis()`.
+#' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
+#'                at its start.
+#' @param I_E,k See `ReboundTools::eeu_base_params`.
+#' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param S_dot_dev,E_dot_s_star,E_dot_emb_star,C_dot_md_star,C_dot_o_star See `ReboundTools::star_vars`.
+#' @param E_dot_s_hat,E_dot_emb_hat,C_dot_md_hat,C_dot_o_hat,N_dot_hat See `ReboundTools::hat_vars`.
+#' @param E_dot_s_bar,E_dot_emb_bar,C_dot_md_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
+#' @param E_dot_s_bar,E_dot_emb_bar,C_dot_md_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
+#' @param energy_type See `ReboundTools::graph_types`.
+#' @param grid_colour See `ReboundTools::graph_colours`.
+#' @param grid_size Line width for iso-energy lines. Default is `0.5`.
+#' @param grid_linetype Line type for iso-energy lines. Default is "solid".
 #'
-#' @return
+#' @return A data frame containing iso-energy lines to be drawn on an energy rebound path graph.
+#' 
 #' @export
 #'
 #' @examples
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   iso_energy_lines()
 iso_energy_lines <- function(.rebound_data, 
                              indexed = FALSE, 
+                             
+                             I_E = ReboundTools::eeu_base_params$I_E, 
+                             k = ReboundTools::eeu_base_params$k,
+                             
                              E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig, 
                              E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig, 
-                             I_E = ReboundTools::eeu_base_params$I_E, 
                              C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                              C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
-                             S_dot_dev = ReboundTools::star_vars$S_dot_dev,
                              
+                             S_dot_dev = ReboundTools::star_vars$S_dot_dev,
                              E_dot_s_star = ReboundTools::star_vars$E_dot_s_star, 
                              E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star, 
                              C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
@@ -25,6 +48,7 @@ iso_energy_lines <- function(.rebound_data,
                              E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat, 
                              C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
                              C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+                             N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
                              
                              E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar, 
                              E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar, 
@@ -35,11 +59,10 @@ iso_energy_lines <- function(.rebound_data,
                              E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
                              C_dot_md_tilde = ReboundTools::tilde_vars$C_dot_md_tilde,
                              C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
-                             k = ReboundTools::eeu_base_params$k,
-                             N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
 
                              energy_type = ReboundTools::graph_types$energy,
                              grid_colour = ReboundTools::graph_colours$grid,
+                             
                              grid_size = 0.5,
                              grid_linetype = "solid") {
   
@@ -150,20 +173,32 @@ iso_energy_lines <- function(.rebound_data,
 
 #' Create a data frame of iso-cost lines
 #' 
-#' This function creates a data frame of constant-energy or constant-cost lines 
+#' This function creates a data frame of constant-cost lines 
 #' at various rebound stages.
 #' The iso lines are described by slope and intercept.
 #' 
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
+#' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
+#'                at its start.
+#' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param G_dot See `ReboundTools::star_vars`.
+#' @param cost_type See `ReboundTools::graph_types$cost`.
+#' @param grid_colour See `ReboundTools::graph_colours`.
+#' @param grid_size Line width. Default is `0.5`.
+#' @param grid_linetype Line type. Default is "solid".
 #'
-#' @return
+#' @return A data frame of iso-cost lines for a cost graph.
 #' 
 #' @export
 #'
 #' @examples
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   iso_cost_lines()
 iso_cost_lines <- function(.rebound_data, 
                            indexed = FALSE,
+                           
                            C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                            C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                            C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig, 
@@ -203,38 +238,57 @@ iso_cost_lines <- function(.rebound_data,
 }
 
 
-#' Title
+#' Create iso-budget (expenditure) lines for a preferences graph
+#' 
+#' This function creates a data frame of constant-budget (expenditure) lines 
+#' at various rebound stages.
+#' The iso lines are described by slope and intercept.
+#' 
+#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
 #'
-#' @param .rebound_data 
+#' @param .rebound_data A data frame of rebound information, 
+#'                      likely created by `rebound_analysis()`.
+#' @param p_s_orig,q_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig,M_dot_orig See `ReboundTools::orig_vars`.
+#' @param p_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param q_dot_s_hat.C_dot_o_hat See `ReboundTools::hat_vars`.
+#' @param Delta_q_dot_s_hat,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_o_hat See `ReboundTools::Delta_vars`.
+#' @param prefs_type See `ReboundTools::graph_types`.
+#' @param grid_colour See `ReboundTools::graph_colours`.
+#' @param grid_size Line width. Default is `0.2`.
+#' @param grid_linetype Line type. Default is "solid".
 #'
-#' @return
+#' @return A data frame of iso-budget lines for a preferences graph.
+#' 
 #' @export
 #'
 #' @examples
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   iso_budget_lines_prefs()
 iso_budget_lines_prefs <- function(.rebound_data, 
                                    
                                    p_s_orig = ReboundTools::orig_vars$p_s_orig, 
                                    q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-                                   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
-                                   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
                                    C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                                    C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                                   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                                   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
                                    
                                    p_s_star = ReboundTools::star_vars$p_s_star,
                                    G_dot = ReboundTools::star_vars$G_dot,
-                                   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-                                   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                                    
+                                   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                                   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
+                                   
+                                   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
                                    Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                                    Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                                   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                                    
-                                   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
-                                   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
-                                     
                                    prefs_type = ReboundTools::graph_types$preferences,
                                    grid_colour = ReboundTools::graph_colours$grid,
-                                   grid_linetype = "solid",
-                                   grid_size = 0.2) {
+                                   grid_size = 0.2,
+                                   grid_linetype = "solid") {
   
   meta <- extract_meta(.rebound_data)
   
