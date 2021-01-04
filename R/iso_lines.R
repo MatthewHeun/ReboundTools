@@ -585,24 +585,39 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
 }
 
 
-#' Title
+#' Add an indifference curve to a data frame
+#' 
+#' Adds an indifference curve to a data frame of indifference curves
+#' to be plotted on a preferences graph.
+#' The indifference curves are accumulated in rows.
+#' 
+#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
 #'
-#' @param .DF 
-#' @param meta 
-#' @param graph_type 
-#' @param line_name 
-#' @param colour 
-#' @param size 
-#' @param linetype 
-#' @param qs1_qs0 
-#' @param Co1_Co0 
-#' @param f_Cs_orig 
-#' @param sigma 
+#' @param .DF A data frame that accumulates preferences curves. 
+#'            When `NULL`, the default, a new data frame is created and returned.
+#'            When not `NULL`, rows for the curves are added to the bottom of `.DF`.
+#' @param meta A data frame of metadata for the segment to be added. 
+#'             This metadata data frame provides the left-most columns of the return value.
+#' @param graph_type The graph type for the indifference curve.
+#'                   Default is `ReboundTools::graph_types$preferences`.
+#' @param line_name A name for this indifference curve.
+#' @param colour The colour for this indifference curvt. 
+#'               Default is `ReboundTools::graph_colours$grid`.
+#' @param size Line width. Default is `0.5`.
+#' @param linetype Line type. Default is "solid".
+#' @param qs1_qs0,Co1_Co0 The (x,y) coordinates of a point on this indifference curve.
+#' @param f_Cs_orig The ration of spending on the energy service to 
+#'                  the sum of initial spending on the energy service and other goods.
+#' @param sigma The elasticity of substitution between spending on the energy service and spending on other goods.
 #'
-#' @return
+#' @return A version of `.DF` with new indifference curves added at the bottom.
+#' 
 #' @export
 #'
 #' @examples
+#' meta <- tibble::tibble(Case = "Test case")
+#' add_indifference_curve(meta = meta, line_name= "Test indifference curve",
+#'                        qs1_qs0 = 2, Co1_Co0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
 add_indifference_curve <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
                                    line_name, 
                                    colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",

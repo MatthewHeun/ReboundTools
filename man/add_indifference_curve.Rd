@@ -2,7 +2,7 @@
 % Please edit documentation in R/iso_lines.R
 \name{add_indifference_curve}
 \alias{add_indifference_curve}
-\title{Title}
+\title{Add an indifference curve to a data frame}
 \usage{
 add_indifference_curve(
   .DF = NULL,
@@ -19,31 +19,45 @@ add_indifference_curve(
 )
 }
 \arguments{
-\item{.DF}{}
+\item{.DF}{A data frame that accumulates preferences curves.
+When \code{NULL}, the default, a new data frame is created and returned.
+When not \code{NULL}, rows for the curves are added to the bottom of \code{.DF}.}
 
-\item{meta}{}
+\item{meta}{A data frame of metadata for the segment to be added.
+This metadata data frame provides the left-most columns of the return value.}
 
-\item{graph_type}{}
+\item{graph_type}{The graph type for the indifference curve.
+Default is \code{ReboundTools::graph_types$preferences}.}
 
-\item{line_name}{}
+\item{line_name}{A name for this indifference curve.}
 
-\item{colour}{}
+\item{colour}{The colour for this indifference curvt.
+Default is \code{ReboundTools::graph_colours$grid}.}
 
-\item{size}{}
+\item{size}{Line width. Default is \code{0.5}.}
 
-\item{linetype}{}
+\item{linetype}{Line type. Default is "solid".}
 
-\item{qs1_qs0}{}
+\item{qs1_qs0, Co1_Co0}{The (x,y) coordinates of a point on this indifference curve.}
 
-\item{Co1_Co0}{}
+\item{f_Cs_orig}{The ration of spending on the energy service to
+the sum of initial spending on the energy service and other goods.}
 
-\item{f_Cs_orig}{}
-
-\item{sigma}{}
+\item{sigma}{The elasticity of substitution between spending on the energy service and spending on other goods.}
 }
 \value{
-
+A version of \code{.DF} with new indifference curves added at the bottom.
 }
 \description{
-Title
+Adds an indifference curve to a data frame of indifference curves
+to be plotted on a preferences graph.
+The indifference curves are accumulated in rows.
+}
+\details{
+The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+}
+\examples{
+meta <- tibble::tibble(Case = "Test case")
+add_indifference_curve(meta = meta, line_name= "Test indifference curve",
+                       qs1_qs0 = 2, Co1_Co0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
 }
