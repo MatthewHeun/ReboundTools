@@ -50,7 +50,7 @@ used for indexing.}
 \item{xend, yend}{The (x,y) coordinates of the ending point for this segment of the path.}
 }
 \value{
-A version of \code{.DF} with line segments added as the final row.
+A version of \code{.DF} with line segments added at the bottom.
 }
 \description{
 Adds a line segment to a data frame of line segments.

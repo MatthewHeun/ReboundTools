@@ -14,17 +14,38 @@ indifference_lines(
   C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
   prefs_type = ReboundTools::graph_types$preferences,
   grid_colour = ReboundTools::graph_colours$grid,
-  grid_linetype = "solid",
-  grid_size = 0.2
+  grid_size = 0.2,
+  grid_linetype = "solid"
 )
 }
 \arguments{
-\item{.rebound_data}{}
+\item{.rebound_data}{A data frame of rebound information,
+likely created by \code{rebound_analysis()}.}
+
+\item{q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma}{See \code{ReboundTools::orig_vars}.}
+
+\item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
+
+\item{prefs_type}{See \code{ReboundTools::graph_types}.}
+
+\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
+
+\item{grid_size}{Width of indifference curve lines. Default is \code{0.2}.}
+
+\item{grid_linetype}{= Line type for indifference curve lines. Default is "solid".}
 }
 \value{
-
+A data frame of indifference curves for a preferences graph.
 }
 \description{
-This function calculates parameters for indifference curves
+This function calculates indifference curves
 to be drawn on the preferences graph.
+}
+\details{
+The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+}
+\examples{
+load_eeu_data() \%>\% 
+  rebound_analysis() \%>\% 
+  indifference_lines()
 }

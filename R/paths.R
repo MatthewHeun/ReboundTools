@@ -503,7 +503,7 @@ prefs_paths <- function(.rebound_data,
 #' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
 #' @param xend,yend The (x,y) coordinates of the ending point for this segment of the path.
 #'
-#' @return A version of `.DF` with line segments added as the final row.
+#' @return A version of `.DF` with line segments added at the bottom.
 #' 
 #' @export
 #'

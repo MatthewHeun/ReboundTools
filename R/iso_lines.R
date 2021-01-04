@@ -79,7 +79,7 @@ iso_energy_lines <- function(.rebound_data,
   isos <- add_iso(indexed = indexed, 
                   meta = meta, 
                   graph_type = energy_type, 
-                  line_name = "Re = 100%", 
+                  iso_name = "Re = 100%", 
                   colour = grid_colour, 
                   size = grid_size, 
                   linetype = grid_linetype, 
@@ -94,7 +94,7 @@ iso_energy_lines <- function(.rebound_data,
     add_iso(indexed = indexed, 
             meta = meta, 
             graph_type = energy_type, 
-            line_name = "Re = 0%", 
+            iso_name = "Re = 0%", 
             colour = grid_colour, 
             size = grid_size, 
             linetype = grid_linetype, 
@@ -110,7 +110,7 @@ iso_energy_lines <- function(.rebound_data,
     add_iso(indexed = indexed, 
             meta = meta, 
             graph_type = energy_type, 
-            line_name = ReboundTools::rebound_terms$Re_empl, 
+            iso_name = ReboundTools::rebound_terms$Re_empl, 
             colour = grid_colour, 
             size = grid_size, 
             linetype = grid_linetype, 
@@ -126,7 +126,7 @@ iso_energy_lines <- function(.rebound_data,
     add_iso(indexed = indexed, 
             meta = meta, 
             graph_type = energy_type, 
-            line_name = ReboundTools::rebound_terms$Re_sub, 
+            iso_name = ReboundTools::rebound_terms$Re_sub, 
             colour = grid_colour, 
             size = grid_size, 
             linetype = grid_linetype, 
@@ -142,7 +142,7 @@ iso_energy_lines <- function(.rebound_data,
     add_iso(indexed = indexed, 
             meta = meta, 
             graph_type = energy_type, 
-            line_name = ReboundTools::rebound_terms$Re_inc, 
+            iso_name = ReboundTools::rebound_terms$Re_inc, 
             colour = grid_colour, 
             size = grid_size, 
             linetype = grid_linetype, 
@@ -159,7 +159,7 @@ iso_energy_lines <- function(.rebound_data,
     add_iso(indexed = indexed,
             meta = meta,
             graph_type = energy_type,
-            line_name = ReboundTools::rebound_terms$Re_tot,
+            iso_name = ReboundTools::rebound_terms$Re_tot,
             colour = grid_colour,
             size = grid_size,
             linetype = grid_linetype,
@@ -219,7 +219,7 @@ iso_cost_lines <- function(.rebound_data,
   x <- x_orig
   y <- y_orig
   isos <- add_iso(indexed = indexed, meta = meta, 
-                  graph_type = cost_type, line_name = ReboundTools::rebound_stages$orig,
+                  graph_type = cost_type, iso_name = ReboundTools::rebound_stages$orig,
                   colour = grid_colour, size = grid_size, linetype = grid_linetype, 
                   x_orig = x_orig, y_orig = y_orig, 
                   x = x, y = y)
@@ -229,7 +229,7 @@ iso_cost_lines <- function(.rebound_data,
   y <- y
   isos <- isos %>% 
     add_iso(indexed = indexed, meta = meta, 
-            graph_type = cost_type, line_name = "G_dot",
+            graph_type = cost_type, iso_name = "G_dot",
             colour = grid_colour, size = grid_size, linetype = grid_linetype, 
             x_orig = x_orig, y_orig = y_orig, 
             x = x, y = y)
@@ -376,16 +376,28 @@ iso_budget_lines_prefs <- function(.rebound_data,
 
 #' Indifference curve lines
 #' 
-#' This function calculates parameters for indifference curves 
+#' This function calculates indifference curves 
 #' to be drawn on the preferences graph.
 #'
-#' @param .rebound_data 
+#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
 #'
-#' @return
+#' @param .rebound_data A data frame of rebound information, 
+#'                      likely created by `rebound_analysis()`.
+#' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
+#' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
+#' @param prefs_type See `ReboundTools::graph_types`.
+#' @param grid_colour See `ReboundTools::graph_colours`.
+#' @param grid_size Width of indifference curve lines. Default is `0.2`.
+#' @param grid_linetype = Line type for indifference curve lines. Default is "solid".
+#'
+#' @return A data frame of indifference curves for a preferences graph.
 #' 
 #' @export
 #'
 #' @examples
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   indifference_lines()
 indifference_lines <- function(.rebound_data, 
                                q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
                                C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
@@ -397,8 +409,8 @@ indifference_lines <- function(.rebound_data,
                                
                                prefs_type = ReboundTools::graph_types$preferences,
                                grid_colour = ReboundTools::graph_colours$grid,
-                               grid_linetype = "solid",
-                               grid_size = 0.2) {
+                               grid_size = 0.2,
+                               grid_linetype = "solid") {
   
   meta <- extract_meta(.rebound_data)
 
@@ -446,22 +458,38 @@ indifference_lines <- function(.rebound_data,
 }
 
 
-#' Title
+#' Add a budget line to a data frame of budget lines
+#' 
+#' Adds a budget line to a data frame. 
+#' The budget lines are accumulated in rows.
+#' 
+#' There is usually no need to call this function directly. 
+#' Functions like `iso_budget_lines_prefs()` `add_iso()` 
+#' call `add_budget_line()` internally.
 #'
-#' @param .DF 
-#' @param meta 
-#' @param graph_type 
-#' @param line_name 
-#' @param colour 
-#' @param size 
-#' @param linetype 
-#' @param slope 
-#' @param intercept 
+#' @param .DF The data frame to which lines are appended. 
+#'            When `NULL`, the default, a new data frame is created and returned.
+#'            When not `NULL`, rows for the budget lines are added to the bottom of `.DF`.
+#' @param meta A data frame of metadata for the segment to be added. 
+#'             This metadata data frame provides the left-most columns of the return value.
+#' @param graph_type The type of graph associated with this segment. 
+#'                   Default is See `ReboundTools::graph_types$preferences`.
+#' @param line_name A name for this budget line 
+#' @param colour The colour for this budget line. Default is `ReboundTools::graph_colours$grid`.
+#' @param size The size (width) for this budget line Default is `0.5`.
+#' @param linetype The line type for this budget line Default is "solid".
+#' @param slope The slope of this budget line.
+#' @param intercept The intercept of this budget line.
 #'
-#' @return
+#' @return A version of `.DF` with budget lines added at the bottom.
+#' 
 #' @export
 #'
 #' @examples
+#' meta <- tibble::tibble(Case = "Test case")
+#' add_budget_line(meta = meta, 
+#'   line_name = "Test budget line", 
+#'   slope = -1, intercept = 5)
 add_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
                                   line_name,
                                   colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
@@ -485,25 +513,42 @@ add_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_t
 
 
 #' Add an iso line description to a data frame
+#' 
+#' Adds a iso line to a data frame. 
+#' The iso lines are accumulated in rows at the bottom of the data frame.
+#' 
+#' There is usually no need to call this function directly. 
+#' Functions like `iso_energy_lines()` and `iso_cost_lines()` 
+#' call `add_iso()` internally.
 #'
-#' @param .DF 
-#' @param indexed 
-#' @param meta 
-#' @param graph_type 
-#' @param iso_name 
-#' @param colour 
-#' @param size 
-#' @param linetype 
-#' @param x_orig 
-#' @param y_orig 
-#' @param x 
-#' @param y 
+#' @param .DF A data frame that accumulates iso lines. 
+#'            When `NULL`, the default, a new data frame is created and returned.
+#'            When not `NULL`, rows for the segment are added to the bottom of `.DF`.
+#' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
+#'                at its start.
+#' @param meta A data frame of metadata for the segment to be added. 
+#'             This metadata data frame provides the left-most columns of the return value.
+#' @param graph_type The type of graph associated with this segment. See `ReboundTools::graph_types`.
+#' @param iso_name A name for this iso line.
+#' @param colour The colour for this iso line. Default is `ReboundTools::graph_colours$grid`.
+#' @param size Line width. Default is `0.5`.
+#' @param linetype Line type for this iso line. Default is "solid". 
+#' @param x_orig,y_orig The (x,y) coordinates of the starting point for the path on this graph, 
+#'                      used for indexing.
+#' @param x,y The (x,y) coordinates of a point on this iso line. 
+#'            Slope and intercept are calculated from these values.
 #'
-#' @return
+#' @return A version of `.DF` with iso lines added at the bottom.
+#' 
 #' @export
 #'
 #' @examples
-add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name, 
+#' meta <- tibble::tibble(Case = "Test case")
+#' add_iso(meta = meta, graph_type = "Test type", 
+#'   iso_name = "Test segment", 
+#'   x_orig = 10, y_orig = 10, 
+#'   x = 20, y = 30)
+add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name, 
         colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid", 
         x_orig, y_orig, 
         x, y) {
@@ -534,7 +579,7 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, line_name,
     intercept <- (x + y)/y_orig
   }
   add_budget_line(.DF, meta = meta, graph_type = graph_type,
-                  line_name = line_name, colour = colour, 
+                  line_name = iso_name, colour = colour, 
                   size = size, linetype = linetype, 
                   slope = slope, intercept = intercept)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/iso_lines.R
 \name{add_budget_line}
 \alias{add_budget_line}
-\title{Title}
+\title{Add a budget line to a data frame of budget lines}
 \usage{
 add_budget_line(
   .DF = NULL,
@@ -17,27 +17,43 @@ add_budget_line(
 )
 }
 \arguments{
-\item{.DF}{}
+\item{.DF}{The data frame to which lines are appended.
+When \code{NULL}, the default, a new data frame is created and returned.
+When not \code{NULL}, rows for the budget lines are added to the bottom of \code{.DF}.}
 
-\item{meta}{}
+\item{meta}{A data frame of metadata for the segment to be added.
+This metadata data frame provides the left-most columns of the return value.}
 
-\item{graph_type}{}
+\item{graph_type}{The type of graph associated with this segment.
+Default is See \code{ReboundTools::graph_types$preferences}.}
 
-\item{line_name}{}
+\item{line_name}{A name for this budget line}
 
-\item{colour}{}
+\item{colour}{The colour for this budget line. Default is \code{ReboundTools::graph_colours$grid}.}
 
-\item{size}{}
+\item{size}{The size (width) for this budget line Default is \code{0.5}.}
 
-\item{linetype}{}
+\item{linetype}{The line type for this budget line Default is "solid".}
 
-\item{slope}{}
+\item{slope}{The slope of this budget line.}
 
-\item{intercept}{}
+\item{intercept}{The intercept of this budget line.}
 }
 \value{
-
+A version of \code{.DF} with budget lines added at the bottom.
 }
 \description{
-Title
+Adds a budget line to a data frame.
+The budget lines are accumulated in rows.
+}
+\details{
+There is usually no need to call this function directly.
+Functions like \code{iso_budget_lines_prefs()} \code{add_iso()}
+call \code{add_budget_line()} internally.
+}
+\examples{
+meta <- tibble::tibble(Case = "Test case")
+add_budget_line(meta = meta, 
+  line_name = "Test budget line", 
+  slope = -1, intercept = 5)
 }
