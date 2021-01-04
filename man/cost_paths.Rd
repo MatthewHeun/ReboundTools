@@ -2,7 +2,9 @@
 % Please edit documentation in R/paths.R
 \name{cost_paths}
 \alias{cost_paths}
-\title{Title}
+\title{Make a data frame of segments
+for a cost rebound graph.
+Each stage of the rebound process is represented in the data frame.}
 \usage{
 cost_paths(
   .rebound_data,
@@ -12,37 +14,57 @@ cost_paths(
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   G_dot = ReboundTools::star_vars$G_dot,
-  G_dot_colour = ReboundTools::graph_colours$empl,
-  G_dot_size = 1,
   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-  Delta_C_dot_cap_star_colour = "black",
-  Delta_C_dot_cap_star_size = 0.5,
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-  Delta_C_dot_md_star_colour = ReboundTools::graph_colours$empl,
-  Delta_C_dot_md_star_size = 1,
   Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
-  Delta_C_dot_s_hat_colour = ReboundTools::graph_colours$sub,
-  Delta_C_dot_s_hat_size = 1,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-  Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
-  Delta_C_dot_o_hat_size = 1,
   Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-  Delta_C_dot_s_bar_colour = ReboundTools::graph_colours$inc,
-  Delta_C_dot_s_bar_size = 0.5,
   Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  G_dot_colour = ReboundTools::graph_colours$empl,
+  Delta_C_dot_md_star_colour = ReboundTools::graph_colours$empl,
+  Delta_C_dot_s_hat_colour = ReboundTools::graph_colours$sub,
+  Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
+  Delta_C_dot_s_bar_colour = ReboundTools::graph_colours$inc,
   Delta_C_dot_o_bar_colour = ReboundTools::graph_colours$inc,
+  Delta_C_dot_cap_star_colour = "black",
+  G_dot_size = 1,
+  Delta_C_dot_cap_star_size = 0.5,
+  Delta_C_dot_md_star_size = 1,
+  Delta_C_dot_s_hat_size = 1,
+  Delta_C_dot_o_hat_size = 1,
+  Delta_C_dot_s_bar_size = 0.5,
   Delta_C_dot_o_bar_size = 0.5,
   cost_type = ReboundTools::graph_types$cost
 )
 }
 \arguments{
-\item{.rebound_data}{}
+\item{.rebound_data}{A data frame of rebound analysis results,
+likely created by \code{rebound_analysis()}.}
+
+\item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
+at its start.}
+
+\item{C_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+
+\item{G_dot}{See \code{ReboundTools::star_vars}.}
+
+\item{Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
+\item{G_dot_colour, Delta_C_dot_md_star_colour, Delta_C_dot_s_hat_colour, Delta_C_dot_o_hat_colour, Delta_C_dot_s_bar_colour, Delta_C_dot_o_bar_colour}{See \code{ReboundTools::graph_colours}.}
+
+\item{Delta_C_dot_cap_star_colour}{The colour for the capital cost segment. Default is "black".}
+
+\item{G_dot_size, Delta_C_dot_cap_star_size, Delta_C_dot_md_star_size, Delta_C_dot_s_hat_size, Delta_C_dot_o_hat_size, Delta_C_dot_s_bar_size, Delta_C_dot_o_bar_size}{Line widths.}
+
+\item{cost_type}{See \code{ReboundTools::graph_types}.}
 }
 \value{
-
+A data frame with cost rebound path segments.
 }
 \description{
-Title
+Make a data frame of segments
+for a cost rebound graph.
+Each stage of the rebound process is represented in the data frame.
 }
 \examples{
 load_eeu_data() \%>\% 

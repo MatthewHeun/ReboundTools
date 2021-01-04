@@ -31,7 +31,9 @@ Imports:
     matsindf,
     readxl,
     rlang,
-    tibble
+    tibble, 
+    tidyr,
+    xtable
 Suggests: 
     testthat (>= 3.0.0),
     covr,
