@@ -266,3 +266,20 @@ graph_colours <- list(empl = "red",
                       grid = "gray")
 usethis::use_data(graph_colours, overwrite = TRUE)
 
+
+#
+# Graph data frame column names
+# 
+
+graph_df_colnames <- list(slope_col = "slope", 
+                          intercept_col = "intercept",
+                          x_col = "x", 
+                          y_col = "y", 
+                          xend_col = "xend",
+                          yend_col = "yend",
+                          colour_col = "colour", 
+                          size_col = "size", 
+                          linetype_col = "linetype")
+usethis::use_data(graph_df_colnames, overwrite = TRUE)
+
+

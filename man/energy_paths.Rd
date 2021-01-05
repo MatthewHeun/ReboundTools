@@ -14,11 +14,11 @@ energy_paths(
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
-  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
   Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
   Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
   S_dot_dev_colour = ReboundTools::graph_colours$empl,
@@ -53,11 +53,9 @@ at its start.}
 
 \item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
 
-\item{N_dot_hat}{See \code{ReboundTools::hat_vars}.}
+\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar, N_dot_hat}{See \code{ReboundTools::Delta_vars}.}
 
-\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
-
-\item{S_dot_dev_colour, S_dot_dev_colour, Delta_E_dot_emb_star_colour, Delta_E_dot_s_hat_colour, Delta_C_dot_o_hat_I_E_colour, Delta_E_dot_s_bar_colour, Delta_C_dot_o_bar_I_E_colour, prod_colour}{See \code{ReboundTools::graph_colours}.}
+\item{S_dot_dev_colour, Delta_E_dot_emb_star_colour, Delta_E_dot_s_hat_colour, Delta_C_dot_o_hat_I_E_colour, Delta_E_dot_s_bar_colour, Delta_C_dot_o_bar_I_E_colour, prod_colour}{See \code{ReboundTools::graph_colours}.}
 
 \item{Delta_C_dot_md_star_I_E_colour}{Colour for the maintenance and disposal line. Default is "black".}
 

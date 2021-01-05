@@ -19,10 +19,12 @@
 #' @param surround_left,surround_right,leading_delta_pattern,energy_si,time_unit,currency,currency_latex,unitless,unitless_latex See `ReboundTools::rebound_units`.
 #' @param service_unit_name,energy_engr_unit_name,energy_converter,p_E_engr_units,k,I_E See `ReboundTools::eeu_base_params`.
 #' @param p_E,p_s,q_dot_s,eta_engr_units,efficiency,sigma,income_rate,income,freed_cash_rate,freed_cash,energy 
-#'        These arguments describe string patterns that identify variables for unit determination. 
+#'        These arguments describe string prefixes that identify variables for unit determination. 
 #' @param S_dot_dev,G_dot,f_Cs See `ReboundTools::star_vars`. 
 #'        These arguments describe string patterns that identify variables for unit determination. 
 #' @param elasticities,time,cost_rate,cost,energy_rate,rebound Other arguments to identify variable names.
+#' @param trim_stage_pattern A regex that trims the rebound stage from a variable name. 
+#'        Default is "_\[^_\]*$", which trims all characters beyond the last "_" in a string.
 #'        
 #' @return A string for the units for `.var_name`.
 #' 
@@ -33,7 +35,9 @@
 #' units("p_s", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 #' units("p_s_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 #' units("Delta_C_dot_o_hat", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
-#' units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), service_unit = c("lm-hr", "lm-hr"), c(energy_engr_unit = "kW-hr"))
+#' units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), 
+#'         service_unit = c("lm-hr", "lm-hr"), 
+#'         energy_engr_unit - c(energy_engr_unit = "kW-hr"))
 rebound_var_units <- function(.var_name, service_unit, energy_engr_unit, 
                               escape_latex = FALSE,
                               surround_left = ReboundTools::rebound_units$surround_left, 

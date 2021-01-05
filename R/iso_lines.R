@@ -14,6 +14,7 @@
 #' @param E_dot_s_hat,E_dot_emb_hat,C_dot_md_hat,C_dot_o_hat,N_dot_hat See `ReboundTools::hat_vars`.
 #' @param E_dot_s_bar,E_dot_emb_bar,C_dot_md_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
 #' @param E_dot_s_bar,E_dot_emb_bar,C_dot_md_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
+#' @param E_dot_s_tilde,E_dot_emb_tilde,C_dot_md_tilde,C_dot_o_tilde See `ReboundTools::tilde_vars`.
 #' @param energy_type See `ReboundTools::graph_types`.
 #' @param grid_colour See `ReboundTools::graph_colours`.
 #' @param grid_size Line width for iso-energy lines. Default is `0.5`.
@@ -250,7 +251,7 @@ iso_cost_lines <- function(.rebound_data,
 #'                      likely created by `rebound_analysis()`.
 #' @param p_s_orig,q_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig,M_dot_orig See `ReboundTools::orig_vars`.
 #' @param p_s_star,G_dot See `ReboundTools::star_vars`.
-#' @param q_dot_s_hat.C_dot_o_hat See `ReboundTools::hat_vars`.
+#' @param q_dot_s_hat,C_dot_o_hat See `ReboundTools::hat_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_o_hat See `ReboundTools::Delta_vars`.
 #' @param prefs_type See `ReboundTools::graph_types`.
 #' @param grid_colour See `ReboundTools::graph_colours`.
@@ -601,7 +602,7 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
 #' @param graph_type The graph type for the indifference curve.
 #'                   Default is `ReboundTools::graph_types$preferences`.
 #' @param line_name A name for this indifference curve.
-#' @param colour The colour for this indifference curvt. 
+#' @param colour The colour for this indifference curve. 
 #'               Default is `ReboundTools::graph_colours$grid`.
 #' @param size Line width. Default is `0.5`.
 #' @param linetype Line type. Default is "solid".

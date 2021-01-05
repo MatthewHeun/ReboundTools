@@ -67,7 +67,10 @@ rebound_var_units(
 
 \item{service_unit_name, energy_engr_unit_name, energy_converter, p_E_engr_units, k, I_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, income_rate, income, freed_cash_rate, freed_cash, energy}{These arguments describe string patterns that identify variables for unit determination.}
+\item{trim_stage_pattern}{A regex that trims the rebound stage from a variable name.
+Default is "\emph{[^}]*$", which trims all characters beyond the last "_" in a string.}
+
+\item{p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, income_rate, income, freed_cash_rate, freed_cash, energy}{These arguments describe string prefixes that identify variables for unit determination.}
 
 \item{S_dot_dev, G_dot, f_Cs}{See \code{ReboundTools::star_vars}.
 These arguments describe string patterns that identify variables for unit determination.}
@@ -96,5 +99,7 @@ units("eta_engr_units_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr")
 units("p_s", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 units("p_s_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 units("Delta_C_dot_o_hat", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
-units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), service_unit = c("lm-hr", "lm-hr"), c(energy_engr_unit = "kW-hr"))
+units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), 
+        service_unit = c("lm-hr", "lm-hr"), 
+        energy_engr_unit - c(energy_engr_unit = "kW-hr"))
 }

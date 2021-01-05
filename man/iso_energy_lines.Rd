@@ -54,6 +54,8 @@ at its start.}
 
 \item{E_dot_s_bar, E_dot_emb_bar, C_dot_md_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
 
+\item{E_dot_s_tilde, E_dot_emb_tilde, C_dot_md_tilde, C_dot_o_tilde}{See \code{ReboundTools::tilde_vars}.}
+
 \item{energy_type}{See \code{ReboundTools::graph_types}.}
 
 \item{grid_colour}{See \code{ReboundTools::graph_colours}.}

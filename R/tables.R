@@ -3,16 +3,18 @@
 #' A stages table has variables in rows and stages in columns.
 #' These tables enable tracking of variables across the different stages of rebound.
 #'
-#' @param .results A data frame, usually the result of calling `rebound_analysis()`. Default is `rebound_analysis(load_eeu_data(file))`.
+#' @param .analysis_data A data frame, usually the result of calling `rebound_analysis()`. Default is `rebound_analysis(load_eeu_data(file))`.
+#' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
+#' @param escape_latex When `TRUE` (the default), return LaTeX-compatible versions of strings.
 #' @param vars A list of variables for rows of the table. Default is `ReboundTools::key_analysis_vars`.
 #'             Variable order is preserved in the table.
-#' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
 #' @param latex_vars See `ReboundTools::latex_key_analysis_vars`. Set `NULL` to prevent conversion to LaTeX variable names.
 #' @param stages A list of stages for columns of the table. Default is `ReboundTools::rebound_stages`.
 #'               Stage order is preserved in the table.
 #' @param latex_stages See `ReboundTools::latex_rebound_stages`. Set `NULL` to prevent conversion to LaTeX stage names.
 #' @param file An optional path to a file. Default is `sample_eeu_data_path()`.
 #' @param case See `ReboundTools::eeu_base_params`.
+#' @param service_unit,energy_engr_unit See `ReboundTools::eeu_base_params`.
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
 #' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.

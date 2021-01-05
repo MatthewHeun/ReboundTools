@@ -26,7 +26,11 @@ stages_table(
 )
 }
 \arguments{
+\item{.analysis_data}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
+
 \item{add_units}{When \code{TRUE} (the default), adds a unit specification to variable names in the table.}
+
+\item{escape_latex}{When \code{TRUE} (the default), return LaTeX-compatible versions of strings.}
 
 \item{vars}{A list of variables for rows of the table. Default is \code{ReboundTools::key_analysis_vars}.
 Variable order is preserved in the table.}
@@ -42,12 +46,12 @@ Stage order is preserved in the table.}
 
 \item{case}{See \code{ReboundTools::eeu_base_params}.}
 
+\item{service_unit, energy_engr_unit}{See \code{ReboundTools::eeu_base_params}.}
+
 \item{...}{Arguments passed to \code{xtable::xtable()}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
 
 \item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
-
-\item{.results}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
 }
 \value{
 An \code{xtable} object giving the details of the table.

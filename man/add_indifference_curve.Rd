@@ -31,7 +31,7 @@ Default is \code{ReboundTools::graph_types$preferences}.}
 
 \item{line_name}{A name for this indifference curve.}
 
-\item{colour}{The colour for this indifference curvt.
+\item{colour}{The colour for this indifference curve.
 Default is \code{ReboundTools::graph_colours$grid}.}
 
 \item{size}{Line width. Default is \code{0.5}.}

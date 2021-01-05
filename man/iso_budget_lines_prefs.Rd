@@ -34,6 +34,8 @@ likely created by \code{rebound_analysis()}.}
 
 \item{p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
+\item{q_dot_s_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
+
 \item{Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_o_hat}{See \code{ReboundTools::Delta_vars}.}
 
 \item{prefs_type}{See \code{ReboundTools::graph_types}.}
@@ -43,8 +45,6 @@ likely created by \code{rebound_analysis()}.}
 \item{grid_size}{Line width. Default is \code{0.2}.}
 
 \item{grid_linetype}{Line type. Default is "solid".}
-
-\item{q_dot_s_hat.C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
 }
 \value{
 A data frame of iso-budget lines for a preferences graph.

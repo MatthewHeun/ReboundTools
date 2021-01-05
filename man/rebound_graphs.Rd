@@ -8,12 +8,26 @@ rebound_graphs(
   .path_data,
   .grid_data = NULL,
   .indifference_data = NULL,
-  arrow = NULL
+  colour_col = ReboundTools::graph_df_colnames$colour_col,
+  size_col = ReboundTools::graph_df_colnames$size_col,
+  linetype_col = ReboundTools::graph_df_colnames$linetype_col,
+  slope_col = ReboundTools::graph_df_colnames$slope_col,
+  intercept_col = ReboundTools::graph_df_colnames$intercept_col,
+  x_col = ReboundTools::graph_df_colnames$x_col,
+  y_col = ReboundTools::graph_df_colnames$y_col,
+  xend_col = ReboundTools::graph_df_colnames$xend_col,
+  yend_col = ReboundTools::graph_df_colnames$yend_col
 )
 }
 \arguments{
 \item{.path_data}{A data frame of paths to be added to the graph.
 The columns "colour" and "size" control the colour and width of the segment}
+
+\item{.grid_data}{A data frame of lines to be added to the graph.}
+
+\item{.indifference_data}{A data frame of indifference curves to be added to the graph.}
+
+\item{colour_col, size_col, linetype_col, slope_col, intercept_col, x_col, y_col, xend_col, yend_col}{See \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A ggplot2 object with the graphs
@@ -24,6 +38,6 @@ Create a path map for rebound analysis
 \examples{
 load_eeu_data() \%>\% 
   rebound_analysis() \%>\% 
-  rebound_paths() \%>\% 
+  energy_paths() \%>\% 
   rebound_graphs()
 }
