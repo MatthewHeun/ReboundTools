@@ -15,6 +15,7 @@
 #' @param case See `ReboundTools::eeu_base_params`.
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
+#' @param .var,.stage,.var_stage,.value,.name,.latex_var_name Column names used internally.
 #'
 #' @return An `xtable` object giving the details of the table.
 #' 
@@ -33,14 +34,15 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
                          case = ReboundTools::eeu_base_params$case, 
                          service_unit = ReboundTools::eeu_base_params$service_unit,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
+                         var_name = ReboundTools::cnames_latex_key_analysis_vars$var_name,
+                         latex_var_name = ReboundTools::cnames_latex_key_analysis_vars$latex_var_name,
                          ..., 
                          # internal names
                          .var = ".var",
                          .stage = ".stage", 
                          .var_stage = ".var_stage", 
                          .value = ".value", 
-                         .name = ".name"
-                         ) {
+                         .name = ".name") {
   
   # Build a data frame of all analysis variables.
   analysis_vars <- expand.grid(vars, stages) %>% 
@@ -55,7 +57,7 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
 
   # Gather the data for the stages table.
   rebound_table_data <- .analysis_data %>% 
-    dplyr::select(any_of(case),
+    dplyr::select(dplyr::any_of(case),
                   dplyr::all_of(analysis_vars), 
                   dplyr::any_of(service_unit), 
                   dplyr::any_of(energy_engr_unit)) %>% 
@@ -82,13 +84,14 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     
   # Add LaTeX variable names, if not NULL.
   if (!is.null(latex_vars)) {
-    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, by = c(.name = "var_name")) %>% 
+    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, by = c(.name = var_name)) %>% 
       dplyr::mutate(
         "{.name}" := NULL
       ) %>% 
       dplyr::rename(
         "{.name}" := latex_var_name
       ) %>% 
+      # stages[[1]] is the first stage, usually "orig".
       dplyr::relocate(.data[[.name]], .before = stages[[1]])
   }
   # Now add the units to the variable name, if desired.
