@@ -21,29 +21,37 @@ rebound_var_units(
   service_unit_name = ReboundTools::eeu_base_params$service_unit,
   energy_engr_unit_name = ReboundTools::eeu_base_params$energy_engr_unit,
   energy_converter = ReboundTools::eeu_base_params$MJ_engr_unit,
-  p_E_engr_units = "p_E_engr_units",
-  p_E = "p_E",
-  p_s = "p_s",
-  q_dot_s = "q_dot_s",
-  efficiency_engr_units = "eta_engr_units",
-  efficiency = "eta",
-  k = "k",
-  I_E = "I_E",
+  p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
+  k = ReboundTools::eeu_base_params$k,
+  I_E = ReboundTools::eeu_base_params$I_E,
+  trim_stage_pattern = "_[^_]*$",
+  p_E = ReboundTools::orig_vars$p_E,
+  p_s = sub(x = ReboundTools::orig_vars$p_s_orig, pattern = trim_stage_pattern,
+    replacement = ""),
+  q_dot_s = sub(x = ReboundTools::orig_vars$q_dot_s_orig, pattern = trim_stage_pattern,
+    replacement = ""),
+  eta_engr_units = sub(x = ReboundTools::orig_vars$eta_engr_units_orig, pattern =
+    trim_stage_pattern, replacement = ""),
+  efficiency = sub(x = ReboundTools::orig_vars$eta_orig, pattern = trim_stage_pattern,
+    replacement = ""),
+  sigma = ReboundTools::orig_vars$sigma,
+  income_rate = sub(x = ReboundTools::orig_vars$M_dot_orig, pattern =
+    trim_stage_pattern, replacement = ""),
+  income = sub(x = income_rate, pattern = trim_stage_pattern, replacement = ""),
+  freed_cash_rate = sub(x = ReboundTools::orig_vars$N_dot_orig, pattern =
+    trim_stage_pattern, replacement = ""),
+  freed_cash = sub(x = freed_cash_rate, pattern = trim_stage_pattern, replacement = ""),
+  energy = sub(x = energy_rate, pattern = trim_stage_pattern, replacement = ""),
+  S_dot_dev = ReboundTools::star_vars$S_dot_dev,
+  G_dot = ReboundTools::star_vars$G_dot,
+  f_Cs = sub(x = ReboundTools::orig_vars$f_Cs_orig, pattern = trim_stage_pattern,
+    replacement = ""),
   elasticities = "e",
-  sigma = "sigma",
   time = "t_",
   cost_rate = "C_dot",
   cost = "C_",
-  income_rate = "M_dot",
-  income = "M",
-  freed_cash_rate = "N_dot",
-  freed_cash = "N",
   energy_rate = "E_dot",
-  energy = "E",
-  S_dot_dev = "S_dot_dev",
-  G_dot = "G_dot",
-  rebound = "Re_",
-  f_Cs = "f_Cs"
+  rebound = "Re_"
 )
 }
 \arguments{
@@ -55,75 +63,16 @@ rebound_var_units(
 
 \item{escape_latex}{A boolean that tells whether to encode the result as LaTeX output.}
 
-\item{surround_left}{A string to add at the leading end of the result. Default is "[".}
+\item{surround_left, surround_right, leading_delta_pattern, energy_si, time_unit, currency, currency_latex, unitless, unitless_latex}{See \code{ReboundTools::rebound_units}.}
 
-\item{surround_right}{A string to add at the trailing end of the result. Default is "]".}
+\item{service_unit_name, energy_engr_unit_name, energy_converter, p_E_engr_units, k, I_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{leading_delta_pattern}{A regex pattern identifying a leading "Delta_". Default is "^Delta_".}
+\item{p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, income_rate, income, freed_cash_rate, freed_cash, energy}{These arguments describe string patterns that identify variables for unit determination.}
 
-\item{energy_si}{}
+\item{S_dot_dev, G_dot, f_Cs}{See \code{ReboundTools::star_vars}.
+These arguments describe string patterns that identify variables for unit determination.}
 
-\item{time_unit}{}
-
-\item{currency}{}
-
-\item{currency_latex}{}
-
-\item{unitless}{}
-
-\item{unitless_latex}{}
-
-\item{service_unit_name}{}
-
-\item{energy_engr_unit_name}{}
-
-\item{energy_converter}{}
-
-\item{p_E_engr_units}{}
-
-\item{p_E}{}
-
-\item{p_s}{}
-
-\item{q_dot_s}{}
-
-\item{efficiency_engr_units}{}
-
-\item{efficiency}{}
-
-\item{k}{}
-
-\item{I_E}{}
-
-\item{elasticities}{}
-
-\item{sigma}{}
-
-\item{time}{}
-
-\item{cost_rate}{}
-
-\item{cost}{}
-
-\item{income_rate}{}
-
-\item{income}{}
-
-\item{freed_cash_rate}{}
-
-\item{freed_cash}{}
-
-\item{energy_rate}{}
-
-\item{energy}{}
-
-\item{S_dot_dev}{}
-
-\item{G_dot}{}
-
-\item{rebound}{}
-
-\item{f_Cs}{}
+\item{elasticities, time, cost_rate, cost, energy_rate, rebound}{Other arguments to identify variable names.}
 }
 \value{
 A string for the units for \code{.var_name}.
