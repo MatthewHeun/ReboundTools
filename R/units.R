@@ -37,9 +37,10 @@
 #' @param S_dot_dev 
 #' @param G_dot 
 #' @param rebound 
-#' @param f_Cs_ 
+#' @param f_Cs
 #'
-#' @return
+#' @return A string for the units for `.var_name`.
+#' 
 #' @export
 #'
 #' @examples
@@ -83,7 +84,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
                   S_dot_dev = "S_dot_dev",
                   G_dot = "G_dot",
                   rebound = "Re_", 
-                  f_Cs_ = "f_Cs"
+                  f_Cs = "f_Cs"
                   ) {
   
   if (escape_latex) {
@@ -175,7 +176,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
     
     # Rebound
     
-    else if (startsWith(v, rebound) | startsWith(v, f_Cs_)) {
+    else if (startsWith(v, rebound) | startsWith(v, f_Cs)) {
       out <- unitless
     }
     

@@ -43,7 +43,7 @@ units(
   S_dot_dev = "S_dot_dev",
   G_dot = "G_dot",
   rebound = "Re_",
-  f_Cs_ = "f_Cs"
+  f_Cs = "f_Cs"
 )
 }
 \arguments{
@@ -119,10 +119,10 @@ units(
 
 \item{rebound}{}
 
-\item{f_Cs_}{}
+\item{f_Cs}{}
 }
 \value{
-
+A string for the units for \code{.var_name}.
 }
 \description{
 Units for variables
