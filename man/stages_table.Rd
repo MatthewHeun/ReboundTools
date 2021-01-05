@@ -16,14 +16,13 @@ stages_table(
   case = ReboundTools::eeu_base_params$case,
   service_unit = ReboundTools::eeu_base_params$service_unit,
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
-  var_name = ReboundTools::cnames_latex_key_analysis_vars$var_name,
-  latex_var_name = ReboundTools::cnames_latex_key_analysis_vars$latex_var_name,
   ...,
   .var = ".var",
   .stage = ".stage",
   .var_stage = ".var_stage",
   .value = ".value",
-  .name = ".name"
+  .name = ".name",
+  .unit_col = ".unit_col"
 )
 }
 \arguments{
@@ -46,7 +45,7 @@ Stage order is preserved in the table.}
 \item{...}{Arguments passed to \code{xtable::xtable()}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
 
-\item{.var, .stage, .var_stage, .value, .name, .latex_var_name}{Column names used internally.}
+\item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
 
 \item{.results}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
 }

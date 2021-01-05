@@ -30,15 +30,6 @@ usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
 
 
 #
-# Names of columns in the latex_key_analysis_vars data frame
-# 
-
-cnames_latex_key_analysis_vars <- names(latex_key_analysis_vars) %>% as.list()
-names(cnames_latex_key_analysis_vars) <- cnames_latex_key_analysis_vars
-usethis::use_data(cnames_latex_key_analysis_vars, overwrite = TRUE)
-
-
-#
 # Names of key rebound variables
 # 
 

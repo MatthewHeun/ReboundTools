@@ -31,21 +31,6 @@
 "latex_key_analysis_vars"
 
 
-#' Column names for LaTeX key analysis variables
-#' 
-#' A list of column names for `latex_key_analysis_vars`. 
-#' 
-#' @format A list with `r length(cnames_latex_key_analysis_vars)` columns.
-#' \describe{
-#' \item{var_name}{The name for the column of variable names.}
-#' \item{latex_var_name}{The name of the column of LaTeX variable names.}
-#' }
-#' 
-#' @examples
-#' cnames_latex_key_analysis_vars
-"cnames_latex_key_analysis_vars"
-
-
 #' Key analysis variables 
 #' 
 #' This is the list of key rebound analysis variables.

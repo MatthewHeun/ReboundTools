@@ -15,7 +15,7 @@
 #' @param case See `ReboundTools::eeu_base_params`.
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
-#' @param .var,.stage,.var_stage,.value,.name,.latex_var_name Column names used internally.
+#' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
 #'
 #' @return An `xtable` object giving the details of the table.
 #' 
@@ -34,15 +34,14 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
                          case = ReboundTools::eeu_base_params$case, 
                          service_unit = ReboundTools::eeu_base_params$service_unit,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
-                         var_name = ReboundTools::cnames_latex_key_analysis_vars$var_name,
-                         latex_var_name = ReboundTools::cnames_latex_key_analysis_vars$latex_var_name,
                          ..., 
                          # internal names
                          .var = ".var",
                          .stage = ".stage", 
                          .var_stage = ".var_stage", 
                          .value = ".value", 
-                         .name = ".name") {
+                         .name = ".name",
+                         .unit_col = ".unit_col") {
   
   # Build a data frame of all analysis variables.
   analysis_vars <- expand.grid(vars, stages) %>% 
@@ -76,7 +75,7 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     dplyr::arrange() %>% 
     tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
     dplyr::mutate(
-      unit_col = units(.var_name = .data[[.name]], 
+      "{.unit_col}" := units(.var_name = .data[[.name]], 
                        service_unit = .data[[service_unit]],
                        energy_engr_unit = .data[[energy_engr_unit]], 
                        escape_latex = escape_latex)
@@ -84,7 +83,11 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     
   # Add LaTeX variable names, if not NULL.
   if (!is.null(latex_vars)) {
-    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, by = c(.name = var_name)) %>% 
+    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, 
+                                           # names(latex_vars))[[1]] is the name of the 
+                                           # first column in the latex_vars data frame.
+                                           # It is the column by which we want to join.
+                                           by = c(.name = names(latex_vars)[[1]]) ) %>% 
       dplyr::mutate(
         "{.name}" := NULL
       ) %>% 
@@ -98,8 +101,8 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
   if (add_units) {
     rebound_table_data <- rebound_table_data %>% 
       dplyr::mutate(
-        "{.name}" := paste(.data[[.name]], unit_col),
-        unit_col = NULL
+        "{.name}" := paste(.data[[.name]], .data[[.unit_col]]),
+        "{.unit_col}" = NULL
       )
   }
   # At this point, we're done with the unit information, so delete those columns, if they exist.
@@ -112,15 +115,19 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
   # Add LaTeX column names, if not NULL.
   if (!is.null(latex_stages)) {
     rebound_table_data <- rebound_table_data %>% 
-      tidyr::pivot_longer(cols = unlist(stages), names_to = "stage", values_to = "values") %>% 
-      dplyr::left_join(latex_stages, by = "stage") %>% 
+      tidyr::pivot_longer(cols = unlist(stages), names_to = .stage, values_to = .value) %>% 
+      dplyr::left_join(latex_stages, 
+                       # (latex_vars))[[1]] is the name of the 
+                       # first column in the latex_vars data frame.
+                       # It is the column by which we want to join.
+                       by = c(.stage = names(latex_stages)[[1]])) %>% 
       dplyr::mutate(
-        stage = NULL
+        "{.stage}" := NULL
       ) %>% 
       dplyr::rename(
-        stage = "latex_stage_name"
+        "{.stage}" := .data[[ names(latex_stages)[[2]] ]]
       ) %>% 
-      tidyr::pivot_wider(names_from = "stage", values_from = "values")
+      tidyr::pivot_wider(names_from = .stage, values_from = .value)
   }
   # Eliminate "name" title from name column. It looks stupid.
   rebound_table_data <- rebound_table_data %>% 
