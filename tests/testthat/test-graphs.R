@@ -112,8 +112,7 @@ test_that("rebound_graphs() works with a cost-only graph with grids", {
   abs_car_cost_graph <- rebound_graphs(paths, abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
-                        scales = "free") + 
-    MKHthemes::xy_theme()
+                        scales = "free") 
   expect_true(!is.null(abs_car_cost_graph))
   
   # Now try with indexed data

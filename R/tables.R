@@ -75,10 +75,10 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     dplyr::arrange() %>% 
     tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
     dplyr::mutate(
-      "{.unit_col}" := units(.var_name = .data[[.name]], 
-                       service_unit = .data[[service_unit]],
-                       energy_engr_unit = .data[[energy_engr_unit]], 
-                       escape_latex = escape_latex)
+      "{.unit_col}" := rebound_var_units(.var_name = .data[[.name]], 
+                                         service_unit = .data[[service_unit]],
+                                         energy_engr_unit = .data[[energy_engr_unit]], 
+                                         escape_latex = escape_latex)
     )
     
   # Add LaTeX variable names, if not NULL.

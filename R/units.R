@@ -1,13 +1,26 @@
 #' Units for variables
 #'
-#'
-#' @param .var_name 
-#' @param service_unit 
-#' @param energy_engr_unit 
-#' @param escape_latex 
-#' @param surround_left 
-#' @param surround_right 
-#' @param leading_delta 
+#' Determine the unit for a variable in the rebound framework.
+#' 
+#' Information about the particular case is required, 
+#' thus `service_unit` and `energy_engr_unit` are arguments.
+#' 
+#' To surround the result with a string, 
+#' both `surround_left` and `surround_right` must be specified.
+#' For example setting `surround_left = "["` and `surround_right = "]"` (the defaults)
+#' gives "\[unit\]".
+#' 
+#' This function is vectorized.
+#'  
+#' @param .var_name The variable name for which the unit is to be determined.
+#' @param service_unit The energy service unit for this case (a string).
+#' @param energy_engr_unit The engineering unit for energy (a string).
+#' @param escape_latex A boolean that tells whether to encode the result as LaTeX output.
+#' @param surround_left A string to add at the leading end of the result. Default is "\[".
+#' @param surround_right A string to add at the trailing end of the result. Default is "\]".
+#' @param leading_delta_pattern A regex pattern identifying a leading "Delta_". Default is "^Delta_".
+#' @param service_unit_name 
+#' @param energy_engr_unit_name 
 #' @param energy_converter 
 #' @param energy_si 
 #' @param time_unit 
@@ -37,7 +50,7 @@
 #' @param S_dot_dev 
 #' @param G_dot 
 #' @param rebound 
-#' @param f_Cs
+#' @param f_Cs 
 #'
 #' @return A string for the units for `.var_name`.
 #' 
@@ -48,44 +61,46 @@
 #' units("p_s", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 #' units("p_s_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 #' units("Delta_C_dot_o_hat", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
-units <- function(.var_name, service_unit, energy_engr_unit, 
-                  escape_latex = FALSE,
-                  surround_left = "[", 
-                  surround_right = "]",
-                  leading_delta = "^Delta_", 
-                  service_unit_name = "service_unit",
-                  energy_engr_unit_name = "energy_engr_unit",
-                  energy_converter = "MJ/energy_engr_unit",
-                  energy_si = "MJ",
-                  time_unit = "year",
-                  currency = "$", 
-                  currency_latex = "\\$",
-                  unitless = "-", 
-                  unitless_latex = "--",
-                  p_E_engr_units = "p_E_engr_units",
-                  p_E = "p_E",
-                  p_s = "p_s", 
-                  q_dot_s = "q_dot_s",
-                  efficiency_engr_units = "eta_engr_units",
-                  efficiency = "eta",
-                  k = "k", 
-                  I_E = "I_E",
-                  elasticities = "e",
-                  sigma = "sigma",
-                  time = "t_", 
-                  cost_rate = "C_dot",
-                  cost = "C_",
-                  income_rate = "M_dot", 
-                  income = "M", 
-                  freed_cash_rate = "N_dot", 
-                  freed_cash = "N",
-                  energy_rate = "E_dot", 
-                  energy = "E",
-                  S_dot_dev = "S_dot_dev",
-                  G_dot = "G_dot",
-                  rebound = "Re_", 
-                  f_Cs = "f_Cs"
-                  ) {
+#' units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), service_unit = c("lm-hr", "lm-hr"), c(energy_engr_unit = "kW-hr"))
+rebound_var_units <- function(.var_name, service_unit, energy_engr_unit, 
+                              escape_latex = FALSE,
+                              surround_left = ReboundTools::rebound_units$surround_left, 
+                              surround_right = ReboundTools::rebound_units$surround_right,
+                              leading_delta_pattern = ReboundTools::rebound_units$leading_delta_pattern,
+                              energy_si = ReboundTools::rebound_units$energy_si,
+                              time_unit = ReboundTools::rebound_units$time_unit,
+                              currency = ReboundTools::rebound_units$currency_unit, 
+                              currency_latex = ReboundTools::rebound_units$currency_unit_latex,
+                              unitless = ReboundTools::rebound_units$unitless, 
+                              unitless_latex = ReboundTools::rebound_units$unitless_latex,
+                              
+                              service_unit_name = ReboundTools::eeu_base_params$service_unit,
+                              energy_engr_unit_name = ReboundTools::eeu_base_params$energy_engr_unit,
+                              energy_converter = ReboundTools::eeu_base_params$MJ_engr_unit,
+                              p_E_engr_units = "p_E_engr_units",
+                              p_E = "p_E",
+                              p_s = "p_s", 
+                              q_dot_s = "q_dot_s",
+                              efficiency_engr_units = "eta_engr_units",
+                              efficiency = "eta",
+                              k = "k", 
+                              I_E = "I_E",
+                              elasticities = "e",
+                              sigma = "sigma",
+                              time = "t_", 
+                              cost_rate = "C_dot",
+                              cost = "C_",
+                              income_rate = "M_dot", 
+                              income = "M", 
+                              freed_cash_rate = "N_dot", 
+                              freed_cash = "N",
+                              energy_rate = "E_dot", 
+                              energy = "E",
+                              S_dot_dev = "S_dot_dev",
+                              G_dot = "G_dot",
+                              rebound = "Re_", 
+                              f_Cs = "f_Cs"
+) {
   
   if (escape_latex) {
     currency <- currency_latex
@@ -95,7 +110,7 @@ units <- function(.var_name, service_unit, energy_engr_unit,
   Map(.var_name, service_unit, energy_engr_unit, f = function(v, su, eu) {
 
     # Get rid of leading "Delta_", if it exists.
-    v <- sub(pattern = leading_delta, replacement = "", v)
+    v <- sub(pattern = leading_delta_pattern, replacement = "", v)
     
     # Service unit and energy_engr_unit
     if (startsWith(v, service_unit_name)) {

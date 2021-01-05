@@ -15,6 +15,22 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 
 #
+# Units information
+# 
+
+rebound_units <- list(energy_si = "MJ", 
+                      time_unit = "year", 
+                      currency_unit = "$",
+                      currency_unit_latex = "\\$",
+                      unitless = "-",
+                      unitless_latex = "--", 
+                      leading_delta_pattern = "^Delta_",
+                      surround_left = "[", 
+                      surround_right = "]")
+usethis::use_data(rebound_units, overwrite = TRUE)
+
+
+#
 # Names of key rebound variables in LaTeX format
 # 
 
