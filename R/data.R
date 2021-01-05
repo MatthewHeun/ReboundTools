@@ -16,6 +16,21 @@
 "eeu_data_table"
 
 
+#' LaTeX key analysis variables
+#' 
+#' A data frame of key analysis variables in LaTeX formatting.
+#' 
+#' @format A data frame with `r length(latex_key_analysis_vars)` columns.
+#' \describe{
+#' \item{var_name}{The text name for key analysis variables.}
+#' \item{latex_var_name}{The LaTeX key analysis variable name.}
+#' }
+#' 
+#' @examples
+#' latex_key_analysis_vars
+"latex_key_analysis_vars"
+
+
 #' Key analysis variables 
 #' 
 #' This is the list of key rebound analysis variables.
@@ -38,21 +53,6 @@
 #' @examples
 #' key_analysis_vars
 "key_analysis_vars"
-
-
-#' LaTeX key analysis variables
-#' 
-#' A data frame of key analysis variables in LaTeX formatting.
-#' 
-#' @format A data frame with `r length(latex_key_analysis_vars)` columns.
-#' \describe{
-#' \item{var_name}{The text name for key analysis variables.}
-#' \item{latex_var_name}{The LaTeX key analysis variable name.}
-#' }
-#' 
-#' @examples
-#' latex_key_analysis_vars
-"latex_key_analysis_vars"
 
 
 #' Rebound stages

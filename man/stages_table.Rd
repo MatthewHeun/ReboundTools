@@ -18,7 +18,11 @@ stages_table(
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
   ...,
   .var = ".var",
-  .stage = ".stage"
+  .stage = ".stage",
+  .var_stage = ".var_stage",
+  .value = ".value",
+  .name = ".name",
+  .unit_col = ".unit_col"
 )
 }
 \arguments{
@@ -40,6 +44,8 @@ Stage order is preserved in the table.}
 
 \item{...}{Arguments passed to \code{xtable::xtable()}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
+
+\item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
 
 \item{.results}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
 }
