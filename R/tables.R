@@ -33,22 +33,29 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
                          case = ReboundTools::eeu_base_params$case, 
                          service_unit = ReboundTools::eeu_base_params$service_unit,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
-                         ...) {
+                         ..., 
+                         # internal names
+                         .var = ".var",
+                         .stage = ".stage"
+                         ) {
   
   # Build a data frame of all analysis variables.
   analysis_vars <- expand.grid(vars, stages) %>% 
-    magrittr::set_names(c("var", "stage")) %>% 
+    magrittr::set_names(c(.var, .stage)) %>% 
     dplyr::mutate(
-      vars_col = paste(var, stage, sep = "_"), 
-      var = NULL, 
-      stage = NULL
+      vars_col = paste(.data[[.var]], .data[[.stage]], sep = "_"), 
+      "{.var}" := NULL, 
+      "{.stage}" := NULL
     ) %>% 
     unlist() %>% 
     unname()
 
   # Gather the data for the stages table.
   rebound_table_data <- .analysis_data %>% 
-    dplyr::select(any_of(case), all_of(analysis_vars), any_of(service_unit), any_of(energy_engr_unit)) %>% 
+    dplyr::select(any_of(case),
+                  dplyr::all_of(analysis_vars), 
+                  dplyr::any_of(service_unit), 
+                  dplyr::any_of(energy_engr_unit)) %>% 
     tidyr::pivot_longer(cols = all_of(analysis_vars), names_to = "var_stage", values_to = "value") %>% 
     dplyr::mutate(
       # Delete everything from the last "_" to the end of the string, inclusive.

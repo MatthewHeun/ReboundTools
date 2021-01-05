@@ -16,7 +16,9 @@ stages_table(
   case = ReboundTools::eeu_base_params$case,
   service_unit = ReboundTools::eeu_base_params$service_unit,
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
-  ...
+  ...,
+  .var = ".var",
+  .stage = ".stage"
 )
 }
 \arguments{
