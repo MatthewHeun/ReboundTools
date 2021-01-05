@@ -92,7 +92,9 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
         "{.name}" := NULL
       ) %>% 
       dplyr::rename(
-        "{.name}" := latex_var_name
+        # names(latex_vars)[[2]] is the name of the column in latex_vars
+        # that contains the LaTeX version of the names.
+        "{.name}" := .data[[ names(latex_vars)[[2]] ]]
       ) %>% 
       # stages[[1]] is the first stage, usually "orig".
       dplyr::relocate(.data[[.name]], .before = stages[[1]])
