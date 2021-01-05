@@ -18,7 +18,10 @@ stages_table(
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
   ...,
   .var = ".var",
-  .stage = ".stage"
+  .stage = ".stage",
+  .var_stage = ".var_stage",
+  .value = ".value",
+  .name = ".name"
 )
 }
 \arguments{

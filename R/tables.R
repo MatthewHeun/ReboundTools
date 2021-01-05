@@ -36,7 +36,10 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
                          ..., 
                          # internal names
                          .var = ".var",
-                         .stage = ".stage"
+                         .stage = ".stage", 
+                         .var_stage = ".var_stage", 
+                         .value = ".value", 
+                         .name = ".name"
                          ) {
   
   # Build a data frame of all analysis variables.
@@ -56,20 +59,22 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
                   dplyr::all_of(analysis_vars), 
                   dplyr::any_of(service_unit), 
                   dplyr::any_of(energy_engr_unit)) %>% 
-    tidyr::pivot_longer(cols = all_of(analysis_vars), names_to = "var_stage", values_to = "value") %>% 
+    tidyr::pivot_longer(cols = dplyr::all_of(analysis_vars), 
+                        names_to = .var_stage, 
+                        values_to = .value) %>% 
     dplyr::mutate(
       # Delete everything from the last "_" to the end of the string, inclusive.
-      name = sub(x = var_stage, pattern = "_[^_]*$", replacement = ""),
-      name = factor(name, levels = vars),
+      "{.name}" := sub(x = .data[[.var_stage]], pattern = "_[^_]*$", replacement = ""),
+      "{.name}" := factor(.data[[.name]], levels = vars),
       # Delete everything from the start of the string to the last "_", inclusive.
-      stage = sub(x = var_stage, pattern = ".*_", replacement = ""),
-      stage = factor(stage, levels = stages),
-      var_stage = NULL
+      "{.stage}" := sub(x = .data[[.var_stage]], pattern = ".*_", replacement = ""),
+      "{.stage}" := factor(.data[[.stage]], levels = stages),
+      "{.var_stage}" := NULL
     ) %>% 
     dplyr::arrange() %>% 
-    tidyr::pivot_wider(names_from = stage, values_from = value) %>% 
+    tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
     dplyr::mutate(
-      unit_col = units(.var_name = name, 
+      unit_col = units(.var_name = .data[[.name]], 
                        service_unit = .data[[service_unit]],
                        energy_engr_unit = .data[[energy_engr_unit]], 
                        escape_latex = escape_latex)
@@ -77,20 +82,20 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     
   # Add LaTeX variable names, if not NULL.
   if (!is.null(latex_vars)) {
-    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, by = c("name" = "var_name")) %>% 
+    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, by = c(.name = "var_name")) %>% 
       dplyr::mutate(
-        name = NULL
+        "{.name}" := NULL
       ) %>% 
       dplyr::rename(
-        name = latex_var_name
+        "{.name}" := latex_var_name
       ) %>% 
-      dplyr::relocate(name, .before = stages[[1]])
+      dplyr::relocate(.data[[.name]], .before = stages[[1]])
   }
   # Now add the units to the variable name, if desired.
   if (add_units) {
     rebound_table_data <- rebound_table_data %>% 
       dplyr::mutate(
-        name = paste(name, unit_col),
+        "{.name}" := paste(.data[[.name]], unit_col),
         unit_col = NULL
       )
   }
@@ -117,7 +122,7 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
   # Eliminate "name" title from name column. It looks stupid.
   rebound_table_data <- rebound_table_data %>% 
     dplyr::rename(
-      ` ` = name
+      ` ` = .data[[.name]]
     )
   
   # Create the xtable and return.
