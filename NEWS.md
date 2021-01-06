@@ -1,3 +1,7 @@
+* Fixed a bug in `stages_table()`. 
+  `"{.unit_col}" = NULL` --> `"{.unit_col}" := NULL`
+  
+
 # ReboundTools 0.1.3 (2021-01-05)
 
 * Still at 280 tests, all passing.
