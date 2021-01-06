@@ -22,15 +22,30 @@ extract_meta <- function(.rebound_data,
                          original = ReboundTools::eeu_base_params$original, 
                          upgrade = ReboundTools::eeu_base_params$upgrade) {
   .rebound_data %>% 
-    dplyr::select(all_of(meta_cols))
+    dplyr::select(dplyr::all_of(meta_cols))
 }
 
 
-#' Title
+#' A data frame of energy rebound paths
+#' 
+#' Make a data frame of segments 
+#' for an energy rebound graph.
+#' Each stage of the rebound process is represented in the data frame.
 #'
-#' @param .rebound_data 
-#'
-#' @return
+#' @param .rebound_data A data frame of rebound analysis results, 
+#'                      likely created by `rebound_analysis()`.
+#' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
+#'                at its start.
+#' @param k,I_E See `ReboundTools::eeu_base_params`.
+#' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param S_dot_dev See `ReboundTools::star_vars`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
+#' @param S_dot_dev_colour,Delta_E_dot_emb_star_colour,Delta_E_dot_s_hat_colour,Delta_C_dot_o_hat_I_E_colour,Delta_E_dot_s_bar_colour,Delta_C_dot_o_bar_I_E_colour,prod_colour See `ReboundTools::graph_colours`.
+#' @param Delta_C_dot_md_star_I_E_colour Colour for the maintenance and disposal line. Default is "black".
+#' @param S_dot_dev_size,Delta_E_dot_emb_star_size,Delta_C_dot_md_star_I_E_size,Delta_E_dot_s_hat_size,Delta_C_dot_o_hat_I_E_size,Delta_E_dot_s_bar_size,Delta_C_dot_o_bar_I_E_size,prod_size Line widths for energy rebound segments.
+#' @param graph_type See `ReboundTools::graph_types`.
+#' 
+#' @return A data frame with energy rebound path segments.
 #' 
 #' @export
 #'
@@ -40,45 +55,44 @@ extract_meta <- function(.rebound_data,
 #'   energy_paths()
 energy_paths <- function(.rebound_data, 
                          indexed = FALSE,
+                         k = ReboundTools::eeu_base_params$k,
                          I_E = ReboundTools::eeu_base_params$I_E,
+                         
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                          C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                          C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                          
                          S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
-                         S_dot_dev_colour = ReboundTools::graph_colours$empl, 
-                         S_dot_dev_size = 0.1,
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
-                         Delta_E_dot_emb_star_colour = ReboundTools::graph_colours$empl,
-                         Delta_E_dot_emb_star_size = 1,
-                         
                          Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-                         Delta_C_dot_md_star_I_E_colour = "black",
-                         Delta_C_dot_md_star_I_E_size = 0.5,
                          
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
-                         Delta_E_dot_s_hat_colour = ReboundTools::graph_colours$sub,
-                         Delta_E_dot_s_hat_size = 1,
-                         
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                         Delta_C_dot_o_hat_I_E_colour = ReboundTools::graph_colours$sub,
-                         Delta_C_dot_o_hat_I_E_size = 1,
+                         N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                          
                          Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
-                         Delta_E_dot_s_bar_colour = ReboundTools::graph_colours$inc,
-                         Delta_E_dot_s_bar_size = 0.5,
-                         
                          Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                         
+                         S_dot_dev_colour = ReboundTools::graph_colours$empl, 
+                         Delta_E_dot_emb_star_colour = ReboundTools::graph_colours$empl,
+                         Delta_C_dot_md_star_I_E_colour = "black",
+                         Delta_E_dot_s_hat_colour = ReboundTools::graph_colours$sub,
+                         Delta_C_dot_o_hat_I_E_colour = ReboundTools::graph_colours$sub,
+                         Delta_E_dot_s_bar_colour = ReboundTools::graph_colours$inc,
                          Delta_C_dot_o_bar_I_E_colour = ReboundTools::graph_colours$inc,
-                         Delta_C_dot_o_bar_I_E_size = 0.5,
-                         
-                         k = ReboundTools::eeu_base_params$k,
-                         N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                          prod_colour = ReboundTools::graph_colours$prod, 
+
+                         S_dot_dev_size = 0.1,
+                         Delta_E_dot_emb_star_size = 1,
+                         Delta_C_dot_md_star_I_E_size = 0.5,
+                         Delta_E_dot_s_hat_size = 1,
+                         Delta_C_dot_o_hat_I_E_size = 1,
+                         Delta_E_dot_s_bar_size = 0.5,
+                         Delta_C_dot_o_bar_I_E_size = 0.5,
                          prod_size = 1,
-                         
+
                          graph_type = ReboundTools::graph_types$energy) {
   
   # A metadata data frame for all these segments
@@ -196,11 +210,24 @@ energy_paths <- function(.rebound_data,
 
 
 
-#' Title
+#' Make a data frame of segments 
+#' for a cost rebound graph.
+#' Each stage of the rebound process is represented in the data frame.
 #'
-#' @param .rebound_data 
-#'
-#' @return
+#' @param .rebound_data A data frame of rebound analysis results, 
+#'                      likely created by `rebound_analysis()`.
+#' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
+#'                at its start.
+#' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param G_dot See `ReboundTools::star_vars`.
+#' @param Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param G_dot_colour,Delta_C_dot_md_star_colour,Delta_C_dot_s_hat_colour,Delta_C_dot_o_hat_colour,Delta_C_dot_s_bar_colour,Delta_C_dot_o_bar_colour See `ReboundTools::graph_colours`.
+#' @param Delta_C_dot_cap_star_colour The colour for the capital cost segment. Default is "black".
+#' @param G_dot_size,Delta_C_dot_cap_star_size,Delta_C_dot_md_star_size,Delta_C_dot_s_hat_size,Delta_C_dot_o_hat_size,Delta_C_dot_s_bar_size,Delta_C_dot_o_bar_size Line widths.
+#' @param cost_type See `ReboundTools::graph_types`.
+#' 
+#' @return A data frame with cost rebound path segments.
+#' 
 #' @export
 #'
 #' @examples
@@ -209,37 +236,35 @@ energy_paths <- function(.rebound_data,
 #'   cost_paths()
 cost_paths <- function(.rebound_data, 
                        indexed = FALSE,
+
                        C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                        C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                        C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                        C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                        
                        G_dot = ReboundTools::star_vars$G_dot,
-                       G_dot_colour = ReboundTools::graph_colours$empl,
-                       G_dot_size = 1,
-                       
+
                        Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-                       Delta_C_dot_cap_star_colour = "black", 
-                       Delta_C_dot_cap_star_size = 0.5,
-                       
                        Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-                       Delta_C_dot_md_star_colour = ReboundTools::graph_colours$empl, 
-                       Delta_C_dot_md_star_size = 1,
-                       
                        Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
-                       Delta_C_dot_s_hat_colour = ReboundTools::graph_colours$sub,
-                       Delta_C_dot_s_hat_size = 1,
-                       
                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                       Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
-                       Delta_C_dot_o_hat_size = 1,
-                       
                        Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-                       Delta_C_dot_s_bar_colour = ReboundTools::graph_colours$inc,
-                       Delta_C_dot_s_bar_size = 0.5,
-                       
                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                       
+                       G_dot_colour = ReboundTools::graph_colours$empl,
+                       Delta_C_dot_md_star_colour = ReboundTools::graph_colours$empl, 
+                       Delta_C_dot_s_hat_colour = ReboundTools::graph_colours$sub,
+                       Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
+                       Delta_C_dot_s_bar_colour = ReboundTools::graph_colours$inc,
                        Delta_C_dot_o_bar_colour = ReboundTools::graph_colours$inc,
+                       Delta_C_dot_cap_star_colour = "black", 
+                       
+                       G_dot_size = 1,
+                       Delta_C_dot_cap_star_size = 0.5,
+                       Delta_C_dot_md_star_size = 1,
+                       Delta_C_dot_s_hat_size = 1,
+                       Delta_C_dot_o_hat_size = 1,
+                       Delta_C_dot_s_bar_size = 0.5,
                        Delta_C_dot_o_bar_size = 0.5,
                        
                        cost_type = ReboundTools::graph_types$cost) {
@@ -343,36 +368,52 @@ cost_paths <- function(.rebound_data,
 }
 
 
-#' Title
+#' A data frame of preferences paths
+#' 
+#' Make a data frame of segments 
+#' for a preferences graph.
+#' Each stage of the rebound process is represented in the data frame.
+#' 
+#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
 #'
-#' @param .rebound_data 
+#' @param .rebound_data A data frame of rebound analysis results, 
+#'                      likely created by `rebound_analysis()`.
+#' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
+#' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param Delta_C_dot_o_hat_colour,Delta_q_dot_s_hat_colour,Delta_q_dot_s_bar_colour,Delta_C_dot_o_bar_colour See `ReboundTools::graph_colours`.
+#' @param Delta_C_dot_o_hat_size,Delta_q_dot_s_hat_size,Delta_q_dot_s_bar_size,Delta_C_dot_o_bar_size Line widths.
+#' @param prefs_type See `ReboundTools::graph_types`.
 #'
-#' @return
+#' @return A data frame of information for creating preference graphs.
+#' 
 #' @export
 #'
 #' @examples
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   prefs_paths()
 prefs_paths <- function(.rebound_data, 
+                        
                         q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
                         C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
                         
-                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                        Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
-                        Delta_C_dot_o_hat_size = 1,
-                        
                         Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-                        Delta_q_dot_s_hat_colour = ReboundTools::graph_colours$sub,
-                        Delta_q_dot_s_hat_size = 1,
-                        
+                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                         Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-                        Delta_q_dot_s_bar_colour = ReboundTools::graph_colours$inc,
-                        Delta_q_dot_s_bar_size = 1,
-
                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                        
+                        Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
+                        Delta_q_dot_s_hat_colour = ReboundTools::graph_colours$sub,
+                        Delta_q_dot_s_bar_colour = ReboundTools::graph_colours$inc,
                         Delta_C_dot_o_bar_colour = ReboundTools::graph_colours$inc,
+                        
+                        Delta_C_dot_o_hat_size = 1,
+                        Delta_q_dot_s_hat_size = 1,
+                        Delta_q_dot_s_bar_size = 1,
                         Delta_C_dot_o_bar_size = 1,
                         
-                        prefs_type = ReboundTools::graph_types$preferences
-                        ) {
+                        prefs_type = ReboundTools::graph_types$preferences) {
+  
   # A metadata data frame for all these segments
   meta <- extract_meta(.rebound_data)
   
@@ -438,31 +479,43 @@ prefs_paths <- function(.rebound_data,
 
 
 #' Add a line segment to a data frame
+#' 
+#' Adds a line segment to a data frame of line segments.
+#' The line segments are accumulated in rows.
+#' 
+#' There is usually no need to call this function directly. 
+#' Functions like `energy_paths()` call `add_segment()` internally.
 #'
-#' @param .DF 
-#' @param indexed 
-#' @param meta 
-#' @param graph_type 
-#' @param segment_name 
-#' @param colour 
-#' @param size 
-#' @param x_orig 
-#' @param y_orig 
-#' @param x 
-#' @param y 
-#' @param xend 
-#' @param yend 
-#' @param arrow
+#' @param .DF A data frame that accumulates line segments. 
+#'            When `NULL`, the default, a new data frame is created and returned.
+#'            When not `NULL`, rows for the segment are added to the bottom of `.DF`.
+#' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
+#'                at its start.
+#' @param meta A data frame of metadata for the segment to be added. 
+#'             This metadata data frame provides the left-most columns of the return value.
+#' @param graph_type The type of graph associated with this segment. See `ReboundTools::graph_types`.
+#' @param segment_name A name for this segment. 
+#' @param colour The colour for this segment. Default is "black".
+#' @param size The size (width) for this segment. Default is `1`.
+#' @param linetype The line type for this segment. Default is "solid".
+#' @param x_orig,y_orig The (x,y) coordinates of the starting point for this path, 
+#'                      used for indexing.
+#' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
+#' @param xend,yend The (x,y) coordinates of the ending point for this segment of the path.
 #'
-#' @return A version of `.DF` with line segments added as the final row.
+#' @return A version of `.DF` with line segments added at the bottom.
 #' 
 #' @export
 #'
 #' @examples
+#' meta <- tibble::tibble(Case = "Test case")
+#' add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 
+#'   segment_name = "Test segment", 
+#'   x_orig = 10, y_orig = 10, 
+#'   x = 20, y = 30, xend = 40, yend = 50)
 add_segment <- function(.DF = NULL, indexed, meta, graph_type, segment_name, 
                         colour = "black", size = 1, linetype = "solid",
-                        x_orig, y_orig,
-                        x, y, xend, yend) {
+                        x_orig, y_orig, x, y, xend, yend) {
   if (indexed) {
     x <- x/x_orig
     y <- y/y_orig 

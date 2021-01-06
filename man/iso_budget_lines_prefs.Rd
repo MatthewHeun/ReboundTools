@@ -2,36 +2,63 @@
 % Please edit documentation in R/iso_lines.R
 \name{iso_budget_lines_prefs}
 \alias{iso_budget_lines_prefs}
-\title{Title}
+\title{Create iso-budget (expenditure) lines for a preferences graph}
 \usage{
 iso_budget_lines_prefs(
   .rebound_data,
   p_s_orig = ReboundTools::orig_vars$p_s_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
-  M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
   p_s_star = ReboundTools::star_vars$p_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
+  q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
-  q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   prefs_type = ReboundTools::graph_types$preferences,
   grid_colour = ReboundTools::graph_colours$grid,
-  grid_linetype = "solid",
-  grid_size = 0.2
+  grid_size = 0.2,
+  grid_linetype = "solid"
 )
 }
 \arguments{
-\item{.rebound_data}{}
+\item{.rebound_data}{A data frame of rebound information,
+likely created by \code{rebound_analysis()}.}
+
+\item{p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
+
+\item{p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+
+\item{q_dot_s_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
+
+\item{Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_o_hat}{See \code{ReboundTools::Delta_vars}.}
+
+\item{prefs_type}{See \code{ReboundTools::graph_types}.}
+
+\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
+
+\item{grid_size}{Line width. Default is \code{0.2}.}
+
+\item{grid_linetype}{Line type. Default is "solid".}
 }
 \value{
-
+A data frame of iso-budget lines for a preferences graph.
 }
 \description{
-Title
+This function creates a data frame of constant-budget (expenditure) lines
+at various rebound stages.
+The iso lines are described by slope and intercept.
+}
+\details{
+The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+}
+\examples{
+load_eeu_data() \%>\% 
+  rebound_analysis() \%>\% 
+  iso_budget_lines_prefs()
 }

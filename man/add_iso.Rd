@@ -9,7 +9,7 @@ add_iso(
   indexed = FALSE,
   meta,
   graph_type,
-  line_name,
+  iso_name,
   colour = ReboundTools::graph_colours$grid,
   size = 0.5,
   linetype = "solid",
@@ -20,33 +20,48 @@ add_iso(
 )
 }
 \arguments{
-\item{.DF}{}
+\item{.DF}{A data frame that accumulates iso lines.
+When \code{NULL}, the default, a new data frame is created and returned.
+When not \code{NULL}, rows for the segment are added to the bottom of \code{.DF}.}
 
-\item{indexed}{}
+\item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
+at its start.}
 
-\item{meta}{}
+\item{meta}{A data frame of metadata for the segment to be added.
+This metadata data frame provides the left-most columns of the return value.}
 
-\item{graph_type}{}
+\item{graph_type}{The type of graph associated with this segment. See \code{ReboundTools::graph_types}.}
 
-\item{colour}{}
+\item{iso_name}{A name for this iso line.}
 
-\item{size}{}
+\item{colour}{The colour for this iso line. Default is \code{ReboundTools::graph_colours$grid}.}
 
-\item{linetype}{}
+\item{size}{Line width. Default is \code{0.5}.}
 
-\item{x_orig}{}
+\item{linetype}{Line type for this iso line. Default is "solid".}
 
-\item{y_orig}{}
+\item{x_orig, y_orig}{The (x,y) coordinates of the starting point for the path on this graph,
+used for indexing.}
 
-\item{x}{}
-
-\item{y}{}
-
-\item{iso_name}{}
+\item{x, y}{The (x,y) coordinates of a point on this iso line.
+Slope and intercept are calculated from these values.}
 }
 \value{
-
+A version of \code{.DF} with iso lines added at the bottom.
 }
 \description{
-Add an iso line description to a data frame
+Adds a iso line to a data frame.
+The iso lines are accumulated in rows at the bottom of the data frame.
+}
+\details{
+There is usually no need to call this function directly.
+Functions like \code{iso_energy_lines()} and \code{iso_cost_lines()}
+call \code{add_iso()} internally.
+}
+\examples{
+meta <- tibble::tibble(Case = "Test case")
+add_iso(meta = meta, graph_type = "Test type", 
+  iso_name = "Test segment", 
+  x_orig = 10, y_orig = 10, 
+  x = 20, y = 30)
 }

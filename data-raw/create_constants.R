@@ -15,13 +15,19 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 
 #
-# Names of key rebound variables
+# Units information
 # 
 
-key_analysis_vars <- list(eta = "eta", p_s = "p_s", q_dot_s = "q_dot_s", E_dot_s = "E_dot_s",
-                          E_dot_emb = "E_dot_emb", C_dot_s = "C_dot_s", C_dot_cap = "C_dot_cap",
-                          C_dot_md = "C_dot_md", C_dot_o = "C_dot_o", N_dot = "N_dot", M_dot = "M_dot")
-usethis::use_data(key_analysis_vars, overwrite = TRUE)
+rebound_units <- list(energy_si = "MJ", 
+                      time_unit = "year", 
+                      currency_unit = "$",
+                      currency_unit_latex = "\\$",
+                      unitless = "-",
+                      unitless_latex = "--", 
+                      leading_delta_pattern = "^Delta_",
+                      surround_left = "[", 
+                      surround_right = "]")
+usethis::use_data(rebound_units, overwrite = TRUE)
 
 
 #
@@ -29,12 +35,23 @@ usethis::use_data(key_analysis_vars, overwrite = TRUE)
 # 
 
 latex_key_analysis_vars <- data.frame(
-  var_name = key_analysis_vars %>% unlist() %>% unname(), 
+  var_name = c("eta", "p_s", "q_dot_s", "E_dot_s",
+               "E_dot_emb", "C_dot_s", "C_dot_cap",
+               "C_dot_md", "C_dot_o", "N_dot", "M_dot"), 
   latex_var_name = c("$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
                      "$\\dot{C}_{md}$", "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
 )
 usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
+
+
+#
+# Names of key rebound variables
+# 
+
+key_analysis_vars <- latex_key_analysis_vars$var_name
+names(key_analysis_vars) <- key_analysis_vars
+usethis::use_data(key_analysis_vars, overwrite = TRUE)
 
 
 #
@@ -248,4 +265,21 @@ graph_colours <- list(empl = "red",
                       prod = "blue", 
                       grid = "gray")
 usethis::use_data(graph_colours, overwrite = TRUE)
+
+
+#
+# Graph data frame column names
+# 
+
+graph_df_colnames <- list(slope_col = "slope", 
+                          intercept_col = "intercept",
+                          x_col = "x", 
+                          y_col = "y", 
+                          xend_col = "xend",
+                          yend_col = "yend",
+                          colour_col = "colour", 
+                          size_col = "size", 
+                          linetype_col = "linetype")
+usethis::use_data(graph_df_colnames, overwrite = TRUE)
+
 

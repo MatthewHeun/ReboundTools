@@ -2,14 +2,15 @@
 % Please edit documentation in R/iso_lines.R
 \name{iso_energy_lines}
 \alias{iso_energy_lines}
-\title{Title}
+\title{Iso-energy lines for energy rebound paths}
 \usage{
 iso_energy_lines(
   .rebound_data,
   indexed = FALSE,
+  I_E = ReboundTools::eeu_base_params$I_E,
+  k = ReboundTools::eeu_base_params$k,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
-  I_E = ReboundTools::eeu_base_params$I_E,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
@@ -21,6 +22,7 @@ iso_energy_lines(
   E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
   C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
   E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,
   C_dot_md_bar = ReboundTools::bar_vars$C_dot_md_bar,
@@ -29,8 +31,6 @@ iso_energy_lines(
   E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
   C_dot_md_tilde = ReboundTools::tilde_vars$C_dot_md_tilde,
   C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
-  k = ReboundTools::eeu_base_params$k,
-  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   energy_type = ReboundTools::graph_types$energy,
   grid_colour = ReboundTools::graph_colours$grid,
   grid_size = 0.5,
@@ -38,13 +38,42 @@ iso_energy_lines(
 )
 }
 \arguments{
-\item{.rebound_data}{}
+\item{.rebound_data}{A data frame of rebound information,
+likely created by \code{rebound_analysis()}.}
 
-\item{indexed}{}
+\item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
+at its start.}
+
+\item{I_E, k}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{E_dot_s_orig, E_dot_emb_orig, C_dot_md_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+
+\item{S_dot_dev, E_dot_s_star, E_dot_emb_star, C_dot_md_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
+
+\item{E_dot_s_hat, E_dot_emb_hat, C_dot_md_hat, C_dot_o_hat, N_dot_hat}{See \code{ReboundTools::hat_vars}.}
+
+\item{E_dot_s_bar, E_dot_emb_bar, C_dot_md_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
+
+\item{E_dot_s_tilde, E_dot_emb_tilde, C_dot_md_tilde, C_dot_o_tilde}{See \code{ReboundTools::tilde_vars}.}
+
+\item{energy_type}{See \code{ReboundTools::graph_types}.}
+
+\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
+
+\item{grid_size}{Line width for iso-energy lines. Default is \code{0.5}.}
+
+\item{grid_linetype}{Line type for iso-energy lines. Default is "solid".}
 }
 \value{
-
+A data frame containing iso-energy lines to be drawn on an energy rebound path graph.
 }
 \description{
-Title
+This function creates a data frame of constant-energy lines
+at various rebound stages.
+The iso lines are described by slope and intercept.
+}
+\examples{
+load_eeu_data() \%>\% 
+  rebound_analysis() \%>\% 
+  iso_energy_lines()
 }
