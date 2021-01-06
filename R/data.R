@@ -16,6 +16,28 @@
 "eeu_data_table"
 
 
+#' Information for rebound units
+#' 
+#' A list of names and constants for rebound units. 
+#' 
+#' @format A list with `r length(rebound_units)` entries.
+#' \describe{
+#' \item{energy_si}{The SI energy unit ("MJ").}
+#' \item{time_unit}{The time unit ("year").}
+#' \item{currency_unit}{The default currency unit ("$").}
+#' \item{currency_unit_latex}{The currency unit in LaTeX format ("\\$").}
+#' \item{unitless}{The identifier for unitless variables ("-").}
+#' \item{unitless_latex}{The identifier for unitless variables in LaTeX format ("--").}
+#' \item{leading_delta_pattern}{A regex pattern that identifies a leading Delta ("^Delta_").}
+#' \item{surround_left}{The left delimiter for units ("\["]).}
+#' \item{surround_right}{The right delimiter for units ("\]").}
+#' }
+#' 
+#' @examples
+#' rebound_units
+"rebound_units"
+
+
 #' LaTeX key analysis variables
 #' 
 #' A data frame of key analysis variables in LaTeX formatting.
@@ -316,6 +338,66 @@
 #' @examples
 #' rebound_terms
 "rebound_terms"
+
+
+#' Graph types
+#' 
+#' The list of graph types in the `ReboundTools` package.
+#' 
+#' @format A string list with `r length(graph_types)` entries.
+#' \describe{
+#' \item{energy}{The energy graph type.}
+#' \item{cost}{The cost graph type.}
+#' \item{preferences}{The preferences graph type.}
+#' }
+#' @examples
+#' graph_types
+"graph_types"
+
+
+
+#' Graph colours
+#' 
+#' The list of graph colours in the `ReboundTools` package.
+#' These are default colors for various graphical elements.
+#' 
+#' @format A string list with `r length(graph_colours)` entries.
+#' \describe{
+#' \item{empl}{The colour for emplacement effects.}
+#' \item{sub}{The colour for substitution effects.}
+#' \item{inc}{The colour for income effects.}
+#' \item{prod}{The colour for productivity effects.}
+#' \item{grid}{The colour for grid decorations.}
+#' }
+#' @examples
+#' graph_colours
+"graph_colours"
+
+
+#' Graph data frame columns
+#' 
+#' The list of names of graph data frame columns. 
+#' These are default names for columns produced internally.
+#' 
+#' @format A string list with `r length(graph_df_colnames)` entries.
+#' \describe{
+#' \item{slope_col}{The name of the column containing line slopes.}
+#' \item{intercept_col}{The name of the column containing line intercepts.}
+#' \item{x_col}{The name of the column containing starting x values.}
+#' \item{y_col}{The name of the column containing starting y values.}
+#' \item{xend_col}{The name of the column containing ending x values.}
+#' \item{yend_col}{The name of the column containing ending y values.}
+#' \item{colour_col}{The name of the column containing line colours.}
+#' \item{size_col}{The name of the column containing line sizes (widths).}
+#' \item{linetype_col}{The name of the column containing line types.}
+#' }
+#' @examples
+#' graph_df_colnames
+"graph_df_colnames"
+
+
+
+
 
 
 
