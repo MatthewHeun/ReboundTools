@@ -1,3 +1,8 @@
+# ReboundTools 0.1.3 (2021-01-05)
+
+* Still at 280 tests, all passing.
+* Package test coverage is 99%
+* Eliminated all errors and warnings.
 * Added documentation for functions.
 
 # ReboundTools 0.1.2 (2021-01-03)
