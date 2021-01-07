@@ -256,15 +256,60 @@ usethis::use_data(graph_types, overwrite = TRUE)
 
 
 #
-# Graph colours
-#
+# Default graph parameters
+# 
 
-graph_colours <- list(empl = "red", 
-                      sub = "orange",
-                      inc = "darkgreen",
-                      prod = "blue", 
-                      grid = "gray")
-usethis::use_data(graph_colours, overwrite = TRUE)
+default_graph_params <- list(dempl_colour = "red", 
+                             emb_colour = "red",
+                             cap_colour = "red",
+                             md_colour = "red", 
+                             dsub_colour = "orange",
+                             isub_colour = "orange", 
+                             dinc_colour = "darkgreen",
+                             iinc_colour = "darkgreen", 
+                             prod_colour = "darkblue", 
+                             
+                             dempl_size = 1, 
+                             emb_size = 1,
+                             cap_size = 1,
+                             md_size = 1, 
+                             dsub_size = 1,
+                             isub_size = 1, 
+                             dinc_size = 1,
+                             iinc_size = 1, 
+                             prod_size = 1,
+                             
+                             dempl_linetype = "solid",
+                             emb_linetype = "solid",
+                             cap_linetype = "solid",
+                             md_linetype = "solid", 
+                             dsub_linetype = "solid",
+                             isub_linetype = "solid", 
+                             dinc_linetype = "solid",
+                             iinc_linetype = "solid", 
+                             prod_linetype = "solid",
+                             
+                             energy_grid_colour = "gray",
+                             energy_rebound_lines_colour = "gray",
+                             cost_grid_colour = "gray",
+                             cost_ray_colour = "gray",
+                             prefs_grid_colour = "gray",
+                             prefs_indiff_curve_colour = "gray",
+                             
+                             energy_grid_size = 0.5,
+                             energy_rebound_lines_size = 0.5,
+                             cost_grid_size = 0.5,
+                             cost_ray_size = 0.5,
+                             prefs_grid_size = 0.5,
+                             prefs_indiff_grid_size = 0.5,
+                             
+                             energy_grid_linetype = "solid",
+                             energy_rebound_lines_linetype = "solid",
+                             cost_grid_linetype = "solid",
+                             cost_ray_linetype = "solid",
+                             prefs_grid_linetype = "solid",
+                             prefs_indiff_grid_linetype = "solid")
+usethis::use_data(default_graph_params, overwrite = TRUE)
 
 
 #

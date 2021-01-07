@@ -21,7 +21,6 @@ test_that("energy_paths() works as expected", {
   expect_equal(car_energy_path_abs$xend, 43488.50030357141804415733)
   expect_equal(car_energy_path_abs$y, 77316.81880725323571823537)
   expect_equal(car_energy_path_abs$yend, 77316.81880725323571823537)
-  
 })
 
 

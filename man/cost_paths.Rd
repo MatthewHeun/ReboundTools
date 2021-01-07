@@ -9,6 +9,8 @@ Each stage of the rebound process is represented in the data frame.}
 cost_paths(
   .rebound_data,
   indexed = FALSE,
+  graph_params = ReboundTools::default_graph_params,
+  graph_type = ReboundTools::graph_types$cost,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
@@ -19,22 +21,7 @@ cost_paths(
   Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
-  G_dot_colour = ReboundTools::graph_colours$empl,
-  Delta_C_dot_md_star_colour = ReboundTools::graph_colours$empl,
-  Delta_C_dot_s_hat_colour = ReboundTools::graph_colours$sub,
-  Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
-  Delta_C_dot_s_bar_colour = ReboundTools::graph_colours$inc,
-  Delta_C_dot_o_bar_colour = ReboundTools::graph_colours$inc,
-  Delta_C_dot_cap_star_colour = "black",
-  G_dot_size = 1,
-  Delta_C_dot_cap_star_size = 0.5,
-  Delta_C_dot_md_star_size = 1,
-  Delta_C_dot_s_hat_size = 1,
-  Delta_C_dot_o_hat_size = 1,
-  Delta_C_dot_s_bar_size = 0.5,
-  Delta_C_dot_o_bar_size = 0.5,
-  cost_type = ReboundTools::graph_types$cost
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar
 )
 }
 \arguments{
