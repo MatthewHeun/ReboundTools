@@ -29,7 +29,7 @@ rebound_graphs <- function(.rebound_data,
     prefs_paths(graph_params = graph_params)
   
   paths <- dplyr::bind_rows(e_paths, c_paths, p_paths) %>% 
-    dplyr::filter(graph_type %in% graph_types)
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
   
   e_grid_data <- analysis_data %>% 
     iso_energy_lines(indexed = indexed, graph_params = graph_params)
@@ -43,7 +43,7 @@ rebound_graphs <- function(.rebound_data,
     
   indifference_curves <- analysis_data %>% 
     indifference_lines(graph_params = graph_params) %>% 
-    dplyr::filter(graph_type %in% graph_types)
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% grid_types)
   
   rebound_graphs_helper(.path_data = paths, 
                         .grid_data = grids, 

@@ -33,6 +33,12 @@ test_that("rebound_graphs() works as expected", {
                    grid_types = NULL)
   expect_true(!is.null(graphs_car_cost_no_grids))
   expect_equal(graphs_car_cost_no_grids$plot_env$.grid_data %>% nrow(), 0)
+  
+  # Try an indexed Energy graph for lamps
+  graphs_lamp_energy <- load_eeu_data() %>% 
+    rebound_graphs(cases = "Lamp", 
+                   graph_types = "Energy")
+  
 })
 
 
