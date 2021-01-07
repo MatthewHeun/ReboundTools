@@ -69,28 +69,25 @@ rebound_graphs <- function(.rebound_data,
 rebound_graphs_helper <- function(.path_data, 
                                   .grid_data = NULL, 
                                   .indifference_data = NULL, 
-                                  colour_col = ReboundTools::graph_df_colnames$colour_col, 
-                                  size_col = ReboundTools::graph_df_colnames$size_col,
-                                  linetype_col = ReboundTools::graph_df_colnames$linetype_col,
-                                  slope_col = ReboundTools::graph_df_colnames$slope_col, 
-                                  intercept_col = ReboundTools::graph_df_colnames$intercept_col, 
-                                  x_col = ReboundTools::graph_df_colnames$x_col, 
-                                  y_col = ReboundTools::graph_df_colnames$y_col, 
-                                  xend_col = ReboundTools::graph_df_colnames$xend_col,
-                                  yend_col = ReboundTools::graph_df_colnames$yend_col) {
+                                  df_graph_colnames = ReboundTools::graph_df_colnames) {
   g <- ggplot2::ggplot()
   # Add grid data as first layer
   if (!is.null(.grid_data)) {
     g <- g + 
       ggplot2::geom_abline(data = .grid_data, 
-                           mapping = ggplot2::aes_string(colour = colour_col, size = size_col, linetype = linetype_col,
-                                                  slope = slope_col, intercept = intercept_col))
+                           mapping = ggplot2::aes_string(colour = df_graph_colnames$colour_col, 
+                                                         size = df_graph_colnames$size_col, 
+                                                         linetype = df_graph_colnames$linetype_col,
+                                                         slope = df_graph_colnames$slope_col,
+                                                         intercept =df_graph_colnames$ intercept_col))
   }
   # Add indifference curves as second layer
   if (!is.null(.indifference_data)) {
     g <- g + 
       ggplot2::geom_function(data = .indifference_data, 
-                             mapping = ggplot2::aes_string(colour = colour_col, size = size_col, linetype = linetype_col), 
+                             mapping = ggplot2::aes_string(colour = df_graph_colnames$colour_col, 
+                                                           size = df_graph_colnames$size_col, 
+                                                           linetype = df_graph_colnames$linetype_col), 
                              fun = indifference_func, 
                              args = c(qs1_qs0 = .indifference_data$qs1_qs0, 
                                       Co1_Co0 = .indifference_data$Co1_Co0, 
@@ -100,8 +97,13 @@ rebound_graphs_helper <- function(.path_data,
   # Add rebound paths as third and final layer
   g +
     ggplot2::geom_segment(data = .path_data, 
-                          mapping = ggplot2::aes_string(colour = colour_col, size = size_col, linetype = linetype_col,
-                                                 x = x_col, y = y_col, xend = xend_col, yend = yend_col)) +
+                          mapping = ggplot2::aes_string(colour = df_graph_colnames$colour_col, 
+                                                        size = df_graph_colnames$size_col,
+                                                        linetype = df_graph_colnames$linetype_col,
+                                                        x = df_graph_colnames$x_col, 
+                                                        y = df_graph_colnames$y_col, 
+                                                        xend = df_graph_colnames$xend_col, 
+                                                        yend = df_graph_colnames$yend_col)) +
     # Use the colour, size, and linetype columns directly.
     ggplot2::scale_colour_identity() + 
     ggplot2::scale_size_identity() + 

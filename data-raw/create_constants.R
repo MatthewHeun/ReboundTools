@@ -294,7 +294,7 @@ default_graph_params <- list(dempl_colour = "red",
                              cost_grid_colour = "gray",
                              prefs_grid_colour = "gray",
                              prefs_ray_colour = "gray",
-                             prefs_indiff_curve_colour = "gray",
+                             prefs_indiff_grid_colour = "gray",
                              
                              energy_grid_size = 0.5,
                              energy_rebound_lines_size = 0.5,

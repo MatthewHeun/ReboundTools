@@ -8,15 +8,7 @@ rebound_graphs_helper(
   .path_data,
   .grid_data = NULL,
   .indifference_data = NULL,
-  colour_col = ReboundTools::graph_df_colnames$colour_col,
-  size_col = ReboundTools::graph_df_colnames$size_col,
-  linetype_col = ReboundTools::graph_df_colnames$linetype_col,
-  slope_col = ReboundTools::graph_df_colnames$slope_col,
-  intercept_col = ReboundTools::graph_df_colnames$intercept_col,
-  x_col = ReboundTools::graph_df_colnames$x_col,
-  y_col = ReboundTools::graph_df_colnames$y_col,
-  xend_col = ReboundTools::graph_df_colnames$xend_col,
-  yend_col = ReboundTools::graph_df_colnames$yend_col
+  df_graph_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
