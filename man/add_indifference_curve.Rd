@@ -9,7 +9,7 @@ add_indifference_curve(
   meta,
   graph_type = ReboundTools::graph_types$preferences,
   line_name,
-  colour = ReboundTools::default_graph_params$prefs_indiff_curve_colour,
+  colour = ReboundTools::default_graph_params$prefs_indiff_grid_colour,
   size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
   linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
   qs1_qs0,
