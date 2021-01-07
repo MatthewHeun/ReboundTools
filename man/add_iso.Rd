@@ -16,7 +16,8 @@ add_iso(
   x_orig,
   y_orig,
   x,
-  y
+  y,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{

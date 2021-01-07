@@ -49,6 +49,9 @@ used for indexing.}
 \item{x, y}{The (x,y) coordinates of the starting point for this segment of the path.}
 
 \item{xend, yend}{The (x,y) coordinates of the ending point for this segment of the path.}
+
+\item{graph_df_colnames}{A list of column names to use throughout the package.
+Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A version of \code{.DF} with line segments added at the bottom.

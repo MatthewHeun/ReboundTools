@@ -529,6 +529,8 @@ prefs_paths <- function(.rebound_data,
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
 #' @param xend,yend The (x,y) coordinates of the ending point for this segment of the path.
+#' @param graph_df_colnames A list of column names to use throughout the package.
+#'                          Default is `ReboundTools::graph_df_colnames`.
 #'
 #' @return A version of `.DF` with line segments added at the bottom.
 #' 

@@ -15,7 +15,8 @@ add_indifference_curve(
   qs1_qs0,
   Co1_Co0,
   f_Cs_orig,
-  sigma
+  sigma,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -44,6 +45,9 @@ Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
 the sum of initial spending on the energy service and other goods.}
 
 \item{sigma}{The elasticity of substitution between spending on the energy service and spending on other goods.}
+
+\item{graph_df_colnames}{A list of column names to use throughout the package.
+Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A version of \code{.DF} with new indifference curves added at the bottom.

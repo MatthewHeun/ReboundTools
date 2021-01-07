@@ -542,12 +542,17 @@ add_budget_line <- function(.DF = NULL,
 #'   iso_name = "Test segment", 
 #'   x_orig = 10, y_orig = 10, 
 #'   x = 20, y = 30)
-add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name, 
-        colour = ReboundTools::default_graph_params$energy_grid_colour, 
-        size = ReboundTools::default_graph_params$energy_grid_size, 
-        linetype = ReboundTools::default_graph_params$energy_grid_linetype, 
-        x_orig, y_orig, 
-        x, y) {
+add_iso <- function(.DF = NULL, 
+                    indexed = FALSE, 
+                    meta, 
+                    graph_type, 
+                    iso_name, 
+                    colour = ReboundTools::default_graph_params$energy_grid_colour, 
+                    size = ReboundTools::default_graph_params$energy_grid_size, 
+                    linetype = ReboundTools::default_graph_params$energy_grid_linetype, 
+                    x_orig, y_orig, 
+                    x, y,
+                    graph_df_colnames = ReboundTools::graph_df_colnames) {
   if (!indexed) {
     # In regular (non-indexed) space, 
     # the slope of the iso line going through point x1, y1 is 
@@ -574,10 +579,15 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
     slope <- -x_orig/y_orig
     intercept <- (x + y)/y_orig
   }
-  add_budget_line(.DF, meta = meta, graph_type = graph_type,
-                  line_name = iso_name, colour = colour, 
-                  size = size, linetype = linetype, 
-                  slope = slope, intercept = intercept)
+  add_budget_line(.DF, 
+                  meta = meta, 
+                  graph_type = graph_type,
+                  line_name = iso_name,
+                  colour = colour,
+                  size = size,
+                  linetype = linetype,
+                  slope = slope,
+                  intercept = intercept)
 }
 
 
@@ -605,6 +615,8 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
 #' @param f_Cs_orig The ration of spending on the energy service to 
 #'                  the sum of initial spending on the energy service and other goods.
 #' @param sigma The elasticity of substitution between spending on the energy service and spending on other goods.
+#' @param graph_df_colnames A list of column names to use throughout the package.
+#'                          Default is `ReboundTools::graph_df_colnames`.
 #'
 #' @return A version of `.DF` with new indifference curves added at the bottom.
 #' 
@@ -621,14 +633,15 @@ add_indifference_curve <- function(.DF = NULL,
                                    colour = ReboundTools::default_graph_params$prefs_indiff_curve_colour, 
                                    size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
                                    linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
-                                   qs1_qs0, Co1_Co0, f_Cs_orig, sigma) {
+                                   qs1_qs0, Co1_Co0, f_Cs_orig, sigma,
+                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
   out <- meta %>% 
     dplyr::mutate(
-      graph_type = graph_type, 
-      line_name = line_name, 
-      colour = colour,
-      size = size,
-      linetype = linetype,
+      "{graph_df_colnames$graph_type_col}" := graph_type, 
+      "{graph_df_colnames$line_name_col}" := line_name,
+      "{graph_df_colnames$colour_col}" := colour, 
+      "{graph_df_colnames$size_col}" := size,
+      "{graph_df_colnames$linetype_col}" := linetype,
       qs1_qs0 = qs1_qs0,
       Co1_Co0 = Co1_Co0,
       f_Cs_orig = f_Cs_orig, 
