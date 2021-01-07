@@ -316,15 +316,17 @@ usethis::use_data(default_graph_params, overwrite = TRUE)
 # Graph data frame column names
 # 
 
-graph_df_colnames <- list(slope_col = "slope", 
+graph_df_colnames <- list(colour_col = "colour", 
+                          size_col = "size", 
+                          linetype_col = "linetype",
+                          graph_type_col = "graph_type",
+                          line_name_col = "line_name",
+                          slope_col = "slope", 
                           intercept_col = "intercept",
                           x_col = "x", 
                           y_col = "y", 
                           xend_col = "xend",
-                          yend_col = "yend",
-                          colour_col = "colour", 
-                          size_col = "size", 
-                          linetype_col = "linetype")
+                          yend_col = "yend")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 

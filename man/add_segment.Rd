@@ -18,7 +18,8 @@ add_segment(
   x,
   y,
   xend,
-  yend
+  yend,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{

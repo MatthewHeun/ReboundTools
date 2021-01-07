@@ -540,9 +540,11 @@ prefs_paths <- function(.rebound_data,
 #'   segment_name = "Test segment", 
 #'   x_orig = 10, y_orig = 10, 
 #'   x = 20, y = 30, xend = 40, yend = 50)
-add_segment <- function(.DF = NULL, indexed, meta, graph_type, segment_name, 
+add_segment <- function(.DF = NULL, 
+                        indexed, meta, graph_type, segment_name, 
                         colour = "black", size = 1, linetype = "solid",
-                        x_orig, y_orig, x, y, xend, yend) {
+                        x_orig, y_orig, x, y, xend, yend, 
+                        graph_df_colnames = ReboundTools::graph_df_colnames) {
   if (indexed) {
     x <- x/x_orig
     y <- y/y_orig 
@@ -551,15 +553,15 @@ add_segment <- function(.DF = NULL, indexed, meta, graph_type, segment_name,
   }
   out <- meta %>% 
     dplyr::mutate(
-      graph_type = graph_type, 
-      segment_name = segment_name,
-      colour = colour, 
-      size = size,
-      linetype = linetype,
-      x = x, 
-      y = y, 
-      xend = xend, 
-      yend = yend
+      "{graph_df_colnames$graph_type_col}" := graph_type, 
+      "{graph_df_colnames$line_name_col}" := segment_name,
+      "{graph_df_colnames$colour_col}" := colour, 
+      "{graph_df_colnames$size_col}" := size,
+      "{graph_df_colnames$linetype_col}" := linetype,
+      "{graph_df_colnames$x_col}" := x, 
+      "{graph_df_colnames$y_col}" := y, 
+      "{graph_df_colnames$xend_col}" := xend, 
+      "{graph_df_colnames$yend_col}" := yend
     )
   if (is.null(.DF)) {
     return(out)
