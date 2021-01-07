@@ -32,6 +32,8 @@ likely created by \code{rebound_analysis()}.}
 \item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
 at its start.}
 
+\item{graph_params}{See \code{ReboundTools::graph_params}.}
+
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
 \item{k, I_E}{See \code{ReboundTools::eeu_base_params}.}
@@ -41,12 +43,6 @@ at its start.}
 \item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
 
 \item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar, N_dot_hat}{See \code{ReboundTools::Delta_vars}.}
-
-\item{S_dot_dev_colour, Delta_E_dot_emb_star_colour, Delta_E_dot_s_hat_colour, Delta_C_dot_o_hat_I_E_colour, Delta_E_dot_s_bar_colour, Delta_C_dot_o_bar_I_E_colour, prod_colour}{See \code{ReboundTools::graph_colours}.}
-
-\item{Delta_C_dot_md_star_I_E_colour}{Colour for the maintenance and disposal line. Default is "black".}
-
-\item{S_dot_dev_size, Delta_E_dot_emb_star_size, Delta_C_dot_md_star_I_E_size, Delta_E_dot_s_hat_size, Delta_C_dot_o_hat_I_E_size, Delta_E_dot_s_bar_size, Delta_C_dot_o_bar_I_E_size, prod_size}{Line widths for energy rebound segments.}
 }
 \value{
 A data frame with energy rebound path segments.

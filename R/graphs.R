@@ -11,20 +11,40 @@
 #'   rebound_graphs()
 rebound_graphs <- function(.rebound_data,
                            indexed = FALSE,
-                           energy_path_graph = TRUE,
-                           cost_path_graph = TRUE,
-                           preferences_path_graph = TRUE, 
+                           graph_types = ReboundTools::graph_types,
+                           grids = ReboundTools::graph_types,
                            graph_params = ReboundTools::default_graph_params) {
   
-  # analysis_data <- .rebound_data %>% 
-  #   rebound_analysis()
-  # e_paths <- analysis_data %>% 
-  #   energy_paths(indexed = indexed, )
-  # c_paths <- 
+  analysis_data <- .rebound_data %>%
+    rebound_analysis()
+  e_paths <- analysis_data %>%
+    energy_paths(indexed = indexed, graph_params = graph_params)
+  c_paths <- analysis_data %>% 
+    cost_paths(indexed = indexed, graph_params = graph_params)
+  p_paths <- analysis_data %>% 
+    prefs_paths(graph_params = graph_params)
+  
+  paths <- dplyr::bind_rows(e_paths, c_paths, p_paths) %>% 
+    dplyr::filter(graph_type %in% graph_types)
+  
+  e_grid_data <- analysis_data %>% 
+    iso_energy_lines(indexed = indexed, graph_params = graph_params)
+  c_grid_data <- analysis_data %>% 
+    iso_cost_lines(indexed = indexed, graph_params = graph_params)
+  p_grid_data <- analysis_data %>% 
+    iso_budget_lines_prefs(graph_params = graph_params)
+  
+  grids <- dplyr::bind_rows(e_grid_data, c_grid_data, p_grid_data) %>% 
+    dplyr::filter(graph_type %in% graph_types)
     
+  indifference_curves <- analysis_data %>% 
+    indifference_lines(graph_params = graph_params) %>% 
+    dplyr::filter(graph_type %in% graph_types)
+  
+  rebound_graphs_helper(.path_data = paths, 
+                        .grid_data = grids, 
+                        .indifference_data = indifference_curves)
 }
-
-
 
 
 #' Create path maps for rebound analysis

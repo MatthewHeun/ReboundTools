@@ -7,9 +7,8 @@
 rebound_graphs(
   .rebound_data,
   indexed = FALSE,
-  energy_path_graph = TRUE,
-  cost_path_graph = TRUE,
-  preferences_path_graph = TRUE,
+  graph_types = ReboundTools::graph_types,
+  grids = ReboundTools::graph_types,
   graph_params = ReboundTools::default_graph_params
 )
 }

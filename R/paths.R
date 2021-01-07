@@ -36,14 +36,12 @@ extract_meta <- function(.rebound_data,
 #'                      likely created by `rebound_analysis()`.
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
+#' @param graph_params See `ReboundTools::graph_params`.
+#' @param graph_type See `ReboundTools::graph_types`.
 #' @param k,I_E See `ReboundTools::eeu_base_params`.
 #' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
-#' @param S_dot_dev_colour,Delta_E_dot_emb_star_colour,Delta_E_dot_s_hat_colour,Delta_C_dot_o_hat_I_E_colour,Delta_E_dot_s_bar_colour,Delta_C_dot_o_bar_I_E_colour,prod_colour See `ReboundTools::graph_colours`.
-#' @param Delta_C_dot_md_star_I_E_colour Colour for the maintenance and disposal line. Default is "black".
-#' @param S_dot_dev_size,Delta_E_dot_emb_star_size,Delta_C_dot_md_star_I_E_size,Delta_E_dot_s_hat_size,Delta_C_dot_o_hat_I_E_size,Delta_E_dot_s_bar_size,Delta_C_dot_o_bar_I_E_size,prod_size Line widths for energy rebound segments.
-#' @param graph_type See `ReboundTools::graph_types`.
 #' 
 #' @return A data frame with energy rebound path segments.
 #' 
@@ -145,9 +143,9 @@ energy_paths <- function(.rebound_data,
   yend <- y
   paths <- paths %>% 
     add_segment(indexed = indexed,
-                colour = graph_params$sub_colour, 
-                size = graph_params$sub_size,
-                linetype = graph_params$sub_linetype,
+                colour = graph_params$dsub_colour, 
+                size = graph_params$dsub_size,
+                linetype = graph_params$dsub_linetype,
                 meta = meta,
                 graph_type = graph_type, 
                 segment_name = Delta_E_dot_s_hat, 
@@ -233,13 +231,11 @@ energy_paths <- function(.rebound_data,
 #'                      likely created by `rebound_analysis()`.
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
+#' @param graph_params See `ReboundTools::graph_params`.
+#' @param graph_type See `ReboundTools::graph_types`.
 #' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
 #' @param Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param G_dot_colour,Delta_C_dot_md_star_colour,Delta_C_dot_s_hat_colour,Delta_C_dot_o_hat_colour,Delta_C_dot_s_bar_colour,Delta_C_dot_o_bar_colour See `ReboundTools::graph_colours`.
-#' @param Delta_C_dot_cap_star_colour The colour for the capital cost segment. Default is "black".
-#' @param G_dot_size,Delta_C_dot_cap_star_size,Delta_C_dot_md_star_size,Delta_C_dot_s_hat_size,Delta_C_dot_o_hat_size,Delta_C_dot_s_bar_size,Delta_C_dot_o_bar_size Line widths.
-#' @param cost_type See `ReboundTools::graph_types`.
 #' 
 #' @return A data frame with cost rebound path segments.
 #' 
@@ -405,11 +401,10 @@ cost_paths <- function(.rebound_data,
 #'
 #' @param .rebound_data A data frame of rebound analysis results, 
 #'                      likely created by `rebound_analysis()`.
+#' @param graph_params See `ReboundTools::graph_params`.
+#' @param graph_type See `ReboundTools::graph_types`.
 #' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param Delta_C_dot_o_hat_colour,Delta_q_dot_s_hat_colour,Delta_q_dot_s_bar_colour,Delta_C_dot_o_bar_colour See `ReboundTools::graph_colours`.
-#' @param Delta_C_dot_o_hat_size,Delta_q_dot_s_hat_size,Delta_q_dot_s_bar_size,Delta_C_dot_o_bar_size Line widths.
-#' @param prefs_type See `ReboundTools::graph_types`.
 #'
 #' @return A data frame of information for creating preference graphs.
 #' 

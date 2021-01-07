@@ -62,6 +62,11 @@ The list of graph parameters for drawing
 energy path graphs, cost path graphs, and preference path graphs
 in the \code{ReboundTools} package.
 }
+\details{
+This list is passed to several graphing functions.
+Callers may pass a modified version of this list
+to change graph appearance.
+}
 \examples{
 default_graph_params
 }
