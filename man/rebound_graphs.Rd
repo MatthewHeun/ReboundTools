@@ -7,9 +7,12 @@
 rebound_graphs(
   .rebound_data,
   indexed = FALSE,
+  cases = .rebound_data[[case_colname]] \%>\% unique(),
   graph_types = ReboundTools::graph_types,
-  grids = ReboundTools::graph_types,
-  graph_params = ReboundTools::default_graph_params
+  grid_types = ReboundTools::graph_types,
+  graph_params = ReboundTools::default_graph_params,
+  case_colname = ReboundTools::eeu_base_params$case,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{

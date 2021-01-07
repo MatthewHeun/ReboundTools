@@ -11,11 +11,15 @@
 #'   rebound_graphs()
 rebound_graphs <- function(.rebound_data,
                            indexed = FALSE,
+                           cases = .rebound_data[[case_colname]] %>% unique(),
                            graph_types = ReboundTools::graph_types,
-                           grids = ReboundTools::graph_types,
-                           graph_params = ReboundTools::default_graph_params) {
+                           grid_types = ReboundTools::graph_types,
+                           graph_params = ReboundTools::default_graph_params, 
+                           case_colname = ReboundTools::eeu_base_params$case, 
+                           graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   analysis_data <- .rebound_data %>%
+    dplyr::filter(.data[[case_colname]] %in% cases) %>% 
     rebound_analysis()
   e_paths <- analysis_data %>%
     energy_paths(indexed = indexed, graph_params = graph_params)
@@ -35,7 +39,7 @@ rebound_graphs <- function(.rebound_data,
     iso_budget_lines_prefs(graph_params = graph_params)
   
   grids <- dplyr::bind_rows(e_grid_data, c_grid_data, p_grid_data) %>% 
-    dplyr::filter(graph_type %in% graph_types)
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% grid_types)
     
   indifference_curves <- analysis_data %>% 
     indifference_lines(graph_params = graph_params) %>% 

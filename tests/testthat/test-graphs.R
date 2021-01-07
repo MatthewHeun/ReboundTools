@@ -1,9 +1,39 @@
 
 test_that("rebound_graphs() works as expected", {
+  # This is a mess, because all graphs are on the same plot.
   graphs <- load_eeu_data() %>% 
     rebound_graphs()
-})
+  expect_true(!is.null(graphs))
+  
+  # Try with only one type of graph
+  graphs_energy <- load_eeu_data() %>% 
+    rebound_graphs(graph_types = "Energy")
+  expect_true(!is.null(graphs_energy))
+  
+  # Try with only one case, Car Energy
+  graphs_car_energy <- load_eeu_data() %>% 
+    rebound_graphs(cases = "Car", 
+                   graph_types = "Energy")
+  expect_true(!is.null(graphs_car_energy))
+  expect_equal(graphs_car_energy$plot_env$.path_data$Case %>% unique(), "Car")
+  expect_equal(graphs_car_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
 
+  # Try Car Cost
+  graphs_car_cost <- load_eeu_data() %>% 
+    rebound_graphs(cases = "Car", 
+                   graph_types = "Cost")
+  expect_true(!is.null(graphs_car_cost))
+  expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
+  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique(), "Cost")
+  
+  # Eliminate the grids for Car Cost graph.
+  graphs_car_cost_no_grids <- load_eeu_data() %>% 
+    rebound_graphs(cases = "Car", 
+                   graph_types = "Cost", 
+                   grid_types = NULL)
+  expect_true(!is.null(graphs_car_cost_no_grids))
+  expect_equal(graphs_car_cost_no_grids$plot_env$.grid_data %>% nrow(), 0)
+})
 
 
 test_that("rebound_graphs_helper() works as expected", {
