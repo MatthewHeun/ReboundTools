@@ -13,7 +13,8 @@ add_budget_line(
   size = ReboundTools::default_graph_params$prefs_grid_size,
   linetype = ReboundTools::default_graph_params$prefs_grid_linetype,
   slope,
-  intercept
+  intercept,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{

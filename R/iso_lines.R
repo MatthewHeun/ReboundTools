@@ -487,16 +487,17 @@ add_budget_line <- function(.DF = NULL,
                             colour = ReboundTools::default_graph_params$prefs_grid_colour, 
                             size = ReboundTools::default_graph_params$prefs_grid_size, 
                             linetype = ReboundTools::default_graph_params$prefs_grid_linetype,
-                            slope, intercept) {
+                            slope, intercept, 
+                            graph_df_colnames = ReboundTools::graph_df_colnames) {
   out <- meta %>% 
     dplyr::mutate(
-      graph_type = graph_type, 
-      line_name = line_name, 
-      colour = colour,
-      size = size,
-      linetype = linetype,
-      slope = slope,
-      intercept = intercept
+      "{graph_df_colnames$graph_type_col}" := graph_type, 
+      "{graph_df_colnames$line_name_col}" := line_name,
+      "{graph_df_colnames$colour_col}" := colour, 
+      "{graph_df_colnames$size_col}" := size,
+      "{graph_df_colnames$linetype_col}" := linetype,
+      "{graph_df_colnames$slope_col}" := slope,
+      "{graph_df_colnames$intercept_col}" := intercept
     )
   if (is.null(.DF)) {
     return(out)
