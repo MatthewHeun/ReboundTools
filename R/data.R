@@ -355,23 +355,63 @@
 "graph_types"
 
 
-
-#' Graph colours
+#' Graph parameters
 #' 
-#' The list of graph colours in the `ReboundTools` package.
-#' These are default colors for various graphical elements.
+#' The list of graph parameters for drawing
+#' energy path graphs, cost path graphs, and preference path graphs
+#' in the `ReboundTools` package.
 #' 
-#' @format A string list with `r length(graph_colours)` entries.
+#' @format A string list with `r length(default_graph_params)` entries.
 #' \describe{
-#' \item{empl}{The colour for emplacement effects.}
-#' \item{sub}{The colour for substitution effects.}
-#' \item{inc}{The colour for income effects.}
-#' \item{prod}{The colour for productivity effects.}
-#' \item{grid}{The colour for grid decorations.}
+#' \item{dempl_colour}{The colour for direct emplacment lines.}
+#' \item{emb_colour}{The colour for embodied energy lines.}
+#' \item{cap_colour}{The colour for capital cost lines.}
+#' \item{md_colour}{The colour for maintenance and disposal lines.}
+#' \item{dsub_colour}{The colour for direct substitution lines.}
+#' \item{isub_colour}{The colour for indirect substitution lines.}
+#' \item{dinc_colour}{The colour for direct income lines.}
+#' \item{iinc_colour}{The colour for indirect income lines.}
+#' \item{prod_colour}{The colour for productivity lines.}
+#' \item{dempl_size}{The size for direct emplacment lines.}
+#' \item{emb_size}{The size for embodied energy lines.}
+#' \item{cap_size}{The size for capital cost lines.}
+#' \item{md_size}{The size for maintenance and disposal lines.}
+#' \item{dsub_size}{The size for direct substitution lines.}
+#' \item{isub_size}{The size for indirect substitution lines.}
+#' \item{dinc_size}{The size for direct income lines.}
+#' \item{iinc_size}{The size for indirect income lines.}
+#' \item{prod_size}{The size for productivity lines.}
+#' \item{dempl_linetyps}{The linetype for direct emplacment lines.}
+#' \item{emb_linetype}{The linetype for embodied energy lines.}
+#' \item{cap_linetype}{The linetype for capital cost lines.}
+#' \item{md_linetype}{The linetype for maintenance and disposal lines.}
+#' \item{dsub_linetype}{The linetype for direct substitution lines.}
+#' \item{isub_linetype}{The linetype for indirect substitution lines.}
+#' \item{dinc_linetype}{The linetype for direct income lines.}
+#' \item{iinc_linetype}{The linetype for indirect income lines.}
+#' \item{prod_linetype}{The linetype for productivity lines.}
+#' \item{energy_grid_colour}{The colour for energy grid lines.}
+#' \item{energy_rebound_lines_colour}{The colour for energy rebound lines.}
+#' \item{cost_grid_colour}{The colour for cost grid lines.}
+#' \item{cost_ray_colour}{The colour for cost rays.}
+#' \item{prefs_grid_colour}{The colour for preferences grid lines.}
+#' \item{prefs_indiff_curve_colour}{The colour for indifference curve lines.}
+#' \item{energy_grid_size}{The size for energy grid lines.}
+#' \item{energy_rebound_lines_size}{The size for energy rebound lines.}
+#' \item{cost_grid_size}{The size for cost grid lines.}
+#' \item{cost_ray_size}{The size for cost rays.}
+#' \item{prefs_grid_size}{The size for preferences grid lines.}
+#' \item{prefs_indiff_curve_size}{The size for indifference curve lines.}
+#' \item{energy_grid_linetype}{The linetype for energy grid lines.}
+#' \item{energy_rebound_lines_linetype}{The linetype for energy rebound lines.}
+#' \item{cost_grid_linetype}{The linetype for cost grid lines.}
+#' \item{cost_ray_linetype}{The linetype for cost rays.}
+#' \item{prefs_grid_linetype}{The linetype for preferences grid lines.}
+#' \item{prefs_indiff_curve_linetype}{The linetype for indifference curve lines.}
 #' }
 #' @examples
-#' graph_colours
-"graph_colours"
+#' default_graph_params
+"default_graph_params"
 
 
 #' Graph data frame columns
@@ -394,10 +434,3 @@
 #' @examples
 #' graph_df_colnames
 "graph_df_colnames"
-
-
-
-
-
-
-

@@ -8,6 +8,8 @@
 #'                      likely created by `rebound_analysis()`.
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
+#' @param graph_type See `ReboundTools::graph_types`.
+#' @param graph_params See `ReboundTools::default_graph_params`.
 #' @param I_E,k See `ReboundTools::eeu_base_params`.
 #' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,E_dot_s_star,E_dot_emb_star,C_dot_md_star,C_dot_o_star See `ReboundTools::star_vars`.
@@ -15,10 +17,6 @@
 #' @param E_dot_s_bar,E_dot_emb_bar,C_dot_md_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
 #' @param E_dot_s_bar,E_dot_emb_bar,C_dot_md_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
 #' @param E_dot_s_tilde,E_dot_emb_tilde,C_dot_md_tilde,C_dot_o_tilde See `ReboundTools::tilde_vars`.
-#' @param energy_type See `ReboundTools::graph_types`.
-#' @param grid_colour See `ReboundTools::graph_colours`.
-#' @param grid_size Line width for iso-energy lines. Default is `0.5`.
-#' @param grid_linetype Line type for iso-energy lines. Default is "solid".
 #'
 #' @return A data frame containing iso-energy lines to be drawn on an energy rebound path graph.
 #' 
@@ -30,6 +28,8 @@
 #'   iso_energy_lines()
 iso_energy_lines <- function(.rebound_data, 
                              indexed = FALSE, 
+                             graph_type = ReboundTools::graph_types$energy,
+                             graph_params = ReboundTools::default_graph_params,
                              
                              I_E = ReboundTools::eeu_base_params$I_E, 
                              k = ReboundTools::eeu_base_params$k,
@@ -59,13 +59,7 @@ iso_energy_lines <- function(.rebound_data,
                              E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
                              E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
                              C_dot_md_tilde = ReboundTools::tilde_vars$C_dot_md_tilde,
-                             C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
-
-                             energy_type = ReboundTools::graph_types$energy,
-                             grid_colour = ReboundTools::graph_colours$grid,
-                             
-                             grid_size = 0.5,
-                             grid_linetype = "solid") {
+                             C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -79,11 +73,11 @@ iso_energy_lines <- function(.rebound_data,
   y <- y_orig
   isos <- add_iso(indexed = indexed, 
                   meta = meta, 
-                  graph_type = energy_type, 
+                  graph_type = graph_type, 
                   iso_name = "Re = 100%", 
-                  colour = grid_colour, 
-                  size = grid_size, 
-                  linetype = grid_linetype, 
+                  colour = graph_params$energy_grid_colour, 
+                  size = graph_params$energy_grid_size, 
+                  linetype = graph_params$energy_grid_linetype, 
                   x_orig = x_orig, y_orig = y_orig,
                   x = x, y = y)
   
@@ -94,11 +88,11 @@ iso_energy_lines <- function(.rebound_data,
   isos <- isos %>% 
     add_iso(indexed = indexed, 
             meta = meta, 
-            graph_type = energy_type, 
+            graph_type = graph_type, 
             iso_name = "Re = 0%", 
-            colour = grid_colour, 
-            size = grid_size, 
-            linetype = grid_linetype, 
+            colour = graph_params$energy_grid_colour, 
+            size = graph_params$energy_grid_size, 
+            linetype = graph_params$energy_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig,
             x = x, y = y)
   
@@ -110,11 +104,11 @@ iso_energy_lines <- function(.rebound_data,
   isos <- isos %>% 
     add_iso(indexed = indexed, 
             meta = meta, 
-            graph_type = energy_type, 
+            graph_type = graph_type, 
             iso_name = ReboundTools::rebound_terms$Re_empl, 
-            colour = grid_colour, 
-            size = grid_size, 
-            linetype = grid_linetype, 
+            colour = graph_params$energy_grid_colour, 
+            size = graph_params$energy_grid_size, 
+            linetype = graph_params$energy_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig,
             x = x, y = y)
   
@@ -126,11 +120,11 @@ iso_energy_lines <- function(.rebound_data,
   isos <- isos %>% 
     add_iso(indexed = indexed, 
             meta = meta, 
-            graph_type = energy_type, 
+            graph_type = graph_type, 
             iso_name = ReboundTools::rebound_terms$Re_sub, 
-            colour = grid_colour, 
-            size = grid_size, 
-            linetype = grid_linetype, 
+            colour = graph_params$energy_grid_colour, 
+            size = graph_params$energy_grid_size, 
+            linetype = graph_params$energy_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig,
             x = x, y = y)
   
@@ -142,11 +136,11 @@ iso_energy_lines <- function(.rebound_data,
   isos <- isos %>% 
     add_iso(indexed = indexed, 
             meta = meta, 
-            graph_type = energy_type, 
+            graph_type = graph_type, 
             iso_name = ReboundTools::rebound_terms$Re_inc, 
-            colour = grid_colour, 
-            size = grid_size, 
-            linetype = grid_linetype, 
+            colour = graph_params$energy_grid_colour, 
+            size = graph_params$energy_grid_size, 
+            linetype = graph_params$energy_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig,
             x = x, y = y)
   
@@ -159,17 +153,16 @@ iso_energy_lines <- function(.rebound_data,
   isos <- isos %>%
     add_iso(indexed = indexed,
             meta = meta,
-            graph_type = energy_type,
+            graph_type = graph_type,
             iso_name = ReboundTools::rebound_terms$Re_tot,
-            colour = grid_colour,
-            size = grid_size,
-            linetype = grid_linetype,
+            colour = graph_params$energy_grid_colour, 
+            size = graph_params$energy_grid_size, 
+            linetype = graph_params$energy_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig,
             x = x, y = y)
   
   return(isos)
 }
-
 
 
 #' Create a data frame of iso-cost lines
@@ -182,12 +175,10 @@ iso_energy_lines <- function(.rebound_data,
 #'                      likely created by `rebound_analysis()`.
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
+#' @param graph_type See `ReboundTools::graph_types`.
+#' @param graph_params See `ReboundTools::graph_params`.
 #' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
-#' @param cost_type See `ReboundTools::graph_types$cost`.
-#' @param grid_colour See `ReboundTools::graph_colours`.
-#' @param grid_size Line width. Default is `0.5`.
-#' @param grid_linetype Line type. Default is "solid".
 #'
 #' @return A data frame of iso-cost lines for a cost graph.
 #' 
@@ -199,18 +190,15 @@ iso_energy_lines <- function(.rebound_data,
 #'   iso_cost_lines()
 iso_cost_lines <- function(.rebound_data, 
                            indexed = FALSE,
+                           graph_type = ReboundTools::graph_types$cost,
+                           graph_params = ReboundTools::default_graph_params,
                            
                            C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                            C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                            C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig, 
                            C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig, 
                            
-                           G_dot = ReboundTools::star_vars$G_dot,
-                           
-                           cost_type = ReboundTools::graph_types$cost,
-                           grid_colour = ReboundTools::graph_colours$grid,
-                           grid_size = 0.5,
-                           grid_linetype = "solid") {
+                           G_dot = ReboundTools::star_vars$G_dot) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -219,9 +207,13 @@ iso_cost_lines <- function(.rebound_data,
   y_orig <- .rebound_data[[C_dot_cap_orig]] + .rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]
   x <- x_orig
   y <- y_orig
-  isos <- add_iso(indexed = indexed, meta = meta, 
-                  graph_type = cost_type, iso_name = ReboundTools::rebound_stages$orig,
-                  colour = grid_colour, size = grid_size, linetype = grid_linetype, 
+  isos <- add_iso(indexed = indexed,
+                  meta = meta, 
+                  graph_type = graph_type, 
+                  iso_name = ReboundTools::rebound_stages$orig,
+                  colour = graph_params$cost_grid_colour, 
+                  size = graph_params$cost_grid_size, 
+                  linetype = graph_params$cost_grid_linetype, 
                   x_orig = x_orig, y_orig = y_orig, 
                   x = x, y = y)
   
@@ -229,9 +221,13 @@ iso_cost_lines <- function(.rebound_data,
   x <- x - .rebound_data[[G_dot]]
   y <- y
   isos <- isos %>% 
-    add_iso(indexed = indexed, meta = meta, 
-            graph_type = cost_type, iso_name = "G_dot",
-            colour = grid_colour, size = grid_size, linetype = grid_linetype, 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = graph_type, 
+            iso_name = "G_dot",
+            colour = graph_params$cost_grid_colour, 
+            size = graph_params$cost_grid_size, 
+            linetype = graph_params$cost_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig, 
             x = x, y = y)
 
@@ -249,14 +245,12 @@ iso_cost_lines <- function(.rebound_data,
 #'
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
+#' @param graph_type See `ReboundTools::graph_types`.
+#' @param graph_params See `ReboundTools::graph_params`.
 #' @param p_s_orig,q_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig,M_dot_orig See `ReboundTools::orig_vars`.
 #' @param p_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param q_dot_s_hat,C_dot_o_hat See `ReboundTools::hat_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_o_hat See `ReboundTools::Delta_vars`.
-#' @param prefs_type See `ReboundTools::graph_types`.
-#' @param grid_colour See `ReboundTools::graph_colours`.
-#' @param grid_size Line width. Default is `0.2`.
-#' @param grid_linetype Line type. Default is "solid".
 #'
 #' @return A data frame of iso-budget lines for a preferences graph.
 #' 
@@ -267,6 +261,8 @@ iso_cost_lines <- function(.rebound_data,
 #'   rebound_analysis() %>% 
 #'   iso_budget_lines_prefs()
 iso_budget_lines_prefs <- function(.rebound_data, 
+                                   graph_type = ReboundTools::graph_types$preferences,
+                                   graph_params = ReboundTools::default_graph_params,
                                    
                                    p_s_orig = ReboundTools::orig_vars$p_s_orig, 
                                    q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
@@ -284,12 +280,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
                                    Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
                                    Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                                    Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-                                   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                                   
-                                   prefs_type = ReboundTools::graph_types$preferences,
-                                   grid_colour = ReboundTools::graph_colours$grid,
-                                   grid_size = 0.2,
-                                   grid_linetype = "solid") {
+                                   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -301,11 +292,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
                        .rebound_data[[C_dot_md_orig]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(meta = meta, 
-                         graph_type = prefs_type,
+                         graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$orig, 
-                         colour = grid_colour, 
-                         size = grid_size, 
-                         linetype = grid_linetype, 
+                         colour = graph_params$prefs_grid_colour, 
+                         size = graph_params$prefs_grid_size, 
+                         linetype = graph_params$prefs_grid_linetype, 
                          slope = slope_orig,
                          intercept = intercept_orig)
   
@@ -317,11 +308,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
                        .rebound_data[[C_dot_md_orig]] - .rebound_data[[G_dot]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
-                         graph_type = prefs_type,
+                         graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$star, 
-                         colour = grid_colour, 
-                         size = grid_size, 
-                         linetype = grid_linetype, 
+                         colour = graph_params$prefs_grid_colour, 
+                         size = graph_params$prefs_grid_size, 
+                         linetype = graph_params$prefs_grid_linetype, 
                          slope = slope_star,
                          intercept = intercept_star)
   
@@ -336,11 +327,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
                       .rebound_data[[Delta_C_dot_o_hat]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
-                         graph_type = prefs_type,
+                         graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$hat, 
-                         colour = grid_colour, 
-                         size = grid_size, 
-                         linetype = grid_linetype, 
+                         colour = graph_params$prefs_grid_colour, 
+                         size = graph_params$prefs_grid_size, 
+                         linetype = graph_params$prefs_grid_linetype, 
                          slope = slope_hat,
                          intercept = intercept_hat)
   
@@ -352,11 +343,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
                       .rebound_data[[Delta_C_dot_md_star]]) / 
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
-                         graph_type = prefs_type,
+                         graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$bar, 
-                         colour = grid_colour, 
-                         size = grid_size, 
-                         linetype = grid_linetype, 
+                         colour = graph_params$prefs_grid_colour, 
+                         size = graph_params$prefs_grid_size, 
+                         linetype = graph_params$prefs_grid_linetype, 
                          slope = slope_bar,
                          intercept = intercept_bar)
 
@@ -366,9 +357,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
                   (.rebound_data[[q_dot_s_hat]] / .rebound_data[[q_dot_s_orig]])
   intercept_ray <- 0
   out <- add_budget_line(out, meta = meta, 
-          graph_type = prefs_type, 
+          graph_type = graph_type, 
           line_name = "ray",
-          colour = grid_colour, size = grid_size, linetype = grid_linetype, 
+          colour = graph_params$prefs_ray_colour, 
+          size = graph_params$prefs_ray_size, 
+          linetype = graph_params$prefs_ray_linetype, 
           slope = slope_ray, 
           intercept = intercept_ray)
   return(out)
@@ -384,12 +377,10 @@ iso_budget_lines_prefs <- function(.rebound_data,
 #'
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
+#' @param graph_type See `ReboundTools::graph_types`.
+#' @param graph_params See `ReboundTools::graph_params`.
 #' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
 #' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
-#' @param prefs_type See `ReboundTools::graph_types`.
-#' @param grid_colour See `ReboundTools::graph_colours`.
-#' @param grid_size Width of indifference curve lines. Default is `0.2`.
-#' @param grid_linetype = Line type for indifference curve lines. Default is "solid".
 #'
 #' @return A data frame of indifference curves for a preferences graph.
 #' 
@@ -400,18 +391,16 @@ iso_budget_lines_prefs <- function(.rebound_data,
 #'   rebound_analysis() %>% 
 #'   indifference_lines()
 indifference_lines <- function(.rebound_data, 
+                               graph_type = ReboundTools::graph_types$preferences,
+                               graph_params = ReboundTools::default_graph_params,
+                               
                                q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
                                C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                                f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
                                sigma = ReboundTools::orig_vars$sigma,
 
                                q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-                               C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
-                               
-                               prefs_type = ReboundTools::graph_types$preferences,
-                               grid_colour = ReboundTools::graph_colours$grid,
-                               grid_size = 0.2,
-                               grid_linetype = "solid") {
+                               C_dot_o_star = ReboundTools::star_vars$C_dot_o_star) {
   
   meta <- extract_meta(.rebound_data)
 
@@ -427,11 +416,11 @@ indifference_lines <- function(.rebound_data,
   qs1_qs0 <- qs1/qs0
   Co1_Co0 <- Co1/Co0
   icurves <- add_indifference_curve(meta = meta,
-                                    graph_type = prefs_type,
+                                    graph_type = graph_type,
                                     line_name = ReboundTools::rebound_stages$orig,
-                                    colour = grid_colour,
-                                    size = grid_size,
-                                    linetype = grid_linetype,
+                                    colour = graph_params$prefs_indiff_grid_colour,
+                                    size = graph_params$prefs_indiff_grid_size,
+                                    linetype = graph_params$prefs_indiff_grid_linetype,
                                     qs1_qs0 = qs1_qs0,
                                     Co1_Co0 = Co1_Co0,
                                     f_Cs_orig = f_Cs0,
@@ -444,7 +433,7 @@ indifference_lines <- function(.rebound_data,
   # Co1_Co0 <- Co1/Co0
   # icurves <- icurves %>%
   #   add_indifference_curve(meta = meta,
-  #                          graph_type = prefs_type,
+  #                          graph_type = graph_type,
   #                          line_name = ReboundTools::rebound_stages$orig,
   #                          colour = grid_colour,
   #                          size = grid_size,
@@ -476,9 +465,9 @@ indifference_lines <- function(.rebound_data,
 #' @param graph_type The type of graph associated with this segment. 
 #'                   Default is See `ReboundTools::graph_types$preferences`.
 #' @param line_name A name for this budget line 
-#' @param colour The colour for this budget line. Default is `ReboundTools::graph_colours$grid`.
-#' @param size The size (width) for this budget line Default is `0.5`.
-#' @param linetype The line type for this budget line Default is "solid".
+#' @param colour The colour for this budget line. Default is `ReboundTools::default_graph_params$prefs_grid_colour`.
+#' @param size The size (width) for this budget line Default is `ReboundTools::default_graph_params$prefs_grid_size`.
+#' @param linetype The line type for this budget line Default is `ReboundTools::default_graph_params$prefs_grid_linetype`.
 #' @param slope The slope of this budget line.
 #' @param intercept The intercept of this budget line.
 #'
@@ -491,10 +480,14 @@ indifference_lines <- function(.rebound_data,
 #' add_budget_line(meta = meta, 
 #'   line_name = "Test budget line", 
 #'   slope = -1, intercept = 5)
-add_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
-                                  line_name,
-                                  colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
-                                  slope, intercept) {
+add_budget_line <- function(.DF = NULL, 
+                            meta, 
+                            graph_type = ReboundTools::graph_types$preferences, 
+                            line_name,
+                            colour = ReboundTools::default_graph_params$prefs_grid_colour, 
+                            size = ReboundTools::default_graph_params$prefs_grid_size, 
+                            linetype = ReboundTools::default_graph_params$prefs_grid_linetype,
+                            slope, intercept) {
   out <- meta %>% 
     dplyr::mutate(
       graph_type = graph_type, 
@@ -531,9 +524,9 @@ add_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_t
 #'             This metadata data frame provides the left-most columns of the return value.
 #' @param graph_type The type of graph associated with this segment. See `ReboundTools::graph_types`.
 #' @param iso_name A name for this iso line.
-#' @param colour The colour for this iso line. Default is `ReboundTools::graph_colours$grid`.
-#' @param size Line width. Default is `0.5`.
-#' @param linetype Line type for this iso line. Default is "solid". 
+#' @param colour The colour for this iso line. Default is `ReboundTools::default_graph_params$energy_grid_colour`.
+#' @param size Line width. Default is `ReboundTools::default_graph_params$energy_grid_size`.
+#' @param linetype Line type for this iso line. Default is `ReboundTools::default_graph_params$energy_grid_linetype`. 
 #' @param x_orig,y_orig The (x,y) coordinates of the starting point for the path on this graph, 
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of a point on this iso line. 
@@ -550,7 +543,9 @@ add_budget_line <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_t
 #'   x_orig = 10, y_orig = 10, 
 #'   x = 20, y = 30)
 add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name, 
-        colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid", 
+        colour = ReboundTools::default_graph_params$energy_grid_colour, 
+        size = ReboundTools::default_graph_params$energy_grid_size, 
+        linetype = ReboundTools::default_graph_params$energy_grid_linetype, 
         x_orig, y_orig, 
         x, y) {
   if (!indexed) {
@@ -603,9 +598,9 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
 #'                   Default is `ReboundTools::graph_types$preferences`.
 #' @param line_name A name for this indifference curve.
 #' @param colour The colour for this indifference curve. 
-#'               Default is `ReboundTools::graph_colours$grid`.
-#' @param size Line width. Default is `0.5`.
-#' @param linetype Line type. Default is "solid".
+#'               Default is `ReboundTools::default_graph_params$prefs_indiff_curve_colour`.
+#' @param size Line width. Default is `ReboundTools::default_graph_params$prefs_indiff_grid_size`.
+#' @param linetype Line type. Default is `ReboundTools::default_graph_params$prefs_indiff_grid_linetype`.
 #' @param qs1_qs0,Co1_Co0 The (x,y) coordinates of a point on this indifference curve.
 #' @param f_Cs_orig The ration of spending on the energy service to 
 #'                  the sum of initial spending on the energy service and other goods.
@@ -619,9 +614,13 @@ add_iso <- function(.DF = NULL, indexed = FALSE, meta, graph_type, iso_name,
 #' meta <- tibble::tibble(Case = "Test case")
 #' add_indifference_curve(meta = meta, line_name= "Test indifference curve",
 #'                        qs1_qs0 = 2, Co1_Co0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
-add_indifference_curve <- function(.DF = NULL, meta, graph_type = ReboundTools::graph_types$preferences, 
+add_indifference_curve <- function(.DF = NULL, 
+                                   meta, 
+                                   graph_type = ReboundTools::graph_types$preferences, 
                                    line_name, 
-                                   colour = ReboundTools::graph_colours$grid, size = 0.5, linetype = "solid",
+                                   colour = ReboundTools::default_graph_params$prefs_indiff_curve_colour, 
+                                   size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
+                                   linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
                                    qs1_qs0, Co1_Co0, f_Cs_orig, sigma) {
   out <- meta %>% 
     dplyr::mutate(

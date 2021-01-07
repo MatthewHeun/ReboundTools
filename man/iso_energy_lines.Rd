@@ -7,6 +7,8 @@
 iso_energy_lines(
   .rebound_data,
   indexed = FALSE,
+  graph_type = ReboundTools::graph_types$energy,
+  graph_params = ReboundTools::default_graph_params,
   I_E = ReboundTools::eeu_base_params$I_E,
   k = ReboundTools::eeu_base_params$k,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
@@ -30,11 +32,7 @@ iso_energy_lines(
   E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
   E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
   C_dot_md_tilde = ReboundTools::tilde_vars$C_dot_md_tilde,
-  C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
-  energy_type = ReboundTools::graph_types$energy,
-  grid_colour = ReboundTools::graph_colours$grid,
-  grid_size = 0.5,
-  grid_linetype = "solid"
+  C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde
 )
 }
 \arguments{
@@ -43,6 +41,10 @@ likely created by \code{rebound_analysis()}.}
 
 \item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
 at its start.}
+
+\item{graph_type}{See \code{ReboundTools::graph_types}.}
+
+\item{graph_params}{See \code{ReboundTools::default_graph_params}.}
 
 \item{I_E, k}{See \code{ReboundTools::eeu_base_params}.}
 
@@ -55,14 +57,6 @@ at its start.}
 \item{E_dot_s_bar, E_dot_emb_bar, C_dot_md_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
 
 \item{E_dot_s_tilde, E_dot_emb_tilde, C_dot_md_tilde, C_dot_o_tilde}{See \code{ReboundTools::tilde_vars}.}
-
-\item{energy_type}{See \code{ReboundTools::graph_types}.}
-
-\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
-
-\item{grid_size}{Line width for iso-energy lines. Default is \code{0.5}.}
-
-\item{grid_linetype}{Line type for iso-energy lines. Default is "solid".}
 }
 \value{
 A data frame containing iso-energy lines to be drawn on an energy rebound path graph.

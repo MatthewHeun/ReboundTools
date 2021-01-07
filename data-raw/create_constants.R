@@ -292,22 +292,22 @@ default_graph_params <- list(dempl_colour = "red",
                              energy_grid_colour = "gray",
                              energy_rebound_lines_colour = "gray",
                              cost_grid_colour = "gray",
-                             cost_ray_colour = "gray",
                              prefs_grid_colour = "gray",
+                             prefs_ray_colour = "gray",
                              prefs_indiff_curve_colour = "gray",
                              
                              energy_grid_size = 0.5,
                              energy_rebound_lines_size = 0.5,
                              cost_grid_size = 0.5,
-                             cost_ray_size = 0.5,
                              prefs_grid_size = 0.5,
+                             prefs_ray_size = 0.5,
                              prefs_indiff_grid_size = 0.5,
                              
                              energy_grid_linetype = "solid",
                              energy_rebound_lines_linetype = "solid",
                              cost_grid_linetype = "solid",
-                             cost_ray_linetype = "solid",
                              prefs_grid_linetype = "solid",
+                             prefs_ray_linetype = "solid",
                              prefs_indiff_grid_linetype = "solid")
 usethis::use_data(default_graph_params, overwrite = TRUE)
 

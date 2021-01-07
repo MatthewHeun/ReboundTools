@@ -9,9 +9,9 @@ add_indifference_curve(
   meta,
   graph_type = ReboundTools::graph_types$preferences,
   line_name,
-  colour = ReboundTools::graph_colours$grid,
-  size = 0.5,
-  linetype = "solid",
+  colour = ReboundTools::default_graph_params$prefs_indiff_curve_colour,
+  size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
+  linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
   qs1_qs0,
   Co1_Co0,
   f_Cs_orig,
@@ -32,11 +32,11 @@ Default is \code{ReboundTools::graph_types$preferences}.}
 \item{line_name}{A name for this indifference curve.}
 
 \item{colour}{The colour for this indifference curve.
-Default is \code{ReboundTools::graph_colours$grid}.}
+Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
 
-\item{size}{Line width. Default is \code{0.5}.}
+\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_size}.}
 
-\item{linetype}{Line type. Default is "solid".}
+\item{linetype}{Line type. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_linetype}.}
 
 \item{qs1_qs0, Co1_Co0}{The (x,y) coordinates of a point on this indifference curve.}
 

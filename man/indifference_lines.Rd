@@ -6,33 +6,27 @@
 \usage{
 indifference_lines(
   .rebound_data,
+  graph_type = ReboundTools::graph_types$preferences,
+  graph_params = ReboundTools::default_graph_params,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   sigma = ReboundTools::orig_vars$sigma,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
-  prefs_type = ReboundTools::graph_types$preferences,
-  grid_colour = ReboundTools::graph_colours$grid,
-  grid_size = 0.2,
-  grid_linetype = "solid"
+  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star
 )
 }
 \arguments{
 \item{.rebound_data}{A data frame of rebound information,
 likely created by \code{rebound_analysis()}.}
 
+\item{graph_type}{See \code{ReboundTools::graph_types}.}
+
+\item{graph_params}{See \code{ReboundTools::graph_params}.}
+
 \item{q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma}{See \code{ReboundTools::orig_vars}.}
 
 \item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
-
-\item{prefs_type}{See \code{ReboundTools::graph_types}.}
-
-\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
-
-\item{grid_size}{Width of indifference curve lines. Default is \code{0.2}.}
-
-\item{grid_linetype}{= Line type for indifference curve lines. Default is "solid".}
 }
 \value{
 A data frame of indifference curves for a preferences graph.

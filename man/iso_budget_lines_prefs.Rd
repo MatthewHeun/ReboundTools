@@ -6,6 +6,8 @@
 \usage{
 iso_budget_lines_prefs(
   .rebound_data,
+  graph_type = ReboundTools::graph_types$preferences,
+  graph_params = ReboundTools::default_graph_params,
   p_s_orig = ReboundTools::orig_vars$p_s_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
@@ -19,16 +21,16 @@ iso_budget_lines_prefs(
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-  prefs_type = ReboundTools::graph_types$preferences,
-  grid_colour = ReboundTools::graph_colours$grid,
-  grid_size = 0.2,
-  grid_linetype = "solid"
+  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat
 )
 }
 \arguments{
 \item{.rebound_data}{A data frame of rebound information,
 likely created by \code{rebound_analysis()}.}
+
+\item{graph_type}{See \code{ReboundTools::graph_types}.}
+
+\item{graph_params}{See \code{ReboundTools::graph_params}.}
 
 \item{p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
 
@@ -37,14 +39,6 @@ likely created by \code{rebound_analysis()}.}
 \item{q_dot_s_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
 
 \item{Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_o_hat}{See \code{ReboundTools::Delta_vars}.}
-
-\item{prefs_type}{See \code{ReboundTools::graph_types}.}
-
-\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
-
-\item{grid_size}{Line width. Default is \code{0.2}.}
-
-\item{grid_linetype}{Line type. Default is "solid".}
 }
 \value{
 A data frame of iso-budget lines for a preferences graph.
