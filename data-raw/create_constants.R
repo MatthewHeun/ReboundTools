@@ -259,15 +259,21 @@ usethis::use_data(graph_types, overwrite = TRUE)
 # Default graph parameters
 # 
 
-default_graph_params <- list(dempl_colour = "red", 
-                             emb_colour = "red",
-                             cap_colour = "red",
-                             md_colour = "red", 
-                             dsub_colour = "orange",
-                             isub_colour = "orange", 
-                             dinc_colour = "darkgreen",
-                             iinc_colour = "darkgreen", 
-                             prod_colour = "darkblue", 
+# Note: These colours match the colours in the rebound paper
+emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
+sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
+inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
+prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+
+default_graph_params <- list(dempl_colour = emb_colour, 
+                             emb_colour = emb_colour,
+                             cap_colour = emb_colour,
+                             md_colour = emb_colour, 
+                             dsub_colour = sub_colour,
+                             isub_colour = sub_colour, 
+                             dinc_colour = inc_colour,
+                             iinc_colour = inc_colour, 
+                             prod_colour = prod_colour, 
                              
                              dempl_size = 1, 
                              emb_size = 1,
