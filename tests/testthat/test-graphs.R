@@ -35,13 +35,27 @@ test_that("rebound_graphs() works as expected", {
   expect_true(!is.null(graphs_car_cost_no_grids))
   expect_equal(graphs_car_cost_no_grids$plot_env$.grid_data %>% nrow(), 0)
   
-  # Try an indexed Energy graph for lamps
+  # Try an Energy graph for lamps
   graphs_lamp_energy <- load_eeu_data() %>% 
     rebound_graphs(cases = "Lamp", 
                    graph_types = "Energy")
   expect_true(!is.null(graphs_lamp_energy))
   expect_equal(graphs_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
   expect_equal(graphs_lamp_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+  
+  # Try an indexed Energy graph for lamps
+  graphs_indexed_lamp_energy <- load_eeu_data() %>% 
+    rebound_graphs(indexed = TRUE, 
+                   cases = "Lamp", 
+                   graph_types = "Energy")
+  expect_true(!is.null(graphs_indexed_lamp_energy))
+  expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
+  expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+
+  # Try a preferences graph for lamps
+  graphs_car_prefs <- load_eeu_data() %>% 
+    rebound_graphs(cases = "Lamp", 
+                   graph_types = "Preferences")
 })
 
 
