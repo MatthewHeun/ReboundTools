@@ -51,9 +51,16 @@ test_that("rebound_graphs() works as expected", {
   expect_true(!is.null(graphs_indexed_lamp_energy))
   expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
   expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+  
+  # Try two cases
+  graphs_two_cases_indexed_energy <- load_eeu_data() %>% 
+    rebound_graphs(indexed = TRUE,
+                   graph_types = "Energy") +
+    ggplot2::facet_wrap(facets = "Case")
+  expect_true(!is.null(graphs_two_cases_indexed_energy))
 
   # Try a preferences graph for lamps
-  graphs_car_prefs <- load_eeu_data() %>% 
+  graphs_lamp_prefs <- load_eeu_data() %>% 
     rebound_graphs(cases = "Lamp", 
                    graph_types = "Preferences")
 })
