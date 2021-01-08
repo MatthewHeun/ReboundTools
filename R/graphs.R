@@ -98,6 +98,14 @@ rebound_graphs <- function(.rebound_data,
         ggplot2::ylab(expression(dot(C)[indir] * " [$/year]"))
     }
   }
+  if (graph_types == ReboundTools::graph_types$preferences) {
+    # Preferences graphs are always indexed
+    g <- g +
+      # Horizontal axis label q_dot_s/q_dot_s_orig
+      ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^o * " [-]")) + 
+      # Vertical axis label is C_dot_o/C_dot_o_orig
+      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^o * " [-]"))
+  } 
   
   return(g)
 }
