@@ -1,3 +1,4 @@
+* Added x and y labels for graphs, when possible.
 * Tests for graphs.
 * Much refactoring.
     - Graph appearance parameters are now passed as a list.
