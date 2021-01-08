@@ -2,42 +2,45 @@
 % Please edit documentation in R/graphs.R
 \name{rebound_graphs}
 \alias{rebound_graphs}
-\title{Create a path map for rebound analysis}
+\title{Create rebound graphs}
 \usage{
 rebound_graphs(
-  .path_data,
-  .grid_data = NULL,
-  .indifference_data = NULL,
-  colour_col = ReboundTools::graph_df_colnames$colour_col,
-  size_col = ReboundTools::graph_df_colnames$size_col,
-  linetype_col = ReboundTools::graph_df_colnames$linetype_col,
-  slope_col = ReboundTools::graph_df_colnames$slope_col,
-  intercept_col = ReboundTools::graph_df_colnames$intercept_col,
-  x_col = ReboundTools::graph_df_colnames$x_col,
-  y_col = ReboundTools::graph_df_colnames$y_col,
-  xend_col = ReboundTools::graph_df_colnames$xend_col,
-  yend_col = ReboundTools::graph_df_colnames$yend_col
+  .rebound_data,
+  indexed = FALSE,
+  cases = .rebound_data[[case_colname]] \%>\% unique(),
+  graph_types = ReboundTools::graph_types,
+  grid_types = ReboundTools::graph_types,
+  graph_params = ReboundTools::default_graph_params,
+  case_colname = ReboundTools::eeu_base_params$case,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
-\item{.path_data}{A data frame of paths to be added to the graph.
-The columns "colour" and "size" control the colour and width of the segment}
+\item{.rebound_data}{Rebound data, likely loaded by \code{load_eeu_data()}.}
 
-\item{.grid_data}{A data frame of lines to be added to the graph.}
+\item{indexed}{A boolean that tells whether to index the graph to its initial path point. Default is \code{FALSE}.}
 
-\item{.indifference_data}{A data frame of indifference curves to be added to the graph.}
+\item{cases}{A string list saying which cases in \code{.rebound_data} to include. Default is \code{.rebound_data[[case_colname]] \%>\% unique()}, i.e. all cases.}
 
-\item{colour_col, size_col, linetype_col, slope_col, intercept_col, x_col, y_col, xend_col, yend_col}{See \code{ReboundTools::graph_df_colnames}.}
+\item{graph_types}{A string list of graph types to include in the returned object. Default is \code{ReboundTools::graph_types}, i.e. all graph types.}
+
+\item{grid_types}{A string list of graph types on which grids (guide lines) are to be included. Default is \code{ReboundTools::graph_types}, i.e. include grids on all graph types.}
+
+\item{graph_params}{A string list of parameters that control the appearance of this graph.
+Default is \code{ReboundTools::default_graph_params}, which can be
+modified and passed as an argument to control graph appearance.}
+
+\item{case_colname}{The name of the Case column in \code{.rebound_data}. Default is \code{ReboundTools::eeu_base_params$case}.}
+
+\item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
-A ggplot2 object with the graphs
+A \code{ggplot2} object with the graphs
 }
 \description{
-Create a path map for rebound analysis
+Create rebound graphs
 }
 \examples{
 load_eeu_data() \%>\% 
-  rebound_analysis() \%>\% 
-  energy_paths() \%>\% 
   rebound_graphs()
 }
