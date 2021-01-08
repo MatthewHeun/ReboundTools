@@ -9,11 +9,12 @@ add_budget_line(
   meta,
   graph_type = ReboundTools::graph_types$preferences,
   line_name,
-  colour = ReboundTools::graph_colours$grid,
-  size = 0.5,
-  linetype = "solid",
+  colour = ReboundTools::default_graph_params$prefs_grid_colour,
+  size = ReboundTools::default_graph_params$prefs_grid_size,
+  linetype = ReboundTools::default_graph_params$prefs_grid_linetype,
   slope,
-  intercept
+  intercept,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -29,15 +30,18 @@ Default is See \code{ReboundTools::graph_types$preferences}.}
 
 \item{line_name}{A name for this budget line}
 
-\item{colour}{The colour for this budget line. Default is \code{ReboundTools::graph_colours$grid}.}
+\item{colour}{The colour for this budget line. Default is \code{ReboundTools::default_graph_params$prefs_grid_colour}.}
 
-\item{size}{The size (width) for this budget line Default is \code{0.5}.}
+\item{size}{The size (width) for this budget line Default is \code{ReboundTools::default_graph_params$prefs_grid_size}.}
 
-\item{linetype}{The line type for this budget line Default is "solid".}
+\item{linetype}{The line type for this budget line Default is \code{ReboundTools::default_graph_params$prefs_grid_linetype}.}
 
 \item{slope}{The slope of this budget line.}
 
 \item{intercept}{The intercept of this budget line.}
+
+\item{graph_df_colnames}{A list of column names in graph data frames.
+Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A version of \code{.DF} with budget lines added at the bottom.

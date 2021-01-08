@@ -6,36 +6,27 @@
 \usage{
 prefs_paths(
   .rebound_data,
+  graph_params = ReboundTools::default_graph_params,
+  graph_type = ReboundTools::graph_types$preferences,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
-  Delta_C_dot_o_hat_colour = ReboundTools::graph_colours$sub,
-  Delta_q_dot_s_hat_colour = ReboundTools::graph_colours$sub,
-  Delta_q_dot_s_bar_colour = ReboundTools::graph_colours$inc,
-  Delta_C_dot_o_bar_colour = ReboundTools::graph_colours$inc,
-  Delta_C_dot_o_hat_size = 1,
-  Delta_q_dot_s_hat_size = 1,
-  Delta_q_dot_s_bar_size = 1,
-  Delta_C_dot_o_bar_size = 1,
-  prefs_type = ReboundTools::graph_types$preferences
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar
 )
 }
 \arguments{
 \item{.rebound_data}{A data frame of rebound analysis results,
 likely created by \code{rebound_analysis()}.}
 
+\item{graph_params}{See \code{ReboundTools::graph_params}.}
+
+\item{graph_type}{See \code{ReboundTools::graph_types}.}
+
 \item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
 
 \item{Delta_q_dot_s_hat, Delta_C_dot_o_hat, Delta_q_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
-
-\item{Delta_C_dot_o_hat_colour, Delta_q_dot_s_hat_colour, Delta_q_dot_s_bar_colour, Delta_C_dot_o_bar_colour}{See \code{ReboundTools::graph_colours}.}
-
-\item{Delta_C_dot_o_hat_size, Delta_q_dot_s_hat_size, Delta_q_dot_s_bar_size, Delta_C_dot_o_bar_size}{Line widths.}
-
-\item{prefs_type}{See \code{ReboundTools::graph_types}.}
 }
 \value{
 A data frame of information for creating preference graphs.

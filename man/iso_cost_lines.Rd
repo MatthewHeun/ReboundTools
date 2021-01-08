@@ -7,15 +7,13 @@
 iso_cost_lines(
   .rebound_data,
   indexed = FALSE,
+  graph_type = ReboundTools::graph_types$cost,
+  graph_params = ReboundTools::default_graph_params,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
-  G_dot = ReboundTools::star_vars$G_dot,
-  cost_type = ReboundTools::graph_types$cost,
-  grid_colour = ReboundTools::graph_colours$grid,
-  grid_size = 0.5,
-  grid_linetype = "solid"
+  G_dot = ReboundTools::star_vars$G_dot
 )
 }
 \arguments{
@@ -25,17 +23,13 @@ likely created by \code{rebound_analysis()}.}
 \item{indexed}{A boolean telling whether the rebound path should be indexed to \code{1}
 at its start.}
 
+\item{graph_type}{See \code{ReboundTools::graph_types}.}
+
+\item{graph_params}{See \code{ReboundTools::graph_params}.}
+
 \item{C_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
-
-\item{cost_type}{See \code{ReboundTools::graph_types$cost}.}
-
-\item{grid_colour}{See \code{ReboundTools::graph_colours}.}
-
-\item{grid_size}{Line width. Default is \code{0.5}.}
-
-\item{grid_linetype}{Line type. Default is "solid".}
 }
 \value{
 A data frame of iso-cost lines for a cost graph.

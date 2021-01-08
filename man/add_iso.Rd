@@ -10,13 +10,14 @@ add_iso(
   meta,
   graph_type,
   iso_name,
-  colour = ReboundTools::graph_colours$grid,
-  size = 0.5,
-  linetype = "solid",
+  colour = ReboundTools::default_graph_params$energy_grid_colour,
+  size = ReboundTools::default_graph_params$energy_grid_size,
+  linetype = ReboundTools::default_graph_params$energy_grid_linetype,
   x_orig,
   y_orig,
   x,
-  y
+  y,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -34,17 +35,20 @@ This metadata data frame provides the left-most columns of the return value.}
 
 \item{iso_name}{A name for this iso line.}
 
-\item{colour}{The colour for this iso line. Default is \code{ReboundTools::graph_colours$grid}.}
+\item{colour}{The colour for this iso line. Default is \code{ReboundTools::default_graph_params$energy_grid_colour}.}
 
-\item{size}{Line width. Default is \code{0.5}.}
+\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$energy_grid_size}.}
 
-\item{linetype}{Line type for this iso line. Default is "solid".}
+\item{linetype}{Line type for this iso line. Default is \code{ReboundTools::default_graph_params$energy_grid_linetype}.}
 
 \item{x_orig, y_orig}{The (x,y) coordinates of the starting point for the path on this graph,
 used for indexing.}
 
 \item{x, y}{The (x,y) coordinates of a point on this iso line.
 Slope and intercept are calculated from these values.}
+
+\item{graph_df_colnames}{A list of column names in graph data frames.
+Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A version of \code{.DF} with iso lines added at the bottom.

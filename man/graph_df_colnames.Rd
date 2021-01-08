@@ -5,17 +5,19 @@
 \alias{graph_df_colnames}
 \title{Graph data frame columns}
 \format{
-A string list with 9 entries.
+A string list with 11 entries.
 \describe{
+\item{colour_col}{The name of the column containing line colours.}
+\item{size_col}{The name of the column containing line sizes (widths).}
+\item{linetype_col}{The name of the column containing line types.}
+\item{graph_type_col}{The name of the column containing graph types.}
+\item{line_name_col}{The name of the column containing names (string identifiers) for lines, segments, and grids.}
 \item{slope_col}{The name of the column containing line slopes.}
 \item{intercept_col}{The name of the column containing line intercepts.}
 \item{x_col}{The name of the column containing starting x values.}
 \item{y_col}{The name of the column containing starting y values.}
 \item{xend_col}{The name of the column containing ending x values.}
 \item{yend_col}{The name of the column containing ending y values.}
-\item{colour_col}{The name of the column containing line colours.}
-\item{size_col}{The name of the column containing line sizes (widths).}
-\item{linetype_col}{The name of the column containing line types.}
 }
 }
 \usage{

@@ -4,6 +4,7 @@ test_that("stages_table() works as expected", {
   expect_true("Case" %in% colnames(t1))
   # We should have units. I.e., every item in the name column should contain a "[".
   expect_true(all(grepl(pattern = "\\[", t1$name)))
+  expect_true(! ".unit_col" %in% names(t1))
   
   # Try without the case column
   analysis_data <- load_eeu_data() %>% 

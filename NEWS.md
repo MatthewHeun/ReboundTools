@@ -1,3 +1,14 @@
+# ReboundTools 0.1.4 (2021-01-07)
+
+* Added x and y labels for graphs, when possible.
+* Tests for graphs.
+* Much refactoring.
+    - Graph appearance parameters are now passed as a list.
+    - Data frame column names now mostly stored in member lists.
+* Fixed a bug in `stages_table()`. 
+  `"{.unit_col}" = NULL` --> `"{.unit_col}" := NULL`
+  
+
 # ReboundTools 0.1.3 (2021-01-05)
 
 * Still at 280 tests, all passing.

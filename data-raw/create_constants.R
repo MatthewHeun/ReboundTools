@@ -256,30 +256,83 @@ usethis::use_data(graph_types, overwrite = TRUE)
 
 
 #
-# Graph colours
-#
+# Default graph parameters
+# 
 
-graph_colours <- list(empl = "red", 
-                      sub = "orange",
-                      inc = "darkgreen",
-                      prod = "blue", 
-                      grid = "gray")
-usethis::use_data(graph_colours, overwrite = TRUE)
+# Note: These colours match the colours in the rebound paper
+emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
+sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
+inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
+prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+
+default_graph_params <- list(dempl_colour = emb_colour, 
+                             emb_colour = emb_colour,
+                             cap_colour = emb_colour,
+                             md_colour = emb_colour, 
+                             dsub_colour = sub_colour,
+                             isub_colour = sub_colour, 
+                             dinc_colour = inc_colour,
+                             iinc_colour = inc_colour, 
+                             prod_colour = prod_colour, 
+                             
+                             dempl_size = 1, 
+                             emb_size = 1,
+                             cap_size = 1,
+                             md_size = 1, 
+                             dsub_size = 1,
+                             isub_size = 1, 
+                             dinc_size = 1,
+                             iinc_size = 1, 
+                             prod_size = 1,
+                             
+                             dempl_linetype = "solid",
+                             emb_linetype = "solid",
+                             cap_linetype = "solid",
+                             md_linetype = "solid", 
+                             dsub_linetype = "solid",
+                             isub_linetype = "solid", 
+                             dinc_linetype = "solid",
+                             iinc_linetype = "solid", 
+                             prod_linetype = "solid",
+                             
+                             energy_grid_colour = "gray",
+                             energy_rebound_lines_colour = "gray",
+                             cost_grid_colour = "gray",
+                             prefs_grid_colour = "gray",
+                             prefs_ray_colour = "gray",
+                             prefs_indiff_grid_colour = "gray",
+                             
+                             energy_grid_size = 0.1,
+                             energy_rebound_lines_size = 0.1,
+                             cost_grid_size = 0.1,
+                             prefs_grid_size = 0.1,
+                             prefs_ray_size = 0.1,
+                             prefs_indiff_grid_size = 0.1,
+                             
+                             energy_grid_linetype = "solid",
+                             energy_rebound_lines_linetype = "solid",
+                             cost_grid_linetype = "solid",
+                             prefs_grid_linetype = "solid",
+                             prefs_ray_linetype = "solid",
+                             prefs_indiff_grid_linetype = "solid")
+usethis::use_data(default_graph_params, overwrite = TRUE)
 
 
 #
 # Graph data frame column names
 # 
 
-graph_df_colnames <- list(slope_col = "slope", 
+graph_df_colnames <- list(colour_col = "colour", 
+                          size_col = "size", 
+                          linetype_col = "linetype",
+                          graph_type_col = "graph_type",
+                          line_name_col = "line_name",
+                          slope_col = "slope", 
                           intercept_col = "intercept",
                           x_col = "x", 
                           y_col = "y", 
                           xend_col = "xend",
-                          yend_col = "yend",
-                          colour_col = "colour", 
-                          size_col = "size", 
-                          linetype_col = "linetype")
+                          yend_col = "yend")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 

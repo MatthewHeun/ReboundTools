@@ -106,7 +106,7 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
     rebound_table_data <- rebound_table_data %>% 
       dplyr::mutate(
         "{.name}" := paste(.data[[.name]], .data[[.unit_col]]),
-        "{.unit_col}" = NULL
+        "{.unit_col}" := NULL
       )
   }
   # At this point, we're done with the unit information, so delete those columns, if they exist.
