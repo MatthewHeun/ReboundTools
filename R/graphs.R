@@ -70,12 +70,32 @@ rebound_graphs <- function(.rebound_data,
   if (graph_types == ReboundTools::graph_types$energy) {
     # We know we have an energy graph.
     if (indexed) {
-      # Horizontal axis is E_dot_s/E_dot_s_orig
       g <- g +
-        ggplot2::xlab(expression(dot(E)[s] / dot(E)[s]^o)) + 
-        ggplot2::ylab( expression( group ("(", paste(dot(E)[emb], " + ", sum(dot(C)), I[E]), ")" ) / 
-                                     group ("(", paste(dot(E)[emb]^o, " + ", sum(dot(C)^o), I[E]), ")" )  ))
-      
+        # Horizontal axis label E_dot_dir/E_dot_dir_orig
+        ggplot2::xlab(expression(dot(E)[dir] / dot(E)[dir]^o * " [-]")) + 
+        # Vertical axis label is E_dot_indir/E_dot_indir_orig
+        ggplot2::ylab(expression(dot(E)[indir] / dot(E)[indir]^o * " [-]"))
+    } else {
+      g <- g +
+        # Horizontal axis label E_dot_dir [MJ/year]
+        ggplot2::xlab(expression(dot(E)[dir] * " [MJ/year]")) + 
+        # Vertical axis label is E_dot_indir [MJ/year]
+        ggplot2::ylab(expression(dot(E)[indir] * " [MJ/year]"))
+    }
+  }
+  if (graph_types == ReboundTools::graph_types$cost) {
+    if (indexed) {
+      g <- g +
+        # Horizontal axis label C_dot_dir/C_dot_dir_orig
+        ggplot2::xlab(expression(dot(C)[dir] / dot(C)[dir]^o * " [-]")) + 
+        # Vertical axis label is E_dot_indir/E_dot_indir_orig
+        ggplot2::ylab(expression(dot(C)[indir] / dot(C)[indir]^o * " [-]"))
+    } else {
+      g <- g +
+        # Horizontal axis label C_dot_dir [$/year]
+        ggplot2::xlab(expression(dot(C)[dir] * " [$/year]")) + 
+        # Vertical axis label is C_dot_indir [$/year]
+        ggplot2::ylab(expression(dot(C)[indir] * " [$/year]"))
     }
   }
   

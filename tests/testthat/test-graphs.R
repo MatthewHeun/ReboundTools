@@ -27,6 +27,15 @@ test_that("rebound_graphs() works as expected", {
   expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
   expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique(), "Cost")
   
+  # Try indexed Car Cost
+  graphs_car_cost <- load_eeu_data() %>% 
+    rebound_graphs(indexed = TRUE,
+                   cases = "Car", 
+                   graph_types = "Cost")
+  expect_true(!is.null(graphs_car_cost))
+  expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
+  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique(), "Cost")
+
   # Eliminate the grids for Car Cost graph.
   graphs_car_cost_no_grids <- load_eeu_data() %>% 
     rebound_graphs(cases = "Car", 
