@@ -72,6 +72,7 @@ test_that("rebound_graphs() works as expected", {
   graphs_lamp_prefs <- load_eeu_data() %>% 
     rebound_graphs(cases = "Lamp", 
                    graph_types = "Preferences")
+  expect_true(!is.null(graphs_lamp_prefs))
 })
 
 
