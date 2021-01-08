@@ -66,6 +66,14 @@ rebound_graphs <- function(.rebound_data,
                         .grid_data = grids, 
                         .indifference_data = indifference_curves)
   
+  # If the requested graph types has length > 1, we don't know what label to put on the axes,
+  # so just return now.
+  if (length(graph_types) > 1) {
+    return(g)
+  }
+  
+  # But if we have only 1 graph type, we can set the x and y axis labels.
+  
   # Now add x and y labels if possible, based on the type of graph.
   if (graph_types == ReboundTools::graph_types$energy) {
     # We know we have an energy graph.
