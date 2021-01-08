@@ -17,6 +17,22 @@ rebound_graphs(
 }
 \arguments{
 \item{.rebound_data}{Rebound data, likely loaded by \code{load_eeu_data()}.}
+
+\item{indexed}{A boolean that tells whether to index the graph to its initial path point. Default is \code{FALSE}.}
+
+\item{cases}{A string list saying which cases in \code{.rebound_data} to include. Default is \code{.rebound_data[[case_colname]] \%>\% unique()}, i.e. all cases.}
+
+\item{graph_types}{A string list of graph types to include in the returned object. Default is \code{ReboundTools::graph_types}, i.e. all graph types.}
+
+\item{grid_types}{A string list of graph types on which grids (guide lines) are to be included. Default is \code{ReboundTools::graph_types}, i.e. include grids on all graph types.}
+
+\item{graph_params}{A string list of parameters that control the appearance of this graph.
+Default is \code{ReboundTools::default_graph_params}, which can be
+modified and passed as an argument to control graph appearance.}
+
+\item{case_colname}{The name of the Case column in \code{.rebound_data}. Default is \code{ReboundTools::eeu_base_params$case}.}
+
+\item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A \code{ggplot2} object with the graphs

@@ -8,7 +8,7 @@ rebound_graphs_helper(
   .path_data,
   .grid_data = NULL,
   .indifference_data = NULL,
-  df_graph_colnames = ReboundTools::graph_df_colnames
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -19,17 +19,18 @@ The columns "colour" and "size" control the colour and width of the segment}
 
 \item{.indifference_data}{A data frame of indifference curves to be added to the graph.}
 
-\item{colour_col, size_col, linetype_col, slope_col, intercept_col, x_col, y_col, xend_col, yend_col}{See \code{ReboundTools::graph_df_colnames}.}
+\item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A \code{ggplot2} object with the graphs
 }
 \description{
 This is a helper function for \code{rebound_graphs()}.
+There is normally no need to call this function.
 }
 \examples{
 load_eeu_data() \%>\% 
   rebound_analysis() \%>\% 
   energy_paths() \%>\% 
-  rebound_graphs()
+  rebound_graphs_helper()
 }

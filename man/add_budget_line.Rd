@@ -39,6 +39,9 @@ Default is See \code{ReboundTools::graph_types$preferences}.}
 \item{slope}{The slope of this budget line.}
 
 \item{intercept}{The intercept of this budget line.}
+
+\item{graph_df_colnames}{A list of column names in graph data frames.
+Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A version of \code{.DF} with budget lines added at the bottom.

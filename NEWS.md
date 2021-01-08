@@ -1,3 +1,7 @@
+* Tests for graphs.
+* Much refactoring.
+    - Graph appearance parameters are now passed as a list.
+    - Data frame column names now mostly stored in member lists.
 * Fixed a bug in `stages_table()`. 
   `"{.unit_col}" = NULL` --> `"{.unit_col}" := NULL`
   

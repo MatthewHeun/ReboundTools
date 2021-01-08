@@ -470,6 +470,8 @@ indifference_lines <- function(.rebound_data,
 #' @param linetype The line type for this budget line Default is `ReboundTools::default_graph_params$prefs_grid_linetype`.
 #' @param slope The slope of this budget line.
 #' @param intercept The intercept of this budget line.
+#' @param graph_df_colnames A list of column names in graph data frames. 
+#'                          Default is `ReboundTools::graph_df_colnames`.
 #'
 #' @return A version of `.DF` with budget lines added at the bottom.
 #' 
@@ -532,6 +534,8 @@ add_budget_line <- function(.DF = NULL,
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of a point on this iso line. 
 #'            Slope and intercept are calculated from these values.
+#' @param graph_df_colnames A list of column names in graph data frames. 
+#'                          Default is `ReboundTools::graph_df_colnames`.
 #'
 #' @return A version of `.DF` with iso lines added at the bottom.
 #' 

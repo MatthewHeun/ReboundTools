@@ -46,6 +46,9 @@ used for indexing.}
 
 \item{x, y}{The (x,y) coordinates of a point on this iso line.
 Slope and intercept are calculated from these values.}
+
+\item{graph_df_colnames}{A list of column names in graph data frames.
+Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A version of \code{.DF} with iso lines added at the bottom.
