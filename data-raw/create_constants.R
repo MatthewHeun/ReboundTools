@@ -265,7 +265,10 @@ sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
 inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
 prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
 
-default_graph_params <- list(dempl_colour = emb_colour, 
+default_graph_params <- list(lineend = "round", 
+                             linejoin = "round",
+
+                             dempl_colour = emb_colour, 
                              emb_colour = emb_colour,
                              cap_colour = emb_colour,
                              md_colour = emb_colour, 
@@ -314,7 +317,16 @@ default_graph_params <- list(dempl_colour = emb_colour,
                              cost_grid_linetype = "solid",
                              prefs_grid_linetype = "solid",
                              prefs_ray_linetype = "solid",
-                             prefs_indiff_grid_linetype = "solid")
+                             prefs_indiff_grid_linetype = "solid", 
+                             
+                             include_start_point = TRUE,
+                             start_point_size = 3, 
+                             start_point_shape = 16,
+                             
+                             include_end_arrow = TRUE,
+                             arrow_angle = 20, 
+                             arrow_length = grid::unit(0.1, "inches"), 
+                             arrow_type = "closed")
 usethis::use_data(default_graph_params, overwrite = TRUE)
 
 

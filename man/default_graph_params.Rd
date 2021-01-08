@@ -5,8 +5,12 @@
 \alias{default_graph_params}
 \title{Graph parameters}
 \format{
-A string list with 45 entries.
+A string list with 54 entries.
 \describe{
+
+\item{lineend}{The line end style.}
+\item{linejoin}{The line join style.}
+\item{linejoin}{The line join style.}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital cost lines.}
@@ -52,6 +56,13 @@ A string list with 45 entries.
 \item{cost_ray_linetype}{The linetype for cost rays.}
 \item{prefs_grid_linetype}{The linetype for preferences grid lines.}
 \item{prefs_indiff_curve_linetype}{The linetype for indifference curve lines.}
+\item{include_start_point}{A boolean that tells whether to include the starting point.}
+\item{start_point_size}{The size of the start point.}
+\item{start_point_shape}{The shape of the start point.}
+\item{include_end_arrow}{A boolean that tells whether to include an ending arrow.}
+\item{arrow_angle}{The angle for the arrow head, in degrees.}
+\item{arrow_length}{The length of the arrow. See \code{grid::unit}.}
+\item{arrow_type}{The arrow type, "closed" (the default) or "open". See \code{grid::arrow}.}
 }
 }
 \usage{

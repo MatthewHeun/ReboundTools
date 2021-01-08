@@ -8,7 +8,8 @@ rebound_graphs_helper(
   .path_data,
   .grid_data = NULL,
   .indifference_data = NULL,
-  graph_df_colnames = ReboundTools::graph_df_colnames
+  graph_df_colnames = ReboundTools::graph_df_colnames,
+  graph_params = ReboundTools::default_graph_params
 )
 }
 \arguments{
