@@ -18,32 +18,40 @@ rebound_graphs <- function(.rebound_data,
                            case_colname = ReboundTools::eeu_base_params$case, 
                            graph_df_colnames = ReboundTools::graph_df_colnames) {
   
+  # Do the full rebound analysis
   analysis_data <- .rebound_data %>%
     dplyr::filter(.data[[case_colname]] %in% cases) %>% 
     rebound_analysis()
+  
+  # Calculate energy, cost, and preferences paths
   e_paths <- analysis_data %>%
     energy_paths(indexed = indexed, graph_params = graph_params)
   c_paths <- analysis_data %>% 
     cost_paths(indexed = indexed, graph_params = graph_params)
   p_paths <- analysis_data %>% 
     prefs_paths(graph_params = graph_params)
-  
+  # Bundle all paths together
   paths <- dplyr::bind_rows(e_paths, c_paths, p_paths) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
-  
+
+  # Calculate energy, cost, and preferences grids/guide lines
   e_grid_data <- analysis_data %>% 
     iso_energy_lines(indexed = indexed, graph_params = graph_params)
   c_grid_data <- analysis_data %>% 
     iso_cost_lines(indexed = indexed, graph_params = graph_params)
   p_grid_data <- analysis_data %>% 
     iso_budget_lines_prefs(graph_params = graph_params)
-  
+  # Decide which grids we want to keep.
+  # I.e., we should not keep grids for graphs that we're not making.
+  keep_grids <- intersect(graph_types, grid_types)
+  # Bundle them together
   grids <- dplyr::bind_rows(e_grid_data, c_grid_data, p_grid_data) %>% 
-    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% grid_types)
-    
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
+
+  # Calculate indifference curves for the preferences graph  
   indifference_curves <- analysis_data %>% 
     indifference_lines(graph_params = graph_params) %>% 
-    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% grid_types)
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
   
   rebound_graphs_helper(.path_data = paths, 
                         .grid_data = grids, 

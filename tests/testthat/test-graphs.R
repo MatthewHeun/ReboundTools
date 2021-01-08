@@ -9,6 +9,7 @@ test_that("rebound_graphs() works as expected", {
   graphs_energy <- load_eeu_data() %>% 
     rebound_graphs(graph_types = "Energy")
   expect_true(!is.null(graphs_energy))
+  expect_equal(graphs_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
   
   # Try with only one case, Car Energy
   graphs_car_energy <- load_eeu_data() %>% 
@@ -38,7 +39,9 @@ test_that("rebound_graphs() works as expected", {
   graphs_lamp_energy <- load_eeu_data() %>% 
     rebound_graphs(cases = "Lamp", 
                    graph_types = "Energy")
-  
+  expect_true(!is.null(graphs_lamp_energy))
+  expect_equal(graphs_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
+  expect_equal(graphs_lamp_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
 })
 
 
