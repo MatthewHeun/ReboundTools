@@ -447,6 +447,8 @@
 #' \item{y_col}{The name of the column containing starting y values.}
 #' \item{xend_col}{The name of the column containing ending x values.}
 #' \item{yend_col}{The name of the column containing ending y values.}
+#' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
+#' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
 #' }
 #' @examples
 #' graph_df_colnames
