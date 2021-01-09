@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -124,7 +124,11 @@ in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 45 entries.</p><dl>
+    <p>A string list with 54 entries.</p><dl>
+
+<dt>lineend</dt><dd><p>The line end style.</p></dd>
+<dt>linejoin</dt><dd><p>The line join style.</p></dd>
+<dt>linejoin</dt><dd><p>The line join style.</p></dd>
 <dt>dempl_colour</dt><dd><p>The colour for direct emplacment lines.</p></dd>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
 <dt>cap_colour</dt><dd><p>The colour for capital cost lines.</p></dd>
@@ -170,6 +174,13 @@ in the <code>ReboundTools</code> package.</p>
 <dt>cost_ray_linetype</dt><dd><p>The linetype for cost rays.</p></dd>
 <dt>prefs_grid_linetype</dt><dd><p>The linetype for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_linetype</dt><dd><p>The linetype for indifference curve lines.</p></dd>
+<dt>include_start_point</dt><dd><p>A boolean that tells whether to include the starting point.</p></dd>
+<dt>start_point_size</dt><dd><p>The size of the start point.</p></dd>
+<dt>start_point_shape</dt><dd><p>The shape of the start point.</p></dd>
+<dt>include_end_arrow</dt><dd><p>A boolean that tells whether to include an ending arrow.</p></dd>
+<dt>arrow_angle</dt><dd><p>The angle for the arrow head, in degrees.</p></dd>
+<dt>arrow_length</dt><dd><p>The length of the arrow. See <code><a href='https://rdrr.io/r/grid/unit.html'>grid::unit</a></code>.</p></dd>
+<dt>arrow_type</dt><dd><p>The arrow type, "closed" (the default) or "open". See <code><a href='https://rdrr.io/r/grid/arrow.html'>grid::arrow</a></code>.</p></dd>
 
 </dl>
 
@@ -181,7 +192,13 @@ to change graph appearance.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>default_graph_params</span>
-</div><div class='output co'>#&gt; $dempl_colour
+</div><div class='output co'>#&gt; $lineend
+#&gt; [1] "round"
+#&gt; 
+#&gt; $linejoin
+#&gt; [1] "round"
+#&gt; 
+#&gt; $dempl_colour
 #&gt; [1] "#F5C2C1FF"
 #&gt; 
 #&gt; $emb_colour
@@ -315,6 +332,27 @@ to change graph appearance.</p>
 #&gt; 
 #&gt; $prefs_indiff_grid_linetype
 #&gt; [1] "solid"
+#&gt; 
+#&gt; $include_start_point
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $start_point_size
+#&gt; [1] 3
+#&gt; 
+#&gt; $start_point_shape
+#&gt; [1] 16
+#&gt; 
+#&gt; $include_end_arrow
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $arrow_angle
+#&gt; [1] 20
+#&gt; 
+#&gt; $arrow_length
+#&gt; [1] 0.1inches
+#&gt; 
+#&gt; $arrow_type
+#&gt; [1] "closed"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
