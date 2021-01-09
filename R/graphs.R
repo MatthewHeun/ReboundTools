@@ -63,8 +63,9 @@ rebound_graphs <- function(.rebound_data,
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
   
   g <- rebound_graphs_helper(.path_data = paths, 
-                        .grid_data = grids, 
-                        .indifference_data = indifference_curves)
+                             .grid_data = grids, 
+                             .indifference_data = indifference_curves, 
+                             graph_params = graph_params)
   
   # If the requested graph types has length > 1, we don't know what label to put on the axes,
   # so just return now.
@@ -80,9 +81,9 @@ rebound_graphs <- function(.rebound_data,
     if (indexed) {
       g <- g +
         # Horizontal axis label E_dot_dir/E_dot_dir_orig
-        ggplot2::xlab(expression(dot(E)[dir] / dot(E)[dir]^o * " [-]")) + 
+        ggplot2::xlab(expression(dot(E)[dir] / dot(E)[dir]^scriptscriptstyle(o) * " [-]")) + 
         # Vertical axis label is E_dot_indir/E_dot_indir_orig
-        ggplot2::ylab(expression(dot(E)[indir] / dot(E)[indir]^o * " [-]"))
+        ggplot2::ylab(expression(dot(E)[indir] / dot(E)[indir]^scriptscriptstyle(o) * " [-]"))
     } else {
       g <- g +
         # Horizontal axis label E_dot_dir [MJ/year]
@@ -95,9 +96,9 @@ rebound_graphs <- function(.rebound_data,
     if (indexed) {
       g <- g +
         # Horizontal axis label C_dot_dir/C_dot_dir_orig
-        ggplot2::xlab(expression(dot(C)[dir] / dot(C)[dir]^o * " [-]")) + 
+        ggplot2::xlab(expression(dot(C)[dir] / dot(C)[dir]^scriptscriptstyle(o) * " [-]")) + 
         # Vertical axis label is E_dot_indir/E_dot_indir_orig
-        ggplot2::ylab(expression(dot(C)[indir] / dot(C)[indir]^o * " [-]"))
+        ggplot2::ylab(expression(dot(C)[indir] / dot(C)[indir]^scriptscriptstyle(o) * " [-]"))
     } else {
       g <- g +
         # Horizontal axis label C_dot_dir [$/year]
@@ -110,9 +111,9 @@ rebound_graphs <- function(.rebound_data,
     # Preferences graphs are always indexed
     g <- g +
       # Horizontal axis label q_dot_s/q_dot_s_orig
-      ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^o * " [-]")) + 
+      ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^scriptscriptstyle(o) * " [-]")) + 
       # Vertical axis label is C_dot_o/C_dot_o_orig
-      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^o * " [-]"))
+      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^scriptscriptstyle(o) * " [-]"))
   } 
   
   return(g)
@@ -128,9 +129,11 @@ rebound_graphs <- function(.rebound_data,
 #'                   The columns "colour" and "size" control the colour and width of the segment
 #' @param .grid_data A data frame of lines to be added to the graph.
 #' @param .indifference_data A data frame of indifference curves to be added to the graph.
+#' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::default_graph_params`.
+#' @param graph_types A list of graph types. Default is `ReboundTools::graph_types`.
 #' @param graph_df_colnames The names of column names in data frames of graph data. Default is `ReboundTools::graph_df_colnames`.
 #'
-#' @return A `ggplot2` object with the graphs
+#' @return A `ggplot2` object containing graphs.
 #' 
 #' @export
 #'
@@ -142,6 +145,8 @@ rebound_graphs <- function(.rebound_data,
 rebound_graphs_helper <- function(.path_data, 
                                   .grid_data = NULL, 
                                   .indifference_data = NULL, 
+                                  graph_params = ReboundTools::default_graph_params,
+                                  graph_types = ReboundTools::graph_types,
                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
   g <- ggplot2::ggplot()
   # Add grid data as first layer
@@ -167,8 +172,9 @@ rebound_graphs_helper <- function(.path_data,
                                       f_Cs_orig = .indifference_data$f_Cs_orig, 
                                       sigma = .indifference_data$sigma))
   }
-  # Add rebound paths as third and final layer
-  g +
+  
+  # Add rebound paths as third layer
+  g <- g +
     ggplot2::geom_segment(data = .path_data, 
                           mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
                                                         size = graph_df_colnames$size_col,
@@ -176,9 +182,71 @@ rebound_graphs_helper <- function(.path_data,
                                                         x = graph_df_colnames$x_col, 
                                                         y = graph_df_colnames$y_col, 
                                                         xend = graph_df_colnames$xend_col, 
-                                                        yend = graph_df_colnames$yend_col)) +
-    # Use the colour, size, and linetype columns directly.
+                                                        yend = graph_df_colnames$yend_col), 
+                          lineend = graph_params$lineend, linejoin = graph_params$linejoin)
+    
+  # Add an opening point if requested
+  if (graph_params$include_start_point) {
+    # Figure out which .path_data to keep
+    start_segments <- .path_data %>% 
+      dplyr::filter(.data[[graph_df_colnames$start_point_col]])
+    # Plot points at the start of those segments, using the x_col and y_col 
+    # columns in start_segments.
+    g <- g +
+      ggplot2::geom_point(data = start_segments, 
+                          mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
+                                                        x = graph_df_colnames$x_col, 
+                                                        y = graph_df_colnames$y_col, 
+                                                        size = graph_params$start_point_size, 
+                                                        shape = graph_params$start_point_shape))
+  }
+  
+  if (graph_params$include_end_arrow) {
+    # Add ending arrow
+    # For this one, we simply re-plot the segment, this time with an arrow.
+    end_arrows <- .path_data %>% 
+      dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
+    g <- g + 
+      ggplot2::geom_segment(data = end_arrows,
+                            mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
+                                                          size = graph_df_colnames$size_col,
+                                                          linetype = graph_df_colnames$linetype_col,
+                                                          x = graph_df_colnames$x_col, 
+                                                          y = graph_df_colnames$y_col, 
+                                                          xend = graph_df_colnames$xend_col, 
+                                                          yend = graph_df_colnames$yend_col), 
+                            lineend = graph_params$lineend, 
+                            linejoin = graph_params$linejoin,
+                            arrow = grid::arrow(angle = graph_params$arrow_angle, 
+                                                length = graph_params$arrow_length,
+                                                type = graph_params$arrow_type))
+  }
+
+  g +  
+    # Use the colour, size, linetype, and shape columns/data directly.
     ggplot2::scale_colour_identity() + 
     ggplot2::scale_size_identity() + 
-    ggplot2::scale_linetype_identity()
+    ggplot2::scale_linetype_identity() + 
+    ggplot2::scale_shape_identity()
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

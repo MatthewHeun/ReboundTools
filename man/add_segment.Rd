@@ -13,6 +13,8 @@ add_segment(
   colour = "black",
   size = 1,
   linetype = "solid",
+  start_point = FALSE,
+  end_arrow = FALSE,
   x_orig,
   y_orig,
   x,
@@ -42,6 +44,10 @@ This metadata data frame provides the left-most columns of the return value.}
 \item{size}{The size (width) for this segment. Default is \code{1}.}
 
 \item{linetype}{The line type for this segment. Default is "solid".}
+
+\item{start_point}{A boolean that tells whether this segment would be plotted with a starting point. Default is \code{FALSE}.}
+
+\item{end_arrow}{A boolean that tells whether this segment would be plotted with an ending arrow. Default is \code{FALSE}.}
 
 \item{x_orig, y_orig}{The (x,y) coordinates of the starting point for this path,
 used for indexing.}

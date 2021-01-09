@@ -73,7 +73,7 @@ These are default names for columns produced internally." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ These are default names for columns produced internally.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 11 entries.</p><dl>
+    <p>A string list with 13 entries.</p><dl>
 <dt>colour_col</dt><dd><p>The name of the column containing line colours.</p></dd>
 <dt>size_col</dt><dd><p>The name of the column containing line sizes (widths).</p></dd>
 <dt>linetype_col</dt><dd><p>The name of the column containing line types.</p></dd>
@@ -134,6 +134,8 @@ These are default names for columns produced internally.</p>
 <dt>y_col</dt><dd><p>The name of the column containing starting y values.</p></dd>
 <dt>xend_col</dt><dd><p>The name of the column containing ending x values.</p></dd>
 <dt>yend_col</dt><dd><p>The name of the column containing ending y values.</p></dd>
+<dt>start_point_col</dt><dd><p>The name of the boolean column telling whether this row contains a segment that should have a starting point.</p></dd>
+<dt>end_arrow_col</dt><dd><p>The name of the boolean column telling whether this row contains a segment that should have an ending arrow.</p></dd>
 
 </dl>
 
@@ -172,6 +174,12 @@ These are default names for columns produced internally.</p>
 #&gt; 
 #&gt; $yend_col
 #&gt; [1] "yend"
+#&gt; 
+#&gt; $start_point_col
+#&gt; [1] "start_point"
+#&gt; 
+#&gt; $end_arrow_col
+#&gt; [1] "end_arrow"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

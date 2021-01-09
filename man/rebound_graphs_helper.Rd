@@ -8,6 +8,8 @@ rebound_graphs_helper(
   .path_data,
   .grid_data = NULL,
   .indifference_data = NULL,
+  graph_params = ReboundTools::default_graph_params,
+  graph_types = ReboundTools::graph_types,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
@@ -19,10 +21,14 @@ The columns "colour" and "size" control the colour and width of the segment}
 
 \item{.indifference_data}{A data frame of indifference curves to be added to the graph.}
 
+\item{graph_params}{A list of appearance parameters for this graph. Default is \code{ReboundTools::default_graph_params}.}
+
+\item{graph_types}{A list of graph types. Default is \code{ReboundTools::graph_types}.}
+
 \item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
-A \code{ggplot2} object with the graphs
+A \code{ggplot2} object containing graphs.
 }
 \description{
 This is a helper function for \code{rebound_graphs()}.

@@ -5,7 +5,7 @@
 \alias{graph_df_colnames}
 \title{Graph data frame columns}
 \format{
-A string list with 11 entries.
+A string list with 13 entries.
 \describe{
 \item{colour_col}{The name of the column containing line colours.}
 \item{size_col}{The name of the column containing line sizes (widths).}
@@ -18,6 +18,8 @@ A string list with 11 entries.
 \item{y_col}{The name of the column containing starting y values.}
 \item{xend_col}{The name of the column containing ending x values.}
 \item{yend_col}{The name of the column containing ending y values.}
+\item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
+\item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
 }
 }
 \usage{
