@@ -100,7 +100,8 @@ energy_paths <- function(.rebound_data,
                        graph_type = graph_type, 
                        segment_name = S_dot_dev, 
                        x_orig = x_orig, y_orig = y_orig,
-                       x = x, y = y, xend = xend, yend = yend)
+                       x = x, y = y, xend = xend, yend = yend,
+                       start_point = TRUE)
   
   # Delta_E_dot_emb_star segment for energy graph (iempl)
   x <- xend
@@ -216,7 +217,8 @@ energy_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = "Productivity", 
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend,
+                end_arrow = TRUE)
   
   return(paths)
 }
@@ -285,7 +287,8 @@ cost_paths <- function(.rebound_data,
                        graph_type = graph_type, 
                        segment_name = G_dot, 
                        x_orig = x_orig_cost, y_orig = y_orig_cost,
-                       x = x_orig_cost, y = y_orig_cost, xend = xend, yend = yend)
+                       x = x_orig_cost, y = y_orig_cost, xend = xend, yend = yend, 
+                       start_point = TRUE)
   
   # Delta_C_dot_cap_star segment for cost graph (iempl)
   x <- xend
@@ -385,7 +388,8 @@ cost_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = Delta_C_dot_o_bar, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   return(paths)
 }
@@ -449,7 +453,8 @@ prefs_paths <- function(.rebound_data,
                        graph_type = graph_type, 
                        segment_name = Delta_C_dot_o_hat,
                        x_orig = x_star, y_orig = y_star, 
-                       x = x, y = y, xend = xend, yend = yend)
+                       x = x, y = y, xend = xend, yend = yend, 
+                       start_point = TRUE)
   
   # Delta_q_dot_s_star segment for prefs graph (dsub)
   x <- xend
@@ -499,7 +504,8 @@ prefs_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = Delta_C_dot_o_bar,
                 x_orig = x_star, y_orig = y_star, 
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   return(paths)
 }
@@ -525,6 +531,8 @@ prefs_paths <- function(.rebound_data,
 #' @param colour The colour for this segment. Default is "black".
 #' @param size The size (width) for this segment. Default is `1`.
 #' @param linetype The line type for this segment. Default is "solid".
+#' @param start_point A boolean that tells whether this segment would be plotted with a starting point. Default is `FALSE`.
+#' @param end_arrow A boolean that tells whether this segment would be plotted with an ending arrow. Default is `FALSE`.
 #' @param x_orig,y_orig The (x,y) coordinates of the starting point for this path, 
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
@@ -545,6 +553,7 @@ prefs_paths <- function(.rebound_data,
 add_segment <- function(.DF = NULL, 
                         indexed, meta, graph_type, segment_name, 
                         colour = "black", size = 1, linetype = "solid",
+                        start_point = FALSE, end_arrow = FALSE,
                         x_orig, y_orig, x, y, xend, yend, 
                         graph_df_colnames = ReboundTools::graph_df_colnames) {
   if (indexed) {
@@ -560,6 +569,8 @@ add_segment <- function(.DF = NULL,
       "{graph_df_colnames$colour_col}" := colour, 
       "{graph_df_colnames$size_col}" := size,
       "{graph_df_colnames$linetype_col}" := linetype,
+      "{graph_df_colnames$start_point_col}" := start_point,
+      "{graph_df_colnames$end_arrow_col}" := end_arrow,
       "{graph_df_colnames$x_col}" := x, 
       "{graph_df_colnames$y_col}" := y, 
       "{graph_df_colnames$xend_col}" := xend, 
