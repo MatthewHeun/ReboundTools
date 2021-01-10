@@ -12,10 +12,9 @@ indifference_lines(
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   sigma = ReboundTools::orig_vars$sigma,
-  q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
-  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat
+  q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar,
+  C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar
 )
 }
 \arguments{
@@ -28,11 +27,13 @@ likely created by \code{rebound_analysis()}.}
 
 \item{q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma}{See \code{ReboundTools::orig_vars}.}
 
-\item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
+\item{q_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
 
-\item{q_dot_s_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
+\item{q_dot_s_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
 
 \item{x_vals}{The x-axis values at which the indifference curve is to be calculated.}
+
+\item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
 }
 \value{
 A data frame of indifference curves for a preferences graph.

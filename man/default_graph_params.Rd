@@ -5,7 +5,7 @@
 \alias{default_graph_params}
 \title{Graph parameters}
 \format{
-A string list with 55 entries.
+A string list with 57 entries.
 \describe{
 
 \item{lineend}{The line end style.}
@@ -57,6 +57,8 @@ A string list with 55 entries.
 \item{prefs_grid_linetype}{The linetype for preferences grid lines.}
 \item{prefs_indiff_curve_linetype}{The linetype for indifference curve lines.}
 \item{n_indiff_curve_points}{The number of points on the indifference curves.}
+\item{qs_qs0_lower}{The lower bound for the x value in the indifference curves.}
+\item{qs_qs0_upper}{The upper bound for the x value in the indifference curves.}
 \item{include_start_point}{A boolean that tells whether to include the starting point.}
 \item{start_point_size}{The size of the start point.}
 \item{start_point_shape}{The shape of the start point.}

@@ -12,7 +12,8 @@
 #' @param graph_params Parameters that control the appearance of the graph. Default is `ReboundTools::default_graph_params`.
 #' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
 #' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
-#' @param q_dot_s_hat,C_dot_o_hat See `ReboundTools::hat_vars`.
+#' @param q_dot_s_hat See `ReboundTools::hat_vars`.
+#' @param q_dot_s_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
 #'
 #' @return A data frame of indifference curves for a preferences graph.
 #' 
@@ -31,11 +32,11 @@ indifference_lines <- function(.rebound_data,
                                f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
                                sigma = ReboundTools::orig_vars$sigma,
                                
-                               q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-                               C_dot_o_star = ReboundTools::star_vars$C_dot_o_star, 
+                               q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                               # C_dot_o_star = ReboundTools::star_vars$C_dot_o_star, 
                                
-                               q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat, 
-                               C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat) {
+                               q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar, 
+                               C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -68,8 +69,8 @@ indifference_lines <- function(.rebound_data,
                                     sigma = sigma_val)
   
   # Indifference curve at the bar point (after income effect)
-  qs1 <- .rebound_data[[q_dot_s_hat]]
-  Co1 <- .rebound_data[[C_dot_o_hat]]
+  qs1 <- .rebound_data[[q_dot_s_bar]]
+  Co1 <- .rebound_data[[C_dot_o_bar]]
   qs1_qs0 <- qs1/qs0
   Co1_Co0 <- Co1/Co0
   icurves <- icurves %>%
@@ -80,7 +81,8 @@ indifference_lines <- function(.rebound_data,
                            size = graph_params$prefs_indiff_grid_size,
                            linetype = graph_params$prefs_indiff_grid_linetype,
                            qs1_qs0 = qs1_qs0,
-                           Co1_Co0 = Co1_Co0,
+                           Co1_Co0 = Co1_Co0, 
+                           qs2_qs0 = NULL,
                            f_Cs_orig = f_Cs0,
                            sigma = sigma_val)
   return(icurves)
@@ -94,6 +96,14 @@ indifference_lines <- function(.rebound_data,
 #' The indifference curves are accumulated in rows.
 #' 
 #' The preferences graph is _always_ indexed, so there is no `indexed` argument.
+#' 
+#' This function finds a reasonable range over which to sweep the `qs_qs0` variable
+#' when generating the indifference curve, depending on the value of `qs2_qs0`.
+#' When `qs2_qs0` is `NULL` (the default), the curve is generated over the range
+#' `grqph_params$qs_qs0_lower * qs1_qs0` to `grqph_params$qs_qs0_upper * qs1_qs0`.
+#' When `qs2_qs0` is non-`NULL`, the curve is generated over the range
+#' `grqph_params$qs_qs0_lower * min(qs1_qs0, qs2_qs0)` to
+#' `grqph_params$qs_qs0_upper * max(qs1_qs0, qs2_qs0)`.
 #'
 #' @param .DF A data frame that accumulates preferences curves. 
 #'            When `NULL`, the default, a new data frame is created and returned.
@@ -109,7 +119,7 @@ indifference_lines <- function(.rebound_data,
 #' @param linetype Line type. Default is `ReboundTools::default_graph_params$prefs_indiff_grid_linetype`.
 #' @param qs1_qs0,Co1_Co0 The (x,y) coordinates of a point on this indifference curve.
 #' @param qs2_qs0 A second x value at which a a point on the indifference curve should be calculated. Default is `NULL`.
-#' @param f_Cs_orig The ration of spending on the energy service to 
+#' @param f_Cs_orig The ratio of spending on the energy service to 
 #'                  the sum of initial spending on the energy service and other goods.
 #' @param sigma The elasticity of substitution between spending on the energy service and spending on other goods.
 #' @param graph_params Parameters that control the appearance of this graph.
@@ -137,16 +147,37 @@ add_indifference_curve <- function(.DF = NULL,
                                    eeu_base_params = ReboundTools::eeu_base_params,
                                    graph_df_colnames = ReboundTools::graph_df_colnames) {
   # Calculate x values at which indifference curve should be evaluated.
-  # First x point at 80% of qs1_qs0.
-  # Last x point at 120% of qs2_qs0.
+  min_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = min) %>% unlist()
+  max_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = max) %>% unlist()
+  x_vals <- Map(f = geom_seq, 
+                from = graph_params$qs_qs0_lower*min_qs, 
+                to = graph_params$qs_qs0_upper*max_qs, 
+                n = graph_params$n_indiff_curve_points)
   # Be sure to include the qs1_qs0 and qs2_qs0 points, too.
-  x_vals <- c(geom_seq(from = 0.8*qs1_qs0, to = 1.2*qs2_qs0, n = graph_params$n_indiff_curve_points), 
-              qs1_qs0, 
-              qs2_qs0) %>% 
-    sort()
+  x_vals <- Map(f = c, x_vals, qs1_qs0)
+  x_vals <- Map(f = c, x_vals, qs2_qs0)
+  
+  # x_vals <- c(geom_seq(from = graph_params$qs_qs0_lower*min_qs, 
+  #                      to = graph_params$qs_qs0_upper*max_qs,
+  #                      n = graph_params$n_indiff_curve_points), 
+  #             # Be sure that we calculate the curve exactly at the qs1_qs0 and qs2_qs0 points,
+  #             # because those are likely to be key points at which tangents should be visualized.
+  #             # If these points happen to be duplicated in the sequence, 
+  #             # the duplicates will be eliminated with the call to unique() later.
+  #             qs1_qs0, 
+  #             qs2_qs0) %>% 
+  x_vals <- lapply(X = x_vals, FUN = sort)
   cases <- meta[[eeu_base_params$case]]
-  x_df <- expand.grid(cases, x_vals) %>% 
-    magrittr::set_names(c(eeu_base_params$case, graph_df_colnames$x_col))
+  x_df <- Map(f = function(cas, x_v){data.frame(cas, x_v)}, cas = cases, x_v = x_vals) %>% 
+    dplyr::bind_rows() %>% 
+    magrittr::set_names(c(eeu_base_params$case, graph_df_colnames$x_col)) %>% 
+    # Eliminate unnecessary repeated rows
+    unique()
+  
+  # x_df <- expand.grid(cases, x_vals) %>% 
+  #   magrittr::set_names(c(eeu_base_params$case, graph_df_colnames$x_col)) %>% 
+  #   # Eliminate unnecessary repeated rows
+  #   unique()
   # Construct a data frame with all necessary data.
   # For each row of meta, we want to create a set of x and y values
   # for its indifference curve.

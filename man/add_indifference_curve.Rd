@@ -46,7 +46,7 @@ Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
 
 \item{qs2_qs0}{A second x value at which a a point on the indifference curve should be calculated. Default is \code{NULL}.}
 
-\item{f_Cs_orig}{The ration of spending on the energy service to
+\item{f_Cs_orig}{The ratio of spending on the energy service to
 the sum of initial spending on the energy service and other goods.}
 
 \item{sigma}{The elasticity of substitution between spending on the energy service and spending on other goods.}
@@ -68,6 +68,14 @@ The indifference curves are accumulated in rows.
 }
 \details{
 The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+
+This function finds a reasonable range over which to sweep the \code{qs_qs0} variable
+when generating the indifference curve, depending on the value of \code{qs2_qs0}.
+When \code{qs2_qs0} is \code{NULL} (the default), the curve is generated over the range
+\code{grqph_params$qs_qs0_lower * qs1_qs0} to \code{grqph_params$qs_qs0_upper * qs1_qs0}.
+When \code{qs2_qs0} is non-\code{NULL}, the curve is generated over the range
+\code{grqph_params$qs_qs0_lower * min(qs1_qs0, qs2_qs0)} to
+\code{grqph_params$qs_qs0_upper * max(qs1_qs0, qs2_qs0)}.
 }
 \examples{
 meta <- tibble::tibble(Case = "Test case")
