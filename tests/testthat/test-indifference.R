@@ -33,10 +33,17 @@ test_that("add_indifference_curve() works as expected", {
                                  qs1_qs0 = c(1.5,1.6), Co1_Co0 = c(0.999,0.998), 
                                  qs2_qs0 = c(7,8), f_Cs_orig = c(0.1,0.2), sigma = c(0.04,0.05))
   expect_equal(res2[[eeu_base_params$case]] %>% unique, c("Case 1", "Case 2"))
-  expect_equal(nrow(res2), 208)
-  # Check the first row
-  expect_equal(res2[[graph_df_colnames$x_col]][[1]], 1.2)
-  expect_equal(res2[[graph_df_colnames$y_col]][[1]], 0.99905656986716007140)
+  # Check the last rows for each case.
+  res2 %>% 
+    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Case 1") %>% 
+    magrittr::extract2(graph_df_colnames$x_col) %>% 
+    magrittr::extract2(length(.)) %>% 
+    expect_equal(16)
+  res2 %>% 
+    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Case 2") %>% 
+    magrittr::extract2(graph_df_colnames$x_col) %>% 
+    magrittr::extract2(length(.)) %>% 
+    expect_equal(80)
 })
 
 
