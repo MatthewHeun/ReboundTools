@@ -33,8 +33,7 @@ indifference_lines <- function(.rebound_data,
                                sigma = ReboundTools::orig_vars$sigma,
                                
                                q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
-                               # C_dot_o_star = ReboundTools::star_vars$C_dot_o_star, 
-                               
+
                                q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar, 
                                C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar) {
   
