@@ -9,9 +9,6 @@ add_indifference_curve(
   meta,
   graph_type = ReboundTools::graph_types$preferences,
   line_name,
-  colour = ReboundTools::default_graph_params$prefs_indiff_grid_colour,
-  size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
-  linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
   qs1_qs0,
   Co1_Co0,
   qs2_qs0 = NULL,
@@ -35,13 +32,6 @@ Default is \code{ReboundTools::graph_types$preferences}.}
 
 \item{line_name}{A name for this indifference curve.}
 
-\item{colour}{The colour for this indifference curve.
-Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
-
-\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_size}.}
-
-\item{linetype}{Line type. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_linetype}.}
-
 \item{qs1_qs0, Co1_Co0}{The (x,y) coordinates of a point on this indifference curve.}
 
 \item{qs2_qs0}{A second x value at which a a point on the indifference curve should be calculated. Default is \code{NULL}.}
@@ -57,6 +47,13 @@ the sum of initial spending on the energy service and other goods.}
 
 \item{graph_df_colnames}{A list of column names to use throughout the package.
 Default is \code{ReboundTools::graph_df_colnames}.}
+
+\item{colour}{The colour for this indifference curve.
+Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
+
+\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_size}.}
+
+\item{linetype}{Line type. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_linetype}.}
 }
 \value{
 A version of \code{.DF} with new indifference curves added at the bottom.

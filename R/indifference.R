@@ -59,14 +59,12 @@ indifference_lines <- function(.rebound_data,
   icurves <- add_indifference_curve(meta = meta,
                                     graph_type = graph_type,
                                     line_name = ReboundTools::rebound_stages$orig,
-                                    colour = graph_params$prefs_indiff_grid_colour,
-                                    size = graph_params$prefs_indiff_grid_size,
-                                    linetype = graph_params$prefs_indiff_grid_linetype,
                                     qs1_qs0 = qs1_qs0,
                                     Co1_Co0 = Co1_Co0,
                                     qs2_qs0 = qs2_qs0,
                                     f_Cs_orig = f_Cs0,
-                                    sigma = sigma_val)
+                                    sigma = sigma_val, 
+                                    graph_params = graph_params)
   
   # Indifference curve at the bar point (after income effect)
   qs1 <- .rebound_data[[q_dot_s_bar]]
@@ -77,14 +75,12 @@ indifference_lines <- function(.rebound_data,
     add_indifference_curve(meta = meta,
                            graph_type = graph_type,
                            line_name = ReboundTools::rebound_stages$hat,
-                           colour = graph_params$prefs_indiff_grid_colour,
-                           size = graph_params$prefs_indiff_grid_size,
-                           linetype = graph_params$prefs_indiff_grid_linetype,
                            qs1_qs0 = qs1_qs0,
                            Co1_Co0 = Co1_Co0, 
                            qs2_qs0 = NULL,
                            f_Cs_orig = f_Cs0,
-                           sigma = sigma_val)
+                           sigma = sigma_val, 
+                           graph_params = graph_params)
   return(icurves)
 }
 
@@ -139,9 +135,6 @@ add_indifference_curve <- function(.DF = NULL,
                                    meta, 
                                    graph_type = ReboundTools::graph_types$preferences, 
                                    line_name, 
-                                   colour = ReboundTools::default_graph_params$prefs_indiff_grid_colour, 
-                                   size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
-                                   linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
                                    qs1_qs0, Co1_Co0, qs2_qs0 = NULL, f_Cs_orig, sigma,
                                    graph_params = ReboundTools::default_graph_params,
                                    eeu_base_params = ReboundTools::eeu_base_params,
@@ -175,9 +168,9 @@ add_indifference_curve <- function(.DF = NULL,
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := graph_type, 
       "{graph_df_colnames$line_name_col}" := line_name,
-      "{graph_df_colnames$colour_col}" := colour, 
-      "{graph_df_colnames$size_col}" := size,
-      "{graph_df_colnames$linetype_col}" := linetype,
+      "{graph_df_colnames$colour_col}" := graph_params$prefs_indiff_grid_colour, 
+      "{graph_df_colnames$size_col}" := graph_params$prefs_indiff_grid_size,
+      "{graph_df_colnames$linetype_col}" := graph_params$prefs_indiff_grid_linetype, 
       "{graph_df_colnames$qs1_qs0_col}" := qs1_qs0,
       "{graph_df_colnames$Co1_Co0_col}" := Co1_Co0,
       "{graph_df_colnames$f_Cs_orig_col}" := f_Cs_orig, 
