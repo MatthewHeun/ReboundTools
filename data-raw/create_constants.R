@@ -318,7 +318,7 @@ default_graph_params <- list(lineend = "round",
                              prefs_grid_linetype = "solid",
                              prefs_ray_linetype = "solid",
                              prefs_indiff_grid_linetype = "solid", 
-                             n_indiff_curve_points = 10,
+                             n_indiff_curve_points = 200,
                              qs_qs0_lower = 0.1,
                              qs_qs0_upper = 10,
 

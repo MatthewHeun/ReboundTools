@@ -147,15 +147,22 @@ add_indifference_curve <- function(.DF = NULL,
                                    eeu_base_params = ReboundTools::eeu_base_params,
                                    graph_df_colnames = ReboundTools::graph_df_colnames) {
   # Calculate x values at which indifference curve should be evaluated.
-  min_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = min) %>% unlist()
-  max_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = max) %>% unlist()
+  if (is.null(qs2_qs0)) {
+    min_qs <- qs1_qs0
+    max_qs <- qs1_qs0
+  } else {
+    min_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = min) %>% unlist()
+    max_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = max) %>% unlist()
+  }
   x_vals <- Map(f = geom_seq, 
                 from = graph_params$qs_qs0_lower*min_qs, 
                 to = graph_params$qs_qs0_upper*max_qs, 
                 n = graph_params$n_indiff_curve_points)
   # Be sure to include the qs1_qs0 and qs2_qs0 points, too.
   x_vals <- Map(f = c, x_vals, qs1_qs0)
-  x_vals <- Map(f = c, x_vals, qs2_qs0)
+  if (!is.null(qs2_qs0)) {
+    x_vals <- Map(f = c, x_vals, qs2_qs0)
+  }
   
   # x_vals <- c(geom_seq(from = graph_params$qs_qs0_lower*min_qs, 
   #                      to = graph_params$qs_qs0_upper*max_qs,
