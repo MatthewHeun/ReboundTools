@@ -14,8 +14,11 @@ add_indifference_curve(
   linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
   qs1_qs0,
   Co1_Co0,
+  qs2_qs0 = NULL,
   f_Cs_orig,
   sigma,
+  graph_params = ReboundTools::default_graph_params,
+  eeu_base_params = ReboundTools::eeu_base_params,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
@@ -41,10 +44,16 @@ Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
 
 \item{qs1_qs0, Co1_Co0}{The (x,y) coordinates of a point on this indifference curve.}
 
+\item{qs2_qs0}{A second x value at which a a point on the indifference curve should be calculated. Default is \code{NULL}.}
+
 \item{f_Cs_orig}{The ration of spending on the energy service to
 the sum of initial spending on the energy service and other goods.}
 
 \item{sigma}{The elasticity of substitution between spending on the energy service and spending on other goods.}
+
+\item{graph_params}{Parameters that control the appearance of this graph.}
+
+\item{eeu_base_params}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{graph_df_colnames}{A list of column names to use throughout the package.
 Default is \code{ReboundTools::graph_df_colnames}.}

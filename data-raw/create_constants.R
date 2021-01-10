@@ -318,7 +318,8 @@ default_graph_params <- list(lineend = "round",
                              prefs_grid_linetype = "solid",
                              prefs_ray_linetype = "solid",
                              prefs_indiff_grid_linetype = "solid", 
-                             
+                             n_indiff_curve_points = 100,
+
                              include_start_point = TRUE,
                              start_point_size = 3, 
                              start_point_shape = 16,
@@ -345,6 +346,10 @@ graph_df_colnames <- list(colour_col = "colour",
                           y_col = "y", 
                           xend_col = "xend",
                           yend_col = "yend", 
+                          qs1_qs0_col = "qs1_qs0", 
+                          Co1_Co0_col = "Co1_Co0", 
+                          f_Cs_orig_col = "f_Cs_orig",
+                          sigma_col = "sigma", 
                           start_point_col = "start_point", 
                           end_arrow_col = "end_arrow")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)

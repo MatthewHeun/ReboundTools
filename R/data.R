@@ -416,6 +416,7 @@
 #' \item{cost_ray_linetype}{The linetype for cost rays.}
 #' \item{prefs_grid_linetype}{The linetype for preferences grid lines.}
 #' \item{prefs_indiff_curve_linetype}{The linetype for indifference curve lines.}
+#' \item{n_indiff_curve_points}{The number of points on the indifference curves.}
 #' \item{include_start_point}{A boolean that tells whether to include the starting point.}
 #' \item{start_point_size}{The size of the start point.}
 #' \item{start_point_shape}{The shape of the start point.}
@@ -447,9 +448,15 @@
 #' \item{y_col}{The name of the column containing starting y values.}
 #' \item{xend_col}{The name of the column containing ending x values.}
 #' \item{yend_col}{The name of the column containing ending y values.}
+#' \item{qs1_qs0_col}{The name of the column containing a q_s/q_s_0 point on this indifference curve.}
+#' \item{Co1_Co0_col}{The name of the column containing a C_s/C_s_0 point on this indifference curve.}
+#' \item{f_Cs_orig_col}{The name of the column containing the original value of f_Cs for this indifference curve.}
+#' \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
 #' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
 #' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
 #' }
 #' @examples
 #' graph_df_colnames
 "graph_df_colnames"
+
+
