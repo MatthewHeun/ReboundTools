@@ -163,16 +163,6 @@ add_indifference_curve <- function(.DF = NULL,
   if (!is.null(qs2_qs0)) {
     x_vals <- Map(f = c, x_vals, qs2_qs0)
   }
-  
-  # x_vals <- c(geom_seq(from = graph_params$qs_qs0_lower*min_qs, 
-  #                      to = graph_params$qs_qs0_upper*max_qs,
-  #                      n = graph_params$n_indiff_curve_points), 
-  #             # Be sure that we calculate the curve exactly at the qs1_qs0 and qs2_qs0 points,
-  #             # because those are likely to be key points at which tangents should be visualized.
-  #             # If these points happen to be duplicated in the sequence, 
-  #             # the duplicates will be eliminated with the call to unique() later.
-  #             qs1_qs0, 
-  #             qs2_qs0) %>% 
   x_vals <- lapply(X = x_vals, FUN = sort)
   cases <- meta[[eeu_base_params$case]]
   x_df <- Map(f = function(cas, x_v){data.frame(cas, x_v)}, cas = cases, x_v = x_vals) %>% 
@@ -181,13 +171,6 @@ add_indifference_curve <- function(.DF = NULL,
     # Eliminate unnecessary repeated rows
     unique()
   
-  # x_df <- expand.grid(cases, x_vals) %>% 
-  #   magrittr::set_names(c(eeu_base_params$case, graph_df_colnames$x_col)) %>% 
-  #   # Eliminate unnecessary repeated rows
-  #   unique()
-  # Construct a data frame with all necessary data.
-  # For each row of meta, we want to create a set of x and y values
-  # for its indifference curve.
   out <- meta %>% 
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := graph_type, 
