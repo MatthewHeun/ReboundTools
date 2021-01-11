@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -124,7 +124,7 @@ in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 54 entries.</p><dl>
+    <p>A string list with 57 entries.</p><dl>
 
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
@@ -174,6 +174,9 @@ in the <code>ReboundTools</code> package.</p>
 <dt>cost_ray_linetype</dt><dd><p>The linetype for cost rays.</p></dd>
 <dt>prefs_grid_linetype</dt><dd><p>The linetype for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_linetype</dt><dd><p>The linetype for indifference curve lines.</p></dd>
+<dt>n_indiff_curve_points</dt><dd><p>The number of points on the indifference curves.</p></dd>
+<dt>qs_qs0_lower</dt><dd><p>The lower bound for the x value in the indifference curves.</p></dd>
+<dt>qs_qs0_upper</dt><dd><p>The upper bound for the x value in the indifference curves.</p></dd>
 <dt>include_start_point</dt><dd><p>A boolean that tells whether to include the starting point.</p></dd>
 <dt>start_point_size</dt><dd><p>The size of the start point.</p></dd>
 <dt>start_point_shape</dt><dd><p>The shape of the start point.</p></dd>
@@ -332,6 +335,15 @@ to change graph appearance.</p>
 #&gt; 
 #&gt; $prefs_indiff_grid_linetype
 #&gt; [1] "solid"
+#&gt; 
+#&gt; $n_indiff_curve_points
+#&gt; [1] 200
+#&gt; 
+#&gt; $qs_qs0_lower
+#&gt; [1] 0.1
+#&gt; 
+#&gt; $qs_qs0_upper
+#&gt; [1] 10
 #&gt; 
 #&gt; $include_start_point
 #&gt; [1] TRUE

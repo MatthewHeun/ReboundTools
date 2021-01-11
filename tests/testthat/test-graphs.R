@@ -202,20 +202,40 @@ test_that("rebound_graphs_helper() works with a cost-only graph with grids", {
 })
 
 
-test_that("rebound_graphs_helper() works with a preferences graph with grids", {
+test_that("rebound_graphs_helper() works with a preferences graph with grids for car example", {
   rebound_data <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     dplyr::filter(Case == "Car")
   prefs_paths <- rebound_data %>% prefs_paths()
   prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+  indiff_curve <- rebound_data %>% indifference_lines()
   
-  graph <- rebound_graphs_helper(prefs_paths, prefs_grid) + 
+  graph <- rebound_graphs_helper(prefs_paths, prefs_grid, indiff_curve) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
-    ggplot2::scale_x_continuous(name = "q_dot_s/q_dot_s_orig") +
-    ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")
+    ggplot2::xlim(0.99, 1.07) + 
+    ggplot2::ylim(0.99, 1.05) +
+    ggplot2::facet_wrap(facets = "Case")
+  expect_true(!is.null(graph))
+})
+
+
+test_that("rebound_graphs_helper() works with a preferences graph with grids for lamp example", {
+  rebound_data <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    dplyr::filter(Case == "Lamp")
+  prefs_paths <- rebound_data %>% prefs_paths()
+  prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+  indiff_curve <- rebound_data %>% indifference_lines()
   
+  graph <- rebound_graphs_helper(prefs_paths, prefs_grid, indiff_curve) + 
+    ggplot2::facet_grid(rows = ggplot2::vars(Case), 
+                        cols = ggplot2::vars(graph_type), 
+                        scales = "free") + 
+    ggplot2::xlim(0.5, 3) +
+    ggplot2::ylim(0.999, 1.001) +
+    ggplot2::facet_wrap(facets = "Case")
   expect_true(!is.null(graph))
 })
 

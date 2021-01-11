@@ -9,13 +9,13 @@ add_indifference_curve(
   meta,
   graph_type = ReboundTools::graph_types$preferences,
   line_name,
-  colour = ReboundTools::default_graph_params$prefs_indiff_grid_colour,
-  size = ReboundTools::default_graph_params$prefs_indiff_grid_size,
-  linetype = ReboundTools::default_graph_params$prefs_indiff_grid_linetype,
   qs1_qs0,
   Co1_Co0,
+  qs2_qs0 = NULL,
   f_Cs_orig,
   sigma,
+  graph_params = ReboundTools::default_graph_params,
+  eeu_base_params = ReboundTools::eeu_base_params,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
@@ -32,19 +32,18 @@ Default is \code{ReboundTools::graph_types$preferences}.}
 
 \item{line_name}{A name for this indifference curve.}
 
-\item{colour}{The colour for this indifference curve.
-Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
-
-\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_size}.}
-
-\item{linetype}{Line type. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_linetype}.}
-
 \item{qs1_qs0, Co1_Co0}{The (x,y) coordinates of a point on this indifference curve.}
 
-\item{f_Cs_orig}{The ration of spending on the energy service to
+\item{qs2_qs0}{A second x value at which a a point on the indifference curve should be calculated. Default is \code{NULL}.}
+
+\item{f_Cs_orig}{The ratio of spending on the energy service to
 the sum of initial spending on the energy service and other goods.}
 
 \item{sigma}{The elasticity of substitution between spending on the energy service and spending on other goods.}
+
+\item{graph_params}{Parameters that control the appearance of this graph.}
+
+\item{eeu_base_params}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{graph_df_colnames}{A list of column names to use throughout the package.
 Default is \code{ReboundTools::graph_df_colnames}.}
@@ -59,6 +58,14 @@ The indifference curves are accumulated in rows.
 }
 \details{
 The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+
+This function finds a reasonable range over which to sweep the \code{qs_qs0} variable
+when generating the indifference curve, depending on the value of \code{qs2_qs0}.
+When \code{qs2_qs0} is \code{NULL} (the default), the curve is generated over the range
+\code{grqph_params$qs_qs0_lower * qs1_qs0} to \code{grqph_params$qs_qs0_upper * qs1_qs0}.
+When \code{qs2_qs0} is non-\code{NULL}, the curve is generated over the range
+\code{grqph_params$qs_qs0_lower * min(qs1_qs0, qs2_qs0)} to
+\code{grqph_params$qs_qs0_upper * max(qs1_qs0, qs2_qs0)}.
 }
 \examples{
 meta <- tibble::tibble(Case = "Test case")

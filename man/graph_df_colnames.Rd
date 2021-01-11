@@ -5,7 +5,7 @@
 \alias{graph_df_colnames}
 \title{Graph data frame columns}
 \format{
-A string list with 13 entries.
+A string list with 17 entries.
 \describe{
 \item{colour_col}{The name of the column containing line colours.}
 \item{size_col}{The name of the column containing line sizes (widths).}
@@ -18,6 +18,10 @@ A string list with 13 entries.
 \item{y_col}{The name of the column containing starting y values.}
 \item{xend_col}{The name of the column containing ending x values.}
 \item{yend_col}{The name of the column containing ending y values.}
+\item{qs1_qs0_col}{The name of the column containing a q_s/q_s_0 point on this indifference curve.}
+\item{Co1_Co0_col}{The name of the column containing a C_s/C_s_0 point on this indifference curve.}
+\item{f_Cs_orig_col}{The name of the column containing the original value of f_Cs for this indifference curve.}
+\item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
 \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
 \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
 }

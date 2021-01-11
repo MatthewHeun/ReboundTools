@@ -160,17 +160,27 @@ rebound_graphs_helper <- function(.path_data,
                                                          intercept =graph_df_colnames$ intercept_col))
   }
   # Add indifference curves as second layer
+  # if (!is.null(.indifference_data)) {
+  #   g <- g + 
+  #     ggplot2::geom_function(data = .indifference_data, 
+  #                            mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
+  #                                                          size = graph_df_colnames$size_col, 
+  #                                                          linetype = graph_df_colnames$linetype_col), 
+  #                            fun = indifference_func, 
+  #                            args = c(qs1_qs0 = .indifference_data$qs1_qs0, 
+  #                                     Co1_Co0 = .indifference_data$Co1_Co0, 
+  #                                     f_Cs_orig = .indifference_data$f_Cs_orig, 
+  #                                     sigma = .indifference_data$sigma))
+  # }
   if (!is.null(.indifference_data)) {
     g <- g + 
-      ggplot2::geom_function(data = .indifference_data, 
-                             mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-                                                           size = graph_df_colnames$size_col, 
-                                                           linetype = graph_df_colnames$linetype_col), 
-                             fun = indifference_func, 
-                             args = c(qs1_qs0 = .indifference_data$qs1_qs0, 
-                                      Co1_Co0 = .indifference_data$Co1_Co0, 
-                                      f_Cs_orig = .indifference_data$f_Cs_orig, 
-                                      sigma = .indifference_data$sigma))
+      ggplot2::geom_line(data = .indifference_data, 
+                         mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                       y = graph_df_colnames$y_col,
+                                                       group = graph_df_colnames$line_name_col,
+                                                       colour = graph_df_colnames$colour_col, 
+                                                       size = graph_df_colnames$size_col, 
+                                                       linetype = graph_df_colnames$linetype_col))
   }
   
   # Add rebound paths as third layer
