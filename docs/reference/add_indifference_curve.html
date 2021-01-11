@@ -74,7 +74,7 @@ The indifference curves are accumulated in rows." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -124,13 +124,13 @@ The indifference curves are accumulated in rows.</p>
   <span class='va'>meta</span>,
   graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>preferences</span>,
   <span class='va'>line_name</span>,
-  colour <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span><span class='op'>$</span><span class='va'>prefs_indiff_grid_colour</span>,
-  size <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span><span class='op'>$</span><span class='va'>prefs_indiff_grid_size</span>,
-  linetype <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span><span class='op'>$</span><span class='va'>prefs_indiff_grid_linetype</span>,
   <span class='va'>qs1_qs0</span>,
   <span class='va'>Co1_Co0</span>,
+  qs2_qs0 <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>f_Cs_orig</span>,
   <span class='va'>sigma</span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  eeu_base_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span>,
   graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
 <span class='op'>)</span></pre>
 
@@ -158,30 +158,29 @@ Default is <code>ReboundTools::graph_types$preferences</code>.</p></td>
       <td><p>A name for this indifference curve.</p></td>
     </tr>
     <tr>
-      <th>colour</th>
-      <td><p>The colour for this indifference curve.
-Default is <code>ReboundTools::default_graph_params$prefs_indiff_curve_colour</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>Line width. Default is <code>ReboundTools::default_graph_params$prefs_indiff_grid_size</code>.</p></td>
-    </tr>
-    <tr>
-      <th>linetype</th>
-      <td><p>Line type. Default is <code>ReboundTools::default_graph_params$prefs_indiff_grid_linetype</code>.</p></td>
-    </tr>
-    <tr>
       <th>qs1_qs0, Co1_Co0</th>
       <td><p>The (x,y) coordinates of a point on this indifference curve.</p></td>
     </tr>
     <tr>
+      <th>qs2_qs0</th>
+      <td><p>A second x value at which a a point on the indifference curve should be calculated. Default is <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
       <th>f_Cs_orig</th>
-      <td><p>The ration of spending on the energy service to
+      <td><p>The ratio of spending on the energy service to
 the sum of initial spending on the energy service and other goods.</p></td>
     </tr>
     <tr>
       <th>sigma</th>
       <td><p>The elasticity of substitution between spending on the energy service and spending on other goods.</p></td>
+    </tr>
+    <tr>
+      <th>graph_params</th>
+      <td><p>Parameters that control the appearance of this graph.</p></td>
+    </tr>
+    <tr>
+      <th>eeu_base_params</th>
+      <td><p>See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code>.</p></td>
     </tr>
     <tr>
       <th>graph_df_colnames</th>
@@ -196,16 +195,32 @@ Default is <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colname
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The preferences graph is <em>always</em> indexed, so there is no <code>indexed</code> argument.</p>
+<p>This function finds a reasonable range over which to sweep the <code>qs_qs0</code> variable
+when generating the indifference curve, depending on the value of <code>qs2_qs0</code>.
+When <code>qs2_qs0</code> is <code>NULL</code> (the default), the curve is generated over the range
+<code>grqph_params$qs_qs0_lower * qs1_qs0</code> to <code>grqph_params$qs_qs0_upper * qs1_qs0</code>.
+When <code>qs2_qs0</code> is non-<code>NULL</code>, the curve is generated over the range
+<code>grqph_params$qs_qs0_lower * min(qs1_qs0, qs2_qs0)</code> to
+<code>grqph_params$qs_qs0_upper * max(qs1_qs0, qs2_qs0)</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>meta</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>Case <span class='op'>=</span> <span class='st'>"Test case"</span><span class='op'>)</span>
 <span class='fu'>add_indifference_curve</span><span class='op'>(</span>meta <span class='op'>=</span> <span class='va'>meta</span>, line_name<span class='op'>=</span> <span class='st'>"Test indifference curve"</span>,
                        qs1_qs0 <span class='op'>=</span> <span class='fl'>2</span>, Co1_Co0 <span class='op'>=</span> <span class='fl'>3</span>, f_Cs_orig <span class='op'>=</span> <span class='fl'>0.0001</span>, sigma <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 10</span><span>
-#&gt;   Case  graph_type line_name colour  size linetype qs1_qs0 Co1_Co0 f_Cs_orig
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #949494;'># … with 1 more variable: sigma </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 183 x 12</span><span>
+#&gt;    Case  graph_type line_name colour  size linetype qs1_qs0 Co1_Co0 f_Cs_orig
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Test… Preferenc… Test ind… gray     0.1 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #949494;'># … with 173 more rows, and 3 more variables: sigma </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, x </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, y </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
