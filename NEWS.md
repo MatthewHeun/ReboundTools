@@ -1,3 +1,5 @@
+# ReboundTools 0.1.6 (2021-01-10)
+
 * Now at 314 tests, all passing.
 * Test coverage is at 100%
 * Preferences graph now contains self-generated indifference curves.
