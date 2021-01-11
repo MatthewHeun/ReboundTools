@@ -73,7 +73,7 @@ These are default names for columns produced internally." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ These are default names for columns produced internally.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 13 entries.</p><dl>
+    <p>A string list with 17 entries.</p><dl>
 <dt>colour_col</dt><dd><p>The name of the column containing line colours.</p></dd>
 <dt>size_col</dt><dd><p>The name of the column containing line sizes (widths).</p></dd>
 <dt>linetype_col</dt><dd><p>The name of the column containing line types.</p></dd>
@@ -134,6 +134,10 @@ These are default names for columns produced internally.</p>
 <dt>y_col</dt><dd><p>The name of the column containing starting y values.</p></dd>
 <dt>xend_col</dt><dd><p>The name of the column containing ending x values.</p></dd>
 <dt>yend_col</dt><dd><p>The name of the column containing ending y values.</p></dd>
+<dt>qs1_qs0_col</dt><dd><p>The name of the column containing a q_s/q_s_0 point on this indifference curve.</p></dd>
+<dt>Co1_Co0_col</dt><dd><p>The name of the column containing a C_s/C_s_0 point on this indifference curve.</p></dd>
+<dt>f_Cs_orig_col</dt><dd><p>The name of the column containing the original value of f_Cs for this indifference curve.</p></dd>
+<dt>sigma_col</dt><dd><p>The name of the column containing ending sigma values for this indifference curve.</p></dd>
 <dt>start_point_col</dt><dd><p>The name of the boolean column telling whether this row contains a segment that should have a starting point.</p></dd>
 <dt>end_arrow_col</dt><dd><p>The name of the boolean column telling whether this row contains a segment that should have an ending arrow.</p></dd>
 
@@ -174,6 +178,18 @@ These are default names for columns produced internally.</p>
 #&gt; 
 #&gt; $yend_col
 #&gt; [1] "yend"
+#&gt; 
+#&gt; $qs1_qs0_col
+#&gt; [1] "qs1_qs0"
+#&gt; 
+#&gt; $Co1_Co0_col
+#&gt; [1] "Co1_Co0"
+#&gt; 
+#&gt; $f_Cs_orig_col
+#&gt; [1] "f_Cs_orig"
+#&gt; 
+#&gt; $sigma_col
+#&gt; [1] "sigma"
 #&gt; 
 #&gt; $start_point_col
 #&gt; [1] "start_point"
