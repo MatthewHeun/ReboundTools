@@ -1,16 +1,49 @@
-test_that("indifference_fun() works as expected", {
-  qs1_qs0 <- 1
-  Co1_Co0 <- 1
-  sigma <- 0.5
-  f_Cs <- 0.01
+
+
+test_that("indifference_lines() works as expected", {
+  indiff_lines <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    indifference_lines()
+  expect_equal(indiff_lines$line_name[[1]], ReboundTools::rebound_stages$orig)
+  expect_equal(indiff_lines$graph_type[[1]], ReboundTools::graph_types$preferences)
+  expect_equal(indiff_lines$qs1_qs0[[1]], 1)
+})
+
+
+test_that("add_indifference_curve() works as expected", {
+  meta <- tibble::tibble(Case = "Test case")
+  res <- add_indifference_curve(meta = meta, graph_type = "Test type", 
+                                line_name = "Test indiff", 
+                                qs1_qs0 = 5, Co1_Co0 = 10, qs2_qs0 = 7, f_Cs_orig = 0.1, sigma = 0.04)
+  expect_equal(res$Case %>% unique(), "Test case")
+  expect_equal(res$graph_type %>% unique(), "Test type")
+  expect_equal(res$line_name %>% unique(), "Test indiff")
+  expect_equal(res$colour %>% unique(), "gray")
+  expect_equal(res$size %>% unique(), 0.1)
+  expect_equal(res$linetype %>% unique(), "solid")
+  expect_equal(res$qs1_qs0 %>% unique(), 5)
+  expect_equal(res$Co1_Co0 %>% unique(), 10)
+  expect_equal(res$f_Cs_orig %>% unique(), 0.1)
+  expect_equal(res$sigma %>% unique(), 0.04)
   
-  g <- ggplot2::ggplot() +
-    ggplot2::stat_function(data = data.frame(x = c(0.1, 10)),
-                           mapping = ggplot2::aes(x = x), 
-                           fun = indifference_func, 
-                           args = c(qs1_qs0 = qs1_qs0, Co1_Co0 = Co1_Co0,
-                                    f_Cs = f_Cs, sigma = sigma))
-  expect_true(!is.null(g))
+  # Try with two cases
+  meta2 <- tibble::tibble(Case = c("Case 1", "Case 2"))
+  res2 <- add_indifference_curve(meta = meta2, graph_type = c("Preferences", "Preferences"), 
+                                 line_name = c("Test indiff1", "Test indiff2"), 
+                                 qs1_qs0 = c(1.5,1.6), Co1_Co0 = c(0.999,0.998), 
+                                 qs2_qs0 = c(7,8), f_Cs_orig = c(0.1,0.2), sigma = c(0.04,0.05))
+  expect_equal(res2[[eeu_base_params$case]] %>% unique, c("Case 1", "Case 2"))
+  # Check the last rows for each case.
+  res2 %>% 
+    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Case 1") %>% 
+    magrittr::extract2(graph_df_colnames$x_col) %>% 
+    magrittr::extract2(length(.)) %>% 
+    expect_equal(16)
+  res2 %>% 
+    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Case 2") %>% 
+    magrittr::extract2(graph_df_colnames$x_col) %>% 
+    magrittr::extract2(length(.)) %>% 
+    expect_equal(80)
 })
 
 
@@ -50,47 +83,32 @@ test_that("indifference_func() works as expected", {
 })
 
 
-test_that("add_indifference_curve() works as expected", {
-  meta <- tibble::tibble(Case = "Test case")
-  res <- add_indifference_curve(meta = meta, graph_type = "Test type", 
-                                line_name = "Test indiff", 
-                                qs1_qs0 = 5, Co1_Co0 = 10, f_Cs_orig = 0.1, sigma = 0.04)
-  expect_equal(res$Case, "Test case")
-  expect_equal(res$graph_type, "Test type")
-  expect_equal(res$line_name, "Test indiff")
-  expect_equal(res$colour, "gray")
-  expect_equal(res$size, 0.1)
-  expect_equal(res$linetype, "solid")
-  expect_equal(res$qs1_qs0, 5)
-  expect_equal(res$Co1_Co0, 10)
-  expect_equal(res$f_Cs_orig, 0.1)
-  expect_equal(res$sigma, 0.04)
+test_that("geom_seq() works as expected", {
+  s <- geom_seq(from = 0.01, to = 10.01, n = 100)
+  expect_equal(s[[1]], 0.01)
+  expect_equal(s[[100]], 10.01)
+  
+  # Try with from == to
+  expect_equal(geom_seq(from = 10, to = 10, n = 100), rep(10, times = 100))
+
+  # Try with to < from
+  s2 <- geom_seq(from = 10, to = 0.42, n = 100)
+  expect_equal(s2[[1]], 10)
+  expect_equal(s2[[100]], 0.42)
+  
+  # Try with n = 0
+  expect_error(geom_seq(from = 10, to = 0.42, n = 0), "n >= 2 required in geom_seq")
+  
+  # Try with n = -1
+  expect_error(geom_seq(from = 10, to = 0.42, n = -1), "n >= 2 required in geom_seq")
+
+  # Try with n = 1
+  expect_error(geom_seq(from = 10, to = 0.42, n = 1), "n >= 2 required in geom_seq")
 })
 
 
-test_that("indifference_lines() works as expected", {
-  indiff_lines <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
-    indifference_lines()
-  expect_equal(indiff_lines$line_name[[1]], ReboundTools::rebound_stages$orig)
-  expect_equal(indiff_lines$graph_type[[1]], ReboundTools::graph_types$preferences)
-  expect_equal(indiff_lines$qs1_qs0[[1]], 1)
-})
 
 
-# test_that("indifference curves graph properly", {
-#   rebound_data <- load_eeu_data() %>% 
-#     rebound_analysis() %>% 
-#     dplyr::filter(Case == "Lamp")
-#   prefs_paths <- rebound_data %>% prefs_paths()
-#   prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
-#   prefs_indiff <- rebound_data %>% indifference_lines()
-#   
-#   rebound_graphs(prefs_paths, NULL, prefs_indiff) + 
-#     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
-#                         cols = ggplot2::vars(graph_type), 
-#                         scales = "free") + 
-#     ggplot2::scale_x_continuous(name = "q_dot_s/q_dot_s_orig") +
-#     ggplot2::scale_y_continuous(name = "C_dot_o/C_dot_o_orig")+
-#     MKHthemes::xy_theme()
-# })
+
+
+
