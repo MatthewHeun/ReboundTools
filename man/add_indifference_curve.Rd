@@ -47,13 +47,6 @@ the sum of initial spending on the energy service and other goods.}
 
 \item{graph_df_colnames}{A list of column names to use throughout the package.
 Default is \code{ReboundTools::graph_df_colnames}.}
-
-\item{colour}{The colour for this indifference curve.
-Default is \code{ReboundTools::default_graph_params$prefs_indiff_curve_colour}.}
-
-\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_size}.}
-
-\item{linetype}{Line type. Default is \code{ReboundTools::default_graph_params$prefs_indiff_grid_linetype}.}
 }
 \value{
 A version of \code{.DF} with new indifference curves added at the bottom.

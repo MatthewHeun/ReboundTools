@@ -30,10 +30,6 @@ likely created by \code{rebound_analysis()}.}
 \item{q_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
 
 \item{q_dot_s_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
-
-\item{x_vals}{The x-axis values at which the indifference curve is to be calculated.}
-
-\item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
 }
 \value{
 A data frame of indifference curves for a preferences graph.

@@ -7,11 +7,9 @@
 #'
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
-#' @param x_vals The x-axis values at which the indifference curve is to be calculated.
 #' @param graph_type See `ReboundTools::graph_types`. Default is `ReboundTools::graph_types$preferences`.
 #' @param graph_params Parameters that control the appearance of the graph. Default is `ReboundTools::default_graph_params`.
 #' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
-#' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
 #' @param q_dot_s_hat See `ReboundTools::hat_vars`.
 #' @param q_dot_s_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
 #'
@@ -108,10 +106,6 @@ indifference_lines <- function(.rebound_data,
 #' @param graph_type The graph type for the indifference curve.
 #'                   Default is `ReboundTools::graph_types$preferences`.
 #' @param line_name A name for this indifference curve.
-#' @param colour The colour for this indifference curve. 
-#'               Default is `ReboundTools::default_graph_params$prefs_indiff_curve_colour`.
-#' @param size Line width. Default is `ReboundTools::default_graph_params$prefs_indiff_grid_size`.
-#' @param linetype Line type. Default is `ReboundTools::default_graph_params$prefs_indiff_grid_linetype`.
 #' @param qs1_qs0,Co1_Co0 The (x,y) coordinates of a point on this indifference curve.
 #' @param qs2_qs0 A second x value at which a a point on the indifference curve should be calculated. Default is `NULL`.
 #' @param f_Cs_orig The ratio of spending on the energy service to 
@@ -241,7 +235,6 @@ indifference_func <- function(qs_qs0, qs1_qs0, Co1_Co0, f_Cs_orig, sigma, rho = 
 #'
 #' @param from The first value in the sequence.
 #' @param to The final value in the sequence.
-#' @param by The value by which each term in the sequence is multiplied to obtain the next term.
 #' @param n The number of points to include in the sequence.
 #' 
 #' @return A vector of numbers.
@@ -249,8 +242,8 @@ indifference_func <- function(qs_qs0, qs1_qs0, Co1_Co0, f_Cs_orig, sigma, rho = 
 #' @export
 #'
 #' @examples
-#' geom_seq(from = 0.01, to = 10, by = 1.1)
-#' geom_seq(from = 10, to = 20, by = 0)
+#' geom_seq(from = 0.01, to = 10, n = 20)
+#' geom_seq(from = 10, to = 20, n = 30)
 geom_seq <- function(from, to, n) {
   assertthat::assert_that(n >= 2, msg = "n >= 2 required in geom_seq()")
   by = (to/from) ^ (1/(n-1))

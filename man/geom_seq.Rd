@@ -12,8 +12,6 @@ geom_seq(from, to, n)
 \item{to}{The final value in the sequence.}
 
 \item{n}{The number of points to include in the sequence.}
-
-\item{by}{The value by which each term in the sequence is multiplied to obtain the next term.}
 }
 \value{
 A vector of numbers.
@@ -22,6 +20,6 @@ A vector of numbers.
 Generate a geometric sequence
 }
 \examples{
-geom_seq(from = 0.01, to = 10, by = 1.1)
-geom_seq(from = 10, to = 20, by = 0)
+geom_seq(from = 0.01, to = 10, n = 20)
+geom_seq(from = 10, to = 20, n = 30)
 }

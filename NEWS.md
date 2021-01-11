@@ -1,3 +1,8 @@
+* Now at 314 tests, all passing.
+* Test coverage is at 100%
+* Preferences graph now contains self-generated indifference curves.
+
+
 # ReboundTools 0.1.5 (2021-01-08)
 
 * Now at 303 tests, all passing.
@@ -12,7 +17,6 @@
     - `arrow_angle`
     - `arrow_length`
     - `arrow_type`
-
 
 # ReboundTools 0.1.4 (2021-01-07)
 
