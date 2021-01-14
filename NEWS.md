@@ -1,3 +1,6 @@
+* Added a vignette
+
+
 # ReboundTools 0.1.6 (2021-01-10)
 
 * Now at 314 tests, all passing.
