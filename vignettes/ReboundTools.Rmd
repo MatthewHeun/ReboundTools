@@ -14,7 +14,11 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>", 
+  fig.width = 5,
+  fig.height = 3,
+  fig.align = "center",
+  fig.retina = 2
 )
 ```
 
@@ -22,6 +26,7 @@ knitr::opts_chunk$set(
 library(dplyr)
 library(ReboundTools)
 ```
+
 
 ## Introduction
 
@@ -114,9 +119,69 @@ Three rebound path graphs are available:
    * Cost paths, and
    * Preference paths.
 
-The following example illustrates the `rebound_graphs()` function.
 
+### Energy path graphs
 
+The following example illustrates an energy path graph. 
 
+```{r}
+sample_eeu_data_path() %>% 
+  rebound_graphs(cases = "Car", graph_types = "Energy")
+```
 
+An energy path graph shows the energy effects of the energy efficiency upgrade
+with direct energy consumption on the horizontal axis and
+indirect energy consumption on the vertical axis.
 
+The `cases` argument tells which `Case` should be plotted.
+The `graph_types` argument tells which type of graph should be created. 
+`graph_types` can be one of
+```{r} 
+ReboundTools::graph_types
+```
+The default is all three graph types.
+
+Setting `indexed = TRUE` normalizes the rebound data to conditions
+before emplacement of the energy efficient device, 
+such that the starting point is always (1, 1).
+
+```{r}
+sample_eeu_data_path() %>% 
+  rebound_graphs(indexed = TRUE, cases = "Car", graph_types = "Energy")
+```
+
+Several cases can be plotted at the same time.
+The default is that all cases are included in the plot that is returned.
+
+```{r}
+sample_eeu_data_path() %>% 
+    rebound_graphs(cases = c("Car", "Lamp"), 
+                   graph_types = "Energy")
+```
+
+When the cases are very different (as above) or overlapping, 
+faceting may improve the appearance of the graph, and indexing
+may be helpful.
+
+```{r, fig.width=5, fig.height=3, fig.align="center"}
+sample_eeu_data_path() %>% 
+    rebound_graphs(indexed = TRUE,
+                   graph_types = "Energy") +
+    ggplot2::facet_wrap(facets = "Case")
+```
+
+The appearance of graphs is controlled by the `graph_params` argument.
+Most parameters are self-explanatory.
+For example, `ReboundTools::default_graph_params$dempl_colour` 
+gives the colour of the direct emplacement path.
+See `r help(default_graph_params)` for parameter meanings. 
+
+```{r}
+my_params <- default_graph_params
+my_params$dempl_colour <- "darkred"
+sample_eeu_data_path() %>% 
+    rebound_graphs(indexed = TRUE,
+                   graph_types = "Energy", 
+                   graph_params = my_params) +
+    ggplot2::facet_wrap(facets = "Case")
+```

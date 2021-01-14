@@ -1,6 +1,7 @@
 #' Create rebound graphs
 #'
-#' @param .rebound_data Rebound data, likely loaded by `load_eeu_data()`.
+#' @param .eeu_path Path to a spreadsheet containing energy efficiency upgrade parameters. Default is `sample_eeu_data_path()`.
+#' @param .eeu_data A data frame of rebound parameters, likely loaded by `load_eeu_data()`. Default is `load_eeu_data(.eeu_path)`.
 #' @param indexed A boolean that tells whether to index the graph to its initial path point. Default is `FALSE`.
 #' @param cases A string list saying which cases in `.rebound_data` to include. Default is `.rebound_data[[case_colname]] %>% unique()`, i.e. all cases.
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
@@ -27,6 +28,10 @@ rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
                            graph_params = ReboundTools::default_graph_params, 
                            case_colname = ReboundTools::eeu_base_params$case, 
                            graph_df_colnames = ReboundTools::graph_df_colnames) {
+  
+  cases <- match.arg(cases, several.ok = TRUE)
+  graph_types <- match.arg(unlist(graph_types), choices = unlist(graph_types), several.ok = TRUE)
+  grid_types <- match.arg(unlist(grid_types), choices = unlist(grid_types), several.ok = TRUE)
   
   analysis_data <- .eeu_data %>% 
     dplyr::filter(.data[[case_colname]] %in% cases) %>% 
