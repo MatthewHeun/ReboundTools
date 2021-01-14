@@ -44,6 +44,6 @@ A \code{ggplot2} object with the graphs
 Create rebound graphs
 }
 \examples{
-load_eeu_data() \%>\% 
+sample_eeu_data_path() \%>\% 
   rebound_graphs()
 }

@@ -17,8 +17,8 @@
 #' @export
 #'
 #' @examples
-#' load_eeu_data() %>% 
-#'   rebound_graphs()
+#' sample_eeu_data_path() %>% 
+#'   rebound_graphs(indexed = TRUE)
 rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
                            .eeu_data = load_eeu_data(.eeu_path),
                            indexed = FALSE,
