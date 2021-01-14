@@ -18,20 +18,17 @@
 #' @examples
 #' load_eeu_data() %>% 
 #'   rebound_graphs()
-rebound_graphs <- function(.rebound_data,
+rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
+                           .eeu_data = load_eeu_data(.eeu_path),
                            indexed = FALSE,
-                           cases = .rebound_data[[case_colname]] %>% unique(),
+                           cases = .eeu_data[[case_colname]] %>% unique(),
                            graph_types = ReboundTools::graph_types,
                            grid_types = ReboundTools::graph_types,
                            graph_params = ReboundTools::default_graph_params, 
                            case_colname = ReboundTools::eeu_base_params$case, 
                            graph_df_colnames = ReboundTools::graph_df_colnames) {
   
-  if (!is.data.frame(.rebound_data)) {
-    # Try to load from a path.
-    .rebound_data <- load_eeu_data(.rebound_data)
-  }
-  analysis_data <- .rebound_data %>% 
+  analysis_data <- .eeu_data %>% 
     dplyr::filter(.data[[case_colname]] %in% cases) %>% 
     rebound_analysis()
   

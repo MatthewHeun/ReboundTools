@@ -5,9 +5,10 @@
 \title{Create rebound graphs}
 \usage{
 rebound_graphs(
-  .rebound_data,
+  .eeu_path = sample_eeu_data_path(),
+  .eeu_data = load_eeu_data(.eeu_path),
   indexed = FALSE,
-  cases = .rebound_data[[case_colname]] \%>\% unique(),
+  cases = .eeu_data[[case_colname]] \%>\% unique(),
   graph_types = ReboundTools::graph_types,
   grid_types = ReboundTools::graph_types,
   graph_params = ReboundTools::default_graph_params,
@@ -16,8 +17,6 @@ rebound_graphs(
 )
 }
 \arguments{
-\item{.rebound_data}{Rebound data, likely loaded by \code{load_eeu_data()}.}
-
 \item{indexed}{A boolean that tells whether to index the graph to its initial path point. Default is \code{FALSE}.}
 
 \item{cases}{A string list saying which cases in \code{.rebound_data} to include. Default is \code{.rebound_data[[case_colname]] \%>\% unique()}, i.e. all cases.}
@@ -33,6 +32,8 @@ modified and passed as an argument to control graph appearance.}
 \item{case_colname}{The name of the Case column in \code{.rebound_data}. Default is \code{ReboundTools::eeu_base_params$case}.}
 
 \item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
+
+\item{.rebound_data}{Rebound data, likely loaded by \code{load_eeu_data()}.}
 }
 \value{
 A \code{ggplot2} object with the graphs
