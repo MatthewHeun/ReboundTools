@@ -45,5 +45,5 @@ Create rebound graphs
 }
 \examples{
 sample_eeu_data_path() \%>\% 
-  rebound_graphs()
+  rebound_graphs(indexed = TRUE)
 }

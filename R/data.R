@@ -399,18 +399,24 @@
 #' \item{iinc_linetype}{The linetype for indirect income lines.}
 #' \item{prod_linetype}{The linetype for productivity lines.}
 #' \item{energy_grid_colour}{The colour for energy grid lines.}
+#' \item{zero_perc_rebound_grid_colour}{The colour for energy the 0% rebound lines.}
+#' \item{hundred_perc_rebound_grid_colour}{The colour for the 100% rebound lines.}
 #' \item{energy_rebound_lines_colour}{The colour for energy rebound lines.}
 #' \item{cost_grid_colour}{The colour for cost grid lines.}
 #' \item{cost_ray_colour}{The colour for cost rays.}
 #' \item{prefs_grid_colour}{The colour for preferences grid lines.}
 #' \item{prefs_indiff_curve_colour}{The colour for indifference curve lines.}
 #' \item{energy_grid_size}{The size for energy grid lines.}
+#' \item{zero_perc_rebound_grid_size}{The size for 0% rebound grid lines.}
+#' \item{hundred_perc_rebound_grid_size}{The size for the 100% rebound grid lines.}
 #' \item{energy_rebound_lines_size}{The size for energy rebound lines.}
 #' \item{cost_grid_size}{The size for cost grid lines.}
 #' \item{cost_ray_size}{The size for cost rays.}
 #' \item{prefs_grid_size}{The size for preferences grid lines.}
 #' \item{prefs_indiff_curve_size}{The size for indifference curve lines.}
 #' \item{energy_grid_linetype}{The linetype for energy grid lines.}
+#' \item{zero_perc_rebound_grid_linetype}{The linetype for 0% rebound grid lines.}
+#' \item{hundred_perc_rebound_grid_linetype}{The linetype for the 100% rebound grid lines.}
 #' \item{energy_rebound_lines_linetype}{The linetype for energy rebound lines.}
 #' \item{cost_grid_linetype}{The linetype for cost grid lines.}
 #' \item{cost_ray_linetype}{The linetype for cost rays.}

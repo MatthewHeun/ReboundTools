@@ -125,6 +125,9 @@ An energy path graph shows the energy effects of the energy efficiency upgrade
 with direct energy consumption on the horizontal axis and
 indirect energy consumption on the vertical axis.
 Diagonal lines with negative slope indicate lines of constant energy consumption.
+The thicker lines show 0% rebound (lower left) and 100% rebound (upper right).
+Thinner lines show rebound after each effect in order from the 0% line to the 100% line:
+emplacement, substitution, income, and productivity.
 The following example illustrates an energy path graph. 
 
 ```{r}
@@ -141,11 +144,12 @@ are shown in the horizontal axis;
 capital costs, maintenance and disposal costs, substitution effect savings, and
 income effect costs are shown in the vertical axis. 
 Diagonal lines with negative slope indicate lines of constant expenditure.
+The lower-left line indicates expected expenditure options before 
+capital cost changes, maintenance cost changes, or behavior changes.
 Note that the beginning and end of the cost path graph lie on the same
 expenditure line, indicating that all freed cash 
 (after the emplacement and substitution effects) 
-is re-spent on more of the energy service or more other goods or both.
-
+is re-spent in the income effect.
 
 ```{r}
 sample_eeu_data_path() %>% 
@@ -155,13 +159,15 @@ sample_eeu_data_path() %>%
 
 ### Preferences path graph
 
-The preferences path graph shows normalized energy service consumption on the horizontal axis
-and normalized costs of other goods on the vertical axis
-for the substitution and income effects.
+The preferences path graph shows details of the substitution and income effects, with 
+normalized energy service consumption on the horizontal axis
+and normalized costs of other goods on the vertical axis.
 Diagonal grid lines with negative slope indicate constant expenditure sum
 on the energy service (horizontal axis) and other goods (vertical axis).
-The swooping, concave-upward grid lines indicate lines of constant utility, 
-called indifference curves.
+Negative-sloping lines show the tradeoff between consumption of the energy service 
+(horizontal axis) and consumption of other goods (vertical axis).
+The swooping, concave-upward grid lines indicate lines of constant utility:
+indifference curves.
 
 ```{r warning = FALSE, message = FALSE}
 sample_eeu_data_path() %>% 
@@ -173,6 +179,16 @@ sample_eeu_data_path() %>%
 
 
 ## Arguments to `rebound_graphs()`
+
+In addition to the `indexed` and `cases` arguments, 
+the following arguments adjust the composition and appearance of graphs:
+
+    * `graph_types`,
+    * `grid_types`, and
+    * `graph_params`.
+
+
+**** Move next paragraph up ****
 
 Setting `indexed = TRUE` normalizes the rebound data to conditions
 before emplacement of the energy efficient device, 
