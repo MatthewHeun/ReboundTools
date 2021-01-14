@@ -27,8 +27,11 @@ rebound_graphs <- function(.rebound_data,
                            case_colname = ReboundTools::eeu_base_params$case, 
                            graph_df_colnames = ReboundTools::graph_df_colnames) {
   
-  # Do the full rebound analysis
-  analysis_data <- .rebound_data %>%
+  if (!is.data.frame(.rebound_data)) {
+    # Try to load from a path.
+    .rebound_data <- load_eeu_data(.rebound_data)
+  }
+  analysis_data <- .rebound_data %>% 
     dplyr::filter(.data[[case_colname]] %in% cases) %>% 
     rebound_analysis()
   

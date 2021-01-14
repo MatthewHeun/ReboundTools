@@ -1,0 +1,122 @@
+---
+title: "ReboundTools"
+author: "Matthew Kuperus Heun"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{ReboundTools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include = FALSE}
+library(dplyr)
+library(ReboundTools)
+```
+
+## Introduction
+
+`ReboundTools` is an `R` package that provides functions to analyze 
+energy rebound,  
+the unanticipated reduction 
+of the benefits of energy efficiency 
+due to behavior change and economy-wide effects.
+Many functions perform analysis calculations to move from 
+known parameters to rebound estimates.
+Other functions create rebound graphs in 
+energy, cost, and preference spaces.
+The functions in this package were used for the 
+analyses and graphs in the paper **********.
+
+
+## Getting started
+
+The first step is specifying parameters for the energy efficiency upgrade (EEU)
+and rebound analysis, 
+typically in a spreadsheet.
+The path to an example spreadsheet can be found with the function `sample_eeu_data_path()`.
+Data can be loaded into a data frame as follows:
+
+```{r}
+eeu_data <- sample_eeu_data_path() %>% 
+  load_eeu_data()
+dplyr::glimpse(eeu_data)
+```
+
+Variable names are described by various constants in the package:
+
+```{r}
+help("eeu_base_params")
+help("key_analysis_vars")
+help("rebound_stages")
+```
+
+Rows of the EEU spreadsheet should contain the cases to be analyzed.
+The example file contains two cases: 
+a car and an electric lamp.
+Columns of the EEU spreadsheet should contain rebound parameters for each case.
+Required columns are shown in the example file and `eeu_data` data frame.
+
+```{r}
+colnames(eeu_data)
+```
+
+Rows can be used for sensitivity analysis, varying one or many parameters in columns 
+for each row of the spreadsheet.
+
+
+## Performing the analysis
+
+After data are loaded, rebound analyses can be performed.
+A rebound analysis consists of calculating all rebound terms and intermediate results, 
+once for each row of the EEU data frame.
+A convenient function to perform the rebound analysis is `rebound_analysis()`.
+Columns for intermediate and final results are added to the right of the data frame.
+
+```{r}
+rebound_data <- rebound_analysis(eeu_data)
+dplyr::glimpse(rebound_data)
+```
+
+Note that `rebound_analysis()` is a convenience function that calls several 
+helper functions in turn.
+Each helper function calculates rebound parameters after one of the rebound effects.
+
+```{r}
+simple <- rebound_analysis(eeu_data)
+complicated <- eeu_data %>% 
+  calc_orig() %>%    # Calculate all parameters before the emplacement effect
+  calc_star() %>%    # Calculate all parameters after the emplacement effect
+  calc_hat() %>%     # Calculate all parameters after the substitution effect
+  calc_bar() %>%     # Calculate all parameters after the income effect
+  calc_tilde() %>%   # Calculate all parameters after the productivity effect
+  calc_Deltas() %>%  # Calculate all differences between stages
+  calc_rebound()     # Calculate all rebound terms
+all(simple == complicated)
+```
+
+
+## Rebound graphs
+
+Rebound path graphs can be created with the `rebound_graphs()` function.
+Three rebound path graphs are available:
+
+   * Energy paths,
+   * Cost paths, and
+   * Preference paths.
+
+The following example illustrates the `rebound_graphs()` function.
+
+
+
+
+
