@@ -119,27 +119,60 @@ Three rebound path graphs are available:
    * Cost paths, and
    * Preference paths.
 
-
-### Energy path graphs
-
-The following example illustrates an energy path graph. 
-
-```{r}
-sample_eeu_data_path() %>% 
-  rebound_graphs(cases = "Car", graph_types = "Energy")
-```
+### Energy path graph
 
 An energy path graph shows the energy effects of the energy efficiency upgrade
 with direct energy consumption on the horizontal axis and
 indirect energy consumption on the vertical axis.
+Diagonal lines with negative slope indicate lines of constant energy consumption.
+The following example illustrates an energy path graph. 
 
-The `cases` argument tells which `Case` should be plotted.
-The `graph_types` argument tells which type of graph should be created. 
-`graph_types` can be one of
-```{r} 
-ReboundTools::graph_types
+```{r}
+sample_eeu_data_path() %>% 
+  rebound_graphs(cases = "Car", graph_types = "Energy") +
+  ggplot2::theme_classic()
 ```
-The default is all three graph types.
+
+### Cost path graph
+
+The cost path graph shows costs for rebound stages. 
+Direct costs for the energy service (including substitution and income takebacks)
+are shown in the horizontal axis;
+capital costs, maintenance and disposal costs, substitution effect savings, and
+income effect costs are shown in the vertical axis. 
+Diagonal lines with negative slope indicate lines of constant expenditure.
+Note that the beginning and end of the cost path graph lie on the same
+expenditure line, indicating that all freed cash 
+(after the emplacement and substitution effects) 
+is re-spent on more of the energy service or more other goods or both.
+
+
+```{r}
+sample_eeu_data_path() %>% 
+  rebound_graphs(cases = "Car", graph_types = "Cost") +
+  ggplot2::theme_classic()
+```
+
+### Preferences path graph
+
+The preferences path graph shows normalized energy service consumption on the horizontal axis
+and normalized costs of other goods on the vertical axis
+for the substitution and income effects.
+Diagonal grid lines with negative slope indicate constant expenditure sum
+on the energy service (horizontal axis) and other goods (vertical axis).
+The swooping, concave-upward grid lines indicate lines of constant utility, 
+called indifference curves.
+
+```{r warning = FALSE, message = FALSE}
+sample_eeu_data_path() %>% 
+  rebound_graphs(cases = "Car", graph_types = "Preferences") +
+  ggplot2::xlim(0.995, 1.06) + 
+  ggplot2::ylim(0.995, 1.04) +
+  ggplot2::theme_classic()
+```
+
+
+## Arguments to `rebound_graphs()`
 
 Setting `indexed = TRUE` normalizes the rebound data to conditions
 before emplacement of the energy efficient device, 
@@ -147,28 +180,58 @@ such that the starting point is always (1, 1).
 
 ```{r}
 sample_eeu_data_path() %>% 
-  rebound_graphs(indexed = TRUE, cases = "Car", graph_types = "Energy")
+  rebound_graphs(indexed = TRUE, cases = "Car", graph_types = "Energy") +
+  ggplot2::theme_classic()
 ```
 
-Several cases can be plotted at the same time.
-The default is that all cases are included in the plot that is returned.
+The `cases` argument tells which `Case`s should be plotted.
+All cases are plotted by default, although the result is rarely pleasing.
 
 ```{r}
 sample_eeu_data_path() %>% 
     rebound_graphs(cases = c("Car", "Lamp"), 
-                   graph_types = "Energy")
+                   graph_types = "Energy") +
+  ggplot2::theme_classic()
 ```
 
-When the cases are very different (as above) or overlapping, 
-faceting may improve the appearance of the graph, and indexing
-may be helpful.
+When the cases are overlapping or very different (as above),
+faceting may improve the appearance of the graph.
+Indexing may be helpful to achieve a pleasing appearance.
 
 ```{r, fig.width=5, fig.height=3, fig.align="center"}
 sample_eeu_data_path() %>% 
     rebound_graphs(indexed = TRUE,
                    graph_types = "Energy") +
-    ggplot2::facet_wrap(facets = "Case")
+    ggplot2::facet_wrap(facets = "Case") +
+  ggplot2::theme_classic()
 ```
+
+The `graph_types` argument tells which type of graph should be created. 
+`graph_types` can be one of
+```{r} 
+ReboundTools::graph_types
+```
+The default is all three graph types.
+Again, faceting may be beneficial.
+
+```{r}
+sample_eeu_data_path() %>% 
+  rebound_graphs(indexed = TRUE, cases = "Car") +
+  ggplot2::facet_wrap(facets = "graph_type") +
+  ggplot2::xlim(0.5, 1.2) +
+  ggplot2::ylim(0.99, 1.08) +
+  ggplot2::theme_classic()
+```
+
+
+
+
+
+
+### Controlling the appearance of graphs
+
+
+
 
 The appearance of graphs is controlled by the `graph_params` argument.
 Most parameters are self-explanatory.
@@ -180,8 +243,9 @@ See `r help(default_graph_params)` for parameter meanings.
 my_params <- default_graph_params
 my_params$dempl_colour <- "darkred"
 sample_eeu_data_path() %>% 
-    rebound_graphs(indexed = TRUE,
-                   graph_types = "Energy", 
-                   graph_params = my_params) +
-    ggplot2::facet_wrap(facets = "Case")
+  rebound_graphs(indexed = TRUE,
+                 graph_types = "Energy", 
+                 graph_params = my_params) +
+  ggplot2::facet_wrap(facets = "Case") +
+  ggplot2::theme_classic()
 ```
