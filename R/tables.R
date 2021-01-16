@@ -12,14 +12,13 @@
 #' @param stages A list of stages for columns of the table. Default is `ReboundTools::rebound_stages`.
 #'               Stage order is preserved in the table.
 #' @param latex_stages See `ReboundTools::latex_rebound_stages`. Set `NULL` to prevent conversion to LaTeX stage names.
-#' @param file An optional path to a file. Default is `sample_eeu_data_path()`.
 #' @param case See `ReboundTools::eeu_base_params`.
 #' @param service_unit,energy_engr_unit See `ReboundTools::eeu_base_params`.
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
 #' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
 #'
-#' @return An `xtable` object giving the details of the table.
+#' @return An `xtable` object suitable for printing.
 #' 
 #' @export
 #'
@@ -149,11 +148,26 @@ stages_table <- function(.analysis_data,
 #' Build a rebound results table 
 #'
 #' @param .analysis_data Rebound analysis results. Probably the output of a call to `rebound_analysis()`.
+#' @param escape_latex When `TRUE` (the default), return LaTeX-compatible versions of strings.
+#' @param include_subtotals Tells whether to include rebound subtotals 
+#'                          by stage and direct/indirect.
+#'                          Default is `TRUE`.
+#' @param include_total Tells whether to include rebound total.
+#'                          Default is `TRUE`.
 #' @param rebound_terms See `ReboundTools::rebound_terms`.
+#' @param latex_rebound_terms See `ReboundTools::latex_rebound_terms`.
+#' @param case See `ReboundTools::eeu_base_params`.
+#' @param subtotals The rebound terms that represent subtotals. 
+#'                  Default is `c(ReboundTools::rebound_terms$Re_empl, ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc, ReboundTools::rebound_terms$Re_prod,  ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i)`.
+#' @param total The rebound term that represents total rebound. Default is `ReboundTools::rebound_terms$Re_tot`.
+#' @param term_name The title of the rebound term column. Default is "Rebound term".
+#' @param Re_val_colname The title of the rebound value column. Default is "Value \[--\]".
+#' @param latex_term_name The LaTeX term name column. Default is "LaTeX rebound term".
+#' @param latex_Re_val_colname The LaTeX rebound value column name. Default is "Value \[--\]".
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
 #'
-#' @return A table of rebound analysis results suitable for printing.
+#' @return An `xtable` object suitable for printing.
 #' 
 #' @export
 #'
@@ -162,20 +176,55 @@ stages_table <- function(.analysis_data,
 #'   rebound_analysis() %>% 
 #'   rebound_results_table()
 rebound_results_table <- function(.analysis_data, 
+                                  escape_latex = TRUE,
+                                  include_subtotals = TRUE,
+                                  include_total = TRUE,
                                   rebound_terms = ReboundTools::rebound_terms,
+                                  latex_rebound_terms = ReboundTools::latex_rebound_terms,
+                                  case = ReboundTools::eeu_base_params$case, 
+                                  subtotals = c(ReboundTools::rebound_terms$Re_empl,
+                                                ReboundTools::rebound_terms$Re_sub,
+                                                ReboundTools::rebound_terms$Re_inc,
+                                                ReboundTools::rebound_terms$Re_prod, 
+                                                ReboundTools::rebound_terms$Re_d,
+                                                ReboundTools::rebound_terms$Re_i),
+                                  total = ReboundTools::rebound_terms$Re_tot,
+                                  term_name = "Rebound term", 
+                                  latex_term_name = "LaTeX rebound term",
+                                  Re_val_colname = "Value [-]",
+                                  latex_Re_val_colname = "Value [--]",
                                   ...) {
-  .analysis_data %>% 
-    dplyr::select(.data[[rebound_terms]])
+  
+  table_data <- .analysis_data %>% 
+    dplyr::select(dplyr::any_of(case), 
+                  dplyr::any_of(rebound_terms %>% unlist())) %>% 
+    tidyr::pivot_longer(cols = rebound_terms %>% unlist(),
+                        names_to = term_name, 
+                        values_to = Re_val_colname)
+  if (!include_subtotals) {
+    table_data <- table_data %>% 
+      dplyr::filter(! .data[[term_name]] %in% subtotals)
+  }
+  if (!include_total) {
+    table_data <- table_data %>% 
+      dplyr::filter(! .data[[term_name]] %in% total)
+  }
+  if (escape_latex) {
+    # Change strings in .term_name column to be the LaTeX version.
+    latex_names <- tibble::tibble("{term_name}" := names(latex_rebound_terms),
+                                  "{latex_term_name}" := latex_rebound_terms %>% unlist())
+    table_data <- dplyr::left_join(table_data, latex_names, by = term_name) %>%
+      dplyr::mutate(
+        "{term_name}" := NULL
+      ) %>%
+      dplyr::rename(
+        "{term_name}" := .data[[latex_term_name]], 
+        "{latex_Re_val_colname}" := .data[[Re_val_colname]]
+      ) %>%
+      dplyr::relocate(.data[[term_name]], .before = .data[[latex_Re_val_colname]])
+  }
+  
+  # Create the xtable and return.
+  table_data %>% 
+    xtable::xtable(...)
 }
-
-
-
-
-
-
-
-
-
-
-
-

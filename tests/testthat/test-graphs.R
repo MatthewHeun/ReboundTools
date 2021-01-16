@@ -11,7 +11,7 @@ test_that("rebound_graphs() works as expected", {
     rebound_analysis() %>% 
     rebound_graphs(graph_types = "Energy")
   expect_true(!is.null(graphs_energy))
-  expect_equal(graphs_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+  expect_equal(graphs_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
   
   # Try with only one case, Car Energy
   graphs_car_energy <- load_eeu_data() %>% 
@@ -20,7 +20,7 @@ test_that("rebound_graphs() works as expected", {
                    graph_types = "Energy")
   expect_true(!is.null(graphs_car_energy))
   expect_equal(graphs_car_energy$plot_env$.path_data$Case %>% unique(), "Car")
-  expect_equal(graphs_car_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+  expect_equal(graphs_car_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
 
   # Try Car Cost
   graphs_car_cost <- load_eeu_data() %>% 
@@ -29,7 +29,7 @@ test_that("rebound_graphs() works as expected", {
                    graph_types = "Cost")
   expect_true(!is.null(graphs_car_cost))
   expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
-  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique(), "Cost")
+  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Cost")
   
   # Try indexed Car Cost
   graphs_car_cost <- load_eeu_data() %>% 
@@ -39,7 +39,7 @@ test_that("rebound_graphs() works as expected", {
                    graph_types = "Cost")
   expect_true(!is.null(graphs_car_cost))
   expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
-  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique(), "Cost")
+  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Cost")
 
   # Eliminate the grids for Car Cost graph.
   graphs_car_cost_no_grids <- load_eeu_data() %>% 
@@ -57,7 +57,7 @@ test_that("rebound_graphs() works as expected", {
                    graph_types = "Energy")
   expect_true(!is.null(graphs_lamp_energy))
   expect_equal(graphs_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
-  expect_equal(graphs_lamp_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+  expect_equal(graphs_lamp_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
   
   # Try an indexed Energy graph for lamps
   graphs_indexed_lamp_energy <- load_eeu_data() %>% 
@@ -67,7 +67,7 @@ test_that("rebound_graphs() works as expected", {
                    graph_types = "Energy")
   expect_true(!is.null(graphs_indexed_lamp_energy))
   expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
-  expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$graph_type %>% unique(), "Energy")
+  expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
   
   # Try two cases
   graphs_two_cases_indexed_energy <- load_eeu_data() %>% 

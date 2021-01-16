@@ -49,11 +49,9 @@ Stage order is preserved in the table.}
 \code{label}, \code{caption}, \code{digits}, etc.}
 
 \item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
-
-\item{file}{An optional path to a file. Default is \code{sample_eeu_data_path()}.}
 }
 \value{
-An \code{xtable} object giving the details of the table.
+An \code{xtable} object suitable for printing.
 }
 \description{
 A stages table has variables in rows and stages in columns.

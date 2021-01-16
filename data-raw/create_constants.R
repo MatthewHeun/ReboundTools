@@ -246,6 +246,27 @@ usethis::use_data(rebound_terms, overwrite = TRUE)
 
 
 #
+# LaTeX names of rebound terms.
+# 
+
+latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
+                            Re_emb = "$Re_{emb}$",
+                            Re_md = "$Re_{md}$",
+                            Re_empl = "$Re_{empl}$",
+                            Re_dsub = "$Re_{dsub}$", 
+                            Re_isub = "$Re_{isub}$",
+                            Re_sub = "$Re_{sub}$",
+                            Re_dinc = "$Re_{dinc}$", 
+                            Re_iinc = "$Re_{iinc}$", 
+                            Re_inc = "$Re_{inc}$",
+                            Re_prod = "$Re_{prod}$", 
+                            Re_d = "$Re_d$",
+                            Re_i = "$Re_i$",
+                            Re_tot = "$Re_{tot}$")
+usethis::use_data(latex_rebound_terms, overwrite = TRUE)
+
+
+#
 # Graph types
 # 
 
