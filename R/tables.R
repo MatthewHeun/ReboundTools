@@ -24,15 +24,16 @@
 #' @export
 #'
 #' @examples
-#' stages_table()
-stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)), 
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   stages_table()
+stages_table <- function(.analysis_data, 
                          add_units = TRUE,
                          escape_latex = TRUE,
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 
                          latex_stages = ReboundTools::latex_rebound_stages,
-                         file = sample_eeu_data_path(), 
                          case = ReboundTools::eeu_base_params$case, 
                          service_unit = ReboundTools::eeu_base_params$service_unit,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
@@ -145,7 +146,27 @@ stages_table <- function(.analysis_data = rebound_analysis(load_eeu_data(file)),
 }
 
 
-
+#' Build a rebound results table 
+#'
+#' @param .analysis_data Rebound analysis results. Probably the output of a call to `rebound_analysis()`.
+#' @param rebound_terms See `ReboundTools::rebound_terms`.
+#' @param ... Arguments passed to `xtable::xtable()`, possibly
+#'            `label`, `caption`, `digits`, etc.
+#'
+#' @return A table of rebound analysis results suitable for printing.
+#' 
+#' @export
+#'
+#' @examples
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   rebound_results_table()
+rebound_results_table <- function(.analysis_data, 
+                                  rebound_terms = ReboundTools::rebound_terms,
+                                  ...) {
+  .analysis_data %>% 
+    dplyr::filter(rebound_terms)
+}
 
 
 

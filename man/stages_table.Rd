@@ -5,14 +5,13 @@
 \title{Build a stages table}
 \usage{
 stages_table(
-  .analysis_data = rebound_analysis(load_eeu_data(file)),
+  .analysis_data,
   add_units = TRUE,
   escape_latex = TRUE,
   vars = ReboundTools::key_analysis_vars,
   latex_vars = ReboundTools::latex_key_analysis_vars,
   stages = ReboundTools::rebound_stages,
   latex_stages = ReboundTools::latex_rebound_stages,
-  file = sample_eeu_data_path(),
   case = ReboundTools::eeu_base_params$case,
   service_unit = ReboundTools::eeu_base_params$service_unit,
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
@@ -42,8 +41,6 @@ Stage order is preserved in the table.}
 
 \item{latex_stages}{See \code{ReboundTools::latex_rebound_stages}. Set \code{NULL} to prevent conversion to LaTeX stage names.}
 
-\item{file}{An optional path to a file. Default is \code{sample_eeu_data_path()}.}
-
 \item{case}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{service_unit, energy_engr_unit}{See \code{ReboundTools::eeu_base_params}.}
@@ -52,6 +49,8 @@ Stage order is preserved in the table.}
 \code{label}, \code{caption}, \code{digits}, etc.}
 
 \item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
+
+\item{file}{An optional path to a file. Default is \code{sample_eeu_data_path()}.}
 }
 \value{
 An \code{xtable} object giving the details of the table.
@@ -61,5 +60,7 @@ A stages table has variables in rows and stages in columns.
 These tables enable tracking of variables across the different stages of rebound.
 }
 \examples{
-stages_table()
+load_eeu_data() \%>\% 
+  rebound_analysis() \%>\% 
+  stages_table()
 }

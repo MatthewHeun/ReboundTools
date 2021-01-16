@@ -17,12 +17,12 @@
 #' @export
 #'
 #' @examples
-#' sample_eeu_data_path() %>% 
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
 #'   rebound_graphs(indexed = TRUE)
-rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
-                           .eeu_data = load_eeu_data(.eeu_path),
+rebound_graphs <- function(.analysis_data,
                            indexed = FALSE,
-                           cases = .eeu_data[[case_colname]] %>% unique(),
+                           cases = .analysis_data[[case_colname]] %>% unique(),
                            graph_types = ReboundTools::graph_types,
                            grid_types = ReboundTools::graph_types,
                            graph_params = ReboundTools::default_graph_params, 
@@ -33,9 +33,8 @@ rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
   graph_types <- match.arg(unlist(graph_types), choices = unlist(graph_types), several.ok = TRUE)
   grid_types <- match.arg(unlist(grid_types), choices = unlist(grid_types), several.ok = TRUE)
   
-  analysis_data <- .eeu_data %>% 
-    dplyr::filter(.data[[case_colname]] %in% cases) %>% 
-    rebound_analysis()
+  analysis_data <- .analysis_data %>%
+    dplyr::filter(.data[[case_colname]] %in% cases)
   
   # Calculate energy, cost, and preferences paths
   e_paths <- analysis_data %>%

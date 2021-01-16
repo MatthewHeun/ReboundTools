@@ -1,5 +1,7 @@
 test_that("stages_table() works as expected", {
-  t1 <- stages_table()
+  t1 <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    stages_table()
   expect_true(!is.null(t1))
   expect_true("Case" %in% colnames(t1))
   # We should have units. I.e., every item in the name column should contain a "[".
@@ -20,4 +22,11 @@ test_that("stages_table() works as expected", {
   # Check that the name of the "name" column is empty.
   cnames <- colnames(t2)
   expect_equal(cnames[[1]], " ")
+})
+
+
+test_that("rebound_results_table() works as expected", {
+  load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_results_table()
 })
