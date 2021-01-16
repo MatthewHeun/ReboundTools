@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -83,6 +83,9 @@
     <span class="fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/ReboundTools.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -116,9 +119,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>rebound_graphs</span><span class='op'>(</span>
-  <span class='va'>.rebound_data</span>,
+  <span class='va'>.analysis_data</span>,
   indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cases <span class='op'>=</span> <span class='va'>.rebound_data</span><span class='op'>[[</span><span class='va'>case_colname</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cases <span class='op'>=</span> <span class='va'>.analysis_data</span><span class='op'>[[</span><span class='va'>case_colname</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>,
   graph_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
   grid_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
   graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
@@ -130,8 +133,8 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.rebound_data</th>
-      <td><p>Rebound data, likely loaded by <code><a href='load_eeu_data.html'>load_eeu_data()</a></code>.</p></td>
+      <th>.analysis_data</th>
+      <td><p>Rebound analysis data, likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></code>.</p></td>
     </tr>
     <tr>
       <th>indexed</th>
@@ -171,7 +174,8 @@ modified and passed as an argument to control graph appearance.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>rebound_graphs</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>rebound_graphs</span><span class='op'>(</span>indexed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='rebound_graphs-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

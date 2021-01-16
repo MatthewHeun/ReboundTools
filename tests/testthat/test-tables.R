@@ -53,3 +53,38 @@ test_that("percentage works as expected", {
     rebound_results_table(as_percent = FALSE)
   expect_true("Value [-]" %in% colnames(t1))
 })
+
+
+test_that("including subtotals works as expected", {
+  t1 <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_results_table(escape_latex = FALSE,
+                          include_subtotals = FALSE)
+  Re_types <- t1$`Rebound term`
+  expect_true(! ReboundTools::rebound_terms$Re_empl %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_sub %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_inc %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_prod %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_i %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_d %in% Re_types)
+  
+  expect_true(ReboundTools::rebound_terms$Re_tot %in% Re_types)
+})
+
+
+test_that("not including total works as expected", {
+  t1 <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_results_table(escape_latex = FALSE,
+                          include_total = FALSE)
+  Re_types <- t1$`Rebound term`
+
+  expect_true(ReboundTools::rebound_terms$Re_empl %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_sub %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_inc %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_prod %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_i %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_d %in% Re_types)
+  
+  expect_true(! ReboundTools::rebound_terms$Re_tot %in% Re_types)
+})
