@@ -73,7 +73,7 @@ These tables enable tracking of variables across the different stages of rebound
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -84,6 +84,9 @@ These tables enable tracking of variables across the different stages of rebound
     <span class="fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/ReboundTools.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -118,14 +121,13 @@ These tables enable tracking of variables across the different stages of rebound
     </div>
 
     <pre class="usage"><span class='fu'>stages_table</span><span class='op'>(</span>
-  .analysis_data <span class='op'>=</span> <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span><span class='op'>)</span>,
+  <span class='va'>.analysis_data</span>,
   add_units <span class='op'>=</span> <span class='cn'>TRUE</span>,
   escape_latex <span class='op'>=</span> <span class='cn'>TRUE</span>,
   vars <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='key_analysis_vars.html'>key_analysis_vars</a></span>,
   latex_vars <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='latex_key_analysis_vars.html'>latex_key_analysis_vars</a></span>,
   stages <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_stages.html'>rebound_stages</a></span>,
   latex_stages <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='latex_rebound_stages.html'>latex_rebound_stages</a></span>,
-  file <span class='op'>=</span> <span class='fu'><a href='sample_eeu_data_path.html'>sample_eeu_data_path</a></span><span class='op'>(</span><span class='op'>)</span>,
   case <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
   service_unit <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>service_unit</span>,
   energy_engr_unit <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>energy_engr_unit</span>,
@@ -172,10 +174,6 @@ Stage order is preserved in the table.</p></td>
       <td><p>See <code><a href='latex_rebound_stages.html'>ReboundTools::latex_rebound_stages</a></code>. Set <code>NULL</code> to prevent conversion to LaTeX stage names.</p></td>
     </tr>
     <tr>
-      <th>file</th>
-      <td><p>An optional path to a file. Default is <code><a href='sample_eeu_data_path.html'>sample_eeu_data_path()</a></code>.</p></td>
-    </tr>
-    <tr>
       <th>case</th>
       <td><p>See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code>.</p></td>
     </tr>
@@ -196,12 +194,14 @@ Stage order is preserved in the table.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>xtable</code> object giving the details of the table.</p>
+    <p>An <code>xtable</code> object suitable for printing.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>stages_table</span><span class='op'>(</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>stages_table</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; % latex table generated in R 4.0.3 by xtable 1.8-4 package
-#&gt; % Sun Jan 10 20:23:29 2021
+#&gt; % Sat Jan 16 18:10:21 2021
 #&gt; \begin{table}[ht]
 #&gt; \centering
 #&gt; \begin{tabular}{rllrrrrr}

@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -85,6 +85,9 @@ in the ReboundTools package." />
     <span class="fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/ReboundTools.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -124,7 +127,7 @@ in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 57 entries.</p><dl>
+    <p>A string list with 63 entries.</p><dl>
 
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
@@ -157,18 +160,24 @@ in the <code>ReboundTools</code> package.</p>
 <dt>iinc_linetype</dt><dd><p>The linetype for indirect income lines.</p></dd>
 <dt>prod_linetype</dt><dd><p>The linetype for productivity lines.</p></dd>
 <dt>energy_grid_colour</dt><dd><p>The colour for energy grid lines.</p></dd>
+<dt>zero_perc_rebound_grid_colour</dt><dd><p>The colour for energy the 0% rebound lines.</p></dd>
+<dt>hundred_perc_rebound_grid_colour</dt><dd><p>The colour for the 100% rebound lines.</p></dd>
 <dt>energy_rebound_lines_colour</dt><dd><p>The colour for energy rebound lines.</p></dd>
 <dt>cost_grid_colour</dt><dd><p>The colour for cost grid lines.</p></dd>
 <dt>cost_ray_colour</dt><dd><p>The colour for cost rays.</p></dd>
 <dt>prefs_grid_colour</dt><dd><p>The colour for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_colour</dt><dd><p>The colour for indifference curve lines.</p></dd>
 <dt>energy_grid_size</dt><dd><p>The size for energy grid lines.</p></dd>
+<dt>zero_perc_rebound_grid_size</dt><dd><p>The size for 0% rebound grid lines.</p></dd>
+<dt>hundred_perc_rebound_grid_size</dt><dd><p>The size for the 100% rebound grid lines.</p></dd>
 <dt>energy_rebound_lines_size</dt><dd><p>The size for energy rebound lines.</p></dd>
 <dt>cost_grid_size</dt><dd><p>The size for cost grid lines.</p></dd>
 <dt>cost_ray_size</dt><dd><p>The size for cost rays.</p></dd>
 <dt>prefs_grid_size</dt><dd><p>The size for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_size</dt><dd><p>The size for indifference curve lines.</p></dd>
 <dt>energy_grid_linetype</dt><dd><p>The linetype for energy grid lines.</p></dd>
+<dt>zero_perc_rebound_grid_linetype</dt><dd><p>The linetype for 0% rebound grid lines.</p></dd>
+<dt>hundred_perc_rebound_grid_linetype</dt><dd><p>The linetype for the 100% rebound grid lines.</p></dd>
 <dt>energy_rebound_lines_linetype</dt><dd><p>The linetype for energy rebound lines.</p></dd>
 <dt>cost_grid_linetype</dt><dd><p>The linetype for cost grid lines.</p></dd>
 <dt>cost_ray_linetype</dt><dd><p>The linetype for cost rays.</p></dd>
@@ -285,6 +294,12 @@ to change graph appearance.</p>
 #&gt; $energy_grid_colour
 #&gt; [1] "gray"
 #&gt; 
+#&gt; $zero_perc_rebound_grid_colour
+#&gt; [1] "gray"
+#&gt; 
+#&gt; $hundred_perc_rebound_grid_colour
+#&gt; [1] "gray"
+#&gt; 
 #&gt; $energy_rebound_lines_colour
 #&gt; [1] "gray"
 #&gt; 
@@ -303,11 +318,17 @@ to change graph appearance.</p>
 #&gt; $energy_grid_size
 #&gt; [1] 0.1
 #&gt; 
+#&gt; $zero_perc_rebound_grid_size
+#&gt; [1] 0.5
+#&gt; 
+#&gt; $hundred_perc_rebound_grid_size
+#&gt; [1] 0.5
+#&gt; 
 #&gt; $energy_rebound_lines_size
 #&gt; [1] 0.1
 #&gt; 
 #&gt; $cost_grid_size
-#&gt; [1] 0.1
+#&gt; [1] 0.5
 #&gt; 
 #&gt; $prefs_grid_size
 #&gt; [1] 0.1
@@ -319,6 +340,12 @@ to change graph appearance.</p>
 #&gt; [1] 0.1
 #&gt; 
 #&gt; $energy_grid_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $zero_perc_rebound_grid_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $hundred_perc_rebound_grid_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $energy_rebound_lines_linetype
