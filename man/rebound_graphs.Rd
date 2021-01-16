@@ -5,10 +5,9 @@
 \title{Create rebound graphs}
 \usage{
 rebound_graphs(
-  .eeu_path = sample_eeu_data_path(),
-  .eeu_data = load_eeu_data(.eeu_path),
+  .analysis_data,
   indexed = FALSE,
-  cases = .eeu_data[[case_colname]] \%>\% unique(),
+  cases = .analysis_data[[case_colname]] \%>\% unique(),
   graph_types = ReboundTools::graph_types,
   grid_types = ReboundTools::graph_types,
   graph_params = ReboundTools::default_graph_params,
@@ -17,9 +16,7 @@ rebound_graphs(
 )
 }
 \arguments{
-\item{.eeu_path}{Path to a spreadsheet containing energy efficiency upgrade parameters. Default is \code{sample_eeu_data_path()}.}
-
-\item{.eeu_data}{A data frame of rebound parameters, likely loaded by \code{load_eeu_data()}. Default is \code{load_eeu_data(.eeu_path)}.}
+\item{.analysis_data}{Rebound analysis data, likely created by \code{rebound_analysis()}.}
 
 \item{indexed}{A boolean that tells whether to index the graph to its initial path point. Default is \code{FALSE}.}
 
@@ -44,6 +41,7 @@ A \code{ggplot2} object with the graphs
 Create rebound graphs
 }
 \examples{
-sample_eeu_data_path() \%>\% 
+load_eeu_data() \%>\% 
+  rebound_analysis() \%>\% 
   rebound_graphs(indexed = TRUE)
 }

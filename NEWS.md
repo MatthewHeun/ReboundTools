@@ -1,4 +1,5 @@
-* Added a vignette
+* Added function `rebound_results_table()`.
+* Added a vignette.
 
 
 # ReboundTools 0.1.6 (2021-01-10)

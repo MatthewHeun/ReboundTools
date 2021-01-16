@@ -1,7 +1,6 @@
 #' Create rebound graphs
 #'
-#' @param .eeu_path Path to a spreadsheet containing energy efficiency upgrade parameters. Default is `sample_eeu_data_path()`.
-#' @param .eeu_data A data frame of rebound parameters, likely loaded by `load_eeu_data()`. Default is `load_eeu_data(.eeu_path)`.
+#' @param .analysis_data Rebound analysis data, likely created by `rebound_analysis()`.
 #' @param indexed A boolean that tells whether to index the graph to its initial path point. Default is `FALSE`.
 #' @param cases A string list saying which cases in `.rebound_data` to include. Default is `.rebound_data[[case_colname]] %>% unique()`, i.e. all cases.
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
@@ -17,12 +16,12 @@
 #' @export
 #'
 #' @examples
-#' sample_eeu_data_path() %>% 
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
 #'   rebound_graphs(indexed = TRUE)
-rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
-                           .eeu_data = load_eeu_data(.eeu_path),
+rebound_graphs <- function(.analysis_data,
                            indexed = FALSE,
-                           cases = .eeu_data[[case_colname]] %>% unique(),
+                           cases = .analysis_data[[case_colname]] %>% unique(),
                            graph_types = ReboundTools::graph_types,
                            grid_types = ReboundTools::graph_types,
                            graph_params = ReboundTools::default_graph_params, 
@@ -33,9 +32,8 @@ rebound_graphs <- function(.eeu_path = sample_eeu_data_path(),
   graph_types <- match.arg(unlist(graph_types), choices = unlist(graph_types), several.ok = TRUE)
   grid_types <- match.arg(unlist(grid_types), choices = unlist(grid_types), several.ok = TRUE)
   
-  analysis_data <- .eeu_data %>% 
-    dplyr::filter(.data[[case_colname]] %in% cases) %>% 
-    rebound_analysis()
+  analysis_data <- .analysis_data %>%
+    dplyr::filter(.data[[case_colname]] %in% cases)
   
   # Calculate energy, cost, and preferences paths
   e_paths <- analysis_data %>%
@@ -164,19 +162,25 @@ rebound_graphs_helper <- function(.path_data,
                                                          slope = graph_df_colnames$slope_col,
                                                          intercept =graph_df_colnames$ intercept_col))
   }
-  # Add indifference curves as second layer
-  # if (!is.null(.indifference_data)) {
-  #   g <- g + 
-  #     ggplot2::geom_function(data = .indifference_data, 
-  #                            mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-  #                                                          size = graph_df_colnames$size_col, 
-  #                                                          linetype = graph_df_colnames$linetype_col), 
-  #                            fun = indifference_func, 
-  #                            args = c(qs1_qs0 = .indifference_data$qs1_qs0, 
-  #                                     Co1_Co0 = .indifference_data$Co1_Co0, 
-  #                                     f_Cs_orig = .indifference_data$f_Cs_orig, 
-  #                                     sigma = .indifference_data$sigma))
-  # }
+  
+  # Set the order of the graph types via a factor. 
+  .path_data <- .path_data %>% 
+  dplyr::mutate(
+    "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+  )
+  if (!is.null(.grid_data)) {
+    .grid_data <- .grid_data %>% 
+    dplyr::mutate(
+      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+    )
+  }
+  if (!is.null(.indifference_data)) {
+    .indifference_data <- .indifference_data %>% 
+    dplyr::mutate(
+      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+    )
+  }
+
   if (!is.null(.indifference_data)) {
     g <- g + 
       ggplot2::geom_line(data = .indifference_data, 
