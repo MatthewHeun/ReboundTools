@@ -165,7 +165,7 @@ rebound_results_table <- function(.analysis_data,
                                   rebound_terms = ReboundTools::rebound_terms,
                                   ...) {
   .analysis_data %>% 
-    dplyr::filter(rebound_terms)
+    dplyr::select(.data[[rebound_terms]])
 }
 
 
