@@ -154,6 +154,9 @@ stages_table <- function(.analysis_data,
 #'                          Default is `TRUE`.
 #' @param include_total Tells whether to include rebound total.
 #'                          Default is `TRUE`.
+#' @param as_percent When `TRUE`, rebound results are reported as percentages.
+#'                   When `FALSE`, rebound results are reported as fractions.
+#'                   Default is `TRUE`.
 #' @param rebound_terms See `ReboundTools::rebound_terms`.
 #' @param latex_rebound_terms See `ReboundTools::latex_rebound_terms`.
 #' @param case See `ReboundTools::eeu_base_params`.
@@ -162,8 +165,10 @@ stages_table <- function(.analysis_data,
 #' @param total The rebound term that represents total rebound. Default is `ReboundTools::rebound_terms$Re_tot`.
 #' @param term_name The title of the rebound term column. Default is "Rebound term".
 #' @param Re_val_colname The title of the rebound value column. Default is "Value \[--\]".
+#' @param perc_Re_val_colname The title of the rebound value column when percentages are requested. Default is "Value \[%\]".
 #' @param latex_term_name The LaTeX term name column. Default is "LaTeX rebound term".
 #' @param latex_Re_val_colname The LaTeX rebound value column name. Default is "Value \[--\]".
+#' @param latex_perc_Re_val_colname The LaTeX rebound value column name when percentages are requested. Default is "Value \[\\%\]".
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
 #'
@@ -179,6 +184,7 @@ rebound_results_table <- function(.analysis_data,
                                   escape_latex = TRUE,
                                   include_subtotals = TRUE,
                                   include_total = TRUE,
+                                  as_percent = TRUE,
                                   rebound_terms = ReboundTools::rebound_terms,
                                   latex_rebound_terms = ReboundTools::latex_rebound_terms,
                                   case = ReboundTools::eeu_base_params$case, 
@@ -192,7 +198,9 @@ rebound_results_table <- function(.analysis_data,
                                   term_name = "Rebound term", 
                                   latex_term_name = "LaTeX rebound term",
                                   Re_val_colname = "Value [-]",
+                                  perc_Re_val_colname = "Value [%]",
                                   latex_Re_val_colname = "Value [--]",
+                                  latex_perc_Re_val_colname = "Value [\\%]",
                                   ...) {
   
   table_data <- .analysis_data %>% 
@@ -209,6 +217,13 @@ rebound_results_table <- function(.analysis_data,
     table_data <- table_data %>% 
       dplyr::filter(! .data[[term_name]] %in% total)
   }
+  if (as_percent) {
+    table_data <- table_data %>% 
+      dplyr::mutate(
+        "{Re_val_colname}" := .data[[Re_val_colname]] * 100
+      )
+  }
+  
   if (escape_latex) {
     # Change strings in .term_name column to be the LaTeX version.
     latex_names <- tibble::tibble("{term_name}" := names(latex_rebound_terms),
@@ -218,10 +233,23 @@ rebound_results_table <- function(.analysis_data,
         "{term_name}" := NULL
       ) %>%
       dplyr::rename(
-        "{term_name}" := .data[[latex_term_name]], 
-        "{latex_Re_val_colname}" := .data[[Re_val_colname]]
+        "{term_name}" := .data[[latex_term_name]]
       ) %>%
-      dplyr::relocate(.data[[term_name]], .before = .data[[latex_Re_val_colname]])
+      dplyr::relocate(.data[[term_name]], .before = .data[[Re_val_colname]])
+  }
+  
+  # Adjust the value column name if needed.
+  if (escape_latex & as_percent) {
+    table_data <- table_data %>% 
+      dplyr::rename(
+        "{latex_perc_Re_val_colname}" := .data[[Re_val_colname]]
+      )
+  } else if (as_percent) {
+    table_data <- table_data %>% 
+      dplyr::rename(
+        "{perc_Re_val_colname}" := .data[[Re_val_colname]]
+      )
+    
   }
   
   # Create the xtable and return.

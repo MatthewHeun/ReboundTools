@@ -31,6 +31,7 @@ test_that("rebound_results_table() works as expected", {
     rebound_results_table()
   expect_true(!is.null(t1))
   expect_true("Case" %in% colnames(t1))
+  expect_true("Value [\\%]" %in% colnames(t1))
 
   # Try without the case column
   analysis_data <- load_eeu_data() %>% 
@@ -42,4 +43,13 @@ test_that("rebound_results_table() works as expected", {
   t2 <- rebound_results_table(analysis_data)
   expect_true(!is.null(t2))
   expect_true(!(ReboundTools::eeu_base_params$case %in% colnames(t2)))
+  expect_equal(colnames(t2)[[2]], "Value [\\%]")
+})
+
+
+test_that("percentage works as expected", {
+  t1 <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_results_table(as_percent = FALSE)
+  expect_true("Value [-]" %in% colnames(t1))
 })

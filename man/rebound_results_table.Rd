@@ -9,6 +9,7 @@ rebound_results_table(
   escape_latex = TRUE,
   include_subtotals = TRUE,
   include_total = TRUE,
+  as_percent = TRUE,
   rebound_terms = ReboundTools::rebound_terms,
   latex_rebound_terms = ReboundTools::latex_rebound_terms,
   case = ReboundTools::eeu_base_params$case,
@@ -20,7 +21,9 @@ rebound_results_table(
   term_name = "Rebound term",
   latex_term_name = "LaTeX rebound term",
   Re_val_colname = "Value [-]",
+  perc_Re_val_colname = "Value [\%]",
   latex_Re_val_colname = "Value [--]",
+  latex_perc_Re_val_colname = "Value [\\\\\%]",
   ...
 )
 }
@@ -34,6 +37,10 @@ by stage and direct/indirect.
 Default is \code{TRUE}.}
 
 \item{include_total}{Tells whether to include rebound total.
+Default is \code{TRUE}.}
+
+\item{as_percent}{When \code{TRUE}, rebound results are reported as percentages.
+When \code{FALSE}, rebound results are reported as fractions.
 Default is \code{TRUE}.}
 
 \item{rebound_terms}{See \code{ReboundTools::rebound_terms}.}
@@ -53,7 +60,11 @@ Default is \code{c(ReboundTools::rebound_terms$Re_empl, ReboundTools::rebound_te
 
 \item{Re_val_colname}{The title of the rebound value column. Default is "Value [--]".}
 
+\item{perc_Re_val_colname}{The title of the rebound value column when percentages are requested. Default is "Value [\%]".}
+
 \item{latex_Re_val_colname}{The LaTeX rebound value column name. Default is "Value [--]".}
+
+\item{latex_perc_Re_val_colname}{The LaTeX rebound value column name when percentages are requested. Default is "Value [\\\%]".}
 
 \item{...}{Arguments passed to \code{xtable::xtable()}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
