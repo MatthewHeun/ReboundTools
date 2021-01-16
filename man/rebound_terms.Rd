@@ -27,7 +27,7 @@ A string list with 14 entries.
 rebound_terms
 }
 \description{
-This is the list of the rebound terms
+This is the list of the rebound terms.
 }
 \examples{
 rebound_terms

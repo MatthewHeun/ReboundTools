@@ -5,9 +5,9 @@
 \title{Create rebound graphs}
 \usage{
 rebound_graphs(
-  .rebound_data,
+  .analysis_data,
   indexed = FALSE,
-  cases = .rebound_data[[case_colname]] \%>\% unique(),
+  cases = .analysis_data[[case_colname]] \%>\% unique(),
   graph_types = ReboundTools::graph_types,
   grid_types = ReboundTools::graph_types,
   graph_params = ReboundTools::default_graph_params,
@@ -16,7 +16,7 @@ rebound_graphs(
 )
 }
 \arguments{
-\item{.rebound_data}{Rebound data, likely loaded by \code{load_eeu_data()}.}
+\item{.analysis_data}{Rebound analysis data, likely created by \code{rebound_analysis()}.}
 
 \item{indexed}{A boolean that tells whether to index the graph to its initial path point. Default is \code{FALSE}.}
 
@@ -42,5 +42,6 @@ Create rebound graphs
 }
 \examples{
 load_eeu_data() \%>\% 
-  rebound_graphs()
+  rebound_analysis() \%>\% 
+  rebound_graphs(indexed = TRUE)
 }

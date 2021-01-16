@@ -1,3 +1,11 @@
+# ReboundTools 0.1.7 (2021-01-16)
+
+* Added function `rebound_results_table()`.
+* Added a vignette.
+* Now at 336 tests, all passing.
+* Test coverage is at 100%
+
+
 # ReboundTools 0.1.6 (2021-01-10)
 
 * Now at 314 tests, all passing.
@@ -19,6 +27,7 @@
     - `arrow_angle`
     - `arrow_length`
     - `arrow_type`
+
 
 # ReboundTools 0.1.4 (2021-01-07)
 

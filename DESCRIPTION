@@ -1,7 +1,7 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.6
-Date: 2021-01-10
+Version: 0.1.7
+Date: 2021-01-16
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",
@@ -37,8 +37,11 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0),
     covr,
-    spelling
+    spelling,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 Language: en-US
 Depends: 
     R (>= 2.10)
+VignetteBuilder: knitr

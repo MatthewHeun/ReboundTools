@@ -246,6 +246,27 @@ usethis::use_data(rebound_terms, overwrite = TRUE)
 
 
 #
+# LaTeX names of rebound terms.
+# 
+
+latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
+                            Re_emb = "$Re_{emb}$",
+                            Re_md = "$Re_{md}$",
+                            Re_empl = "$Re_{empl}$",
+                            Re_dsub = "$Re_{dsub}$", 
+                            Re_isub = "$Re_{isub}$",
+                            Re_sub = "$Re_{sub}$",
+                            Re_dinc = "$Re_{dinc}$", 
+                            Re_iinc = "$Re_{iinc}$", 
+                            Re_inc = "$Re_{inc}$",
+                            Re_prod = "$Re_{prod}$", 
+                            Re_d = "$Re_d$",
+                            Re_i = "$Re_i$",
+                            Re_tot = "$Re_{tot}$")
+usethis::use_data(latex_rebound_terms, overwrite = TRUE)
+
+
+#
 # Graph types
 # 
 
@@ -299,6 +320,8 @@ default_graph_params <- list(lineend = "round",
                              prod_linetype = "solid",
                              
                              energy_grid_colour = "gray",
+                             zero_perc_rebound_grid_colour = "gray",
+                             hundred_perc_rebound_grid_colour = "gray",
                              energy_rebound_lines_colour = "gray",
                              cost_grid_colour = "gray",
                              prefs_grid_colour = "gray",
@@ -306,13 +329,17 @@ default_graph_params <- list(lineend = "round",
                              prefs_indiff_grid_colour = "gray",
                              
                              energy_grid_size = 0.1,
+                             zero_perc_rebound_grid_size = 0.5,
+                             hundred_perc_rebound_grid_size = 0.5,
                              energy_rebound_lines_size = 0.1,
-                             cost_grid_size = 0.1,
+                             cost_grid_size = 0.5,
                              prefs_grid_size = 0.1,
                              prefs_ray_size = 0.1,
                              prefs_indiff_grid_size = 0.1,
                              
                              energy_grid_linetype = "solid",
+                             zero_perc_rebound_grid_linetype = "solid",
+                             hundred_perc_rebound_grid_linetype = "solid",
                              energy_rebound_lines_linetype = "solid",
                              cost_grid_linetype = "solid",
                              prefs_grid_linetype = "solid",

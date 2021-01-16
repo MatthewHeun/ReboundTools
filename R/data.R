@@ -316,7 +316,7 @@
 
 #' Rebound terms
 #' 
-#' This is the list of the rebound terms 
+#' This is the list of the rebound terms.
 #' 
 #' @format A string list with `r length(rebound_terms)` entries.
 #' \describe{
@@ -338,6 +338,32 @@
 #' @examples
 #' rebound_terms
 "rebound_terms"
+
+
+#' LaTeX version of rebound terms
+#'
+#' This is the list of the rebound terms in LaTeX form.
+#'
+#' @format A string list with `r length(latex_rebound_terms)` entries.
+#' \describe{
+#' \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
+#' \item{Re_emb}{Indirect embodied energy effect rebound.}
+#' \item{Re_md}{Indirect maintenance and disposal effect rebound.}
+#' \item{Re_empl}{Emplacement effect rebound.}
+#' \item{Re_dsub}{Direct substitution effect rebound.}
+#' \item{Re_isub}{Indirect substitution effect rebound.}
+#' \item{Re_sub}{Substitution effect rebound.}
+#' \item{Re_dinc}{Direct income effect rebound.}
+#' \item{Re_iinc}{Indirect income effect rebound.}
+#' \item{Re_inc}{Income effect rebound.}
+#' \item{Re_prod}{Indirect productivity effect rebound.}
+#' \item{Re_d}{Sum of all direct rebound effects.}
+#' \item{Re_i}{Sum of all indirect rebound effects.}
+#' \item{Re_tot}{Total rebound.}
+#' }
+#' @examples
+#' latex_rebound_terms
+"latex_rebound_terms"
 
 
 #' Graph types
@@ -399,18 +425,24 @@
 #' \item{iinc_linetype}{The linetype for indirect income lines.}
 #' \item{prod_linetype}{The linetype for productivity lines.}
 #' \item{energy_grid_colour}{The colour for energy grid lines.}
+#' \item{zero_perc_rebound_grid_colour}{The colour for energy the 0% rebound lines.}
+#' \item{hundred_perc_rebound_grid_colour}{The colour for the 100% rebound lines.}
 #' \item{energy_rebound_lines_colour}{The colour for energy rebound lines.}
 #' \item{cost_grid_colour}{The colour for cost grid lines.}
 #' \item{cost_ray_colour}{The colour for cost rays.}
 #' \item{prefs_grid_colour}{The colour for preferences grid lines.}
 #' \item{prefs_indiff_curve_colour}{The colour for indifference curve lines.}
 #' \item{energy_grid_size}{The size for energy grid lines.}
+#' \item{zero_perc_rebound_grid_size}{The size for 0% rebound grid lines.}
+#' \item{hundred_perc_rebound_grid_size}{The size for the 100% rebound grid lines.}
 #' \item{energy_rebound_lines_size}{The size for energy rebound lines.}
 #' \item{cost_grid_size}{The size for cost grid lines.}
 #' \item{cost_ray_size}{The size for cost rays.}
 #' \item{prefs_grid_size}{The size for preferences grid lines.}
 #' \item{prefs_indiff_curve_size}{The size for indifference curve lines.}
 #' \item{energy_grid_linetype}{The linetype for energy grid lines.}
+#' \item{zero_perc_rebound_grid_linetype}{The linetype for 0% rebound grid lines.}
+#' \item{hundred_perc_rebound_grid_linetype}{The linetype for the 100% rebound grid lines.}
 #' \item{energy_rebound_lines_linetype}{The linetype for energy rebound lines.}
 #' \item{cost_grid_linetype}{The linetype for cost grid lines.}
 #' \item{cost_ray_linetype}{The linetype for cost rays.}
