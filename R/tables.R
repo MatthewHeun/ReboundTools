@@ -161,7 +161,7 @@ stages_table <- function(.analysis_data,
 #' @param latex_rebound_terms See `ReboundTools::latex_rebound_terms`.
 #' @param case See `ReboundTools::eeu_base_params`.
 #' @param subtotals The rebound terms that represent subtotals. 
-#'                  Default is `c(ReboundTools::rebound_terms$Re_empl, ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc, ReboundTools::rebound_terms$Re_prod,  ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i)`.
+#'                  Default is `c(ReboundTools::rebound_terms$Re_empl, ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc, ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i)`.
 #' @param total The rebound term that represents total rebound. Default is `ReboundTools::rebound_terms$Re_tot`.
 #' @param term_name The title of the rebound term column. Default is "Rebound term".
 #' @param Re_val_colname The title of the rebound value column. Default is "Value \[--\]".
@@ -191,7 +191,6 @@ rebound_results_table <- function(.analysis_data,
                                   subtotals = c(ReboundTools::rebound_terms$Re_empl,
                                                 ReboundTools::rebound_terms$Re_sub,
                                                 ReboundTools::rebound_terms$Re_inc,
-                                                ReboundTools::rebound_terms$Re_prod, 
                                                 ReboundTools::rebound_terms$Re_d,
                                                 ReboundTools::rebound_terms$Re_i),
                                   total = ReboundTools::rebound_terms$Re_tot,
