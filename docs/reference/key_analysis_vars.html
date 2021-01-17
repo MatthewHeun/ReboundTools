@@ -73,7 +73,7 @@ These variables are differenced later in the analysis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
       </span>
     </div>
 
@@ -125,7 +125,8 @@ These variables are differenced later in the analysis.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 11 entries.</p><dl>
+    <p>A string list with 12 entries.</p><dl>
+<dt>eta_engr_units</dt><dd><p>Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service, in engineering units.</p></dd>
 <dt>eta</dt><dd><p>Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.</p></dd>
 <dt>p_s</dt><dd><p>Energy service price [service/MJ], calculated by <code>p_E/eta</code>.</p></dd>
 <dt>q_dot_s</dt><dd><p>The rate of energy service consumption [service/year], calculated by <code>eta*E_dot_s</code>.</p></dd>
@@ -142,10 +143,12 @@ These variables are differenced later in the analysis.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>key_analysis_vars</span>
-</div><div class='output co'>#&gt;         eta         p_s     q_dot_s     E_dot_s   E_dot_emb     C_dot_s 
-#&gt;       "eta"       "p_s"   "q_dot_s"   "E_dot_s" "E_dot_emb"   "C_dot_s" 
-#&gt;   C_dot_cap    C_dot_md     C_dot_o       N_dot       M_dot 
-#&gt; "C_dot_cap"  "C_dot_md"   "C_dot_o"     "N_dot"     "M_dot" </div></pre>
+</div><div class='output co'>#&gt;   eta_engr_units              eta              p_s          q_dot_s 
+#&gt; "eta_engr_units"            "eta"            "p_s"        "q_dot_s" 
+#&gt;          E_dot_s        E_dot_emb          C_dot_s        C_dot_cap 
+#&gt;        "E_dot_s"      "E_dot_emb"        "C_dot_s"      "C_dot_cap" 
+#&gt;         C_dot_md          C_dot_o            N_dot            M_dot 
+#&gt;       "C_dot_md"        "C_dot_o"          "N_dot"          "M_dot" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

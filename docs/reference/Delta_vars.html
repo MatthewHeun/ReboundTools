@@ -74,7 +74,7 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
       </span>
     </div>
 
@@ -127,7 +127,7 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 44 entries.</p><dl>
+    <p>A string list with 48 entries.</p><dl>
 <dt>Delta_eta_star</dt><dd><p>Calculated as <code>eta_star - eta_orig</code>.</p></dd>
 <dt>Delta_p_s_star</dt><dd><p>Calculated as <code>p_s_star - p_s_orig</code>.</p></dd>
 <dt>.</dt><dd><p>Etc.</p></dd>
@@ -141,7 +141,10 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>Delta_vars</span>
-</div><div class='output co'>#&gt; $Delta_eta_star
+</div><div class='output co'>#&gt; $Delta_eta_engr_units_star
+#&gt; [1] "Delta_eta_engr_units_star"
+#&gt; 
+#&gt; $Delta_eta_star
 #&gt; [1] "Delta_eta_star"
 #&gt; 
 #&gt; $Delta_p_s_star
@@ -173,6 +176,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 #&gt; 
 #&gt; $Delta_M_dot_star
 #&gt; [1] "Delta_M_dot_star"
+#&gt; 
+#&gt; $Delta_eta_engr_units_hat
+#&gt; [1] "Delta_eta_engr_units_hat"
 #&gt; 
 #&gt; $Delta_eta_hat
 #&gt; [1] "Delta_eta_hat"
@@ -207,6 +213,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 #&gt; $Delta_M_dot_hat
 #&gt; [1] "Delta_M_dot_hat"
 #&gt; 
+#&gt; $Delta_eta_engr_units_bar
+#&gt; [1] "Delta_eta_engr_units_bar"
+#&gt; 
 #&gt; $Delta_eta_bar
 #&gt; [1] "Delta_eta_bar"
 #&gt; 
@@ -239,6 +248,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 #&gt; 
 #&gt; $Delta_M_dot_bar
 #&gt; [1] "Delta_M_dot_bar"
+#&gt; 
+#&gt; $Delta_eta_engr_units_tilde
+#&gt; [1] "Delta_eta_engr_units_tilde"
 #&gt; 
 #&gt; $Delta_eta_tilde
 #&gt; [1] "Delta_eta_tilde"

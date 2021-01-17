@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
       <h1 data-toc-skip>ReboundTools</h1>
                         <h4 class="author">Matthew Kuperus Heun</h4>
             
-            <h4 class="date">2021-01-16</h4>
+            <h4 class="date">2021-01-17</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -144,152 +144,159 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <code class="sourceCode R"><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
-<span class="co">#&gt; Columns: 145</span>
-<span class="co">#&gt; $ Reference             &lt;chr&gt; "None yet", "None yet"</span>
-<span class="co">#&gt; $ Case                  &lt;chr&gt; "Car", "Lamp"</span>
-<span class="co">#&gt; $ Original              &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
-<span class="co">#&gt; $ Upgrade               &lt;chr&gt; "Ford Fusion Hybrid", "LED"</span>
-<span class="co">#&gt; $ service_unit          &lt;chr&gt; "mile", "lm-hr"</span>
-<span class="co">#&gt; $ energy_engr_unit      &lt;chr&gt; "gal", "kW-hr"</span>
-<span class="co">#&gt; $ `MJ/energy_engr_unit` &lt;dbl&gt; 126.6216, 3.6000</span>
-<span class="co">#&gt; $ I_E                   &lt;dbl&gt; 3.389339, 3.389339</span>
-<span class="co">#&gt; $ k                     &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ p_E_engr_units        &lt;dbl&gt; 2.2100, 0.1355</span>
-<span class="co">#&gt; $ e_qs_ps_UC            &lt;dbl&gt; -0.1, -0.4</span>
-<span class="co">#&gt; $ e_qs_M                &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ e_qo_M                &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ eta_engr_units_orig   &lt;dbl&gt; 25.000, 8833.333</span>
-<span class="co">#&gt; $ eta_engr_units_star   &lt;dbl&gt; 42, 81800</span>
-<span class="co">#&gt; $ q_dot_s_orig          &lt;dbl&gt; 14425, 580350</span>
-<span class="co">#&gt; $ M_dot_orig            &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ C_cap_orig            &lt;dbl&gt; 28216.10, 1.88</span>
-<span class="co">#&gt; $ t_own_orig            &lt;dbl&gt; 7.0, 1.8</span>
-<span class="co">#&gt; $ C_cap_star            &lt;dbl&gt; 27523.40, 1.21</span>
-<span class="co">#&gt; $ t_own_star            &lt;dbl&gt; 7, 10</span>
-<span class="co">#&gt; $ C_dot_md_orig         &lt;dbl&gt; 2861.134, 0.000</span>
-<span class="co">#&gt; $ C_dot_md_star         &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_emb_orig            &lt;dbl&gt; 34000.0, 2.2</span>
-<span class="co">#&gt; $ t_life_orig           &lt;dbl&gt; 14.0, 1.8</span>
-<span class="co">#&gt; $ E_emb_star            &lt;dbl&gt; 40000.0, 6.5</span>
-<span class="co">#&gt; $ t_life_star           &lt;dbl&gt; 14, 10</span>
-<span class="co">#&gt; $ p_E                   &lt;dbl&gt; 0.01745357, 0.03763889</span>
-<span class="co">#&gt; $ eta_orig              &lt;dbl&gt; 0.1974386, 2453.7037037</span>
-<span class="co">#&gt; $ E_dot_s_orig          &lt;dbl&gt; 73060.68, 236.52</span>
-<span class="co">#&gt; $ C_dot_cap_orig        &lt;dbl&gt; 4030.871429, 1.044444</span>
-<span class="co">#&gt; $ p_s_orig              &lt;dbl&gt; 8.840000e-02, 1.533962e-05</span>
-<span class="co">#&gt; $ C_dot_s_orig          &lt;dbl&gt; 1275.17000, 8.90235</span>
-<span class="co">#&gt; $ C_dot_o_orig          &lt;dbl&gt; 19234.10, 27391.33</span>
-<span class="co">#&gt; $ f_Cs_orig             &lt;dbl&gt; 0.0621752932, 0.0003249005</span>
-<span class="co">#&gt; $ e_qs_ps               &lt;dbl&gt; -0.03782471, -0.39967510</span>
-<span class="co">#&gt; $ e_qo_ps               &lt;dbl&gt; 0.0025076778, 0.0001298969</span>
-<span class="co">#&gt; $ sigma                 &lt;dbl&gt; 0.04033238, 0.39980500</span>
-<span class="co">#&gt; $ E_dot_emb_orig        &lt;dbl&gt; 2428.571429, 1.222222</span>
-<span class="co">#&gt; $ N_dot_orig            &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ eta_star              &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ eta_ratio             &lt;dbl&gt; 1.680000, 9.260377</span>
-<span class="co">#&gt; $ S_dot_dev             &lt;dbl&gt; 29572.1802, 210.9789</span>
-<span class="co">#&gt; $ G_dot                 &lt;dbl&gt; 516.140238, 7.941012</span>
-<span class="co">#&gt; $ p_s_star              &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ q_dot_s_star          &lt;dbl&gt; 14425, 580350</span>
-<span class="co">#&gt; $ C_dot_cap_star        &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ E_dot_emb_star        &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ C_dot_s_star          &lt;dbl&gt; 759.0297619, 0.9613377</span>
-<span class="co">#&gt; $ M_dot_star            &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ N_dot_star            &lt;dbl&gt; 701.563517, 8.864457</span>
-<span class="co">#&gt; $ C_dot_o_star          &lt;dbl&gt; 19234.10, 27391.33</span>
-<span class="co">#&gt; $ E_dot_s_star          &lt;dbl&gt; 43488.50030, 25.54108</span>
-<span class="co">#&gt; $ eta_hat               &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ p_s_hat               &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ C_dot_cap_hat         &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ C_dot_md_hat          &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_dot_emb_hat         &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ M_dot_hat             &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ q_dot_s_hat           &lt;dbl&gt; 14710.86, 1412626.68</span>
-<span class="co">#&gt; $ E_dot_s_hat           &lt;dbl&gt; 44350.31297, 62.16939</span>
-<span class="co">#&gt; $ C_dot_s_hat           &lt;dbl&gt; 774.071473, 2.339987</span>
-<span class="co">#&gt; $ C_dot_o_hat           &lt;dbl&gt; 19209.10, 27383.41</span>
-<span class="co">#&gt; $ N_dot_hat             &lt;dbl&gt; 711.52848, 15.40397</span>
-<span class="co">#&gt; $ M_dot_hat_prime       &lt;dbl&gt; 19983.17, 27385.75</span>
-<span class="co">#&gt; $ eta_bar               &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ p_s_bar               &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ C_dot_cap_bar         &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ C_dot_md_bar          &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_dot_emb_bar         &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ M_dot_bar             &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ q_dot_s_bar           &lt;dbl&gt; 15234.66, 1413421.26</span>
-<span class="co">#&gt; $ E_dot_s_bar           &lt;dbl&gt; 45929.46762, 62.20436</span>
-<span class="co">#&gt; $ C_dot_s_bar           &lt;dbl&gt; 801.633366, 2.341303</span>
-<span class="co">#&gt; $ C_dot_o_bar           &lt;dbl&gt; 19893.06, 27398.82</span>
-<span class="co">#&gt; $ N_dot_bar             &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ eta_tilde             &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ p_s_tilde             &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ C_dot_cap_tilde       &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ C_dot_md_tilde        &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_dot_emb_tilde       &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ M_dot_tilde           &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ q_dot_s_tilde         &lt;dbl&gt; 15234.66, 1413421.26</span>
-<span class="co">#&gt; $ E_dot_s_tilde         &lt;dbl&gt; 45929.46762, 62.20436</span>
-<span class="co">#&gt; $ C_dot_s_tilde         &lt;dbl&gt; 801.633366, 2.341303</span>
-<span class="co">#&gt; $ C_dot_o_tilde         &lt;dbl&gt; 19893.06, 27398.82</span>
-<span class="co">#&gt; $ N_dot_tilde           &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_star        &lt;dbl&gt; 1.342583e-01, 2.026852e+04</span>
-<span class="co">#&gt; $ Delta_p_s_star        &lt;dbl&gt; -3.578095e-02, -1.368314e-05</span>
-<span class="co">#&gt; $ Delta_q_dot_s_star    &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_E_dot_s_star    &lt;dbl&gt; -29572.1802, -210.9789</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_star  &lt;dbl&gt; 428.5714286, -0.5722222</span>
-<span class="co">#&gt; $ Delta_C_dot_s_star    &lt;dbl&gt; -516.140238, -7.941012</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_star  &lt;dbl&gt; -98.9571429, -0.9234444</span>
-<span class="co">#&gt; $ Delta_C_dot_md_star   &lt;dbl&gt; -86.46614, 0.00000</span>
-<span class="co">#&gt; $ Delta_C_dot_o_star    &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_N_dot_star      &lt;dbl&gt; 701.563517, 8.864457</span>
-<span class="co">#&gt; $ Delta_M_dot_star      &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_hat         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_p_s_hat         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_hat     &lt;dbl&gt; 285.8606, 832276.6799</span>
-<span class="co">#&gt; $ Delta_E_dot_s_hat     &lt;dbl&gt; 861.81266, 36.62831</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_hat   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_s_hat     &lt;dbl&gt; 15.041711, 1.378649</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_hat   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_md_hat    &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_o_hat     &lt;dbl&gt; -25.006675, -7.918161</span>
-<span class="co">#&gt; $ Delta_N_dot_hat       &lt;dbl&gt; 9.964964, 6.539512</span>
-<span class="co">#&gt; $ Delta_M_dot_hat       &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_bar         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_p_s_bar         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_bar     &lt;dbl&gt; 523.8007, 794.5758</span>
-<span class="co">#&gt; $ Delta_E_dot_s_bar     &lt;dbl&gt; 1.579155e+03, 3.496911e-02</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_bar   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_s_bar     &lt;dbl&gt; 27.561892716, 0.001316198</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_bar   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_md_bar    &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_o_bar     &lt;dbl&gt; 683.96659, 15.40265</span>
-<span class="co">#&gt; $ Delta_N_dot_bar       &lt;dbl&gt; -711.52848, -15.40397</span>
-<span class="co">#&gt; $ Delta_M_dot_bar       &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_tilde       &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_p_s_tilde       &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_tilde   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_E_dot_s_tilde   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_tilde &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_s_tilde   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_tilde &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_md_tilde  &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_o_tilde   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_N_dot_tilde     &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_M_dot_tilde     &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Re_dempl              &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Re_emb                &lt;dbl&gt; 0.014492385, -0.002712225</span>
-<span class="co">#&gt; $ Re_md                 &lt;dbl&gt; -0.009910093, 0.000000000</span>
-<span class="co">#&gt; $ Re_empl               &lt;dbl&gt; 0.004582292, -0.002712225</span>
-<span class="co">#&gt; $ Re_dsub               &lt;dbl&gt; 0.02914268, 0.17361124</span>
-<span class="co">#&gt; $ Re_isub               &lt;dbl&gt; -0.002866076, -0.127203859</span>
-<span class="co">#&gt; $ Re_sub                &lt;dbl&gt; 0.02627661, 0.04640738</span>
-<span class="co">#&gt; $ Re_dinc               &lt;dbl&gt; 0.0534000078, 0.0001657469</span>
-<span class="co">#&gt; $ Re_iinc               &lt;dbl&gt; 0.07839106, 0.24744089</span>
-<span class="co">#&gt; $ Re_inc                &lt;dbl&gt; 0.1317911, 0.2476066</span>
-<span class="co">#&gt; $ Re_prod               &lt;dbl&gt; 0.081550, 0.247462</span>
-<span class="co">#&gt; $ Re_d                  &lt;dbl&gt; 0.08254269, 0.17377699</span>
-<span class="co">#&gt; $ Re_i                  &lt;dbl&gt; 0.1616573, 0.3649868</span>
-<span class="co">#&gt; $ Re_tot                &lt;dbl&gt; 0.2442000, 0.5387638</span></code></pre></div>
+<span class="co">#&gt; Columns: 152</span>
+<span class="co">#&gt; $ Reference                  &lt;chr&gt; "None yet", "None yet"</span>
+<span class="co">#&gt; $ Case                       &lt;chr&gt; "Car", "Lamp"</span>
+<span class="co">#&gt; $ Original                   &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
+<span class="co">#&gt; $ Upgrade                    &lt;chr&gt; "Ford Fusion Hybrid", "LED"</span>
+<span class="co">#&gt; $ service_unit               &lt;chr&gt; "mile", "lm-hr"</span>
+<span class="co">#&gt; $ energy_engr_unit           &lt;chr&gt; "gal", "kW-hr"</span>
+<span class="co">#&gt; $ `MJ/energy_engr_unit`      &lt;dbl&gt; 126.6216, 3.6000</span>
+<span class="co">#&gt; $ I_E                        &lt;dbl&gt; 3.389339, 3.389339</span>
+<span class="co">#&gt; $ k                          &lt;dbl&gt; 1, 1</span>
+<span class="co">#&gt; $ p_E_engr_units             &lt;dbl&gt; 2.2100, 0.1355</span>
+<span class="co">#&gt; $ e_qs_ps_UC                 &lt;dbl&gt; -0.1, -0.4</span>
+<span class="co">#&gt; $ e_qs_M                     &lt;dbl&gt; 1, 1</span>
+<span class="co">#&gt; $ e_qo_M                     &lt;dbl&gt; 1, 1</span>
+<span class="co">#&gt; $ eta_engr_units_orig        &lt;dbl&gt; 25.000, 8833.333</span>
+<span class="co">#&gt; $ eta_engr_units_star        &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ q_dot_s_orig               &lt;dbl&gt; 14425, 580350</span>
+<span class="co">#&gt; $ M_dot_orig                 &lt;dbl&gt; 27401.28, 27401.28</span>
+<span class="co">#&gt; $ C_cap_orig                 &lt;dbl&gt; 28216.10, 1.88</span>
+<span class="co">#&gt; $ t_own_orig                 &lt;dbl&gt; 7.0, 1.8</span>
+<span class="co">#&gt; $ C_cap_star                 &lt;dbl&gt; 27523.40, 1.21</span>
+<span class="co">#&gt; $ t_own_star                 &lt;dbl&gt; 7, 10</span>
+<span class="co">#&gt; $ C_dot_md_orig              &lt;dbl&gt; 2861.134, 0.000</span>
+<span class="co">#&gt; $ C_dot_md_star              &lt;dbl&gt; 2774.668, 0.000</span>
+<span class="co">#&gt; $ E_emb_orig                 &lt;dbl&gt; 34000.0, 2.2</span>
+<span class="co">#&gt; $ t_life_orig                &lt;dbl&gt; 14.0, 1.8</span>
+<span class="co">#&gt; $ E_emb_star                 &lt;dbl&gt; 40000.0, 6.5</span>
+<span class="co">#&gt; $ t_life_star                &lt;dbl&gt; 14, 10</span>
+<span class="co">#&gt; $ p_E                        &lt;dbl&gt; 0.01745357, 0.03763889</span>
+<span class="co">#&gt; $ eta_orig                   &lt;dbl&gt; 0.1974386, 2453.7037037</span>
+<span class="co">#&gt; $ E_dot_s_orig               &lt;dbl&gt; 73060.68, 236.52</span>
+<span class="co">#&gt; $ C_dot_cap_orig             &lt;dbl&gt; 4030.871429, 1.044444</span>
+<span class="co">#&gt; $ p_s_orig                   &lt;dbl&gt; 8.840000e-02, 1.533962e-05</span>
+<span class="co">#&gt; $ C_dot_s_orig               &lt;dbl&gt; 1275.17000, 8.90235</span>
+<span class="co">#&gt; $ C_dot_o_orig               &lt;dbl&gt; 19234.10, 27391.33</span>
+<span class="co">#&gt; $ f_Cs_orig                  &lt;dbl&gt; 0.0621752932, 0.0003249005</span>
+<span class="co">#&gt; $ e_qs_ps                    &lt;dbl&gt; -0.03782471, -0.39967510</span>
+<span class="co">#&gt; $ e_qo_ps                    &lt;dbl&gt; 0.0025076778, 0.0001298969</span>
+<span class="co">#&gt; $ sigma                      &lt;dbl&gt; 0.04033238, 0.39980500</span>
+<span class="co">#&gt; $ E_dot_emb_orig             &lt;dbl&gt; 2428.571429, 1.222222</span>
+<span class="co">#&gt; $ N_dot_orig                 &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ eta_star                   &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
+<span class="co">#&gt; $ eta_ratio                  &lt;dbl&gt; 1.680000, 9.260377</span>
+<span class="co">#&gt; $ S_dot_dev                  &lt;dbl&gt; 29572.1802, 210.9789</span>
+<span class="co">#&gt; $ G_dot                      &lt;dbl&gt; 516.140238, 7.941012</span>
+<span class="co">#&gt; $ p_s_star                   &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
+<span class="co">#&gt; $ q_dot_s_star               &lt;dbl&gt; 14425, 580350</span>
+<span class="co">#&gt; $ C_dot_cap_star             &lt;dbl&gt; 3931.914, 0.121</span>
+<span class="co">#&gt; $ E_dot_emb_star             &lt;dbl&gt; 2857.143, 0.650</span>
+<span class="co">#&gt; $ C_dot_s_star               &lt;dbl&gt; 759.0297619, 0.9613377</span>
+<span class="co">#&gt; $ M_dot_star                 &lt;dbl&gt; 27401.28, 27401.28</span>
+<span class="co">#&gt; $ N_dot_star                 &lt;dbl&gt; 701.563517, 8.864457</span>
+<span class="co">#&gt; $ C_dot_o_star               &lt;dbl&gt; 19234.10, 27391.33</span>
+<span class="co">#&gt; $ E_dot_s_star               &lt;dbl&gt; 43488.50030, 25.54108</span>
+<span class="co">#&gt; $ eta_engr_units_hat         &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_hat                    &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
+<span class="co">#&gt; $ p_s_hat                    &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
+<span class="co">#&gt; $ C_dot_cap_hat              &lt;dbl&gt; 3931.914, 0.121</span>
+<span class="co">#&gt; $ C_dot_md_hat               &lt;dbl&gt; 2774.668, 0.000</span>
+<span class="co">#&gt; $ E_dot_emb_hat              &lt;dbl&gt; 2857.143, 0.650</span>
+<span class="co">#&gt; $ M_dot_hat                  &lt;dbl&gt; 27401.28, 27401.28</span>
+<span class="co">#&gt; $ q_dot_s_hat                &lt;dbl&gt; 14710.86, 1412626.68</span>
+<span class="co">#&gt; $ E_dot_s_hat                &lt;dbl&gt; 44350.31297, 62.16939</span>
+<span class="co">#&gt; $ C_dot_s_hat                &lt;dbl&gt; 774.071473, 2.339987</span>
+<span class="co">#&gt; $ C_dot_o_hat                &lt;dbl&gt; 19209.10, 27383.41</span>
+<span class="co">#&gt; $ N_dot_hat                  &lt;dbl&gt; 711.52848, 15.40397</span>
+<span class="co">#&gt; $ M_dot_hat_prime            &lt;dbl&gt; 19983.17, 27385.75</span>
+<span class="co">#&gt; $ eta_engr_units_bar         &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_bar                    &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
+<span class="co">#&gt; $ p_s_bar                    &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
+<span class="co">#&gt; $ C_dot_cap_bar              &lt;dbl&gt; 3931.914, 0.121</span>
+<span class="co">#&gt; $ C_dot_md_bar               &lt;dbl&gt; 2774.668, 0.000</span>
+<span class="co">#&gt; $ E_dot_emb_bar              &lt;dbl&gt; 2857.143, 0.650</span>
+<span class="co">#&gt; $ M_dot_bar                  &lt;dbl&gt; 27401.28, 27401.28</span>
+<span class="co">#&gt; $ q_dot_s_bar                &lt;dbl&gt; 15234.66, 1413421.26</span>
+<span class="co">#&gt; $ E_dot_s_bar                &lt;dbl&gt; 45929.46762, 62.20436</span>
+<span class="co">#&gt; $ C_dot_s_bar                &lt;dbl&gt; 801.633366, 2.341303</span>
+<span class="co">#&gt; $ C_dot_o_bar                &lt;dbl&gt; 19893.06, 27398.82</span>
+<span class="co">#&gt; $ N_dot_bar                  &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ eta_engr_units_tilde       &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_tilde                  &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
+<span class="co">#&gt; $ p_s_tilde                  &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
+<span class="co">#&gt; $ C_dot_cap_tilde            &lt;dbl&gt; 3931.914, 0.121</span>
+<span class="co">#&gt; $ C_dot_md_tilde             &lt;dbl&gt; 2774.668, 0.000</span>
+<span class="co">#&gt; $ E_dot_emb_tilde            &lt;dbl&gt; 2857.143, 0.650</span>
+<span class="co">#&gt; $ M_dot_tilde                &lt;dbl&gt; 27401.28, 27401.28</span>
+<span class="co">#&gt; $ q_dot_s_tilde              &lt;dbl&gt; 15234.66, 1413421.26</span>
+<span class="co">#&gt; $ E_dot_s_tilde              &lt;dbl&gt; 45929.46762, 62.20436</span>
+<span class="co">#&gt; $ C_dot_s_tilde              &lt;dbl&gt; 801.633366, 2.341303</span>
+<span class="co">#&gt; $ C_dot_o_tilde              &lt;dbl&gt; 19893.06, 27398.82</span>
+<span class="co">#&gt; $ N_dot_tilde                &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_engr_units_star  &lt;dbl&gt; 17.00, 72966.67</span>
+<span class="co">#&gt; $ Delta_eta_star             &lt;dbl&gt; 1.342583e-01, 2.026852e+04</span>
+<span class="co">#&gt; $ Delta_p_s_star             &lt;dbl&gt; -3.578095e-02, -1.368314e-05</span>
+<span class="co">#&gt; $ Delta_q_dot_s_star         &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_E_dot_s_star         &lt;dbl&gt; -29572.1802, -210.9789</span>
+<span class="co">#&gt; $ Delta_E_dot_emb_star       &lt;dbl&gt; 428.5714286, -0.5722222</span>
+<span class="co">#&gt; $ Delta_C_dot_s_star         &lt;dbl&gt; -516.140238, -7.941012</span>
+<span class="co">#&gt; $ Delta_C_dot_cap_star       &lt;dbl&gt; -98.9571429, -0.9234444</span>
+<span class="co">#&gt; $ Delta_C_dot_md_star        &lt;dbl&gt; -86.46614, 0.00000</span>
+<span class="co">#&gt; $ Delta_C_dot_o_star         &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_N_dot_star           &lt;dbl&gt; 701.563517, 8.864457</span>
+<span class="co">#&gt; $ Delta_M_dot_star           &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_engr_units_hat   &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_hat              &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_p_s_hat              &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_q_dot_s_hat          &lt;dbl&gt; 285.8606, 832276.6799</span>
+<span class="co">#&gt; $ Delta_E_dot_s_hat          &lt;dbl&gt; 861.81266, 36.62831</span>
+<span class="co">#&gt; $ Delta_E_dot_emb_hat        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_s_hat          &lt;dbl&gt; 15.041711, 1.378649</span>
+<span class="co">#&gt; $ Delta_C_dot_cap_hat        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_md_hat         &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_o_hat          &lt;dbl&gt; -25.006675, -7.918161</span>
+<span class="co">#&gt; $ Delta_N_dot_hat            &lt;dbl&gt; 9.964964, 6.539512</span>
+<span class="co">#&gt; $ Delta_M_dot_hat            &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_engr_units_bar   &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_bar              &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_p_s_bar              &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_q_dot_s_bar          &lt;dbl&gt; 523.8007, 794.5758</span>
+<span class="co">#&gt; $ Delta_E_dot_s_bar          &lt;dbl&gt; 1.579155e+03, 3.496911e-02</span>
+<span class="co">#&gt; $ Delta_E_dot_emb_bar        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_s_bar          &lt;dbl&gt; 27.561892716, 0.001316198</span>
+<span class="co">#&gt; $ Delta_C_dot_cap_bar        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_md_bar         &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_o_bar          &lt;dbl&gt; 683.96659, 15.40265</span>
+<span class="co">#&gt; $ Delta_N_dot_bar            &lt;dbl&gt; -711.52848, -15.40397</span>
+<span class="co">#&gt; $ Delta_M_dot_bar            &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_engr_units_tilde &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_eta_tilde            &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_p_s_tilde            &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_q_dot_s_tilde        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_E_dot_s_tilde        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_E_dot_emb_tilde      &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_s_tilde        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_cap_tilde      &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_md_tilde       &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_C_dot_o_tilde        &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_N_dot_tilde          &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Delta_M_dot_tilde          &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Re_dempl                   &lt;dbl&gt; 0, 0</span>
+<span class="co">#&gt; $ Re_emb                     &lt;dbl&gt; 0.014492385, -0.002712225</span>
+<span class="co">#&gt; $ Re_md                      &lt;dbl&gt; -0.009910093, 0.000000000</span>
+<span class="co">#&gt; $ Re_empl                    &lt;dbl&gt; 0.004582292, -0.002712225</span>
+<span class="co">#&gt; $ Re_dsub                    &lt;dbl&gt; 0.02914268, 0.17361124</span>
+<span class="co">#&gt; $ Re_isub                    &lt;dbl&gt; -0.002866076, -0.127203859</span>
+<span class="co">#&gt; $ Re_sub                     &lt;dbl&gt; 0.02627661, 0.04640738</span>
+<span class="co">#&gt; $ Re_dinc                    &lt;dbl&gt; 0.0534000078, 0.0001657469</span>
+<span class="co">#&gt; $ Re_iinc                    &lt;dbl&gt; 0.07839106, 0.24744089</span>
+<span class="co">#&gt; $ Re_inc                     &lt;dbl&gt; 0.1317911, 0.2476066</span>
+<span class="co">#&gt; $ Re_prod                    &lt;dbl&gt; 0.081550, 0.247462</span>
+<span class="co">#&gt; $ Re_d                       &lt;dbl&gt; 0.08254269, 0.17377699</span>
+<span class="co">#&gt; $ Re_i                       &lt;dbl&gt; 0.1616573, 0.3649868</span>
+<span class="co">#&gt; $ Re_tot                     &lt;dbl&gt; 0.2442000, 0.5387638</span></code></pre></div>
 <p>Note that <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> is a convenience function that calls several helper functions in turn. Each helper function calculates rebound parameters after one of the rebound effects.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
@@ -307,9 +314,14 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <div id="rebound-tables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rebound-tables" class="anchor"></a>Rebound tables</h2>
+<p><code>ReboundTools</code> contains two functions to create tables: <code><a href="../reference/stages_table.html">stages_table()</a></code> and <code><a href="../reference/rebound_results_table.html">rebound_results_table()</a></code>.</p>
+<div id="stages-table" class="section level3">
+<h3 class="hasAnchor">
+<a href="#stages-table" class="anchor"></a>Stages table</h3>
 <p>After a rebound analysis has been performed, the results can be displayed in a stages table, which has rebound parameters in rows and rebound stages in columns.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">digs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># eta</span>
+<code class="sourceCode R"><span class="va">digs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># eta_engr_units</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># eta</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># p_s</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># q_dot_s</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># E_dot_s</span>
@@ -320,7 +332,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># C_dot_o</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># N_dot</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>, <span class="co"># M_dot</span>
-               nrow <span class="op">=</span> <span class="fl">11</span>, ncol <span class="op">=</span> <span class="fl">7</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+               nrow <span class="op">=</span> <span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">7</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
@@ -336,7 +348,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Sat Jan 16 22:09:48 2021 -->
+<!-- Sun Jan 17 10:51:57 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -356,6 +368,26 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <th>
 <span class="math inline">\(\tilde{ }\)</span> (tilde)
 </th>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(\eta\)</span> [mile/gal]
+</td>
+<td align="right">
+25.0
+</td>
+<td align="right">
+42.0
+</td>
+<td align="right">
+42.0
+</td>
+<td align="right">
+42.0
+</td>
+<td align="right">
+42.0
+</td>
 </tr>
 <tr>
 <td align="right">
@@ -579,10 +611,118 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 </tr>
 </table>
 </div>
+<div id="rebound-results-table" class="section level3">
+<h3 class="hasAnchor">
+<a href="#rebound-results-table" class="anchor"></a>Rebound results table</h3>
+<p>Rebound analysis results can also be displayed in a rebound results table. A rebound results table shows rebound terms and values.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Case</span> <span class="op">==</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    Case <span class="op">=</span> <span class="cn">NULL</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ReboundTools</span><span class="fu">::</span><span class="fu"><a href="../reference/rebound_results_table.html">rebound_results_table</a></span><span class="op">(</span>include_subtotals <span class="op">=</span> <span class="cn">FALSE</span>, 
+                                      label <span class="op">=</span> <span class="st">"tab:car_results"</span>, 
+                                      digits <span class="op">=</span> <span class="fl">1</span>, 
+                                      align <span class="op">=</span> <span class="st">"rrr"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"html"</span>,
+        include.rownames <span class="op">=</span> <span class="cn">FALSE</span>, 
+        booktabs <span class="op">=</span> <span class="cn">TRUE</span>,
+        caption.placement <span class="op">=</span> <span class="st">"top"</span>,
+        hline.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>,
+        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
+        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
+<!-- Sun Jan 17 10:51:57 2021 -->
+<table class="table">
+<tr>
+<th>
+Rebound term
+</th>
+<th>
+Value [%]
+</th>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{dempl}\)</span>
+</td>
+<td align="right">
+0.0
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{emb}\)</span>
+</td>
+<td align="right">
+1.4
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{md}\)</span>
+</td>
+<td align="right">
+-1.0
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{dsub}\)</span>
+</td>
+<td align="right">
+2.9
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{isub}\)</span>
+</td>
+<td align="right">
+-0.3
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{dinc}\)</span>
+</td>
+<td align="right">
+5.3
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{iinc}\)</span>
+</td>
+<td align="right">
+7.8
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{prod}\)</span>
+</td>
+<td align="right">
+8.2
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{tot}\)</span>
+</td>
+<td align="right">
+24.4
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div id="rebound-graphs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rebound-graphs" class="anchor"></a>Rebound graphs</h2>
-<p>Rebound path graphs can be created with the <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code> function. Three types of rebound graphs are available:</p>
+<p>Rebound graphs can be created with the <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code> function. Three types of rebound graphs are available:</p>
 <ul>
 <li>Energy paths,</li>
 <li>Cost paths, and</li>
@@ -593,36 +733,36 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <h3 class="hasAnchor">
 <a href="#energy-path-graph" class="anchor"></a>Energy path graph</h3>
 <p>An energy path graph shows the energy effects of the energy efficiency upgrade, with direct energy consumption on the horizontal axis and indirect energy consumption on the vertical axis. Diagonal lines with negative slope indicate lines of constant energy consumption. The thicker lines show 0 % rebound (lower left) and 100 % rebound (upper right). Thinner lines show rebound after each effect in order from the 0 % line to the 100 % line: emplacement, substitution, income, and productivity. The following example illustrates an energy path graph.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="cost-path-graph" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cost-path-graph" class="anchor"></a>Cost path graph</h3>
 <p>The cost path graph shows costs for rebound effects. Direct costs for the energy service (including substitution and income takebacks) are shown in the horizontal axis; capital costs, maintenance and disposal costs, substitution effect savings, and income effect costs are shown in the vertical axis. Diagonal lines with negative slope indicate lines of constant expenditure. The lower-left line indicates expected expenditure options before capital cost changes, maintenance cost changes, or behavior changes. Note that the beginning (cot) and end (arrow) of the cost path graph lie on the same expenditure line, indicating that all freed cash (after the emplacement and substitution effects) is re-spent in the income effect.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Cost"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="preferences-path-graph" class="section level3">
 <h3 class="hasAnchor">
 <a href="#preferences-path-graph" class="anchor"></a>Preferences path graph</h3>
 <p>The preferences path graph shows details of the substitution and income effects, with normalized energy service consumption on the horizontal axis and normalized costs of other goods on the vertical axis. Diagonal grid lines with negative slope indicate constant expenditure sum of the energy service (horizontal axis) and other goods (vertical axis). Negative-sloping lines show the tradeoff between consumption of the energy service (horizontal axis) and consumption of other goods (vertical axis). The swooping, concave-upward grid lines indicate lines of constant utility: indifference curves.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Preferences"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.995</span>, <span class="fl">1.06</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.995</span>, <span class="fl">1.04</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="arguments-to-rebound_graphs" class="section level3">
 <h3 class="hasAnchor">
@@ -637,31 +777,31 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <li><code>graph_params.</code></li>
 </ul>
 <p>Setting <code>indexed = TRUE</code> normalizes the rebound data to conditions before emplacement of the energy efficient device, such that the starting point is always (1, 1).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>As discussed above, the <code>cases</code> argument tells which <code>Case</code>s should be plotted. All cases are plotted by default, although the result is rarely pleasing.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Car"</span>, <span class="st">"Lamp"</span><span class="op">)</span>, 
                    graph_types <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>When the cases are overlapping or very different (as above), faceting and indexing may improve the appearance of the graph.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>,
                    graph_types <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/graph_types.html">graph_types</a></span><span class="op">$</span><span class="va">energy</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>The <code>graph_types</code> argument tells which type of graph should be created. The default <code><a href="../reference/graph_types.html">ReboundTools::graph_types</a></code> returns all three graph types. Again, faceting and indexing may be beneficial.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, cases <span class="op">=</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">+</span>
@@ -670,8 +810,8 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">1.08</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 280 row(s) containing missing values (geom_path).</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
@@ -684,13 +824,13 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; Warning: Removed 334 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning: Removed 18 rows containing missing values (geom_segment).</span>
 <span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_segment).</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="controlling-the-appearance-of-graphs" class="section level3">
 <h3 class="hasAnchor">
 <a href="#controlling-the-appearance-of-graphs" class="anchor"></a>Controlling the appearance of graphs</h3>
 <p>The appearance of graphs is controlled by the <code>graph_params</code> argument to <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code>. <code>graph_params</code> should be a named list. The default <code>graph_params</code> list is <code>default_graph_params</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/default_graph_params.html">default_graph_params</a></span>
 <span class="co">#&gt; $lineend</span>
 <span class="co">#&gt; [1] "round"</span>
@@ -881,17 +1021,17 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $arrow_type</span>
 <span class="co">#&gt; [1] "closed"</span></code></pre></div>
 <p>Most parameters are self-explanatory. For example, <code>ReboundTools::default_graph_params$dempl_colour</code> sets the colour of the direct emplacement path.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_params</span> <span class="op">&lt;-</span> <span class="va">default_graph_params</span>
-<span class="va">my_params</span><span class="op">$</span><span class="va">dempl_colour</span> <span class="op">&lt;-</span> <span class="st">"darkred"</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_graph_params</span> <span class="op">&lt;-</span> <span class="va">default_graph_params</span>
+<span class="va">my_graph_params</span><span class="op">$</span><span class="va">dempl_colour</span> <span class="op">&lt;-</span> <span class="st">"darkred"</span>
 <span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_graphs.html">rebound_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>,
                  graph_types <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/graph_types.html">graph_types</a></span><span class="op">$</span><span class="va">energy</span>, 
-                 graph_params <span class="op">=</span> <span class="va">my_params</span><span class="op">)</span> <span class="op">+</span>
+                 graph_params <span class="op">=</span> <span class="va">my_graph_params</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="ReboundTools_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>See help for <code>default_graph_params</code> for additional information.</p>
 </div>
 </div>
