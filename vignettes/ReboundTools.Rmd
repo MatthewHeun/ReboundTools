@@ -111,6 +111,12 @@ all(simple == complicated)
 
 ## Rebound tables
 
+`ReboundTools` contains two functions to create tables:
+`stages_table()` and `rebound_results_table()`.
+
+
+### Stages table
+
 After a rebound analysis has been performed, 
 the results can be displayed in a stages table, which has 
 rebound parameters in rows and 
@@ -146,9 +152,36 @@ load_eeu_data() %>%
 ```
 
 
+### Rebound results table
+
+Rebound analysis results can also be displayed in a rebound results table.
+A rebound results table shows rebound terms and values.
+
+```{r, results="asis"}
+load_eeu_data() %>% 
+  dplyr::filter(Case == "Car") %>% 
+  rebound_analysis() %>% 
+  dplyr::mutate(
+    Case = NULL
+  ) %>% 
+  ReboundTools::rebound_results_table(include_subtotals = FALSE, 
+                                      label = "tab:car_results", 
+                                      digits = 1, 
+                                      align = "rrr") %>% 
+  print(type = "html",
+        include.rownames = FALSE, 
+        booktabs = TRUE,
+        caption.placement = "top",
+        hline.after = c(-1, 0, nrow(.)-1, nrow(.)),
+        sanitize.text.function = function(x) {x},
+        format.args = list(big.mark = ","))
+```
+
+
+
 ## Rebound graphs
 
-Rebound path graphs can be created with the `rebound_graphs()` function.
+Rebound graphs can be created with the `rebound_graphs()` function.
 Three types of rebound graphs are available:
 
 * Energy paths,
