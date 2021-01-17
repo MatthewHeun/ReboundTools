@@ -151,6 +151,24 @@ rebound_graphs_helper <- function(.path_data,
                                   graph_params = ReboundTools::default_graph_params,
                                   graph_types = ReboundTools::graph_types,
                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
+  # Set the order of the graph types via a factor. 
+  .path_data <- .path_data %>% 
+    dplyr::mutate(
+      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+    )
+  if (!is.null(.grid_data)) {
+    .grid_data <- .grid_data %>% 
+      dplyr::mutate(
+        "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+      )
+  }
+  if (!is.null(.indifference_data)) {
+    .indifference_data <- .indifference_data %>% 
+      dplyr::mutate(
+        "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+      )
+  }
+  
   g <- ggplot2::ggplot()
   # Add grid data as first layer
   if (!is.null(.grid_data)) {
@@ -163,24 +181,6 @@ rebound_graphs_helper <- function(.path_data,
                                                          intercept =graph_df_colnames$ intercept_col))
   }
   
-  # Set the order of the graph types via a factor. 
-  .path_data <- .path_data %>% 
-  dplyr::mutate(
-    "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-  )
-  if (!is.null(.grid_data)) {
-    .grid_data <- .grid_data %>% 
-    dplyr::mutate(
-      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-    )
-  }
-  if (!is.null(.indifference_data)) {
-    .indifference_data <- .indifference_data %>% 
-    dplyr::mutate(
-      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-    )
-  }
-
   if (!is.null(.indifference_data)) {
     g <- g + 
       ggplot2::geom_line(data = .indifference_data, 
@@ -222,7 +222,7 @@ rebound_graphs_helper <- function(.path_data,
   
   if (graph_params$include_end_arrow) {
     # Add ending arrow
-    # For this one, we simply re-plot the segment, this time with an arrow.
+    # For this one, we simply re-plot the final segments, this time with arrows.
     end_arrows <- .path_data %>% 
       dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
     g <- g + 

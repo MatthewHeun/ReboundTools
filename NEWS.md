@@ -1,3 +1,6 @@
+* Fixed a bug that swapped order of energy and cost path graphs.
+
+
 # ReboundTools 0.1.9 (2021-01-17)
 
 * Added efficiency in engineering units (e.g., mpg) to stages table.
