@@ -5,7 +5,7 @@
 \alias{bar_vars}
 \title{EEU bar data}
 \format{
-A string list with 11 entries.
+A string list with 12 entries.
 \describe{
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}

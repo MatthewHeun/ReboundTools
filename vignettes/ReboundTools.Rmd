@@ -111,13 +111,20 @@ all(simple == complicated)
 
 ## Rebound tables
 
+`ReboundTools` contains two functions to create tables:
+`stages_table()` and `rebound_results_table()`.
+
+
+### Stages table
+
 After a rebound analysis has been performed, 
 the results can be displayed in a stages table, which has 
 rebound parameters in rows and 
 rebound stages in columns.
 
 ```{r, results="asis"}
-digs <- matrix(c(rep(3, 7), # eta
+digs <- matrix(c(rep(1, 7), # eta_engr_units
+                 rep(3, 7), # eta
                  rep(3, 7), # p_s
                  rep(0, 7), # q_dot_s
                  rep(0, 7), # E_dot_s
@@ -128,7 +135,7 @@ digs <- matrix(c(rep(3, 7), # eta
                  rep(0, 7), # C_dot_o
                  rep(0, 7), # N_dot
                  rep(0, 7)), # M_dot
-               nrow = 11, ncol = 7, byrow = TRUE)
+               nrow = 12, ncol = 7, byrow = TRUE)
 load_eeu_data() %>% 
   dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Car") %>% 
   dplyr::mutate(
@@ -146,9 +153,36 @@ load_eeu_data() %>%
 ```
 
 
+### Rebound results table
+
+Rebound analysis results can also be displayed in a rebound results table.
+A rebound results table shows rebound terms and values.
+
+```{r, results="asis"}
+load_eeu_data() %>% 
+  dplyr::filter(Case == "Car") %>% 
+  rebound_analysis() %>% 
+  dplyr::mutate(
+    Case = NULL
+  ) %>% 
+  ReboundTools::rebound_results_table(include_subtotals = FALSE, 
+                                      label = "tab:car_results", 
+                                      digits = 1, 
+                                      align = "rrr") %>% 
+  print(type = "html",
+        include.rownames = FALSE, 
+        booktabs = TRUE,
+        caption.placement = "top",
+        hline.after = c(-1, 0, nrow(.)-1, nrow(.)),
+        sanitize.text.function = function(x) {x},
+        format.args = list(big.mark = ","))
+```
+
+
+
 ## Rebound graphs
 
-Rebound path graphs can be created with the `rebound_graphs()` function.
+Rebound graphs can be created with the `rebound_graphs()` function.
 Three types of rebound graphs are available:
 
 * Energy paths,
@@ -314,13 +348,13 @@ For example, `ReboundTools::default_graph_params$dempl_colour`
 sets the colour of the direct emplacement path.
 
 ```{r}
-my_params <- default_graph_params
-my_params$dempl_colour <- "darkred"
+my_graph_params <- default_graph_params
+my_graph_params$dempl_colour <- "darkred"
 load_eeu_data() %>% 
   rebound_analysis() %>% 
   rebound_graphs(indexed = TRUE,
                  graph_types = ReboundTools::graph_types$energy, 
-                 graph_params = my_params) +
+                 graph_params = my_graph_params) +
   ggplot2::facet_wrap(facets = ReboundTools::eeu_base_params$case) +
   ggplot2::theme_classic()
 ```

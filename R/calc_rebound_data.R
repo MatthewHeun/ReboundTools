@@ -129,7 +129,7 @@ calc_orig <- function(.eeu_data = NULL,
 #'                   likely calculated by `calc_orig()`.
 #' @param MJ_engr_unit,p_E See `ReboundTools::eeu_base_params`.
 #' @param eta_orig,E_dot_s_orig,q_dot_s_orig,M_dot_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
-#' @param eta_star_engr_units,E_emb_star,t_life_star,C_cap_star,t_own_star,C_dot_md_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,E_dot_s_star See `ReboundTools::star_vars`.
+#' @param eta_engr_units_star,E_emb_star,t_life_star,C_cap_star,t_own_star,C_dot_md_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,E_dot_s_star See `ReboundTools::star_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the star stage (after the emplacement effect).
 #' 
@@ -152,7 +152,7 @@ calc_star <- function(.orig_data = NULL,
                       C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                       C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                       
-                      eta_star_engr_units = ReboundTools::star_vars$eta_star_engr_units,
+                      eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
                       E_emb_star = ReboundTools::star_vars$E_emb_star,
                       t_life_star = ReboundTools::star_vars$t_life_star,
                       C_cap_star = ReboundTools::star_vars$C_cap_star,
@@ -238,7 +238,7 @@ calc_star <- function(.orig_data = NULL,
   matsindf::matsindf_apply(.orig_data, FUN = calc_star_fun, 
                            MJ_engr_unit_val = MJ_engr_unit,
                            eta_orig_val = eta_orig,
-                           eta_engr_units_star_val = eta_star_engr_units,
+                           eta_engr_units_star_val = eta_engr_units_star,
                            E_dot_s_orig_val = E_dot_s_orig,
                            p_E_val = p_E, 
                            q_dot_s_orig_val = q_dot_s_orig, 
@@ -264,8 +264,8 @@ calc_star <- function(.orig_data = NULL,
 #'                   likely calculated by `calc_star()`.
 #' @param p_E See `ReboundTools::eeu_base_params`.
 #' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig See `ReboundTools::orig_vars`.
-#' @param eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
-#' @param eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
 #' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
 #' 
@@ -284,6 +284,7 @@ calc_hat <- function(.star_data = NULL,
                      C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                      
+                     eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
                      eta_star = ReboundTools::star_vars$eta_star,
                      p_s_star = ReboundTools::star_vars$p_s_star,
                      C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
@@ -297,6 +298,7 @@ calc_hat <- function(.star_data = NULL,
                      E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
                      G_dot = ReboundTools::star_vars$G_dot,
                      # Output names
+                     eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
                      eta_hat = ReboundTools::hat_vars$eta_hat, 
                      p_s_hat = ReboundTools::hat_vars$p_s_hat,
                      C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
@@ -310,7 +312,8 @@ calc_hat <- function(.star_data = NULL,
                      N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
                      M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime) {
   
-  calc_hat_fun <- function(eta_star_val, 
+  calc_hat_fun <- function(eta_engr_units_star_val,
+                           eta_star_val,
                            p_s_star_val,
                            C_dot_cap_star_val,
                            C_dot_md_star_val,
@@ -320,13 +323,14 @@ calc_hat <- function(.star_data = NULL,
                            eta_ratio_val,
                            e_qs_ps_val,
                            C_dot_o_star_val,
-                           e_qo_ps_val, 
+                           e_qo_ps_val,
                            N_dot_star_val,
                            p_E_val,
-                           E_dot_s_star_val, 
+                           E_dot_s_star_val,
                            C_dot_cap_orig_val,
                            C_dot_md_orig_val,
                            G_dot_val) {
+    eta_engr_units_hat_val <- eta_engr_units_star_val
     eta_hat_val <- eta_star_val
     p_s_hat_val <- p_s_star_val
     C_dot_cap_hat_val <- C_dot_cap_star_val
@@ -339,8 +343,9 @@ calc_hat <- function(.star_data = NULL,
     C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
     M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_orig_val - C_dot_md_orig_val - G_dot_val + p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) + (C_dot_o_hat_val - C_dot_o_star_val)
-    
-    list(eta_hat_val, 
+
+    list(eta_engr_units_hat_val,
+         eta_hat_val,
          p_s_hat_val,
          C_dot_cap_hat_val,
          C_dot_md_hat_val,
@@ -351,8 +356,9 @@ calc_hat <- function(.star_data = NULL,
          C_dot_s_hat_val,
          C_dot_o_hat_val,
          N_dot_hat_val,
-         M_dot_hat_prime_val) %>% 
-      magrittr::set_names(c(eta_hat,
+         M_dot_hat_prime_val) %>%
+      magrittr::set_names(c(eta_engr_units_hat,
+                            eta_hat,
                             p_s_hat,
                             C_dot_cap_hat,
                             C_dot_md_hat,
@@ -367,6 +373,7 @@ calc_hat <- function(.star_data = NULL,
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
+                           eta_engr_units_star_val = eta_engr_units_star,
                            eta_star_val = eta_star, 
                            p_s_star_val = p_s_star,
                            C_dot_cap_star_val = C_dot_cap_star,
@@ -397,8 +404,8 @@ calc_hat <- function(.star_data = NULL,
 #'                  likely calculated by `calc_hat()`.
 #' @param tol The tolerance with which the budget constraint should be satisfied. Default is `1e-6`.
 #' @param e_qs_M,e_qo_M,p_E See `ReboundTools::eeu_base_params`.
-#' @param eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
-#' @param eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
+#' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
@@ -417,6 +424,8 @@ calc_bar <- function(.hat_data = NULL,
                      e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
                      
                      p_E = ReboundTools::orig_vars$p_E, 
+                     
+                     eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
                      eta_hat = ReboundTools::hat_vars$eta_hat,
                      p_s_hat = ReboundTools::hat_vars$p_s_hat,
                      C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
@@ -430,6 +439,7 @@ calc_bar <- function(.hat_data = NULL,
                      E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
                      
                      # Output names
+                     eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
                      eta_bar = ReboundTools::bar_vars$eta_bar,
                      p_s_bar = ReboundTools::bar_vars$p_s_bar,
                      C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
@@ -443,7 +453,8 @@ calc_bar <- function(.hat_data = NULL,
                      N_dot_bar = ReboundTools::bar_vars$N_dot_bar
 ) {
   
-  calc_bar_fun <- function(eta_hat_val, 
+  calc_bar_fun <- function(eta_engr_units_hat_val,
+                           eta_hat_val, 
                            p_s_hat_val,
                            C_dot_cap_hat_val,
                            C_dot_md_hat_val,
@@ -457,6 +468,7 @@ calc_bar <- function(.hat_data = NULL,
                            e_qo_M_val, 
                            p_E_val, 
                            E_dot_s_hat_val) {
+    eta_engr_units_bar_val <- eta_engr_units_hat_val
     eta_bar_val <- eta_hat_val
     p_s_bar_val <- p_s_hat_val
     C_dot_cap_bar_val <- C_dot_cap_hat_val
@@ -474,7 +486,8 @@ calc_bar <- function(.hat_data = NULL,
     assertthat::assert_that(all(abs(should_be_0) < tol))
     N_dot_bar_val <- rep(0, length(eta_hat_val))
     
-    list(eta_bar_val,
+    list(eta_engr_units_bar_val,
+         eta_bar_val,
          p_s_bar_val,
          C_dot_cap_bar_val,
          C_dot_md_bar_val,
@@ -485,7 +498,8 @@ calc_bar <- function(.hat_data = NULL,
          C_dot_s_bar_val,
          C_dot_o_bar_val,
          N_dot_bar_val) %>% 
-      magrittr::set_names(c(eta_bar,
+      magrittr::set_names(c(eta_engr_units_bar,
+                            eta_bar,
                             p_s_bar, 
                             C_dot_cap_bar,
                             C_dot_md_bar, 
@@ -499,6 +513,7 @@ calc_bar <- function(.hat_data = NULL,
   }
   
   matsindf::matsindf_apply(.hat_data, FUN = calc_bar_fun,
+                           eta_engr_units_hat_val = eta_engr_units_hat,
                            eta_hat_val = eta_hat, 
                            p_s_hat_val = p_s_hat,
                            C_dot_cap_hat_val = C_dot_cap_hat,
@@ -526,8 +541,8 @@ calc_bar <- function(.hat_data = NULL,
 #' @param .bar_data An optional data frame containing rebound calculations, original data, 
 #'                  star data, hat data, and bar data,
 #'                  likely calculated by `calc_bar()`.
-#' @param eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
-#' @param eta_tilde,p_s_tilde,C_dot_cap_tilde,C_dot_md_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,N_dot_tilde See `ReboundTools::tilde_vars`.
+#' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' @param eta_engr_units_tilde,eta_tilde,p_s_tilde,C_dot_cap_tilde,C_dot_md_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,N_dot_tilde See `ReboundTools::tilde_vars`.
 #'
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
@@ -542,6 +557,7 @@ calc_bar <- function(.hat_data = NULL,
 #'   calc_tilde()
 calc_tilde <- function(.bar_data = NULL,
                        # Input names
+                       eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
                        eta_bar = ReboundTools::bar_vars$eta_bar,
                        p_s_bar = ReboundTools::bar_vars$p_s_bar,
                        C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
@@ -555,6 +571,7 @@ calc_tilde <- function(.bar_data = NULL,
                        N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
                        
                        # Output names
+                       eta_engr_units_tilde = ReboundTools::tilde_vars$eta_engr_units_tilde,
                        eta_tilde = ReboundTools::tilde_vars$eta_tilde,
                        p_s_tilde = ReboundTools::tilde_vars$p_s_tilde,
                        C_dot_cap_tilde = ReboundTools::tilde_vars$C_dot_cap_tilde,
@@ -568,7 +585,8 @@ calc_tilde <- function(.bar_data = NULL,
                        N_dot_tilde = ReboundTools::tilde_vars$N_dot_tilde
 ) {
   
-  calc_tilde_fun <- function(eta_bar_val, 
+  calc_tilde_fun <- function(eta_engr_units_bar_val,
+                             eta_bar_val, 
                              p_s_bar_val,
                              C_dot_cap_bar_val,
                              C_dot_md_bar_val,
@@ -579,6 +597,7 @@ calc_tilde <- function(.bar_data = NULL,
                              C_dot_s_bar_val,
                              C_dot_o_bar_val,
                              N_dot_bar_val) {
+    eta_engr_units_tilde_val <- eta_engr_units_bar_val
     eta_tilde_val <- eta_bar_val
     p_s_tilde_val <- p_s_bar_val
     C_dot_cap_tilde_val <- C_dot_cap_bar_val
@@ -591,7 +610,8 @@ calc_tilde <- function(.bar_data = NULL,
     C_dot_o_tilde_val <- C_dot_o_bar_val
     N_dot_tilde_val <- N_dot_bar_val
     
-    list(eta_tilde_val,
+    list(eta_engr_units_tilde_val,
+         eta_tilde_val,
          p_s_tilde_val,
          C_dot_cap_tilde_val,
          C_dot_md_tilde_val,
@@ -602,7 +622,8 @@ calc_tilde <- function(.bar_data = NULL,
          C_dot_s_tilde_val,
          C_dot_o_tilde_val,
          N_dot_tilde_val) %>% 
-      magrittr::set_names(c(eta_tilde,
+      magrittr::set_names(c(eta_engr_units_tilde,
+                            eta_tilde,
                             p_s_tilde, 
                             C_dot_cap_tilde,
                             C_dot_md_tilde, 
@@ -616,6 +637,7 @@ calc_tilde <- function(.bar_data = NULL,
   }
   
   matsindf::matsindf_apply(.bar_data, FUN = calc_tilde_fun,
+                           eta_engr_units_bar_val = eta_engr_units_bar, 
                            eta_bar_val = eta_bar, 
                            p_s_bar_val = p_s_bar,
                            C_dot_cap_bar_val = C_dot_cap_bar,

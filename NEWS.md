@@ -1,3 +1,10 @@
+# ReboundTools 0.1.9 (2021-01-17)
+
+* Added efficiency in engineering units (e.g., mpg) to stages table.
+* Now at 344 tests, all passing.
+* Test coverage remains at 100%
+
+
 # ReboundTools 0.1.8 (2021-01-16)
 
 * Fixed a bug where `Re_prod` was counted as a subtotal.

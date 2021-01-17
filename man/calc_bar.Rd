@@ -10,6 +10,7 @@ calc_bar(
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
   e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
   p_E = ReboundTools::orig_vars$p_E,
+  eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
@@ -21,6 +22,7 @@ calc_bar(
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
   E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
+  eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
   eta_bar = ReboundTools::bar_vars$eta_bar,
   p_s_bar = ReboundTools::bar_vars$p_s_bar,
   C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
@@ -43,9 +45,9 @@ likely calculated by \code{calc_hat()}.}
 
 \item{e_qs_M, e_qo_M, p_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, N_dot_hat, M_dot_hat_prime, C_dot_o_hat, E_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
+\item{eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, N_dot_hat, M_dot_hat_prime, C_dot_o_hat, E_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
 
-\item{eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
+\item{eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).
