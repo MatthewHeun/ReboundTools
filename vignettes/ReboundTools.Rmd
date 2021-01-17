@@ -314,13 +314,13 @@ For example, `ReboundTools::default_graph_params$dempl_colour`
 sets the colour of the direct emplacement path.
 
 ```{r}
-my_params <- default_graph_params
-my_params$dempl_colour <- "darkred"
+my_graph_params <- default_graph_params
+my_graph_params$dempl_colour <- "darkred"
 load_eeu_data() %>% 
   rebound_analysis() %>% 
   rebound_graphs(indexed = TRUE,
                  graph_types = ReboundTools::graph_types$energy, 
-                 graph_params = my_params) +
+                 graph_params = my_graph_params) +
   ggplot2::facet_wrap(facets = ReboundTools::eeu_base_params$case) +
   ggplot2::theme_classic()
 ```
