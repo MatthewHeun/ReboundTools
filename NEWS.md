@@ -1,3 +1,5 @@
+# ReboundTools 0.1.8 (2021-01-16)
+
 * Fixed a bug where `Re_prod` was counted as a subtotal.
   It should not be.
 * Now at 337 tests, all passing.
