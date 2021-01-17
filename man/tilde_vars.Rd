@@ -5,7 +5,7 @@
 \alias{tilde_vars}
 \title{EEU tilde data}
 \format{
-A string list with 11 entries.
+A string list with 12 entries.
 \describe{
 \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_bar}.}
 \item{p_s_tilde}{The energy service price after the productivity effect [$/service], exactly \code{p_s_bar}.}

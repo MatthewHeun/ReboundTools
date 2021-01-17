@@ -6,6 +6,7 @@
 \usage{
 calc_tilde(
   .bar_data = NULL,
+  eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
   eta_bar = ReboundTools::bar_vars$eta_bar,
   p_s_bar = ReboundTools::bar_vars$p_s_bar,
   C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
@@ -17,6 +18,7 @@ calc_tilde(
   C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
   C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
   N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
+  eta_engr_units_tilde = ReboundTools::tilde_vars$eta_engr_units_tilde,
   eta_tilde = ReboundTools::tilde_vars$eta_tilde,
   p_s_tilde = ReboundTools::tilde_vars$p_s_tilde,
   C_dot_cap_tilde = ReboundTools::tilde_vars$C_dot_cap_tilde,

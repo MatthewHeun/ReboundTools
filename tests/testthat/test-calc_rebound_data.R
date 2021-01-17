@@ -94,7 +94,10 @@ test_that("calc_hat() works as expected", {
     calc_orig() %>% 
     calc_star() %>% 
     calc_hat()
-  
+
+  expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[1]], 42)
+  expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[2]], 81800)
+    
   expect_equal(res[[ReboundTools::hat_vars$eta_hat]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::hat_vars$eta_hat]][[2]], 22722.222222222)
   
@@ -140,6 +143,9 @@ test_that("calc_bar() works as expected", {
     calc_hat() %>% 
     calc_bar()
   
+  expect_equal(res[[ReboundTools::bar_vars$eta_engr_units_bar]][[1]], 42)
+  expect_equal(res[[ReboundTools::bar_vars$eta_engr_units_bar]][[2]], 81800)
+
   expect_equal(res[[ReboundTools::bar_vars$eta_bar]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::bar_vars$eta_bar]][[2]], 22722.222222222)
 
@@ -182,6 +188,9 @@ test_that("calc_tilde() works as expected", {
     calc_hat() %>% 
     calc_bar() %>% 
     calc_tilde()
+
+  expect_equal(res[[ReboundTools::tilde_vars$eta_engr_units_tilde]][[1]], 42)
+  expect_equal(res[[ReboundTools::tilde_vars$eta_engr_units_tilde]][[2]], 81800)
   
   expect_equal(res[[ReboundTools::tilde_vars$eta_tilde]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::tilde_vars$eta_tilde]][[2]], 22722.222222222)

@@ -12,7 +12,7 @@ A string list with 19 entries.
 \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate [$/year].}
 \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device [MJ].}
 \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device [year].}
-\item{eta_star_engr_units}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
+\item{eta_engr_units_star}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
 \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], calculated by \code{eta_tilde_engr_units / MJ_engr_unit}.}
 \item{eta_ratio}{The energy service efficiency ratio [--], calculated by \code{eta_star/eta_orig}.}
 \item{S_dot_dev}{The expected device-level energy savings rate [MJ/year], calculated by \code{(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig}.}
