@@ -15,8 +15,7 @@ rebound_results_table(
   case = ReboundTools::eeu_base_params$case,
   subtotals = c(ReboundTools::rebound_terms$Re_empl,
     ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc,
-    ReboundTools::rebound_terms$Re_prod, ReboundTools::rebound_terms$Re_d,
-    ReboundTools::rebound_terms$Re_i),
+    ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i),
   total = ReboundTools::rebound_terms$Re_tot,
   term_name = "Rebound term",
   latex_term_name = "LaTeX rebound term",
@@ -50,7 +49,7 @@ Default is \code{TRUE}.}
 \item{case}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{subtotals}{The rebound terms that represent subtotals.
-Default is \code{c(ReboundTools::rebound_terms$Re_empl, ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc, ReboundTools::rebound_terms$Re_prod,  ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i)}.}
+Default is \code{c(ReboundTools::rebound_terms$Re_empl, ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc, ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i)}.}
 
 \item{total}{The rebound term that represents total rebound. Default is \code{ReboundTools::rebound_terms$Re_tot}.}
 
