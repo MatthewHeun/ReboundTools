@@ -123,7 +123,8 @@ rebound parameters in rows and
 rebound stages in columns.
 
 ```{r, results="asis"}
-digs <- matrix(c(rep(3, 7), # eta
+digs <- matrix(c(rep(1, 7), # eta_engr_units
+                 rep(3, 7), # eta
                  rep(3, 7), # p_s
                  rep(0, 7), # q_dot_s
                  rep(0, 7), # E_dot_s
@@ -134,7 +135,7 @@ digs <- matrix(c(rep(3, 7), # eta
                  rep(0, 7), # C_dot_o
                  rep(0, 7), # N_dot
                  rep(0, 7)), # M_dot
-               nrow = 11, ncol = 7, byrow = TRUE)
+               nrow = 12, ncol = 7, byrow = TRUE)
 load_eeu_data() %>% 
   dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Car") %>% 
   dplyr::mutate(

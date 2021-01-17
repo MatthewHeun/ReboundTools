@@ -35,10 +35,10 @@ usethis::use_data(rebound_units, overwrite = TRUE)
 # 
 
 latex_key_analysis_vars <- data.frame(
-  var_name = c("eta", "p_s", "q_dot_s", "E_dot_s",
+  var_name = c("eta_engr_units", "eta", "p_s", "q_dot_s", "E_dot_s",
                "E_dot_emb", "C_dot_s", "C_dot_cap",
                "C_dot_md", "C_dot_o", "N_dot", "M_dot"), 
-  latex_var_name = c("$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
+  latex_var_name = c("$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
                      "$\\dot{C}_{md}$", "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
 )
@@ -152,7 +152,7 @@ star_vars <- list(C_cap_star	= "C_cap_star",
                   C_dot_md_star = "C_dot_md_star", 
                   E_emb_star = "E_emb_star",
                   t_life_star = "t_life_star",
-                  eta_star_engr_units = "eta_engr_units_star", 
+                  eta_engr_units_star = "eta_engr_units_star", 
                   eta_star = "eta_star",
                   eta_ratio = "eta_ratio", 
                   S_dot_dev = "S_dot_dev",
@@ -173,7 +173,8 @@ usethis::use_data(star_vars, overwrite = TRUE)
 # Names of calculated variables at the "hat" stage.
 # 
 
-hat_vars <- list(eta_hat = "eta_hat",
+hat_vars <- list(eta_engr_units_hat = "eta_engr_units_hat", 
+                 eta_hat = "eta_hat",
                  p_s_hat = "p_s_hat",
                  C_dot_cap_hat = "C_dot_cap_hat",
                  C_dot_md_hat = "C_dot_md_hat",
@@ -192,7 +193,8 @@ usethis::use_data(hat_vars, overwrite = TRUE)
 # Names of calculated variables at the "bar" stage.
 # 
 
-bar_vars <- list(eta_bar = "eta_bar",
+bar_vars <- list(eta_engr_units_bar = "eta_engr_units_bar",
+                 eta_bar = "eta_bar",
                  p_s_bar = "p_s_bar",
                  C_dot_cap_bar = "C_dot_cap_bar",
                  C_dot_md_bar = "C_dot_md_bar",
@@ -210,7 +212,8 @@ usethis::use_data(bar_vars, overwrite = TRUE)
 # Names of calculated variables at the "tilde" stage.
 # 
 
-tilde_vars <- list(eta_tilde = "eta_tilde",
+tilde_vars <- list(eta_engr_units_tilde = "eta_engr_units_tilde",
+                   eta_tilde = "eta_tilde",
                    p_s_tilde = "p_s_tilde",
                    C_dot_cap_tilde = "C_dot_cap_tilde",
                    C_dot_md_tilde = "C_dot_md_tilde",

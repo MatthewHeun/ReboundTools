@@ -11,6 +11,7 @@ calc_hat(
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+  eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
   eta_star = ReboundTools::star_vars$eta_star,
   p_s_star = ReboundTools::star_vars$p_s_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
@@ -23,6 +24,7 @@ calc_hat(
   N_dot_star = ReboundTools::star_vars$N_dot_star,
   E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
+  eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
@@ -48,7 +50,7 @@ likely calculated by \code{calc_star()}.}
 
 \item{eta_star, p_s_star, C_dot_cap_star, C_dot_md_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
+\item{eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the hat stage (after the substitution effect).
