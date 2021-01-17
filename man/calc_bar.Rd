@@ -47,7 +47,7 @@ likely calculated by \code{calc_hat()}.}
 
 \item{eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, C_dot_md_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, N_dot_hat, M_dot_hat_prime, C_dot_o_hat, E_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
 
-\item{eta_engr_units_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
+\item{eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).

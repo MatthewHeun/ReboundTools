@@ -37,9 +37,9 @@ calc_tilde(
 star data, hat data, and bar data,
 likely calculated by \code{calc_bar()}.}
 
-\item{eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
+\item{eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
 
-\item{eta_tilde, p_s_tilde, C_dot_cap_tilde, C_dot_md_tilde, E_dot_emb_tilde, M_dot_tilde, q_dot_s_tilde, E_dot_s_tilde, C_dot_s_tilde, C_dot_o_tilde, N_dot_tilde}{See \code{ReboundTools::tilde_vars}.}
+\item{eta_engr_units_tilde, eta_tilde, p_s_tilde, C_dot_cap_tilde, C_dot_md_tilde, E_dot_emb_tilde, M_dot_tilde, q_dot_s_tilde, E_dot_s_tilde, C_dot_s_tilde, C_dot_o_tilde, N_dot_tilde}{See \code{ReboundTools::tilde_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).
