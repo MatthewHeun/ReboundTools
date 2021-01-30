@@ -263,7 +263,7 @@ calc_star <- function(.orig_data = NULL,
 #'                   and star data, 
 #'                   likely calculated by `calc_star()`.
 #' @param p_E See `ReboundTools::eeu_base_params`.
-#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig See `ReboundTools::orig_vars`.
+#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma See `ReboundTools::orig_vars`.
 #' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
@@ -283,7 +283,11 @@ calc_hat <- function(.star_data = NULL,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                      C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-                     
+                     f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
+                     q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
+                     C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                     sigma = ReboundTools::orig_vars$sigma,
+                       
                      eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
                      eta_star = ReboundTools::star_vars$eta_star,
                      p_s_star = ReboundTools::star_vars$p_s_star,
@@ -319,6 +323,10 @@ calc_hat <- function(.star_data = NULL,
                            C_dot_md_star_val,
                            E_dot_emb_star_val,
                            M_dot_star_val,
+                           f_Cs_orig_val,
+                           q_dot_s_orig_val,
+                           C_dot_o_orig_val,
+                           sigma_val, 
                            q_dot_s_star_val,
                            eta_ratio_val,
                            e_qs_ps_val,
@@ -337,10 +345,39 @@ calc_hat <- function(.star_data = NULL,
     C_dot_md_hat_val <- C_dot_md_star_val
     E_dot_emb_hat_val <- E_dot_emb_star_val
     M_dot_hat_val <- M_dot_star_val
-    q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    
+    # This is the approximate expression for q_dot_s_hat.
+    # As of 29 Jan 2021, we're switching to an exact expression for q_dot_s_hat.
+    # q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    
+    # Here is the exact expression for q_dot_s_hat
+    # Preliminary calculations to make the actual expression easier to debug.
+    a <- f_Cs_orig_val # Simpler variable name
+    x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
+    rho <- (sigma_val - 1) / sigma_val
+    a_ratio <- (1-a) / a
+    inv_a_ratio <- a / (1-a) # Inverse of a_ratio
+    rho_ratio <- (1-rho) / rho
+    inv_rho_ratio <- rho / (1-rho) # Inverse of rho_ratio
+    
+    # Q_s_hat_val is the dimensionless q_dot_s_hat defined as q_dot_s_hat / q_dot_s_orig
+    Q_s_hat_val <- ( a + (1 - a) * ( (a_ratio*x)^(inv_rho_ratio) ) ) ^ (-1/rho) 
+    # Recover q_dot_s_hat by multiplying by q_dot_s_orig.
+    q_dot_s_hat_val <- Q_s_hat_val * q_dot_s_orig_val
+      
     E_dot_s_hat_val <- q_dot_s_hat_val / eta_hat_val
     C_dot_s_hat_val <- p_s_hat_val * q_dot_s_hat_val
-    C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
+    
+    # This is the approximate expression for C_dot_o_hat.
+    # As of 29 Jan 2021, we're switching to an exact expression for C_dot_o_hat
+    # C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
+
+    # Here is the exact expression for C_dot_o_hat
+    # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
+    C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
+    # Recover C_dot_o_hat by multiplying by C_dot_o_orig
+    C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
+    
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
     M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_orig_val - C_dot_md_orig_val - G_dot_val + p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) + (C_dot_o_hat_val - C_dot_o_star_val)
 
@@ -380,6 +417,10 @@ calc_hat <- function(.star_data = NULL,
                            C_dot_md_star_val = C_dot_md_star,
                            E_dot_emb_star_val = E_dot_emb_star,
                            M_dot_star_val = M_dot_star,
+                           f_Cs_orig_val = f_Cs_orig,
+                           q_dot_s_orig_val = q_dot_s_orig,
+                           C_dot_o_orig_val = C_dot_o_orig,
+                           sigma_val = sigma,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps,
