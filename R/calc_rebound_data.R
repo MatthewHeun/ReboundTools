@@ -854,27 +854,27 @@ calc_rebound <- function(.Deltas_data = NULL,
     Re_empl_val <- Re_emb_val + Re_md_val
     
     # Direct substitution effect rebound
-    Re_dsub_val <- (eta_ratio_val^(-e_qs_ps_val) - 1) / (eta_ratio_val - 1)
-    Re_dsub_check <- Delta_E_dot_s_hat_val / S_dot_dev_val
-    assertthat::assert_that(all(abs(Re_dsub_check - Re_dsub_val) < tol), msg = "Re_dsub failed consistency check in calc_rebound().")
+    # Re_dsub_val <- (eta_ratio_val^(-e_qs_ps_val) - 1) / (eta_ratio_val - 1)
+    Re_dsub_val <- Delta_E_dot_s_hat_val / S_dot_dev_val
+    # assertthat::assert_that(all(abs(Re_dsub_check - Re_dsub_val) < tol), msg = "Re_dsub failed consistency check in calc_rebound().")
     
     # Indirect substitution effect rebound
-    Re_isub_val <- (eta_ratio_val^(-e_qo_ps_val) - 1) * eta_ratio_val * C_dot_o_orig_val * I_E_val / (eta_ratio_val - 1) / E_dot_s_orig_val
-    Re_isub_check <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
-    assertthat::assert_that(all(abs(Re_isub_check - Re_isub_val) < tol), msg = "Re_isub failed consistency check in calc_rebound().")
+    # Re_isub_val <- (eta_ratio_val^(-e_qo_ps_val) - 1) * eta_ratio_val * C_dot_o_orig_val * I_E_val / (eta_ratio_val - 1) / E_dot_s_orig_val
+    Re_isub_val <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
+    # assertthat::assert_that(all(abs(Re_isub_check - Re_isub_val) < tol), msg = "Re_isub failed consistency check in calc_rebound().")
     
     # Substitution effect rebound
     Re_sub_val = Re_dsub_val + Re_isub_val
     
     # Direct income effect rebound 
-    Re_dinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qs_M_val) - 1) * eta_ratio_val^(-e_qs_ps_val) / (eta_ratio_val - 1)
-    Re_dinc_check <- Delta_E_dot_s_bar_val / S_dot_dev_val
-    assertthat::assert_that(all(abs(Re_dinc_check - Re_dinc_val) < tol), msg = "Re_dinc failed consistency check in calc_rebound().")
+    # Re_dinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qs_M_val) - 1) * eta_ratio_val^(-e_qs_ps_val) / (eta_ratio_val - 1)
+    Re_dinc_val <- Delta_E_dot_s_bar_val / S_dot_dev_val
+    # assertthat::assert_that(all(abs(Re_dinc_check - Re_dinc_val) < tol), msg = "Re_dinc failed consistency check in calc_rebound().")
     
     # Indirect income effect rebound 
-    Re_iinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qo_M_val) - 1) * eta_ratio_val^(1-e_qo_ps_val) * (C_dot_o_orig_val * I_E_val / E_dot_s_orig_val) / (eta_ratio_val - 1)
-    Re_iinc_check <- Delta_C_dot_o_bar_val * I_E_val / S_dot_dev_val
-    assertthat::assert_that(all(abs(Re_iinc_check - Re_iinc_val) < tol), msg = "Re_iinc failed consistency check in calc_rebound().")
+    # Re_iinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qo_M_val) - 1) * eta_ratio_val^(1-e_qo_ps_val) * (C_dot_o_orig_val * I_E_val / E_dot_s_orig_val) / (eta_ratio_val - 1)
+    Re_iinc_val <- Delta_C_dot_o_bar_val * I_E_val / S_dot_dev_val
+    # assertthat::assert_that(all(abs(Re_iinc_check - Re_iinc_val) < tol), msg = "Re_iinc failed consistency check in calc_rebound().")
     
     # Income effect rebound
     Re_inc_val <- Re_dinc_val + Re_iinc_val
