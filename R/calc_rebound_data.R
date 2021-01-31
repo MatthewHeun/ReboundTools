@@ -396,7 +396,12 @@ calc_hat <- function(.star_data = NULL,
     } else {
       # Here is the exact expression for C_dot_o_hat
       # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
-      C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
+      # This is the original derived equation
+      # C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
+      # Wolfram alpha (correctly) says it can be simplified to the following:
+      term <- x * (1-a) / a
+      denom <- 1 + a*(term^(1-sigma_val)  - 1)
+      C_o_hat_val <- (1 / denom)^(1/rho)
       # Recover C_dot_o_hat by multiplying by C_dot_o_orig
       C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
     }
