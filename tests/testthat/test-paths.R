@@ -51,9 +51,9 @@ test_that("cost_paths() works as expected", {
 })
 
 
-test_that("prefs_paths() works as expected", {
+test_that("prefs_paths() works as expected with approximated hat", {
   prefs_paths <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
+    rebound_analysis(use_sub_approx = TRUE) %>% 
     prefs_paths()
   
   # Check values on the lighting graph.

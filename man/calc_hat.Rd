@@ -6,6 +6,7 @@
 \usage{
 calc_hat(
   .star_data = NULL,
+  use_sub_approx = FALSE,
   p_E = ReboundTools::orig_vars$p_E,
   e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
   e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
@@ -48,6 +49,11 @@ calc_hat(
 and star data,
 likely calculated by \code{calc_star()}.}
 
+\item{use_sub_approx}{Tells whether to use an approximate method for
+calculating the substitution effect.
+Default is \code{FALSE}.
+See details.}
+
 \item{p_E}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{e_qo_ps, e_qs_ps, C_dot_cap_orig, C_dot_md_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma}{See \code{ReboundTools::orig_vars}.}
@@ -62,6 +68,23 @@ A list or data frame of derived rebound values for the hat stage (after the subs
 \description{
 This function calculates energy rebound information for the hat
 stage (immediately after the substitution effect).
+}
+\details{
+By default, this function uses an exact method for calculating
+the substitution effect.
+The exact method uses a constant elasticity of substitution (CES)
+formulation of utility,
+which assumes constant elasticity of substitution (sigma) along
+the indifference curve.
+
+The approximate method is employed with
+\code{use_sub_approx = TRUE} (default is \code{FALSE}).
+The approximate method
+assumes constant price elasticity of energy service consumption.
+(In actual fact, the price elasticity of energy service consumption
+is not constant along an indifference curve.)
+The approximation leads to a simple and elegant rebound expression
+but a different (and incorrect) consumption bundle after the substitution effect.
 }
 \examples{
 load_eeu_data() \%>\% 

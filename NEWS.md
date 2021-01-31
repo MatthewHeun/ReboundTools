@@ -1,3 +1,6 @@
+* Now allowing an approximation for the substitution effect.
+  New argument `use_sub_approx` triggers the approximation
+  and is set `FALSE` in several places.
 * Fixed a bug that swapped order of energy and cost path graphs.
 
 

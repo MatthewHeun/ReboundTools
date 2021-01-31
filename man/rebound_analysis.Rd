@@ -4,7 +4,7 @@
 \alias{rebound_analysis}
 \title{Perform a complete rebound analysis}
 \usage{
-rebound_analysis(.eeu_data)
+rebound_analysis(.eeu_data, use_sub_approx = FALSE)
 }
 \arguments{
 \item{.eeu_data}{Energy efficiency upgrade information in a data frame.
