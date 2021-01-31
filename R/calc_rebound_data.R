@@ -267,10 +267,10 @@ calc_star <- function(.orig_data = NULL,
 #' the indifference curve.
 #'  
 #' The approximate method is employed with
-#' `use_sub_approx = TRUE` (default is `FALSE`).
+#' `use_sub_approx = TRUE`.
 #' The approximate method 
 #' assumes constant price elasticity of energy service consumption.
-#' (In actual fact, the price elasticity of energy service consumption
+#' (In fact, the price elasticity of energy service consumption
 #' is not constant along an indifference curve.)
 #' The approximation leads to a simple and elegant rebound expression
 #' but a different (and incorrect) consumption bundle after the substitution effect.
@@ -865,40 +865,30 @@ calc_rebound <- function(.Deltas_data = NULL,
     # Indirect embodied energy effect rebound. 
     # Note: this formulation avoids a division-by-zero error if E_dot_emb_orig = 0
     Re_emb_val <- Delta_E_dot_emb_star_val / S_dot_dev_val
-    # Re_emb_val <- (E_dot_emb_star_val/E_dot_emb_orig_val - 1) * E_dot_emb_orig_val / S_dot_dev_val
-    
+
     # Indirect maintenance and disposal effect energy rebound
     # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
     Re_md_val <- Delta_C_dot_md_star_val * I_E_val / S_dot_dev_val
     # Note: this formulation can give divide by zero error.
-    # Re_md_val <- (C_dot_md_star_val/C_dot_md_orig_val - 1) * C_dot_md_orig_val * I_E_val / S_dot_dev_val
 
     # Emplacement effect rebound
     Re_empl_val <- Re_emb_val + Re_md_val
     
     # Direct substitution effect rebound
-    # Re_dsub_val <- (eta_ratio_val^(-e_qs_ps_val) - 1) / (eta_ratio_val - 1)
     Re_dsub_val <- Delta_E_dot_s_hat_val / S_dot_dev_val
-    # assertthat::assert_that(all(abs(Re_dsub_check - Re_dsub_val) < tol), msg = "Re_dsub failed consistency check in calc_rebound().")
-    
+
     # Indirect substitution effect rebound
-    # Re_isub_val <- (eta_ratio_val^(-e_qo_ps_val) - 1) * eta_ratio_val * C_dot_o_orig_val * I_E_val / (eta_ratio_val - 1) / E_dot_s_orig_val
     Re_isub_val <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
-    # assertthat::assert_that(all(abs(Re_isub_check - Re_isub_val) < tol), msg = "Re_isub failed consistency check in calc_rebound().")
-    
+
     # Substitution effect rebound
     Re_sub_val = Re_dsub_val + Re_isub_val
     
     # Direct income effect rebound 
-    # Re_dinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qs_M_val) - 1) * eta_ratio_val^(-e_qs_ps_val) / (eta_ratio_val - 1)
     Re_dinc_val <- Delta_E_dot_s_bar_val / S_dot_dev_val
-    # assertthat::assert_that(all(abs(Re_dinc_check - Re_dinc_val) < tol), msg = "Re_dinc failed consistency check in calc_rebound().")
-    
+
     # Indirect income effect rebound 
-    # Re_iinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qo_M_val) - 1) * eta_ratio_val^(1-e_qo_ps_val) * (C_dot_o_orig_val * I_E_val / E_dot_s_orig_val) / (eta_ratio_val - 1)
     Re_iinc_val <- Delta_C_dot_o_bar_val * I_E_val / S_dot_dev_val
-    # assertthat::assert_that(all(abs(Re_iinc_check - Re_iinc_val) < tol), msg = "Re_iinc failed consistency check in calc_rebound().")
-    
+
     # Income effect rebound
     Re_inc_val <- Re_dinc_val + Re_iinc_val
     
@@ -977,6 +967,7 @@ calc_rebound <- function(.Deltas_data = NULL,
 #'
 #' @param .eeu_data Energy efficiency upgrade information in a data frame.
 #'                  See `load_eeu_data()` for an example data frame.
+#' @param use_sub_approx See [ReboundTools::calc_hat()].
 #'
 #' @return `.eeu_data` with all rebound terms added as columns to the right.
 #' 

@@ -78,10 +78,10 @@ which assumes constant elasticity of substitution (sigma) along
 the indifference curve.
 
 The approximate method is employed with
-\code{use_sub_approx = TRUE} (default is \code{FALSE}).
+\code{use_sub_approx = TRUE}.
 The approximate method
 assumes constant price elasticity of energy service consumption.
-(In actual fact, the price elasticity of energy service consumption
+(In fact, the price elasticity of energy service consumption
 is not constant along an indifference curve.)
 The approximation leads to a simple and elegant rebound expression
 but a different (and incorrect) consumption bundle after the substitution effect.

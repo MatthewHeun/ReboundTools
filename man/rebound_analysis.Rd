@@ -9,6 +9,8 @@ rebound_analysis(.eeu_data, use_sub_approx = FALSE)
 \arguments{
 \item{.eeu_data}{Energy efficiency upgrade information in a data frame.
 See \code{load_eeu_data()} for an example data frame.}
+
+\item{use_sub_approx}{See \code{\link[=calc_hat]{calc_hat()}}.}
 }
 \value{
 \code{.eeu_data} with all rebound terms added as columns to the right.
