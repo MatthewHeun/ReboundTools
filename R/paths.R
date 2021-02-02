@@ -547,9 +547,9 @@ prefs_paths <- function(.rebound_data,
 #' @examples
 #' meta <- tibble::tibble(Case = "Test case")
 #' add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 
-#'   segment_name = "Test segment", 
-#'   x_orig = 10, y_orig = 10, 
-#'   x = 20, y = 30, xend = 40, yend = 50)
+#'             segment_name = "Test segment", 
+#'             x_orig = 10, y_orig = 10, 
+#'             x = 20, y = 30, xend = 40, yend = 50)
 add_segment <- function(.DF = NULL, 
                         indexed, meta, graph_type, segment_name, 
                         colour = "black", size = 1, linetype = "solid",
