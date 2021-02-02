@@ -18,8 +18,6 @@ test_that("energy_points() works as expected", {
   expect_equal(car_energy_points_star$x, 43488.5)
   expect_equal(car_energy_points_star$y, 77452.327183507833979)
   
-  # Create constants for segment_names and point_names
-  # Use those constants in the *_paths and *_points functions.
-  
+
   
 })
