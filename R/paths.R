@@ -137,6 +137,22 @@ energy_paths <- function(.rebound_data,
   
   # Substitution effect
   
+  # Delta_C_dot_o_hat*I_E segment for energy graph (isub)
+  x <- xend
+  y <- yend
+  xend <- x
+  yend <- y + .rebound_data[[Delta_C_dot_o_hat]] * .rebound_data[[I_E]]
+  paths <- paths %>%
+    add_segment(indexed = indexed,
+                colour = graph_params$isub_colour,
+                size = graph_params$isub_size,
+                linetype = graph_params$isub_linetype,
+                meta = meta,
+                graph_type = graph_type,
+                segment_name = paste0(Delta_C_dot_o_hat, I_E),
+                x_orig = x_orig, y_orig = y_orig,
+                x = x, y = y, xend = xend, yend = yend)
+
   # Delta_E_dot_s_hat segment for energy graph (dsub)
   x <- xend
   y <- yend
@@ -150,22 +166,6 @@ energy_paths <- function(.rebound_data,
                 meta = meta,
                 graph_type = graph_type, 
                 segment_name = Delta_E_dot_s_hat, 
-                x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
-  
-  # Delta_C_dot_o_hat*I_E segment for energy graph (isub)
-  x <- xend
-  y <- yend
-  xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_hat]] * .rebound_data[[I_E]]
-  paths <- paths %>% 
-    add_segment(indexed = indexed,
-                colour = graph_params$isub_colour, 
-                size = graph_params$isub_size,
-                linetype = graph_params$isub_linetype,
-                meta = meta,
-                graph_type = graph_type,
-                segment_name = paste0(Delta_C_dot_o_hat, I_E), 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -324,22 +324,6 @@ cost_paths <- function(.rebound_data,
   
   # Substitution effect
   
-  # Delta_C_dot_s_hat segment for cost graph (dsub)
-  x <- xend
-  y <- yend
-  xend <- x + .rebound_data[[Delta_C_dot_s_hat]]
-  yend <- y
-  paths <- paths %>% 
-    add_segment(indexed = indexed,
-                colour = graph_params$dsub_colour, 
-                size = graph_params$dsub_size,
-                linetype = graph_params$dsub_linetype,
-                meta = meta,
-                graph_type = graph_type, 
-                segment_name = Delta_C_dot_s_hat, 
-                x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
-  
   # Delta_C_dot_o_hat segment for cost graph (isub)
   x <- xend
   y <- yend
@@ -353,6 +337,22 @@ cost_paths <- function(.rebound_data,
                 meta = meta, 
                 graph_type = graph_type,
                 segment_name = Delta_C_dot_o_hat, 
+                x_orig = x_orig_cost, y_orig = y_orig_cost,
+                x = x, y = y, xend = xend, yend = yend)
+  
+  # Delta_C_dot_s_hat segment for cost graph (dsub)
+  x <- xend
+  y <- yend
+  xend <- x + .rebound_data[[Delta_C_dot_s_hat]]
+  yend <- y
+  paths <- paths %>% 
+    add_segment(indexed = indexed,
+                colour = graph_params$dsub_colour, 
+                size = graph_params$dsub_size,
+                linetype = graph_params$dsub_linetype,
+                meta = meta,
+                graph_type = graph_type, 
+                segment_name = Delta_C_dot_s_hat, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
