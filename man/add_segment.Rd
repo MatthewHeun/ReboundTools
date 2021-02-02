@@ -73,7 +73,7 @@ Functions like \code{energy_paths()} call \code{add_segment()} internally.
 \examples{
 meta <- tibble::tibble(Case = "Test case")
 add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 
-  segment_name = "Test segment", 
-  x_orig = 10, y_orig = 10, 
-  x = 20, y = 30, xend = 40, yend = 50)
+            segment_name = "Test segment", 
+            x_orig = 10, y_orig = 10, 
+            x = 20, y = 30, xend = 40, yend = 50)
 }
