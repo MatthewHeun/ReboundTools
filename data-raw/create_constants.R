@@ -284,10 +284,15 @@ usethis::use_data(graph_types, overwrite = TRUE)
 # 
 
 # Note: These colours match the colours in the rebound paper
-emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
-sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
-inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
-prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+# emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
+# sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
+# inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
+# prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+
+emb_colour <- "pink2"
+sub_colour <- "peachpuff"
+inc_colour <- "palegreen2"
+prod_colour <- "slateblue1"
 
 default_graph_params <- list(lineend = "round", 
                              linejoin = "round",
@@ -295,27 +300,27 @@ default_graph_params <- list(lineend = "round",
                              dempl_colour = emb_colour, 
                              emb_colour = emb_colour,
                              cap_colour = emb_colour,
-                             md_colour = emb_colour, 
+                             md_colour = "black", 
                              dsub_colour = sub_colour,
                              isub_colour = sub_colour, 
                              dinc_colour = inc_colour,
                              iinc_colour = inc_colour, 
                              prod_colour = prod_colour, 
                              
-                             dempl_size = 1, 
+                             dempl_size = 0.5, 
                              emb_size = 1,
                              cap_size = 1,
-                             md_size = 1, 
+                             md_size = 0.3, 
                              dsub_size = 1,
                              isub_size = 1, 
                              dinc_size = 1,
                              iinc_size = 1, 
                              prod_size = 1,
                              
-                             dempl_linetype = "solid",
+                             dempl_linetype = "longdash",
                              emb_linetype = "solid",
                              cap_linetype = "solid",
-                             md_linetype = "solid", 
+                             md_linetype = "dotted", 
                              dsub_linetype = "solid",
                              isub_linetype = "solid", 
                              dinc_linetype = "solid",
@@ -338,7 +343,7 @@ default_graph_params <- list(lineend = "round",
                              cost_grid_size = 0.5,
                              prefs_grid_size = 0.1,
                              prefs_ray_size = 0.1,
-                             prefs_indiff_grid_size = 0.1,
+                             prefs_indiff_grid_size = 1,
                              
                              energy_grid_linetype = "solid",
                              zero_perc_rebound_grid_linetype = "solid",
