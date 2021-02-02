@@ -292,6 +292,12 @@ prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
 default_graph_params <- list(lineend = "round", 
                              linejoin = "round",
 
+                             point_shape = 21,
+                             point_size = 1,
+                             point_fill = NULL,
+                             point_stroke = 1,
+                             point_colour = "black",
+
                              dempl_colour = emb_colour, 
                              emb_colour = emb_colour,
                              cap_colour = emb_colour,
@@ -369,9 +375,13 @@ usethis::use_data(default_graph_params, overwrite = TRUE)
 
 graph_df_colnames <- list(colour_col = "colour", 
                           size_col = "size", 
+                          shape_col = "shape",
+                          fill_col = "fill",
+                          stroke_col = "stroke",
                           linetype_col = "linetype",
                           graph_type_col = "graph_type",
                           line_name_col = "line_name",
+                          point_name_col = "point_name",
                           slope_col = "slope", 
                           intercept_col = "intercept",
                           x_col = "x", 
