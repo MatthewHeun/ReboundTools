@@ -16,7 +16,9 @@ test_that("energy_paths() works as expected", {
   
   # Check values on the car absolute energy path.
   car_energy_path_abs <- energy_paths_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Energy", line_name == "S_dot_dev")
+    dplyr::filter(Case == "Car",
+                  graph_type == "Energy",
+                  line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_energy_path_abs$x, 73060.68051000000559724867)
   expect_equal(car_energy_path_abs$xend, 43488.50030357141804415733)
   expect_equal(car_energy_path_abs$y, 77316.81880725323571823537)
@@ -32,7 +34,7 @@ test_that("cost_paths() works as expected", {
   
   # Check values on the car absolute cost path.
   car_cost_path_abs <- cost_paths_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Cost", line_name == "G_dot")
+    dplyr::filter(Case == "Car", graph_type == "Cost", line_name == IEATools::rebound_segments$dempl)
   expect_equal(car_cost_path_abs$x, 1275.17)
   expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
   expect_equal(car_cost_path_abs$y, 26126.10769302945845993236)

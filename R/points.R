@@ -4,16 +4,11 @@
 #' for an energy rebound graph.
 #' Each stage of the rebound process is represented in the data frame.
 #'
-#' @param .rebound_data A data frame of rebound analysis results, 
-#'                      likely created by `rebound_analysis()`.
-#' @param indexed A boolean telling whether the rebound points should be indexed to `1` 
-#'                at their start.
+#' @param .energy_paths A data frame of energy paths, 
+#'                      likely created by `energy_paths()`.
 #' @param graph_params See `ReboundTools::graph_params`.
-#' @param graph_type See `ReboundTools::graph_types`.
-#' @param k,I_E See `ReboundTools::eeu_base_params`.
-#' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
-#' @param S_dot_dev See `ReboundTools::star_vars`.
-#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
+#' @param rebound_stages See `ReboundTools::rebound_stages`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' 
 #' @return A data frame with energy rebound path segments.
 #' 
@@ -25,7 +20,9 @@
 #'   energy_paths() %>% 
 #'   energy_points()
 energy_points <- function(.energy_paths, 
-                          graph_params = ReboundTools::default_graph_params) {
+                          graph_params = ReboundTools::default_graph_params, 
+                          rebound_stages = ReboundTools::rebound_stages, 
+                          rebound_segments = ReboundTools::rebound_segments) {
   
   # Save the original points
   orig_points <- .energy_paths %>% 
@@ -59,11 +56,11 @@ energy_points <- function(.energy_paths,
       # Add point names based on segment descriptions
       # and eliminate the line names column.
       "{graph_df_colnames$point_name}" := dplyr::case_when(
-        .data[[graph_df_colnames$line_name]] == "S_dot_dev" ~ "orig", 
-        .data[[graph_df_colnames$line_name]] == "Delta_C_dot_md_starI_E" ~ "star", 
-        .data[[graph_df_colnames$line_name]] == "Delta_C_dot_o_hatI_E" ~ "hat",
-        .data[[graph_df_colnames$line_name]] == "Delta_C_dot_o_barI_E" ~ "bar",
-        .data[[graph_df_colnames$line_name]] == "Productivity" ~ "tilde"
+        .data[[graph_df_colnames$line_name]] == rebound_segments$dempl ~ rebound_stages$orig, 
+        .data[[graph_df_colnames$line_name]] == rebound_segments$md ~ rebound_stages$star, 
+        .data[[graph_df_colnames$line_name]] == rebound_segments$dsub ~ rebound_stages$hat,
+        .data[[graph_df_colnames$line_name]] == rebound_segments$iinc ~ rebound_stages$bar,
+        .data[[graph_df_colnames$line_name]] == rebound_segments$prod ~ rebound_stages$tilde
       ), 
       "{graph_df_colnames$line_name}" := NULL
     ) %>% 

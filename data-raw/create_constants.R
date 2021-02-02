@@ -78,6 +78,21 @@ usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
+# Names of segments in path data frames
+# 
+
+rebound_segments <- list(dempl = "dempl",
+                         emb = "emb",
+                         cap = "cap",
+                         md = "md", 
+                         dsub = "dsub",
+                         isub = "isub", 
+                         dinc = "dinc", 
+                         iinc = "iinc", 
+                         prod = "prod")
+usethis::use_data(rebound_segments, overwrite = TRUE)
+
+#
 # Delta variables
 # 
 
@@ -400,5 +415,4 @@ graph_df_colnames <- list(colour_col = "colour",
                           start_point_col = "start_point", 
                           end_arrow_col = "end_arrow")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
-
 

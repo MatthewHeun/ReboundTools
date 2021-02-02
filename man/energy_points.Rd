@@ -4,26 +4,22 @@
 \alias{energy_points}
 \title{A data frame of energy rebound points}
 \usage{
-energy_points(.energy_paths, graph_params = ReboundTools::default_graph_params)
+energy_points(
+  .energy_paths,
+  graph_params = ReboundTools::default_graph_params,
+  rebound_stages = ReboundTools::rebound_stages,
+  rebound_segments = ReboundTools::rebound_segments
+)
 }
 \arguments{
+\item{.energy_paths}{A data frame of energy paths,
+likely created by \code{energy_paths()}.}
+
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
-\item{.rebound_data}{A data frame of rebound analysis results,
-likely created by \code{rebound_analysis()}.}
+\item{rebound_stages}{See \code{ReboundTools::rebound_stages}.}
 
-\item{indexed}{A boolean telling whether the rebound points should be indexed to \code{1}
-at their start.}
-
-\item{graph_type}{See \code{ReboundTools::graph_types}.}
-
-\item{k, I_E}{See \code{ReboundTools::eeu_base_params}.}
-
-\item{E_dot_s_orig, E_dot_emb_orig, C_dot_md_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
-
-\item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
-
-\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar, N_dot_hat}{See \code{ReboundTools::Delta_vars}.}
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
 }
 \value{
 A data frame with energy rebound path segments.

@@ -111,6 +111,28 @@
 "latex_rebound_stages"
 
 
+#' Rebound segment names
+#' 
+#' A list of rebound segment names used internally to the package.
+#' 
+#' @format A list frame with `r length(rebound_segments)` entries
+#' \describe{
+#' \item{dempl}{Direct emplacement effects.}
+#' \item{emb}{Embodied energy effects.}
+#' \item{cap}{Capital cost effects.}
+#' \item{md}{Maintenance and disposal effects.}
+#' \item{dsub}{Direct substitution effects.}
+#' \item{isub}{Indirect substitution effects.}
+#' \item{dinc}{Direct income effects.}
+#' \item{iinc}{Indirect income effects.}
+#' \item{prod}{Productivity effects.}
+#' }
+#' 
+#' @examples
+#' rebound_segments
+"rebound_segments"
+
+
 #' Difference variables
 #' 
 #' This is the list of difference variables of the form `Delta_var_stage`, where
