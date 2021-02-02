@@ -306,7 +306,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$cap_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_cap_star, 
+                segment_name = rebound_segments$cap, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -322,7 +322,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$md_linetype,
                 meta = meta,
                 graph_type = graph_type,
-                segment_name = Delta_C_dot_md_star, 
+                segment_name = rebound_segments$md, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -340,7 +340,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$isub_linetype,
                 meta = meta, 
                 graph_type = graph_type,
-                segment_name = Delta_C_dot_o_hat, 
+                segment_name = rebound_segments$isub, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -356,7 +356,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$dsub_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_s_hat, 
+                segment_name = rebound_segments$dsub, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -374,7 +374,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$dinc_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_s_bar, 
+                segment_name = rebound_segments$dinc, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -390,7 +390,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$iinc_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_o_bar, 
+                segment_name = rebound_segments$iinc, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend, 
                 end_arrow = TRUE)
@@ -410,6 +410,7 @@ cost_paths <- function(.rebound_data,
 #' @param .rebound_data A data frame of rebound analysis results, 
 #'                      likely created by `rebound_analysis()`.
 #' @param graph_params See `ReboundTools::graph_params`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
@@ -424,6 +425,7 @@ cost_paths <- function(.rebound_data,
 #'   prefs_paths()
 prefs_paths <- function(.rebound_data, 
                         graph_params = ReboundTools::default_graph_params,
+                        rebound_segments = ReboundTools::rebound_segments,
                         graph_type = ReboundTools::graph_types$preferences,
                         
                         q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
@@ -455,7 +457,7 @@ prefs_paths <- function(.rebound_data,
                        linetype = graph_params$isub_linetype,
                        meta = meta,
                        graph_type = graph_type, 
-                       segment_name = Delta_C_dot_o_hat,
+                       segment_name = rebound_segments$isub,
                        x_orig = x_star, y_orig = y_star, 
                        x = x, y = y, xend = xend, yend = yend, 
                        start_point = TRUE)
@@ -472,7 +474,7 @@ prefs_paths <- function(.rebound_data,
                 linetype = graph_params$dsub_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_q_dot_s_hat,
+                segment_name = rebound_segments$dsub,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -490,7 +492,7 @@ prefs_paths <- function(.rebound_data,
                 linetype = graph_params$dinc_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_q_dot_s_bar,
+                segment_name = rebound_segments$dinc,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -506,7 +508,7 @@ prefs_paths <- function(.rebound_data,
                 linetype = graph_params$iinc_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_o_bar,
+                segment_name = rebound_segments$iinc,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend, 
                 end_arrow = TRUE)

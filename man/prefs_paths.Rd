@@ -7,6 +7,7 @@
 prefs_paths(
   .rebound_data,
   graph_params = ReboundTools::default_graph_params,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$preferences,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
@@ -21,6 +22,8 @@ prefs_paths(
 likely created by \code{rebound_analysis()}.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
+
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 

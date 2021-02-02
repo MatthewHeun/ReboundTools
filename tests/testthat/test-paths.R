@@ -34,7 +34,7 @@ test_that("cost_paths() works as expected", {
   
   # Check values on the car absolute cost path.
   car_cost_path_abs <- cost_paths_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Cost", line_name == IEATools::rebound_segments$dempl)
+    dplyr::filter(Case == "Car", graph_type == "Cost", line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_cost_path_abs$x, 1275.17)
   expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
   expect_equal(car_cost_path_abs$y, 26126.10769302945845993236)
@@ -45,7 +45,7 @@ test_that("cost_paths() works as expected", {
     rebound_analysis() %>% 
     cost_paths(indexed = TRUE)
   car_cost_path_indexed <- cost_paths_indexed %>% 
-    dplyr::filter(Case == "Car", graph_type == "Cost", line_name == "G_dot")
+    dplyr::filter(Case == "Car", graph_type == "Cost", line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_cost_path_indexed$x, 1)
   expect_equal(car_cost_path_indexed$xend, 0.59523809523809512179)
   expect_equal(car_cost_path_indexed$y, 1)
@@ -60,14 +60,14 @@ test_that("prefs_paths() works as expected with approximated hat", {
   
   # Check values on the lighting graph.
   lighting_prefs_path <- prefs_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == "Preferences", line_name == "Delta_C_dot_o_hat")
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", line_name == ReboundTools::rebound_segments$isub)
   expect_equal(lighting_prefs_path$x, 1)
   expect_equal(lighting_prefs_path$y, 1)
   expect_equal(lighting_prefs_path$xend, 1)
   expect_equal(lighting_prefs_path$yend, 0.99971092431922392585)
   
   lighting_prefs_path2 <- prefs_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == "Preferences", line_name == "Delta_q_dot_s_hat")
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", line_name == ReboundTools::rebound_segments$dsub)
   expect_equal(lighting_prefs_path2$x, 1)
   expect_equal(lighting_prefs_path2$y, 0.99971092431922392585)
   expect_equal(lighting_prefs_path2$xend, 2.43409438974531644462)
