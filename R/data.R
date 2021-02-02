@@ -398,6 +398,11 @@
 #' \item{lineend}{The line end style.}
 #' \item{linejoin}{The line join style.}
 #' \item{linejoin}{The line join style.}
+#' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
+#' \item{point_size}{The size for points between rebound effects. Default is `1`.}
+#' \item{point_fill}{The fill colour for points between rebound effects. Default is "black".}
+#' \item{point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
+#' \item{point_colour}{The line colour for points between rebound effects. Default is "black".}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital cost lines.}
