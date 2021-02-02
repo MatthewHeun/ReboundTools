@@ -6,18 +6,33 @@ test_that("energy_points() works as expected", {
     energy_paths() %>% 
     energy_points()
   
-  # Check values on the car absolute energy path.
+  # Orig point.
   car_energy_points_orig <- energy_points_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == "orig")
+    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$orig)
   expect_equal(car_energy_points_orig$x, 73060.68051000000559724867)
   expect_equal(car_energy_points_orig$y, 77316.81880725323571823537)
   
-  # Add more checks!
+  # Star point (after emplacement effect)
   car_energy_points_star <- energy_points_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == "star")
+    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$star)
   expect_equal(car_energy_points_star$x, 43488.5)
   expect_equal(car_energy_points_star$y, 77452.327183507833979)
-  
 
+  # Hat point (after substitution effect)
+  car_energy_points_star <- energy_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$hat)
+  expect_equal(car_energy_points_star$x, 44362.00012)
+  expect_equal(car_energy_points_star$y, 77384.727788596195751)
   
+  # Bar point (after income effect)
+  car_energy_points_bar <- energy_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$bar)
+  expect_equal(car_energy_points_bar$x, 45929.46762)
+  expect_equal(car_energy_points_bar$y, 79685.765757904940983)
+  
+  # Tilde point (after productivity effect)
+  car_energy_points_tilde <- energy_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$tilde)
+  expect_equal(car_energy_points_tilde$x, 45929.46762)
+  expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
 })

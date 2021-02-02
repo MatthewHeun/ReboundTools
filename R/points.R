@@ -26,7 +26,7 @@ energy_points <- function(.energy_paths,
   
   # Save the original points
   orig_points <- .energy_paths %>% 
-    dplyr::filter(.data[[graph_df_colnames$line_name_col]] == "S_dot_dev") %>% 
+    dplyr::filter(.data[[graph_df_colnames$line_name_col]] == rebound_segments$dempl) %>% 
     dplyr::mutate(
       "{graph_df_colnames$xend_col}" := NULL,
       "{graph_df_colnames$yend_col}" := NULL,
@@ -34,7 +34,7 @@ energy_points <- function(.energy_paths,
   
   # Grab the rest of the points
   other_points <- .energy_paths %>% 
-    dplyr::filter(.data[[graph_df_colnames$line_name_col]] != "S_dot_dev") %>% 
+    dplyr::filter(.data[[graph_df_colnames$line_name_col]] != rebound_segments$dempl) %>% 
     dplyr::mutate(
       "{graph_df_colnames$x_col}" := NULL, 
       "{graph_df_colnames$y_col}" := NULL, 
