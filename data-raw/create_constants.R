@@ -314,7 +314,7 @@ default_graph_params <- list(lineend = "round",
 
                              point_shape = 21,
                              point_size = 1,
-                             point_fill = NULL,
+                             point_fill = NA,
                              point_stroke = 1,
                              point_colour = "black",
 

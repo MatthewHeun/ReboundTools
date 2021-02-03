@@ -1,16 +1,17 @@
-#' A data frame of energy rebound points
+#' Extract points from a data frame of paths
 #' 
 #' Make a data frame of points between energy rebound effects
-#' for an energy rebound graph.
-#' Each stage of the rebound process is represented in the data frame.
+#' for any type of rebound path graph.
+#' Each available stage of the rebound process is represented in the data frame.
 #'
-#' @param .energy_paths A data frame of energy paths, 
-#'                      likely created by `energy_paths()`.
+#' @param .paths A data frame of rebound paths, 
+#'                      likely created by `energy_paths()`, `cost_paths()`, or `prefs_paths()`.
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_stages See `ReboundTools::rebound_stages`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
-#' @return A data frame with energy rebound path segments.
+#' @return A data frame containing points extracted from paths.
 #' 
 #' @export
 #'
@@ -18,23 +19,42 @@
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
 #'   energy_paths() %>% 
-#'   energy_points()
-energy_points <- function(.energy_paths, 
+#'   extract_points()
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   cost_paths() %>% 
+#'   extract_points()
+#' load_eeu_data() %>% 
+#'   rebound_analysis() %>% 
+#'   prefs_paths() %>% 
+#'   extract_points(first_stage = ReboundTools::rebound_stages$hat)
+extract_points <- function(.paths, 
                           graph_params = ReboundTools::default_graph_params, 
                           rebound_stages = ReboundTools::rebound_stages, 
-                          rebound_segments = ReboundTools::rebound_segments) {
+                          rebound_segments = ReboundTools::rebound_segments,
+                          graph_df_colnames = ReboundTools::graph_df_colnames) {
   
-  # Save the original points
-  orig_points <- .energy_paths %>% 
-    dplyr::filter(.data[[graph_df_colnames$line_name_col]] == rebound_segments$dempl) %>% 
+  # Get the name of the first segment from the top row of the data frame.
+  first_segment <- .paths[[graph_df_colnames$line_name_col]][[1]]
+  
+  if (first_segment == rebound_segments$isub) {
+    # We have a paths data frame for the preferences graph
+    first_point <- rebound_stages$star
+  } else {
+    # We have a .paths data frame for an energy graph or a cost graph
+    first_point <- rebound_stages$orig
+  }
+  # Save the first stage points
+  first_points <- .paths %>% 
+    dplyr::filter(.data[[graph_df_colnames$line_name_col]] == first_segment) %>% 
     dplyr::mutate(
       "{graph_df_colnames$xend_col}" := NULL,
       "{graph_df_colnames$yend_col}" := NULL,
     )
   
   # Grab the rest of the points
-  other_points <- .energy_paths %>% 
-    dplyr::filter(.data[[graph_df_colnames$line_name_col]] != rebound_segments$dempl) %>% 
+  other_points <- .paths %>% 
+    dplyr::filter(.data[[graph_df_colnames$line_name_col]] != first_segment) %>% 
     dplyr::mutate(
       "{graph_df_colnames$x_col}" := NULL, 
       "{graph_df_colnames$y_col}" := NULL, 
@@ -44,8 +64,8 @@ energy_points <- function(.energy_paths,
       "{graph_df_colnames$y_col}" := .data[[graph_df_colnames$yend_col]]
     ) 
   
-  # Combine original and other points
-  epoints <- dplyr::bind_rows(orig_points, other_points) %>% 
+  # Combine first and other points
+  out <- dplyr::bind_rows(first_points, other_points) %>% 
     dplyr::mutate(
       # Eliminate unneeded columns
       "{graph_df_colnames$colour}" := NULL,
@@ -56,11 +76,14 @@ energy_points <- function(.energy_paths,
       # Add point names based on segment descriptions
       # and eliminate the line names column.
       "{graph_df_colnames$point_name}" := dplyr::case_when(
+        # When the first segment is indirect substitution and we hit the isub row,
+        # Set the point name.
+        .data[[graph_df_colnames$line_name]] == rebound_segments$isub & first_segment == rebound_segments$isub ~ rebound_stages$star, 
         .data[[graph_df_colnames$line_name]] == rebound_segments$dempl ~ rebound_stages$orig, 
-        .data[[graph_df_colnames$line_name]] == rebound_segments$md ~ rebound_stages$star, 
-        .data[[graph_df_colnames$line_name]] == rebound_segments$dsub ~ rebound_stages$hat,
-        .data[[graph_df_colnames$line_name]] == rebound_segments$iinc ~ rebound_stages$bar,
-        .data[[graph_df_colnames$line_name]] == rebound_segments$prod ~ rebound_stages$tilde
+        .data[[graph_df_colnames$line_name]] == rebound_segments$md    ~ rebound_stages$star, 
+        .data[[graph_df_colnames$line_name]] == rebound_segments$dsub  ~ rebound_stages$hat,
+        .data[[graph_df_colnames$line_name]] == rebound_segments$iinc  ~ rebound_stages$bar,
+        .data[[graph_df_colnames$line_name]] == rebound_segments$prod  ~ rebound_stages$tilde
       ), 
       "{graph_df_colnames$line_name}" := NULL
     ) %>% 
@@ -69,13 +92,13 @@ energy_points <- function(.energy_paths,
     # Add shape, size, fill, stroke, and colour for each point.
     dplyr::mutate(
       "{graph_df_colnames$shape}" := graph_params$point_shape, 
-      "{graph_df_colnames$size}" := graph_params$size, 
-      "{graph_df_colnames$fill}" := graph_params$fill, 
-      "{graph_df_colnames$stroke}" := graph_params$stroke, 
-      "{graph_df_colnames$colour}" := graph_params$colour 
+      "{graph_df_colnames$size}" := graph_params$point_size, 
+      "{graph_df_colnames$fill}" := graph_params$point_fill, 
+      "{graph_df_colnames$stroke}" := graph_params$point_stroke, 
+      "{graph_df_colnames$colour}" := graph_params$point_colour 
     )
 
-  return(epoints)
+  return(out)
 }
 
 
