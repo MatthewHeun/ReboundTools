@@ -170,10 +170,12 @@ rebound_graphs_helper <- function(.path_data,
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
     )
-  .points_data <- .points_data %>% 
-    dplyr::mutate(
-      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-    )
+  if (!is.null(.points_data)) {
+    .points_data <- .points_data %>% 
+      dplyr::mutate(
+        "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+      )
+  }
   if (!is.null(.grid_data)) {
     .grid_data <- .grid_data %>% 
       dplyr::mutate(
