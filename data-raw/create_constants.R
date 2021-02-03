@@ -313,10 +313,12 @@ default_graph_params <- list(lineend = "round",
                              linejoin = "round",
 
                              point_shape = 21,
-                             point_size = 1,
+                             point_size = 3,
                              point_fill = NA,
                              point_stroke = 1,
                              point_colour = "black",
+                             show_first_open_circle = FALSE,
+                             show_last_point = FALSE,
 
                              dempl_colour = emb_colour, 
                              emb_colour = emb_colour,

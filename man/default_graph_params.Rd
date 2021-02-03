@@ -5,7 +5,7 @@
 \alias{default_graph_params}
 \title{Graph parameters}
 \format{
-A string list with 68 entries.
+A string list with 70 entries.
 \describe{
 
 \item{lineend}{The line end style.}

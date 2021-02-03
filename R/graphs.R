@@ -45,6 +45,17 @@ rebound_graphs <- function(.analysis_data,
   # Bundle all paths together
   paths <- dplyr::bind_rows(e_paths, c_paths, p_paths) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
+  
+  # Extract points between rebound effects
+  e_points <- e_paths %>% 
+    extract_points()
+  c_points <- c_paths %>% 
+    extract_points()
+  p_points <- p_paths %>% 
+    extract_points()
+  # Bundle all points together
+  points <- dplyr::bind_rows(e_points, c_points, p_points) %>% 
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
 
   # Calculate energy, cost, and preferences grids/guide lines
   e_grid_data <- analysis_data %>% 
@@ -66,6 +77,7 @@ rebound_graphs <- function(.analysis_data,
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
   
   g <- rebound_graphs_helper(.path_data = paths, 
+                             .points_data = points,
                              .grid_data = grids, 
                              .indifference_data = indifference_curves, 
                              graph_params = graph_params)
@@ -130,6 +142,7 @@ rebound_graphs <- function(.analysis_data,
 #' 
 #' @param .path_data A data frame of paths to be added to the graph. 
 #'                   The columns "colour" and "size" control the colour and width of the segment
+#' @param .points_data A data frame of points between rebound effects.
 #' @param .grid_data A data frame of lines to be added to the graph.
 #' @param .indifference_data A data frame of indifference curves to be added to the graph.
 #' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::default_graph_params`.
@@ -146,6 +159,7 @@ rebound_graphs <- function(.analysis_data,
 #'   energy_paths() %>% 
 #'   rebound_graphs_helper()
 rebound_graphs_helper <- function(.path_data, 
+                                  .points_data = NULL,
                                   .grid_data = NULL, 
                                   .indifference_data = NULL, 
                                   graph_params = ReboundTools::default_graph_params,
@@ -153,6 +167,10 @@ rebound_graphs_helper <- function(.path_data,
                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
   # Set the order of the graph types via a factor. 
   .path_data <- .path_data %>% 
+    dplyr::mutate(
+      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+    )
+  .points_data <- .points_data %>% 
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
     )
@@ -181,6 +199,7 @@ rebound_graphs_helper <- function(.path_data,
                                                          intercept =graph_df_colnames$ intercept_col))
   }
   
+  # Add indifference curve as a 2nd layer.
   if (!is.null(.indifference_data)) {
     g <- g + 
       ggplot2::geom_line(data = .indifference_data, 
@@ -192,7 +211,20 @@ rebound_graphs_helper <- function(.path_data,
                                                        linetype = graph_df_colnames$linetype_col))
   }
   
-  # Add rebound paths as third layer
+  # Add points between rebound effects as a third layer.
+  if (!is.null(.points_data)) {
+    g <- g +
+      ggplot2::geom_point(data = .points_data,
+                          mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                        y = graph_df_colnames$y_col,
+                                                        shape = graph_df_colnames$shape_col,
+                                                        size = graph_df_colnames$size_col,
+                                                        fill = graph_df_colnames$fill_col,
+                                                        stroke = graph_df_colnames$stroke_col,
+                                                        colour = graph_df_colnames$colour_col))
+  }
+  
+  # Add rebound paths as fourth layer
   g <- g +
     ggplot2::geom_segment(data = .path_data, 
                           mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
@@ -246,7 +278,8 @@ rebound_graphs_helper <- function(.path_data,
     ggplot2::scale_colour_identity() + 
     ggplot2::scale_size_identity() + 
     ggplot2::scale_linetype_identity() + 
-    ggplot2::scale_shape_identity()
+    ggplot2::scale_shape_identity() + 
+    ggplot2::scale_fill_identity()
 }
 
 

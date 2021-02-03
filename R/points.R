@@ -44,6 +44,9 @@ extract_points <- function(.paths,
     # We have a .paths data frame for an energy graph or a cost graph
     first_point <- rebound_stages$orig
   }
+  # Get the name of the last segment from the bottom row of the data frame.
+  last_segment <- .paths[[graph_df_colnames$line_name_col]][[nrow(.paths)]]
+  
   # Save the first stage points
   first_points <- .paths %>% 
     dplyr::filter(.data[[graph_df_colnames$line_name_col]] == first_segment) %>% 
@@ -63,9 +66,20 @@ extract_points <- function(.paths,
       "{graph_df_colnames$x_col}" := .data[[graph_df_colnames$xend_col]],
       "{graph_df_colnames$y_col}" := .data[[graph_df_colnames$yend_col]]
     ) 
+  # Eliminate last data points if not wanted
+  if (!graph_params$show_last_point) {
+    other_points <- other_points %>% 
+      dplyr::filter(.data[[graph_df_colnames$line_name_col]] != last_segment)
+  }
   
-  # Combine first and other points
-  out <- dplyr::bind_rows(first_points, other_points) %>% 
+  # Include first point or not.
+  out <- other_points
+  if (graph_params$show_first_open_circle) {
+    out <- dplyr::bind_rows(first_points, other_points)
+  }
+  
+  # Clean up and return
+  out <- out %>% 
     dplyr::mutate(
       # Eliminate unneeded columns
       "{graph_df_colnames$colour}" := NULL,
