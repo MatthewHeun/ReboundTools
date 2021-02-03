@@ -12,6 +12,8 @@ rebound_graphs(
   grid_types = ReboundTools::graph_types,
   graph_params = ReboundTools::default_graph_params,
   case_colname = ReboundTools::eeu_base_params$case,
+  rebound_stages = ReboundTools::rebound_stages,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }

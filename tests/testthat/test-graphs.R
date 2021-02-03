@@ -167,9 +167,10 @@ test_that("rebound_graphs_helper() works with grids", {
     rebound_analysis()
   paths <- dplyr::bind_rows(rebound_data %>% energy_paths(), 
                             rebound_data %>% cost_paths())
+  points_data <- extract_points(paths)
   abs_iso_grids <- rebound_data %>% 
     iso_cost_lines()
-  abs_graph <- rebound_graphs_helper(paths, abs_iso_grids) +
+  abs_graph <- rebound_graphs_helper(paths, points_data, abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free")

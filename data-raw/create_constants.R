@@ -304,26 +304,29 @@ usethis::use_data(graph_types, overwrite = TRUE)
 # inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
 # prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
 
-emb_colour <- "pink2"
+empl_colour <- "pink2"
 sub_colour <- "peachpuff"
 inc_colour <- "palegreen2"
 prod_colour <- "slateblue1"
+arr_style <- grid::arrow(angle = 20, 
+                         length = grid::unit(0.1, "inches"),
+                         type = "closed")
 
 default_graph_params <- list(lineend = "round", 
                              linejoin = "round",
 
-                             point_shape = 21,
+                             show_points = TRUE,
+                             point_shape = 19,
                              point_size = 3,
-                             point_fill = NA,
                              point_stroke = 1,
-                             point_colour = "black",
-                             show_first_open_circle = TRUE,
-                             show_last_point = TRUE,
 
-                             dempl_colour = emb_colour, 
+                             show_arrows = TRUE,
+                             arrow_style = arr_style,
+
+                             dempl_colour = empl_colour, 
                              emb_colour = "black",
                              cap_colour = "black",
-                             md_colour = emb_colour, 
+                             md_colour = empl_colour, 
                              dsub_colour = sub_colour,
                              isub_colour = sub_colour, 
                              dinc_colour = inc_colour,
@@ -378,16 +381,7 @@ default_graph_params <- list(lineend = "round",
                              prefs_indiff_grid_linetype = "solid", 
                              n_indiff_curve_points = 200,
                              qs_qs0_lower = 0.1,
-                             qs_qs0_upper = 10,
-
-                             include_start_point = TRUE,
-                             start_point_size = 3, 
-                             start_point_shape = 16,
-                             
-                             include_end_arrow = TRUE,
-                             arrow_angle = 20, 
-                             arrow_length = grid::unit(0.1, "inches"), 
-                             arrow_type = "closed")
+                             qs_qs0_upper = 10)
 usethis::use_data(default_graph_params, overwrite = TRUE)
 
 
@@ -414,7 +408,7 @@ graph_df_colnames <- list(colour_col = "colour",
                           Co1_Co0_col = "Co1_Co0", 
                           f_Cs_orig_col = "f_Cs_orig",
                           sigma_col = "sigma", 
-                          start_point_col = "start_point", 
+                          start_point_col = "start_point",
                           end_arrow_col = "end_arrow")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 

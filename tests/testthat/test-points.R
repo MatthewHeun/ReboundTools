@@ -19,10 +19,10 @@ test_that("extract_points() works as expected", {
   expect_equal(car_energy_points_star$y, 77452.327183507833979)
 
   # Hat point (after substitution effect)
-  car_energy_points_star <- energy_points_abs %>% 
+  car_energy_points_hat <- energy_points_abs %>% 
     dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$hat)
-  expect_equal(car_energy_points_star$x, 44362.00012)
-  expect_equal(car_energy_points_star$y, 77384.727788596195751)
+  expect_equal(car_energy_points_hat$x, 44362.00012)
+  expect_equal(car_energy_points_hat$y, 77384.727788596195751)
   
   # Bar point (after income effect)
   car_energy_points_bar <- energy_points_abs %>% 
@@ -36,6 +36,16 @@ test_that("extract_points() works as expected", {
   expect_equal(car_energy_points_tilde$x, 45929.46762)
   expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
   
+  # Check point colours
+  expect_equal(car_energy_points_orig$colour %>% unique(), 
+               ReboundTools::default_graph_params$dempl_colour)
+  expect_equal(car_energy_points_star$colour %>% unique(), 
+               ReboundTools::default_graph_params$isub_colour)
+  expect_equal(car_energy_points_hat$colour %>% unique(), 
+               ReboundTools::default_graph_params$dinc_colour)
+  expect_equal(car_energy_points_bar$colour %>% unique(), 
+               ReboundTools::default_graph_params$prod_colour)
+  expect_true(is.na(car_energy_points_tilde$colour %>% unique()))
   
   # Calculate absolute cost paths
   cost_points_abs <- load_eeu_data() %>% 
@@ -66,8 +76,8 @@ test_that("extract_points() works as expected", {
     dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ReboundTools::rebound_stages$bar)
   expect_equal(car_cost_points_bar$x, 801.63336575829112007)
   expect_equal(car_cost_points_bar$y, 26599.644327271169459)
-
   
+
   # Calculate preferences paths
   prefs_points <- load_eeu_data() %>% 
     rebound_analysis() %>% 
