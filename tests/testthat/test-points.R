@@ -43,6 +43,30 @@ test_that("extract_points() works as expected", {
     cost_paths() %>% 
     extract_points()
   
+  # Orig point.
+  car_cost_points_orig <- cost_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ReboundTools::rebound_stages$orig)
+  expect_equal(car_cost_points_orig$x, 1275.17)
+  expect_equal(car_cost_points_orig$y, 26126.10769302945846)
+  
+  # Star point.
+  car_cost_points_star <- cost_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ReboundTools::rebound_stages$star)
+  expect_equal(car_cost_points_star$x, 759.02976190476181273)
+  expect_equal(car_cost_points_star$y, 25940.684414189981908)
+  
+  # Hat point.
+  car_cost_points_hat <- cost_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ReboundTools::rebound_stages$hat)
+  expect_equal(car_cost_points_hat$x, 774.27545561799774987)
+  expect_equal(car_cost_points_hat$y, 25920.739701178415999)
+  
+  # Bar point.
+  car_cost_points_bar <- cost_points_abs %>% 
+    dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ReboundTools::rebound_stages$bar)
+  expect_equal(car_cost_points_bar$x, 801.63336575829112007)
+  expect_equal(car_cost_points_bar$y, 26599.644327271169459)
+
   
   # Calculate preferences paths
   prefs_points <- load_eeu_data() %>% 
