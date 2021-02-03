@@ -10,6 +10,7 @@ cost_paths(
   .rebound_data,
   indexed = FALSE,
   graph_params = ReboundTools::default_graph_params,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$cost,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
@@ -32,6 +33,8 @@ likely created by \code{rebound_analysis()}.}
 at its start.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
+
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 

@@ -78,6 +78,21 @@ usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
+# Names of segments in path data frames
+# 
+
+rebound_segments <- list(dempl = "dempl",
+                         emb = "emb",
+                         cap = "cap",
+                         md = "md", 
+                         dsub = "dsub",
+                         isub = "isub", 
+                         dinc = "dinc", 
+                         iinc = "iinc", 
+                         prod = "prod")
+usethis::use_data(rebound_segments, overwrite = TRUE)
+
+#
 # Delta variables
 # 
 
@@ -284,17 +299,30 @@ usethis::use_data(graph_types, overwrite = TRUE)
 # 
 
 # Note: These colours match the colours in the rebound paper
-emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
-sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
-inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
-prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+# emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
+# sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
+# inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
+# prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+
+emb_colour <- "pink2"
+sub_colour <- "peachpuff"
+inc_colour <- "palegreen2"
+prod_colour <- "slateblue1"
 
 default_graph_params <- list(lineend = "round", 
                              linejoin = "round",
 
+                             point_shape = 21,
+                             point_size = 3,
+                             point_fill = NA,
+                             point_stroke = 1,
+                             point_colour = "black",
+                             show_first_open_circle = TRUE,
+                             show_last_point = TRUE,
+
                              dempl_colour = emb_colour, 
-                             emb_colour = emb_colour,
-                             cap_colour = emb_colour,
+                             emb_colour = "black",
+                             cap_colour = "black",
                              md_colour = emb_colour, 
                              dsub_colour = sub_colour,
                              isub_colour = sub_colour, 
@@ -302,9 +330,9 @@ default_graph_params <- list(lineend = "round",
                              iinc_colour = inc_colour, 
                              prod_colour = prod_colour, 
                              
-                             dempl_size = 1, 
-                             emb_size = 1,
-                             cap_size = 1,
+                             dempl_size = 0.5, 
+                             emb_size = 0.3,
+                             cap_size = 0.3,
                              md_size = 1, 
                              dsub_size = 1,
                              isub_size = 1, 
@@ -312,9 +340,9 @@ default_graph_params <- list(lineend = "round",
                              iinc_size = 1, 
                              prod_size = 1,
                              
-                             dempl_linetype = "solid",
-                             emb_linetype = "solid",
-                             cap_linetype = "solid",
+                             dempl_linetype = "longdash",
+                             emb_linetype = "dotted",
+                             cap_linetype = "dotted",
                              md_linetype = "solid", 
                              dsub_linetype = "solid",
                              isub_linetype = "solid", 
@@ -322,14 +350,14 @@ default_graph_params <- list(lineend = "round",
                              iinc_linetype = "solid", 
                              prod_linetype = "solid",
                              
-                             energy_grid_colour = "gray",
-                             zero_perc_rebound_grid_colour = "gray",
-                             hundred_perc_rebound_grid_colour = "gray",
-                             energy_rebound_lines_colour = "gray",
-                             cost_grid_colour = "gray",
-                             prefs_grid_colour = "gray",
-                             prefs_ray_colour = "gray",
-                             prefs_indiff_grid_colour = "gray",
+                             energy_grid_colour = "darkgray",
+                             zero_perc_rebound_grid_colour = "darkgray",
+                             hundred_perc_rebound_grid_colour = "darkgray",
+                             energy_rebound_lines_colour = "darkgray",
+                             cost_grid_colour = "darkgray",
+                             prefs_grid_colour = "darkgray",
+                             prefs_ray_colour = "darkgray",
+                             prefs_indiff_grid_colour = "darkgray",
                              
                              energy_grid_size = 0.1,
                              zero_perc_rebound_grid_size = 0.5,
@@ -338,7 +366,7 @@ default_graph_params <- list(lineend = "round",
                              cost_grid_size = 0.5,
                              prefs_grid_size = 0.1,
                              prefs_ray_size = 0.1,
-                             prefs_indiff_grid_size = 0.1,
+                             prefs_indiff_grid_size = 1,
                              
                              energy_grid_linetype = "solid",
                              zero_perc_rebound_grid_linetype = "solid",
@@ -369,9 +397,13 @@ usethis::use_data(default_graph_params, overwrite = TRUE)
 
 graph_df_colnames <- list(colour_col = "colour", 
                           size_col = "size", 
+                          shape_col = "shape",
+                          fill_col = "fill",
+                          stroke_col = "stroke",
                           linetype_col = "linetype",
                           graph_type_col = "graph_type",
                           line_name_col = "line_name",
+                          point_name_col = "point_name",
                           slope_col = "slope", 
                           intercept_col = "intercept",
                           x_col = "x", 
@@ -385,5 +417,4 @@ graph_df_colnames <- list(colour_col = "colour",
                           start_point_col = "start_point", 
                           end_arrow_col = "end_arrow")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
-
 

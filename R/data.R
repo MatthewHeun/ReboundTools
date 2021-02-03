@@ -111,6 +111,28 @@
 "latex_rebound_stages"
 
 
+#' Rebound segment names
+#' 
+#' A list of rebound segment names used internally to the package.
+#' 
+#' @format A list frame with `r length(rebound_segments)` entries
+#' \describe{
+#' \item{dempl}{Direct emplacement effects.}
+#' \item{emb}{Embodied energy effects.}
+#' \item{cap}{Capital cost effects.}
+#' \item{md}{Maintenance and disposal effects.}
+#' \item{dsub}{Direct substitution effects.}
+#' \item{isub}{Indirect substitution effects.}
+#' \item{dinc}{Direct income effects.}
+#' \item{iinc}{Indirect income effects.}
+#' \item{prod}{Productivity effects.}
+#' }
+#' 
+#' @examples
+#' rebound_segments
+"rebound_segments"
+
+
 #' Difference variables
 #' 
 #' This is the list of difference variables of the form `Delta_var_stage`, where
@@ -398,6 +420,11 @@
 #' \item{lineend}{The line end style.}
 #' \item{linejoin}{The line join style.}
 #' \item{linejoin}{The line join style.}
+#' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
+#' \item{point_size}{The size for points between rebound effects. Default is `1`.}
+#' \item{point_fill}{The fill colour for points between rebound effects. Default is "black".}
+#' \item{point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
+#' \item{point_colour}{The line colour for points between rebound effects. Default is "black".}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital cost lines.}

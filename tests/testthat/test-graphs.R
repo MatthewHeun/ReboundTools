@@ -92,6 +92,18 @@ test_that("rebound_graphs() works as expected", {
     rebound_graphs(cases = "Lamp", 
                    graph_types = "Preferences")
   expect_true(!is.null(graphs_lamp_prefs))
+  
+  # Try a preferences graph for lamps with fewer indifference curve points
+  graph_prefs <- ReboundTools::default_graph_params
+  graph_prefs$n_indiff_curve_points <- 200
+  graphs_lamp_prefs_2 <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_graphs(cases = "Lamp", 
+                   graph_types = "Preferences", graph_params = graph_prefs) +  
+    ggplot2::xlim(0.9, 2.5)
+    ggplot2::ylim(0.99, 1.003)
+  expect_true(!is.null(graphs_lamp_prefs_2))
+  
 })
 
 

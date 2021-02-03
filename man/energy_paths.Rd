@@ -8,6 +8,7 @@ energy_paths(
   .rebound_data,
   indexed = FALSE,
   graph_params = ReboundTools::default_graph_params,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$energy,
   k = ReboundTools::eeu_base_params$k,
   I_E = ReboundTools::eeu_base_params$I_E,
@@ -33,6 +34,8 @@ likely created by \code{rebound_analysis()}.}
 at its start.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
+
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 

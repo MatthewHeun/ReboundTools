@@ -19,9 +19,10 @@ test_that("iso_cost_lines() works as expected", {
     expect_equal(car_cost_iso_lines_indexed$intercept, 1.04880826547079641919)
 })
 
-test_that("iso_budget_lines_prefs() works as expected", {
+
+test_that("iso_budget_lines_prefs() works as expected with approximated hat", {
   iso_budget_lines <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
+    rebound_analysis(use_sub_approx = TRUE) %>% 
     iso_budget_lines_prefs() %>% 
     dplyr::filter(Case == "Lamp")
   expect_equal(iso_budget_lines$intercept[[1]], 1.00032500637362797846)
@@ -41,7 +42,7 @@ test_that("add_iso() works as expected", {
   expect_equal(res$Case, "Test case")
   expect_equal(res$graph_type, "Test type")
   expect_equal(res$line_name, "Test iso")
-  expect_equal(res$colour, "gray")
+  expect_equal(res$colour, "darkgray")
   expect_equal(res$size, 0.1)
   expect_equal(res$linetype, "solid")
   expect_equal(res$slope, -1)
