@@ -55,8 +55,18 @@ test_that("extract_points() works as expected", {
     dplyr::filter(Case == "Lamp", graph_type == "Preferences", point_name == ReboundTools::rebound_stages$star)
   expect_equal(lamp_prefs_points_star$x, 1)
   expect_equal(lamp_prefs_points_star$y, 1)
+
+  # Hat point
+  lamp_prefs_points_hat <- prefs_points %>% 
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", point_name == ReboundTools::rebound_stages$hat)
+  expect_equal(lamp_prefs_points_hat$x, 2.4344098152813411495)
+  expect_equal(lamp_prefs_points_hat$y, 0.99984047291445865557)
   
-  
+  # bar point
+  lamp_prefs_points_bar <- prefs_points %>% 
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", point_name == ReboundTools::rebound_stages$bar)
+  expect_equal(lamp_prefs_points_bar$x, 2.4354635233051604715)
+  expect_equal(lamp_prefs_points_bar$y, 1.0002732430759311288)
   
 })
 
