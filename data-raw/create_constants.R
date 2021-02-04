@@ -304,10 +304,25 @@ usethis::use_data(graph_types, overwrite = TRUE)
 # inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
 # prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
 
-empl_colour <- "pink2"
-sub_colour <- "peachpuff"
-inc_colour <- "palegreen2"
-prod_colour <- "slateblue1"
+# These colours approximately match the colours in the rebound paper,
+# but they are a little bolder.
+# empl_colour <- "pink2"
+# sub_colour <- "peachpuff"
+# inc_colour <- "palegreen2"
+# prod_colour <- "slateblue1"
+
+
+# These colours are obtained from the viridis colour scale
+
+v_colours <- viridis::viridis(4)
+# v_colours <- viridis::viridis(4, direction = -1)
+# v_colours <- viridis::viridis(4, direction = -1, end = 0.93)
+# v_colours <- viridis::viridis(4, direction = -1, end = 0.85)
+empl_colour <- v_colours[1]
+sub_colour <- v_colours[2]
+inc_colour <- v_colours[3]
+prod_colour <- v_colours[4]
+
 arr_style <- grid::arrow(angle = 20, 
                          length = grid::unit(0.1, "inches"),
                          type = "closed")
@@ -317,7 +332,7 @@ default_graph_params <- list(lineend = "round",
 
                              show_points = TRUE,
                              point_shape = 19,
-                             point_size = 3,
+                             point_size = 1,
                              point_stroke = 1,
 
                              show_arrows = TRUE,
@@ -343,7 +358,8 @@ default_graph_params <- list(lineend = "round",
                              iinc_size = 1, 
                              prod_size = 1,
                              
-                             dempl_linetype = "longdash",
+                             # dempl_linetype = "longdash",
+                             dempl_linetype = "solid",
                              emb_linetype = "dotted",
                              cap_linetype = "dotted",
                              md_linetype = "solid", 

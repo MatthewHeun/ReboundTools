@@ -249,6 +249,8 @@ rebound_graphs_helper <- function(.path_data,
     without_arrows <- .path_data %>% 
       dplyr::filter(! .data[[graph_df_colnames$end_arrow_col]])
   } else {
+    with_arrows <- .path_data %>% 
+      dplyr::filter(FALSE)
     without_arrows <- .path_data
   }
   # Segments without arrows
