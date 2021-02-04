@@ -9,6 +9,8 @@
 #'                     Default is `ReboundTools::default_graph_params`, which can be 
 #'                     modified and passed as an argument to control graph appearance.
 #' @param case_colname The name of the Case column in `.rebound_data`. Default is `ReboundTools::eeu_base_params$case`.
+#' @param rebound_stages See `ReboundTools::rebound_stages`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_df_colnames The names of column names in data frames of graph data. Default is `ReboundTools::graph_df_colnames`.
 #'  
 #' @return A `ggplot2` object with the graphs
@@ -240,7 +242,7 @@ rebound_graphs_helper <- function(.path_data,
   }
   
   # Add rebound paths as fourth layer.
-  # Use arrows, requested.
+  # Use arrows, if requested.
   if (graph_params$show_arrows) {
     with_arrows <- .path_data %>% 
       dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
@@ -276,41 +278,6 @@ rebound_graphs_helper <- function(.path_data,
                           # Here, we include the arrow.
                           arrow = graph_params$arrow_style)
   
-  
-  
-  # with_arrows <- .path_data %>% 
-  #   dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
-  # without_arrows <- .path_data %>% 
-  #   dplyr::filter(! .data[[graph_df_colnames$end_arrow_col]])
-  # 
-  # if (graph_params$show_arrows){
-  #   g <- g +
-  #     ggplot2::geom_segment(data = .path_data, 
-  #                           mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-  #                                                         size = graph_df_colnames$size_col,
-  #                                                         linetype = graph_df_colnames$linetype_col,
-  #                                                         x = graph_df_colnames$x_col, 
-  #                                                         y = graph_df_colnames$y_col, 
-  #                                                         xend = graph_df_colnames$xend_col, 
-  #                                                         yend = graph_df_colnames$yend_col), 
-  #                           lineend = graph_params$lineend, 
-  #                           linejoin = graph_params$linejoin, 
-  #                           # Here, we include the arrow.
-  #                           arrow = graph_params$arrow_style)
-  # } else {
-  #   g <- g +
-  #     ggplot2::geom_segment(data = .path_data, 
-  #                           mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-  #                                                         size = graph_df_colnames$size_col,
-  #                                                         linetype = graph_df_colnames$linetype_col,
-  #                                                         x = graph_df_colnames$x_col, 
-  #                                                         y = graph_df_colnames$y_col, 
-  #                                                         xend = graph_df_colnames$xend_col, 
-  #                                                         yend = graph_df_colnames$yend_col), 
-  #                           lineend = graph_params$lineend, 
-  #                           linejoin = graph_params$linejoin)
-  # }
-
   g +  
     # Use the colour, size, linetype, and shape columns/data directly.
     ggplot2::scale_colour_identity() + 
@@ -319,24 +286,3 @@ rebound_graphs_helper <- function(.path_data,
     ggplot2::scale_shape_identity() + 
     ggplot2::scale_fill_identity()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

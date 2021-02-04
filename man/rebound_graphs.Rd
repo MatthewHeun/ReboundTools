@@ -34,6 +34,10 @@ modified and passed as an argument to control graph appearance.}
 
 \item{case_colname}{The name of the Case column in \code{.rebound_data}. Default is \code{ReboundTools::eeu_base_params$case}.}
 
+\item{rebound_stages}{See \code{ReboundTools::rebound_stages}.}
+
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
+
 \item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
