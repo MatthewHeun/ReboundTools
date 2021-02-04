@@ -230,7 +230,7 @@ rebound_graphs_helper <- function(.path_data,
   if (!is.null(.points_data)) {
     if (graph_params$show_points){
       g <- g +
-        ggplot2::geom_point(data = .points_data,
+        ggplot2::geom_point(data = .points_data %>% dplyr::filter(.data[[graph_df_colnames$start_point_col]]), # Only show points for which start_point_col is TRUE.
                             mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
                                                           y = graph_df_colnames$y_col,
                                                           shape = graph_df_colnames$shape_col,

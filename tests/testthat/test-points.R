@@ -33,11 +33,8 @@ test_that("extract_points() works as expected", {
   # Tilde point (after productivity effect)
   car_energy_points_tilde <- energy_points_abs %>% 
     dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$tilde)
-  # There is no tilde point.
-  expect_equal(nrow(car_energy_points_tilde), 0)
-  # If there were points, they would be this:
-  # expect_equal(car_energy_points_tilde$x, 45929.46762)
-  # expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
+  expect_equal(car_energy_points_tilde$x, 45929.46762)
+  expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
   
   # Check point colours
   expect_equal(car_energy_points_orig$colour %>% unique(), 

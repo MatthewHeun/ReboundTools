@@ -404,6 +404,36 @@
 "graph_types"
 
 
+#' Names of graph data frame columns
+#' 
+#' The list of names of graph data frame columns. 
+#' These are default names for columns produced internally.
+#' 
+#' @format A string list with `r length(graph_df_colnames)` entries.
+#' \describe{
+#' \item{colour_col}{The name of the column containing line colours.}
+#' \item{size_col}{The name of the column containing line sizes (widths).}
+#' \item{linetype_col}{The name of the column containing line types.}
+#' \item{graph_type_col}{The name of the column containing graph types.}
+#' \item{line_name_col}{The name of the column containing names (string identifiers) for lines, segments, and grids.}
+#' \item{slope_col}{The name of the column containing line slopes.}
+#' \item{intercept_col}{The name of the column containing line intercepts.}
+#' \item{x_col}{The name of the column containing starting x values.}
+#' \item{y_col}{The name of the column containing starting y values.}
+#' \item{xend_col}{The name of the column containing ending x values.}
+#' \item{yend_col}{The name of the column containing ending y values.}
+#' \item{qs1_qs0_col}{The name of the column containing a q_s/q_s_0 point on this indifference curve.}
+#' \item{Co1_Co0_col}{The name of the column containing a C_s/C_s_0 point on this indifference curve.}
+#' \item{f_Cs_orig_col}{The name of the column containing the original value of f_Cs for this indifference curve.}
+#' \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
+#' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
+#' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
+#' }
+#' @examples
+#' graph_df_colnames
+"graph_df_colnames"
+
+
 #' Graph parameters
 #' 
 #' The list of graph parameters for drawing
@@ -420,11 +450,14 @@
 #' \item{lineend}{The line end style.}
 #' \item{linejoin}{The line join style.}
 #' \item{linejoin}{The line join style.}
+#' \item{which_points}{A data frame telling which points to include in the graph.}
+#' \item{last_point}{Tells whether to show the last point. Overrides `which_points`.}
 #' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
 #' \item{point_size}{The size for points between rebound effects. Default is `1`.}
-#' \item{point_fill}{The fill colour for points between rebound effects. Default is "black".}
 #' \item{point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
-#' \item{point_colour}{The line colour for points between rebound effects. Default is "black".}
+#' \item{which_arrows}{A data frame telling which ending arrows to include in the graph.}
+#' \item{last_arrow}{Tells whether to show the last arrow. Overrides `which_arrows`.}
+#' \item{arrow_style}{An `arrow` object created by `grid::arrow`.}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital cost lines.}
@@ -490,35 +523,5 @@
 #' @examples
 #' default_graph_params
 "default_graph_params"
-
-
-#' Graph data frame columns
-#' 
-#' The list of names of graph data frame columns. 
-#' These are default names for columns produced internally.
-#' 
-#' @format A string list with `r length(graph_df_colnames)` entries.
-#' \describe{
-#' \item{colour_col}{The name of the column containing line colours.}
-#' \item{size_col}{The name of the column containing line sizes (widths).}
-#' \item{linetype_col}{The name of the column containing line types.}
-#' \item{graph_type_col}{The name of the column containing graph types.}
-#' \item{line_name_col}{The name of the column containing names (string identifiers) for lines, segments, and grids.}
-#' \item{slope_col}{The name of the column containing line slopes.}
-#' \item{intercept_col}{The name of the column containing line intercepts.}
-#' \item{x_col}{The name of the column containing starting x values.}
-#' \item{y_col}{The name of the column containing starting y values.}
-#' \item{xend_col}{The name of the column containing ending x values.}
-#' \item{yend_col}{The name of the column containing ending y values.}
-#' \item{qs1_qs0_col}{The name of the column containing a q_s/q_s_0 point on this indifference curve.}
-#' \item{Co1_Co0_col}{The name of the column containing a C_s/C_s_0 point on this indifference curve.}
-#' \item{f_Cs_orig_col}{The name of the column containing the original value of f_Cs for this indifference curve.}
-#' \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
-#' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
-#' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
-#' }
-#' @examples
-#' graph_df_colnames
-"graph_df_colnames"
 
 

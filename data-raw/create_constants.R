@@ -58,7 +58,11 @@ usethis::use_data(key_analysis_vars, overwrite = TRUE)
 # Names of stages
 # 
 
-rebound_stages <- list(orig = "orig", star = "star", hat = "hat", bar = "bar", tilde = "tilde")
+rebound_stages <- list(orig  = "orig", 
+                       star  = "star",  # After emplacement effect
+                       hat   = "hat",   # After subsituttion effect
+                       bar   = "bar",   # After income effect
+                       tilde = "tilde") # After productivity effect
 usethis::use_data(rebound_stages, overwrite = TRUE)
 
 
@@ -78,15 +82,16 @@ usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
-# Names of segments in path data frames
+# Names of segments in path data frames.
+# Also gives sequential order in the path graphs.
 # 
 
 rebound_segments <- list(dempl = "dempl",
                          emb = "emb",
                          cap = "cap",
                          md = "md", 
-                         dsub = "dsub",
                          isub = "isub", 
+                         dsub = "dsub",
                          dinc = "dinc", 
                          iinc = "iinc", 
                          prod = "prod")
@@ -295,6 +300,34 @@ usethis::use_data(graph_types, overwrite = TRUE)
 
 
 #
+# Graph data frame column names
+# 
+
+graph_df_colnames <- list(colour_col = "colour", 
+                          size_col = "size", 
+                          shape_col = "shape",
+                          fill_col = "fill",
+                          stroke_col = "stroke",
+                          linetype_col = "linetype",
+                          graph_type_col = "graph_type",
+                          line_name_col = "line_name",
+                          point_name_col = "point_name",
+                          slope_col = "slope", 
+                          intercept_col = "intercept",
+                          x_col = "x", 
+                          y_col = "y", 
+                          xend_col = "xend",
+                          yend_col = "yend", 
+                          qs1_qs0_col = "qs1_qs0", 
+                          Co1_Co0_col = "Co1_Co0", 
+                          f_Cs_orig_col = "f_Cs_orig",
+                          sigma_col = "sigma", 
+                          start_point_col = "start_point",
+                          end_arrow_col = "end_arrow")
+usethis::use_data(graph_df_colnames, overwrite = TRUE)
+
+
+#
 # Default graph parameters
 # 
 
@@ -330,12 +363,16 @@ arr_style <- grid::arrow(angle = 20,
 default_graph_params <- list(lineend = "round", 
                              linejoin = "round",
 
-                             show_points = TRUE,
+                             which_points = tibble::tibble("{graph_df_colnames$point_name_col}" := unlist(rebound_stages), 
+                                                           "{graph_df_colnames$start_point_col}" := c(TRUE, TRUE, TRUE, TRUE, FALSE)),
+                             last_point = FALSE,
                              point_shape = 19,
                              point_size = 1,
                              point_stroke = 1,
 
-                             show_arrows = TRUE,
+                             which_arrows = tibble::tibble("{graph_df_colnames$line_name_col}" := unlist(rebound_segments), 
+                                                           "{graph_df_colnames$end_arrow_col}" := c(rep.int(FALSE, 8), FALSE)),
+                             last_arrow = TRUE,
                              arrow_style = arr_style,
 
                              dempl_colour = empl_colour, 
@@ -348,6 +385,7 @@ default_graph_params <- list(lineend = "round",
                              iinc_colour = inc_colour, 
                              prod_colour = prod_colour, 
                              
+                             # Line width specifications
                              dempl_size = 0.5, 
                              emb_size = 0.3,
                              cap_size = 0.3,
@@ -358,7 +396,6 @@ default_graph_params <- list(lineend = "round",
                              iinc_size = 1, 
                              prod_size = 1,
                              
-                             # dempl_linetype = "longdash",
                              dempl_linetype = "solid",
                              emb_linetype = "dotted",
                              cap_linetype = "dotted",
@@ -400,31 +437,4 @@ default_graph_params <- list(lineend = "round",
                              qs_qs0_upper = 10)
 usethis::use_data(default_graph_params, overwrite = TRUE)
 
-
-#
-# Graph data frame column names
-# 
-
-graph_df_colnames <- list(colour_col = "colour", 
-                          size_col = "size", 
-                          shape_col = "shape",
-                          fill_col = "fill",
-                          stroke_col = "stroke",
-                          linetype_col = "linetype",
-                          graph_type_col = "graph_type",
-                          line_name_col = "line_name",
-                          point_name_col = "point_name",
-                          slope_col = "slope", 
-                          intercept_col = "intercept",
-                          x_col = "x", 
-                          y_col = "y", 
-                          xend_col = "xend",
-                          yend_col = "yend", 
-                          qs1_qs0_col = "qs1_qs0", 
-                          Co1_Co0_col = "Co1_Co0", 
-                          f_Cs_orig_col = "f_Cs_orig",
-                          sigma_col = "sigma", 
-                          start_point_col = "start_point",
-                          end_arrow_col = "end_arrow")
-usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
