@@ -227,6 +227,10 @@ energy_paths <- function(.rebound_data,
                 x = x, y = y, xend = xend, yend = yend,
                 start_point = TRUE, end_arrow = TRUE)
   
+  # Reverse the order of segments in the data frame so that
+  # arrows will lie upon following segments 
+  # when drawn tip-to-tail.
+  paths <- paths[nrow(paths):1, ]
   return(paths)
 }
 
@@ -403,6 +407,11 @@ cost_paths <- function(.rebound_data,
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend, 
                 end_arrow = TRUE)
+  # Reverse the order of segments in the data frame so that
+  # arrows will lie upon following segments 
+  # when drawn tip-to-tail.
+  paths <- paths[nrow(paths):1, ]
+  
   return(paths)
 }
 
@@ -522,6 +531,10 @@ prefs_paths <- function(.rebound_data,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend, 
                 end_arrow = TRUE)
+  # Reverse the order of segments in the data frame so that
+  # arrows will lie upon following segments 
+  # when drawn tip-to-tail.
+  paths <- paths[nrow(paths):1, ]
   
   return(paths)
 }

@@ -41,14 +41,11 @@ extract_points <- function(.paths,
       # Add point names based on segment descriptions
       # and eliminate the line names column.
       "{graph_df_colnames$point_name}" := dplyr::case_when(
-        # When the first segment is indirect substitution and we hit the isub row,
         # Set the point name.
         .data[[graph_df_colnames$line_name]] == rebound_segments$dempl ~ rebound_stages$orig, 
         .data[[graph_df_colnames$line_name]] == rebound_segments$isub  ~ rebound_stages$star, 
-        .data[[graph_df_colnames$line_name]] == rebound_segments$md    ~ rebound_stages$star, 
-        .data[[graph_df_colnames$line_name]] == rebound_segments$dsub  ~ rebound_stages$hat,
-        .data[[graph_df_colnames$line_name]] == rebound_segments$dinc  ~ rebound_stages$bar,
-        .data[[graph_df_colnames$line_name]] == rebound_segments$prod  ~ rebound_stages$tilde
+        .data[[graph_df_colnames$line_name]] == rebound_segments$dinc  ~ rebound_stages$hat,
+        .data[[graph_df_colnames$line_name]] == rebound_segments$prod  ~ rebound_stages$bar
       ), 
       # Eliminate unneeded columns
       "{graph_df_colnames$line_name}" := NULL,
