@@ -105,7 +105,7 @@ energy_paths <- function(.rebound_data,
                        x = x, y = y, xend = xend, yend = yend,
                        start_point = TRUE)
   
-  # Delta_E_dot_emb_star segment for energy graph (iempl)
+  # Delta_E_dot_emb_star segment for energy graph (emb)
   x <- xend
   y <- yend
   xend <- x
@@ -121,7 +121,7 @@ energy_paths <- function(.rebound_data,
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_md_star*I_E segment for energy graph (iempl)
+  # Delta_C_dot_md_star*I_E segment for energy graph (md)
   x <- xend
   y <- yend
   xend <- x
@@ -135,7 +135,8 @@ energy_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$md, 
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   # Substitution effect
   
@@ -153,7 +154,8 @@ energy_paths <- function(.rebound_data,
                 graph_type = graph_type,
                 segment_name = rebound_segments$isub,
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                start_point = TRUE)
 
   # Delta_E_dot_s_hat segment for energy graph (dsub)
   x <- xend
@@ -169,7 +171,8 @@ energy_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$dsub, 
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   # Income effect
   
@@ -187,7 +190,8 @@ energy_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$dinc, 
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                start_point = TRUE)
   
   # Delta_C_dot_o_bar*I_E segment for energy graph (iinc)
   x <- xend
@@ -203,7 +207,8 @@ energy_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$iinc, 
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   # Productivity effect (prod)
   x <- xend
@@ -220,8 +225,12 @@ energy_paths <- function(.rebound_data,
                 segment_name = rebound_segments$prod, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend,
-                end_arrow = TRUE)
+                start_point = TRUE, end_arrow = TRUE)
   
+  # Reverse the order of segments in the data frame so that
+  # arrows will lie upon following segments 
+  # when drawn tip-to-tail.
+  paths <- paths[nrow(paths):1, ]
   return(paths)
 }
 
@@ -324,7 +333,8 @@ cost_paths <- function(.rebound_data,
                 graph_type = graph_type,
                 segment_name = rebound_segments$md, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   # Substitution effect
   
@@ -342,7 +352,8 @@ cost_paths <- function(.rebound_data,
                 graph_type = graph_type,
                 segment_name = rebound_segments$isub, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                start_point = TRUE)
   
   # Delta_C_dot_s_hat segment for cost graph (dsub)
   x <- xend
@@ -358,7 +369,8 @@ cost_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$dsub, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   # Income effect
   
@@ -376,7 +388,8 @@ cost_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$dinc, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                start_point = TRUE)
   
   # Delta_C_dot_o_bar segment for cost graph (iinc)
   x <- xend
@@ -394,6 +407,10 @@ cost_paths <- function(.rebound_data,
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend, 
                 end_arrow = TRUE)
+  # Reverse the order of segments in the data frame so that
+  # arrows will lie upon following segments 
+  # when drawn tip-to-tail.
+  paths <- paths[nrow(paths):1, ]
   
   return(paths)
 }
@@ -476,7 +493,8 @@ prefs_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$dsub,
                 x_orig = x_star, y_orig = y_star, 
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                end_arrow = TRUE)
   
   # Income effect
   
@@ -494,7 +512,8 @@ prefs_paths <- function(.rebound_data,
                 graph_type = graph_type, 
                 segment_name = rebound_segments$dinc,
                 x_orig = x_star, y_orig = y_star, 
-                x = x, y = y, xend = xend, yend = yend)
+                x = x, y = y, xend = xend, yend = yend, 
+                start_point = TRUE)
   
   # Delta_C_dot_o_bar segment for prefs graph (iinc)
   x <- xend
@@ -512,6 +531,10 @@ prefs_paths <- function(.rebound_data,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend, 
                 end_arrow = TRUE)
+  # Reverse the order of segments in the data frame so that
+  # arrows will lie upon following segments 
+  # when drawn tip-to-tail.
+  paths <- paths[nrow(paths):1, ]
   
   return(paths)
 }
@@ -537,8 +560,8 @@ prefs_paths <- function(.rebound_data,
 #' @param colour The colour for this segment. Default is "black".
 #' @param size The size (width) for this segment. Default is `1`.
 #' @param linetype The line type for this segment. Default is "solid".
-#' @param start_point A boolean that tells whether this segment would be plotted with a starting point. Default is `FALSE`.
-#' @param end_arrow A boolean that tells whether this segment would be plotted with an ending arrow. Default is `FALSE`.
+#' @param start_point A boolean that tells whether this segment should be plotted with a starting point. Default is `FALSE`.
+#' @param end_arrow A boolean that tells whether this segment should be plotted with an ending arrow. Default is `FALSE`.
 #' @param x_orig,y_orig The (x,y) coordinates of the starting point for this path, 
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
@@ -588,3 +611,5 @@ add_segment <- function(.DF = NULL,
   .DF %>% 
     dplyr::bind_rows(out)
 }
+
+
