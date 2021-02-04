@@ -451,7 +451,7 @@
 #' \item{linejoin}{The line join style.}
 #' \item{linejoin}{The line join style.}
 #' \item{which_points}{A data frame telling which points to include in the graph.}
-#' \item{last_point}{Tells whether to show the last point. Overrides `which_points`.}
+#' \item{last_point}{Tells whether to show the last point in a path. Overrides `which_points`.}
 #' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
 #' \item{point_size}{The size for points between rebound effects. Default is `1`.}
 #' \item{point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}

@@ -185,6 +185,8 @@ rebound_graphs_helper <- function(.path_data,
     )
   if (!is.null(.points_data)) {
     .points_data <- .points_data %>% 
+      # Only show points for which start_point_col is TRUE.
+      dplyr::filter(.data[[graph_df_colnames$start_point_col]]) %>% 
       dplyr::mutate(
         "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
       )
@@ -228,31 +230,24 @@ rebound_graphs_helper <- function(.path_data,
   
   # If requested, add points between rebound effects as a third layer.
   if (!is.null(.points_data)) {
-    if (graph_params$show_points){
-      g <- g +
-        ggplot2::geom_point(data = .points_data %>% dplyr::filter(.data[[graph_df_colnames$start_point_col]]), # Only show points for which start_point_col is TRUE.
-                            mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
-                                                          y = graph_df_colnames$y_col,
-                                                          shape = graph_df_colnames$shape_col,
-                                                          size = graph_df_colnames$size_col,
-                                                          fill = graph_df_colnames$fill_col,
-                                                          stroke = graph_df_colnames$stroke_col,
-                                                          colour = graph_df_colnames$colour_col))
-    }
+    g <- g +
+      ggplot2::geom_point(data = .points_data,
+                          mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                        y = graph_df_colnames$y_col,
+                                                        shape = graph_df_colnames$shape_col,
+                                                        size = graph_df_colnames$size_col,
+                                                        fill = graph_df_colnames$fill_col,
+                                                        stroke = graph_df_colnames$stroke_col,
+                                                        colour = graph_df_colnames$colour_col))
+    
   }
   
   # Add rebound paths as fourth layer.
   # Use arrows, if requested.
-  if (graph_params$show_arrows) {
-    with_arrows <- .path_data %>% 
-      dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
-    without_arrows <- .path_data %>% 
-      dplyr::filter(! .data[[graph_df_colnames$end_arrow_col]])
-  } else {
-    with_arrows <- .path_data %>% 
-      dplyr::filter(FALSE)
-    without_arrows <- .path_data
-  }
+  with_arrows <- .path_data %>% 
+    dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
+  without_arrows <- .path_data %>% 
+    dplyr::filter(! .data[[graph_df_colnames$end_arrow_col]])
   # Segments without arrows
   g <- g +
     ggplot2::geom_segment(data = without_arrows, 

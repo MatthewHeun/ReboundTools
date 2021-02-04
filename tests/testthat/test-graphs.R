@@ -186,7 +186,8 @@ test_that("rebound_graphs_helper() works with a energy-only graph with grids", {
     energy_paths()
   abs_iso_grids <- rebound_data %>%
     iso_energy_lines()
-  abs_car_energy_graph <- rebound_graphs_helper(paths, abs_iso_grids) +
+  abs_car_energy_graph <- rebound_graphs_helper(.path_data = paths, 
+                                                .grid_data = abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free")
@@ -197,7 +198,8 @@ test_that("rebound_graphs_helper() works with a energy-only graph with grids", {
     energy_paths(indexed = TRUE)
   indexed_iso_grids <- rebound_data %>% 
     iso_energy_lines(indexed = TRUE)
-  indexed_car_energy_graph <- rebound_graphs_helper(indexed_paths, indexed_iso_grids) +
+  indexed_car_energy_graph <- rebound_graphs_helper(.path_data = indexed_paths, 
+                                                    .grid_data = indexed_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free")
@@ -214,7 +216,8 @@ test_that("rebound_graphs_helper() works with a cost-only graph with grids", {
     cost_paths()
   abs_iso_grids <- rebound_data %>% 
     iso_cost_lines()
-  abs_car_cost_graph <- rebound_graphs_helper(paths, abs_iso_grids) +
+  abs_car_cost_graph <- rebound_graphs_helper(.path_data = paths, 
+                                              .grid_data = abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") 
@@ -225,7 +228,8 @@ test_that("rebound_graphs_helper() works with a cost-only graph with grids", {
     cost_paths(indexed = TRUE)
   indexed_iso_grids <- rebound_data %>% 
     iso_cost_lines(indexed = TRUE)
-  indexed_car_cost_graph <- rebound_graphs_helper(indexed_paths, indexed_iso_grids) +
+  indexed_car_cost_graph <- rebound_graphs_helper(.path_data = indexed_paths, 
+                                                  .grid_data = indexed_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free")
@@ -242,7 +246,9 @@ test_that("rebound_graphs_helper() works with a preferences graph with grids for
   prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
   indiff_curve <- rebound_data %>% indifference_lines()
   
-  graph <- rebound_graphs_helper(prefs_paths, prefs_grid, indiff_curve) + 
+  graph <- rebound_graphs_helper(.path_data = prefs_paths, 
+                                 .grid_data = prefs_grid,
+                                 .indifference_data = indiff_curve) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 
@@ -261,7 +267,9 @@ test_that("rebound_graphs_helper() works with a preferences graph with grids for
   prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
   indiff_curve <- rebound_data %>% indifference_lines()
   
-  graph <- rebound_graphs_helper(prefs_paths, prefs_grid, indiff_curve) + 
+  graph <- rebound_graphs_helper(.path_data = prefs_paths, 
+                                 .grid_data = prefs_grid, 
+                                 .indifference_data = indiff_curve) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") + 

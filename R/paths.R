@@ -524,7 +524,6 @@ prefs_paths <- function(.rebound_data,
   # Add ending arrows to the paths data frame
   paths %>% 
     add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
-  return(paths)
 }
 
 

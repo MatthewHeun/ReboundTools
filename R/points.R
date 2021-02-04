@@ -33,27 +33,32 @@ extract_points <- function(.paths,
                            rebound_stages = ReboundTools::rebound_stages, 
                            rebound_segments = ReboundTools::rebound_segments,
                            graph_df_colnames = ReboundTools::graph_df_colnames) {
+  ls <- ".last_seg"
   lp <- ".last_point"
-  which_max <- max(which(rebound_segments %in% .paths[[graph_df_colnames$line_name_col]]))
-  last_seg <- rebound_segments[[which_max]]
+  # Find that last segement.
+  max_which <- max(which(rebound_segments %in% .paths[[graph_df_colnames$line_name_col]]))
+  last_seg <- rebound_segments[[max_which]]
   
+  # Set x and y of last point to xend and yend of last segment.
   last_point <- .paths %>% 
     dplyr::filter(.data[[graph_df_colnames$line_name_col]] == last_seg) %>% 
     dplyr::mutate(
       "{graph_df_colnames$x_col}" := NULL, 
       "{graph_df_colnames$y_col}" := NULL, 
-      "{graph_df_colnames$line_name_col}" := lp
+      "{graph_df_colnames$line_name_col}" := ls
     ) %>% 
     dplyr::rename(
       "{graph_df_colnames$x_col}" := .data[[graph_df_colnames$xend]], 
       "{graph_df_colnames$y_col}" := .data[[graph_df_colnames$yend]]
     )
+  # Get the other points.
   other_points <- .paths %>% 
     dplyr::mutate(
       "{graph_df_colnames$xend_col}" := NULL, 
       "{graph_df_colnames$yend_col}" := NULL
     )
   
+  # Add the last_point and other_points together and operate on them all.
   dplyr::bind_rows(last_point, other_points) %>% 
     dplyr::mutate(
       # Add point names based on line names
@@ -64,7 +69,7 @@ extract_points <- function(.paths,
         .data[[graph_df_colnames$line_name]] == rebound_segments$isub  ~ rebound_stages$star, 
         .data[[graph_df_colnames$line_name]] == rebound_segments$dinc  ~ rebound_stages$hat,
         .data[[graph_df_colnames$line_name]] == rebound_segments$prod  ~ rebound_stages$bar, 
-        .data[[graph_df_colnames$line_name]] == lp                     ~ rebound_stages$tilde, 
+        .data[[graph_df_colnames$line_name]] == ls                     ~ lp
       ), 
       # Eliminate unneeded columns
       "{graph_df_colnames$line_name_col}" := NULL,
@@ -73,13 +78,19 @@ extract_points <- function(.paths,
       "{graph_df_colnames$end_arrow_col}" := NULL
     ) %>% 
     dplyr::left_join(graph_params$which_points, by = graph_df_colnames$point_name_col) %>% 
-    # Add shape, size, fill, stroke, and colour for each point.
+    # Set the status of the last point.
     dplyr::mutate(
-      "{graph_df_colnames$shape_col}"  := graph_params$point_shape, 
-      "{graph_df_colnames$size_col}"   := graph_params$point_size, 
-      "{graph_df_colnames$stroke_col}" := graph_params$point_stroke, 
+      "{graph_df_colnames$start_point_col}" := dplyr::case_when(
+        .data[[graph_df_colnames$point_name_col]] == lp ~ graph_params$last_point,
+        TRUE ~ .data[[graph_df_colnames$start_point_col]]
+      ), 
+      # Add shape, size, fill, stroke, and colour for each point.
+      "{graph_df_colnames$shape_col}"  := graph_params$point_shape,
+      "{graph_df_colnames$size_col}"   := graph_params$point_size,
+      "{graph_df_colnames$stroke_col}" := graph_params$point_stroke,
       "{graph_df_colnames$fill_col}"   := .data[[graph_df_colnames$colour]]
     )
 }
+
 
 
