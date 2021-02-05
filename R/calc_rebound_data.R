@@ -879,12 +879,12 @@ calc_rebound <- function(.Deltas_data = NULL,
     # Emplacement effect rebound
     Re_empl_val <- Re_emb_val + Re_md_val
     
-    # Direct substitution effect rebound
-    Re_dsub_val <- Delta_E_dot_s_hat_val / S_dot_dev_val
-
     # Indirect substitution effect rebound
     Re_isub_val <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
 
+    # Direct substitution effect rebound
+    Re_dsub_val <- Delta_E_dot_s_hat_val / S_dot_dev_val
+    
     # Substitution effect rebound
     Re_sub_val = Re_dsub_val + Re_isub_val
     
@@ -917,8 +917,8 @@ calc_rebound <- function(.Deltas_data = NULL,
          Re_emb_val,
          Re_md_val,
          Re_empl_val,
-         Re_dsub_val,
          Re_isub_val,
+         Re_dsub_val,
          Re_sub_val,
          Re_dinc_val,
          Re_iinc_val,
@@ -931,8 +931,8 @@ calc_rebound <- function(.Deltas_data = NULL,
                             Re_emb,
                             Re_md,
                             Re_empl,
-                            Re_dsub,
                             Re_isub,
+                            Re_dsub,
                             Re_sub,
                             Re_dinc,
                             Re_iinc,

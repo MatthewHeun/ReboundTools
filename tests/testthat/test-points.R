@@ -32,12 +32,9 @@ test_that("extract_points() works as expected", {
   
   # Tilde point (after productivity effect)
   car_energy_points_tilde <- energy_points_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ReboundTools::rebound_stages$tilde)
-  # There is no tilde point.
-  expect_equal(nrow(car_energy_points_tilde), 0)
-  # If there were points, they would be this:
-  # expect_equal(car_energy_points_tilde$x, 45929.46762)
-  # expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
+    dplyr::filter(Case == "Car", graph_type == "Energy", point_name == ".last_point")
+  expect_equal(car_energy_points_tilde$x, 45929.46762)
+  expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
   
   # Check point colours
   expect_equal(car_energy_points_orig$colour %>% unique(), 
@@ -78,12 +75,10 @@ test_that("extract_points() works as expected", {
   
   # Bar point.
   car_cost_points_bar <- cost_points_abs %>% 
-    dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ReboundTools::rebound_stages$bar)
-  expect_equal(nrow(car_cost_points_bar), 0)
-  # There is not a bar point. 
-  # But if there were a bar point, it would have these values.
-  # expect_equal(car_cost_points_bar$x, 801.63336575829112007)
-  # expect_equal(car_cost_points_bar$y, 26599.644327271169459)
+    dplyr::filter(Case == "Car", graph_type == "Cost", point_name == ".last_point")
+  # There is not a bar point.  There is a "last_point"
+  expect_equal(car_cost_points_bar$x, 801.63336575829112007)
+  expect_equal(car_cost_points_bar$y, 26599.644327271169459)
   
 
   # Calculate preferences paths
@@ -106,12 +101,10 @@ test_that("extract_points() works as expected", {
   
   # bar point
   lamp_prefs_points_bar <- prefs_points %>% 
-    dplyr::filter(Case == "Lamp", graph_type == "Preferences", point_name == ReboundTools::rebound_stages$bar)
-  expect_equal(nrow(lamp_prefs_points_bar), 0)
-  # There is no bar point. 
-  # But if there were a bar point, it would be at this location.
-  # expect_equal(lamp_prefs_points_bar$x, 2.4354635233051604715)
-  # expect_equal(lamp_prefs_points_bar$y, 1.0002732430759311288)
+    dplyr::filter(Case == "Lamp", graph_type == "Preferences", point_name == ".last_point")
+  # There is not a bar point.  There is a "last_point"
+  expect_equal(lamp_prefs_points_bar$x, 2.4354635233051604715)
+  expect_equal(lamp_prefs_points_bar$y, 1.0002732430759311288)
   
 })
 
