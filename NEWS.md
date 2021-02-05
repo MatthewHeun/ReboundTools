@@ -1,10 +1,3 @@
-* New colors for graphs, using the Viridis palette.
-* Calculating hat point via new derivation that forces tangency with indifference curve.
-* New tests for new features.
-    - Now at 344 tests, all passing.
-    - Test coverage remains at 100%.
-
-
 # ReboundTools 0.1.9 (2021-01-17)
 
 * Added efficiency in engineering units (e.g., mpg) to stages table.
