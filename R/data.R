@@ -447,9 +447,6 @@
 #' @format A string list with `r length(default_graph_params)` entries.
 #' \describe{
 #' 
-#' \item{lineend}{The line end style.}
-#' \item{linejoin}{The line join style.}
-#' \item{linejoin}{The line join style.}
 #' \item{which_points}{A data frame telling which points to include in the graph.}
 #' \item{last_point}{Tells whether to show the last point in a path. Overrides `which_points`.}
 #' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
@@ -485,6 +482,15 @@
 #' \item{dinc_linetype}{The linetype for direct income lines.}
 #' \item{iinc_linetype}{The linetype for indirect income lines.}
 #' \item{prod_linetype}{The linetype for productivity lines.}
+#' \item{lineend}{The line end style.}
+#' \item{linejoin}{The line join style.}
+#' \item{reverse_path_drawing_order}{Tells whether to reverse the drawing order for paths. The default (`FALSE`)
+#'                                   draws emplacement on the bottom, followed by substitution, income, and productivity paths.
+#'                                   `TRUE` puts productivity paths on the bottom, followed by income, substitution, and
+#'                                   emplacement paths.
+#'                                   Setting `TRUE` produces attractive layering when many paths have arrows, because
+#'                                   arrows overlay their following points.}
+#' \item{points_atop_paths}{Tells whether to draw points above paths (`TRUE`) or beneath paths (`FALSE`). Default is `TRUE`.}
 #' \item{energy_grid_colour}{The colour for energy grid lines.}
 #' \item{zero_perc_rebound_grid_colour}{The colour for energy the 0% rebound lines.}
 #' \item{hundred_perc_rebound_grid_colour}{The colour for the 100% rebound lines.}

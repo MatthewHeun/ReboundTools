@@ -220,10 +220,12 @@ energy_paths <- function(.rebound_data,
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Reverse the order of segments in the data frame so that
-  # arrows will lie upon following segments 
-  # when drawn tip-to-tail.
-  paths <- paths[nrow(paths):1, ]
+  if (graph_params$reverse_path_drawing_order) {
+    # Reverse the order of segments in the data frame so that
+    # arrows will lie upon following segments 
+    # when drawn tip-to-tail.
+    paths <- paths[nrow(paths):1, ]
+  }
   # Add ending arrows to the paths data frame
   paths %>% 
     add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
@@ -396,10 +398,12 @@ cost_paths <- function(.rebound_data,
                 segment_name = rebound_segments$iinc, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
-  # Reverse the order of segments in the data frame so that
-  # arrows will lie upon following segments 
-  # when drawn tip-to-tail.
-  paths <- paths[nrow(paths):1, ]
+  if (graph_params$reverse_path_drawing_order) {
+    # Reverse the order of segments in the data frame so that
+    # arrows will lie upon following segments 
+    # when drawn tip-to-tail.
+    paths <- paths[nrow(paths):1, ]
+  }
   # Add ending arrows to the paths data frame
   paths %>% 
     add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
@@ -517,10 +521,12 @@ prefs_paths <- function(.rebound_data,
                 segment_name = rebound_segments$iinc,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
-  # Reverse the order of segments in the data frame so that
-  # arrows will lie upon following segments 
-  # when drawn tip-to-tail.
-  paths <- paths[nrow(paths):1, ]
+  if (graph_params$reverse_path_drawing_order) {
+    # Reverse the order of segments in the data frame so that
+    # arrows will lie upon following segments 
+    # when drawn tip-to-tail.
+    paths <- paths[nrow(paths):1, ]
+  }
   # Add ending arrows to the paths data frame
   paths %>% 
     add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)

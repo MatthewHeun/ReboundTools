@@ -230,16 +230,19 @@ rebound_graphs_helper <- function(.path_data,
   
   # If requested, add points between rebound effects as a third layer.
   if (!is.null(.points_data)) {
-    g <- g +
-      ggplot2::geom_point(data = .points_data,
-                          mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
-                                                        y = graph_df_colnames$y_col,
-                                                        shape = graph_df_colnames$shape_col,
-                                                        size = graph_df_colnames$size_col,
-                                                        fill = graph_df_colnames$fill_col,
-                                                        stroke = graph_df_colnames$stroke_col,
-                                                        colour = graph_df_colnames$colour_col))
-    
+    if (! graph_params$points_atop_paths) {
+      # Points are to be drawn beneath paths. 
+      # So add points now.
+      g <- g +
+        ggplot2::geom_point(data = .points_data,
+                            mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                          y = graph_df_colnames$y_col,
+                                                          shape = graph_df_colnames$shape_col,
+                                                          size = graph_df_colnames$size_col,
+                                                          fill = graph_df_colnames$fill_col,
+                                                          stroke = graph_df_colnames$stroke_col,
+                                                          colour = graph_df_colnames$colour_col))
+    }
   }
   
   # Add rebound paths as fourth layer.
@@ -274,6 +277,22 @@ rebound_graphs_helper <- function(.path_data,
                           linejoin = graph_params$linejoin, 
                           # Here, we include the arrow.
                           arrow = graph_params$arrow_style)
+  
+  if (!is.null(.points_data)) {
+    if (graph_params$points_atop_paths) {
+      # Points are to be drawn atop paths. 
+      # So add points as a final layer.
+      g <- g +
+        ggplot2::geom_point(data = .points_data,
+                            mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                          y = graph_df_colnames$y_col,
+                                                          shape = graph_df_colnames$shape_col,
+                                                          size = graph_df_colnames$size_col,
+                                                          fill = graph_df_colnames$fill_col,
+                                                          stroke = graph_df_colnames$stroke_col,
+                                                          colour = graph_df_colnames$colour_col))
+    }
+  }
   
   g +  
     # Use the colour, size, linetype, and shape columns/data directly.

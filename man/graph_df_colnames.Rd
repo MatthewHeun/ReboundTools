@@ -3,7 +3,7 @@
 \docType{data}
 \name{graph_df_colnames}
 \alias{graph_df_colnames}
-\title{Graph data frame columns}
+\title{Names of graph data frame columns}
 \format{
 A string list with 21 entries.
 \describe{

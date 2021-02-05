@@ -360,9 +360,7 @@ arr_style <- grid::arrow(angle = 20,
                          length = grid::unit(0.1, "inches"),
                          type = "closed")
 
-default_graph_params <- list(lineend = "round", 
-                             linejoin = "round",
-
+default_graph_params <- list(# Points on paths
                              which_points = tibble::tibble("{graph_df_colnames$point_name_col}" := unlist(rebound_stages), 
                                                            "{graph_df_colnames$start_point_col}" := c(TRUE, TRUE, TRUE, TRUE, FALSE)),
                              last_point = FALSE,
@@ -370,11 +368,13 @@ default_graph_params <- list(lineend = "round",
                              point_size = 1,
                              point_stroke = 1,
 
+                             # Arrows on paths
                              which_arrows = tibble::tibble("{graph_df_colnames$line_name_col}" := unlist(rebound_segments), 
                                                            "{graph_df_colnames$end_arrow_col}" := c(rep.int(FALSE, 8), FALSE)),
                              last_arrow = TRUE,
                              arrow_style = arr_style,
 
+                             # Path colours
                              dempl_colour = empl_colour, 
                              emb_colour = "black",
                              cap_colour = "black",
@@ -385,7 +385,7 @@ default_graph_params <- list(lineend = "round",
                              iinc_colour = inc_colour, 
                              prod_colour = prod_colour, 
                              
-                             # Line width specifications
+                             # Path line widths
                              dempl_size = 0.5, 
                              emb_size = 0.3,
                              cap_size = 0.3,
@@ -396,6 +396,7 @@ default_graph_params <- list(lineend = "round",
                              iinc_size = 1, 
                              prod_size = 1,
                              
+                             # Path linetypes
                              dempl_linetype = "solid",
                              emb_linetype = "dotted",
                              cap_linetype = "dotted",
@@ -406,6 +407,19 @@ default_graph_params <- list(lineend = "round",
                              iinc_linetype = "solid", 
                              prod_linetype = "solid",
                              
+                             # Path line end and join
+                             lineend = "round", 
+                             linejoin = "round",
+                             
+                             # Layering controls
+                             
+                             # Set order for paths drawn in same layer
+                             reverse_path_drawing_order = FALSE,
+                             # Draw points on top of paths (or not)
+                             points_atop_paths = TRUE,
+                             
+                             
+                             # Grid line colours
                              energy_grid_colour = "darkgray",
                              zero_perc_rebound_grid_colour = "darkgray",
                              hundred_perc_rebound_grid_colour = "darkgray",
@@ -415,6 +429,7 @@ default_graph_params <- list(lineend = "round",
                              prefs_ray_colour = "darkgray",
                              prefs_indiff_grid_colour = "darkgray",
                              
+                             # Grid line sizes
                              energy_grid_size = 0.1,
                              zero_perc_rebound_grid_size = 0.5,
                              hundred_perc_rebound_grid_size = 0.5,
@@ -424,6 +439,7 @@ default_graph_params <- list(lineend = "round",
                              prefs_ray_size = 0.1,
                              prefs_indiff_grid_size = 1,
                              
+                             # Grid line types
                              energy_grid_linetype = "solid",
                              zero_perc_rebound_grid_linetype = "solid",
                              hundred_perc_rebound_grid_linetype = "solid",
