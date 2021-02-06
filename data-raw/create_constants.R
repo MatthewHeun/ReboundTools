@@ -347,7 +347,7 @@ usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 # These colours are obtained from the viridis colour scale
 
-v_colours <- viridis::viridis(4, option = "plasma", end = 0.95)
+v_colours <- viridis::viridis(4, option = "plasma", begin = 0.01, end = 0.95)
 # v_colours <- viridis::viridis(4, direction = -1)
 # v_colours <- viridis::viridis(4, direction = -1, end = 0.93)
 # v_colours <- viridis::viridis(4, direction = -1, end = 0.85)
@@ -398,8 +398,8 @@ default_graph_params <- list(# Points on paths
                              
                              # Path linetypes
                              dempl_linetype = "solid",
-                             emb_linetype = "11",
-                             cap_linetype = "11",
+                             emb_linetype = "dotted",
+                             cap_linetype = "dotted",
                              md_linetype = "solid", 
                              dsub_linetype = "solid",
                              isub_linetype = "solid", 
