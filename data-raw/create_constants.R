@@ -347,7 +347,7 @@ usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 # These colours are obtained from the viridis colour scale
 
-v_colours <- viridis::viridis(4)
+v_colours <- viridis::viridis(4, option = "plasma", end = 0.95)
 # v_colours <- viridis::viridis(4, direction = -1)
 # v_colours <- viridis::viridis(4, direction = -1, end = 0.93)
 # v_colours <- viridis::viridis(4, direction = -1, end = 0.85)
@@ -376,8 +376,8 @@ default_graph_params <- list(# Points on paths
 
                              # Path colours
                              dempl_colour = empl_colour, 
-                             emb_colour = "black",
-                             cap_colour = "black",
+                             emb_colour = empl_colour,
+                             cap_colour = empl_colour,
                              md_colour = empl_colour, 
                              dsub_colour = sub_colour,
                              isub_colour = sub_colour, 
@@ -386,9 +386,9 @@ default_graph_params <- list(# Points on paths
                              prod_colour = prod_colour, 
                              
                              # Path line widths
-                             dempl_size = 0.5, 
-                             emb_size = 0.3,
-                             cap_size = 0.3,
+                             dempl_size = 1, 
+                             emb_size = 1.5,
+                             cap_size = 1.5,
                              md_size = 1, 
                              dsub_size = 1,
                              isub_size = 1, 
@@ -398,8 +398,8 @@ default_graph_params <- list(# Points on paths
                              
                              # Path linetypes
                              dempl_linetype = "solid",
-                             emb_linetype = "dotted",
-                             cap_linetype = "dotted",
+                             emb_linetype = "11",
+                             cap_linetype = "11",
                              md_linetype = "solid", 
                              dsub_linetype = "solid",
                              isub_linetype = "solid", 
