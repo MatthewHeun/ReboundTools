@@ -5,7 +5,7 @@
 \alias{default_graph_params}
 \title{Graph parameters}
 \format{
-A string list with 66 entries.
+A string list with 67 entries.
 \describe{
 
 \item{which_points}{A data frame telling which points to include in the graph.}

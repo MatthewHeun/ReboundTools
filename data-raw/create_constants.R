@@ -418,6 +418,8 @@ default_graph_params <- list(# Points on paths
                              # Draw points on top of paths (or not)
                              points_atop_paths = TRUE,
                              
+                             # Decoration annotation colours
+                             annotation_text_colour = "black",
                              
                              # Grid line colours
                              energy_grid_colour = "darkgray",
@@ -430,13 +432,13 @@ default_graph_params <- list(# Points on paths
                              prefs_indiff_grid_colour = "darkgray",
                              
                              # Grid line sizes
-                             energy_grid_size = 0.1,
+                             energy_grid_size = 0.2,
                              zero_perc_rebound_grid_size = 0.5,
                              hundred_perc_rebound_grid_size = 0.5,
-                             energy_rebound_lines_size = 0.1,
+                             energy_rebound_lines_size = 0.2,
                              cost_grid_size = 0.5,
-                             prefs_grid_size = 0.1,
-                             prefs_ray_size = 0.1,
+                             prefs_grid_size = 0.2,
+                             prefs_ray_size = 0.2,
                              prefs_indiff_grid_size = 1,
                              
                              # Grid line types
