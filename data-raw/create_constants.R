@@ -398,8 +398,8 @@ default_graph_params <- list(# Points on paths
                              
                              # Path linetypes
                              dempl_linetype = "solid",
-                             emb_linetype = "dotted",
-                             cap_linetype = "dotted",
+                             emb_linetype = "11",
+                             cap_linetype = "11",
                              md_linetype = "solid", 
                              dsub_linetype = "solid",
                              isub_linetype = "solid", 

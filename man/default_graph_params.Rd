@@ -52,6 +52,7 @@ emplacement paths.
 Setting \code{TRUE} produces attractive layering when many paths have arrows, because
 arrows overlay their following points.}
 \item{points_atop_paths}{Tells whether to draw points above paths (\code{TRUE}) or beneath paths (\code{FALSE}). Default is \code{TRUE}.}
+\item{annotation_text_colour}{Sets the colour of text annotations on graphs.}
 \item{energy_grid_colour}{The colour for energy grid lines.}
 \item{zero_perc_rebound_grid_colour}{The colour for energy the 0\% rebound lines.}
 \item{hundred_perc_rebound_grid_colour}{The colour for the 100\% rebound lines.}
