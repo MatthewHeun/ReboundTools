@@ -1,3 +1,5 @@
+# ReboundTools 0.1.10 (2021-02-09)
+
 * New colors for graphs, using the Viridis palette, plasma option.
 * Now allowing an approximation for the substitution effect.
   New argument `use_sub_approx` triggers the approximation
