@@ -109,9 +109,9 @@ rebound_graphs <- function(.analysis_data,
     if (indexed) {
       g <- g +
         # Horizontal axis label E_dot_dir/E_dot_dir_orig
-        ggplot2::xlab(expression(dot(E)[dir] / dot(E)[dir]^scriptscriptstyle(o) * " [-]")) + 
+        ggplot2::xlab(expression(dot(E)[dir] / dot(E)[dir]^degree * " [-]")) + 
         # Vertical axis label is E_dot_indir/E_dot_indir_orig
-        ggplot2::ylab(expression(dot(E)[indir] / dot(E)[indir]^scriptscriptstyle(o) * " [-]"))
+        ggplot2::ylab(expression(dot(E)[indir] / dot(E)[indir]^degree * " [-]"))
     } else {
       g <- g +
         # Horizontal axis label E_dot_dir [MJ/year]
@@ -124,9 +124,9 @@ rebound_graphs <- function(.analysis_data,
     if (indexed) {
       g <- g +
         # Horizontal axis label C_dot_dir/C_dot_dir_orig
-        ggplot2::xlab(expression(dot(C)[dir] / dot(C)[dir]^scriptscriptstyle(o) * " [-]")) + 
+        ggplot2::xlab(expression(dot(C)[dir] / dot(C)[dir]^degree * " [-]")) + 
         # Vertical axis label is E_dot_indir/E_dot_indir_orig
-        ggplot2::ylab(expression(dot(C)[indir] / dot(C)[indir]^scriptscriptstyle(o) * " [-]"))
+        ggplot2::ylab(expression(dot(C)[indir] / dot(C)[indir]^degree * " [-]"))
     } else {
       g <- g +
         # Horizontal axis label C_dot_dir [$/year]
@@ -139,9 +139,9 @@ rebound_graphs <- function(.analysis_data,
     # Preferences graphs are always indexed
     g <- g +
       # Horizontal axis label q_dot_s/q_dot_s_orig
-      ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^scriptscriptstyle(o) * " [-]")) + 
+      ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^degree * " [-]")) + 
       # Vertical axis label is C_dot_o/C_dot_o_orig
-      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^scriptscriptstyle(o) * " [-]"))
+      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^degree * " [-]"))
   } 
   
   return(g)
