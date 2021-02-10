@@ -12,6 +12,8 @@ rebound_graphs(
   grid_types = ReboundTools::graph_types,
   graph_params = ReboundTools::default_graph_params,
   case_colname = ReboundTools::eeu_base_params$case,
+  rebound_stages = ReboundTools::rebound_stages,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
@@ -31,6 +33,10 @@ Default is \code{ReboundTools::default_graph_params}, which can be
 modified and passed as an argument to control graph appearance.}
 
 \item{case_colname}{The name of the Case column in \code{.rebound_data}. Default is \code{ReboundTools::eeu_base_params$case}.}
+
+\item{rebound_stages}{See \code{ReboundTools::rebound_stages}.}
+
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
 
 \item{graph_df_colnames}{The names of column names in data frames of graph data. Default is \code{ReboundTools::graph_df_colnames}.}
 }

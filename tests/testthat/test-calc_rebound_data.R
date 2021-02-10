@@ -89,11 +89,11 @@ test_that("calc_star() works as expected", {
 })
 
 
-test_that("calc_hat() works as expected", {
+test_that("calc_hat(use_sub_approx = TRUE) works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat()
+    calc_hat(use_sub_approx = TRUE)
 
   expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[1]], 42)
   expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[2]], 81800)
@@ -136,11 +136,58 @@ test_that("calc_hat() works as expected", {
 })
 
 
-test_that("calc_bar() works as expected", {
+test_that("calc_hat(use_sub_approx = FALSE) works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat() %>% 
+    calc_hat()
+  
+  expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[1]], 42)
+  expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[2]], 81800)
+  
+  expect_equal(res[[ReboundTools::hat_vars$eta_hat]][[1]], 0.33169688306808242650)
+  expect_equal(res[[ReboundTools::hat_vars$eta_hat]][[2]], 22722.222222222)
+  
+  expect_equal(res[[ReboundTools::hat_vars$p_s_hat]][[1]], 0.05261904761904762085)
+  expect_equal(res[[ReboundTools::hat_vars$p_s_hat]][[2]], 0.00000165647921760391)
+  
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_cap_hat]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_cap_hat]][[2]], 0.121)
+  
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_md_hat]][[1]], 2774.66812079094552245806)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_md_hat]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::hat_vars$E_dot_emb_hat]][[1]], 2857.14285714285733774886)
+  expect_equal(res[[ReboundTools::hat_vars$E_dot_emb_hat]][[2]], 0.65)
+  
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat]][[1]], 27401.27769302945671370253)
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat]][[2]], 27401.27769302945671370253)
+  
+  expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[1]], 14714.737165590910081)
+  expect_equal(res[[ReboundTools::hat_vars$q_dot_s_hat]][[2]], 1412809.7362985264044)
+  
+  expect_equal(res[[ReboundTools::hat_vars$E_dot_s_hat]][[1]], 44362.000117350027722)
+  expect_equal(res[[ReboundTools::hat_vars$E_dot_s_hat]][[2]], 62.177445607270108496)
+  
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_s_hat]][[1]], 774.27545561799786356)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_s_hat]][[2]], 2.340289966606972083)
+  
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_o_hat]][[1]], 19214.157294673186698)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_o_hat]][[2]], 27386.961239397664031)
+  
+  expect_equal(res[[ReboundTools::hat_vars$N_dot_hat]][[1]], 706.26253623304467055)
+  expect_equal(res[[ReboundTools::hat_vars$N_dot_hat]][[2]], 11.855163665186063682)
+  
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat_prime]][[1]], 19988.432750291183766)
+  expect_equal(res[[ReboundTools::hat_vars$M_dot_hat_prime]][[2]], 27389.301529364271119)
+})
+
+
+test_that("calc_bar() works as expected with approximated hat", {
+  res <- load_eeu_data() %>% 
+    calc_orig() %>% 
+    calc_star() %>% 
+    calc_hat(use_sub_approx = TRUE) %>% 
     calc_bar()
   
   expect_equal(res[[ReboundTools::bar_vars$eta_engr_units_bar]][[1]], 42)
@@ -181,11 +228,11 @@ test_that("calc_bar() works as expected", {
 })
 
 
-test_that("calc_tilde() works as expected", {
+test_that("calc_tilde() works as expected with approximated hat", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat() %>% 
+    calc_hat(use_sub_approx = TRUE) %>% 
     calc_bar() %>% 
     calc_tilde()
 
@@ -227,11 +274,11 @@ test_that("calc_tilde() works as expected", {
 })
 
 
-test_that("calc_Deltas() works as expected", {
+test_that("calc_Deltas() works as expected with approximated hat", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat() %>% 
+    calc_hat(use_sub_approx = TRUE) %>% 
     calc_bar() %>% 
     calc_tilde() %>% 
     calc_Deltas()
@@ -252,11 +299,11 @@ test_that("calc_Deltas() works as expected", {
 })
 
 
-test_that("calc_rebound() works as expected", {
+test_that("calc_rebound() works as expected with approximated hat", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat() %>% 
+    calc_hat(use_sub_approx = TRUE) %>% 
     calc_bar() %>% 
     calc_tilde() %>% 
     calc_Deltas() %>% 

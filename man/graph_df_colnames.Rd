@@ -3,9 +3,9 @@
 \docType{data}
 \name{graph_df_colnames}
 \alias{graph_df_colnames}
-\title{Graph data frame columns}
+\title{Names of graph data frame columns}
 \format{
-A string list with 17 entries.
+A string list with 21 entries.
 \describe{
 \item{colour_col}{The name of the column containing line colours.}
 \item{size_col}{The name of the column containing line sizes (widths).}

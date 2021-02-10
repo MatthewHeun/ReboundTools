@@ -1,3 +1,17 @@
+# ReboundTools 0.1.10 (2021-02-09)
+
+* New colors for graphs, using the Viridis palette, plasma option.
+* Now allowing an approximation for the substitution effect.
+  New argument `use_sub_approx` triggers the approximation
+  and is set `FALSE` in several places.
+* Calculating hat point (after substitution effect)
+  via new derivation that ensures expenditure line is tangent to indifference curve.
+* Fixed a bug that swapped order of energy and cost path graphs.
+* New tests for new features.
+    - Now at 412 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.9 (2021-01-17)
 
 * Added efficiency in engineering units (e.g., mpg) to stages table.

@@ -9,6 +9,8 @@
 #'                     Default is `ReboundTools::default_graph_params`, which can be 
 #'                     modified and passed as an argument to control graph appearance.
 #' @param case_colname The name of the Case column in `.rebound_data`. Default is `ReboundTools::eeu_base_params$case`.
+#' @param rebound_stages See `ReboundTools::rebound_stages`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_df_colnames The names of column names in data frames of graph data. Default is `ReboundTools::graph_df_colnames`.
 #'  
 #' @return A `ggplot2` object with the graphs
@@ -26,6 +28,8 @@ rebound_graphs <- function(.analysis_data,
                            grid_types = ReboundTools::graph_types,
                            graph_params = ReboundTools::default_graph_params, 
                            case_colname = ReboundTools::eeu_base_params$case, 
+                           rebound_stages = ReboundTools::rebound_stages,
+                           rebound_segments = ReboundTools::rebound_segments,
                            graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   cases <- match.arg(cases, several.ok = TRUE)
@@ -44,6 +48,26 @@ rebound_graphs <- function(.analysis_data,
     prefs_paths(graph_params = graph_params)
   # Bundle all paths together
   paths <- dplyr::bind_rows(e_paths, c_paths, p_paths) %>% 
+    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
+  
+  # Extract points between rebound effects
+  e_points <- e_paths %>% 
+    extract_points(graph_params = graph_params, 
+                   rebound_stages = rebound_stages, 
+                   rebound_segments = rebound_segments, 
+                   graph_df_colnames = graph_df_colnames)
+  c_points <- c_paths %>% 
+    extract_points(graph_params = graph_params, 
+                   rebound_stages = rebound_stages, 
+                   rebound_segments = rebound_segments, 
+                   graph_df_colnames = graph_df_colnames)
+  p_points <- p_paths %>% 
+    extract_points(graph_params = graph_params, 
+                   rebound_stages = rebound_stages, 
+                   rebound_segments = rebound_segments, 
+                   graph_df_colnames = graph_df_colnames)
+  # Bundle all points together
+  points <- dplyr::bind_rows(e_points, c_points, p_points) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
 
   # Calculate energy, cost, and preferences grids/guide lines
@@ -66,6 +90,7 @@ rebound_graphs <- function(.analysis_data,
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
   
   g <- rebound_graphs_helper(.path_data = paths, 
+                             .points_data = points,
                              .grid_data = grids, 
                              .indifference_data = indifference_curves, 
                              graph_params = graph_params)
@@ -130,6 +155,7 @@ rebound_graphs <- function(.analysis_data,
 #' 
 #' @param .path_data A data frame of paths to be added to the graph. 
 #'                   The columns "colour" and "size" control the colour and width of the segment
+#' @param .points_data A data frame of points between rebound effects.
 #' @param .grid_data A data frame of lines to be added to the graph.
 #' @param .indifference_data A data frame of indifference curves to be added to the graph.
 #' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::default_graph_params`.
@@ -146,11 +172,38 @@ rebound_graphs <- function(.analysis_data,
 #'   energy_paths() %>% 
 #'   rebound_graphs_helper()
 rebound_graphs_helper <- function(.path_data, 
+                                  .points_data = NULL,
                                   .grid_data = NULL, 
                                   .indifference_data = NULL, 
                                   graph_params = ReboundTools::default_graph_params,
                                   graph_types = ReboundTools::graph_types,
                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
+  # Set the order of the graph types via a factor. 
+  .path_data <- .path_data %>% 
+    dplyr::mutate(
+      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+    )
+  if (!is.null(.points_data)) {
+    .points_data <- .points_data %>% 
+      # Only show points for which start_point_col is TRUE.
+      dplyr::filter(.data[[graph_df_colnames$start_point_col]]) %>% 
+      dplyr::mutate(
+        "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+      )
+  }
+  if (!is.null(.grid_data)) {
+    .grid_data <- .grid_data %>% 
+      dplyr::mutate(
+        "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+      )
+  }
+  if (!is.null(.indifference_data)) {
+    .indifference_data <- .indifference_data %>% 
+      dplyr::mutate(
+        "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
+      )
+  }
+  
   g <- ggplot2::ggplot()
   # Add grid data as first layer
   if (!is.null(.grid_data)) {
@@ -163,24 +216,7 @@ rebound_graphs_helper <- function(.path_data,
                                                          intercept =graph_df_colnames$ intercept_col))
   }
   
-  # Set the order of the graph types via a factor. 
-  .path_data <- .path_data %>% 
-  dplyr::mutate(
-    "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-  )
-  if (!is.null(.grid_data)) {
-    .grid_data <- .grid_data %>% 
-    dplyr::mutate(
-      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-    )
-  }
-  if (!is.null(.indifference_data)) {
-    .indifference_data <- .indifference_data %>% 
-    dplyr::mutate(
-      "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
-    )
-  }
-
+  # Add indifference curve as a 2nd layer.
   if (!is.null(.indifference_data)) {
     g <- g + 
       ggplot2::geom_line(data = .indifference_data, 
@@ -192,9 +228,32 @@ rebound_graphs_helper <- function(.path_data,
                                                        linetype = graph_df_colnames$linetype_col))
   }
   
-  # Add rebound paths as third layer
+  # If requested, add points between rebound effects as a third layer.
+  if (!is.null(.points_data)) {
+    if (! graph_params$points_atop_paths) {
+      # Points are to be drawn beneath paths. 
+      # So add points now.
+      g <- g +
+        ggplot2::geom_point(data = .points_data,
+                            mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                          y = graph_df_colnames$y_col,
+                                                          shape = graph_df_colnames$shape_col,
+                                                          size = graph_df_colnames$size_col,
+                                                          fill = graph_df_colnames$fill_col,
+                                                          stroke = graph_df_colnames$stroke_col,
+                                                          colour = graph_df_colnames$colour_col))
+    }
+  }
+  
+  # Add rebound paths as fourth layer.
+  # Use arrows, if requested.
+  with_arrows <- .path_data %>% 
+    dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
+  without_arrows <- .path_data %>% 
+    dplyr::filter(! .data[[graph_df_colnames$end_arrow_col]])
+  # Segments without arrows
   g <- g +
-    ggplot2::geom_segment(data = .path_data, 
+    ggplot2::geom_segment(data = without_arrows, 
                           mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
                                                         size = graph_df_colnames$size_col,
                                                         linetype = graph_df_colnames$linetype_col,
@@ -202,70 +261,44 @@ rebound_graphs_helper <- function(.path_data,
                                                         y = graph_df_colnames$y_col, 
                                                         xend = graph_df_colnames$xend_col, 
                                                         yend = graph_df_colnames$yend_col), 
-                          lineend = graph_params$lineend, linejoin = graph_params$linejoin)
-    
-  # Add an opening point if requested
-  if (graph_params$include_start_point) {
-    # Figure out which .path_data to keep
-    start_segments <- .path_data %>% 
-      dplyr::filter(.data[[graph_df_colnames$start_point_col]])
-    # Plot points at the start of those segments, using the x_col and y_col 
-    # columns in start_segments.
-    g <- g +
-      ggplot2::geom_point(data = start_segments, 
+                          lineend = graph_params$lineend, 
+                          linejoin = graph_params$linejoin)
+  # Segments with arrows
+  g <- g +
+    ggplot2::geom_segment(data = with_arrows, 
                           mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
+                                                        size = graph_df_colnames$size_col,
+                                                        linetype = graph_df_colnames$linetype_col,
                                                         x = graph_df_colnames$x_col, 
                                                         y = graph_df_colnames$y_col, 
-                                                        size = graph_params$start_point_size, 
-                                                        shape = graph_params$start_point_shape))
+                                                        xend = graph_df_colnames$xend_col, 
+                                                        yend = graph_df_colnames$yend_col), 
+                          lineend = graph_params$lineend, 
+                          linejoin = graph_params$linejoin, 
+                          # Here, we include the arrow.
+                          arrow = graph_params$arrow_style)
+  
+  if (!is.null(.points_data)) {
+    if (graph_params$points_atop_paths) {
+      # Points are to be drawn atop paths. 
+      # So add points as a final layer.
+      g <- g +
+        ggplot2::geom_point(data = .points_data,
+                            mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
+                                                          y = graph_df_colnames$y_col,
+                                                          shape = graph_df_colnames$shape_col,
+                                                          size = graph_df_colnames$size_col,
+                                                          fill = graph_df_colnames$fill_col,
+                                                          stroke = graph_df_colnames$stroke_col,
+                                                          colour = graph_df_colnames$colour_col))
+    }
   }
   
-  if (graph_params$include_end_arrow) {
-    # Add ending arrow
-    # For this one, we simply re-plot the segment, this time with an arrow.
-    end_arrows <- .path_data %>% 
-      dplyr::filter(.data[[graph_df_colnames$end_arrow_col]])
-    g <- g + 
-      ggplot2::geom_segment(data = end_arrows,
-                            mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-                                                          size = graph_df_colnames$size_col,
-                                                          linetype = graph_df_colnames$linetype_col,
-                                                          x = graph_df_colnames$x_col, 
-                                                          y = graph_df_colnames$y_col, 
-                                                          xend = graph_df_colnames$xend_col, 
-                                                          yend = graph_df_colnames$yend_col), 
-                            lineend = graph_params$lineend, 
-                            linejoin = graph_params$linejoin,
-                            arrow = grid::arrow(angle = graph_params$arrow_angle, 
-                                                length = graph_params$arrow_length,
-                                                type = graph_params$arrow_type))
-  }
-
   g +  
     # Use the colour, size, linetype, and shape columns/data directly.
     ggplot2::scale_colour_identity() + 
     ggplot2::scale_size_identity() + 
     ggplot2::scale_linetype_identity() + 
-    ggplot2::scale_shape_identity()
+    ggplot2::scale_shape_identity() + 
+    ggplot2::scale_fill_identity()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
