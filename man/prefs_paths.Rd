@@ -14,7 +14,8 @@ prefs_paths(
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ likely created by \code{rebound_analysis()}.}
 \item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
 
 \item{Delta_q_dot_s_hat, Delta_C_dot_o_hat, Delta_q_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
+\item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A data frame of information for creating preference graphs.

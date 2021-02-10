@@ -52,10 +52,6 @@ used for indexing.}
 
 \item{graph_df_colnames}{A list of column names to use throughout the package.
 Default is \code{ReboundTools::graph_df_colnames}.}
-
-\item{start_point}{A boolean that tells whether this segment should be plotted with a starting point. Default is \code{FALSE}.}
-
-\item{end_arrow}{A boolean that tells whether this segment should be plotted with an ending arrow. Default is \code{FALSE}.}
 }
 \value{
 A version of \code{.DF} with line segments added at the bottom.

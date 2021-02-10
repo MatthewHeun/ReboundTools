@@ -1,9 +1,9 @@
-* New colors for graphs, using the Viridis palette.
+* New colors for graphs, using the Viridis palette, plasma option.
 * Now allowing an approximation for the substitution effect.
   New argument `use_sub_approx` triggers the approximation
   and is set `FALSE` in several places.
 * Calculating hat point (after substitution effect)
-  via new derivation that ensures expenditure line to be tangent to indifference curve.
+  via new derivation that ensures expenditure line is tangent to indifference curve.
 * Fixed a bug that swapped order of energy and cost path graphs.
 * New tests for new features.
     - Now at 402 tests, all passing.

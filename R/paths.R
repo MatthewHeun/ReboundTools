@@ -43,6 +43,7 @@ extract_meta <- function(.rebound_data,
 #' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with energy rebound path segments.
 #' 
@@ -76,7 +77,9 @@ energy_paths <- function(.rebound_data,
                          N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                          
                          Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
-                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar) {
+                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar, 
+                         
+                         graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # A metadata data frame for all these segments
   meta <- extract_meta(.rebound_data)
@@ -247,6 +250,7 @@ energy_paths <- function(.rebound_data,
 #' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
 #' @param Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with cost rebound path segments.
 #' 
@@ -274,7 +278,9 @@ cost_paths <- function(.rebound_data,
                        Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                        Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-                       Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar) {
+                       Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar, 
+                       
+                       graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # The strategy here is to make each segment individually, 
   # starting from the original point, and using Deltas for everything else.
@@ -404,7 +410,7 @@ cost_paths <- function(.rebound_data,
     # when drawn tip-to-tail.
     paths <- paths[nrow(paths):1, ]
   }
-  # Add ending arrows to the paths data frame
+  # Add ending arrows to the paths data frame and return
   paths %>% 
     add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
 }
@@ -425,6 +431,7 @@ cost_paths <- function(.rebound_data,
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #'
 #' @return A data frame of information for creating preference graphs.
 #' 
@@ -445,7 +452,9 @@ prefs_paths <- function(.rebound_data,
                         Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
                         Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                         Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar) {
+                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                        
+                        graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # A metadata data frame for all these segments
   meta <- extract_meta(.rebound_data)
@@ -553,8 +562,6 @@ prefs_paths <- function(.rebound_data,
 #' @param colour The colour for this segment. Default is "black".
 #' @param size The size (width) for this segment. Default is `1`.
 #' @param linetype The line type for this segment. Default is "solid".
-#' @param start_point A boolean that tells whether this segment should be plotted with a starting point. Default is `FALSE`.
-#' @param end_arrow A boolean that tells whether this segment should be plotted with an ending arrow. Default is `FALSE`.
 #' @param x_orig,y_orig The (x,y) coordinates of the starting point for this path, 
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
@@ -604,7 +611,18 @@ add_segment <- function(.DF = NULL,
 }
 
 
-add_arrows <- function(.paths, graph_params, graph_df_colnames) {
+#' Add arrow descriptions to a paths data frame
+#'
+#' @param .paths The data frame to which arrows should be added.
+#' @param graph_params See `ReboundTools::default_graph_params`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
+#'
+#' @return A version of `.paths` with a column for arrow descriptions.
+#' 
+#' @export
+add_arrows <- function(.paths, graph_params, graph_df_colnames, 
+                       rebound_segments = ReboundTools::rebound_segments) {
   which_max <- max(which(rebound_segments %in% .paths[[graph_df_colnames$line_name_col]]))
   last_seg <- rebound_segments[[which_max]]
   
