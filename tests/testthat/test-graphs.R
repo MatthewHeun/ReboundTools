@@ -292,6 +292,17 @@ test_that("graphs work without arrows", {
   expect_true(!is.null(graphs_car_energy))
   expect_equal(graphs_car_energy$plot_env$.path_data$Case %>% unique(), "Car")
   expect_equal(graphs_car_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
-  
 })
 
+
+test_that("points_atop_paths works as expected", {
+  points_beneath_paths <- ReboundTools::default_graph_params
+  points_beneath_paths$points_atop_paths <- FALSE
+  # Try with only one case, Car Energy
+  graphs_car_energy <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    rebound_graphs(cases = "Car", 
+                   graph_types = "Energy", 
+                   graph_params = points_beneath_paths)
+  expect_true(!is.null(graphs_car_energy))
+})

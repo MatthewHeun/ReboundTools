@@ -115,3 +115,74 @@ test_that("add_segment() works as expected", {
   expect_equal(res3$yend, c(50, 5, 6))
 })
 
+
+test_that("energy path creation works with reverse drawing order", {
+  reverse_order <- ReboundTools::default_graph_params
+  expect_false(reverse_order$reverse_path_drawing_order)
+  reverse_order$reverse_path_drawing_order <- TRUE
+  
+  ep <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    energy_paths()
+  
+  expected <- ReboundTools::rebound_segments
+  expected$cap <- NULL
+  expected <- expected %>% unlist() %>% unname()
+  expect_equal(ep$line_name %>% unique(), expected)
+  
+  
+  ep_rev <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    energy_paths(graph_params = reverse_order)
+  expect_equal(ep_rev$line_name %>% unique(), rev(expected))
+})
+
+
+test_that("cost path creation works with reverse drawing order", {
+  reverse_order <- ReboundTools::default_graph_params
+  expect_false(reverse_order$reverse_path_drawing_order)
+  reverse_order$reverse_path_drawing_order <- TRUE
+  
+  cp <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    cost_paths()
+  
+  expected <- ReboundTools::rebound_segments
+  expected$emb <- NULL
+  expected$prod <- NULL
+  expected <- expected %>% unlist() %>% unname()
+  expect_equal(cp$line_name %>% unique(), expected)
+  
+  
+  cp_rev <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    cost_paths(graph_params = reverse_order)
+  expect_equal(cp_rev$line_name %>% unique(), rev(expected))
+})
+
+
+test_that("prefs path creation works with reverse drawing order", {
+  reverse_order <- ReboundTools::default_graph_params
+  expect_false(reverse_order$reverse_path_drawing_order)
+  reverse_order$reverse_path_drawing_order <- TRUE
+  
+  pp <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    prefs_paths()
+  
+  expected <- ReboundTools::rebound_segments
+  expected$dempl <- NULL
+  expected$cap <- NULL
+  expected$md <- NULL
+  expected$emb <- NULL
+  expected$prod <- NULL
+  expected <- expected %>% unlist() %>% unname()
+  expect_equal(pp$line_name %>% unique(), expected)
+  
+  
+  pp_rev <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    prefs_paths(graph_params = reverse_order)
+  expect_equal(pp_rev$line_name %>% unique(), rev(expected))
+})
+

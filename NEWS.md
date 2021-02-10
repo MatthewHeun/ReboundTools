@@ -6,8 +6,8 @@
   via new derivation that ensures expenditure line is tangent to indifference curve.
 * Fixed a bug that swapped order of energy and cost path graphs.
 * New tests for new features.
-    - Now at 402 tests, all passing.
-    - Test coverage is at 99.19% (needs improving).
+    - Now at 412 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.9 (2021-01-17)
