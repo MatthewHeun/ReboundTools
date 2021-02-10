@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a geometric sequence — geom_seq • ReboundTools</title>
+<title>Add arrow descriptions to a paths data frame — add_arrows • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Generate a geometric sequence — geom_seq" />
-<meta property="og:description" content="Generate a geometric sequence" />
+<meta property="og:title" content="Add arrow descriptions to a paths data frame — add_arrows" />
+<meta property="og:description" content="Add arrow descriptions to a paths data frame" />
 
 
 
@@ -109,48 +109,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a geometric sequence</h1>
+    <h1>Add arrow descriptions to a paths data frame</h1>
     
-    <div class="hidden name"><code>geom_seq.Rd</code></div>
+    <div class="hidden name"><code>add_arrows.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generate a geometric sequence</p>
+    <p>Add arrow descriptions to a paths data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geom_seq</span><span class='op'>(</span><span class='va'>from</span>, <span class='va'>to</span>, <span class='va'>n</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>add_arrows</span><span class='op'>(</span>
+  <span class='va'>.paths</span>,
+  <span class='va'>graph_params</span>,
+  <span class='va'>graph_df_colnames</span>,
+  rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>from</th>
-      <td><p>The first value in the sequence.</p></td>
+      <th>.paths</th>
+      <td><p>The data frame to which arrows should be added.</p></td>
     </tr>
     <tr>
-      <th>to</th>
-      <td><p>The final value in the sequence.</p></td>
+      <th>graph_params</th>
+      <td><p>See <code><a href='default_graph_params.html'>ReboundTools::default_graph_params</a></code>.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>The number of points to include in the sequence.</p></td>
+      <th>graph_df_colnames</th>
+      <td><p>See <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>rebound_segments</th>
+      <td><p>See <code><a href='rebound_segments.html'>ReboundTools::rebound_segments</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of numbers.</p>
+    <p>A version of <code>.paths</code> with a column for arrow descriptions.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>geom_seq</span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0.01</span>, to <span class='op'>=</span> <span class='fl'>10</span>, n <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1]  0.01000000  0.01438450  0.02069138  0.02976351  0.04281332  0.06158482
-#&gt;  [7]  0.08858668  0.12742750  0.18329807  0.26366509  0.37926902  0.54555948
-#&gt; [13]  0.78475997  1.12883789  1.62377674  2.33572147  3.35981829  4.83293024
-#&gt; [19]  6.95192796 10.00000000</div><div class='input'><span class='fu'>geom_seq</span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>10</span>, to <span class='op'>=</span> <span class='fl'>20</span>, n <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 10.00000 10.24190 10.48964 10.74338 11.00326 11.26942 11.54203 11.82122
-#&gt;  [9] 12.10717 12.40004 12.69999 13.00720 13.32184 13.64409 13.97413 14.31216
-#&gt; [17] 14.65836 15.01294 15.37610 15.74804 16.12898 16.51913 16.91872 17.32798
-#&gt; [25] 17.74714 18.17643 18.61611 19.06643 19.52764 20.00000</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

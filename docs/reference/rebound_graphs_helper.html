@@ -73,7 +73,7 @@ There is normally no need to call this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.10</span>
       </span>
     </div>
 
@@ -122,6 +122,7 @@ There is normally no need to call this function.</p>
 
     <pre class="usage"><span class='fu'>rebound_graphs_helper</span><span class='op'>(</span>
   <span class='va'>.path_data</span>,
+  .points_data <span class='op'>=</span> <span class='cn'>NULL</span>,
   .grid_data <span class='op'>=</span> <span class='cn'>NULL</span>,
   .indifference_data <span class='op'>=</span> <span class='cn'>NULL</span>,
   graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
@@ -136,6 +137,10 @@ There is normally no need to call this function.</p>
       <th>.path_data</th>
       <td><p>A data frame of paths to be added to the graph.
 The columns "colour" and "size" control the colour and width of the segment</p></td>
+    </tr>
+    <tr>
+      <th>.points_data</th>
+      <td><p>A data frame of points between rebound effects.</p></td>
     </tr>
     <tr>
       <th>.grid_data</th>
