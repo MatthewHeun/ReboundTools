@@ -28,17 +28,22 @@
 #'
 #' @examples
 #' 
-parametric_studies <- function(original_cases, parameterization) {
-  # Assert all cases in vars also appear in original_case
+parametric_studies <- function(original_cases, parameterization, 
+                               case = ReboundTools::eeu_base_params$case) {
   
+  # Assert single row in original_cases
+  assertthat::assert_that(nrow(original_cases) == 1)
   
-  
-  # Assert all variables in vars also appear in original_case.
-  
+  # Assert all item names in parameterization also appear in original_case
+  assertthat::assert_that(all(names(parameterization) %in% names(original_cases)))
   
   # Make a new data frame of cases
-  
-  
+  params <- expand.grid(parameterization)
+  # Make a data frame with lots of replicated rows, one for each row of params.
+  # Code adapted from https://stackoverflow.com/questions/8753531/repeat-rows-of-a-data-frame-n-times
+  cases <- original_cases[rep(seq_len(nrow(original_cases)), nrow(params)), ]
+  # Join params to cases, thereby replacing the same columns in cases.
+  cases <- dplyr::right_join(original_cases, params, by = case)
   
   # Analyze the cases
   

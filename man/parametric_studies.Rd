@@ -4,17 +4,20 @@
 \alias{parametric_studies}
 \title{Run parametric analyses}
 \usage{
-parametric_studies(original_cases, parameterization)
+parametric_studies(
+  original_cases,
+  parameterization,
+  case = ReboundTools::eeu_base_params$case
+)
 }
 \arguments{
-\item{original_cases}{A data frame with baseline data from which parametric studies are desired.}
+\item{original_cases}{A data frame with baseline data from which parametric studies are desired.
+This data frame is expected to contain 1 row, a single case.}
 
-\item{parameterization}{A data frame with sweeps for variables in \code{original_cases}.
-\code{expand.grid()} will be called on all columns of \code{parameterization},
-Case\verb{r eeu_base_params$case}.}
+\item{parameterization}{A named list.}
 }
 \value{
-A data frame containing parametric studies.
+A data frame containing results of parametric studies.
 }
 \description{
 After defining a base case for rebound analyses,
@@ -26,7 +29,15 @@ This function provides a way to do parametric studies.
 \code{original_cases} must have the same structure as the example data frames in this package.
 See the file at \code{sample_eeu_data_path()}.
 
-\code{parameterization} must be a data frame with column ``
+\code{parameterization} must have structure where
+each element is named for a variable in \code{original_cases},
+Values of each item in the list should be numerical values to be swept.
+Note that the original value of each parameter (in \code{original_cases})
+will not be inserted into the \code{parameterization} lists,
+so be sure to include that value, if desired.
+If \code{parameterization} has more than 2 entries,
+\code{expand.grid()} is called on the entries
+to cover the union of all parameter values.
 }
 \examples{
 
