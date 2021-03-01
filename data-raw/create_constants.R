@@ -423,18 +423,7 @@ default_graph_params <- list(# Points on paths
                              # Draw points on top of paths (or not)
                              points_atop_paths = TRUE,
                              
-                             # Decoration annotation colours
-                             annotation_text_colour = "black",
-                             
                              # Grid line colours
-                             # energy_grid_colour = "darkgray",
-                             # zero_perc_rebound_grid_colour = "darkgray",
-                             # hundred_perc_rebound_grid_colour = "darkgray",
-                             # energy_rebound_lines_colour = "darkgray",
-                             # cost_grid_colour = "darkgray",
-                             # prefs_grid_colour = "darkgray",
-                             # prefs_ray_colour = "darkgray",
-                             # prefs_indiff_grid_colour = "darkgray",
                              energy_grid_colour = "black",
                              zero_perc_rebound_grid_colour = "black",
                              hundred_perc_rebound_grid_colour = "black",
