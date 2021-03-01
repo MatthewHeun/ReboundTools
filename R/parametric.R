@@ -15,9 +15,8 @@
 #' Note that the original value of each parameter (in `original_cases`)
 #' will not be inserted into the `parameterization` lists,
 #' so be sure to include that value, if desired.
-#' If `parameterization` has more than 2 entries, 
-#' `expand.grid()` is called on the entries
-#' to cover the union of all parameter values.
+#' `expand.grid()` is called on the entries of `parameterization`
+#' to cover the union of all parameter values in the parametric study.
 #'
 #' @param original_cases A data frame with baseline data from which parametric studies are desired.
 #'                       This data frame is expected to contain 1 row, a single case.
