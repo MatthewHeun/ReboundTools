@@ -72,11 +72,16 @@ usethis::use_data(rebound_stages, overwrite = TRUE)
 
 latex_rebound_stages <- data.frame(
   stage = ReboundTools::rebound_stages %>% unlist() %>% unname(),
-  latex_stage_name = c("${ }^{\\scriptscriptstyle \\circ}$ (orig)", 
-                       "${ }^*$ (star)", 
-                       "$\\hat{ }$ (hat)",
-                       "$\\bar{ }$ (bar)",
-                       "$\\tilde{ }$ (tilde)")
+  # latex_stage_name = c("${ }^{\\scriptscriptstyle \\circ}$ (orig)", 
+  #                      "${ }^*$ (star)", 
+  #                      "$\\hat{ }$ (hat)",
+  #                      "$\\bar{ }$ (bar)",
+  #                      "$\\tilde{ }$ (tilde)")
+  latex_stage_name = c("$\\circ$ (orig)", 
+                       "$*$ (star)", 
+                       "$\\wedge$ (hat)",
+                       "$-$ (bar)",
+                       "$\\sim$ (tilde)")
 )
 usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
