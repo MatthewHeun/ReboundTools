@@ -4,13 +4,19 @@
 \alias{parametric_studies}
 \title{Run parametric analyses}
 \usage{
-parametric_studies(original_cases, parameterization)
+parametric_studies(
+  original_cases,
+  parameterization,
+  case_colname = ReboundTools::eeu_base_params$case
+)
 }
 \arguments{
 \item{original_cases}{A data frame with baseline data from which parametric studies are desired.
 This data frame is expected to contain 1 row, a single case.}
 
 \item{parameterization}{A named list.}
+
+\item{case_colname}{The name of the column of cases. Default is \code{ReboundTools::eeu_base_params$case}.}
 }
 \value{
 A data frame containing results of parametric studies.
@@ -32,9 +38,8 @@ Values of each item in the list should be numerical values to be swept.
 Note that the original value of each parameter (in \code{original_cases})
 will not be inserted into the \code{parameterization} lists,
 so be sure to include that value, if desired.
-If \code{parameterization} has more than 2 entries,
-\code{expand.grid()} is called on the entries
-to cover the union of all parameter values.
+\code{expand.grid()} is called on the entries of \code{parameterization}
+to cover the union of all parameter values in the parametric study.
 }
 \examples{
 car_case <- load_eeu_data() \%>\% 

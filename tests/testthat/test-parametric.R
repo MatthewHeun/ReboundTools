@@ -35,3 +35,11 @@ test_that("parametric_studies() uses expand.grid", {
     expect_equal(dplyr::slice(res_no_param_vars, i), expected)
   }
 })
+
+
+test_that("parametric_studies() works for more than 1 case", {
+  cases <- load_eeu_data()
+  params <- list(Car = list(k = seq(1, 2, by = 0.5), p_E_engr_units = seq(1.5, 2.5, by = 0.25)), 
+                 Lamp = list(k = seq(0.5, 1.5, by = 0.5), p_E_engr_units = seq(0.05, 0.15, by = 0.05)))
+  res <- parametric_studies(cases, params)
+})

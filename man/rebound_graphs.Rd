@@ -22,7 +22,7 @@ rebound_graphs(
 
 \item{indexed}{A boolean that tells whether to index the graph to its initial path point. Default is \code{FALSE}.}
 
-\item{cases}{A string list saying which cases in \code{.rebound_data} to include. Default is \code{.rebound_data[[case_colname]] \%>\% unique()}, i.e. all cases.}
+\item{cases}{A string list saying which cases in \code{.rebound_data} to include. Default is \code{.analysis_data[[case_colname]] \%>\% unique()}, i.e. all cases in \code{.analysis_data}.}
 
 \item{graph_types}{A string list of graph types to include in the returned object. Default is \code{ReboundTools::graph_types}, i.e. all graph types.}
 
