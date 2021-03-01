@@ -23,7 +23,7 @@ A data frame containing results of parametric studies.
 After defining a base case for rebound analyses,
 parametric analyses and sensitivity studies are
 often helpful.
-This function provides a way to do parametric studies.
+This function provides a convenient way to do parametric studies.
 }
 \details{
 \code{original_cases} must have the same structure as the example data frames in this package.
@@ -40,5 +40,9 @@ If \code{parameterization} has more than 2 entries,
 to cover the union of all parameter values.
 }
 \examples{
-
+car_case <- load_eeu_data() \%>\% 
+  dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Car")
+params <- list(k = seq(0, 2, by = 1), p_E_engr_units = seq(1.5, 2.5, by = 0.25))
+res <- parametric_studies(car_case, params)
+dplyr::glimpse(res)
 }
