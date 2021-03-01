@@ -7,6 +7,7 @@
 #' 
 #' `original_cases` must have the same structure as the example data frames in this package.
 #' See the file at `sample_eeu_data_path()`.
+#' Failures will occur if `original_cases` contains columns calculated by `rebound_analysis()`.
 #' 
 #' `parameterization` must have structure where 
 #' each element is named for a variable in `original_cases`, 
@@ -32,8 +33,7 @@
 #' params <- list(k = seq(0, 2, by = 1), p_E_engr_units = seq(1.5, 2.5, by = 0.25))
 #' res <- parametric_studies(car_case, params)
 #' dplyr::glimpse(res)
-parametric_studies <- function(original_cases, parameterization, 
-                               case = ReboundTools::eeu_base_params$case) {
+parametric_studies <- function(original_cases, parameterization) {
   
   # Assert single row in original_cases
   assertthat::assert_that(nrow(original_cases) == 1)

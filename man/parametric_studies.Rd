@@ -4,11 +4,7 @@
 \alias{parametric_studies}
 \title{Run parametric analyses}
 \usage{
-parametric_studies(
-  original_cases,
-  parameterization,
-  case = ReboundTools::eeu_base_params$case
-)
+parametric_studies(original_cases, parameterization)
 }
 \arguments{
 \item{original_cases}{A data frame with baseline data from which parametric studies are desired.
@@ -28,6 +24,7 @@ This function provides a convenient way to do parametric studies.
 \details{
 \code{original_cases} must have the same structure as the example data frames in this package.
 See the file at \code{sample_eeu_data_path()}.
+Failures will occur if \code{original_cases} contains columns calculated by \code{rebound_analysis()}.
 
 \code{parameterization} must have structure where
 each element is named for a variable in \code{original_cases},
