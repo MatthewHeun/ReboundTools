@@ -10,8 +10,8 @@ parametric_analysis(
   include_orig_point = TRUE,
   case_colname = ReboundTools::eeu_base_params$case,
   point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
-  orig_type = ReboundTools::parametric_analysis_point_types$orig,
-  sweep_type = ReboundTools::parametric_analysis_point_types$sweep
+  orig = ReboundTools::parametric_analysis_point_types$orig,
+  sweep = ReboundTools::parametric_analysis_point_types$sweep
 )
 }
 \arguments{
@@ -23,7 +23,9 @@ This data frame is expected to contain 1 row, a single case.}
 \item{include_orig_point}{A boolean that tells whether the original point for each case (from \code{original_cases})
 should be included in the output. Default is \code{TRUE}.}
 
-\item{case_colname}{The name of the column of cases. Default is \code{ReboundTools::eeu_base_params$case}.}
+\item{case_colname}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{point_type_colname, orig, sweep}{See \code{ReboundTools::parametric_analysis_point_types}.}
 }
 \value{
 A data frame containing results of parametric studies.
