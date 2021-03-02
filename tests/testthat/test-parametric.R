@@ -1,35 +1,33 @@
-test_that("parametric_studies() fails when >1 case is sent", {
-  two_cases <- load_eeu_data()
-  params <- list(k = seq(0, 2, by = 0.5))
-  expect_error(parametric_studies(two_cases, params), "nrow\\(original_cases\\) not equal to 1")
+test_that("parametric_studies() works when 1 case is requested", {
+  one_case <- load_eeu_data() 
+  params <- list(Lamp = list(k = seq(0, 2, by = 0.5)))
+  res <- parametric_studies(one_case, params)
+  expect_equal(unique(res$Case), "Lamp")
 })
 
 test_that("parametric_studies() fails when wrong variables are sent", {
-  lamp_case <- load_eeu_data() %>% 
-    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Lamp")
-  params <- list(wrong_variable = seq(0, 2, by = 0.5))
+  lamp_case <- load_eeu_data()
+  params <- list(Lamp = list(wrong_variable = seq(0, 2, by = 0.5)))
   expect_error(parametric_studies(lamp_case, params),
-               "Elements 1 of names\\(parameterization\\) %in% names\\(original_cases\\) are not true")
+               "Elements 1 of params %in% names\\(original_cases\\) are not true")
 })
 
 test_that("parametric_studies() uses expand.grid", {
-  car_case <- load_eeu_data() %>% 
-    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Car")
-  params <- list(seq(0, 2, by = 0.5), seq(1.5, 2.5, by = 0.25)) %>% 
-    magrittr::set_names(c(ReboundTools::eeu_base_params$k, 
-                          ReboundTools::eeu_base_params$p_E_engr_units))
+  car_case <- load_eeu_data() 
+  params <- list(Car = list(k = seq(0, 2, by = 0.5), 
+                            p_E_engr_units = seq(1.5, 2.5, by = 0.25)))
   res <- parametric_studies(car_case, params)
   expect_equal(res %>% 
-                 dplyr::select(c(ReboundTools::eeu_base_params$k,
-                                 ReboundTools::eeu_base_params$p_E_engr_units)) %>% 
+                 dplyr::select(c("k", "p_E_engr_units")) %>% 
                  as.data.frame(),
-               expand.grid(params), ignore_attr = TRUE)
+               expand.grid(params$Car), ignore_attr = TRUE)
   
   # Check that all rows are same (except for the k and p_E_engr_units columns)
   res_no_param_vars <- res %>% 
     dplyr::select(names(car_case)) %>% 
     dplyr::select(-c(ReboundTools::eeu_base_params$k, ReboundTools::eeu_base_params$p_E_engr_units))
   expected <- car_case %>% 
+    dplyr::filter(Case == "Car") %>% 
     dplyr::select(-c(ReboundTools::eeu_base_params$k, ReboundTools::eeu_base_params$p_E_engr_units))
   for (i in 1:nrow(res)) {
     expect_equal(dplyr::slice(res_no_param_vars, i), expected)
@@ -39,7 +37,27 @@ test_that("parametric_studies() uses expand.grid", {
 
 test_that("parametric_studies() works for more than 1 case", {
   cases <- load_eeu_data()
-  params <- list(Car = list(k = seq(1, 2, by = 0.5), p_E_engr_units = seq(1.5, 2.5, by = 0.25)), 
-                 Lamp = list(k = seq(0.5, 1.5, by = 0.5), p_E_engr_units = seq(0.05, 0.15, by = 0.05)))
-  res <- parametric_studies(cases, params)
+  # Make parameters that don't vary
+  params_1 <- list(Car = list(k = rep(1, times = 10), p_E_engr_units = rep(1.5, times = 2)), 
+                   Lamp = list(k = rep(1.5, times = 3), p_E_engr_units = rep(0.05, times = 5)))
+  res_1 <- parametric_studies(cases, params_1)
+  # Every row in res should be the same (per case)
+  for (case in unique(res_1$Case)) {
+    res_per_case <- res_1 %>% dplyr::filter(.data[["Case"]] == case)
+    unique_rows <- unique(res_per_case)
+    expect_equal(nrow(unique_rows), 1)
+  }
+  
+  # Now test with different parameters on each row
+  params_2 <- list(Car = list(k = seq(1, 2, by = 0.5), p_E_engr_units = seq(1.5, 2.5, by = 0.25)), 
+                   Lamp = list(k = seq(0.5, 1.5, by = 0.5), p_E_engr_units = seq(0.05, 0.15, by = 0.05)))
+  res_2 <- parametric_studies(cases, params_2)
+
+  # Check that we have something.  
+  expect_true(!is.null(res_2))
+  # Check that we have both cases in the result
+  expect_equal(unique(res_2$Case), c("Car", "Lamp"))
+  # Ensure that each row is different
+  unique_rows_2 <- unique(res_2)
+  expect_equal(nrow(unique_rows_2), nrow(res_2))
 })
