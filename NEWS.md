@@ -1,3 +1,7 @@
+* `parametric_analysis()` now optionally returns the original point,
+  which may be helpful for graphing purposes.
+  E.g., one could make a graph with lines for the swept parameters and 
+  red dots for the original (base) points.
 * Added a first version of the `parametric_analysis()` function.
 
 
