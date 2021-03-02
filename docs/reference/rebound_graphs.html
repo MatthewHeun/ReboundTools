@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.11</span>
       </span>
     </div>
 
@@ -126,6 +126,8 @@
   grid_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
   graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
   case_colname <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
+  rebound_stages <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_stages.html'>rebound_stages</a></span>,
+  rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>,
   graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
 <span class='op'>)</span></pre>
 
@@ -142,7 +144,7 @@
     </tr>
     <tr>
       <th>cases</th>
-      <td><p>A string list saying which cases in <code>.rebound_data</code> to include. Default is <code>.rebound_data[[case_colname]] %&gt;% unique()</code>, i.e. all cases.</p></td>
+      <td><p>A string list saying which cases in <code>.rebound_data</code> to include. Default is <code>.analysis_data[[case_colname]] %&gt;% unique()</code>, i.e. all cases in <code>.analysis_data</code>.</p></td>
     </tr>
     <tr>
       <th>graph_types</th>
@@ -161,6 +163,14 @@ modified and passed as an argument to control graph appearance.</p></td>
     <tr>
       <th>case_colname</th>
       <td><p>The name of the Case column in <code>.rebound_data</code>. Default is <code>ReboundTools::eeu_base_params$case</code>.</p></td>
+    </tr>
+    <tr>
+      <th>rebound_stages</th>
+      <td><p>See <code><a href='rebound_stages.html'>ReboundTools::rebound_stages</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>rebound_segments</th>
+      <td><p>See <code><a href='rebound_segments.html'>ReboundTools::rebound_segments</a></code>.</p></td>
     </tr>
     <tr>
       <th>graph_df_colnames</th>

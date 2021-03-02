@@ -13,8 +13,6 @@ add_segment(
   colour = "black",
   size = 1,
   linetype = "solid",
-  start_point = FALSE,
-  end_arrow = FALSE,
   x_orig,
   y_orig,
   x,
@@ -45,10 +43,6 @@ This metadata data frame provides the left-most columns of the return value.}
 
 \item{linetype}{The line type for this segment. Default is "solid".}
 
-\item{start_point}{A boolean that tells whether this segment would be plotted with a starting point. Default is \code{FALSE}.}
-
-\item{end_arrow}{A boolean that tells whether this segment would be plotted with an ending arrow. Default is \code{FALSE}.}
-
 \item{x_orig, y_orig}{The (x,y) coordinates of the starting point for this path,
 used for indexing.}
 
@@ -73,7 +67,7 @@ Functions like \code{energy_paths()} call \code{add_segment()} internally.
 \examples{
 meta <- tibble::tibble(Case = "Test case")
 add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 
-  segment_name = "Test segment", 
-  x_orig = 10, y_orig = 10, 
-  x = 20, y = 30, xend = 40, yend = 50)
+            segment_name = "Test segment", 
+            x_orig = 10, y_orig = 10, 
+            x = 20, y = 30, xend = 40, yend = 50)
 }

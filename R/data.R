@@ -111,6 +111,28 @@
 "latex_rebound_stages"
 
 
+#' Rebound segment names
+#' 
+#' A list of rebound segment names used internally to the package.
+#' 
+#' @format A list frame with `r length(rebound_segments)` entries
+#' \describe{
+#' \item{dempl}{Direct emplacement effects.}
+#' \item{emb}{Embodied energy effects.}
+#' \item{cap}{Capital cost effects.}
+#' \item{md}{Maintenance and disposal effects.}
+#' \item{dsub}{Direct substitution effects.}
+#' \item{isub}{Indirect substitution effects.}
+#' \item{dinc}{Direct income effects.}
+#' \item{iinc}{Indirect income effects.}
+#' \item{prod}{Productivity effects.}
+#' }
+#' 
+#' @examples
+#' rebound_segments
+"rebound_segments"
+
+
 #' Difference variables
 #' 
 #' This is the list of difference variables of the form `Delta_var_stage`, where
@@ -382,6 +404,36 @@
 "graph_types"
 
 
+#' Names of graph data frame columns
+#' 
+#' The list of names of graph data frame columns. 
+#' These are default names for columns produced internally.
+#' 
+#' @format A string list with `r length(graph_df_colnames)` entries.
+#' \describe{
+#' \item{colour_col}{The name of the column containing line colours.}
+#' \item{size_col}{The name of the column containing line sizes (widths).}
+#' \item{linetype_col}{The name of the column containing line types.}
+#' \item{graph_type_col}{The name of the column containing graph types.}
+#' \item{line_name_col}{The name of the column containing names (string identifiers) for lines, segments, and grids.}
+#' \item{slope_col}{The name of the column containing line slopes.}
+#' \item{intercept_col}{The name of the column containing line intercepts.}
+#' \item{x_col}{The name of the column containing starting x values.}
+#' \item{y_col}{The name of the column containing starting y values.}
+#' \item{xend_col}{The name of the column containing ending x values.}
+#' \item{yend_col}{The name of the column containing ending y values.}
+#' \item{qs1_qs0_col}{The name of the column containing a q_s/q_s_0 point on this indifference curve.}
+#' \item{Co1_Co0_col}{The name of the column containing a C_s/C_s_0 point on this indifference curve.}
+#' \item{f_Cs_orig_col}{The name of the column containing the original value of f_Cs for this indifference curve.}
+#' \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
+#' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
+#' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
+#' }
+#' @examples
+#' graph_df_colnames
+"graph_df_colnames"
+
+
 #' Graph parameters
 #' 
 #' The list of graph parameters for drawing
@@ -395,9 +447,14 @@
 #' @format A string list with `r length(default_graph_params)` entries.
 #' \describe{
 #' 
-#' \item{lineend}{The line end style.}
-#' \item{linejoin}{The line join style.}
-#' \item{linejoin}{The line join style.}
+#' \item{which_points}{A data frame telling which points to include in the graph.}
+#' \item{last_point}{Tells whether to show the last point in a path. Overrides `which_points`.}
+#' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
+#' \item{point_size}{The size for points between rebound effects. Default is `1`.}
+#' \item{point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
+#' \item{which_arrows}{A data frame telling which ending arrows to include in the graph.}
+#' \item{last_arrow}{Tells whether to show the last arrow. Overrides `which_arrows`.}
+#' \item{arrow_style}{An `arrow` object created by `grid::arrow`.}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital cost lines.}
@@ -425,6 +482,15 @@
 #' \item{dinc_linetype}{The linetype for direct income lines.}
 #' \item{iinc_linetype}{The linetype for indirect income lines.}
 #' \item{prod_linetype}{The linetype for productivity lines.}
+#' \item{lineend}{The line end style.}
+#' \item{linejoin}{The line join style.}
+#' \item{reverse_path_drawing_order}{Tells whether to reverse the drawing order for paths. The default (`FALSE`)
+#'                                   draws emplacement on the bottom, followed by substitution, income, and productivity paths.
+#'                                   `TRUE` puts productivity paths on the bottom, followed by income, substitution, and
+#'                                   emplacement paths.
+#'                                   Setting `TRUE` produces attractive layering when many paths have arrows, because
+#'                                   arrows overlay their following points.}
+#' \item{points_atop_paths}{Tells whether to draw points above paths (`TRUE`) or beneath paths (`FALSE`). Default is `TRUE`.}
 #' \item{energy_grid_colour}{The colour for energy grid lines.}
 #' \item{zero_perc_rebound_grid_colour}{The colour for energy the 0% rebound lines.}
 #' \item{hundred_perc_rebound_grid_colour}{The colour for the 100% rebound lines.}
@@ -465,33 +531,16 @@
 "default_graph_params"
 
 
-#' Graph data frame columns
+#' Parametric analysis point types
 #' 
-#' The list of names of graph data frame columns. 
-#' These are default names for columns produced internally.
+#' This is the list of parametric analysis point types.
 #' 
-#' @format A string list with `r length(graph_df_colnames)` entries.
+#' @format A string list with `r length(parametric_analysis_point_types)` entries.
 #' \describe{
-#' \item{colour_col}{The name of the column containing line colours.}
-#' \item{size_col}{The name of the column containing line sizes (widths).}
-#' \item{linetype_col}{The name of the column containing line types.}
-#' \item{graph_type_col}{The name of the column containing graph types.}
-#' \item{line_name_col}{The name of the column containing names (string identifiers) for lines, segments, and grids.}
-#' \item{slope_col}{The name of the column containing line slopes.}
-#' \item{intercept_col}{The name of the column containing line intercepts.}
-#' \item{x_col}{The name of the column containing starting x values.}
-#' \item{y_col}{The name of the column containing starting y values.}
-#' \item{xend_col}{The name of the column containing ending x values.}
-#' \item{yend_col}{The name of the column containing ending y values.}
-#' \item{qs1_qs0_col}{The name of the column containing a q_s/q_s_0 point on this indifference curve.}
-#' \item{Co1_Co0_col}{The name of the column containing a C_s/C_s_0 point on this indifference curve.}
-#' \item{f_Cs_orig_col}{The name of the column containing the original value of f_Cs for this indifference curve.}
-#' \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
-#' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
-#' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
+#' \item{point_type_colname}{The name of the column that contains parametric analysis point types.}
+#' \item{orig}{The string for original points.}
+#' \item{sweep}{The string for sweep points.}
 #' }
 #' @examples
-#' graph_df_colnames
-"graph_df_colnames"
-
-
+#' parametric_analysis_point_types
+"parametric_analysis_point_types"

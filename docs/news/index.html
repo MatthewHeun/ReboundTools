@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.11</span>
       </span>
     </div>
 
@@ -112,6 +112,38 @@
       
     </div>
 
+    <div id="reboundtools-0111-2021-03-02" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.11">
+<a href="#reboundtools-0111-2021-03-02" class="anchor"></a>ReboundTools 0.1.11 (2021-03-02)</h1>
+<ul>
+<li>New function <code><a href="../reference/sensitivity_graphs.html">sensitivity_graphs()</a></code> makes graphs from parametric data.</li>
+<li>
+<code><a href="../reference/parametric_analysis.html">parametric_analysis()</a></code> now optionally returns the original point, which may be helpful for graphing purposes. E.g., one could make a graph with lines for the swept parameters and red dots for the original (base) points.</li>
+<li>Added a first version of the <code><a href="../reference/parametric_analysis.html">parametric_analysis()</a></code> function.</li>
+<li>New tests for new features.
+<ul>
+<li>Now at 449 tests, all passing.</li>
+<li>Test coverage remains at 100%.</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="reboundtools-0110-2021-02-09" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.10">
+<a href="#reboundtools-0110-2021-02-09" class="anchor"></a>ReboundTools 0.1.10 (2021-02-09)</h1>
+<ul>
+<li>New colors for graphs, using the Viridis palette, plasma option.</li>
+<li>Now allowing an approximation for the substitution effect. New argument <code>use_sub_approx</code> triggers the approximation and is set <code>FALSE</code> in several places.</li>
+<li>Calculating hat point (after substitution effect) via new derivation that ensures expenditure line is tangent to indifference curve.</li>
+<li>Fixed a bug that swapped order of energy and cost path graphs.</li>
+<li>New tests for new features.
+<ul>
+<li>Now at 412 tests, all passing.</li>
+<li>Test coverage remains at 100%.</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="reboundtools-019-2021-01-17" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.9">
 <a href="#reboundtools-019-2021-01-17" class="anchor"></a>ReboundTools 0.1.9 (2021-01-17)</h1>

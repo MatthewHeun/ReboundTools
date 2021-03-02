@@ -37,11 +37,13 @@ extract_meta <- function(.rebound_data,
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
 #' @param graph_params See `ReboundTools::graph_params`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param k,I_E See `ReboundTools::eeu_base_params`.
 #' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with energy rebound path segments.
 #' 
@@ -54,6 +56,7 @@ extract_meta <- function(.rebound_data,
 energy_paths <- function(.rebound_data, 
                          indexed = FALSE,
                          graph_params = ReboundTools::default_graph_params,
+                         rebound_segments = ReboundTools::rebound_segments,
                          graph_type = ReboundTools::graph_types$energy,
                          
                          k = ReboundTools::eeu_base_params$k,
@@ -74,7 +77,9 @@ energy_paths <- function(.rebound_data,
                          N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                          
                          Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
-                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar) {
+                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar, 
+                         
+                         graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # A metadata data frame for all these segments
   meta <- extract_meta(.rebound_data)
@@ -98,12 +103,11 @@ energy_paths <- function(.rebound_data,
                        linetype = graph_params$dempl_linetype,
                        meta = meta, 
                        graph_type = graph_type, 
-                       segment_name = S_dot_dev, 
+                       segment_name = rebound_segments$dempl, 
                        x_orig = x_orig, y_orig = y_orig,
-                       x = x, y = y, xend = xend, yend = yend,
-                       start_point = TRUE)
+                       x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_E_dot_emb_star segment for energy graph (iempl)
+  # Delta_E_dot_emb_star segment for energy graph (emb)
   x <- xend
   y <- yend
   xend <- x
@@ -115,11 +119,11 @@ energy_paths <- function(.rebound_data,
                 linetype = graph_params$emb_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_E_dot_emb_star, 
+                segment_name = rebound_segments$emb, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_md_star*I_E segment for energy graph (iempl)
+  # Delta_C_dot_md_star*I_E segment for energy graph (md)
   x <- xend
   y <- yend
   xend <- x
@@ -131,12 +135,28 @@ energy_paths <- function(.rebound_data,
                 linetype = graph_params$md_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = paste0(Delta_C_dot_md_star, I_E), 
+                segment_name = rebound_segments$md, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
   # Substitution effect
   
+  # Delta_C_dot_o_hat*I_E segment for energy graph (isub)
+  x <- xend
+  y <- yend
+  xend <- x
+  yend <- y + .rebound_data[[Delta_C_dot_o_hat]] * .rebound_data[[I_E]]
+  paths <- paths %>%
+    add_segment(indexed = indexed,
+                colour = graph_params$isub_colour,
+                size = graph_params$isub_size,
+                linetype = graph_params$isub_linetype,
+                meta = meta,
+                graph_type = graph_type,
+                segment_name = rebound_segments$isub,
+                x_orig = x_orig, y_orig = y_orig,
+                x = x, y = y, xend = xend, yend = yend)
+
   # Delta_E_dot_s_hat segment for energy graph (dsub)
   x <- xend
   y <- yend
@@ -149,23 +169,7 @@ energy_paths <- function(.rebound_data,
                 linetype = graph_params$dsub_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_E_dot_s_hat, 
-                x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend)
-  
-  # Delta_C_dot_o_hat*I_E segment for energy graph (isub)
-  x <- xend
-  y <- yend
-  xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_hat]] * .rebound_data[[I_E]]
-  paths <- paths %>% 
-    add_segment(indexed = indexed,
-                colour = graph_params$isub_colour, 
-                size = graph_params$isub_size,
-                linetype = graph_params$isub_linetype,
-                meta = meta,
-                graph_type = graph_type,
-                segment_name = paste0(Delta_C_dot_o_hat, I_E), 
+                segment_name = rebound_segments$dsub, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -183,7 +187,7 @@ energy_paths <- function(.rebound_data,
                 linetype = graph_params$dinc_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_E_dot_s_bar, 
+                segment_name = rebound_segments$dinc, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -199,7 +203,7 @@ energy_paths <- function(.rebound_data,
                 linetype = graph_params$iinc_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = paste0(Delta_C_dot_o_bar, I_E), 
+                segment_name = rebound_segments$iinc, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -215,12 +219,19 @@ energy_paths <- function(.rebound_data,
                 linetype = graph_params$prod_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = "Productivity", 
+                segment_name = rebound_segments$prod, 
                 x_orig = x_orig, y_orig = y_orig,
-                x = x, y = y, xend = xend, yend = yend,
-                end_arrow = TRUE)
+                x = x, y = y, xend = xend, yend = yend)
   
-  return(paths)
+  if (graph_params$reverse_path_drawing_order) {
+    # Reverse the order of segments in the data frame so that
+    # arrows will lie upon following segments 
+    # when drawn tip-to-tail.
+    paths <- paths[nrow(paths):1, ]
+  }
+  # Add ending arrows to the paths data frame
+  paths %>% 
+    add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
 }
 
 
@@ -234,10 +245,12 @@ energy_paths <- function(.rebound_data,
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
 #' @param graph_params See `ReboundTools::graph_params`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
 #' @param Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with cost rebound path segments.
 #' 
@@ -250,6 +263,7 @@ energy_paths <- function(.rebound_data,
 cost_paths <- function(.rebound_data, 
                        indexed = FALSE,
                        graph_params = ReboundTools::default_graph_params,
+                       rebound_segments = ReboundTools::rebound_segments,
                        graph_type = ReboundTools::graph_types$cost,
 
                        C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
@@ -264,7 +278,9 @@ cost_paths <- function(.rebound_data,
                        Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                        Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-                       Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar) {
+                       Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar, 
+                       
+                       graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # The strategy here is to make each segment individually, 
   # starting from the original point, and using Deltas for everything else.
@@ -274,7 +290,7 @@ cost_paths <- function(.rebound_data,
   
   # Emplacement effect
   
-  # G_dot segment for cost graph (demple)
+  # G_dot segment for cost graph (dempl)
   x_orig_cost <- .rebound_data[[C_dot_s_orig]]
   y_orig_cost <- .rebound_data[[C_dot_cap_orig]] + .rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]
   xend <- x_orig_cost - .rebound_data[[G_dot]]
@@ -285,10 +301,9 @@ cost_paths <- function(.rebound_data,
                        linetype = graph_params$dempl_linetype,
                        meta = meta, 
                        graph_type = graph_type, 
-                       segment_name = G_dot, 
+                       segment_name = rebound_segments$dempl, 
                        x_orig = x_orig_cost, y_orig = y_orig_cost,
-                       x = x_orig_cost, y = y_orig_cost, xend = xend, yend = yend, 
-                       start_point = TRUE)
+                       x = x_orig_cost, y = y_orig_cost, xend = xend, yend = yend)
   
   # Delta_C_dot_cap_star segment for cost graph (iempl)
   x <- xend
@@ -302,7 +317,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$cap_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_cap_star, 
+                segment_name = rebound_segments$cap, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -318,27 +333,11 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$md_linetype,
                 meta = meta,
                 graph_type = graph_type,
-                segment_name = Delta_C_dot_md_star, 
+                segment_name = rebound_segments$md, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
   # Substitution effect
-  
-  # Delta_C_dot_s_hat segment for cost graph (dsub)
-  x <- xend
-  y <- yend
-  xend <- x + .rebound_data[[Delta_C_dot_s_hat]]
-  yend <- y
-  paths <- paths %>% 
-    add_segment(indexed = indexed,
-                colour = graph_params$dsub_colour, 
-                size = graph_params$dsub_size,
-                linetype = graph_params$dsub_linetype,
-                meta = meta,
-                graph_type = graph_type, 
-                segment_name = Delta_C_dot_s_hat, 
-                x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend)
   
   # Delta_C_dot_o_hat segment for cost graph (isub)
   x <- xend
@@ -352,7 +351,23 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$isub_linetype,
                 meta = meta, 
                 graph_type = graph_type,
-                segment_name = Delta_C_dot_o_hat, 
+                segment_name = rebound_segments$isub, 
+                x_orig = x_orig_cost, y_orig = y_orig_cost,
+                x = x, y = y, xend = xend, yend = yend)
+  
+  # Delta_C_dot_s_hat segment for cost graph (dsub)
+  x <- xend
+  y <- yend
+  xend <- x + .rebound_data[[Delta_C_dot_s_hat]]
+  yend <- y
+  paths <- paths %>% 
+    add_segment(indexed = indexed,
+                colour = graph_params$dsub_colour, 
+                size = graph_params$dsub_size,
+                linetype = graph_params$dsub_linetype,
+                meta = meta,
+                graph_type = graph_type, 
+                segment_name = rebound_segments$dsub, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -370,7 +385,7 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$dinc_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_s_bar, 
+                segment_name = rebound_segments$dinc, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -386,12 +401,18 @@ cost_paths <- function(.rebound_data,
                 linetype = graph_params$iinc_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_o_bar, 
+                segment_name = rebound_segments$iinc, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
-                x = x, y = y, xend = xend, yend = yend, 
-                end_arrow = TRUE)
-  
-  return(paths)
+                x = x, y = y, xend = xend, yend = yend)
+  if (graph_params$reverse_path_drawing_order) {
+    # Reverse the order of segments in the data frame so that
+    # arrows will lie upon following segments 
+    # when drawn tip-to-tail.
+    paths <- paths[nrow(paths):1, ]
+  }
+  # Add ending arrows to the paths data frame and return
+  paths %>% 
+    add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
 }
 
 
@@ -406,9 +427,11 @@ cost_paths <- function(.rebound_data,
 #' @param .rebound_data A data frame of rebound analysis results, 
 #'                      likely created by `rebound_analysis()`.
 #' @param graph_params See `ReboundTools::graph_params`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #'
 #' @return A data frame of information for creating preference graphs.
 #' 
@@ -420,6 +443,7 @@ cost_paths <- function(.rebound_data,
 #'   prefs_paths()
 prefs_paths <- function(.rebound_data, 
                         graph_params = ReboundTools::default_graph_params,
+                        rebound_segments = ReboundTools::rebound_segments,
                         graph_type = ReboundTools::graph_types$preferences,
                         
                         q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
@@ -428,7 +452,9 @@ prefs_paths <- function(.rebound_data,
                         Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
                         Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                         Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar) {
+                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                        
+                        graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # A metadata data frame for all these segments
   meta <- extract_meta(.rebound_data)
@@ -451,10 +477,9 @@ prefs_paths <- function(.rebound_data,
                        linetype = graph_params$isub_linetype,
                        meta = meta,
                        graph_type = graph_type, 
-                       segment_name = Delta_C_dot_o_hat,
+                       segment_name = rebound_segments$isub,
                        x_orig = x_star, y_orig = y_star, 
-                       x = x, y = y, xend = xend, yend = yend, 
-                       start_point = TRUE)
+                       x = x, y = y, xend = xend, yend = yend)
   
   # Delta_q_dot_s_star segment for prefs graph (dsub)
   x <- xend
@@ -468,7 +493,7 @@ prefs_paths <- function(.rebound_data,
                 linetype = graph_params$dsub_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_q_dot_s_hat,
+                segment_name = rebound_segments$dsub,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -486,7 +511,7 @@ prefs_paths <- function(.rebound_data,
                 linetype = graph_params$dinc_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = Delta_q_dot_s_bar,
+                segment_name = rebound_segments$dinc,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -502,12 +527,18 @@ prefs_paths <- function(.rebound_data,
                 linetype = graph_params$iinc_linetype,
                 meta = meta,
                 graph_type = graph_type, 
-                segment_name = Delta_C_dot_o_bar,
+                segment_name = rebound_segments$iinc,
                 x_orig = x_star, y_orig = y_star, 
-                x = x, y = y, xend = xend, yend = yend, 
-                end_arrow = TRUE)
-  
-  return(paths)
+                x = x, y = y, xend = xend, yend = yend)
+  if (graph_params$reverse_path_drawing_order) {
+    # Reverse the order of segments in the data frame so that
+    # arrows will lie upon following segments 
+    # when drawn tip-to-tail.
+    paths <- paths[nrow(paths):1, ]
+  }
+  # Add ending arrows to the paths data frame
+  paths %>% 
+    add_arrows(graph_params = graph_params, graph_df_colnames = graph_df_colnames)
 }
 
 
@@ -531,8 +562,6 @@ prefs_paths <- function(.rebound_data,
 #' @param colour The colour for this segment. Default is "black".
 #' @param size The size (width) for this segment. Default is `1`.
 #' @param linetype The line type for this segment. Default is "solid".
-#' @param start_point A boolean that tells whether this segment would be plotted with a starting point. Default is `FALSE`.
-#' @param end_arrow A boolean that tells whether this segment would be plotted with an ending arrow. Default is `FALSE`.
 #' @param x_orig,y_orig The (x,y) coordinates of the starting point for this path, 
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of the starting point for this segment of the path.
@@ -547,13 +576,12 @@ prefs_paths <- function(.rebound_data,
 #' @examples
 #' meta <- tibble::tibble(Case = "Test case")
 #' add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 
-#'   segment_name = "Test segment", 
-#'   x_orig = 10, y_orig = 10, 
-#'   x = 20, y = 30, xend = 40, yend = 50)
+#'             segment_name = "Test segment", 
+#'             x_orig = 10, y_orig = 10, 
+#'             x = 20, y = 30, xend = 40, yend = 50)
 add_segment <- function(.DF = NULL, 
                         indexed, meta, graph_type, segment_name, 
                         colour = "black", size = 1, linetype = "solid",
-                        start_point = FALSE, end_arrow = FALSE,
                         x_orig, y_orig, x, y, xend, yend, 
                         graph_df_colnames = ReboundTools::graph_df_colnames) {
   if (indexed) {
@@ -569,16 +597,41 @@ add_segment <- function(.DF = NULL,
       "{graph_df_colnames$colour_col}" := colour, 
       "{graph_df_colnames$size_col}" := size,
       "{graph_df_colnames$linetype_col}" := linetype,
-      "{graph_df_colnames$start_point_col}" := start_point,
-      "{graph_df_colnames$end_arrow_col}" := end_arrow,
       "{graph_df_colnames$x_col}" := x, 
       "{graph_df_colnames$y_col}" := y, 
       "{graph_df_colnames$xend_col}" := xend, 
       "{graph_df_colnames$yend_col}" := yend
     )
+  
   if (is.null(.DF)) {
     return(out)
   }
   .DF %>% 
     dplyr::bind_rows(out)
+}
+
+
+#' Add arrow descriptions to a paths data frame
+#'
+#' @param .paths The data frame to which arrows should be added.
+#' @param graph_params See `ReboundTools::default_graph_params`.
+#' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
+#' @param rebound_segments See `ReboundTools::rebound_segments`.
+#'
+#' @return A version of `.paths` with a column for arrow descriptions.
+#' 
+#' @export
+add_arrows <- function(.paths, graph_params, graph_df_colnames, 
+                       rebound_segments = ReboundTools::rebound_segments) {
+  which_max <- max(which(rebound_segments %in% .paths[[graph_df_colnames$line_name_col]]))
+  last_seg <- rebound_segments[[which_max]]
+  
+  .paths %>% 
+    dplyr::left_join(graph_params$which_arrows, by = graph_df_colnames$line_name_col) %>% 
+    dplyr::mutate(
+      "{graph_df_colnames$end_arrow_col}" := dplyr::case_when(
+        .data[[graph_df_colnames$line_name_col]] == last_seg ~ graph_params$last_arrow, 
+        TRUE ~ .data[[graph_df_colnames$end_arrow_col]]
+      )
+    )
 }

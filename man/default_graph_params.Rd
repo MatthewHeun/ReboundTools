@@ -5,12 +5,17 @@
 \alias{default_graph_params}
 \title{Graph parameters}
 \format{
-A string list with 63 entries.
+A string list with 66 entries.
 \describe{
 
-\item{lineend}{The line end style.}
-\item{linejoin}{The line join style.}
-\item{linejoin}{The line join style.}
+\item{which_points}{A data frame telling which points to include in the graph.}
+\item{last_point}{Tells whether to show the last point in a path. Overrides \code{which_points}.}
+\item{point_shape}{The shape for points between rebound effects. Default is \code{21}, a filled circle..}
+\item{point_size}{The size for points between rebound effects. Default is \code{1}.}
+\item{point_stroke}{The size of the line surrounding points between rebound effects. Default is \code{1}.}
+\item{which_arrows}{A data frame telling which ending arrows to include in the graph.}
+\item{last_arrow}{Tells whether to show the last arrow. Overrides \code{which_arrows}.}
+\item{arrow_style}{An \code{arrow} object created by \code{grid::arrow}.}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital cost lines.}
@@ -38,6 +43,15 @@ A string list with 63 entries.
 \item{dinc_linetype}{The linetype for direct income lines.}
 \item{iinc_linetype}{The linetype for indirect income lines.}
 \item{prod_linetype}{The linetype for productivity lines.}
+\item{lineend}{The line end style.}
+\item{linejoin}{The line join style.}
+\item{reverse_path_drawing_order}{Tells whether to reverse the drawing order for paths. The default (\code{FALSE})
+draws emplacement on the bottom, followed by substitution, income, and productivity paths.
+\code{TRUE} puts productivity paths on the bottom, followed by income, substitution, and
+emplacement paths.
+Setting \code{TRUE} produces attractive layering when many paths have arrows, because
+arrows overlay their following points.}
+\item{points_atop_paths}{Tells whether to draw points above paths (\code{TRUE}) or beneath paths (\code{FALSE}). Default is \code{TRUE}.}
 \item{energy_grid_colour}{The colour for energy grid lines.}
 \item{zero_perc_rebound_grid_colour}{The colour for energy the 0\% rebound lines.}
 \item{hundred_perc_rebound_grid_colour}{The colour for the 100\% rebound lines.}
