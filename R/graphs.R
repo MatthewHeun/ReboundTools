@@ -2,7 +2,7 @@
 #'
 #' @param .analysis_data Rebound analysis data, likely created by `rebound_analysis()`.
 #' @param indexed A boolean that tells whether to index the graph to its initial path point. Default is `FALSE`.
-#' @param cases A string list saying which cases in `.rebound_data` to include. Default is `.rebound_data[[case_colname]] %>% unique()`, i.e. all cases.
+#' @param cases A string list saying which cases in `.rebound_data` to include. Default is `.analysis_data[[case_colname]] %>% unique()`, i.e. all cases in `.analysis_data`.
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
 #' @param grid_types A string list of graph types on which grids (guide lines) are to be included. Default is `ReboundTools::graph_types`, i.e. include grids on all graph types.
 #' @param graph_params A string list of parameters that control the appearance of this graph. 

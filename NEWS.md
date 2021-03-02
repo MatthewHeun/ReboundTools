@@ -1,3 +1,6 @@
+* Added a first version of the `parametric_analysis()` function.
+
+
 # ReboundTools 0.1.10 (2021-02-09)
 
 * New colors for graphs, using the Viridis palette, plasma option.
