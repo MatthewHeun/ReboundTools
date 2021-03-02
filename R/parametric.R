@@ -31,6 +31,8 @@
 #' @param original_cases A data frame with baseline data from which parametric studies are desired.
 #'                       This data frame is expected to contain 1 row, a single case.
 #' @param parameterization A named list of lists. See details. 
+#' @param include_orig_point A boolean that tells whether the original point for each case (from `original_cases`)
+#'                           should be included in the output. Default is `TRUE`.
 #' @param case_colname The name of the column of cases. Default is `ReboundTools::eeu_base_params$case`.
 #'
 #' @return A data frame containing results of parametric studies.
@@ -47,7 +49,11 @@
 #' res <- parametric_analysis(car_case, params)
 #' dplyr::glimpse(res)
 parametric_analysis <- function(original_cases, parameterization, 
-                                case_colname = ReboundTools::eeu_base_params$case) {
+                                include_orig_point = TRUE,
+                                case_colname = ReboundTools::eeu_base_params$case, 
+                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
+                                orig_type = ReboundTools::parametric_analysis_point_types$orig,
+                                sweep_type = ReboundTools::parametric_analysis_point_types$sweep) {
   
   cases <- names(parameterization)
   
@@ -85,8 +91,22 @@ parametric_analysis <- function(original_cases, parameterization,
   }) %>% 
     dplyr::bind_rows()
   
-  # Now do the rebound analysis
-  original_cases %>% 
+  # If we want to include the original point, 
+  # create a data frame of rows of the original points.
+  # Include one copy with orig_type (for points)
+  # and one copy with sweep_type (for lines).
+  orig_points <- dplyr::bind_rows(
+    original_cases %>% dplyr::mutate("{point_type_colname}" := orig_type), 
+    original_cases %>% dplyr::mutate("{point_type_colname}" := sweep_type)
+  ) %>% 
+    # Keep only those cases requeste in parameterization
+    dplyr::filter(.data[[case_colname]] %in% cases)
+  if (!include_orig_point) {
+    # Empty the rows
+    orig_points <- orig_points[-(1:nrow(orig_points)), ]
+  }
+  
+  sweep_points <- original_cases %>% 
     # Focus only on the cases of interest
     dplyr::filter(.data[[case_colname]] %in% cases) %>% 
     # Eliminate the columns that are to be parameterized, leaving
@@ -94,7 +114,12 @@ parametric_analysis <- function(original_cases, parameterization,
     dplyr::select(-dplyr::all_of(params)) %>% 
     # Join the parameterized variables in param_cases to the unparameterized variables
     dplyr::right_join(param_combinations, by = case_colname) %>% 
-    # Now we have a data frame that contains all parameters to be swept.
-    # Analyze all cases in the parametric study.
+    # Add the point type column.
+    dplyr::mutate(
+      "{point_type_colname}" := sweep_type
+    )
+  
+  # Bind the two data frames together, run the rebound analysis, and return the result.
+  dplyr::bind_rows(orig_points, sweep_points) %>% 
     rebound_analysis()
 }

@@ -531,3 +531,16 @@
 "default_graph_params"
 
 
+#' Parametric analysis point types
+#' 
+#' This is the list of parametric analysis point types.
+#' 
+#' @format A string list with `r length(parametric_analysis_point_types)` entries.
+#' \describe{
+#' \item{point_type_colname}{The name of the column that contains parametric analysis point types.}
+#' \item{orig}{The string for original points.}
+#' \item{sweep}{The string for sweep points.}
+#' }
+#' @examples
+#' parametric_analysis_point_types
+"parametric_analysis_point_types"

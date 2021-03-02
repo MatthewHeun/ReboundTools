@@ -72,11 +72,6 @@ usethis::use_data(rebound_stages, overwrite = TRUE)
 
 latex_rebound_stages <- data.frame(
   stage = ReboundTools::rebound_stages %>% unlist() %>% unname(),
-  # latex_stage_name = c("${ }^{\\scriptscriptstyle \\circ}$ (orig)", 
-  #                      "${ }^*$ (star)", 
-  #                      "$\\hat{ }$ (hat)",
-  #                      "$\\bar{ }$ (bar)",
-  #                      "$\\tilde{ }$ (tilde)")
   latex_stage_name = c("$\\circ$ (orig)", 
                        "$*$ (star)", 
                        "$\\wedge$ (hat)",
@@ -458,3 +453,11 @@ default_graph_params <- list(# Points on paths
 usethis::use_data(default_graph_params, overwrite = TRUE)
 
 
+#
+# Parametric analysis point types
+# 
+
+parametric_analysis_point_types <- list(point_type_colname = "point_type",
+                                        orig = "orig", 
+                                        sweep = "sweep")
+usethis::use_data(parametric_analysis_point_types, overwrite = TRUE)
