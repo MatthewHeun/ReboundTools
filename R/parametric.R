@@ -12,13 +12,14 @@
 #' `parameterization` is a list and must have the following structure. 
 #' Top-level elements are named for cases.
 #' Case names must match the case column in `original_cases`.
+#' Not every case in `original_cases` must be present.
 #' Each top-level element in `parameterization` must itself also be a list.
 #' Each 2nd-level list must contain named vectors, with each name corresponding
 #' to a parameter in `original_cases` that will be swept 
-#' in the parametric study. 
+#' in the parametric study.
 #' If more than one entry is included in a 2nd-level list, 
 #' all combinations of values will be used, 
-#' via `expand.grid()`..
+#' via `expand.grid()`.
 #' Note that the original value of each parameter (in `original_cases`)
 #' will not be inserted into the `parameterization` lists,
 #' so be sure to include that value, if desired.
@@ -43,10 +44,10 @@
 #' # sweeping through values of both `k` and `p_E_engr_units`.
 #' params <- list(Car = list(k = seq(0, 2, by = 1), 
 #'                           p_E_engr_units = seq(1.5, 2.5, by = 0.25)))
-#' res <- parametric_studies(car_case, params)
+#' res <- parametric_analysis(car_case, params)
 #' dplyr::glimpse(res)
-parametric_studies <- function(original_cases, parameterization, 
-                               case_colname = ReboundTools::eeu_base_params$case) {
+parametric_analysis <- function(original_cases, parameterization, 
+                                case_colname = ReboundTools::eeu_base_params$case) {
   
   cases <- names(parameterization)
   

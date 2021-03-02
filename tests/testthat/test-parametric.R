@@ -1,14 +1,14 @@
 test_that("parametric_studies() works when 1 case is requested", {
   one_case <- load_eeu_data() 
   params <- list(Lamp = list(k = seq(0, 2, by = 0.5)))
-  res <- parametric_studies(one_case, params)
+  res <- parametric_analysis(one_case, params)
   expect_equal(unique(res$Case), "Lamp")
 })
 
 test_that("parametric_studies() fails when wrong variables are sent", {
   lamp_case <- load_eeu_data()
   params <- list(Lamp = list(wrong_variable = seq(0, 2, by = 0.5)))
-  expect_error(parametric_studies(lamp_case, params),
+  expect_error(parametric_analysis(lamp_case, params),
                "Elements 1 of params %in% names\\(original_cases\\) are not true")
 })
 
@@ -16,7 +16,7 @@ test_that("parametric_studies() uses expand.grid", {
   car_case <- load_eeu_data() 
   params <- list(Car = list(k = seq(0, 2, by = 0.5), 
                             p_E_engr_units = seq(1.5, 2.5, by = 0.25)))
-  res <- parametric_studies(car_case, params)
+  res <- parametric_analysis(car_case, params)
   expect_equal(res %>% 
                  dplyr::select(c("k", "p_E_engr_units")) %>% 
                  as.data.frame(),
@@ -40,7 +40,7 @@ test_that("parametric_studies() works for more than 1 case", {
   # Make parameters that don't vary
   params_1 <- list(Car = list(k = rep(1, times = 10), p_E_engr_units = rep(1.5, times = 2)), 
                    Lamp = list(k = rep(1.5, times = 3), p_E_engr_units = rep(0.05, times = 5)))
-  res_1 <- parametric_studies(cases, params_1)
+  res_1 <- parametric_analysis(cases, params_1)
   # Every row in res should be the same (per case)
   for (case in unique(res_1$Case)) {
     res_per_case <- res_1 %>% dplyr::filter(.data[["Case"]] == case)
@@ -51,7 +51,7 @@ test_that("parametric_studies() works for more than 1 case", {
   # Now test with different parameters on each row
   params_2 <- list(Car = list(k = seq(1, 2, by = 0.5), p_E_engr_units = seq(1.5, 2.5, by = 0.25)), 
                    Lamp = list(k = seq(0.5, 1.5, by = 0.5), p_E_engr_units = seq(0.05, 0.15, by = 0.05)))
-  res_2 <- parametric_studies(cases, params_2)
+  res_2 <- parametric_analysis(cases, params_2)
 
   # Check that we have something.  
   expect_true(!is.null(res_2))
