@@ -302,3 +302,91 @@ rebound_graphs_helper <- function(.path_data,
     ggplot2::scale_shape_identity() + 
     ggplot2::scale_fill_identity()
 }
+
+
+#' Sensitivity graphs for rebound analyses
+#' 
+#' This function makes sensitivity graphs for rebound analysis.
+#' 
+#' `parametric_analysis(.rebound_data, parameterization)` is called internally.
+#' The caller can adjust the aesthetics of the graph with manual scales.
+#'
+#' @param .rebound_data Rebound data, likely read by `load_eeu_data()`.
+#' @param x_var,y_var Strings that identifies the x-axis and y-axis variables for this sensitivity graph.
+#' @param linetype_var,linecolour_var,linesize_var Strings that identify variables to be used for
+#'                                                 type, color, and size of lines.
+#'                                                 Default is `ReboundTools::eeu_base_params$case`.
+#' @param orig_point_colour,orig_point_size,orig_point_pch Color, size, and character for original points.
+#'                                                         Defaults are "red", 2, and 16, respectively.
+#' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
+#' @inheritParams parametric_analysis
+#' 
+#' @return A `ggplot2` object.
+#' 
+#' @export
+#'
+#' @examples
+#' # Sensitivity of total rebound (Re_tot) to productivity multiplier (k)
+#' df <- load_eeu_data()
+#' sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
+#'                     Lamp = list(k = seq(0, 2, by = 1)))
+#' sensitivity_graphs(df, sens_params, 
+#'                    x_var = "k", y_var = "Re_tot") +
+#'  ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
+#'  ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
+#'  ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed"))
+#' # A more-complicated example that shows multi-variate sensitivity.
+#' # Values of the productivity parameter (k) is shown in rows of the lattice plot.
+#' # Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) 
+#' # is shown in columns of the lattice plot.
+#' # Total rebound (Re_tot) is given on the y-axis, and 
+#' # energy intensity of the economy (I_E) is given on the x-axis.
+#' # The cases (Car and Lamp) are shown as different lines.
+#' sens_params_2 <- list(Car = list(k = seq(0, 2, by = 0.5), 
+#'                                I_E = seq(2, 5, by = 1), 
+#'                                e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
+#'                     Lamp = list(k = seq(0, 2, by = 0.5),
+#'                                 I_E = seq(2, 5, by = 1), 
+#'                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+#' sensitivity_graphs(df, sens_params_2, 
+#'                    x_var = "I_E", y_var = "Re_tot") +
+#'   ggplot2::facet_grid(rows = ggplot2::vars(k), 
+#'                       cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
+#'   ggplot2::scale_colour_manual(values = c(Car = "darkgreen", Lamp = "black")) + 
+#'   ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1)) + 
+#'   ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dotted")) + 
+#'   ggplot2::labs(colour = ggplot2::element_blank(), 
+#'                 size = ggplot2::element_blank(),
+#'                 linetype = ggplot2::element_blank())
+sensitivity_graphs <- function(.rebound_data, parameterization, 
+                               x_var, y_var,
+                               linetype_var = ReboundTools::eeu_base_params$case, 
+                               linecolour_var = ReboundTools::eeu_base_params$case, 
+                               linesize_var = ReboundTools::eeu_base_params$case, 
+                               orig_point_colour = "red",
+                               orig_point_size = 2,
+                               orig_point_pch = 16,
+                               point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
+                               sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
+                               orig_points = ReboundTools::parametric_analysis_point_types$orig) {
+  
+  p_data <- parametric_analysis(.rebound_data, parameterization)
+  line_data <- p_data %>% 
+    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
+  point_data <- p_data %>% 
+    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
+  
+  # Create the graph
+  ggplot2::ggplot() + 
+    ggplot2::geom_line(data = line_data, 
+                       mapping = ggplot2::aes_string(x = x_var, y = y_var, 
+                                                     linetype = linetype_var, 
+                                                     colour = linecolour_var, 
+                                                     size = linesize_var)) + 
+    ggplot2::geom_point(data = point_data, 
+                        mapping = ggplot2::aes_string(x = x_var, y = y_var), 
+                        colour = orig_point_colour, 
+                        size = orig_point_size, 
+                        shape = orig_point_pch)
+}
+

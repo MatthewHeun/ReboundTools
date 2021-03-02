@@ -63,13 +63,13 @@
 
       
 
-      </header><script src="ReboundTools_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="ReboundTools_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ReboundTools</h1>
                         <h4 class="author">Matthew Kuperus Heun</h4>
             
-            <h4 class="date">2021-02-09</h4>
+            <h4 class="date">2021-03-02</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -91,7 +91,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eeu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Uses the readxl package internally.</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
 <span class="co">#&gt; Columns: 27</span>
 <span class="co">#&gt; $ Reference             &lt;chr&gt; "None yet", "None yet"</span>
@@ -142,7 +142,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <p>After data are loaded, rebound analyses can be performed. A rebound analysis consists of calculating all rebound terms and intermediate results, once for each row of the EEU data frame. A convenient function to perform the rebound analysis is named, aptly, <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code>. Columns for intermediate and final results are added to the right of the data frame.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
 <span class="co">#&gt; Columns: 152</span>
 <span class="co">#&gt; $ Reference                  &lt;chr&gt; "None yet", "None yet"</span>
@@ -347,26 +347,26 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         caption.placement <span class="op">=</span> <span class="st">"top"</span>,
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Tue Feb  9 21:04:37 2021 -->
+<!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
+<!-- Tue Mar  2 15:43:39 2021 -->
 <table class="table">
 <tr>
 <th>
 </th>
 <th>
-<span class="math inline">\({ }^{\scriptscriptstyle \circ}\)</span> (orig)
+<span class="math inline">\(\circ\)</span> (orig)
 </th>
 <th>
-<span class="math inline">\({ }^*\)</span> (star)
+<span class="math inline">\(*\)</span> (star)
 </th>
 <th>
-<span class="math inline">\(\hat{ }\)</span> (hat)
+<span class="math inline">\(\wedge\)</span> (hat)
 </th>
 <th>
-<span class="math inline">\(\bar{ }\)</span> (bar)
+<span class="math inline">\(-\)</span> (bar)
 </th>
 <th>
-<span class="math inline">\(\tilde{ }\)</span> (tilde)
+<span class="math inline">\(\sim\)</span> (tilde)
 </th>
 </tr>
 <tr>
@@ -633,8 +633,8 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         hline.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>,
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Tue Feb  9 21:04:37 2021 -->
+<!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
+<!-- Tue Mar  2 15:43:39 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -1025,9 +1025,6 @@ Value [%]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $points_atop_paths</span>
 <span class="co">#&gt; [1] TRUE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $annotation_text_colour</span>
-<span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $energy_grid_colour</span>
 <span class="co">#&gt; [1] "black"</span>
