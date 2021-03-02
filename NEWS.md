@@ -1,8 +1,12 @@
+* New function `sensitivity_graphs()` makes graphs from parametric data.
 * `parametric_analysis()` now optionally returns the original point,
   which may be helpful for graphing purposes.
   E.g., one could make a graph with lines for the swept parameters and 
   red dots for the original (base) points.
 * Added a first version of the `parametric_analysis()` function.
+* New tests for new features.
+    - Now at 449 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.10 (2021-02-09)
