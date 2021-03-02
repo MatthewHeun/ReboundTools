@@ -5,7 +5,8 @@
 \title{Sensitivity graphs for rebound analyses}
 \usage{
 sensitivity_graphs(
-  .rebound_data,
+  .parametric_data = parametric_analysis(rebound_data, parameterization),
+  rebound_data,
   parameterization,
   x_var,
   y_var,
@@ -21,7 +22,10 @@ sensitivity_graphs(
 )
 }
 \arguments{
-\item{.rebound_data}{Rebound data, likely read by \code{load_eeu_data()}.}
+\item{.parametric_data}{A data frame, likely the result of calling \code{parametric_analysis()}.
+Default is \code{parametric_analysis(rebound_data, parameterization)}.}
+
+\item{rebound_data}{Rebound data, likely read by \code{load_eeu_data()}.}
 
 \item{parameterization}{A named list of lists. See details.}
 
@@ -43,7 +47,6 @@ A \code{ggplot2} object.
 This function makes sensitivity graphs for rebound analysis.
 }
 \details{
-\code{parametric_analysis(.rebound_data, parameterization)} is called internally.
 The caller can adjust the aesthetics of the graph with manual scales.
 }
 \examples{

@@ -308,10 +308,11 @@ rebound_graphs_helper <- function(.path_data,
 #' 
 #' This function makes sensitivity graphs for rebound analysis.
 #' 
-#' `parametric_analysis(.rebound_data, parameterization)` is called internally.
 #' The caller can adjust the aesthetics of the graph with manual scales.
 #'
-#' @param .rebound_data Rebound data, likely read by `load_eeu_data()`.
+#' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
+#'                         Default is `parametric_analysis(rebound_data, parameterization)`.
+#' @param rebound_data Rebound data, likely read by `load_eeu_data()`.
 #' @param x_var,y_var Strings that identifies the x-axis and y-axis variables for this sensitivity graph.
 #' @param linetype_var,linecolour_var,linesize_var Strings that identify variables to be used for
 #'                                                 type, color, and size of lines.
@@ -358,7 +359,8 @@ rebound_graphs_helper <- function(.path_data,
 #'   ggplot2::labs(colour = ggplot2::element_blank(), 
 #'                 size = ggplot2::element_blank(),
 #'                 linetype = ggplot2::element_blank())
-sensitivity_graphs <- function(.rebound_data, parameterization, 
+sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
+                               rebound_data, parameterization, 
                                x_var, y_var,
                                linetype_var = ReboundTools::eeu_base_params$case, 
                                linecolour_var = ReboundTools::eeu_base_params$case, 
@@ -370,10 +372,9 @@ sensitivity_graphs <- function(.rebound_data, parameterization,
                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
                                orig_points = ReboundTools::parametric_analysis_point_types$orig) {
   
-  p_data <- parametric_analysis(.rebound_data, parameterization)
-  line_data <- p_data %>% 
+  line_data <- .parametric_data %>% 
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
-  point_data <- p_data %>% 
+  point_data <- .parametric_data %>% 
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
   
   # Create the graph
