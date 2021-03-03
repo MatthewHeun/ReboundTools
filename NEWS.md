@@ -1,3 +1,6 @@
+* Added graph parameters for total rebound.
+
+
 # ReboundTools 0.1.11 (2021-03-02)
 
 * New function `sensitivity_graphs()` makes graphs from parametric data.

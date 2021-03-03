@@ -5,7 +5,7 @@
 \alias{default_graph_params}
 \title{Graph parameters}
 \format{
-A string list with 66 entries.
+A string list with 69 entries.
 \describe{
 
 \item{which_points}{A data frame telling which points to include in the graph.}
@@ -25,6 +25,7 @@ A string list with 66 entries.
 \item{dinc_colour}{The colour for direct income lines.}
 \item{iinc_colour}{The colour for indirect income lines.}
 \item{prod_colour}{The colour for productivity lines.}
+\item{tot_colour}{The colour for total rebound lines.}
 \item{dempl_size}{The size for direct emplacment lines.}
 \item{emb_size}{The size for embodied energy lines.}
 \item{cap_size}{The size for capital cost lines.}
@@ -34,6 +35,7 @@ A string list with 66 entries.
 \item{dinc_size}{The size for direct income lines.}
 \item{iinc_size}{The size for indirect income lines.}
 \item{prod_size}{The size for productivity lines.}
+\item{tot_size}{The size for total rebound lines.}
 \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 \item{emb_linetype}{The linetype for embodied energy lines.}
 \item{cap_linetype}{The linetype for capital cost lines.}
@@ -43,6 +45,7 @@ A string list with 66 entries.
 \item{dinc_linetype}{The linetype for direct income lines.}
 \item{iinc_linetype}{The linetype for indirect income lines.}
 \item{prod_linetype}{The linetype for productivity lines.}
+\item{tot_linetype}{The linetype for total rebound lines.}
 \item{lineend}{The line end style.}
 \item{linejoin}{The line join style.}
 \item{reverse_path_drawing_order}{Tells whether to reverse the drawing order for paths. The default (\code{FALSE})
