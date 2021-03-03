@@ -384,6 +384,7 @@ default_graph_params <- list(# Points on paths
                              dinc_colour = inc_colour,
                              iinc_colour = inc_colour, 
                              prod_colour = prod_colour, 
+                             tot_colour = "black",
                              
                              # Path line widths
                              dempl_size = 1, 
@@ -395,6 +396,7 @@ default_graph_params <- list(# Points on paths
                              dinc_size = 1,
                              iinc_size = 1, 
                              prod_size = 1,
+                             tot_size = 2,
                              
                              # Path linetypes
                              dempl_linetype = "solid",
@@ -406,6 +408,7 @@ default_graph_params <- list(# Points on paths
                              dinc_linetype = "solid",
                              iinc_linetype = "solid", 
                              prod_linetype = "solid",
+                             tot_linetype = "solid",
                              
                              # Path line end and join
                              lineend = "round", 
