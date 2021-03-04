@@ -1,4 +1,6 @@
+* New constants for sensitivity graphs, `sens_graph_params`.
 * Name changes: 
+    * `default_graph_params` --> `path_graph_params`
     * `rebound_graphs()` --> `path_graphs()`.
 * Added graph parameters for total rebound.
 
