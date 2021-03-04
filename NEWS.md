@@ -1,3 +1,5 @@
+* Name changes: 
+    * `rebound_graphs()` --> `path_graphs()`.
 * Added graph parameters for total rebound.
 
 

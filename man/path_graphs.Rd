@@ -10,7 +10,7 @@ path_graphs(
   cases = .analysis_data[[case_colname]] \%>\% unique(),
   graph_types = ReboundTools::graph_types,
   grid_types = ReboundTools::graph_types,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   case_colname = ReboundTools::eeu_base_params$case,
   rebound_stages = ReboundTools::rebound_stages,
   rebound_segments = ReboundTools::rebound_segments,
@@ -29,7 +29,7 @@ path_graphs(
 \item{grid_types}{A string list of graph types on which grids (guide lines) are to be included. Default is \code{ReboundTools::graph_types}, i.e. include grids on all graph types.}
 
 \item{graph_params}{A string list of parameters that control the appearance of this graph.
-Default is \code{ReboundTools::default_graph_params}, which can be
+Default is \code{ReboundTools::path_graph_params}, which can be
 modified and passed as an argument to control graph appearance.}
 
 \item{case_colname}{The name of the Case column in \code{.rebound_data}. Default is \code{ReboundTools::eeu_base_params$case}.}

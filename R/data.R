@@ -434,7 +434,7 @@
 "graph_df_colnames"
 
 
-#' Graph parameters
+#' Path graph parameters
 #' 
 #' The list of graph parameters for drawing
 #' energy path graphs, cost path graphs, and preference path graphs
@@ -444,7 +444,7 @@
 #' Callers may pass a modified version of this list 
 #' to change graph appearance.
 #' 
-#' @format A string list with `r length(default_graph_params)` entries.
+#' @format A string list with `r length(path_graph_params)` entries.
 #' \describe{
 #' 
 #' \item{which_points}{A data frame telling which points to include in the graph.}
@@ -530,8 +530,8 @@
 #' \item{arrow_type}{The arrow type, "closed" (the default) or "open". See `grid::arrow`.}
 #' }
 #' @examples
-#' default_graph_params
-"default_graph_params"
+#' path_graph_params
+"path_graph_params"
 
 
 #' Parametric analysis point types

@@ -6,7 +6,7 @@
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
 #' @param grid_types A string list of graph types on which grids (guide lines) are to be included. Default is `ReboundTools::graph_types`, i.e. include grids on all graph types.
 #' @param graph_params A string list of parameters that control the appearance of this graph. 
-#'                     Default is `ReboundTools::default_graph_params`, which can be 
+#'                     Default is `ReboundTools::path_graph_params`, which can be 
 #'                     modified and passed as an argument to control graph appearance.
 #' @param case_colname The name of the Case column in `.rebound_data`. Default is `ReboundTools::eeu_base_params$case`.
 #' @param rebound_stages See `ReboundTools::rebound_stages`.
@@ -26,7 +26,7 @@ path_graphs <- function(.analysis_data,
                            cases = .analysis_data[[case_colname]] %>% unique(),
                            graph_types = ReboundTools::graph_types,
                            grid_types = ReboundTools::graph_types,
-                           graph_params = ReboundTools::default_graph_params, 
+                           graph_params = ReboundTools::path_graph_params, 
                            case_colname = ReboundTools::eeu_base_params$case, 
                            rebound_stages = ReboundTools::rebound_stages,
                            rebound_segments = ReboundTools::rebound_segments,
@@ -158,7 +158,7 @@ path_graphs <- function(.analysis_data,
 #' @param .points_data A data frame of points between rebound effects.
 #' @param .grid_data A data frame of lines to be added to the graph.
 #' @param .indifference_data A data frame of indifference curves to be added to the graph.
-#' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::default_graph_params`.
+#' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::path_graph_params`.
 #' @param graph_types A list of graph types. Default is `ReboundTools::graph_types`.
 #' @param graph_df_colnames The names of column names in data frames of graph data. Default is `ReboundTools::graph_df_colnames`.
 #'
@@ -175,7 +175,7 @@ rebound_graphs_helper <- function(.path_data,
                                   .points_data = NULL,
                                   .grid_data = NULL, 
                                   .indifference_data = NULL, 
-                                  graph_params = ReboundTools::default_graph_params,
+                                  graph_params = ReboundTools::path_graph_params,
                                   graph_types = ReboundTools::graph_types,
                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
   # Set the order of the graph types via a factor. 

@@ -384,18 +384,18 @@ While `indexed` controls _how_ the data are quantified and
 `graph_params` controls the _appearance_ of rebound graphs.
 `graph_params` should be a named list.
 The default `graph_params` list is
-`default_graph_params`.
+`path_graph_params`.
 
 ```{r}
-ReboundTools::default_graph_params
+ReboundTools::path_graph_params
 ```
 
 Most parameters are self-explanatory.
-For example, `ReboundTools::default_graph_params$dempl_colour` 
+For example, `ReboundTools::path_graph_params$dempl_colour` 
 sets the colour of the direct emplacement path.
 
 ```{r}
-my_graph_params <- default_graph_params
+my_graph_params <- path_graph_params
 my_graph_params$dempl_colour <- "darkred"
 load_eeu_data() %>% 
   rebound_analysis() %>% 
@@ -406,7 +406,7 @@ load_eeu_data() %>%
   ggplot2::theme_classic()
 ```
 
-See help for `default_graph_params` for additional information. 
+See help for `path_graph_params` for additional information. 
 
 
 ## Conclusion

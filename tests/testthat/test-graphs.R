@@ -94,7 +94,7 @@ test_that("path_graphs() works as expected", {
   expect_true(!is.null(graphs_lamp_prefs))
   
   # Try a preferences graph for lamps with fewer indifference curve points
-  graph_prefs <- ReboundTools::default_graph_params
+  graph_prefs <- ReboundTools::path_graph_params
   graph_prefs$n_indiff_curve_points <- 200
   graphs_lamp_prefs_2 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
@@ -281,7 +281,7 @@ test_that("rebound_graphs_helper() works with a preferences graph with grids for
 
 
 test_that("graphs work without arrows", {
-  no_arrows <- ReboundTools::default_graph_params
+  no_arrows <- ReboundTools::path_graph_params
   no_arrows$show_arrows <- FALSE
   # Try with only one case, Car Energy
   graphs_car_energy <- load_eeu_data() %>% 
@@ -296,7 +296,7 @@ test_that("graphs work without arrows", {
 
 
 test_that("points_atop_paths works as expected", {
-  points_beneath_paths <- ReboundTools::default_graph_params
+  points_beneath_paths <- ReboundTools::path_graph_params
   points_beneath_paths$points_atop_paths <- FALSE
   # Try with only one case, Car Energy
   graphs_car_energy <- load_eeu_data() %>% 

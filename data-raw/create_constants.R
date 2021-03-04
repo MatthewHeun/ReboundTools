@@ -360,7 +360,7 @@ arr_style <- grid::arrow(angle = 20,
                          length = grid::unit(0.1, "inches"),
                          type = "closed")
 
-default_graph_params <- list(# Points on paths
+path_graph_params <- list(# Points on paths
                              which_points = tibble::tibble("{graph_df_colnames$point_name_col}" := unlist(rebound_stages), 
                                                            "{graph_df_colnames$start_point_col}" := c(TRUE, TRUE, TRUE, TRUE, FALSE)),
                              last_point = FALSE,
@@ -453,7 +453,7 @@ default_graph_params <- list(# Points on paths
                              n_indiff_curve_points = 200,
                              qs_qs0_lower = 0.1,
                              qs_qs0_upper = 10)
-usethis::use_data(default_graph_params, overwrite = TRUE)
+usethis::use_data(path_graph_params, overwrite = TRUE)
 
 
 #
