@@ -54,7 +54,7 @@ The caller can adjust the aesthetics of the graph with manual scales.
 df <- load_eeu_data()
 sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
                     Lamp = list(k = seq(0, 2, by = 1)))
-sensitivity_graphs(df, sens_params, 
+sensitivity_graphs(rebound_data = df, parameterization = sens_params, 
                    x_var = "k", y_var = "Re_tot") +
  ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
  ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
@@ -72,7 +72,7 @@ sens_params_2 <- list(Car = list(k = seq(0, 2, by = 0.5),
                     Lamp = list(k = seq(0, 2, by = 0.5),
                                 I_E = seq(2, 5, by = 1), 
                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
-sensitivity_graphs(df, sens_params_2, 
+sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
                    x_var = "I_E", y_var = "Re_tot") +
   ggplot2::facet_grid(rows = ggplot2::vars(k), 
                       cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +

@@ -34,7 +34,7 @@ The columns "colour" and "size" control the colour and width of the segment}
 A \code{ggplot2} object containing graphs.
 }
 \description{
-This is a helper function for \code{rebound_graphs()}.
+This is a helper function for \code{path_graphs()}.
 There is normally no need to call this function.
 }
 \examples{

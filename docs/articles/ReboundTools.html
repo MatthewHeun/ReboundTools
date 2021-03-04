@@ -722,13 +722,13 @@ Value [%]
 <div id="rebound-graphs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rebound-graphs" class="anchor"></a>Rebound graphs</h2>
-<p>Rebound graphs can be created with the <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code> function. Three types of rebound graphs are available:</p>
+<p>Rebound graphs can be created with the <code><a href="../reference/rebound_graphs.html">path_graphs()</a></code> function. Three types of rebound graphs are available:</p>
 <ul>
 <li>Energy paths,</li>
 <li>Cost paths, and</li>
 <li>Preference paths.</li>
 </ul>
-<p>The <code>graph_type</code> argument to <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Cost”, or “Preferences”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
+<p>The <code>graph_type</code> argument to <code><a href="../reference/rebound_graphs.html">path_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Cost”, or “Preferences”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
 <div id="energy-path-graph" class="section level3">
 <h3 class="hasAnchor">
 <a href="#energy-path-graph" class="anchor"></a>Energy path graph</h3>
@@ -766,7 +766,7 @@ Value [%]
 </div>
 <div id="arguments-to-rebound_graphs" class="section level3">
 <h3 class="hasAnchor">
-<a href="#arguments-to-rebound_graphs" class="anchor"></a>Arguments to <code>rebound_graphs()</code>
+<a href="#arguments-to-rebound_graphs" class="anchor"></a>Arguments to <code>path_graphs()</code>
 </h3>
 <p>In addition to the <code>graph_types</code> and <code>cases</code> arguments, the following arguments adjust the composition and appearance of graphs:</p>
 <ul>
@@ -822,7 +822,7 @@ Value [%]
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 280 row(s) containing missing values (geom_path).</span></code></pre></div>
 <p><img src="ReboundTools_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;"></p>
-<p>Note that the <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code> function applies labels to the x and y axes whenever the labels are unambiguous. However, when multiple path graphs are included in the same figure, the x and y axis labels are unclear. The user can apply labels appropriate to their situation.</p>
+<p>Note that the <code><a href="../reference/rebound_graphs.html">path_graphs()</a></code> function applies labels to the x and y axes whenever the labels are unambiguous. However, when multiple path graphs are included in the same figure, the x and y axis labels are unclear. The user can apply labels appropriate to their situation.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1129,7 +1129,7 @@ Value [%]
 <ul>
 <li>the <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> function performs rebound analysis on energy efficiency upgrades,</li>
 <li>the <code><a href="../reference/stages_table.html">stages_table()</a></code> function returns an <code>xtable</code> object suitable for inclusion in papers and reports, and</li>
-<li>the <code><a href="../reference/rebound_graphs.html">rebound_graphs()</a></code> function returns <code>ggplot2</code> objects that show rebound path graphs.</li>
+<li>the <code><a href="../reference/rebound_graphs.html">path_graphs()</a></code> function returns <code>ggplot2</code> objects that show rebound path graphs.</li>
 </ul>
 <p>Taken together, these functions provide important capabilities to analyze rebound effects for energy efficiency upgrades.</p>
 </div>
