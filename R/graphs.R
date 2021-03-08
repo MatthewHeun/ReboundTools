@@ -377,16 +377,16 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
   
   # Create the graph
   ggplot2::ggplot() + 
-    ggplot2::geom_line(data = line_data, 
-                       mapping = ggplot2::aes_string(x = x_var, y = y_var, 
-                                                     linetype = linetype_var, 
-                                                     colour = linecolour_var, 
-                                                     size = linesize_var)) + 
     ggplot2::geom_point(data = point_data, 
                         mapping = ggplot2::aes_string(x = x_var, y = y_var), 
                         colour = graph_params$orig_point_colour, 
                         size = graph_params$orig_point_size, 
                         shape = graph_params$orig_point_shape, 
-                        stroke = graph_params$orig_point_stroke)
+                        stroke = graph_params$orig_point_stroke) +
+  ggplot2::geom_line(data = line_data, 
+                       mapping = ggplot2::aes_string(x = x_var, y = y_var, 
+                                                     linetype = linetype_var, 
+                                                     colour = linecolour_var, 
+                                                     size = linesize_var))
 }
 
