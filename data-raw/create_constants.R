@@ -323,7 +323,9 @@ graph_df_colnames <- list(colour_col = "colour",
                           f_Cs_orig_col = "f_Cs_orig",
                           sigma_col = "sigma", 
                           start_point_col = "start_point",
-                          end_arrow_col = "end_arrow")
+                          end_arrow_col = "end_arrow", 
+                          Re_names = "Re_names", 
+                          Re_values = "Re_values")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 

@@ -9,14 +9,16 @@ sensitivity_graphs(
   rebound_data,
   parameterization,
   x_var,
-  y_var = ReboundTools::rebound_terms,
+  y_vars = ReboundTools::rebound_terms,
   linetype_var = ReboundTools::eeu_base_params$case,
   linecolour_var = ReboundTools::eeu_base_params$case,
   linesize_var = ReboundTools::eeu_base_params$case,
   graph_params = ReboundTools::sens_graph_params,
   point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
   sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
-  orig_points = ReboundTools::parametric_analysis_point_types$orig
+  orig_points = ReboundTools::parametric_analysis_point_types$orig,
+  Re_names = ReboundTools::graph_df_colnames$Re_names,
+  Re_values = ReboundTools::graph_df_colnames$Re_values
 )
 }
 \arguments{
