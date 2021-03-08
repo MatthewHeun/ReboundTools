@@ -317,8 +317,8 @@ rebound_graphs_helper <- function(.path_data,
 #' @param linetype_var,linecolour_var,linesize_var Strings that identify variables to be used for
 #'                                                 type, color, and size of lines.
 #'                                                 Default is `ReboundTools::eeu_base_params$case`.
-#' @param orig_point_colour,orig_point_size,orig_point_pch Color, size, and character for original points.
-#'                                                         Defaults are "red", 2, and 16, respectively.
+#' @param graph_params A list of parameters to control graph appearance. 
+#'                     See `ReboundTools::sens_graph_params`.
 #' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
 #' @inheritParams parametric_analysis
 #' 
@@ -365,9 +365,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                                linetype_var = ReboundTools::eeu_base_params$case, 
                                linecolour_var = ReboundTools::eeu_base_params$case, 
                                linesize_var = ReboundTools::eeu_base_params$case, 
-                               orig_point_colour = "red",
-                               orig_point_size = 2,
-                               orig_point_pch = 16,
+                               graph_params = ReboundTools::sens_graph_params,
                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
                                orig_points = ReboundTools::parametric_analysis_point_types$orig) {
@@ -386,8 +384,9 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                                                      size = linesize_var)) + 
     ggplot2::geom_point(data = point_data, 
                         mapping = ggplot2::aes_string(x = x_var, y = y_var), 
-                        colour = orig_point_colour, 
-                        size = orig_point_size, 
-                        shape = orig_point_pch)
+                        colour = graph_params$orig_point_colour, 
+                        size = graph_params$orig_point_size, 
+                        shape = graph_params$orig_point_shape, 
+                        stroke = graph_params$orig_point_stroke)
 }
 

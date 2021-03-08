@@ -13,9 +13,7 @@ sensitivity_graphs(
   linetype_var = ReboundTools::eeu_base_params$case,
   linecolour_var = ReboundTools::eeu_base_params$case,
   linesize_var = ReboundTools::eeu_base_params$case,
-  orig_point_colour = "red",
-  orig_point_size = 2,
-  orig_point_pch = 16,
+  graph_params = ReboundTools::sens_graph_params,
   point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
   sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
   orig_points = ReboundTools::parametric_analysis_point_types$orig
@@ -35,8 +33,8 @@ Default is \code{parametric_analysis(rebound_data, parameterization)}.}
 type, color, and size of lines.
 Default is \code{ReboundTools::eeu_base_params$case}.}
 
-\item{orig_point_colour, orig_point_size, orig_point_pch}{Color, size, and character for original points.
-Defaults are "red", 2, and 16, respectively.}
+\item{graph_params}{A list of parameters to control graph appearance.
+See \code{ReboundTools::sens_graph_params}.}
 
 \item{point_type_colname, sweep_points, orig_points}{See \code{ReboundTools::parametric_analysis_point_types}.}
 }

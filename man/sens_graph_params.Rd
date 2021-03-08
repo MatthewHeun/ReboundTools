@@ -5,12 +5,13 @@
 \alias{sens_graph_params}
 \title{Sensitivity graph parameters}
 \format{
-A string list with 37 entries.
+A string list with 38 entries.
 \describe{
 
-\item{point_shape}{The shape for points between rebound effects. Default is \code{21}, a filled circle..}
-\item{point_size}{The size for points between rebound effects. Default is \code{1}.}
-\item{point_stroke}{The size of the line surrounding points between rebound effects. Default is \code{1}.}
+\item{orig_point_shape}{The shape for points between rebound effects. Default is \code{21}, a filled circle..}
+\item{orig_point_size}{The size for points between rebound effects. Default is \code{1}.}
+\item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is \code{1}.}
+\item{orig_point_colour}{The colour of the original points. Default is "red".}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital cost lines.}

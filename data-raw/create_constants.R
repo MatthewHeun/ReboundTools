@@ -462,52 +462,53 @@ usethis::use_data(path_graph_params, overwrite = TRUE)
 # 
 
 sens_graph_params <- list(# Base condition points on graphs
-                          point_shape = 19,
-                          point_size = 1,
-                          point_stroke = 1,
+                          orig_point_shape = 19,
+                          orig_point_size = 2,
+                          orig_point_stroke = 1,
+                          orig_point_colour = "red",
                           
-  # Rebound effect colours
-  dempl_colour = empl_colour, 
-  emb_colour = empl_colour,
-  cap_colour = empl_colour,
-  md_colour = empl_colour, 
-  dsub_colour = sub_colour,
-  isub_colour = sub_colour, 
-  dinc_colour = inc_colour,
-  iinc_colour = inc_colour, 
-  prod_colour = prod_colour, 
-  tot_colour = tot_colour,
-  
-  # Line widths for rebound effects
-  dempl_size = 1, 
-  emb_size = 1.5,
-  cap_size = 1.5,
-  md_size = 1, 
-  dsub_size = 1,
-  isub_size = 1, 
-  dinc_size = 1,
-  iinc_size = 1, 
-  prod_size = 1,
-  tot_size = 2,
-  
-  # linetypes for rebound effects
-  dempl_linetype = "solid",
-  emb_linetype = "11",
-  cap_linetype = "11",
-  md_linetype = "solid", 
-  dsub_linetype = "solid",
-  isub_linetype = "solid", 
-  dinc_linetype = "solid",
-  iinc_linetype = "solid", 
-  prod_linetype = "solid",
-  tot_linetype = "solid",
-  
-  # line end and join for sensitivity graphs
-  lineend = "round", 
-  linejoin = "round",
-  # Draw points on top of paths (or not)
-  include_base_condition_points = TRUE,
-  points_atop_paths = TRUE)
+                          # Rebound effect colours
+                          dempl_colour = empl_colour, 
+                          emb_colour = empl_colour,
+                          cap_colour = empl_colour,
+                          md_colour = empl_colour, 
+                          dsub_colour = sub_colour,
+                          isub_colour = sub_colour, 
+                          dinc_colour = inc_colour,
+                          iinc_colour = inc_colour, 
+                          prod_colour = prod_colour, 
+                          tot_colour = tot_colour,
+                          
+                          # Line widths for rebound effects
+                          dempl_size = 1, 
+                          emb_size = 1.5,
+                          cap_size = 1.5,
+                          md_size = 1, 
+                          dsub_size = 1,
+                          isub_size = 1, 
+                          dinc_size = 1,
+                          iinc_size = 1, 
+                          prod_size = 1,
+                          tot_size = 2,
+                          
+                          # linetypes for rebound effects
+                          dempl_linetype = "solid",
+                          emb_linetype = "11",
+                          cap_linetype = "11",
+                          md_linetype = "solid", 
+                          dsub_linetype = "solid",
+                          isub_linetype = "solid", 
+                          dinc_linetype = "solid",
+                          iinc_linetype = "solid", 
+                          prod_linetype = "solid",
+                          tot_linetype = "solid",
+                          
+                          # line end and join for sensitivity graphs
+                          lineend = "round", 
+                          linejoin = "round",
+                          # Draw points on top of paths (or not)
+                          include_base_condition_points = TRUE,
+                          points_atop_paths = TRUE)
 usethis::use_data(sens_graph_params, overwrite = TRUE)
 
 #

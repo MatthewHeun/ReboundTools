@@ -546,9 +546,10 @@
 #' @format A string list with `r length(sens_graph_params)` entries.
 #' \describe{
 #' 
-#' \item{point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
-#' \item{point_size}{The size for points between rebound effects. Default is `1`.}
-#' \item{point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
+#' \item{orig_point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
+#' \item{orig_point_size}{The size for points between rebound effects. Default is `1`.}
+#' \item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
+#' \item{orig_point_colour}{The colour of the original points. Default is "red".}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital cost lines.}
