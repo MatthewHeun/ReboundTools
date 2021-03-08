@@ -313,7 +313,8 @@ rebound_graphs_helper <- function(.path_data,
 #' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
 #'                         Default is `parametric_analysis(rebound_data, parameterization)`.
 #' @param rebound_data Rebound data, likely read by `load_eeu_data()`.
-#' @param x_var,y_var Strings that identifies the x-axis and y-axis variables for this sensitivity graph.
+#' @param x_var,y_var Strings that identify the x-axis and y-axis variables for this sensitivity graph.
+#'                    These variables must appear in `.parametric_data`.
 #' @param linetype_var,linecolour_var,linesize_var Strings that identify variables to be used for
 #'                                                 type, color, and size of lines.
 #'                                                 Default is `ReboundTools::eeu_base_params$case`.
@@ -361,7 +362,7 @@ rebound_graphs_helper <- function(.path_data,
 #'                 linetype = ggplot2::element_blank())
 sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
                                rebound_data, parameterization, 
-                               x_var, y_var,
+                               x_var, y_var = ReboundTools::rebound_terms,
                                linetype_var = ReboundTools::eeu_base_params$case, 
                                linecolour_var = ReboundTools::eeu_base_params$case, 
                                linesize_var = ReboundTools::eeu_base_params$case, 

@@ -9,7 +9,7 @@ sensitivity_graphs(
   rebound_data,
   parameterization,
   x_var,
-  y_var,
+  y_var = ReboundTools::rebound_terms,
   linetype_var = ReboundTools::eeu_base_params$case,
   linecolour_var = ReboundTools::eeu_base_params$case,
   linesize_var = ReboundTools::eeu_base_params$case,
@@ -27,7 +27,8 @@ Default is \code{parametric_analysis(rebound_data, parameterization)}.}
 
 \item{parameterization}{A named list of lists. See details.}
 
-\item{x_var, y_var}{Strings that identifies the x-axis and y-axis variables for this sensitivity graph.}
+\item{x_var, y_var}{Strings that identify the x-axis and y-axis variables for this sensitivity graph.
+These variables must appear in \code{.parametric_data}.}
 
 \item{linetype_var, linecolour_var, linesize_var}{Strings that identify variables to be used for
 type, color, and size of lines.
