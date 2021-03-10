@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Path graph parameters — path_graph_params • ReboundTools</title>
+<title>Sensitivity graph parameters — sens_graph_params • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Path graph parameters — path_graph_params" />
+<meta property="og:title" content="Sensitivity graph parameters — sens_graph_params" />
 <meta property="og:description" content="The list of graph parameters for drawing
-energy path graphs, cost path graphs, and preference path graphs
-in the ReboundTools package." />
+sensitivity graphs in the ReboundTools package." />
 
 
 
@@ -111,32 +110,27 @@ in the ReboundTools package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Path graph parameters</h1>
+    <h1>Sensitivity graph parameters</h1>
     
-    <div class="hidden name"><code>path_graph_params.Rd</code></div>
+    <div class="hidden name"><code>sens_graph_params.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>The list of graph parameters for drawing
-energy path graphs, cost path graphs, and preference path graphs
-in the <code>ReboundTools</code> package.</p>
+sensitivity graphs in the <code>ReboundTools</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='va'>path_graph_params</span></pre>
+    <pre class="usage"><span class='va'>sens_graph_params</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 69 entries.</p><dl>
+    <p>A string list with 38 entries.</p><dl>
 
-<dt>which_points</dt><dd><p>A data frame telling which points to include in the graph.</p></dd>
-<dt>last_point</dt><dd><p>Tells whether to show the last point in a path. Overrides <code>which_points</code>.</p></dd>
-<dt>point_shape</dt><dd><p>The shape for points between rebound effects. Default is <code>21</code>, a filled circle..</p></dd>
-<dt>point_size</dt><dd><p>The size for points between rebound effects. Default is <code>1</code>.</p></dd>
-<dt>point_stroke</dt><dd><p>The size of the line surrounding points between rebound effects. Default is <code>1</code>.</p></dd>
-<dt>which_arrows</dt><dd><p>A data frame telling which ending arrows to include in the graph.</p></dd>
-<dt>last_arrow</dt><dd><p>Tells whether to show the last arrow. Overrides <code>which_arrows</code>.</p></dd>
-<dt>arrow_style</dt><dd><p>An <code>arrow</code> object created by <code><a href='https://rdrr.io/r/grid/arrow.html'>grid::arrow</a></code>.</p></dd>
+<dt>orig_point_shape</dt><dd><p>The shape for points between rebound effects. Default is <code>21</code>, a filled circle..</p></dd>
+<dt>orig_point_size</dt><dd><p>The size for points between rebound effects. Default is <code>1</code>.</p></dd>
+<dt>orig_point_stroke</dt><dd><p>The size of the line surrounding points between rebound effects. Default is <code>1</code>.</p></dd>
+<dt>orig_point_colour</dt><dd><p>The colour of the original points. Default is "red".</p></dd>
 <dt>dempl_colour</dt><dd><p>The colour for direct emplacment lines.</p></dd>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
 <dt>cap_colour</dt><dd><p>The colour for capital cost lines.</p></dd>
@@ -169,47 +163,8 @@ in the <code>ReboundTools</code> package.</p>
 <dt>tot_linetype</dt><dd><p>The linetype for total rebound lines.</p></dd>
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
-<dt>reverse_path_drawing_order</dt><dd><p>Tells whether to reverse the drawing order for paths. The default (<code>FALSE</code>)
-draws emplacement on the bottom, followed by substitution, income, and productivity paths.
-<code>TRUE</code> puts productivity paths on the bottom, followed by income, substitution, and
-emplacement paths.
-Setting <code>TRUE</code> produces attractive layering when many paths have arrows, because
-arrows overlay their following points.</p></dd>
+<dt>include_base_condition_points</dt><dd><p>Tells whether to include base conditions points. Default is <code>TRUE</code>.</p></dd>
 <dt>points_atop_paths</dt><dd><p>Tells whether to draw points above paths (<code>TRUE</code>) or beneath paths (<code>FALSE</code>). Default is <code>TRUE</code>.</p></dd>
-<dt>energy_grid_colour</dt><dd><p>The colour for energy grid lines.</p></dd>
-<dt>zero_perc_rebound_grid_colour</dt><dd><p>The colour for energy the 0% rebound lines.</p></dd>
-<dt>hundred_perc_rebound_grid_colour</dt><dd><p>The colour for the 100% rebound lines.</p></dd>
-<dt>energy_rebound_lines_colour</dt><dd><p>The colour for energy rebound lines.</p></dd>
-<dt>cost_grid_colour</dt><dd><p>The colour for cost grid lines.</p></dd>
-<dt>cost_ray_colour</dt><dd><p>The colour for cost rays.</p></dd>
-<dt>prefs_grid_colour</dt><dd><p>The colour for preferences grid lines.</p></dd>
-<dt>prefs_indiff_curve_colour</dt><dd><p>The colour for indifference curve lines.</p></dd>
-<dt>energy_grid_size</dt><dd><p>The size for energy grid lines.</p></dd>
-<dt>zero_perc_rebound_grid_size</dt><dd><p>The size for 0% rebound grid lines.</p></dd>
-<dt>hundred_perc_rebound_grid_size</dt><dd><p>The size for the 100% rebound grid lines.</p></dd>
-<dt>energy_rebound_lines_size</dt><dd><p>The size for energy rebound lines.</p></dd>
-<dt>cost_grid_size</dt><dd><p>The size for cost grid lines.</p></dd>
-<dt>cost_ray_size</dt><dd><p>The size for cost rays.</p></dd>
-<dt>prefs_grid_size</dt><dd><p>The size for preferences grid lines.</p></dd>
-<dt>prefs_indiff_curve_size</dt><dd><p>The size for indifference curve lines.</p></dd>
-<dt>energy_grid_linetype</dt><dd><p>The linetype for energy grid lines.</p></dd>
-<dt>zero_perc_rebound_grid_linetype</dt><dd><p>The linetype for 0% rebound grid lines.</p></dd>
-<dt>hundred_perc_rebound_grid_linetype</dt><dd><p>The linetype for the 100% rebound grid lines.</p></dd>
-<dt>energy_rebound_lines_linetype</dt><dd><p>The linetype for energy rebound lines.</p></dd>
-<dt>cost_grid_linetype</dt><dd><p>The linetype for cost grid lines.</p></dd>
-<dt>cost_ray_linetype</dt><dd><p>The linetype for cost rays.</p></dd>
-<dt>prefs_grid_linetype</dt><dd><p>The linetype for preferences grid lines.</p></dd>
-<dt>prefs_indiff_curve_linetype</dt><dd><p>The linetype for indifference curve lines.</p></dd>
-<dt>n_indiff_curve_points</dt><dd><p>The number of points on the indifference curves.</p></dd>
-<dt>qs_qs0_lower</dt><dd><p>The lower bound for the x value in the indifference curves.</p></dd>
-<dt>qs_qs0_upper</dt><dd><p>The upper bound for the x value in the indifference curves.</p></dd>
-<dt>include_start_point</dt><dd><p>A boolean that tells whether to include the starting point.</p></dd>
-<dt>start_point_size</dt><dd><p>The size of the start point.</p></dd>
-<dt>start_point_shape</dt><dd><p>The shape of the start point.</p></dd>
-<dt>include_end_arrow</dt><dd><p>A boolean that tells whether to include an ending arrow.</p></dd>
-<dt>arrow_angle</dt><dd><p>The angle for the arrow head, in degrees.</p></dd>
-<dt>arrow_length</dt><dd><p>The length of the arrow. See <code><a href='https://rdrr.io/r/grid/unit.html'>grid::unit</a></code>.</p></dd>
-<dt>arrow_type</dt><dd><p>The arrow type, "closed" (the default) or "open". See <code><a href='https://rdrr.io/r/grid/arrow.html'>grid::arrow</a></code>.</p></dd>
 
 </dl>
 
@@ -217,64 +172,21 @@ arrows overlay their following points.</p></dd>
 
     <p>This list is passed to several graphing functions.
 Callers may pass a modified version of this list
-to change graph appearance.</p>
+to change sensitivity graph appearance.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>path_graph_params</span>
-</div><div class='output co'>#&gt; $which_points
-#&gt; <span style='color: #949494;'># A tibble: 5 x 2</span><span>
-#&gt;   point_name start_point
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> orig       TRUE       
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> star       TRUE       
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> hat        TRUE       
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> bar        TRUE       
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> tilde      FALSE      
-#&gt; 
-#&gt; $last_point
-#&gt; [1] FALSE
-#&gt; 
-#&gt; $point_shape
+    <pre class="examples"><div class='input'><span class='va'>sens_graph_params</span>
+</div><div class='output co'>#&gt; $orig_point_shape
 #&gt; [1] 19
 #&gt; 
-#&gt; $point_size
-#&gt; [1] 1
-#&gt; 
-#&gt; $point_stroke
-#&gt; [1] 1
-#&gt; 
-#&gt; $which_arrows
-#&gt; </span><span style='color: #949494;'># A tibble: 9 x 2</span><span>
-#&gt;   line_name end_arrow
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> dempl     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> emb       FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> cap       FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> md        FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> isub      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> dsub      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> dinc      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> iinc      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> prod      FALSE    
-#&gt; 
-#&gt; $last_arrow
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $arrow_style
-#&gt; $angle
-#&gt; [1] 20
-#&gt; 
-#&gt; $length
-#&gt; [1] 0.1inches
-#&gt; 
-#&gt; $ends
+#&gt; $orig_point_size
 #&gt; [1] 2
 #&gt; 
-#&gt; $type
-#&gt; [1] 2
+#&gt; $orig_point_stroke
+#&gt; [1] 1
 #&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "arrow"
+#&gt; $orig_point_colour
+#&gt; [1] "red"
 #&gt; 
 #&gt; $dempl_colour
 #&gt; [1] "#150789FF"
@@ -372,93 +284,12 @@ to change graph appearance.</p>
 #&gt; $linejoin
 #&gt; [1] "round"
 #&gt; 
-#&gt; $reverse_path_drawing_order
-#&gt; [1] FALSE
+#&gt; $include_base_condition_points
+#&gt; [1] TRUE
 #&gt; 
 #&gt; $points_atop_paths
 #&gt; [1] TRUE
-#&gt; 
-#&gt; $energy_grid_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $zero_perc_rebound_grid_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $hundred_perc_rebound_grid_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $energy_rebound_lines_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $cost_grid_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $prefs_grid_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $prefs_ray_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $prefs_indiff_grid_colour
-#&gt; [1] "black"
-#&gt; 
-#&gt; $energy_grid_size
-#&gt; [1] 0.1
-#&gt; 
-#&gt; $zero_perc_rebound_grid_size
-#&gt; [1] 0.3
-#&gt; 
-#&gt; $hundred_perc_rebound_grid_size
-#&gt; [1] 0.3
-#&gt; 
-#&gt; $energy_rebound_lines_size
-#&gt; [1] 0.1
-#&gt; 
-#&gt; $cost_grid_size
-#&gt; [1] 0.3
-#&gt; 
-#&gt; $prefs_grid_size
-#&gt; [1] 0.1
-#&gt; 
-#&gt; $prefs_ray_size
-#&gt; [1] 0.1
-#&gt; 
-#&gt; $prefs_indiff_grid_size
-#&gt; [1] 0.5
-#&gt; 
-#&gt; $energy_grid_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $zero_perc_rebound_grid_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $hundred_perc_rebound_grid_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $energy_rebound_lines_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $cost_grid_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $prefs_grid_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $prefs_ray_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $prefs_indiff_grid_linetype
-#&gt; [1] "solid"
-#&gt; 
-#&gt; $n_indiff_curve_points
-#&gt; [1] 200
-#&gt; 
-#&gt; $qs_qs0_lower
-#&gt; [1] 0.1
-#&gt; 
-#&gt; $qs_qs0_upper
-#&gt; [1] 10
-#&gt; </div></span></pre>
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

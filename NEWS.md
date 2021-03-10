@@ -1,9 +1,14 @@
+# ReboundTools 0.1.12 (2021-03-10)
+
 * Removed `sensitivity_graphs()` for now.
 * New constants for sensitivity graphs, `sens_graph_params`.
 * Name changes: 
     * `default_graph_params` --> `path_graph_params`
     * `rebound_graphs()` --> `path_graphs()`.
 * Added graph parameters for total rebound.
+* New tests for new features.
+    - Now at 447 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.11 (2021-03-02)
