@@ -14,7 +14,7 @@ add_arrows(
 \arguments{
 \item{.paths}{The data frame to which arrows should be added.}
 
-\item{graph_params}{See \code{ReboundTools::default_graph_params}.}
+\item{graph_params}{See \code{ReboundTools::path_graph_params}.}
 
 \item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 

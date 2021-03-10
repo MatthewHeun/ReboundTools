@@ -323,12 +323,14 @@ graph_df_colnames <- list(colour_col = "colour",
                           f_Cs_orig_col = "f_Cs_orig",
                           sigma_col = "sigma", 
                           start_point_col = "start_point",
-                          end_arrow_col = "end_arrow")
+                          end_arrow_col = "end_arrow", 
+                          Re_names = "Re_names", 
+                          Re_values = "Re_values")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 
 #
-# Default graph parameters
+# Default path graph parameters
 # 
 
 # Note: These colours match the colours in the rebound paper
@@ -355,106 +357,161 @@ empl_colour <- v_colours[1]
 sub_colour <- v_colours[2]
 inc_colour <- v_colours[3]
 prod_colour <- v_colours[4]
+tot_colour <- "black"
 
 arr_style <- grid::arrow(angle = 20, 
                          length = grid::unit(0.1, "inches"),
                          type = "closed")
 
-default_graph_params <- list(# Points on paths
-                             which_points = tibble::tibble("{graph_df_colnames$point_name_col}" := unlist(rebound_stages), 
-                                                           "{graph_df_colnames$start_point_col}" := c(TRUE, TRUE, TRUE, TRUE, FALSE)),
-                             last_point = FALSE,
-                             point_shape = 19,
-                             point_size = 1,
-                             point_stroke = 1,
+path_graph_params <- list(# Points on paths
+                          which_points = tibble::tibble("{graph_df_colnames$point_name_col}" := unlist(rebound_stages), 
+                                "{graph_df_colnames$start_point_col}" := c(TRUE, TRUE, TRUE, TRUE, FALSE)),
+                          last_point = FALSE,
+                          point_shape = 19,
+                          point_size = 1,
+                          point_stroke = 1,
+                          
+                          # Arrows on paths
+                          which_arrows = tibble::tibble("{graph_df_colnames$line_name_col}" := unlist(rebound_segments), 
+                                                        "{graph_df_colnames$end_arrow_col}" := c(rep.int(FALSE, 8), FALSE)),
+                          last_arrow = TRUE,
+                          arrow_style = arr_style,
+                          
+                          # Path colours
+                          dempl_colour = empl_colour, 
+                          emb_colour = empl_colour,
+                          cap_colour = empl_colour,
+                          md_colour = empl_colour, 
+                          dsub_colour = sub_colour,
+                          isub_colour = sub_colour, 
+                          dinc_colour = inc_colour,
+                          iinc_colour = inc_colour, 
+                          prod_colour = prod_colour, 
+                          tot_colour = tot_colour,
+                          
+                          # Path line widths
+                          dempl_size = 1, 
+                          emb_size = 1.5,
+                          cap_size = 1.5,
+                          md_size = 1, 
+                          dsub_size = 1,
+                          isub_size = 1, 
+                          dinc_size = 1,
+                          iinc_size = 1, 
+                          prod_size = 1,
+                          tot_size = 2,
+                          
+                          # Path linetypes
+                          dempl_linetype = "solid",
+                          emb_linetype = "11",
+                          cap_linetype = "11",
+                          md_linetype = "solid", 
+                          dsub_linetype = "solid",
+                          isub_linetype = "solid", 
+                          dinc_linetype = "solid",
+                          iinc_linetype = "solid", 
+                          prod_linetype = "solid",
+                          tot_linetype = "solid",
+                          
+                          # Path line end and join
+                          lineend = "round", 
+                          linejoin = "round",
+                          
+                          # Layering controls
+                          
+                          # Set order for paths drawn in same layer
+                          reverse_path_drawing_order = FALSE,
+                          # Draw points on top of paths (or not)
+                          points_atop_paths = TRUE,
+                          
+                          # Grid line colours
+                          energy_grid_colour = "black",
+                          zero_perc_rebound_grid_colour = "black",
+                          hundred_perc_rebound_grid_colour = "black",
+                          energy_rebound_lines_colour = "black",
+                          cost_grid_colour = "black",
+                          prefs_grid_colour = "black",
+                          prefs_ray_colour = "black",
+                          prefs_indiff_grid_colour = "black",
+                          
+                          # Grid line sizes
+                          energy_grid_size = 0.1,
+                          zero_perc_rebound_grid_size = 0.3,
+                          hundred_perc_rebound_grid_size = 0.3,
+                          energy_rebound_lines_size = 0.1,
+                          cost_grid_size = 0.3,
+                          prefs_grid_size = 0.1,
+                          prefs_ray_size = 0.1,
+                          prefs_indiff_grid_size = 0.5,
+                          
+                          # Grid line types
+                          energy_grid_linetype = "solid",
+                          zero_perc_rebound_grid_linetype = "solid",
+                          hundred_perc_rebound_grid_linetype = "solid",
+                          energy_rebound_lines_linetype = "solid",
+                          cost_grid_linetype = "solid",
+                          prefs_grid_linetype = "solid",
+                          prefs_ray_linetype = "solid",
+                          prefs_indiff_grid_linetype = "solid", 
+                          n_indiff_curve_points = 200,
+                          qs_qs0_lower = 0.1,
+                          qs_qs0_upper = 10)
+usethis::use_data(path_graph_params, overwrite = TRUE)
 
-                             # Arrows on paths
-                             which_arrows = tibble::tibble("{graph_df_colnames$line_name_col}" := unlist(rebound_segments), 
-                                                           "{graph_df_colnames$end_arrow_col}" := c(rep.int(FALSE, 8), FALSE)),
-                             last_arrow = TRUE,
-                             arrow_style = arr_style,
 
-                             # Path colours
-                             dempl_colour = empl_colour, 
-                             emb_colour = empl_colour,
-                             cap_colour = empl_colour,
-                             md_colour = empl_colour, 
-                             dsub_colour = sub_colour,
-                             isub_colour = sub_colour, 
-                             dinc_colour = inc_colour,
-                             iinc_colour = inc_colour, 
-                             prod_colour = prod_colour, 
-                             tot_colour = "black",
-                             
-                             # Path line widths
-                             dempl_size = 1, 
-                             emb_size = 1.5,
-                             cap_size = 1.5,
-                             md_size = 1, 
-                             dsub_size = 1,
-                             isub_size = 1, 
-                             dinc_size = 1,
-                             iinc_size = 1, 
-                             prod_size = 1,
-                             tot_size = 2,
-                             
-                             # Path linetypes
-                             dempl_linetype = "solid",
-                             emb_linetype = "11",
-                             cap_linetype = "11",
-                             md_linetype = "solid", 
-                             dsub_linetype = "solid",
-                             isub_linetype = "solid", 
-                             dinc_linetype = "solid",
-                             iinc_linetype = "solid", 
-                             prod_linetype = "solid",
-                             tot_linetype = "solid",
-                             
-                             # Path line end and join
-                             lineend = "round", 
-                             linejoin = "round",
-                             
-                             # Layering controls
-                             
-                             # Set order for paths drawn in same layer
-                             reverse_path_drawing_order = FALSE,
-                             # Draw points on top of paths (or not)
-                             points_atop_paths = TRUE,
-                             
-                             # Grid line colours
-                             energy_grid_colour = "black",
-                             zero_perc_rebound_grid_colour = "black",
-                             hundred_perc_rebound_grid_colour = "black",
-                             energy_rebound_lines_colour = "black",
-                             cost_grid_colour = "black",
-                             prefs_grid_colour = "black",
-                             prefs_ray_colour = "black",
-                             prefs_indiff_grid_colour = "black",
-                             
-                             # Grid line sizes
-                             energy_grid_size = 0.1,
-                             zero_perc_rebound_grid_size = 0.3,
-                             hundred_perc_rebound_grid_size = 0.3,
-                             energy_rebound_lines_size = 0.1,
-                             cost_grid_size = 0.3,
-                             prefs_grid_size = 0.1,
-                             prefs_ray_size = 0.1,
-                             prefs_indiff_grid_size = 0.5,
-                             
-                             # Grid line types
-                             energy_grid_linetype = "solid",
-                             zero_perc_rebound_grid_linetype = "solid",
-                             hundred_perc_rebound_grid_linetype = "solid",
-                             energy_rebound_lines_linetype = "solid",
-                             cost_grid_linetype = "solid",
-                             prefs_grid_linetype = "solid",
-                             prefs_ray_linetype = "solid",
-                             prefs_indiff_grid_linetype = "solid", 
-                             n_indiff_curve_points = 200,
-                             qs_qs0_lower = 0.1,
-                             qs_qs0_upper = 10)
-usethis::use_data(default_graph_params, overwrite = TRUE)
+#
+# Default sensitivity graph parameters
+# 
 
+sens_graph_params <- list(# Base condition points on graphs
+                          orig_point_shape = 19,
+                          orig_point_size = 2,
+                          orig_point_stroke = 1,
+                          orig_point_colour = "red",
+                          
+                          # Rebound effect colours
+                          dempl_colour = empl_colour, 
+                          emb_colour = empl_colour,
+                          cap_colour = empl_colour,
+                          md_colour = empl_colour, 
+                          dsub_colour = sub_colour,
+                          isub_colour = sub_colour, 
+                          dinc_colour = inc_colour,
+                          iinc_colour = inc_colour, 
+                          prod_colour = prod_colour, 
+                          tot_colour = tot_colour,
+                          
+                          # Line widths for rebound effects
+                          dempl_size = 1, 
+                          emb_size = 1.5,
+                          cap_size = 1.5,
+                          md_size = 1, 
+                          dsub_size = 1,
+                          isub_size = 1, 
+                          dinc_size = 1,
+                          iinc_size = 1, 
+                          prod_size = 1,
+                          tot_size = 2,
+                          
+                          # linetypes for rebound effects
+                          dempl_linetype = "solid",
+                          emb_linetype = "11",
+                          cap_linetype = "11",
+                          md_linetype = "solid", 
+                          dsub_linetype = "solid",
+                          isub_linetype = "solid", 
+                          dinc_linetype = "solid",
+                          iinc_linetype = "solid", 
+                          prod_linetype = "solid",
+                          tot_linetype = "solid",
+                          
+                          # line end and join for sensitivity graphs
+                          lineend = "round", 
+                          linejoin = "round",
+                          # Draw points on top of paths (or not)
+                          include_base_condition_points = TRUE,
+                          points_atop_paths = TRUE)
+usethis::use_data(sens_graph_params, overwrite = TRUE)
 
 #
 # Parametric analysis point types

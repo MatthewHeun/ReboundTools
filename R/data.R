@@ -434,7 +434,7 @@
 "graph_df_colnames"
 
 
-#' Graph parameters
+#' Path graph parameters
 #' 
 #' The list of graph parameters for drawing
 #' energy path graphs, cost path graphs, and preference path graphs
@@ -444,7 +444,7 @@
 #' Callers may pass a modified version of this list 
 #' to change graph appearance.
 #' 
-#' @format A string list with `r length(default_graph_params)` entries.
+#' @format A string list with `r length(path_graph_params)` entries.
 #' \describe{
 #' 
 #' \item{which_points}{A data frame telling which points to include in the graph.}
@@ -530,8 +530,64 @@
 #' \item{arrow_type}{The arrow type, "closed" (the default) or "open". See `grid::arrow`.}
 #' }
 #' @examples
-#' default_graph_params
-"default_graph_params"
+#' path_graph_params
+"path_graph_params"
+
+
+#' Sensitivity graph parameters
+#' 
+#' The list of graph parameters for drawing
+#' sensitivity graphs in the `ReboundTools` package.
+#' 
+#' This list is passed to several graphing functions.
+#' Callers may pass a modified version of this list 
+#' to change sensitivity graph appearance.
+#' 
+#' @format A string list with `r length(sens_graph_params)` entries.
+#' \describe{
+#' 
+#' \item{orig_point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
+#' \item{orig_point_size}{The size for points between rebound effects. Default is `1`.}
+#' \item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
+#' \item{orig_point_colour}{The colour of the original points. Default is "red".}
+#' \item{dempl_colour}{The colour for direct emplacment lines.}
+#' \item{emb_colour}{The colour for embodied energy lines.}
+#' \item{cap_colour}{The colour for capital cost lines.}
+#' \item{md_colour}{The colour for maintenance and disposal lines.}
+#' \item{dsub_colour}{The colour for direct substitution lines.}
+#' \item{isub_colour}{The colour for indirect substitution lines.}
+#' \item{dinc_colour}{The colour for direct income lines.}
+#' \item{iinc_colour}{The colour for indirect income lines.}
+#' \item{prod_colour}{The colour for productivity lines.}
+#' \item{tot_colour}{The colour for total rebound lines.}
+#' \item{dempl_size}{The size for direct emplacment lines.}
+#' \item{emb_size}{The size for embodied energy lines.}
+#' \item{cap_size}{The size for capital cost lines.}
+#' \item{md_size}{The size for maintenance and disposal lines.}
+#' \item{dsub_size}{The size for direct substitution lines.}
+#' \item{isub_size}{The size for indirect substitution lines.}
+#' \item{dinc_size}{The size for direct income lines.}
+#' \item{iinc_size}{The size for indirect income lines.}
+#' \item{prod_size}{The size for productivity lines.}
+#' \item{tot_size}{The size for total rebound lines.}
+#' \item{dempl_linetyps}{The linetype for direct emplacment lines.}
+#' \item{emb_linetype}{The linetype for embodied energy lines.}
+#' \item{cap_linetype}{The linetype for capital cost lines.}
+#' \item{md_linetype}{The linetype for maintenance and disposal lines.}
+#' \item{dsub_linetype}{The linetype for direct substitution lines.}
+#' \item{isub_linetype}{The linetype for indirect substitution lines.}
+#' \item{dinc_linetype}{The linetype for direct income lines.}
+#' \item{iinc_linetype}{The linetype for indirect income lines.}
+#' \item{prod_linetype}{The linetype for productivity lines.}
+#' \item{tot_linetype}{The linetype for total rebound lines.}
+#' \item{lineend}{The line end style.}
+#' \item{linejoin}{The line join style.}
+#' \item{include_base_condition_points}{Tells whether to include base conditions points. Default is `TRUE`.}
+#' \item{points_atop_paths}{Tells whether to draw points above paths (`TRUE`) or beneath paths (`FALSE`). Default is `TRUE`.}
+#' }
+#' @examples
+#' sens_graph_params
+"sens_graph_params"
 
 
 #' Parametric analysis point types

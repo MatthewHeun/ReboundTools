@@ -6,7 +6,7 @@
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
 #' @param grid_types A string list of graph types on which grids (guide lines) are to be included. Default is `ReboundTools::graph_types`, i.e. include grids on all graph types.
 #' @param graph_params A string list of parameters that control the appearance of this graph. 
-#'                     Default is `ReboundTools::default_graph_params`, which can be 
+#'                     Default is `ReboundTools::path_graph_params`, which can be 
 #'                     modified and passed as an argument to control graph appearance.
 #' @param case_colname The name of the Case column in `.rebound_data`. Default is `ReboundTools::eeu_base_params$case`.
 #' @param rebound_stages See `ReboundTools::rebound_stages`.
@@ -20,13 +20,13 @@
 #' @examples
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   rebound_graphs(indexed = TRUE)
-rebound_graphs <- function(.analysis_data,
+#'   path_graphs(indexed = TRUE)
+path_graphs <- function(.analysis_data,
                            indexed = FALSE,
                            cases = .analysis_data[[case_colname]] %>% unique(),
                            graph_types = ReboundTools::graph_types,
                            grid_types = ReboundTools::graph_types,
-                           graph_params = ReboundTools::default_graph_params, 
+                           graph_params = ReboundTools::path_graph_params, 
                            case_colname = ReboundTools::eeu_base_params$case, 
                            rebound_stages = ReboundTools::rebound_stages,
                            rebound_segments = ReboundTools::rebound_segments,
@@ -150,7 +150,7 @@ rebound_graphs <- function(.analysis_data,
 
 #' Create path maps for rebound analysis
 #' 
-#' This is a helper function for `rebound_graphs()`.
+#' This is a helper function for `path_graphs()`.
 #' There is normally no need to call this function.
 #' 
 #' @param .path_data A data frame of paths to be added to the graph. 
@@ -158,7 +158,7 @@ rebound_graphs <- function(.analysis_data,
 #' @param .points_data A data frame of points between rebound effects.
 #' @param .grid_data A data frame of lines to be added to the graph.
 #' @param .indifference_data A data frame of indifference curves to be added to the graph.
-#' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::default_graph_params`.
+#' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::path_graph_params`.
 #' @param graph_types A list of graph types. Default is `ReboundTools::graph_types`.
 #' @param graph_df_colnames The names of column names in data frames of graph data. Default is `ReboundTools::graph_df_colnames`.
 #'
@@ -175,7 +175,7 @@ rebound_graphs_helper <- function(.path_data,
                                   .points_data = NULL,
                                   .grid_data = NULL, 
                                   .indifference_data = NULL, 
-                                  graph_params = ReboundTools::default_graph_params,
+                                  graph_params = ReboundTools::path_graph_params,
                                   graph_types = ReboundTools::graph_types,
                                   graph_df_colnames = ReboundTools::graph_df_colnames) {
   # Set the order of the graph types via a factor. 
@@ -313,12 +313,13 @@ rebound_graphs_helper <- function(.path_data,
 #' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
 #'                         Default is `parametric_analysis(rebound_data, parameterization)`.
 #' @param rebound_data Rebound data, likely read by `load_eeu_data()`.
-#' @param x_var,y_var Strings that identifies the x-axis and y-axis variables for this sensitivity graph.
+#' @param x_var,y_var Strings that identify the x-axis and y-axis variables for this sensitivity graph.
+#'                    These variables must appear in `.parametric_data`.
 #' @param linetype_var,linecolour_var,linesize_var Strings that identify variables to be used for
 #'                                                 type, color, and size of lines.
 #'                                                 Default is `ReboundTools::eeu_base_params$case`.
-#' @param orig_point_colour,orig_point_size,orig_point_pch Color, size, and character for original points.
-#'                                                         Defaults are "red", 2, and 16, respectively.
+#' @param graph_params A list of parameters to control graph appearance. 
+#'                     See `ReboundTools::sens_graph_params`.
 #' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
 #' @inheritParams parametric_analysis
 #' 
@@ -331,7 +332,7 @@ rebound_graphs_helper <- function(.path_data,
 #' df <- load_eeu_data()
 #' sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
 #'                     Lamp = list(k = seq(0, 2, by = 1)))
-#' sensitivity_graphs(df, sens_params, 
+#' sensitivity_graphs(rebound_data = df, parameterization = sens_params, 
 #'                    x_var = "k", y_var = "Re_tot") +
 #'  ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
 #'  ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
@@ -349,7 +350,7 @@ rebound_graphs_helper <- function(.path_data,
 #'                     Lamp = list(k = seq(0, 2, by = 0.5),
 #'                                 I_E = seq(2, 5, by = 1), 
 #'                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
-#' sensitivity_graphs(df, sens_params_2, 
+#' sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
 #'                    x_var = "I_E", y_var = "Re_tot") +
 #'   ggplot2::facet_grid(rows = ggplot2::vars(k), 
 #'                       cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
@@ -359,35 +360,46 @@ rebound_graphs_helper <- function(.path_data,
 #'   ggplot2::labs(colour = ggplot2::element_blank(), 
 #'                 size = ggplot2::element_blank(),
 #'                 linetype = ggplot2::element_blank())
-sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
-                               rebound_data, parameterization, 
-                               x_var, y_var,
-                               linetype_var = ReboundTools::eeu_base_params$case, 
-                               linecolour_var = ReboundTools::eeu_base_params$case, 
-                               linesize_var = ReboundTools::eeu_base_params$case, 
-                               orig_point_colour = "red",
-                               orig_point_size = 2,
-                               orig_point_pch = 16,
-                               point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
-                               sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
-                               orig_points = ReboundTools::parametric_analysis_point_types$orig) {
-  
-  line_data <- .parametric_data %>% 
-    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
-  point_data <- .parametric_data %>% 
-    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
-  
-  # Create the graph
-  ggplot2::ggplot() + 
-    ggplot2::geom_line(data = line_data, 
-                       mapping = ggplot2::aes_string(x = x_var, y = y_var, 
-                                                     linetype = linetype_var, 
-                                                     colour = linecolour_var, 
-                                                     size = linesize_var)) + 
-    ggplot2::geom_point(data = point_data, 
-                        mapping = ggplot2::aes_string(x = x_var, y = y_var), 
-                        colour = orig_point_colour, 
-                        size = orig_point_size, 
-                        shape = orig_point_pch)
-}
+# sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
+#                                rebound_data, parameterization, 
+#                                x_var, 
+#                                y_vars = ReboundTools::rebound_terms,
+#                                linetype_var = ReboundTools::eeu_base_params$case, 
+#                                linecolour_var = ReboundTools::eeu_base_params$case, 
+#                                linesize_var = ReboundTools::eeu_base_params$case, 
+#                                graph_params = ReboundTools::sens_graph_params,
+#                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
+#                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
+#                                orig_points = ReboundTools::parametric_analysis_point_types$orig, 
+#                                Re_names = ReboundTools::graph_df_colnames$Re_names,
+#                                Re_values = ReboundTools::graph_df_colnames$Re_values) {
+#   
+#   y_var = match.arg(y_vars, several.ok = TRUE) %>% 
+#     unlist()
+#   
+#   p_data <- .parametric_data %>% 
+#     dplyr::select(tidyselect::all_of(x_var), tidyselect::all_of(y_vars), 
+#                   tidyselect::all_of(point_type_colname), tidyselect::all_of(linetype_var), 
+#                   tidyselect::all_of(linecolour_var), tidyselect::all_of(linesize_var)) %>% 
+#     tidyr::pivot_longer(cols = tidyselect::all_of(y_vars), names_to = Re_names, values_to = Re_values)
+#   
+#   line_data <- p_data %>% 
+#     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
+#   point_data <- p_data %>% 
+#     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
+#   
+#   # Create the graph
+#   ggplot2::ggplot() + 
+#     ggplot2::geom_point(data = point_data, 
+#                         mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names), 
+#                         colour = graph_params$orig_point_colour, 
+#                         size = graph_params$orig_point_size, 
+#                         shape = graph_params$orig_point_shape, 
+#                         stroke = graph_params$orig_point_stroke) +
+#     ggplot2::geom_line(data = line_data, 
+#                        mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names, 
+#                                                      linetype = linetype_var, 
+#                                                      colour = linecolour_var, 
+#                                                      size = linesize_var))
+# }
 

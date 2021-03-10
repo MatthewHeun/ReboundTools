@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create rebound graphs — rebound_graphs • ReboundTools</title>
+<title>Create rebound graphs — path_graphs • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Create rebound graphs — rebound_graphs" />
+<meta property="og:title" content="Create rebound graphs — path_graphs" />
 <meta property="og:description" content="Create rebound graphs" />
 
 
@@ -111,20 +111,20 @@
     <div class="page-header">
     <h1>Create rebound graphs</h1>
     
-    <div class="hidden name"><code>rebound_graphs.Rd</code></div>
+    <div class="hidden name"><code>path_graphs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Create rebound graphs</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rebound_graphs</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>path_graphs</span><span class='op'>(</span>
   <span class='va'>.analysis_data</span>,
   indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
   cases <span class='op'>=</span> <span class='va'>.analysis_data</span><span class='op'>[[</span><span class='va'>case_colname</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>,
   graph_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
   grid_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
   case_colname <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
   rebound_stages <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_stages.html'>rebound_stages</a></span>,
   rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>,
@@ -157,7 +157,7 @@
     <tr>
       <th>graph_params</th>
       <td><p>A string list of parameters that control the appearance of this graph.
-Default is <code><a href='default_graph_params.html'>ReboundTools::default_graph_params</a></code>, which can be
+Default is <code><a href='path_graph_params.html'>ReboundTools::path_graph_params</a></code>, which can be
 modified and passed as an argument to control graph appearance.</p></td>
     </tr>
     <tr>
@@ -185,8 +185,8 @@ modified and passed as an argument to control graph appearance.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>rebound_graphs</span><span class='op'>(</span>indexed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='rebound_graphs-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'>path_graphs</span><span class='op'>(</span>indexed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='path_graphs-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Graph parameters — default_graph_params • ReboundTools</title>
+<title>Graph parameters — path_graph_params • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Graph parameters — default_graph_params" />
+<meta property="og:title" content="Graph parameters — path_graph_params" />
 <meta property="og:description" content="The list of graph parameters for drawing
 energy path graphs, cost path graphs, and preference path graphs
 in the ReboundTools package." />
@@ -113,7 +113,7 @@ in the ReboundTools package." />
     <div class="page-header">
     <h1>Graph parameters</h1>
     
-    <div class="hidden name"><code>default_graph_params.Rd</code></div>
+    <div class="hidden name"><code>path_graph_params.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -122,12 +122,12 @@ energy path graphs, cost path graphs, and preference path graphs
 in the <code>ReboundTools</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='va'>default_graph_params</span></pre>
+    <pre class="usage"><span class='va'>path_graph_params</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 66 entries.</p><dl>
+    <p>A string list with 69 entries.</p><dl>
 
 <dt>which_points</dt><dd><p>A data frame telling which points to include in the graph.</p></dd>
 <dt>last_point</dt><dd><p>Tells whether to show the last point in a path. Overrides <code>which_points</code>.</p></dd>
@@ -146,6 +146,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>dinc_colour</dt><dd><p>The colour for direct income lines.</p></dd>
 <dt>iinc_colour</dt><dd><p>The colour for indirect income lines.</p></dd>
 <dt>prod_colour</dt><dd><p>The colour for productivity lines.</p></dd>
+<dt>tot_colour</dt><dd><p>The colour for total rebound lines.</p></dd>
 <dt>dempl_size</dt><dd><p>The size for direct emplacment lines.</p></dd>
 <dt>emb_size</dt><dd><p>The size for embodied energy lines.</p></dd>
 <dt>cap_size</dt><dd><p>The size for capital cost lines.</p></dd>
@@ -155,6 +156,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>dinc_size</dt><dd><p>The size for direct income lines.</p></dd>
 <dt>iinc_size</dt><dd><p>The size for indirect income lines.</p></dd>
 <dt>prod_size</dt><dd><p>The size for productivity lines.</p></dd>
+<dt>tot_size</dt><dd><p>The size for total rebound lines.</p></dd>
 <dt>dempl_linetyps</dt><dd><p>The linetype for direct emplacment lines.</p></dd>
 <dt>emb_linetype</dt><dd><p>The linetype for embodied energy lines.</p></dd>
 <dt>cap_linetype</dt><dd><p>The linetype for capital cost lines.</p></dd>
@@ -164,6 +166,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>dinc_linetype</dt><dd><p>The linetype for direct income lines.</p></dd>
 <dt>iinc_linetype</dt><dd><p>The linetype for indirect income lines.</p></dd>
 <dt>prod_linetype</dt><dd><p>The linetype for productivity lines.</p></dd>
+<dt>tot_linetype</dt><dd><p>The linetype for total rebound lines.</p></dd>
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
 <dt>reverse_path_drawing_order</dt><dd><p>Tells whether to reverse the drawing order for paths. The default (<code>FALSE</code>)
@@ -217,7 +220,7 @@ Callers may pass a modified version of this list
 to change graph appearance.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>default_graph_params</span>
+    <pre class="examples"><div class='input'><span class='va'>path_graph_params</span>
 </div><div class='output co'>#&gt; $which_points
 #&gt; <span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   point_name start_point
@@ -300,6 +303,9 @@ to change graph appearance.</p>
 #&gt; $prod_colour
 #&gt; [1] "#F7E225FF"
 #&gt; 
+#&gt; $tot_colour
+#&gt; [1] "black"
+#&gt; 
 #&gt; $dempl_size
 #&gt; [1] 1
 #&gt; 
@@ -327,6 +333,9 @@ to change graph appearance.</p>
 #&gt; $prod_size
 #&gt; [1] 1
 #&gt; 
+#&gt; $tot_size
+#&gt; [1] 2
+#&gt; 
 #&gt; $dempl_linetype
 #&gt; [1] "solid"
 #&gt; 
@@ -352,6 +361,9 @@ to change graph appearance.</p>
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $prod_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $tot_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $lineend

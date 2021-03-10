@@ -10,9 +10,9 @@ add_iso(
   meta,
   graph_type,
   iso_name,
-  colour = ReboundTools::default_graph_params$energy_grid_colour,
-  size = ReboundTools::default_graph_params$energy_grid_size,
-  linetype = ReboundTools::default_graph_params$energy_grid_linetype,
+  colour = ReboundTools::path_graph_params$energy_grid_colour,
+  size = ReboundTools::path_graph_params$energy_grid_size,
+  linetype = ReboundTools::path_graph_params$energy_grid_linetype,
   x_orig,
   y_orig,
   x,
@@ -35,11 +35,11 @@ This metadata data frame provides the left-most columns of the return value.}
 
 \item{iso_name}{A name for this iso line.}
 
-\item{colour}{The colour for this iso line. Default is \code{ReboundTools::default_graph_params$energy_grid_colour}.}
+\item{colour}{The colour for this iso line. Default is \code{ReboundTools::path_graph_params$energy_grid_colour}.}
 
-\item{size}{Line width. Default is \code{ReboundTools::default_graph_params$energy_grid_size}.}
+\item{size}{Line width. Default is \code{ReboundTools::path_graph_params$energy_grid_size}.}
 
-\item{linetype}{Line type for this iso line. Default is \code{ReboundTools::default_graph_params$energy_grid_linetype}.}
+\item{linetype}{Line type for this iso line. Default is \code{ReboundTools::path_graph_params$energy_grid_linetype}.}
 
 \item{x_orig, y_orig}{The (x,y) coordinates of the starting point for the path on this graph,
 used for indexing.}

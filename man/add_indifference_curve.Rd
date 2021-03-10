@@ -14,7 +14,7 @@ add_indifference_curve(
   qs2_qs0 = NULL,
   f_Cs_orig,
   sigma,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   eeu_base_params = ReboundTools::eeu_base_params,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
