@@ -363,6 +363,23 @@
 "rebound_terms"
 
 
+#' Aggregate rebound terms
+#' 
+#' This is the list of the rebound terms that are aggregates of other rebound terms.
+#' 
+#' @format A string list with `r length(rebound_terms_agg)` entries.
+#' \describe{
+#' \item{Re_empl}{Emplacement effect rebound.}
+#' \item{Re_sub}{Substitution effect rebound.}
+#' \item{Re_inc}{Income effect rebound.}
+#' \item{Re_d}{Sum of all direct rebound effects.}
+#' \item{Re_i}{Sum of all indirect rebound effects.}
+#' \item{Re_tot}{Total rebound.}
+#' }
+#' @examples
+#' rebound_terms_agg
+"rebound_terms_agg"
+
 #' LaTeX version of rebound terms
 #'
 #' This is the list of the rebound terms in LaTeX form.

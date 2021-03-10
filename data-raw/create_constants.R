@@ -269,6 +269,20 @@ usethis::use_data(rebound_terms, overwrite = TRUE)
 
 
 #
+# Names of rebound terms that are aggregates.
+# 
+
+rebound_terms_agg <- list(rebound_terms$Re_empl,
+                          rebound_terms$Re_sub,
+                          rebound_terms$Re_inc,
+                          rebound_terms$Re_d,
+                          rebound_terms$Re_i,
+                          rebound_terms$Re_tot)
+usethis::use_data(rebound_terms_agg, overwrite = TRUE)
+
+
+
+#
 # LaTeX names of rebound terms.
 # 
 
