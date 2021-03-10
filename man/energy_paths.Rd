@@ -7,7 +7,7 @@
 energy_paths(
   .rebound_data,
   indexed = FALSE,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$energy,
   k = ReboundTools::eeu_base_params$k,

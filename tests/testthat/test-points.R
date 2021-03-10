@@ -38,13 +38,13 @@ test_that("extract_points() works as expected", {
   
   # Check point colours
   expect_equal(car_energy_points_orig$colour %>% unique(), 
-               ReboundTools::default_graph_params$dempl_colour)
+               ReboundTools::path_graph_params$dempl_colour)
   expect_equal(car_energy_points_star$colour %>% unique(), 
-               ReboundTools::default_graph_params$isub_colour)
+               ReboundTools::path_graph_params$isub_colour)
   expect_equal(car_energy_points_hat$colour %>% unique(), 
-               ReboundTools::default_graph_params$dinc_colour)
+               ReboundTools::path_graph_params$dinc_colour)
   expect_equal(car_energy_points_bar$colour %>% unique(), 
-               ReboundTools::default_graph_params$prod_colour)
+               ReboundTools::path_graph_params$prod_colour)
   # There are no tilde points in this version.
   # If there were a tilde point, it should have this colour
   # expect_true(is.na(car_energy_points_tilde$colour %>% unique()))

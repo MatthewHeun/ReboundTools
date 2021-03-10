@@ -8,7 +8,7 @@ iso_cost_lines(
   .rebound_data,
   indexed = FALSE,
   graph_type = ReboundTools::graph_types$cost,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,

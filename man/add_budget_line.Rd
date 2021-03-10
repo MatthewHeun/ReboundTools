@@ -9,9 +9,9 @@ add_budget_line(
   meta,
   graph_type = ReboundTools::graph_types$preferences,
   line_name,
-  colour = ReboundTools::default_graph_params$prefs_grid_colour,
-  size = ReboundTools::default_graph_params$prefs_grid_size,
-  linetype = ReboundTools::default_graph_params$prefs_grid_linetype,
+  colour = ReboundTools::path_graph_params$prefs_grid_colour,
+  size = ReboundTools::path_graph_params$prefs_grid_size,
+  linetype = ReboundTools::path_graph_params$prefs_grid_linetype,
   slope,
   intercept,
   graph_df_colnames = ReboundTools::graph_df_colnames
@@ -30,11 +30,11 @@ Default is See \code{ReboundTools::graph_types$preferences}.}
 
 \item{line_name}{A name for this budget line}
 
-\item{colour}{The colour for this budget line. Default is \code{ReboundTools::default_graph_params$prefs_grid_colour}.}
+\item{colour}{The colour for this budget line. Default is \code{ReboundTools::path_graph_params$prefs_grid_colour}.}
 
-\item{size}{The size (width) for this budget line Default is \code{ReboundTools::default_graph_params$prefs_grid_size}.}
+\item{size}{The size (width) for this budget line Default is \code{ReboundTools::path_graph_params$prefs_grid_size}.}
 
-\item{linetype}{The line type for this budget line Default is \code{ReboundTools::default_graph_params$prefs_grid_linetype}.}
+\item{linetype}{The line type for this budget line Default is \code{ReboundTools::path_graph_params$prefs_grid_linetype}.}
 
 \item{slope}{The slope of this budget line.}
 

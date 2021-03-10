@@ -9,7 +9,7 @@ Each stage of the rebound process is represented in the data frame.}
 cost_paths(
   .rebound_data,
   indexed = FALSE,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$cost,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
