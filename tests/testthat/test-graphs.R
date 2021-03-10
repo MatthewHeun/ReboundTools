@@ -308,39 +308,39 @@ test_that("points_atop_paths works as expected", {
 })
 
 
-test_that("sensitivity_graphs() works as expected", {
-  orig_data <- load_eeu_data()
-  sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
-                      Lamp = list(k = seq(0, 2, by = 1)))
-  g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
-                          x_var = "k", y_vars = "Re_tot") +
-    ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
-    ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
-    ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
-    ggplot2::labs(colour = ggplot2::element_blank(), 
-                  size = ggplot2::element_blank(),
-                  linetype = ggplot2::element_blank())
-  expect_true(!is.null(g))
-})
-
-
-test_that("sensitivity_graphs() works with more than 1 line variation", {
-  orig_data <- load_eeu_data()
-  sens_params <- list(Car = list(k = seq(0, 2, by = 0.5), 
-                                 I_E = seq(2, 5, by = 1), 
-                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
-                      Lamp = list(k = seq(0, 2, by = 0.5),
-                                  I_E = seq(2, 5, by = 1), 
-                                  e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
-  g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
-                          x_var = "I_E", y_vars = "Re_tot") +
-    ggplot2::facet_grid(rows = ggplot2::vars(k), 
-                        cols = ggplot2::vars(e_qs_ps_UC)) +
-    ggplot2::scale_colour_manual(values = c(Car = "darkgreen", Lamp = "black")) + 
-    ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1)) + 
-    ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dotted")) + 
-    ggplot2::labs(colour = ggplot2::element_blank(), 
-                  size = ggplot2::element_blank(),
-                  linetype = ggplot2::element_blank())
-  expect_true(!is.null(g))
-})
+# test_that("sensitivity_graphs() works as expected", {
+#   orig_data <- load_eeu_data()
+#   sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
+#                       Lamp = list(k = seq(0, 2, by = 1)))
+#   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
+#                           x_var = "k", y_vars = "Re_tot") +
+#     ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
+#     ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
+#     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
+#     ggplot2::labs(colour = ggplot2::element_blank(), 
+#                   size = ggplot2::element_blank(),
+#                   linetype = ggplot2::element_blank())
+#   expect_true(!is.null(g))
+# })
+# 
+# 
+# test_that("sensitivity_graphs() works with more than 1 line variation", {
+#   orig_data <- load_eeu_data()
+#   sens_params <- list(Car = list(k = seq(0, 2, by = 0.5), 
+#                                  I_E = seq(2, 5, by = 1), 
+#                                  e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
+#                       Lamp = list(k = seq(0, 2, by = 0.5),
+#                                   I_E = seq(2, 5, by = 1), 
+#                                   e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+#   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
+#                           x_var = "I_E", y_vars = "Re_tot") +
+#     ggplot2::facet_grid(rows = ggplot2::vars(k), 
+#                         cols = ggplot2::vars(e_qs_ps_UC)) +
+#     ggplot2::scale_colour_manual(values = c(Car = "darkgreen", Lamp = "black")) + 
+#     ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1)) + 
+#     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dotted")) + 
+#     ggplot2::labs(colour = ggplot2::element_blank(), 
+#                   size = ggplot2::element_blank(),
+#                   linetype = ggplot2::element_blank())
+#   expect_true(!is.null(g))
+# })

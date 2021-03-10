@@ -360,44 +360,46 @@ rebound_graphs_helper <- function(.path_data,
 #'   ggplot2::labs(colour = ggplot2::element_blank(), 
 #'                 size = ggplot2::element_blank(),
 #'                 linetype = ggplot2::element_blank())
-sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
-                               rebound_data, parameterization, 
-                               x_var, 
-                               y_vars = ReboundTools::rebound_terms,
-                               linetype_var = ReboundTools::eeu_base_params$case, 
-                               linecolour_var = ReboundTools::eeu_base_params$case, 
-                               linesize_var = ReboundTools::eeu_base_params$case, 
-                               graph_params = ReboundTools::sens_graph_params,
-                               point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
-                               sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
-                               orig_points = ReboundTools::parametric_analysis_point_types$orig, 
-                               Re_names = ReboundTools::graph_df_colnames$Re_names,
-                               Re_values = ReboundTools::graph_df_colnames$Re_values) {
-  
-  y_var = match.arg(y_vars, several.ok = TRUE) %>% 
-    unlist()
-  
-  p_data <- .parametric_data %>% 
-    dplyr::select(x_var, y_vars, point_type_colname, linetype_var, linecolour_var, linesize_var) %>% 
-    tidyr::pivot_longer(cols = y_vars, names_to = Re_names, values_to = Re_values)
-  
-  line_data <- p_data %>% 
-    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
-  point_data <- p_data %>% 
-    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
-  
-  # Create the graph
-  ggplot2::ggplot() + 
-    ggplot2::geom_point(data = point_data, 
-                        mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names), 
-                        colour = graph_params$orig_point_colour, 
-                        size = graph_params$orig_point_size, 
-                        shape = graph_params$orig_point_shape, 
-                        stroke = graph_params$orig_point_stroke) +
-    ggplot2::geom_line(data = line_data, 
-                       mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names, 
-                                                     linetype = linetype_var, 
-                                                     colour = linecolour_var, 
-                                                     size = linesize_var))
-}
+# sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
+#                                rebound_data, parameterization, 
+#                                x_var, 
+#                                y_vars = ReboundTools::rebound_terms,
+#                                linetype_var = ReboundTools::eeu_base_params$case, 
+#                                linecolour_var = ReboundTools::eeu_base_params$case, 
+#                                linesize_var = ReboundTools::eeu_base_params$case, 
+#                                graph_params = ReboundTools::sens_graph_params,
+#                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname, 
+#                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep, 
+#                                orig_points = ReboundTools::parametric_analysis_point_types$orig, 
+#                                Re_names = ReboundTools::graph_df_colnames$Re_names,
+#                                Re_values = ReboundTools::graph_df_colnames$Re_values) {
+#   
+#   y_var = match.arg(y_vars, several.ok = TRUE) %>% 
+#     unlist()
+#   
+#   p_data <- .parametric_data %>% 
+#     dplyr::select(tidyselect::all_of(x_var), tidyselect::all_of(y_vars), 
+#                   tidyselect::all_of(point_type_colname), tidyselect::all_of(linetype_var), 
+#                   tidyselect::all_of(linecolour_var), tidyselect::all_of(linesize_var)) %>% 
+#     tidyr::pivot_longer(cols = tidyselect::all_of(y_vars), names_to = Re_names, values_to = Re_values)
+#   
+#   line_data <- p_data %>% 
+#     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
+#   point_data <- p_data %>% 
+#     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
+#   
+#   # Create the graph
+#   ggplot2::ggplot() + 
+#     ggplot2::geom_point(data = point_data, 
+#                         mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names), 
+#                         colour = graph_params$orig_point_colour, 
+#                         size = graph_params$orig_point_size, 
+#                         shape = graph_params$orig_point_shape, 
+#                         stroke = graph_params$orig_point_stroke) +
+#     ggplot2::geom_line(data = line_data, 
+#                        mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names, 
+#                                                      linetype = linetype_var, 
+#                                                      colour = linecolour_var, 
+#                                                      size = linesize_var))
+# }
 
