@@ -6,6 +6,9 @@
     * `default_graph_params` --> `path_graph_params`
     * `rebound_graphs()` --> `path_graphs()`.
 * Added graph parameters for total rebound.
+* New tests for new features.
+    - Now at 447 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.11 (2021-03-02)
