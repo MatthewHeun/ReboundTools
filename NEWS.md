@@ -1,3 +1,4 @@
+* Removed `sensitivity_graphs()` for now.
 * New constants for sensitivity graphs, `sens_graph_params`.
 * Name changes: 
     * `default_graph_params` --> `path_graph_params`
