@@ -453,12 +453,6 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                         shape = graph_params$orig_point_shape,
                         stroke = graph_params$orig_point_stroke,
                         fill = graph_params$orig_point_fill) +
-    # ggplot2::geom_line(data = line_data,
-    #                    mapping = ggplot2::aes_string(x = x_var,
-    #                                                  y = y_vals_col,
-    #                                                  linetype = line_var,
-    #                                                  colour = line_var,
-    #                                                  size = line_var))
     ggplot2::geom_path(data = line_data,
                        mapping = ggplot2::aes_string(x = x_var,
                                                      y = y_vals_col,
