@@ -22,15 +22,15 @@
 #'   rebound_analysis() %>% 
 #'   path_graphs(indexed = TRUE)
 path_graphs <- function(.analysis_data,
-                           indexed = FALSE,
-                           cases = .analysis_data[[case_colname]] %>% unique(),
-                           graph_types = ReboundTools::graph_types,
-                           grid_types = ReboundTools::graph_types,
-                           graph_params = ReboundTools::path_graph_params, 
-                           case_colname = ReboundTools::eeu_base_params$case, 
-                           rebound_stages = ReboundTools::rebound_stages,
-                           rebound_segments = ReboundTools::rebound_segments,
-                           graph_df_colnames = ReboundTools::graph_df_colnames) {
+                        indexed = FALSE,
+                        cases = .analysis_data[[case_colname]] %>% unique(),
+                        graph_types = ReboundTools::graph_types,
+                        grid_types = ReboundTools::graph_types,
+                        graph_params = ReboundTools::path_graph_params, 
+                        case_colname = ReboundTools::eeu_base_params$case, 
+                        rebound_stages = ReboundTools::rebound_stages,
+                        rebound_segments = ReboundTools::rebound_segments,
+                        graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   cases <- match.arg(cases, several.ok = TRUE)
   graph_types <- match.arg(unlist(graph_types), choices = unlist(graph_types), several.ok = TRUE)
