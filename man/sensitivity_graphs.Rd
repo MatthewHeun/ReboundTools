@@ -6,8 +6,8 @@
 \usage{
 sensitivity_graphs(
   .parametric_data = parametric_analysis(rebound_data, parameterization),
-  rebound_data,
-  parameterization,
+  rebound_data = NULL,
+  parameterization = NULL,
   x_var,
   y_var,
   line_var = y_names_col,
@@ -105,7 +105,8 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
           Re_isub = ReboundTools::path_graph_params$isub_colour, 
           Re_dinc = ReboundTools::path_graph_params$dinc_colour,
           Re_iinc = ReboundTools::path_graph_params$iinc_colour,
-          Re_prod = ReboundTools::path_graph_params$prod_colour)) +
+          Re_prod = ReboundTools::path_graph_params$prod_colour), 
+                               breaks = rebound_vars) +
  ggplot2::scale_size_manual(values = 
         c(Re_dempl = 0.2, 
           Re_emb = ReboundTools::path_graph_params$emb_size,
@@ -114,7 +115,8 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
           Re_isub = ReboundTools::path_graph_params$isub_size, 
           Re_dinc = ReboundTools::path_graph_params$dinc_size,
           Re_iinc = ReboundTools::path_graph_params$iinc_size,
-          Re_prod = ReboundTools::path_graph_params$prod_size)) +
+          Re_prod = ReboundTools::path_graph_params$prod_size), 
+                            breaks = rebound_vars) +
 ggplot2::scale_linetype_manual(values = 
         c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
           Re_emb = ReboundTools::path_graph_params$emb_linetype,
@@ -123,7 +125,8 @@ ggplot2::scale_linetype_manual(values =
           Re_isub = "11",
           Re_dinc = ReboundTools::path_graph_params$dinc_linetype,
           Re_iinc = "11",
-          Re_prod = ReboundTools::path_graph_params$prod_linetype)) +
+          Re_prod = ReboundTools::path_graph_params$prod_linetype), 
+                               breaks = rebound_vars) +
 ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"), 
               y = "Re terms [-]", 
               colour = ggplot2::element_blank(),

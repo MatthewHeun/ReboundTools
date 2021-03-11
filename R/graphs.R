@@ -384,7 +384,8 @@ rebound_graphs_helper <- function(.path_data,
 #'           Re_isub = ReboundTools::path_graph_params$isub_colour, 
 #'           Re_dinc = ReboundTools::path_graph_params$dinc_colour,
 #'           Re_iinc = ReboundTools::path_graph_params$iinc_colour,
-#'           Re_prod = ReboundTools::path_graph_params$prod_colour)) +
+#'           Re_prod = ReboundTools::path_graph_params$prod_colour), 
+#'                                breaks = rebound_vars) +
 #'  ggplot2::scale_size_manual(values = 
 #'         c(Re_dempl = 0.2, 
 #'           Re_emb = ReboundTools::path_graph_params$emb_size,
@@ -393,7 +394,8 @@ rebound_graphs_helper <- function(.path_data,
 #'           Re_isub = ReboundTools::path_graph_params$isub_size, 
 #'           Re_dinc = ReboundTools::path_graph_params$dinc_size,
 #'           Re_iinc = ReboundTools::path_graph_params$iinc_size,
-#'           Re_prod = ReboundTools::path_graph_params$prod_size)) +
+#'           Re_prod = ReboundTools::path_graph_params$prod_size), 
+#'                             breaks = rebound_vars) +
 #' ggplot2::scale_linetype_manual(values = 
 #'         c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
 #'           Re_emb = ReboundTools::path_graph_params$emb_linetype,
@@ -402,15 +404,16 @@ rebound_graphs_helper <- function(.path_data,
 #'           Re_isub = "11",
 #'           Re_dinc = ReboundTools::path_graph_params$dinc_linetype,
 #'           Re_iinc = "11",
-#'           Re_prod = ReboundTools::path_graph_params$prod_linetype)) +
+#'           Re_prod = ReboundTools::path_graph_params$prod_linetype), 
+#'                                breaks = rebound_vars) +
 #' ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"), 
 #'               y = "Re terms [-]", 
 #'               colour = ggplot2::element_blank(),
 #'               size = ggplot2::element_blank(),
 #'               linetype = ggplot2::element_blank())
 sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
-                               rebound_data, 
-                               parameterization,
+                               rebound_data = NULL, 
+                               parameterization = NULL,
                                x_var,
                                y_var,
                                line_var = y_names_col,
@@ -444,5 +447,78 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                                                      linetype = line_var,
                                                      colour = line_var,
                                                      size = line_var))
+}
+
+
+#' Title
+#'
+#' @param .parametric_data 
+#' @param rebound_data 
+#' @param parameterization 
+#' @param x_var 
+#' @param line_var 
+#' @param y_vals_col 
+#' @param y_names_col 
+#' @param graph_params 
+#' @param point_type_colname 
+#' @param sweep_points 
+#' @param orig_points 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
+                                rebound_data, 
+                                parameterization,
+                                x_var,
+                                line_var = y_names_col,
+                                y_vals_col = "y_vals",
+                                y_names_col = "y_names",
+                                graph_params = ReboundTools::sens_graph_params,
+                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
+                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
+                                orig_points = ReboundTools::parametric_analysis_point_types$orig) {
+  y_var <- unlist(setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg)) %>% 
+    replace(c(4,5), .[c(5,4)])
+  sensitivity_graphs(.parametric_data = .parametric_data, 
+                     x_var = x_var, 
+                     y_var = y_var, 
+                     line_var = line_var, 
+                     y_vals_col = y_vals_col,
+                     y_names_col = y_names_col,
+                     graph_params = graph_params, 
+                     point_type_colname = point_type_colname,
+                     sweep_points = sweep_points,
+                     orig_points = orig_points) +
+    ggplot2::scale_colour_manual(values = c(Re_dempl = graph_params$dempl_colour,
+                                            Re_emb = graph_params$emb_colour,
+                                            Re_md = graph_params$md_colour, 
+                                            Re_dsub = graph_params$dsub_colour,
+                                            Re_isub = graph_params$isub_colour, 
+                                            Re_dinc = graph_params$dinc_colour,
+                                            Re_iinc = graph_params$iinc_colour,
+                                            Re_prod = graph_params$prod_colour), 
+                                 breaks = rebound_vars) +
+    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size, 
+                                          Re_emb = graph_params$emb_size,
+                                          Re_md = graph_params$md_size, 
+                                          Re_dsub = graph_params$dsub_size,
+                                          Re_isub = graph_params$isub_size, 
+                                          Re_dinc = graph_params$dinc_size,
+                                          Re_iinc = graph_params$iinc_size,
+                                          Re_prod = graph_params$prod_size), 
+                               breaks = rebound_vars) +
+    ggplot2::scale_linetype_manual(values = c(Re_dempl = graph_params$dempl_linetype, 
+                                              Re_emb = graph_params$emb_linetype,
+                                              Re_md = graph_params$md_linetype,
+                                              Re_dsub = graph_params$dsub_linetype,
+                                              Re_isub = graph_params$isub_linetype,
+                                              Re_dinc = graph_params$dinc_linetype,
+                                              Re_iinc = graph_params$iinc_linetype,
+                                              Re_prod = graph_params$prod_linetype), 
+                                   breaks = rebound_vars)
+    
+    
 }
 
