@@ -334,9 +334,15 @@ rebound_graphs_helper <- function(.path_data,
 #'                     Lamp = list(k = seq(0, 2, by = 1)))
 #' sensitivity_graphs(rebound_data = df, parameterization = sens_params, 
 #'                    x_var = "k", y_var = "Re_tot") +
-#'  ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
-#'  ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
-#'  ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed"))
+#'  ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+#'  ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = FALSE) + 
+#'  ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = FALSE) + 
+#'  ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = FALSE) +
+#'  ggplot2::labs(y = expression(Re[tot]), 
+#'                colour = ggplot2::element_blank(),
+#'                size = ggplot2::element_blank(),
+#'                linetype = ggplot2::element_blank())
+#'                
 #' # A more-complicated example that shows multi-variate sensitivity.
 #' # Values of the productivity parameter (k) is shown in rows of the lattice plot.
 #' # Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) 
@@ -351,57 +357,92 @@ rebound_graphs_helper <- function(.path_data,
 #'                                 I_E = seq(2, 5, by = 1), 
 #'                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
 #' sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
-#'                    x_var = "I_E", y_var = "Re_tot") +
+#'                    x_var = "I_E", y_var = "Re_tot", line_var = "Case") +
 #'   ggplot2::facet_grid(rows = ggplot2::vars(k), 
 #'                       cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
-#'   ggplot2::scale_colour_manual(values = c(Car = "darkgreen", Lamp = "black")) + 
-#'   ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1)) + 
-#'   ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dotted")) + 
+#'   ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
+#'   ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1.0)) + 
+#'   ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
 #'   ggplot2::labs(colour = ggplot2::element_blank(), 
 #'                 size = ggplot2::element_blank(),
 #'                 linetype = ggplot2::element_blank())
+#'
+#' # Plot all rebound terms as a function of post-upgrade efficiency
+#' sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+#'                       Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+#' rebound_vars <- setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg) %>% 
+#'   unlist()
+#' sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
+#'                    x_var = "eta_engr_units_tilde", 
+#'                    y_var = rebound_vars) + 
+#'   ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+#'   ggplot2::scale_colour_manual(values = 
+#'         c(Re_dempl = ReboundTools::path_graph_params$dempl_colour,
+#'           Re_emb = ReboundTools::path_graph_params$emb_colour,
+#'           Re_md = ReboundTools::path_graph_params$md_colour, 
+#'           Re_dsub = ReboundTools::path_graph_params$dsub_colour,
+#'           Re_isub = ReboundTools::path_graph_params$isub_colour, 
+#'           Re_dinc = ReboundTools::path_graph_params$dinc_colour,
+#'           Re_iinc = ReboundTools::path_graph_params$iinc_colour,
+#'           Re_prod = ReboundTools::path_graph_params$prod_colour)) +
+#'  ggplot2::scale_size_manual(values = 
+#'         c(Re_dempl = 0.2, 
+#'           Re_emb = ReboundTools::path_graph_params$emb_size,
+#'           Re_md = ReboundTools::path_graph_params$md_size, 
+#'           Re_dsub = ReboundTools::path_graph_params$dsub_size,
+#'           Re_isub = ReboundTools::path_graph_params$isub_size, 
+#'           Re_dinc = ReboundTools::path_graph_params$dinc_size,
+#'           Re_iinc = ReboundTools::path_graph_params$iinc_size,
+#'           Re_prod = ReboundTools::path_graph_params$prod_size)) +
+#' ggplot2::scale_linetype_manual(values = 
+#'         c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
+#'           Re_emb = ReboundTools::path_graph_params$emb_linetype,
+#'           Re_md = ReboundTools::path_graph_params$md_linetype,
+#'           Re_dsub = ReboundTools::path_graph_params$dsub_linetype,
+#'           Re_isub = "11",
+#'           Re_dinc = ReboundTools::path_graph_params$dinc_linetype,
+#'           Re_iinc = "11",
+#'           Re_prod = ReboundTools::path_graph_params$prod_linetype)) +
+#' ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"), 
+#'               y = "Re terms [-]", 
+#'               colour = ggplot2::element_blank(),
+#'               size = ggplot2::element_blank(),
+#'               linetype = ggplot2::element_blank())
 sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
-                               rebound_data, parameterization,
+                               rebound_data, 
+                               parameterization,
                                x_var,
-                               y_vars = ReboundTools::rebound_terms,
+                               y_var,
+                               line_var = y_names_col,
                                y_vals_col = "y_vals",
                                y_names_col = "y_names",
-                               linetype_var = ReboundTools::eeu_base_params$case,
-                               linecolour_var = ReboundTools::eeu_base_params$case,
-                               linesize_var = ReboundTools::eeu_base_params$case,
                                graph_params = ReboundTools::sens_graph_params,
                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
-                               orig_points = ReboundTools::parametric_analysis_point_types$orig,
-                               Re_names = ReboundTools::graph_df_colnames$Re_names,
-                               Re_values = ReboundTools::graph_df_colnames$Re_values) {
+                               orig_points = ReboundTools::parametric_analysis_point_types$orig) {
 
-  y_var = match.arg(y_vars, several.ok = TRUE) %>%
-    unlist()
 
   p_data <- .parametric_data %>%
-    dplyr::select(tidyselect::all_of(x_var), tidyselect::all_of(y_vars),
-                  tidyselect::all_of(point_type_colname), tidyselect::all_of(linetype_var),
-                  tidyselect::all_of(linecolour_var), tidyselect::all_of(linesize_var)) %>%
-    tidyr::pivot_longer(cols = tidyselect::all_of(y_vars), names_to = Re_names, values_to = Re_values)
+    tidyr::pivot_longer(cols = tidyselect::all_of(y_var), names_to = y_names_col, values_to = y_vals_col)
 
+  orig_data <- p_data %>%
+    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
   line_data <- p_data %>%
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
-  point_data <- p_data %>%
-    dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
 
-  # Create the graph
+  # Create the graph and return it
   ggplot2::ggplot() +
-    ggplot2::geom_point(data = point_data,
-                        mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names),
+    ggplot2::geom_point(data = orig_data,
+                        mapping = ggplot2::aes_string(x = x_var, y = y_vals_col),
                         colour = graph_params$orig_point_colour,
                         size = graph_params$orig_point_size,
                         shape = graph_params$orig_point_shape,
                         stroke = graph_params$orig_point_stroke) +
     ggplot2::geom_line(data = line_data,
-                       mapping = ggplot2::aes_string(x = x_var, y = Re_values, group = Re_names,
-                                                     linetype = linetype_var,
-                                                     colour = linecolour_var,
-                                                     size = linesize_var))
+                       mapping = ggplot2::aes_string(x = x_var,
+                                                     y = y_vals_col,
+                                                     linetype = line_var,
+                                                     colour = line_var,
+                                                     size = line_var))
 }
 

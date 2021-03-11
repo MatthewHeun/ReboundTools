@@ -310,14 +310,14 @@ test_that("points_atop_paths works as expected", {
 
 # test_that("sensitivity_graphs() works as expected", {
 #   orig_data <- load_eeu_data()
-#   sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
+#   sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)),
 #                       Lamp = list(k = seq(0, 2, by = 1)))
-#   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
+#   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params,
 #                           x_var = "k", y_vars = "Re_tot") +
-#     ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
-#     ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
-#     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
-#     ggplot2::labs(colour = ggplot2::element_blank(), 
+#     ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) +
+#     ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) +
+#     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) +
+#     ggplot2::labs(colour = ggplot2::element_blank(),
 #                   size = ggplot2::element_blank(),
 #                   linetype = ggplot2::element_blank())
 #   expect_true(!is.null(g))
