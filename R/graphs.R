@@ -468,6 +468,12 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
 #' @export
 #'
 #' @examples
+#' df <- load_eeu_data()
+#' sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+#'                     Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+#' rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+#'                     x_var = "eta_engr_units_tilde") +
+#'   ggplot2::facet_wrap(facets = "Case", scales = "free_x")
 rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_data, parameterization),
                                 rebound_data, 
                                 parameterization,
@@ -499,7 +505,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                             Re_dinc = graph_params$dinc_colour,
                                             Re_iinc = graph_params$iinc_colour,
                                             Re_prod = graph_params$prod_colour), 
-                                 breaks = rebound_vars) +
+                                 breaks = y_var) +
     ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size, 
                                           Re_emb = graph_params$emb_size,
                                           Re_md = graph_params$md_size, 
@@ -508,7 +514,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                           Re_dinc = graph_params$dinc_size,
                                           Re_iinc = graph_params$iinc_size,
                                           Re_prod = graph_params$prod_size), 
-                               breaks = rebound_vars) +
+                               breaks = y_var) +
     ggplot2::scale_linetype_manual(values = c(Re_dempl = graph_params$dempl_linetype, 
                                               Re_emb = graph_params$emb_linetype,
                                               Re_md = graph_params$md_linetype,
@@ -517,8 +523,6 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                               Re_dinc = graph_params$dinc_linetype,
                                               Re_iinc = graph_params$iinc_linetype,
                                               Re_prod = graph_params$prod_linetype), 
-                                   breaks = rebound_vars)
-    
-    
+                                   breaks = y_var)
 }
 
