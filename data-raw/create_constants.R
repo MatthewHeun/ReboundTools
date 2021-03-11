@@ -339,7 +339,9 @@ graph_df_colnames <- list(colour_col = "colour",
                           start_point_col = "start_point",
                           end_arrow_col = "end_arrow", 
                           Re_names = "Re_names", 
-                          Re_values = "Re_values")
+                          Re_values = "Re_values", 
+                          y_names_col = "y_names",
+                          y_vals_col = "y_vals")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 
@@ -478,10 +480,11 @@ usethis::use_data(path_graph_params, overwrite = TRUE)
 # 
 
 sens_graph_params <- list(# Base condition points on graphs
-                          orig_point_shape = 19,
+                          orig_point_shape = 1,
                           orig_point_size = 2,
-                          orig_point_stroke = 1,
-                          orig_point_colour = "red",
+                          orig_point_stroke = 0.5,
+                          orig_point_colour = "black",
+                          orig_point_fill = "black",
                           
                           # Rebound effect colours
                           dempl_colour = empl_colour, 
@@ -505,7 +508,7 @@ sens_graph_params <- list(# Base condition points on graphs
                           dinc_size = 1,
                           iinc_size = 1, 
                           prod_size = 1,
-                          tot_size = 2,
+                          tot_size = 1.5,
                           
                           # linetypes for rebound effects
                           dempl_linetype = "solid",

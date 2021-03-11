@@ -445,6 +445,10 @@
 #' \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
 #' \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
 #' \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
+#' \item{Re_names}{The name of the column of rebound names.}
+#' \item{Re_values}{The name of the column of rebound values.}
+#' \item{y_names_col}{The name of the column of y-axis variable names.}
+#' \item{y_vals_col}{The name of the column of y-axis variable names.}
 #' }
 #' @examples
 #' graph_df_colnames
@@ -563,10 +567,11 @@
 #' @format A string list with `r length(sens_graph_params)` entries.
 #' \describe{
 #' 
-#' \item{orig_point_shape}{The shape for points between rebound effects. Default is `21`, a filled circle..} 
-#' \item{orig_point_size}{The size for points between rebound effects. Default is `1`.}
-#' \item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is `1`.}
-#' \item{orig_point_colour}{The colour of the original points. Default is "red".}
+#' \item{orig_point_shape}{The shape for points between rebound effects. Default is `1`, an open circle..} 
+#' \item{orig_point_size}{The size for original points. Default is `2`.}
+#' \item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is `0.5`.}
+#' \item{orig_point_colour}{The outline colour for original points. Default is "black".}
+#' \item{orig_point_fill}{The fill colour for original points. Default is "black".}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital cost lines.}

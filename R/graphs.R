@@ -306,22 +306,31 @@ rebound_graphs_helper <- function(.path_data,
 
 #' Sensitivity graphs for rebound analyses
 #' 
-#' This function makes sensitivity graphs for rebound analysis.
+#' A function to make sensitivity graphs for rebound analysis.
 #' 
 #' The caller can adjust the aesthetics of the graph with manual scales.
 #'
 #' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
 #'                         Default is `parametric_analysis(rebound_data, parameterization)`.
 #' @param rebound_data Rebound data, likely read by `load_eeu_data()`.
+#'                     Default is `NULL`.
+#' @param parameterization A list of lists that gives parameter sweeps.
+#'                         At the top level, the list items must be named for cases in `rebound_data`.
+#'                         At the next level, the parameters to be swept should be given, 
+#'                         along with their sweep values. 
+#'                         See examples.
+#'                         Default is `NULL`.
 #' @param x_var,y_var Strings that identify the x-axis and y-axis variables for this sensitivity graph.
 #'                    These variables must appear in `.parametric_data`.
-#' @param linetype_var,linecolour_var,linesize_var Strings that identify variables to be used for
-#'                                                 type, color, and size of lines.
-#'                                                 Default is `ReboundTools::eeu_base_params$case`.
+#'                    `x_var` must be a single string.
+#'                    `y_var` can be a vector of strings. 
+#'                    See examples.
+#' @param line_var The name of variable to be used to discriminate lines on the graph. 
+#'                 Default is `y_names_col`.
 #' @param graph_params A list of parameters to control graph appearance. 
 #'                     See `ReboundTools::sens_graph_params`.
+#' @param y_names_col,y_vals_col See `ReboundTools::graph_df_colnames`.
 #' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
-#' @inheritParams parametric_analysis
 #' 
 #' @return A `ggplot2` object.
 #' 
@@ -417,8 +426,8 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                                x_var,
                                y_var,
                                line_var = y_names_col,
-                               y_vals_col = "y_vals",
-                               y_names_col = "y_names",
+                               y_names_col = ReboundTools::graph_df_colnames$y_names_col,
+                               y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
                                graph_params = ReboundTools::sens_graph_params,
                                point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
                                sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
@@ -426,7 +435,9 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
 
 
   p_data <- .parametric_data %>%
-    tidyr::pivot_longer(cols = tidyselect::all_of(y_var), names_to = y_names_col, values_to = y_vals_col)
+    tidyr::pivot_longer(cols = tidyselect::all_of(y_var), names_to = y_names_col, values_to = y_vals_col) %>% 
+    # Arrange by the x variable so that all points (for geom_point) are in order.
+    dplyr::arrange(.data[[x_var]])
 
   orig_data <- p_data %>%
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
@@ -440,31 +451,63 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                         colour = graph_params$orig_point_colour,
                         size = graph_params$orig_point_size,
                         shape = graph_params$orig_point_shape,
-                        stroke = graph_params$orig_point_stroke) +
-    ggplot2::geom_line(data = line_data,
+                        stroke = graph_params$orig_point_stroke,
+                        fill = graph_params$orig_point_fill) +
+    # ggplot2::geom_line(data = line_data,
+    #                    mapping = ggplot2::aes_string(x = x_var,
+    #                                                  y = y_vals_col,
+    #                                                  linetype = line_var,
+    #                                                  colour = line_var,
+    #                                                  size = line_var))
+    ggplot2::geom_path(data = line_data,
                        mapping = ggplot2::aes_string(x = x_var,
                                                      y = y_vals_col,
                                                      linetype = line_var,
                                                      colour = line_var,
-                                                     size = line_var))
+                                                     size = line_var), 
+                       lineend = graph_params$lineend, 
+                       linejoin = graph_params$linejoin)
 }
 
 
-#' Title
+#' A sensitivity graph containing all rebound terms
+#' 
+#' Create a sensitivity graph with lines for all rebound terms. 
+#' 
+#' This function has the same arguments as `sensitivity_graphs()`,
+#' except that `yvar` is missing.
+#' `y_var` is missing, because the ordinate is assumed to be rebound values, 
+#' and all rebound components are included.
 #'
-#' @param .parametric_data 
-#' @param rebound_data 
-#' @param parameterization 
-#' @param x_var 
-#' @param line_var 
-#' @param y_vals_col 
-#' @param y_names_col 
-#' @param graph_params 
-#' @param point_type_colname 
-#' @param sweep_points 
-#' @param orig_points 
+#' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
+#'                         Default is `parametric_analysis(rebound_data, parameterization)`.
+#' @param rebound_data Rebound data, likely read by `load_eeu_data()`.
+#'                     Default is `NULL`.
+#' @param parameterization A list of lists that gives parameter sweeps.
+#'                         At the top level, the list items must be named for cases in `rebound_data`.
+#'                         At the next level, the parameters to be swept should be given, 
+#'                         along with their sweep values. 
+#'                         See examples.
+#'                         Default is `NULL`.
+#' @param x_var Strings that identify the x-axis and y-axis variables for this sensitivity graph.
+#'                    These variables must appear in `.parametric_data`.
+#'                    `x_var` must be a single string.
+#'                    `y_var` can be a vector of strings. 
+#'                    See examples.
+#' @param include_Re_tot A boolean that tells whether to include a line for total rebound.
+#'                       Default is `TRUE`.
+#' @param graph_params A list of parameters to control graph appearance. 
+#'                     See `ReboundTools::sens_graph_params`.
+#' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
+#' @param line_var The name of variable to be used to discriminate lines on the graph. 
+#'                 Default is `y_names_col`.
+#' @param y_names_col,y_vals_col See `ReboundTools::graph_df_colnames`.
+#' @param graph_params A list of parameters to control graph appearance. 
+#'                     See `ReboundTools::sens_graph_params`.
+#' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
 #'
-#' @return
+#' @return A ggplot2 graph showing sensitivity of all rebound terms to `x_var`.
+#'  
 #' @export
 #'
 #' @examples
@@ -478,18 +521,31 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                 rebound_data, 
                                 parameterization,
                                 x_var,
+                                include_Re_tot = TRUE,
                                 line_var = y_names_col,
-                                y_vals_col = "y_vals",
-                                y_names_col = "y_names",
+                                y_names_col = ReboundTools::graph_df_colnames$y_names_col,
+                                y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
                                 graph_params = ReboundTools::sens_graph_params,
                                 point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
                                 sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
                                 orig_points = ReboundTools::parametric_analysis_point_types$orig) {
-  y_var <- unlist(setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg)) %>% 
-    replace(c(4,5), .[c(5,4)])
+  # Make a list of the rebound terms to graph.
+  # These are the individual components.
+  Re_vars_to_graph <- setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg)
+  if (include_Re_tot) {
+    Re_vars_to_graph <- append(Re_vars_to_graph, ReboundTools::rebound_terms$Re_tot)
+  }
+  # Swap indirect substitution and direct substitution effects to get a more-pleasing order.
+  Re_vars_to_graph <- Re_vars_to_graph %>% 
+    unlist() %>% 
+    replace(c(4,5), Re_vars_to_graph[c(5,4)]) %>% 
+    unlist() %>% 
+    # Reverse to put total and productivity on the bottom
+    rev()
+  
   sensitivity_graphs(.parametric_data = .parametric_data, 
                      x_var = x_var, 
-                     y_var = y_var, 
+                     y_var = Re_vars_to_graph, 
                      line_var = line_var, 
                      y_vals_col = y_vals_col,
                      y_names_col = y_names_col,
@@ -504,8 +560,9 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                             Re_isub = graph_params$isub_colour, 
                                             Re_dinc = graph_params$dinc_colour,
                                             Re_iinc = graph_params$iinc_colour,
-                                            Re_prod = graph_params$prod_colour), 
-                                 breaks = y_var) +
+                                            Re_prod = graph_params$prod_colour,
+                                            Re_tot = graph_params$tot_colour), 
+                                 breaks = Re_vars_to_graph) +
     ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size, 
                                           Re_emb = graph_params$emb_size,
                                           Re_md = graph_params$md_size, 
@@ -513,8 +570,9 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                           Re_isub = graph_params$isub_size, 
                                           Re_dinc = graph_params$dinc_size,
                                           Re_iinc = graph_params$iinc_size,
-                                          Re_prod = graph_params$prod_size), 
-                               breaks = y_var) +
+                                          Re_prod = graph_params$prod_size, 
+                                          Re_tot = graph_params$tot_size), 
+                               breaks = Re_vars_to_graph) +
     ggplot2::scale_linetype_manual(values = c(Re_dempl = graph_params$dempl_linetype, 
                                               Re_emb = graph_params$emb_linetype,
                                               Re_md = graph_params$md_linetype,
@@ -522,7 +580,8 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                               Re_isub = graph_params$isub_linetype,
                                               Re_dinc = graph_params$dinc_linetype,
                                               Re_iinc = graph_params$iinc_linetype,
-                                              Re_prod = graph_params$prod_linetype), 
-                                   breaks = y_var)
+                                              Re_prod = graph_params$prod_linetype, 
+                                              Re_tot = graph_params$tot_linetype), 
+                                   breaks = Re_vars_to_graph)
 }
 

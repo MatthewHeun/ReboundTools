@@ -2,16 +2,17 @@
 % Please edit documentation in R/graphs.R
 \name{rebound_terms_graph}
 \alias{rebound_terms_graph}
-\title{Title}
+\title{A sensitivity graph containing all rebound terms}
 \usage{
 rebound_terms_graph(
   .parametric_data = parametric_analysis(rebound_data, parameterization),
   rebound_data,
   parameterization,
   x_var,
+  include_Re_tot = TRUE,
   line_var = y_names_col,
-  y_vals_col = "y_vals",
-  y_names_col = "y_names",
+  y_names_col = ReboundTools::graph_df_colnames$y_names_col,
+  y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
   graph_params = ReboundTools::sens_graph_params,
   point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
   sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
@@ -19,33 +20,49 @@ rebound_terms_graph(
 )
 }
 \arguments{
-\item{.parametric_data}{}
+\item{.parametric_data}{A data frame, likely the result of calling \code{parametric_analysis()}.
+Default is \code{parametric_analysis(rebound_data, parameterization)}.}
 
-\item{rebound_data}{}
+\item{rebound_data}{Rebound data, likely read by \code{load_eeu_data()}.
+Default is \code{NULL}.}
 
-\item{parameterization}{}
+\item{parameterization}{A list of lists that gives parameter sweeps.
+At the top level, the list items must be named for cases in \code{rebound_data}.
+At the next level, the parameters to be swept should be given,
+along with their sweep values.
+See examples.
+Default is \code{NULL}.}
 
-\item{x_var}{}
+\item{x_var}{Strings that identify the x-axis and y-axis variables for this sensitivity graph.
+These variables must appear in \code{.parametric_data}.
+\code{x_var} must be a single string.
+\code{y_var} can be a vector of strings.
+See examples.}
 
-\item{line_var}{}
+\item{include_Re_tot}{A boolean that tells whether to include a line for total rebound.
+Default is \code{TRUE}.}
 
-\item{y_vals_col}{}
+\item{line_var}{The name of variable to be used to discriminate lines on the graph.
+Default is \code{y_names_col}.}
 
-\item{y_names_col}{}
+\item{y_names_col, y_vals_col}{See \code{ReboundTools::graph_df_colnames}.}
 
-\item{graph_params}{}
+\item{graph_params}{A list of parameters to control graph appearance.
+See \code{ReboundTools::sens_graph_params}.}
 
-\item{point_type_colname}{}
-
-\item{sweep_points}{}
-
-\item{orig_points}{}
+\item{point_type_colname, sweep_points, orig_points}{See \code{ReboundTools::parametric_analysis_point_types}.}
 }
 \value{
-
+A ggplot2 graph showing sensitivity of all rebound terms to \code{x_var}.
 }
 \description{
-Title
+Create a sensitivity graph with lines for all rebound terms.
+}
+\details{
+This function has the same arguments as \code{sensitivity_graphs()},
+except that \code{yvar} is missing.
+\code{y_var} is missing, because the ordinate is assumed to be rebound values,
+and all rebound components are included.
 }
 \examples{
 df <- load_eeu_data()

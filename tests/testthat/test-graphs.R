@@ -345,3 +345,35 @@ test_that("sensitivity_graphs() works with more than 1 line variation", {
                   linetype = ggplot2::element_blank())
   expect_true(!is.null(g))
 })
+
+
+test_that("rebound_terms_graph() works as expected", {
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                      x_var = "eta_engr_units_tilde") +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g))
+})
+
+
+test_that("sensitivity graphs correctly order points", {
+  df <- load_eeu_data()
+  eta_sens_params = list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                         Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  
+  g <- sensitivity_graphs(rebound_data = df, parameterization = eta_sens_params,
+                     x_var = "eta_engr_units_star", y_var = "Re_tot") +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+    ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = FALSE) + 
+    ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = FALSE) + 
+    ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = FALSE) +
+    ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"),
+                  y = expression(Re[tot]*" [-]"),
+                  colour = ggplot2::element_blank(),
+                  size = ggplot2::element_blank(),
+                  linetype = ggplot2::element_blank())
+  expect_true(!is.null(g))
+})
+
