@@ -355,6 +355,10 @@ test_that("rebound_terms_graph() works as expected", {
                       x_var = "eta_engr_units_tilde") +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x")
   expect_true(!is.null(g))
+  g2 <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                           x_var = "eta_engr_units_tilde", include_Re_tot = FALSE) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g2))
 })
 
 

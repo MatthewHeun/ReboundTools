@@ -1,3 +1,10 @@
+
+* Many improvements to graphs.
+* New function `rebound_terms_graph()`
+  that makes graphs of all rebound terms.
+* Re-implement `sensitivity_graphs()`.
+
+
 # ReboundTools 0.1.12 (2021-03-10)
 
 * Removed `sensitivity_graphs()` for now.
