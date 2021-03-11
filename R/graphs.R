@@ -453,6 +453,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                         shape = graph_params$orig_point_shape,
                         stroke = graph_params$orig_point_stroke,
                         fill = graph_params$orig_point_fill) +
+    # Use geom_path so that we get nice rounded segments when using dashes.
     ggplot2::geom_path(data = line_data,
                        mapping = ggplot2::aes_string(x = x_var,
                                                      y = y_vals_col,
