@@ -74,7 +74,7 @@ The indifference curves are accumulated in rows." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.13</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@ The indifference curves are accumulated in rows.</p>
   qs2_qs0 <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>f_Cs_orig</span>,
   <span class='va'>sigma</span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
   eeu_base_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span>,
   graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
 <span class='op'>)</span></pre>
@@ -211,19 +211,19 @@ When <code>qs2_qs0</code> is non-<code>NULL</code>, the curve is generated over 
 <span class='fu'>add_indifference_curve</span><span class='op'>(</span>meta <span class='op'>=</span> <span class='va'>meta</span>, line_name<span class='op'>=</span> <span class='st'>"Test indifference curve"</span>,
                        qs1_qs0 <span class='op'>=</span> <span class='fl'>2</span>, Co1_Co0 <span class='op'>=</span> <span class='fl'>3</span>, f_Cs_orig <span class='op'>=</span> <span class='fl'>0.0001</span>, sigma <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 183 x 12</span><span>
-#&gt;    Case  graph_type line_name colour  size linetype qs1_qs0 Co1_Co0 f_Cs_orig
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Test… Preferenc… Test ind… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #949494;'># … with 173 more rows, and 3 more variables: sigma </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, x </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, y </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+#&gt;    Case   graph_type line_name   colour  size linetype qs1_qs0 Co1_Co0 f_Cs_orig
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #949494;'># … with 173 more rows, and 3 more variables: sigma &lt;dbl&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

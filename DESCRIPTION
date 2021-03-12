@@ -1,7 +1,7 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.10
-Date: 2021-02-09
+Version: 0.1.13
+Date: 2021-03-11
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",
@@ -31,8 +31,10 @@ Imports:
     matsindf,
     readxl,
     rlang,
+    rlist,
     tibble, 
     tidyr,
+    tidyselect,
     xtable
 Suggests: 
     testthat (>= 3.0.0),

@@ -6,7 +6,7 @@
 \usage{
 prefs_paths(
   .rebound_data,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$preferences,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,

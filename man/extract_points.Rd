@@ -6,7 +6,7 @@
 \usage{
 extract_points(
   .paths,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   rebound_stages = ReboundTools::rebound_stages,
   rebound_segments = ReboundTools::rebound_segments,
   graph_df_colnames = ReboundTools::graph_df_colnames

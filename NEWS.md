@@ -1,3 +1,40 @@
+# ReboundTools 0.1.13 (2021-03-11)
+
+* Many improvements to graphs.
+* New function `rebound_terms_graph()`
+  that makes graphs of all rebound terms.
+* Re-implement `sensitivity_graphs()`.
+* New tests for new features.
+    - Now at 452 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.12 (2021-03-10)
+
+* Removed `sensitivity_graphs()` for now.
+* New constants for sensitivity graphs, `sens_graph_params`.
+* Name changes: 
+    * `default_graph_params` --> `path_graph_params`
+    * `rebound_graphs()` --> `path_graphs()`.
+* Added graph parameters for total rebound.
+* New tests for new features.
+    - Now at 447 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.11 (2021-03-02)
+
+* New function `sensitivity_graphs()` makes graphs from parametric data.
+* `parametric_analysis()` now optionally returns the original point,
+  which may be helpful for graphing purposes.
+  E.g., one could make a graph with lines for the swept parameters and 
+  red dots for the original (base) points.
+* Added a first version of the `parametric_analysis()` function.
+* New tests for new features.
+    - Now at 449 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.10 (2021-02-09)
 
 * New colors for graphs, using the Viridis palette, plasma option.

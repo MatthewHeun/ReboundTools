@@ -117,7 +117,7 @@ test_that("add_segment() works as expected", {
 
 
 test_that("energy path creation works with reverse drawing order", {
-  reverse_order <- ReboundTools::default_graph_params
+  reverse_order <- ReboundTools::path_graph_params
   expect_false(reverse_order$reverse_path_drawing_order)
   reverse_order$reverse_path_drawing_order <- TRUE
   
@@ -139,7 +139,7 @@ test_that("energy path creation works with reverse drawing order", {
 
 
 test_that("cost path creation works with reverse drawing order", {
-  reverse_order <- ReboundTools::default_graph_params
+  reverse_order <- ReboundTools::path_graph_params
   expect_false(reverse_order$reverse_path_drawing_order)
   reverse_order$reverse_path_drawing_order <- TRUE
   
@@ -162,7 +162,7 @@ test_that("cost path creation works with reverse drawing order", {
 
 
 test_that("prefs path creation works with reverse drawing order", {
-  reverse_order <- ReboundTools::default_graph_params
+  reverse_order <- ReboundTools::path_graph_params
   expect_false(reverse_order$reverse_path_drawing_order)
   reverse_order$reverse_path_drawing_order <- TRUE
   

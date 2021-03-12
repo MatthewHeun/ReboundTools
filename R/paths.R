@@ -55,7 +55,7 @@ extract_meta <- function(.rebound_data,
 #'   energy_paths()
 energy_paths <- function(.rebound_data, 
                          indexed = FALSE,
-                         graph_params = ReboundTools::default_graph_params,
+                         graph_params = ReboundTools::path_graph_params,
                          rebound_segments = ReboundTools::rebound_segments,
                          graph_type = ReboundTools::graph_types$energy,
                          
@@ -262,7 +262,7 @@ energy_paths <- function(.rebound_data,
 #'   cost_paths()
 cost_paths <- function(.rebound_data, 
                        indexed = FALSE,
-                       graph_params = ReboundTools::default_graph_params,
+                       graph_params = ReboundTools::path_graph_params,
                        rebound_segments = ReboundTools::rebound_segments,
                        graph_type = ReboundTools::graph_types$cost,
 
@@ -442,7 +442,7 @@ cost_paths <- function(.rebound_data,
 #'   rebound_analysis() %>% 
 #'   prefs_paths()
 prefs_paths <- function(.rebound_data, 
-                        graph_params = ReboundTools::default_graph_params,
+                        graph_params = ReboundTools::path_graph_params,
                         rebound_segments = ReboundTools::rebound_segments,
                         graph_type = ReboundTools::graph_types$preferences,
                         
@@ -614,7 +614,7 @@ add_segment <- function(.DF = NULL,
 #' Add arrow descriptions to a paths data frame
 #'
 #' @param .paths The data frame to which arrows should be added.
-#' @param graph_params See `ReboundTools::default_graph_params`.
+#' @param graph_params See `ReboundTools::path_graph_params`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #'

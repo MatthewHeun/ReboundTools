@@ -74,7 +74,7 @@ The iso lines are described by slope and intercept." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.13</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@ The iso lines are described by slope and intercept.</p>
   <span class='va'>.rebound_data</span>,
   indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
   graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>cost</span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
   C_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_s_orig</span>,
   C_dot_cap_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_orig</span>,
   C_dot_md_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_orig</span>,
@@ -174,13 +174,13 @@ at its start.</p></td>
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>iso_cost_lines</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span><span>
-#&gt;   Reference Case  Original Upgrade graph_type line_name colour  size linetype
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fu… Ford F… Cost       orig      black    0.3 solid   
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incande… LED     Cost       orig      black    0.3 solid   
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> None yet  Car   Ford Fu… Ford F… Cost       G_dot     black    0.3 solid   
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> None yet  Lamp  Incande… LED     Cost       G_dot     black    0.3 solid   
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: slope </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, intercept </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+#&gt;   Reference Case  Original  Upgrade   graph_type line_name colour  size linetype
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fus… Ford Fus… Cost       orig      black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incandes… LED       Cost       orig      black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> None yet  Car   Ford Fus… Ford Fus… Cost       G_dot     black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> None yet  Lamp  Incandes… LED       Cost       G_dot     black    0.3 solid   
+#&gt; </span><span style='color: #949494;'># … with 2 more variables: slope &lt;dbl&gt;, intercept &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

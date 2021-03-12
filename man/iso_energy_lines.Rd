@@ -8,7 +8,7 @@ iso_energy_lines(
   .rebound_data,
   indexed = FALSE,
   graph_type = ReboundTools::graph_types$energy,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   I_E = ReboundTools::eeu_base_params$I_E,
   k = ReboundTools::eeu_base_params$k,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
@@ -44,7 +44,7 @@ at its start.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
-\item{graph_params}{See \code{ReboundTools::default_graph_params}.}
+\item{graph_params}{See \code{ReboundTools::path_graph_params}.}
 
 \item{I_E, k}{See \code{ReboundTools::eeu_base_params}.}
 
