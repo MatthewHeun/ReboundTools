@@ -327,6 +327,8 @@ rebound_graphs_helper <- function(.path_data,
 #'                    See examples.
 #' @param line_var The name of variable to be used to discriminate lines on the graph. 
 #'                 Default is `y_names_col`.
+#' @param include_x_axis A boolean that tells whether to include a horizontal line at y = 0.
+#'                       Default is `FALSE`.
 #' @param graph_params A list of parameters to control graph appearance. 
 #'                     See `ReboundTools::sens_graph_params`.
 #' @param y_names_col,y_vals_col See `ReboundTools::graph_df_colnames`.
@@ -426,6 +428,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                                x_var,
                                y_var,
                                line_var = y_names_col,
+                               include_x_axis = FALSE,
                                y_names_col = ReboundTools::graph_df_colnames$y_names_col,
                                y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
                                graph_params = ReboundTools::sens_graph_params,
@@ -445,7 +448,12 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == sweep_points)
 
   # Create the graph and return it
-  ggplot2::ggplot() +
+  g <- ggplot2::ggplot()
+  if (include_x_axis) {
+    g <- g +
+      ggplot2::geom_hline(yintercept = 0, size = 0.2)
+  }
+  g + 
     ggplot2::geom_point(data = orig_data,
                         mapping = ggplot2::aes_string(x = x_var, y = y_vals_col),
                         colour = graph_params$orig_point_colour,
@@ -496,6 +504,8 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
 #' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
 #' @param line_var The name of variable to be used to discriminate lines on the graph. 
 #'                 Default is `y_names_col`.
+#' @param include_x_axis A boolean that tells whether to include a horizontal line at y = 0.
+#'                       Default is `TRUE`.
 #' @param y_names_col,y_vals_col See `ReboundTools::graph_df_colnames`.
 #' @param graph_params A list of parameters to control graph appearance. 
 #'                     See `ReboundTools::sens_graph_params`.
@@ -518,6 +528,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                 x_var,
                                 include_Re_tot = TRUE,
                                 line_var = y_names_col,
+                                include_x_axis = TRUE,
                                 y_names_col = ReboundTools::graph_df_colnames$y_names_col,
                                 y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
                                 graph_params = ReboundTools::sens_graph_params,
@@ -542,6 +553,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                      x_var = x_var, 
                      y_var = Re_vars_to_graph, 
                      line_var = line_var, 
+                     include_x_axis = include_x_axis,
                      y_vals_col = y_vals_col,
                      y_names_col = y_names_col,
                      graph_params = graph_params, 
