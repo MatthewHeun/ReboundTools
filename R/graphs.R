@@ -309,6 +309,10 @@ rebound_graphs_helper <- function(.path_data,
 #' A function to make sensitivity graphs for rebound analysis.
 #' 
 #' The caller can adjust the aesthetics of the graph with manual scales.
+#' 
+#' The order of `y_var` will determine layering on the graph.
+#' The first item in `y_var` will be the lowest layer.
+#' The last item in `y_var` will be the highest layer.
 #'
 #' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
 #'                         Default is `parametric_analysis(rebound_data, parameterization)`.
@@ -440,7 +444,12 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
   p_data <- .parametric_data %>%
     tidyr::pivot_longer(cols = tidyselect::all_of(y_var), names_to = y_names_col, values_to = y_vals_col) %>% 
     # Arrange by the x variable so that all points (for geom_point) are in order.
-    dplyr::arrange(.data[[x_var]])
+    dplyr::arrange(.data[[x_var]]) %>% 
+    dplyr::mutate(
+      # Set the factor levels so that the layering order will be 
+      # in the same order as the variables coming in here.
+      "{y_names_col}" := factor(.data[[y_names_col]], levels = y_var)
+    )
 
   orig_data <- p_data %>%
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)

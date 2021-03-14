@@ -61,6 +61,10 @@ A function to make sensitivity graphs for rebound analysis.
 }
 \details{
 The caller can adjust the aesthetics of the graph with manual scales.
+
+The order of \code{y_var} will determine layering on the graph.
+The first item in \code{y_var} will be the lowest layer.
+The last item in \code{y_var} will be the highest layer.
 }
 \examples{
 # Sensitivity of total rebound (Re_tot) to productivity multiplier (k)
