@@ -403,6 +403,5 @@ test_that("a simple rebound_terms_graph works", {
                       ) +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x")
   expect_true(!is.null(g2))
-  
 })
 

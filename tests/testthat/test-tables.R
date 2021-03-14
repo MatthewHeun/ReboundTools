@@ -73,8 +73,8 @@ test_that("including subtotals works as expected", {
   expect_true(! ReboundTools::rebound_terms$Re_empl %in% Re_types)
   expect_true(! ReboundTools::rebound_terms$Re_sub %in% Re_types)
   expect_true(! ReboundTools::rebound_terms$Re_inc %in% Re_types)
-  expect_true(! ReboundTools::rebound_terms$Re_i %in% Re_types)
-  expect_true(! ReboundTools::rebound_terms$Re_d %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_dir %in% Re_types)
+  expect_true(! ReboundTools::rebound_terms$Re_indir %in% Re_types)
   
   expect_true(ReboundTools::rebound_terms$Re_tot %in% Re_types)
 })
@@ -91,8 +91,8 @@ test_that("not including total works as expected", {
   expect_true(ReboundTools::rebound_terms$Re_sub %in% Re_types)
   expect_true(ReboundTools::rebound_terms$Re_inc %in% Re_types)
   expect_true(ReboundTools::rebound_terms$Re_prod %in% Re_types)
-  expect_true(ReboundTools::rebound_terms$Re_i %in% Re_types)
-  expect_true(ReboundTools::rebound_terms$Re_d %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_dir %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_indir %in% Re_types)
   
   expect_true(! ReboundTools::rebound_terms$Re_tot %in% Re_types)
 })
@@ -114,3 +114,4 @@ test_that("we get Re_prod", {
   
   expect_true(ReboundTools::rebound_terms$Re_prod %in% Re_types2)  
 })
+

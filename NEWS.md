@@ -1,3 +1,7 @@
+* Now including `Re_cap` in rebound calculations.
+* Renamed `Re_d` and `Re_i` to `Re_dir` and `Re_indir`.
+
+
 # ReboundTools 0.1.13 (2021-03-11)
 
 * Many improvements to graphs.
