@@ -5,10 +5,11 @@
 \alias{rebound_terms}
 \title{Rebound terms}
 \format{
-A string list with 14 entries.
+A string list with 15 entries.
 \describe{
 \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 \item{Re_emb}{Indirect embodied energy effect rebound.}
+\item{Re_cap}{Indirect capital cost effect rebound.}
 \item{Re_md}{Indirect maintenance and disposal effect rebound.}
 \item{Re_empl}{Emplacement effect rebound.}
 \item{Re_dsub}{Direct substitution effect rebound.}

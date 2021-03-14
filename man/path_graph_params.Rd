@@ -5,7 +5,7 @@
 \alias{path_graph_params}
 \title{Path graph parameters}
 \format{
-A string list with 69 entries.
+A string list with 84 entries.
 \describe{
 
 \item{which_points}{A data frame telling which points to include in the graph.}
@@ -20,31 +20,46 @@ A string list with 69 entries.
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital cost lines.}
 \item{md_colour}{The colour for maintenance and disposal lines.}
+\item{empl_colour}{The colour for emplacement lines.}
 \item{dsub_colour}{The colour for direct substitution lines.}
 \item{isub_colour}{The colour for indirect substitution lines.}
+\item{sub_colour}{The colour for substitution lines.}
 \item{dinc_colour}{The colour for direct income lines.}
 \item{iinc_colour}{The colour for indirect income lines.}
+\item{inc_colour}{The colour for income lines.}
 \item{prod_colour}{The colour for productivity lines.}
+\item{dir_colour}{The colour for direct lines.}
+\item{indir_colour}{The colour for productivity lines.}
 \item{tot_colour}{The colour for total rebound lines.}
 \item{dempl_size}{The size for direct emplacment lines.}
 \item{emb_size}{The size for embodied energy lines.}
 \item{cap_size}{The size for capital cost lines.}
 \item{md_size}{The size for maintenance and disposal lines.}
+\item{empl_size}{The size for emplacement lines.}
 \item{dsub_size}{The size for direct substitution lines.}
 \item{isub_size}{The size for indirect substitution lines.}
+\item{sub_size}{The size for substitution lines.}
 \item{dinc_size}{The size for direct income lines.}
 \item{iinc_size}{The size for indirect income lines.}
+\item{inc_size}{The size for income lines.}
 \item{prod_size}{The size for productivity lines.}
+\item{dir_size}{The size for direct lines.}
+\item{indir_size}{The size for indirect lines.}
 \item{tot_size}{The size for total rebound lines.}
 \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 \item{emb_linetype}{The linetype for embodied energy lines.}
 \item{cap_linetype}{The linetype for capital cost lines.}
 \item{md_linetype}{The linetype for maintenance and disposal lines.}
+\item{empl_linetype}{The linetype for emplacement lines.}
 \item{dsub_linetype}{The linetype for direct substitution lines.}
 \item{isub_linetype}{The linetype for indirect substitution lines.}
+\item{sub_linetype}{The linetype for substitution lines.}
 \item{dinc_linetype}{The linetype for direct income lines.}
 \item{iinc_linetype}{The linetype for indirect income lines.}
+\item{inc_linetype}{The linetype for income lines.}
 \item{prod_linetype}{The linetype for productivity lines.}
+\item{dir_linetype}{The linetype for direct lines.}
+\item{indir_linetype}{The linetype for indirect lines.}
 \item{tot_linetype}{The linetype for total rebound lines.}
 \item{lineend}{The line end style.}
 \item{linejoin}{The line join style.}

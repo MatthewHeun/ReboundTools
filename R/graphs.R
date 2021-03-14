@@ -526,7 +526,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                 rebound_data, 
                                 parameterization,
                                 x_var,
-                                include_Re_tot = TRUE,
+                                Re_terms = unlist(ReboundTools::rebound_terms),
                                 line_var = y_names_col,
                                 include_x_axis = TRUE,
                                 y_names_col = ReboundTools::graph_df_colnames$y_names_col,
@@ -535,23 +535,11 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                 point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
                                 sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
                                 orig_points = ReboundTools::parametric_analysis_point_types$orig) {
-  # Make a list of the rebound terms to graph.
-  # These are the individual components.
-  Re_vars_to_graph <- setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg)
-  if (include_Re_tot) {
-    Re_vars_to_graph <- append(Re_vars_to_graph, ReboundTools::rebound_terms$Re_tot)
-  }
-  # Swap indirect substitution and direct substitution effects to get a more-pleasing order.
-  Re_vars_to_graph <- Re_vars_to_graph %>% 
-    unlist() %>% 
-    replace(c(4,5), Re_vars_to_graph[c(5,4)]) %>% 
-    unlist() %>% 
-    # Reverse to put total and productivity on the bottom
-    rev()
-  
+  Re_terms <- match.arg(Re_terms, several.ok = TRUE)
+
   sensitivity_graphs(.parametric_data = .parametric_data, 
                      x_var = x_var, 
-                     y_var = Re_vars_to_graph, 
+                     y_var = Re_terms, 
                      line_var = line_var, 
                      include_x_axis = include_x_axis,
                      y_vals_col = y_vals_col,
@@ -562,33 +550,51 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                      orig_points = orig_points) +
     ggplot2::scale_colour_manual(values = c(Re_dempl = graph_params$dempl_colour,
                                             Re_emb = graph_params$emb_colour,
+                                            Re_cap = graph_params$cap_colour,
                                             Re_md = graph_params$md_colour, 
+                                            Re_empl = graph_params$empl_colour,
                                             Re_dsub = graph_params$dsub_colour,
                                             Re_isub = graph_params$isub_colour, 
+                                            Re_sub = graph_params$sub_colour,
                                             Re_dinc = graph_params$dinc_colour,
                                             Re_iinc = graph_params$iinc_colour,
+                                            Re_inc = graph_params$inc_colour,
                                             Re_prod = graph_params$prod_colour,
+                                            Re_dir = graph_params$dir_colour,
+                                            Re_indir = graph_params$indir_colour,
                                             Re_tot = graph_params$tot_colour), 
-                                 breaks = Re_vars_to_graph) +
-    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size, 
+                                 breaks = Re_terms) +
+    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size,
                                           Re_emb = graph_params$emb_size,
-                                          Re_md = graph_params$md_size, 
+                                          Re_md = graph_params$md_size,
+                                          Re_cap = graph_params$cap_size,
+                                          Re_empl = graph_params$empl_size,
                                           Re_dsub = graph_params$dsub_size,
-                                          Re_isub = graph_params$isub_size, 
+                                          Re_isub = graph_params$isub_size,
+                                          Re_sub = graph_params$sub_size,
                                           Re_dinc = graph_params$dinc_size,
                                           Re_iinc = graph_params$iinc_size,
-                                          Re_prod = graph_params$prod_size, 
-                                          Re_tot = graph_params$tot_size), 
-                               breaks = Re_vars_to_graph) +
+                                          Re_inc = graph_params$inc_size,
+                                          Re_prod = graph_params$prod_size,
+                                          Re_dir = graph_params$dir_size,
+                                          Re_indir = graph_params$indir_size,
+                                          Re_tot = graph_params$tot_size),
+                               breaks = Re_terms) +
     ggplot2::scale_linetype_manual(values = c(Re_dempl = graph_params$dempl_linetype, 
                                               Re_emb = graph_params$emb_linetype,
+                                              Re_cap = graph_params$cap_linetype,
                                               Re_md = graph_params$md_linetype,
+                                              Re_empl = graph_params$empl_linetype,
                                               Re_dsub = graph_params$dsub_linetype,
                                               Re_isub = graph_params$isub_linetype,
+                                              Re_sub = graph_params$sub_linetype,
                                               Re_dinc = graph_params$dinc_linetype,
                                               Re_iinc = graph_params$iinc_linetype,
+                                              Re_inc = graph_params$inc_linetype,
                                               Re_prod = graph_params$prod_linetype, 
+                                              Re_dir = graph_params$dir_linetype,
+                                              Re_indir = graph_params$indir_linetype,
                                               Re_tot = graph_params$tot_linetype), 
-                                   breaks = Re_vars_to_graph)
+                                   breaks = Re_terms)
 }
 
