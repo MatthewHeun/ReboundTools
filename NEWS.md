@@ -1,3 +1,7 @@
+* New option to use LaTeX for legend labels in
+  `rebound_terms_graph()`.
+
+
 # ReboundTools 0.1.14 (2021-03-14)
 
 * Fixed a bug with line layering in 

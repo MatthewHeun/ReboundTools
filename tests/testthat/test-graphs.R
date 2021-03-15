@@ -406,3 +406,20 @@ test_that("a simple rebound_terms_graph works", {
   expect_true(!is.null(g2))
 })
 
+
+test_that("LaTeX legends works as expected.", {
+  Re_graph_params <- ReboundTools::sens_graph_params
+  Re_graph_params[["include_x_axis"]] <- TRUE
+  Re_graph_params[["use_latex_legend"]] <- TRUE
+  
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                           graph_params = Re_graph_params,
+                           x_var = "eta_engr_units_tilde",
+                           Re_terms = c("Re_tot", "Re_md")) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g))
+})
+

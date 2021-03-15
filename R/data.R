@@ -638,6 +638,8 @@
 #' \item{linejoin}{The line join style.}
 #' \item{include_base_condition_points}{Tells whether to include base conditions points. Default is `TRUE`.}
 #' \item{points_atop_paths}{Tells whether to draw points above paths (`TRUE`) or beneath paths (`FALSE`). Default is `TRUE`.}
+#' \item{use_latex_legend}{Tells whether to convert legend text to LaTeX for a nicely-formatted legend. Default is `FALSE`.}
+#' \item{include_x_axis}{Tells whether to add an x-axis at y = 0. Default is `FALSE`.}
 #' }
 #' @examples
 #' sens_graph_params
