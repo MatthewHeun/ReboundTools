@@ -11,7 +11,6 @@ rebound_terms_graph(
   x_var,
   Re_terms = unlist(ReboundTools::rebound_terms),
   line_var = y_names_col,
-  include_x_axis = TRUE,
   y_names_col = ReboundTools::graph_df_colnames$y_names_col,
   y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
   graph_params = ReboundTools::sens_graph_params,
@@ -45,9 +44,6 @@ Default is \code{unlist(ReboundTools::rebound_terms)}.}
 
 \item{line_var}{The name of variable to be used to discriminate lines on the graph.
 Default is \code{y_names_col}.}
-
-\item{include_x_axis}{A boolean that tells whether to include a horizontal line at y = 0.
-Default is \code{TRUE}.}
 
 \item{y_names_col, y_vals_col}{See \code{ReboundTools::graph_df_colnames}.}
 

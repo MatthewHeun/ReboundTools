@@ -5,7 +5,7 @@
 \alias{sens_graph_params}
 \title{Sensitivity graph parameters}
 \format{
-A string list with 54 entries.
+A string list with 56 entries.
 \describe{
 
 \item{orig_point_shape}{The shape for points between rebound effects. Default is \code{1}, an open circle..}
@@ -62,6 +62,8 @@ A string list with 54 entries.
 \item{linejoin}{The line join style.}
 \item{include_base_condition_points}{Tells whether to include base conditions points. Default is \code{TRUE}.}
 \item{points_atop_paths}{Tells whether to draw points above paths (\code{TRUE}) or beneath paths (\code{FALSE}). Default is \code{TRUE}.}
+\item{use_latex_legend}{Tells whether to convert legend text to LaTeX for a nicely-formatted legend. Default is \code{FALSE}.}
+\item{include_x_axis}{Tells whether to add an x-axis at y = 0. Default is \code{FALSE}.}
 }
 }
 \usage{

@@ -1,3 +1,10 @@
+* Dots now take on colour of their lines in `sensitivity_graphs()`.
+* New default for nominal points in sensitivity graphs:
+  filled black dot.
+* New option to use LaTeX for legend labels in
+  `rebound_terms_graph()`.
+
+
 # ReboundTools 0.1.14 (2021-03-14)
 
 * Fixed a bug with line layering in 

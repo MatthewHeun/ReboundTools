@@ -298,7 +298,7 @@ latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
                             Re_dinc = "$Re_{dinc}$", 
                             Re_iinc = "$Re_{iinc}$", 
                             Re_inc = "$Re_{inc}$",
-                            Re_prod = "$Re_{pr\\!od}$", 
+                            Re_prod = "$Re_{prod}$", 
                             Re_dir = "$Re_{dir}$",
                             Re_indir = "$Re_{indir}$",
                             Re_tot = "$Re_{tot}$")
@@ -497,7 +497,7 @@ usethis::use_data(path_graph_params, overwrite = TRUE)
 # 
 
 sens_graph_params <- list(# Base condition points on graphs
-                          orig_point_shape = 1,
+                          orig_point_shape = 16,
                           orig_point_size = 2,
                           orig_point_stroke = 0.5,
                           orig_point_colour = "black",
@@ -559,7 +559,12 @@ sens_graph_params <- list(# Base condition points on graphs
                           linejoin = "round",
                           # Draw points on top of paths (or not)
                           include_base_condition_points = TRUE,
-                          points_atop_paths = TRUE)
+                          points_atop_paths = TRUE, 
+                          
+                          # Adjust miscellaneous features of the graph
+                          include_x_axis = FALSE,
+                          use_latex_legend = FALSE
+                          )
 usethis::use_data(sens_graph_params, overwrite = TRUE)
 
 #

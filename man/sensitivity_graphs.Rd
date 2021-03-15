@@ -11,7 +11,6 @@ sensitivity_graphs(
   x_var,
   y_var,
   line_var = y_names_col,
-  include_x_axis = FALSE,
   y_names_col = ReboundTools::graph_df_colnames$y_names_col,
   y_vals_col = ReboundTools::graph_df_colnames$y_vals_col,
   graph_params = ReboundTools::sens_graph_params,
@@ -42,9 +41,6 @@ See examples.}
 
 \item{line_var}{The name of variable to be used to discriminate lines on the graph.
 Default is \code{y_names_col}.}
-
-\item{include_x_axis}{A boolean that tells whether to include a horizontal line at y = 0.
-Default is \code{FALSE}.}
 
 \item{y_names_col, y_vals_col}{See \code{ReboundTools::graph_df_colnames}.}
 
