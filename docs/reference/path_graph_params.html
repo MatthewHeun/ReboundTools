@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -127,7 +127,7 @@ in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 69 entries.</p><dl>
+    <p>A string list with 84 entries.</p><dl>
 
 <dt>which_points</dt><dd><p>A data frame telling which points to include in the graph.</p></dd>
 <dt>last_point</dt><dd><p>Tells whether to show the last point in a path. Overrides <code>which_points</code>.</p></dd>
@@ -141,31 +141,46 @@ in the <code>ReboundTools</code> package.</p>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
 <dt>cap_colour</dt><dd><p>The colour for capital cost lines.</p></dd>
 <dt>md_colour</dt><dd><p>The colour for maintenance and disposal lines.</p></dd>
+<dt>empl_colour</dt><dd><p>The colour for emplacement lines.</p></dd>
 <dt>dsub_colour</dt><dd><p>The colour for direct substitution lines.</p></dd>
 <dt>isub_colour</dt><dd><p>The colour for indirect substitution lines.</p></dd>
+<dt>sub_colour</dt><dd><p>The colour for substitution lines.</p></dd>
 <dt>dinc_colour</dt><dd><p>The colour for direct income lines.</p></dd>
 <dt>iinc_colour</dt><dd><p>The colour for indirect income lines.</p></dd>
+<dt>inc_colour</dt><dd><p>The colour for income lines.</p></dd>
 <dt>prod_colour</dt><dd><p>The colour for productivity lines.</p></dd>
+<dt>dir_colour</dt><dd><p>The colour for direct lines.</p></dd>
+<dt>indir_colour</dt><dd><p>The colour for productivity lines.</p></dd>
 <dt>tot_colour</dt><dd><p>The colour for total rebound lines.</p></dd>
 <dt>dempl_size</dt><dd><p>The size for direct emplacment lines.</p></dd>
 <dt>emb_size</dt><dd><p>The size for embodied energy lines.</p></dd>
 <dt>cap_size</dt><dd><p>The size for capital cost lines.</p></dd>
 <dt>md_size</dt><dd><p>The size for maintenance and disposal lines.</p></dd>
+<dt>empl_size</dt><dd><p>The size for emplacement lines.</p></dd>
 <dt>dsub_size</dt><dd><p>The size for direct substitution lines.</p></dd>
 <dt>isub_size</dt><dd><p>The size for indirect substitution lines.</p></dd>
+<dt>sub_size</dt><dd><p>The size for substitution lines.</p></dd>
 <dt>dinc_size</dt><dd><p>The size for direct income lines.</p></dd>
 <dt>iinc_size</dt><dd><p>The size for indirect income lines.</p></dd>
+<dt>inc_size</dt><dd><p>The size for income lines.</p></dd>
 <dt>prod_size</dt><dd><p>The size for productivity lines.</p></dd>
+<dt>dir_size</dt><dd><p>The size for direct lines.</p></dd>
+<dt>indir_size</dt><dd><p>The size for indirect lines.</p></dd>
 <dt>tot_size</dt><dd><p>The size for total rebound lines.</p></dd>
 <dt>dempl_linetyps</dt><dd><p>The linetype for direct emplacment lines.</p></dd>
 <dt>emb_linetype</dt><dd><p>The linetype for embodied energy lines.</p></dd>
 <dt>cap_linetype</dt><dd><p>The linetype for capital cost lines.</p></dd>
 <dt>md_linetype</dt><dd><p>The linetype for maintenance and disposal lines.</p></dd>
+<dt>empl_linetype</dt><dd><p>The linetype for emplacement lines.</p></dd>
 <dt>dsub_linetype</dt><dd><p>The linetype for direct substitution lines.</p></dd>
 <dt>isub_linetype</dt><dd><p>The linetype for indirect substitution lines.</p></dd>
+<dt>sub_linetype</dt><dd><p>The linetype for substitution lines.</p></dd>
 <dt>dinc_linetype</dt><dd><p>The linetype for direct income lines.</p></dd>
 <dt>iinc_linetype</dt><dd><p>The linetype for indirect income lines.</p></dd>
+<dt>inc_linetype</dt><dd><p>The linetype for income lines.</p></dd>
 <dt>prod_linetype</dt><dd><p>The linetype for productivity lines.</p></dd>
+<dt>dir_linetype</dt><dd><p>The linetype for direct lines.</p></dd>
+<dt>indir_linetype</dt><dd><p>The linetype for indirect lines.</p></dd>
 <dt>tot_linetype</dt><dd><p>The linetype for total rebound lines.</p></dd>
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
@@ -288,10 +303,16 @@ to change graph appearance.</p>
 #&gt; $md_colour
 #&gt; [1] "#150789FF"
 #&gt; 
+#&gt; $empl_colour
+#&gt; [1] "#150789FF"
+#&gt; 
+#&gt; $isub_colour
+#&gt; [1] "#99149FFF"
+#&gt; 
 #&gt; $dsub_colour
 #&gt; [1] "#99149FFF"
 #&gt; 
-#&gt; $isub_colour
+#&gt; $sub_colour
 #&gt; [1] "#99149FFF"
 #&gt; 
 #&gt; $dinc_colour
@@ -300,8 +321,17 @@ to change graph appearance.</p>
 #&gt; $iinc_colour
 #&gt; [1] "#E76F5AFF"
 #&gt; 
+#&gt; $inc_colour
+#&gt; [1] "#E76F5AFF"
+#&gt; 
 #&gt; $prod_colour
 #&gt; [1] "#F7E225FF"
+#&gt; 
+#&gt; $dir_colour
+#&gt; [1] "black"
+#&gt; 
+#&gt; $indir_colour
+#&gt; [1] "black"
 #&gt; 
 #&gt; $tot_colour
 #&gt; [1] "black"
@@ -318,10 +348,16 @@ to change graph appearance.</p>
 #&gt; $md_size
 #&gt; [1] 1
 #&gt; 
-#&gt; $dsub_size
+#&gt; $empl_size
 #&gt; [1] 1
 #&gt; 
 #&gt; $isub_size
+#&gt; [1] 1
+#&gt; 
+#&gt; $dsub_size
+#&gt; [1] 1
+#&gt; 
+#&gt; $sub_size
 #&gt; [1] 1
 #&gt; 
 #&gt; $dinc_size
@@ -330,7 +366,16 @@ to change graph appearance.</p>
 #&gt; $iinc_size
 #&gt; [1] 1
 #&gt; 
+#&gt; $inc_size
+#&gt; [1] 1
+#&gt; 
 #&gt; $prod_size
+#&gt; [1] 1
+#&gt; 
+#&gt; $dir_size
+#&gt; [1] 1
+#&gt; 
+#&gt; $indir_size
 #&gt; [1] 1
 #&gt; 
 #&gt; $tot_size
@@ -348,10 +393,16 @@ to change graph appearance.</p>
 #&gt; $md_linetype
 #&gt; [1] "solid"
 #&gt; 
+#&gt; $empl_linetype
+#&gt; [1] "solid"
+#&gt; 
 #&gt; $dsub_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $isub_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $sub_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $dinc_linetype
@@ -360,7 +411,16 @@ to change graph appearance.</p>
 #&gt; $iinc_linetype
 #&gt; [1] "solid"
 #&gt; 
+#&gt; $sinc_linetype
+#&gt; [1] "solid"
+#&gt; 
 #&gt; $prod_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $dir_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $indir_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $tot_linetype
