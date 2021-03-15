@@ -787,8 +787,8 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param e_qs_ps,e_qo_ps,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
 #' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
-#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param Re_dempl,Re_emb,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_d,Re_i,Re_tot See `ReboundTools::rebound_terms`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
 #'
 #' @return A data frame with rebound terms added as columns.
 #' 
@@ -823,6 +823,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
+                         Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                          Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -832,6 +833,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          # Output names
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,
                          Re_emb = ReboundTools::rebound_terms$Re_emb, 
+                         Re_cap = ReboundTools::rebound_terms$Re_cap, 
                          Re_md = ReboundTools::rebound_terms$Re_md,
                          Re_empl = ReboundTools::rebound_terms$Re_empl,
                          Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
@@ -841,13 +843,13 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_iinc = ReboundTools::rebound_terms$Re_iinc,
                          Re_inc = ReboundTools::rebound_terms$Re_inc,
                          Re_prod = ReboundTools::rebound_terms$Re_prod,
-                         Re_d = ReboundTools::rebound_terms$Re_d,
-                         Re_i = ReboundTools::rebound_terms$Re_i,
-                         Re_tot = ReboundTools::rebound_terms$Re_tot
-                         ) {
+                         Re_dir = ReboundTools::rebound_terms$Re_dir,
+                         Re_indir = ReboundTools::rebound_terms$Re_indir,
+                         Re_tot = ReboundTools::rebound_terms$Re_tot) {
   
   rebound_fun <- function(Delta_E_dot_emb_star_val, 
                           S_dot_dev_val,
+                          Delta_C_dot_cap_star_val,
                           Delta_C_dot_md_star_val, 
                           I_E_val,
                           eta_ratio_val, 
@@ -867,15 +869,18 @@ calc_rebound <- function(.Deltas_data = NULL,
                           ) {
     # Direct emplacement rebound
     Re_dempl_val <- 0
+    
     # Indirect embodied energy effect rebound. 
     # Note: this formulation avoids a division-by-zero error if E_dot_emb_orig = 0
     Re_emb_val <- Delta_E_dot_emb_star_val / S_dot_dev_val
 
+    # Capital cost rebound
+    Re_cap_val <- Delta_C_dot_cap_star_val * I_E_val / S_dot_dev_val
+    
     # Indirect maintenance and disposal effect energy rebound
     # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
     Re_md_val <- Delta_C_dot_md_star_val * I_E_val / S_dot_dev_val
-    # Note: this formulation can give divide by zero error.
-
+    
     # Emplacement effect rebound
     Re_empl_val <- Re_emb_val + Re_md_val
     
@@ -901,20 +906,21 @@ calc_rebound <- function(.Deltas_data = NULL,
     Re_prod_val <- k_val * N_dot_hat_val * I_E_val / S_dot_dev_val
     
     # Direct rebound
-    Re_d_val <- Re_dsub_val + Re_dinc_val
+    Re_dir_val <- Re_dsub_val + Re_dinc_val
     
     # Indirect rebound
-    Re_i_val <- Re_emb_val + Re_md_val + Re_isub_val + Re_iinc_val + Re_prod_val
+    Re_indir_val <- Re_emb_val + Re_md_val + Re_isub_val + Re_iinc_val + Re_prod_val
     
     # Total rebound
     Re_tot_val <- Re_dempl_val + Re_emb_val + Re_md_val + Re_dsub_val + Re_isub_val + Re_dinc_val + Re_iinc_val + Re_prod_val
     
     # Double-check the sums
-    Re_tot_check <- Re_d_val + Re_i_val
+    Re_tot_check <- Re_dir_val + Re_indir_val
     assertthat::assert_that(all(abs(Re_tot_check - Re_tot_val) < tol), msg = "Re_tot failed consistency check in calc_rebound().")
     
     list(Re_dempl_val,
          Re_emb_val,
+         Re_cap_val,
          Re_md_val,
          Re_empl_val,
          Re_isub_val,
@@ -924,11 +930,12 @@ calc_rebound <- function(.Deltas_data = NULL,
          Re_iinc_val,
          Re_inc_val,
          Re_prod_val,
-         Re_d_val,
-         Re_i_val,
+         Re_dir_val,
+         Re_indir_val,
          Re_tot_val) %>% 
       magrittr::set_names(c(Re_dempl,
                             Re_emb,
+                            Re_cap,
                             Re_md,
                             Re_empl,
                             Re_isub,
@@ -938,14 +945,15 @@ calc_rebound <- function(.Deltas_data = NULL,
                             Re_iinc,
                             Re_inc,
                             Re_prod,
-                            Re_d,
-                            Re_i,
+                            Re_dir,
+                            Re_indir,
                             Re_tot))
   }
   
   matsindf::matsindf_apply(.Deltas_data, FUN = rebound_fun, 
-                           S_dot_dev_val = S_dot_dev,
                            Delta_E_dot_emb_star_val = Delta_E_dot_emb_star,
+                           S_dot_dev_val = S_dot_dev,
+                           Delta_C_dot_cap_star_val = Delta_C_dot_cap_star,
                            Delta_C_dot_md_star_val = Delta_C_dot_md_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 

@@ -5,7 +5,7 @@
 \alias{graph_df_colnames}
 \title{Names of graph data frame columns}
 \format{
-A string list with 23 entries.
+A string list with 25 entries.
 \describe{
 \item{colour_col}{The name of the column containing line colours.}
 \item{size_col}{The name of the column containing line sizes (widths).}
@@ -24,6 +24,10 @@ A string list with 23 entries.
 \item{sigma_col}{The name of the column containing ending sigma values for this indifference curve.}
 \item{start_point_col}{The name of the boolean column telling whether this row contains a segment that should have a starting point.}
 \item{end_arrow_col}{The name of the boolean column telling whether this row contains a segment that should have an ending arrow.}
+\item{Re_names}{The name of the column of rebound names.}
+\item{Re_values}{The name of the column of rebound values.}
+\item{y_names_col}{The name of the column of y-axis variable names.}
+\item{y_vals_col}{The name of the column of y-axis variable names.}
 }
 }
 \usage{

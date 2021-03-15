@@ -5,47 +5,65 @@
 \alias{sens_graph_params}
 \title{Sensitivity graph parameters}
 \format{
-A string list with 38 entries.
+A string list with 56 entries.
 \describe{
 
-\item{orig_point_shape}{The shape for points between rebound effects. Default is \code{21}, a filled circle..}
-\item{orig_point_size}{The size for points between rebound effects. Default is \code{1}.}
-\item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is \code{1}.}
-\item{orig_point_colour}{The colour of the original points. Default is "red".}
+\item{orig_point_shape}{The shape for points between rebound effects. Default is \code{1}, an open circle..}
+\item{orig_point_size}{The size for original points. Default is \code{2}.}
+\item{orig_point_stroke}{The size of the line surrounding points between rebound effects. Default is \code{0.5}.}
+\item{orig_point_colour}{The outline colour for original points. Default is "black".}
+\item{orig_point_fill}{The fill colour for original points. Default is "black".}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital cost lines.}
 \item{md_colour}{The colour for maintenance and disposal lines.}
+\item{empl_colour}{The colour for emplacement lines.}
 \item{dsub_colour}{The colour for direct substitution lines.}
 \item{isub_colour}{The colour for indirect substitution lines.}
+\item{sub_colour}{The colour for substitution lines.}
 \item{dinc_colour}{The colour for direct income lines.}
 \item{iinc_colour}{The colour for indirect income lines.}
+\item{inc_colour}{The colour for income lines.}
 \item{prod_colour}{The colour for productivity lines.}
+\item{dir_colour}{The colour for direct lines.}
+\item{indir_colour}{The colour for productivity lines.}
 \item{tot_colour}{The colour for total rebound lines.}
 \item{dempl_size}{The size for direct emplacment lines.}
 \item{emb_size}{The size for embodied energy lines.}
 \item{cap_size}{The size for capital cost lines.}
 \item{md_size}{The size for maintenance and disposal lines.}
+\item{empl_size}{The size for emplacement lines.}
 \item{dsub_size}{The size for direct substitution lines.}
 \item{isub_size}{The size for indirect substitution lines.}
+\item{sub_size}{The size for substitution lines.}
 \item{dinc_size}{The size for direct income lines.}
 \item{iinc_size}{The size for indirect income lines.}
+\item{inc_size}{The size for income lines.}
 \item{prod_size}{The size for productivity lines.}
+\item{dir_size}{The size for direct lines.}
+\item{indir_size}{The size for indirect lines.}
 \item{tot_size}{The size for total rebound lines.}
 \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 \item{emb_linetype}{The linetype for embodied energy lines.}
 \item{cap_linetype}{The linetype for capital cost lines.}
 \item{md_linetype}{The linetype for maintenance and disposal lines.}
+\item{empl_linetype}{The linetype for emplacement lines.}
 \item{dsub_linetype}{The linetype for direct substitution lines.}
 \item{isub_linetype}{The linetype for indirect substitution lines.}
+\item{sub_linetype}{The linetype for substitution lines.}
 \item{dinc_linetype}{The linetype for direct income lines.}
 \item{iinc_linetype}{The linetype for indirect income lines.}
+\item{inc_linetype}{The linetype for income lines.}
 \item{prod_linetype}{The linetype for productivity lines.}
+\item{dir_linetype}{The linetype for direct lines.}
+\item{indir_linetype}{The linetype for indirect lines.}
 \item{tot_linetype}{The linetype for total rebound lines.}
 \item{lineend}{The line end style.}
 \item{linejoin}{The line join style.}
 \item{include_base_condition_points}{Tells whether to include base conditions points. Default is \code{TRUE}.}
 \item{points_atop_paths}{Tells whether to draw points above paths (\code{TRUE}) or beneath paths (\code{FALSE}). Default is \code{TRUE}.}
+\item{use_latex_legend}{Tells whether to convert legend text to LaTeX for a nicely-formatted legend. Default is \code{FALSE}.}
+\item{include_x_axis}{Tells whether to add an x-axis at y = 0. Default is \code{FALSE}.}
 }
 }
 \usage{

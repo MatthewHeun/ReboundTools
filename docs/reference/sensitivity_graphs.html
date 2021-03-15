@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Sensitivity graphs for rebound analyses — sensitivity_graphs" />
-<meta property="og:description" content="This function makes sensitivity graphs for rebound analysis." />
+<meta property="og:description" content="A function to make sensitivity graphs for rebound analysis." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -115,21 +115,19 @@
     </div>
 
     <div class="ref-description">
-    <p>This function makes sensitivity graphs for rebound analysis.</p>
+    <p>A function to make sensitivity graphs for rebound analysis.</p>
     </div>
 
     <pre class="usage"><span class='fu'>sensitivity_graphs</span><span class='op'>(</span>
   .parametric_data <span class='op'>=</span> <span class='fu'><a href='parametric_analysis.html'>parametric_analysis</a></span><span class='op'>(</span><span class='va'>rebound_data</span>, <span class='va'>parameterization</span><span class='op'>)</span>,
-  <span class='va'>rebound_data</span>,
-  <span class='va'>parameterization</span>,
+  rebound_data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  parameterization <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>x_var</span>,
   <span class='va'>y_var</span>,
-  linetype_var <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
-  linecolour_var <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
-  linesize_var <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
-  orig_point_colour <span class='op'>=</span> <span class='st'>"red"</span>,
-  orig_point_size <span class='op'>=</span> <span class='fl'>2</span>,
-  orig_point_pch <span class='op'>=</span> <span class='fl'>16</span>,
+  line_var <span class='op'>=</span> <span class='va'>y_names_col</span>,
+  y_names_col <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span><span class='op'>$</span><span class='va'>y_names_col</span>,
+  y_vals_col <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span><span class='op'>$</span><span class='va'>y_vals_col</span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='sens_graph_params.html'>sens_graph_params</a></span>,
   point_type_colname <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='parametric_analysis_point_types.html'>parametric_analysis_point_types</a></span><span class='op'>$</span><span class='va'>point_type_colname</span>,
   sweep_points <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='parametric_analysis_point_types.html'>parametric_analysis_point_types</a></span><span class='op'>$</span><span class='va'>sweep</span>,
   orig_points <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='parametric_analysis_point_types.html'>parametric_analysis_point_types</a></span><span class='op'>$</span><span class='va'>orig</span>
@@ -145,26 +143,39 @@ Default is <code><a href='parametric_analysis.html'>parametric_analysis(rebound_
     </tr>
     <tr>
       <th>rebound_data</th>
-      <td><p>Rebound data, likely read by <code><a href='load_eeu_data.html'>load_eeu_data()</a></code>.</p></td>
+      <td><p>Rebound data, likely read by <code><a href='load_eeu_data.html'>load_eeu_data()</a></code>.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>parameterization</th>
-      <td><p>A named list of lists. See details.</p></td>
+      <td><p>A list of lists that gives parameter sweeps.
+At the top level, the list items must be named for cases in <code>rebound_data</code>.
+At the next level, the parameters to be swept should be given,
+along with their sweep values.
+See examples.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>x_var, y_var</th>
-      <td><p>Strings that identifies the x-axis and y-axis variables for this sensitivity graph.</p></td>
+      <td><p>Strings that identify the x-axis and y-axis variables for this sensitivity graph.
+These variables must appear in <code>.parametric_data</code>.
+<code>x_var</code> must be a single string.
+<code>y_var</code> can be a vector of strings.
+See examples.</p></td>
     </tr>
     <tr>
-      <th>linetype_var, linecolour_var, linesize_var</th>
-      <td><p>Strings that identify variables to be used for
-type, color, and size of lines.
-Default is <code>ReboundTools::eeu_base_params$case</code>.</p></td>
+      <th>line_var</th>
+      <td><p>The name of variable to be used to discriminate lines on the graph.
+Default is <code>y_names_col</code>.</p></td>
     </tr>
     <tr>
-      <th>orig_point_colour, orig_point_size, orig_point_pch</th>
-      <td><p>Color, size, and character for original points.
-Defaults are "red", 2, and 16, respectively.</p></td>
+      <th>y_names_col, y_vals_col</th>
+      <td><p>See <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>graph_params</th>
+      <td><p>A list of parameters to control graph appearance.
+See <code><a href='sens_graph_params.html'>ReboundTools::sens_graph_params</a></code>.</p></td>
     </tr>
     <tr>
       <th>point_type_colname, sweep_points, orig_points</th>
@@ -178,6 +189,9 @@ Defaults are "red", 2, and 16, respectively.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The caller can adjust the aesthetics of the graph with manual scales.</p>
+<p>The order of <code>y_var</code> will determine layering on the graph.
+The first item in <code>y_var</code> will be the lowest layer.
+The last item in <code>y_var</code> will be the highest layer.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Sensitivity of total rebound (Re_tot) to productivity multiplier (k)</span>
@@ -186,10 +200,16 @@ Defaults are "red", 2, and 16, respectively.</p></td>
                     Lamp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>k <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, by <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>sensitivity_graphs</span><span class='op'>(</span>rebound_data <span class='op'>=</span> <span class='va'>df</span>, parameterization <span class='op'>=</span> <span class='va'>sens_params</span>, 
                    x_var <span class='op'>=</span> <span class='st'>"k"</span>, y_var <span class='op'>=</span> <span class='st'>"Re_tot"</span><span class='op'>)</span> <span class='op'>+</span>
- <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='st'>"black"</span>, Lamp <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
- <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='fl'>0.5</span>, Lamp <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
- <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_linetype_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='st'>"solid"</span>, Lamp <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='sensitivity_graphs-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># A more-complicated example that shows multi-variate sensitivity.</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span>facets <span class='op'>=</span> <span class='st'>"Case"</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Re_tot <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>, guide <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> 
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Re_tot <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>, guide <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> 
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_linetype_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Re_tot <span class='op'>=</span> <span class='st'>"solid"</span><span class='op'>)</span>, guide <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>Re</span><span class='op'>[</span><span class='va'>tot</span><span class='op'>]</span><span class='op'>)</span>, 
+               colour <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+               size <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+               linetype <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='sensitivity_graphs-1.png' alt='' width='700' height='433' /></div><div class='input'>               
+<span class='co'># A more-complicated example that shows multi-variate sensitivity.</span>
 <span class='co'># Values of the productivity parameter (k) is shown in rows of the lattice plot.</span>
 <span class='co'># Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) </span>
 <span class='co'># is shown in columns of the lattice plot.</span>
@@ -202,17 +222,67 @@ Defaults are "red", 2, and 16, respectively.</p></td>
                     Lamp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>k <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, by <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
                                 I_E <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>5</span>, by <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>, 
                                 e_qs_ps_UC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.5</span>, <span class='op'>-</span><span class='fl'>0.1</span>, by <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Choose which rebound variables to include and their order.</span>
 <span class='fu'>sensitivity_graphs</span><span class='op'>(</span>rebound_data <span class='op'>=</span> <span class='va'>df</span>, parameterization <span class='op'>=</span> <span class='va'>sens_params_2</span>, 
-                   x_var <span class='op'>=</span> <span class='st'>"I_E"</span>, y_var <span class='op'>=</span> <span class='st'>"Re_tot"</span><span class='op'>)</span> <span class='op'>+</span>
+                   x_var <span class='op'>=</span> <span class='st'>"I_E"</span>, 
+                   y_var <span class='op'>=</span> <span class='st'>"Re_tot"</span>,
+                   line_var <span class='op'>=</span> <span class='st'>"Case"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></span><span class='op'>(</span>rows <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span>, 
                       cols <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>e_qs_ps_UC</span><span class='op'>)</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='st'>"darkgreen"</span>, Lamp <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='fl'>0.5</span>, Lamp <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_linetype_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='st'>"solid"</span>, Lamp <span class='op'>=</span> <span class='st'>"dotted"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='st'>"black"</span>, Lamp <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='fl'>0.5</span>, Lamp <span class='op'>=</span> <span class='fl'>1.0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_linetype_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='st'>"solid"</span>, Lamp <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>, 
                 size <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
                 linetype <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='sensitivity_graphs-2.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='img'><img src='sensitivity_graphs-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Plot all rebound terms as a function of post-upgrade efficiency</span>
+<span class='va'>sens_params_3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Car <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>eta_engr_units_star <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>35</span>, <span class='fl'>50</span>, by <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>, 
+                      Lamp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>eta_engr_units_star <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>70</span>, <span class='fl'>90</span>, by <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Choose rebound terms to include in the graph and their order</span>
+<span class='va'>rebound_vars</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Re_dempl"</span>, <span class='st'>"Re_emb"</span>, <span class='st'>"Re_md"</span>, <span class='st'>"Re_dsub"</span>, <span class='st'>"Re_isub"</span>, 
+                  <span class='st'>"Re_dinc"</span>, <span class='st'>"Re_iinc"</span>, <span class='st'>"Re_prod"</span><span class='op'>)</span>
+                  
+<span class='fu'>sensitivity_graphs</span><span class='op'>(</span>rebound_data <span class='op'>=</span> <span class='va'>df</span>, parameterization <span class='op'>=</span> <span class='va'>sens_params_3</span>,
+                   x_var <span class='op'>=</span> <span class='st'>"eta_engr_units_tilde"</span>, 
+                   y_var <span class='op'>=</span> <span class='va'>rebound_vars</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span>facets <span class='op'>=</span> <span class='st'>"Case"</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> 
+        <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Re_dempl <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dempl_colour</span>,
+          Re_emb <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>emb_colour</span>,
+          Re_md <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>md_colour</span>, 
+          Re_dsub <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dsub_colour</span>,
+          Re_isub <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>isub_colour</span>, 
+          Re_dinc <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dinc_colour</span>,
+          Re_iinc <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>iinc_colour</span>,
+          Re_prod <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>prod_colour</span><span class='op'>)</span>, 
+                               breaks <span class='op'>=</span> <span class='va'>rebound_vars</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> 
+        <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Re_dempl <span class='op'>=</span> <span class='fl'>0.2</span>, 
+          Re_emb <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>emb_size</span>,
+          Re_md <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>md_size</span>, 
+          Re_dsub <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dsub_size</span>,
+          Re_isub <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>isub_size</span>, 
+          Re_dinc <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dinc_size</span>,
+          Re_iinc <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>iinc_size</span>,
+          Re_prod <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>prod_size</span><span class='op'>)</span>, 
+                            breaks <span class='op'>=</span> <span class='va'>rebound_vars</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_linetype_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> 
+        <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Re_dempl <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dempl_linetype</span>, 
+          Re_emb <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>emb_linetype</span>,
+          Re_md <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>md_linetype</span>,
+          Re_dsub <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dsub_linetype</span>,
+          Re_isub <span class='op'>=</span> <span class='st'>"11"</span>,
+          Re_dinc <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>dinc_linetype</span>,
+          Re_iinc <span class='op'>=</span> <span class='st'>"11"</span>,
+          Re_prod <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>prod_linetype</span><span class='op'>)</span>, 
+                               breaks <span class='op'>=</span> <span class='va'>rebound_vars</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tilde.html'>tilde</a></span><span class='op'>(</span><span class='va'>eta</span><span class='op'>)</span><span class='op'>*</span><span class='st'>" [mpg (Car) or lm/W (Lamp)]"</span><span class='op'>)</span>, 
+              y <span class='op'>=</span> <span class='st'>"Re terms [-]"</span>, 
+              colour <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+              size <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+              linetype <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='sensitivity_graphs-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -73,7 +73,7 @@ sensitivity graphs in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -125,46 +125,64 @@ sensitivity graphs in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 38 entries.</p><dl>
+    <p>A string list with 56 entries.</p><dl>
 
-<dt>orig_point_shape</dt><dd><p>The shape for points between rebound effects. Default is <code>21</code>, a filled circle..</p></dd>
-<dt>orig_point_size</dt><dd><p>The size for points between rebound effects. Default is <code>1</code>.</p></dd>
-<dt>orig_point_stroke</dt><dd><p>The size of the line surrounding points between rebound effects. Default is <code>1</code>.</p></dd>
-<dt>orig_point_colour</dt><dd><p>The colour of the original points. Default is "red".</p></dd>
+<dt>orig_point_shape</dt><dd><p>The shape for points between rebound effects. Default is <code>1</code>, an open circle..</p></dd>
+<dt>orig_point_size</dt><dd><p>The size for original points. Default is <code>2</code>.</p></dd>
+<dt>orig_point_stroke</dt><dd><p>The size of the line surrounding points between rebound effects. Default is <code>0.5</code>.</p></dd>
+<dt>orig_point_colour</dt><dd><p>The outline colour for original points. Default is "black".</p></dd>
+<dt>orig_point_fill</dt><dd><p>The fill colour for original points. Default is "black".</p></dd>
 <dt>dempl_colour</dt><dd><p>The colour for direct emplacment lines.</p></dd>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
 <dt>cap_colour</dt><dd><p>The colour for capital cost lines.</p></dd>
 <dt>md_colour</dt><dd><p>The colour for maintenance and disposal lines.</p></dd>
+<dt>empl_colour</dt><dd><p>The colour for emplacement lines.</p></dd>
 <dt>dsub_colour</dt><dd><p>The colour for direct substitution lines.</p></dd>
 <dt>isub_colour</dt><dd><p>The colour for indirect substitution lines.</p></dd>
+<dt>sub_colour</dt><dd><p>The colour for substitution lines.</p></dd>
 <dt>dinc_colour</dt><dd><p>The colour for direct income lines.</p></dd>
 <dt>iinc_colour</dt><dd><p>The colour for indirect income lines.</p></dd>
+<dt>inc_colour</dt><dd><p>The colour for income lines.</p></dd>
 <dt>prod_colour</dt><dd><p>The colour for productivity lines.</p></dd>
+<dt>dir_colour</dt><dd><p>The colour for direct lines.</p></dd>
+<dt>indir_colour</dt><dd><p>The colour for productivity lines.</p></dd>
 <dt>tot_colour</dt><dd><p>The colour for total rebound lines.</p></dd>
 <dt>dempl_size</dt><dd><p>The size for direct emplacment lines.</p></dd>
 <dt>emb_size</dt><dd><p>The size for embodied energy lines.</p></dd>
 <dt>cap_size</dt><dd><p>The size for capital cost lines.</p></dd>
 <dt>md_size</dt><dd><p>The size for maintenance and disposal lines.</p></dd>
+<dt>empl_size</dt><dd><p>The size for emplacement lines.</p></dd>
 <dt>dsub_size</dt><dd><p>The size for direct substitution lines.</p></dd>
 <dt>isub_size</dt><dd><p>The size for indirect substitution lines.</p></dd>
+<dt>sub_size</dt><dd><p>The size for substitution lines.</p></dd>
 <dt>dinc_size</dt><dd><p>The size for direct income lines.</p></dd>
 <dt>iinc_size</dt><dd><p>The size for indirect income lines.</p></dd>
+<dt>inc_size</dt><dd><p>The size for income lines.</p></dd>
 <dt>prod_size</dt><dd><p>The size for productivity lines.</p></dd>
+<dt>dir_size</dt><dd><p>The size for direct lines.</p></dd>
+<dt>indir_size</dt><dd><p>The size for indirect lines.</p></dd>
 <dt>tot_size</dt><dd><p>The size for total rebound lines.</p></dd>
 <dt>dempl_linetyps</dt><dd><p>The linetype for direct emplacment lines.</p></dd>
 <dt>emb_linetype</dt><dd><p>The linetype for embodied energy lines.</p></dd>
 <dt>cap_linetype</dt><dd><p>The linetype for capital cost lines.</p></dd>
 <dt>md_linetype</dt><dd><p>The linetype for maintenance and disposal lines.</p></dd>
+<dt>empl_linetype</dt><dd><p>The linetype for emplacement lines.</p></dd>
 <dt>dsub_linetype</dt><dd><p>The linetype for direct substitution lines.</p></dd>
 <dt>isub_linetype</dt><dd><p>The linetype for indirect substitution lines.</p></dd>
+<dt>sub_linetype</dt><dd><p>The linetype for substitution lines.</p></dd>
 <dt>dinc_linetype</dt><dd><p>The linetype for direct income lines.</p></dd>
 <dt>iinc_linetype</dt><dd><p>The linetype for indirect income lines.</p></dd>
+<dt>inc_linetype</dt><dd><p>The linetype for income lines.</p></dd>
 <dt>prod_linetype</dt><dd><p>The linetype for productivity lines.</p></dd>
+<dt>dir_linetype</dt><dd><p>The linetype for direct lines.</p></dd>
+<dt>indir_linetype</dt><dd><p>The linetype for indirect lines.</p></dd>
 <dt>tot_linetype</dt><dd><p>The linetype for total rebound lines.</p></dd>
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
 <dt>include_base_condition_points</dt><dd><p>Tells whether to include base conditions points. Default is <code>TRUE</code>.</p></dd>
 <dt>points_atop_paths</dt><dd><p>Tells whether to draw points above paths (<code>TRUE</code>) or beneath paths (<code>FALSE</code>). Default is <code>TRUE</code>.</p></dd>
+<dt>use_latex_legend</dt><dd><p>Tells whether to convert legend text to LaTeX for a nicely-formatted legend. Default is <code>FALSE</code>.</p></dd>
+<dt>include_x_axis</dt><dd><p>Tells whether to add an x-axis at y = 0. Default is <code>FALSE</code>.</p></dd>
 
 </dl>
 
@@ -177,16 +195,19 @@ to change sensitivity graph appearance.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>sens_graph_params</span>
 </div><div class='output co'>#&gt; $orig_point_shape
-#&gt; [1] 19
+#&gt; [1] 16
 #&gt; 
 #&gt; $orig_point_size
 #&gt; [1] 2
 #&gt; 
 #&gt; $orig_point_stroke
-#&gt; [1] 1
+#&gt; [1] 0.5
 #&gt; 
 #&gt; $orig_point_colour
-#&gt; [1] "red"
+#&gt; [1] "black"
+#&gt; 
+#&gt; $orig_point_fill
+#&gt; [1] "black"
 #&gt; 
 #&gt; $dempl_colour
 #&gt; [1] "#150789FF"
@@ -200,10 +221,16 @@ to change sensitivity graph appearance.</p>
 #&gt; $md_colour
 #&gt; [1] "#150789FF"
 #&gt; 
+#&gt; $empl_colour
+#&gt; [1] "#150789FF"
+#&gt; 
 #&gt; $dsub_colour
 #&gt; [1] "#99149FFF"
 #&gt; 
 #&gt; $isub_colour
+#&gt; [1] "#99149FFF"
+#&gt; 
+#&gt; $sub_colour
 #&gt; [1] "#99149FFF"
 #&gt; 
 #&gt; $dinc_colour
@@ -212,8 +239,17 @@ to change sensitivity graph appearance.</p>
 #&gt; $iinc_colour
 #&gt; [1] "#E76F5AFF"
 #&gt; 
+#&gt; $inc_colour
+#&gt; [1] "#E76F5AFF"
+#&gt; 
 #&gt; $prod_colour
 #&gt; [1] "#F7E225FF"
+#&gt; 
+#&gt; $dir_colour
+#&gt; [1] "black"
+#&gt; 
+#&gt; $indir_colour
+#&gt; [1] "black"
 #&gt; 
 #&gt; $tot_colour
 #&gt; [1] "black"
@@ -222,12 +258,15 @@ to change sensitivity graph appearance.</p>
 #&gt; [1] 1
 #&gt; 
 #&gt; $emb_size
-#&gt; [1] 1.5
+#&gt; [1] 1
 #&gt; 
 #&gt; $cap_size
-#&gt; [1] 1.5
+#&gt; [1] 1
 #&gt; 
 #&gt; $md_size
+#&gt; [1] 0.5
+#&gt; 
+#&gt; $empl_size
 #&gt; [1] 1
 #&gt; 
 #&gt; $dsub_size
@@ -236,17 +275,29 @@ to change sensitivity graph appearance.</p>
 #&gt; $isub_size
 #&gt; [1] 1
 #&gt; 
+#&gt; $sub_size
+#&gt; [1] 1
+#&gt; 
 #&gt; $dinc_size
 #&gt; [1] 1
 #&gt; 
 #&gt; $iinc_size
 #&gt; [1] 1
 #&gt; 
+#&gt; $inc_size
+#&gt; [1] 1
+#&gt; 
 #&gt; $prod_size
 #&gt; [1] 1
 #&gt; 
+#&gt; $dir_size
+#&gt; [1] 1
+#&gt; 
+#&gt; $indir_size
+#&gt; [1] 1
+#&gt; 
 #&gt; $tot_size
-#&gt; [1] 2
+#&gt; [1] 1.5
 #&gt; 
 #&gt; $dempl_linetype
 #&gt; [1] "solid"
@@ -258,22 +309,37 @@ to change sensitivity graph appearance.</p>
 #&gt; [1] "11"
 #&gt; 
 #&gt; $md_linetype
+#&gt; [1] "11"
+#&gt; 
+#&gt; $empl_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $dsub_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $isub_linetype
+#&gt; [1] "11"
+#&gt; 
+#&gt; $sub_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $dinc_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $iinc_linetype
+#&gt; [1] "11"
+#&gt; 
+#&gt; $inc_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $prod_linetype
 #&gt; [1] "solid"
+#&gt; 
+#&gt; $dir_linetype
+#&gt; [1] "solid"
+#&gt; 
+#&gt; $indir_linetype
+#&gt; [1] "11"
 #&gt; 
 #&gt; $tot_linetype
 #&gt; [1] "solid"
@@ -289,6 +355,12 @@ to change sensitivity graph appearance.</p>
 #&gt; 
 #&gt; $points_atop_paths
 #&gt; [1] TRUE
+#&gt; 
+#&gt; $include_x_axis
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $use_latex_legend
+#&gt; [1] FALSE
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

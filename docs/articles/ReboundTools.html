@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
       <h1 data-toc-skip>ReboundTools</h1>
                         <h4 class="author">Matthew Kuperus Heun</h4>
             
-            <h4 class="date">2021-03-10</h4>
+            <h4 class="date">2021-03-15</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -99,16 +99,16 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ Original              &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
 <span class="co">#&gt; $ Upgrade               &lt;chr&gt; "Ford Fusion Hybrid", "LED"</span>
 <span class="co">#&gt; $ service_unit          &lt;chr&gt; "mile", "lm-hr"</span>
-<span class="co">#&gt; $ energy_engr_unit      &lt;chr&gt; "gal", "kW-hr"</span>
-<span class="co">#&gt; $ `MJ/energy_engr_unit` &lt;dbl&gt; 126.6216, 3.6000</span>
+<span class="co">#&gt; $ energy_engr_unit      &lt;chr&gt; "gal", "W-hr"</span>
+<span class="co">#&gt; $ `MJ/energy_engr_unit` &lt;dbl&gt; 126.6216, 0.0036</span>
 <span class="co">#&gt; $ I_E                   &lt;dbl&gt; 3.389339, 3.389339</span>
 <span class="co">#&gt; $ k                     &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ p_E_engr_units        &lt;dbl&gt; 2.2100, 0.1355</span>
+<span class="co">#&gt; $ p_E_engr_units        &lt;dbl&gt; 2.2100000, 0.0001355</span>
 <span class="co">#&gt; $ e_qs_ps_UC            &lt;dbl&gt; -0.1, -0.4</span>
 <span class="co">#&gt; $ e_qs_M                &lt;dbl&gt; 1, 1</span>
 <span class="co">#&gt; $ e_qo_M                &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ eta_engr_units_orig   &lt;dbl&gt; 25.000, 8833.333</span>
-<span class="co">#&gt; $ eta_engr_units_star   &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_engr_units_orig   &lt;dbl&gt; 25.000000, 8.833333</span>
+<span class="co">#&gt; $ eta_engr_units_star   &lt;dbl&gt; 42.0, 81.8</span>
 <span class="co">#&gt; $ q_dot_s_orig          &lt;dbl&gt; 14425, 580350</span>
 <span class="co">#&gt; $ M_dot_orig            &lt;dbl&gt; 27401.28, 27401.28</span>
 <span class="co">#&gt; $ C_cap_orig            &lt;dbl&gt; 28216.10, 1.88</span>
@@ -144,22 +144,22 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <code class="sourceCode R"><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
-<span class="co">#&gt; Columns: 152</span>
+<span class="co">#&gt; Columns: 153</span>
 <span class="co">#&gt; $ Reference                  &lt;chr&gt; "None yet", "None yet"</span>
 <span class="co">#&gt; $ Case                       &lt;chr&gt; "Car", "Lamp"</span>
 <span class="co">#&gt; $ Original                   &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
 <span class="co">#&gt; $ Upgrade                    &lt;chr&gt; "Ford Fusion Hybrid", "LED"</span>
 <span class="co">#&gt; $ service_unit               &lt;chr&gt; "mile", "lm-hr"</span>
-<span class="co">#&gt; $ energy_engr_unit           &lt;chr&gt; "gal", "kW-hr"</span>
-<span class="co">#&gt; $ `MJ/energy_engr_unit`      &lt;dbl&gt; 126.6216, 3.6000</span>
+<span class="co">#&gt; $ energy_engr_unit           &lt;chr&gt; "gal", "W-hr"</span>
+<span class="co">#&gt; $ `MJ/energy_engr_unit`      &lt;dbl&gt; 126.6216, 0.0036</span>
 <span class="co">#&gt; $ I_E                        &lt;dbl&gt; 3.389339, 3.389339</span>
 <span class="co">#&gt; $ k                          &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ p_E_engr_units             &lt;dbl&gt; 2.2100, 0.1355</span>
+<span class="co">#&gt; $ p_E_engr_units             &lt;dbl&gt; 2.2100000, 0.0001355</span>
 <span class="co">#&gt; $ e_qs_ps_UC                 &lt;dbl&gt; -0.1, -0.4</span>
 <span class="co">#&gt; $ e_qs_M                     &lt;dbl&gt; 1, 1</span>
 <span class="co">#&gt; $ e_qo_M                     &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ eta_engr_units_orig        &lt;dbl&gt; 25.000, 8833.333</span>
-<span class="co">#&gt; $ eta_engr_units_star        &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_engr_units_orig        &lt;dbl&gt; 25.000000, 8.833333</span>
+<span class="co">#&gt; $ eta_engr_units_star        &lt;dbl&gt; 42.0, 81.8</span>
 <span class="co">#&gt; $ q_dot_s_orig               &lt;dbl&gt; 14425, 580350</span>
 <span class="co">#&gt; $ M_dot_orig                 &lt;dbl&gt; 27401.28, 27401.28</span>
 <span class="co">#&gt; $ C_cap_orig                 &lt;dbl&gt; 28216.10, 1.88</span>
@@ -173,7 +173,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ E_emb_star                 &lt;dbl&gt; 40000.0, 6.5</span>
 <span class="co">#&gt; $ t_life_star                &lt;dbl&gt; 14, 10</span>
 <span class="co">#&gt; $ p_E                        &lt;dbl&gt; 0.01745357, 0.03763889</span>
-<span class="co">#&gt; $ eta_orig                   &lt;dbl&gt; 0.1974386, 2453.7037037</span>
+<span class="co">#&gt; $ eta_orig                   &lt;dbl&gt; 0.1974386, 2453.7036944</span>
 <span class="co">#&gt; $ E_dot_s_orig               &lt;dbl&gt; 73060.68, 236.52</span>
 <span class="co">#&gt; $ C_dot_cap_orig             &lt;dbl&gt; 4030.871429, 1.044444</span>
 <span class="co">#&gt; $ p_s_orig                   &lt;dbl&gt; 8.840000e-02, 1.533962e-05</span>
@@ -198,7 +198,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ N_dot_star                 &lt;dbl&gt; 701.563517, 8.864457</span>
 <span class="co">#&gt; $ C_dot_o_star               &lt;dbl&gt; 19234.10, 27391.33</span>
 <span class="co">#&gt; $ E_dot_s_star               &lt;dbl&gt; 43488.50030, 25.54108</span>
-<span class="co">#&gt; $ eta_engr_units_hat         &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_engr_units_hat         &lt;dbl&gt; 42.0, 81.8</span>
 <span class="co">#&gt; $ eta_hat                    &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
 <span class="co">#&gt; $ p_s_hat                    &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
 <span class="co">#&gt; $ C_dot_cap_hat              &lt;dbl&gt; 3931.914, 0.121</span>
@@ -211,7 +211,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ C_dot_o_hat                &lt;dbl&gt; 19214.16, 27386.96</span>
 <span class="co">#&gt; $ N_dot_hat                  &lt;dbl&gt; 706.26254, 11.85516</span>
 <span class="co">#&gt; $ M_dot_hat_prime            &lt;dbl&gt; 19988.43, 27389.30</span>
-<span class="co">#&gt; $ eta_engr_units_bar         &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_engr_units_bar         &lt;dbl&gt; 42.0, 81.8</span>
 <span class="co">#&gt; $ eta_bar                    &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
 <span class="co">#&gt; $ p_s_bar                    &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
 <span class="co">#&gt; $ C_dot_cap_bar              &lt;dbl&gt; 3931.914, 0.121</span>
@@ -223,7 +223,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ C_dot_s_bar                &lt;dbl&gt; 801.633366, 2.341303</span>
 <span class="co">#&gt; $ C_dot_o_bar                &lt;dbl&gt; 19893.06, 27398.82</span>
 <span class="co">#&gt; $ N_dot_bar                  &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ eta_engr_units_tilde       &lt;dbl&gt; 42, 81800</span>
+<span class="co">#&gt; $ eta_engr_units_tilde       &lt;dbl&gt; 42.0, 81.8</span>
 <span class="co">#&gt; $ eta_tilde                  &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
 <span class="co">#&gt; $ p_s_tilde                  &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
 <span class="co">#&gt; $ C_dot_cap_tilde            &lt;dbl&gt; 3931.914, 0.121</span>
@@ -235,7 +235,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ C_dot_s_tilde              &lt;dbl&gt; 801.633366, 2.341303</span>
 <span class="co">#&gt; $ C_dot_o_tilde              &lt;dbl&gt; 19893.06, 27398.82</span>
 <span class="co">#&gt; $ N_dot_tilde                &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_engr_units_star  &lt;dbl&gt; 17.00, 72966.67</span>
+<span class="co">#&gt; $ Delta_eta_engr_units_star  &lt;dbl&gt; 17.00000, 72.96667</span>
 <span class="co">#&gt; $ Delta_eta_star             &lt;dbl&gt; 1.342583e-01, 2.026852e+04</span>
 <span class="co">#&gt; $ Delta_p_s_star             &lt;dbl&gt; -3.578095e-02, -1.368314e-05</span>
 <span class="co">#&gt; $ Delta_q_dot_s_star         &lt;dbl&gt; 0, 0</span>
@@ -250,7 +250,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ Delta_eta_engr_units_hat   &lt;dbl&gt; 0, 0</span>
 <span class="co">#&gt; $ Delta_eta_hat              &lt;dbl&gt; 0, 0</span>
 <span class="co">#&gt; $ Delta_p_s_hat              &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_hat          &lt;dbl&gt; 289.7372, 832459.7363</span>
+<span class="co">#&gt; $ Delta_q_dot_s_hat          &lt;dbl&gt; 289.7372, 832459.7384</span>
 <span class="co">#&gt; $ Delta_E_dot_s_hat          &lt;dbl&gt; 873.49981, 36.63637</span>
 <span class="co">#&gt; $ Delta_E_dot_emb_hat        &lt;dbl&gt; 0, 0</span>
 <span class="co">#&gt; $ Delta_C_dot_s_hat          &lt;dbl&gt; 15.245694, 1.378952</span>
@@ -285,6 +285,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ Delta_M_dot_tilde          &lt;dbl&gt; 0, 0</span>
 <span class="co">#&gt; $ Re_dempl                   &lt;dbl&gt; 0, 0</span>
 <span class="co">#&gt; $ Re_emb                     &lt;dbl&gt; 0.014492385, -0.002712225</span>
+<span class="co">#&gt; $ Re_cap                     &lt;dbl&gt; -0.01134172, -0.01483497</span>
 <span class="co">#&gt; $ Re_md                      &lt;dbl&gt; -0.009910093, 0.000000000</span>
 <span class="co">#&gt; $ Re_empl                    &lt;dbl&gt; 0.004582292, -0.002712225</span>
 <span class="co">#&gt; $ Re_isub                    &lt;dbl&gt; -0.002285912, -0.070197801</span>
@@ -294,8 +295,8 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ Re_iinc                    &lt;dbl&gt; 0.0778109, 0.1904348</span>
 <span class="co">#&gt; $ Re_inc                     &lt;dbl&gt; 0.1308157, 0.1905624</span>
 <span class="co">#&gt; $ Re_prod                    &lt;dbl&gt; 0.08094646, 0.19045111</span>
-<span class="co">#&gt; $ Re_d                       &lt;dbl&gt; 0.08254269, 0.17377699</span>
-<span class="co">#&gt; $ Re_i                       &lt;dbl&gt; 0.1610537, 0.3079759</span>
+<span class="co">#&gt; $ Re_dir                     &lt;dbl&gt; 0.08254269, 0.17377699</span>
+<span class="co">#&gt; $ Re_indir                   &lt;dbl&gt; 0.1610537, 0.3079759</span>
 <span class="co">#&gt; $ Re_tot                     &lt;dbl&gt; 0.2435964, 0.4817529</span></code></pre></div>
 <p>Note that <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> is a convenience function that calls several helper functions in turn. Each helper function calculates rebound parameters after one of the rebound effects.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -348,7 +349,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
-<!-- Wed Mar 10 08:12:43 2021 -->
+<!-- Mon Mar 15 13:50:41 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -634,7 +635,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
-<!-- Wed Mar 10 08:12:43 2021 -->
+<!-- Mon Mar 15 13:50:41 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -662,6 +663,14 @@ Value [%]
 </tr>
 <tr>
 <td align="right">
+<span class="math inline">\(Re_{cap}\)</span>
+</td>
+<td align="right">
+-1.1
+</td>
+</tr>
+<tr>
+<td align="right">
 <span class="math inline">\(Re_{md}\)</span>
 </td>
 <td align="right">
@@ -670,18 +679,18 @@ Value [%]
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(Re_{isub}\)</span>
-</td>
-<td align="right">
--0.2
-</td>
-</tr>
-<tr>
-<td align="right">
 <span class="math inline">\(Re_{dsub}\)</span>
 </td>
 <td align="right">
 3.0
+</td>
+</tr>
+<tr>
+<td align="right">
+<span class="math inline">\(Re_{isub}\)</span>
+</td>
+<td align="right">
+-0.2
 </td>
 </tr>
 <tr>
@@ -945,10 +954,16 @@ Value [%]
 <span class="co">#&gt; $md_colour</span>
 <span class="co">#&gt; [1] "#150789FF"</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; $empl_colour</span>
+<span class="co">#&gt; [1] "#150789FF"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $isub_colour</span>
+<span class="co">#&gt; [1] "#99149FFF"</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; $dsub_colour</span>
 <span class="co">#&gt; [1] "#99149FFF"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $isub_colour</span>
+<span class="co">#&gt; $sub_colour</span>
 <span class="co">#&gt; [1] "#99149FFF"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $dinc_colour</span>
@@ -957,8 +972,17 @@ Value [%]
 <span class="co">#&gt; $iinc_colour</span>
 <span class="co">#&gt; [1] "#E76F5AFF"</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; $inc_colour</span>
+<span class="co">#&gt; [1] "#E76F5AFF"</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; $prod_colour</span>
 <span class="co">#&gt; [1] "#F7E225FF"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dir_colour</span>
+<span class="co">#&gt; [1] "black"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $indir_colour</span>
+<span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $tot_colour</span>
 <span class="co">#&gt; [1] "black"</span>
@@ -975,10 +999,16 @@ Value [%]
 <span class="co">#&gt; $md_size</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $dsub_size</span>
+<span class="co">#&gt; $empl_size</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $isub_size</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dsub_size</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $sub_size</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $dinc_size</span>
@@ -987,7 +1017,16 @@ Value [%]
 <span class="co">#&gt; $iinc_size</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; $inc_size</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; $prod_size</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dir_size</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $indir_size</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $tot_size</span>
@@ -1005,10 +1044,16 @@ Value [%]
 <span class="co">#&gt; $md_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; $empl_linetype</span>
+<span class="co">#&gt; [1] "solid"</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; $dsub_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $isub_linetype</span>
+<span class="co">#&gt; [1] "solid"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $sub_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $dinc_linetype</span>
@@ -1017,7 +1062,16 @@ Value [%]
 <span class="co">#&gt; $iinc_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; $sinc_linetype</span>
+<span class="co">#&gt; [1] "solid"</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; $prod_linetype</span>
+<span class="co">#&gt; [1] "solid"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dir_linetype</span>
+<span class="co">#&gt; [1] "solid"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $indir_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $tot_linetype</span>

@@ -253,19 +253,34 @@ usethis::use_data(tilde_vars, overwrite = TRUE)
 
 rebound_terms <- list(Re_dempl = "Re_dempl",
                       Re_emb = "Re_emb",
+                      Re_cap = "Re_cap",
                       Re_md = "Re_md",
                       Re_empl = "Re_empl",
-                      Re_isub = "Re_isub",
                       Re_dsub = "Re_dsub", 
+                      Re_isub = "Re_isub",
                       Re_sub = "Re_sub",
                       Re_dinc = "Re_dinc", 
                       Re_iinc = "Re_iinc", 
                       Re_inc = "Re_inc",
                       Re_prod = "Re_prod", 
-                      Re_d = "Re_d",
-                      Re_i = "Re_i",
+                      Re_dir = "Re_dir",
+                      Re_indir = "Re_indir",
                       Re_tot = "Re_tot")
 usethis::use_data(rebound_terms, overwrite = TRUE)
+
+
+#
+# Names of rebound terms that are aggregates.
+# 
+
+rebound_terms_agg <- list(rebound_terms$Re_empl,
+                          rebound_terms$Re_sub,
+                          rebound_terms$Re_inc,
+                          rebound_terms$Re_d,
+                          rebound_terms$Re_i,
+                          rebound_terms$Re_tot)
+usethis::use_data(rebound_terms_agg, overwrite = TRUE)
+
 
 
 #
@@ -274,6 +289,7 @@ usethis::use_data(rebound_terms, overwrite = TRUE)
 
 latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
                             Re_emb = "$Re_{emb}$",
+                            Re_cap = "$Re_{cap}$",
                             Re_md = "$Re_{md}$",
                             Re_empl = "$Re_{empl}$",
                             Re_dsub = "$Re_{dsub}$", 
@@ -283,8 +299,8 @@ latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
                             Re_iinc = "$Re_{iinc}$", 
                             Re_inc = "$Re_{inc}$",
                             Re_prod = "$Re_{prod}$", 
-                            Re_d = "$Re_d$",
-                            Re_i = "$Re_i$",
+                            Re_dir = "$Re_{dir}$",
+                            Re_indir = "$Re_{indir}$",
                             Re_tot = "$Re_{tot}$")
 usethis::use_data(latex_rebound_terms, overwrite = TRUE)
 
@@ -325,7 +341,9 @@ graph_df_colnames <- list(colour_col = "colour",
                           start_point_col = "start_point",
                           end_arrow_col = "end_arrow", 
                           Re_names = "Re_names", 
-                          Re_values = "Re_values")
+                          Re_values = "Re_values", 
+                          y_names_col = "y_names",
+                          y_vals_col = "y_vals")
 usethis::use_data(graph_df_colnames, overwrite = TRUE)
 
 
@@ -382,11 +400,16 @@ path_graph_params <- list(# Points on paths
                           emb_colour = empl_colour,
                           cap_colour = empl_colour,
                           md_colour = empl_colour, 
-                          dsub_colour = sub_colour,
+                          empl_colour = empl_colour,
                           isub_colour = sub_colour, 
+                          dsub_colour = sub_colour,
+                          sub_colour = sub_colour, 
                           dinc_colour = inc_colour,
                           iinc_colour = inc_colour, 
+                          inc_colour = inc_colour,
                           prod_colour = prod_colour, 
+                          dir_colour = tot_colour, 
+                          indir_colour = tot_colour, 
                           tot_colour = tot_colour,
                           
                           # Path line widths
@@ -394,11 +417,16 @@ path_graph_params <- list(# Points on paths
                           emb_size = 1.5,
                           cap_size = 1.5,
                           md_size = 1, 
+                          empl_size = 1,
+                          isub_size = 1,
                           dsub_size = 1,
-                          isub_size = 1, 
+                          sub_size = 1,
                           dinc_size = 1,
                           iinc_size = 1, 
+                          inc_size = 1,
                           prod_size = 1,
+                          dir_size = 1,
+                          indir_size = 1,
                           tot_size = 2,
                           
                           # Path linetypes
@@ -406,11 +434,16 @@ path_graph_params <- list(# Points on paths
                           emb_linetype = "11",
                           cap_linetype = "11",
                           md_linetype = "solid", 
+                          empl_linetype = "solid",
                           dsub_linetype = "solid",
                           isub_linetype = "solid", 
+                          sub_linetype = "solid",
                           dinc_linetype = "solid",
                           iinc_linetype = "solid", 
+                          sinc_linetype = "solid",
                           prod_linetype = "solid",
+                          dir_linetype = "solid",
+                          indir_linetype = "solid",
                           tot_linetype = "solid",
                           
                           # Path line end and join
@@ -464,45 +497,61 @@ usethis::use_data(path_graph_params, overwrite = TRUE)
 # 
 
 sens_graph_params <- list(# Base condition points on graphs
-                          orig_point_shape = 19,
+                          orig_point_shape = 16,
                           orig_point_size = 2,
-                          orig_point_stroke = 1,
-                          orig_point_colour = "red",
+                          orig_point_stroke = 0.5,
+                          orig_point_colour = "black",
+                          orig_point_fill = "black",
                           
                           # Rebound effect colours
                           dempl_colour = empl_colour, 
                           emb_colour = empl_colour,
                           cap_colour = empl_colour,
                           md_colour = empl_colour, 
+                          empl_colour = empl_colour, 
                           dsub_colour = sub_colour,
                           isub_colour = sub_colour, 
+                          sub_colour = sub_colour, 
                           dinc_colour = inc_colour,
                           iinc_colour = inc_colour, 
+                          inc_colour = inc_colour, 
                           prod_colour = prod_colour, 
+                          dir_colour = tot_colour,
+                          indir_colour = tot_colour,
                           tot_colour = tot_colour,
                           
                           # Line widths for rebound effects
                           dempl_size = 1, 
-                          emb_size = 1.5,
-                          cap_size = 1.5,
-                          md_size = 1, 
+                          emb_size = 1,
+                          cap_size = 1,
+                          md_size = 0.5, 
+                          empl_size = 1,
                           dsub_size = 1,
-                          isub_size = 1, 
+                          isub_size = 1,
+                          sub_size = 1,
                           dinc_size = 1,
-                          iinc_size = 1, 
+                          iinc_size = 1,
+                          inc_size = 1,
                           prod_size = 1,
-                          tot_size = 2,
+                          dir_size = 1,
+                          indir_size = 1,
+                          tot_size = 1.5,
                           
                           # linetypes for rebound effects
                           dempl_linetype = "solid",
                           emb_linetype = "11",
                           cap_linetype = "11",
-                          md_linetype = "solid", 
+                          md_linetype = "11", 
+                          empl_linetype = "solid",
                           dsub_linetype = "solid",
-                          isub_linetype = "solid", 
+                          isub_linetype = "11",
+                          sub_linetype = "solid",
                           dinc_linetype = "solid",
-                          iinc_linetype = "solid", 
+                          iinc_linetype = "11", 
+                          inc_linetype = "solid",
                           prod_linetype = "solid",
+                          dir_linetype = "solid", 
+                          indir_linetype = "11", 
                           tot_linetype = "solid",
                           
                           # line end and join for sensitivity graphs
@@ -510,7 +559,12 @@ sens_graph_params <- list(# Base condition points on graphs
                           linejoin = "round",
                           # Draw points on top of paths (or not)
                           include_base_condition_points = TRUE,
-                          points_atop_paths = TRUE)
+                          points_atop_paths = TRUE, 
+                          
+                          # Adjust miscellaneous features of the graph
+                          include_x_axis = FALSE,
+                          use_latex_legend = FALSE
+                          )
 usethis::use_data(sens_graph_params, overwrite = TRUE)
 
 #

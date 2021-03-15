@@ -20,6 +20,7 @@ calc_rebound(
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
   Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
+  Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
   Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -27,6 +28,7 @@ calc_rebound(
   Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
+  Re_cap = ReboundTools::rebound_terms$Re_cap,
   Re_md = ReboundTools::rebound_terms$Re_md,
   Re_empl = ReboundTools::rebound_terms$Re_empl,
   Re_dsub = ReboundTools::rebound_terms$Re_dsub,
@@ -36,8 +38,8 @@ calc_rebound(
   Re_iinc = ReboundTools::rebound_terms$Re_iinc,
   Re_inc = ReboundTools::rebound_terms$Re_inc,
   Re_prod = ReboundTools::rebound_terms$Re_prod,
-  Re_d = ReboundTools::rebound_terms$Re_d,
-  Re_i = ReboundTools::rebound_terms$Re_i,
+  Re_dir = ReboundTools::rebound_terms$Re_dir,
+  Re_indir = ReboundTools::rebound_terms$Re_indir,
   Re_tot = ReboundTools::rebound_terms$Re_tot
 )
 }
@@ -54,9 +56,9 @@ calc_rebound(
 
 \item{N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 
-\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+\item{Delta_E_dot_emb_star, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
 
-\item{Re_dempl, Re_emb, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_prod, Re_d, Re_i, Re_tot}{See \code{ReboundTools::rebound_terms}.}
+\item{Re_dempl, Re_emb, Re_cap, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_prod, Re_dir, Re_indir, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
 A data frame with rebound terms added as columns.

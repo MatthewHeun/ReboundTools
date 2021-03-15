@@ -1,3 +1,35 @@
+# ReboundTools 0.1.15 (2021-03-15)
+
+* Dots now take on colour of their lines in `sensitivity_graphs()`.
+* New option to use LaTeX for legend labels in
+  `rebound_terms_graph()`.
+* New tests for new features.
+    - Now at 455 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.14 (2021-03-14)
+
+* Fixed a bug with line layering in 
+  `sensitivity_graphs()` and `rebound_terms_graph()`.
+* Now including `Re_cap` in rebound calculations.
+* Renamed `Re_d` and `Re_i` to `Re_dir` and `Re_indir`.
+* New tests for new features.
+    - Now at 454 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.13 (2021-03-11)
+
+* Many improvements to graphs.
+* New function `rebound_terms_graph()`
+  that makes graphs of all rebound terms.
+* Re-implement `sensitivity_graphs()`.
+* New tests for new features.
+    - Now at 452 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.12 (2021-03-10)
 
 * Removed `sensitivity_graphs()` for now.

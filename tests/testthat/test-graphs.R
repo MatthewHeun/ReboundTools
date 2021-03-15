@@ -308,39 +308,118 @@ test_that("points_atop_paths works as expected", {
 })
 
 
-# test_that("sensitivity_graphs() works as expected", {
-#   orig_data <- load_eeu_data()
-#   sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
-#                       Lamp = list(k = seq(0, 2, by = 1)))
-#   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
-#                           x_var = "k", y_vars = "Re_tot") +
-#     ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "black")) + 
-#     ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 0.5)) + 
-#     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
-#     ggplot2::labs(colour = ggplot2::element_blank(), 
-#                   size = ggplot2::element_blank(),
-#                   linetype = ggplot2::element_blank())
-#   expect_true(!is.null(g))
-# })
-# 
-# 
-# test_that("sensitivity_graphs() works with more than 1 line variation", {
-#   orig_data <- load_eeu_data()
-#   sens_params <- list(Car = list(k = seq(0, 2, by = 0.5), 
-#                                  I_E = seq(2, 5, by = 1), 
-#                                  e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
-#                       Lamp = list(k = seq(0, 2, by = 0.5),
-#                                   I_E = seq(2, 5, by = 1), 
-#                                   e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
-#   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
-#                           x_var = "I_E", y_vars = "Re_tot") +
-#     ggplot2::facet_grid(rows = ggplot2::vars(k), 
-#                         cols = ggplot2::vars(e_qs_ps_UC)) +
-#     ggplot2::scale_colour_manual(values = c(Car = "darkgreen", Lamp = "black")) + 
-#     ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1)) + 
-#     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dotted")) + 
-#     ggplot2::labs(colour = ggplot2::element_blank(), 
-#                   size = ggplot2::element_blank(),
-#                   linetype = ggplot2::element_blank())
-#   expect_true(!is.null(g))
-# })
+test_that("sensitivity_graphs() works as expected", {
+  orig_data <- load_eeu_data()
+  sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)),
+                      Lamp = list(k = seq(0, 2, by = 1)))
+  g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params,
+                          x_var = "k", y_var = "Re_tot") +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+    ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = FALSE) + 
+    ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = FALSE) + 
+    ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = FALSE) +
+    ggplot2::labs(colour = ggplot2::element_blank(),
+                  size = ggplot2::element_blank(),
+                  linetype = ggplot2::element_blank())
+  expect_true(!is.null(g))
+})
+
+
+test_that("sensitivity_graphs() works with more than 1 line variation", {
+  orig_data <- load_eeu_data()
+  sens_params <- list(Car = list(k = seq(0, 2, by = 0.5), 
+                                   I_E = seq(2, 5, by = 1), 
+                                   e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
+                        Lamp = list(k = seq(0, 2, by = 0.5),
+                                    I_E = seq(2, 5, by = 1), 
+                                    e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+  g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
+                     x_var = "I_E", y_var = "Re_tot", line_var = "Case") +
+    ggplot2::facet_grid(rows = ggplot2::vars(k), 
+                        cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
+    ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
+    ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1.0)) + 
+    ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
+    ggplot2::labs(colour = ggplot2::element_blank(), 
+                  size = ggplot2::element_blank(),
+                  linetype = ggplot2::element_blank())
+  expect_true(!is.null(g))
+})
+
+
+test_that("rebound_terms_graph() works as expected", {
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                      x_var = "eta_engr_units_tilde") +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g))
+  g2 <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                           x_var = "eta_engr_units_tilde") +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g2))
+})
+
+
+test_that("sensitivity graphs correctly order points", {
+  df <- load_eeu_data()
+  eta_sens_params = list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                         Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  
+  # Red dashes should lie atop the black line for the Lamp.
+  g <- sensitivity_graphs(rebound_data = df, parameterization = eta_sens_params,
+                     x_var = "eta_engr_units_star", y_var = c("Re_prod", "Re_iinc")) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+    ggplot2::scale_colour_manual(values = c(Re_prod = "black", Re_iinc = "red"), guide = FALSE) + 
+    ggplot2::scale_size_manual(values = c(Re_prod = 0.5, Re_iinc = 0.5), guide = FALSE) + 
+    ggplot2::scale_linetype_manual(values = c(Re_prod = "solid", Re_iinc = "dashed"), guide = FALSE) +
+    ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"),
+                  y = expression(Re[tot]*" [-]"),
+                  colour = ggplot2::element_blank(),
+                  size = ggplot2::element_blank(),
+                  linetype = ggplot2::element_blank())
+  expect_true(!is.null(g))
+})
+
+
+test_that("a simple rebound_terms_graph works", {
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                           x_var = "eta_engr_units_tilde",
+                           Re_terms = c(Re_tot = "Re_tot")) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g))
+  g2 <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                            x_var = "eta_engr_units_tilde",
+                            Re_terms = c(Re_dempl = "Re_dempl", "Re_emb", "Re_cap", "Re_md", "Re_empl",
+                                         "Re_dsub", "Re_isub", "Re_sub",
+                                         "Re_dinc", "Re_iinc", "Re_inc",
+                                         "Re_prod",
+                                         "Re_dir", "Re_indir",
+                                         "Re_tot")
+                            # Re_terms = unlist(ReboundTools::rebound_terms)
+                      ) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g2))
+})
+
+
+test_that("LaTeX legends works as expected.", {
+  Re_graph_params <- ReboundTools::sens_graph_params
+  Re_graph_params[["include_x_axis"]] <- TRUE
+  Re_graph_params[["use_latex_legend"]] <- TRUE
+  
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                           graph_params = Re_graph_params,
+                           x_var = "eta_engr_units_tilde",
+                           Re_terms = c("Re_tot", "Re_md")) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g))
+})
+

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -123,9 +123,10 @@
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 14 entries.</p><dl>
+    <p>A string list with 15 entries.</p><dl>
 <dt>Re_dempl</dt><dd><p>Direct emplacement effect rebound, always 0.</p></dd>
 <dt>Re_emb</dt><dd><p>Indirect embodied energy effect rebound.</p></dd>
+<dt>Re_cap</dt><dd><p>Indirect capital cost effect rebound.</p></dd>
 <dt>Re_md</dt><dd><p>Indirect maintenance and disposal effect rebound.</p></dd>
 <dt>Re_empl</dt><dd><p>Emplacement effect rebound.</p></dd>
 <dt>Re_dsub</dt><dd><p>Direct substitution effect rebound.</p></dd>
@@ -150,17 +151,20 @@
 #&gt; $Re_emb
 #&gt; [1] "Re_emb"
 #&gt; 
+#&gt; $Re_cap
+#&gt; [1] "Re_cap"
+#&gt; 
 #&gt; $Re_md
 #&gt; [1] "Re_md"
 #&gt; 
 #&gt; $Re_empl
 #&gt; [1] "Re_empl"
 #&gt; 
-#&gt; $Re_isub
-#&gt; [1] "Re_isub"
-#&gt; 
 #&gt; $Re_dsub
 #&gt; [1] "Re_dsub"
+#&gt; 
+#&gt; $Re_isub
+#&gt; [1] "Re_isub"
 #&gt; 
 #&gt; $Re_sub
 #&gt; [1] "Re_sub"
@@ -177,11 +181,11 @@
 #&gt; $Re_prod
 #&gt; [1] "Re_prod"
 #&gt; 
-#&gt; $Re_d
-#&gt; [1] "Re_d"
+#&gt; $Re_dir
+#&gt; [1] "Re_dir"
 #&gt; 
-#&gt; $Re_i
-#&gt; [1] "Re_i"
+#&gt; $Re_indir
+#&gt; [1] "Re_indir"
 #&gt; 
 #&gt; $Re_tot
 #&gt; [1] "Re_tot"
