@@ -1,3 +1,5 @@
+# ReboundTools 0.1.15 (2021-03-15)
+
 * Dots now take on colour of their lines in `sensitivity_graphs()`.
 * New option to use LaTeX for legend labels in
   `rebound_terms_graph()`.

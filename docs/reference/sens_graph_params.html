@@ -73,7 +73,7 @@ sensitivity graphs in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ sensitivity graphs in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 54 entries.</p><dl>
+    <p>A string list with 56 entries.</p><dl>
 
 <dt>orig_point_shape</dt><dd><p>The shape for points between rebound effects. Default is <code>1</code>, an open circle..</p></dd>
 <dt>orig_point_size</dt><dd><p>The size for original points. Default is <code>2</code>.</p></dd>
@@ -181,6 +181,8 @@ sensitivity graphs in the <code>ReboundTools</code> package.</p>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
 <dt>include_base_condition_points</dt><dd><p>Tells whether to include base conditions points. Default is <code>TRUE</code>.</p></dd>
 <dt>points_atop_paths</dt><dd><p>Tells whether to draw points above paths (<code>TRUE</code>) or beneath paths (<code>FALSE</code>). Default is <code>TRUE</code>.</p></dd>
+<dt>use_latex_legend</dt><dd><p>Tells whether to convert legend text to LaTeX for a nicely-formatted legend. Default is <code>FALSE</code>.</p></dd>
+<dt>include_x_axis</dt><dd><p>Tells whether to add an x-axis at y = 0. Default is <code>FALSE</code>.</p></dd>
 
 </dl>
 
@@ -193,7 +195,7 @@ to change sensitivity graph appearance.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>sens_graph_params</span>
 </div><div class='output co'>#&gt; $orig_point_shape
-#&gt; [1] 1
+#&gt; [1] 16
 #&gt; 
 #&gt; $orig_point_size
 #&gt; [1] 2
@@ -353,6 +355,12 @@ to change sensitivity graph appearance.</p>
 #&gt; 
 #&gt; $points_atop_paths
 #&gt; [1] TRUE
+#&gt; 
+#&gt; $include_x_axis
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $use_latex_legend
+#&gt; [1] FALSE
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
