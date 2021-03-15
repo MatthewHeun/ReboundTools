@@ -74,7 +74,7 @@ The iso lines are described by slope and intercept." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@ The iso lines are described by slope and intercept.</p>
   <span class='va'>.rebound_data</span>,
   indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
   graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>energy</span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
   I_E <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>I_E</span>,
   k <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>k</span>,
   E_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>E_dot_s_orig</span>,
@@ -172,7 +172,7 @@ at its start.</p></td>
     </tr>
     <tr>
       <th>graph_params</th>
-      <td><p>See <code><a href='default_graph_params.html'>ReboundTools::default_graph_params</a></code>.</p></td>
+      <td><p>See <code><a href='path_graph_params.html'>ReboundTools::path_graph_params</a></code>.</p></td>
     </tr>
     <tr>
       <th>I_E, k</th>
@@ -209,21 +209,21 @@ at its start.</p></td>
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>iso_energy_lines</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 11</span><span>
-#&gt;    Reference Case  Original Upgrade graph_type line_name colour  size linetype
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fu… Ford F… Energy     Re = 100% gray     0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incande… LED     Energy     Re = 100% gray     0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fu… Ford F… Energy     Re = 0%   gray     0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incande… LED     Energy     Re = 0%   gray     0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fu… Ford F… Energy     Re_empl   gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incande… LED     Energy     Re_empl   gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fu… Ford F… Energy     Re_sub    gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incande… LED     Energy     Re_sub    gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fu… Ford F… Energy     Re_inc    gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incande… LED     Energy     Re_inc    gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fu… Ford F… Energy     Re_tot    gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incande… LED     Energy     Re_tot    gray     0.1 solid   
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: slope </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, intercept </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+#&gt;    Reference Case  Original  Upgrade  graph_type line_name colour  size linetype
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fus… Ford Fu… Energy     Re = 100% black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandes… LED      Energy     Re = 100% black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fus… Ford Fu… Energy     Re = 0%   black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandes… LED      Energy     Re = 0%   black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fus… Ford Fu… Energy     Re_empl   black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandes… LED      Energy     Re_empl   black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fus… Ford Fu… Energy     Re_sub    black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandes… LED      Energy     Re_sub    black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fus… Ford Fu… Energy     Re_inc    black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandes… LED      Energy     Re_inc    black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fus… Ford Fu… Energy     Re_tot    black    0.1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incandes… LED      Energy     Re_tot    black    0.1 solid   
+#&gt; </span><span style='color: #949494;'># … with 2 more variables: slope &lt;dbl&gt;, intercept &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

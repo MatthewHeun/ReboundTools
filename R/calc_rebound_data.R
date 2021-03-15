@@ -258,12 +258,32 @@ calc_star <- function(.orig_data = NULL,
 #' 
 #' This function calculates energy rebound information for the hat
 #' stage (immediately after the substitution effect).
+#' 
+#' By default, this function uses an exact method for calculating
+#' the substitution effect. 
+#' The exact method uses a constant elasticity of substitution (CES) 
+#' formulation of utility, 
+#' which assumes constant elasticity of substitution (sigma) along 
+#' the indifference curve.
+#'  
+#' The approximate method is employed with
+#' `use_sub_approx = TRUE`.
+#' The approximate method 
+#' assumes constant price elasticity of energy service consumption.
+#' (In fact, the price elasticity of energy service consumption
+#' is not constant along an indifference curve.)
+#' The approximation leads to a simple and elegant rebound expression
+#' but a different (and incorrect) consumption bundle after the substitution effect.
 #'
 #' @param .star_data An optional data frame containing EEU base data, original data, 
 #'                   and star data, 
 #'                   likely calculated by `calc_star()`.
+#' @param use_sub_approx Tells whether to use an approximate method for 
+#'                       calculating the substitution effect. 
+#'                       Default is `FALSE`.
+#'                       See details.
 #' @param p_E See `ReboundTools::eeu_base_params`.
-#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig See `ReboundTools::orig_vars`.
+#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma See `ReboundTools::orig_vars`.
 #' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
@@ -277,13 +297,18 @@ calc_star <- function(.orig_data = NULL,
 #'   calc_star() %>% 
 #'   calc_hat()
 calc_hat <- function(.star_data = NULL,
+                     use_sub_approx = FALSE,
                      # Input names
                      p_E = ReboundTools::orig_vars$p_E,
                      e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                      C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-                     
+                     f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
+                     q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
+                     C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                     sigma = ReboundTools::orig_vars$sigma,
+                       
                      eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
                      eta_star = ReboundTools::star_vars$eta_star,
                      p_s_star = ReboundTools::star_vars$p_s_star,
@@ -319,6 +344,10 @@ calc_hat <- function(.star_data = NULL,
                            C_dot_md_star_val,
                            E_dot_emb_star_val,
                            M_dot_star_val,
+                           f_Cs_orig_val,
+                           q_dot_s_orig_val,
+                           C_dot_o_orig_val,
+                           sigma_val, 
                            q_dot_s_star_val,
                            eta_ratio_val,
                            e_qs_ps_val,
@@ -337,10 +366,46 @@ calc_hat <- function(.star_data = NULL,
     C_dot_md_hat_val <- C_dot_md_star_val
     E_dot_emb_hat_val <- E_dot_emb_star_val
     M_dot_hat_val <- M_dot_star_val
-    q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    
+    if (use_sub_approx) {
+      # This is the approximate expression for q_dot_s_hat.
+      q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+    } else {
+      # Here is the exact expression for q_dot_s_hat
+      # Preliminary calculations to make the actual expression easier to debug.
+      a <- f_Cs_orig_val # Simpler variable name
+      x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
+      rho <- (sigma_val - 1) / sigma_val
+      a_ratio <- (1-a) / a
+      inv_a_ratio <- a / (1-a) # Inverse of a_ratio
+      rho_ratio <- (1-rho) / rho
+      inv_rho_ratio <- rho / (1-rho) # Inverse of rho_ratio
+      
+      # Q_s_hat_val is the dimensionless q_dot_s_hat defined as q_dot_s_hat / q_dot_s_orig
+      Q_s_hat_val <- ( a + (1 - a) * ( (a_ratio*x)^(inv_rho_ratio) ) ) ^ (-1/rho) 
+      # Recover q_dot_s_hat by multiplying by q_dot_s_orig.
+      q_dot_s_hat_val <- Q_s_hat_val * q_dot_s_orig_val
+    }
+
     E_dot_s_hat_val <- q_dot_s_hat_val / eta_hat_val
     C_dot_s_hat_val <- p_s_hat_val * q_dot_s_hat_val
-    C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
+
+    if (use_sub_approx) {
+      # This is the approximate expression for C_dot_o_hat.
+      C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
+    } else {
+      # Here is the exact expression for C_dot_o_hat
+      # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
+      # This is the original derived equation
+      # C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
+      # Wolfram alpha (correctly) says it can be simplified to the following:
+      term <- x * (1-a) / a
+      denom <- 1 + a*(term^(1-sigma_val)  - 1)
+      C_o_hat_val <- (1 / denom)^(1/rho)
+      # Recover C_dot_o_hat by multiplying by C_dot_o_orig
+      C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
+    }
+
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
     M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_orig_val - C_dot_md_orig_val - G_dot_val + p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) + (C_dot_o_hat_val - C_dot_o_star_val)
 
@@ -380,6 +445,10 @@ calc_hat <- function(.star_data = NULL,
                            C_dot_md_star_val = C_dot_md_star,
                            E_dot_emb_star_val = E_dot_emb_star,
                            M_dot_star_val = M_dot_star,
+                           f_Cs_orig_val = f_Cs_orig,
+                           q_dot_s_orig_val = q_dot_s_orig,
+                           C_dot_o_orig_val = C_dot_o_orig,
+                           sigma_val = sigma,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps,
@@ -718,8 +787,8 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param e_qs_ps,e_qo_ps,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
 #' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
-#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param Re_dempl,Re_emb,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_d,Re_i,Re_tot See `ReboundTools::rebound_terms`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
 #'
 #' @return A data frame with rebound terms added as columns.
 #' 
@@ -754,6 +823,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
+                         Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                          Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -763,6 +833,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          # Output names
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,
                          Re_emb = ReboundTools::rebound_terms$Re_emb, 
+                         Re_cap = ReboundTools::rebound_terms$Re_cap, 
                          Re_md = ReboundTools::rebound_terms$Re_md,
                          Re_empl = ReboundTools::rebound_terms$Re_empl,
                          Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
@@ -772,13 +843,13 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_iinc = ReboundTools::rebound_terms$Re_iinc,
                          Re_inc = ReboundTools::rebound_terms$Re_inc,
                          Re_prod = ReboundTools::rebound_terms$Re_prod,
-                         Re_d = ReboundTools::rebound_terms$Re_d,
-                         Re_i = ReboundTools::rebound_terms$Re_i,
-                         Re_tot = ReboundTools::rebound_terms$Re_tot
-                         ) {
+                         Re_dir = ReboundTools::rebound_terms$Re_dir,
+                         Re_indir = ReboundTools::rebound_terms$Re_indir,
+                         Re_tot = ReboundTools::rebound_terms$Re_tot) {
   
   rebound_fun <- function(Delta_E_dot_emb_star_val, 
                           S_dot_dev_val,
+                          Delta_C_dot_cap_star_val,
                           Delta_C_dot_md_star_val, 
                           I_E_val,
                           eta_ratio_val, 
@@ -798,43 +869,36 @@ calc_rebound <- function(.Deltas_data = NULL,
                           ) {
     # Direct emplacement rebound
     Re_dempl_val <- 0
+    
     # Indirect embodied energy effect rebound. 
     # Note: this formulation avoids a division-by-zero error if E_dot_emb_orig = 0
     Re_emb_val <- Delta_E_dot_emb_star_val / S_dot_dev_val
-    # Re_emb_val <- (E_dot_emb_star_val/E_dot_emb_orig_val - 1) * E_dot_emb_orig_val / S_dot_dev_val
+
+    # Capital cost rebound
+    Re_cap_val <- Delta_C_dot_cap_star_val * I_E_val / S_dot_dev_val
     
     # Indirect maintenance and disposal effect energy rebound
     # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
     Re_md_val <- Delta_C_dot_md_star_val * I_E_val / S_dot_dev_val
-    # Note: this formulation can give divide by zero error.
-    # Re_md_val <- (C_dot_md_star_val/C_dot_md_orig_val - 1) * C_dot_md_orig_val * I_E_val / S_dot_dev_val
-
+    
     # Emplacement effect rebound
     Re_empl_val <- Re_emb_val + Re_md_val
     
-    # Direct substitution effect rebound
-    Re_dsub_val <- (eta_ratio_val^(-e_qs_ps_val) - 1) / (eta_ratio_val - 1)
-    Re_dsub_check <- Delta_E_dot_s_hat_val / S_dot_dev_val
-    assertthat::assert_that(all(abs(Re_dsub_check - Re_dsub_val) < tol), msg = "Re_dsub failed consistency check in calc_rebound().")
-    
     # Indirect substitution effect rebound
-    Re_isub_val <- (eta_ratio_val^(-e_qo_ps_val) - 1) * eta_ratio_val * C_dot_o_orig_val * I_E_val / (eta_ratio_val - 1) / E_dot_s_orig_val
-    Re_isub_check <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
-    assertthat::assert_that(all(abs(Re_isub_check - Re_isub_val) < tol), msg = "Re_isub failed consistency check in calc_rebound().")
+    Re_isub_val <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
+
+    # Direct substitution effect rebound
+    Re_dsub_val <- Delta_E_dot_s_hat_val / S_dot_dev_val
     
     # Substitution effect rebound
     Re_sub_val = Re_dsub_val + Re_isub_val
     
     # Direct income effect rebound 
-    Re_dinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qs_M_val) - 1) * eta_ratio_val^(-e_qs_ps_val) / (eta_ratio_val - 1)
-    Re_dinc_check <- Delta_E_dot_s_bar_val / S_dot_dev_val
-    assertthat::assert_that(all(abs(Re_dinc_check - Re_dinc_val) < tol), msg = "Re_dinc failed consistency check in calc_rebound().")
-    
+    Re_dinc_val <- Delta_E_dot_s_bar_val / S_dot_dev_val
+
     # Indirect income effect rebound 
-    Re_iinc_val <- ((1 + N_dot_hat_val/M_dot_hat_prime_val)^(e_qo_M_val) - 1) * eta_ratio_val^(1-e_qo_ps_val) * (C_dot_o_orig_val * I_E_val / E_dot_s_orig_val) / (eta_ratio_val - 1)
-    Re_iinc_check <- Delta_C_dot_o_bar_val * I_E_val / S_dot_dev_val
-    assertthat::assert_that(all(abs(Re_iinc_check - Re_iinc_val) < tol), msg = "Re_iinc failed consistency check in calc_rebound().")
-    
+    Re_iinc_val <- Delta_C_dot_o_bar_val * I_E_val / S_dot_dev_val
+
     # Income effect rebound
     Re_inc_val <- Re_dinc_val + Re_iinc_val
     
@@ -842,51 +906,54 @@ calc_rebound <- function(.Deltas_data = NULL,
     Re_prod_val <- k_val * N_dot_hat_val * I_E_val / S_dot_dev_val
     
     # Direct rebound
-    Re_d_val <- Re_dsub_val + Re_dinc_val
+    Re_dir_val <- Re_dsub_val + Re_dinc_val
     
     # Indirect rebound
-    Re_i_val <- Re_emb_val + Re_md_val + Re_isub_val + Re_iinc_val + Re_prod_val
+    Re_indir_val <- Re_emb_val + Re_md_val + Re_isub_val + Re_iinc_val + Re_prod_val
     
     # Total rebound
     Re_tot_val <- Re_dempl_val + Re_emb_val + Re_md_val + Re_dsub_val + Re_isub_val + Re_dinc_val + Re_iinc_val + Re_prod_val
     
     # Double-check the sums
-    Re_tot_check <- Re_d_val + Re_i_val
+    Re_tot_check <- Re_dir_val + Re_indir_val
     assertthat::assert_that(all(abs(Re_tot_check - Re_tot_val) < tol), msg = "Re_tot failed consistency check in calc_rebound().")
     
     list(Re_dempl_val,
          Re_emb_val,
+         Re_cap_val,
          Re_md_val,
          Re_empl_val,
-         Re_dsub_val,
          Re_isub_val,
+         Re_dsub_val,
          Re_sub_val,
          Re_dinc_val,
          Re_iinc_val,
          Re_inc_val,
          Re_prod_val,
-         Re_d_val,
-         Re_i_val,
+         Re_dir_val,
+         Re_indir_val,
          Re_tot_val) %>% 
       magrittr::set_names(c(Re_dempl,
                             Re_emb,
+                            Re_cap,
                             Re_md,
                             Re_empl,
-                            Re_dsub,
                             Re_isub,
+                            Re_dsub,
                             Re_sub,
                             Re_dinc,
                             Re_iinc,
                             Re_inc,
                             Re_prod,
-                            Re_d,
-                            Re_i,
+                            Re_dir,
+                            Re_indir,
                             Re_tot))
   }
   
   matsindf::matsindf_apply(.Deltas_data, FUN = rebound_fun, 
-                           S_dot_dev_val = S_dot_dev,
                            Delta_E_dot_emb_star_val = Delta_E_dot_emb_star,
+                           S_dot_dev_val = S_dot_dev,
+                           Delta_C_dot_cap_star_val = Delta_C_dot_cap_star,
                            Delta_C_dot_md_star_val = Delta_C_dot_md_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 
@@ -913,6 +980,7 @@ calc_rebound <- function(.Deltas_data = NULL,
 #'
 #' @param .eeu_data Energy efficiency upgrade information in a data frame.
 #'                  See `load_eeu_data()` for an example data frame.
+#' @param use_sub_approx See [ReboundTools::calc_hat()].
 #'
 #' @return `.eeu_data` with all rebound terms added as columns to the right.
 #' 
@@ -930,11 +998,11 @@ calc_rebound <- function(.Deltas_data = NULL,
 #' simple <- load_eeu_data() %>% 
 #'   rebound_analysis()
 #' all.equal(complicated, simple)
-rebound_analysis <- function(.eeu_data) {
+rebound_analysis <- function(.eeu_data, use_sub_approx = FALSE) {
   .eeu_data %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat() %>% 
+    calc_hat(use_sub_approx = use_sub_approx) %>% 
     calc_bar() %>% 
     calc_tilde() %>% 
     calc_Deltas() %>% 

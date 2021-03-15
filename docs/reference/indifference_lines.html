@@ -73,7 +73,7 @@ to be drawn on the preferences graph." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ to be drawn on the preferences graph.</p>
     <pre class="usage"><span class='fu'>indifference_lines</span><span class='op'>(</span>
   <span class='va'>.rebound_data</span>,
   graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>preferences</span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
   q_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_orig</span>,
   C_dot_o_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_orig</span>,
   f_Cs_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>f_Cs_orig</span>,
@@ -147,7 +147,7 @@ likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></
     </tr>
     <tr>
       <th>graph_params</th>
-      <td><p>Parameters that control the appearance of the graph. Default is <code><a href='default_graph_params.html'>ReboundTools::default_graph_params</a></code>.</p></td>
+      <td><p>Parameters that control the appearance of the graph. Default is <code><a href='path_graph_params.html'>ReboundTools::path_graph_params</a></code>.</p></td>
     </tr>
     <tr>
       <th>q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma</th>
@@ -175,20 +175,20 @@ likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>indifference_lines</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 617 x 15</span><span>
-#&gt;    Reference Case  Original Upgrade graph_type line_name colour  size linetype
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Car   Ford Fu… Ford F… Preferenc… orig      gray     0.1 solid   
-#&gt; </span><span style='color: #949494;'># … with 607 more rows, and 6 more variables: qs1_qs0 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, Co1_Co0 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,</span><span>
-#&gt; </span><span style='color: #949494;'>#   f_Cs_orig </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, sigma </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, x </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, y </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+#&gt;    Reference Case  Original  Upgrade  graph_type line_name colour  size linetype
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.5 solid   
+#&gt; </span><span style='color: #949494;'># … with 607 more rows, and 6 more variables: qs1_qs0 &lt;dbl&gt;, Co1_Co0 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   f_Cs_orig &lt;dbl&gt;, sigma &lt;dbl&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -9,7 +9,7 @@
 #' @param indexed A boolean telling whether the rebound path should be indexed to `1` 
 #'                at its start.
 #' @param graph_type See `ReboundTools::graph_types`.
-#' @param graph_params See `ReboundTools::default_graph_params`.
+#' @param graph_params See `ReboundTools::path_graph_params`.
 #' @param I_E,k See `ReboundTools::eeu_base_params`.
 #' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,E_dot_s_star,E_dot_emb_star,C_dot_md_star,C_dot_o_star See `ReboundTools::star_vars`.
@@ -29,7 +29,7 @@
 iso_energy_lines <- function(.rebound_data, 
                              indexed = FALSE, 
                              graph_type = ReboundTools::graph_types$energy,
-                             graph_params = ReboundTools::default_graph_params,
+                             graph_params = ReboundTools::path_graph_params,
                              
                              I_E = ReboundTools::eeu_base_params$I_E, 
                              k = ReboundTools::eeu_base_params$k,
@@ -191,7 +191,7 @@ iso_energy_lines <- function(.rebound_data,
 iso_cost_lines <- function(.rebound_data, 
                            indexed = FALSE,
                            graph_type = ReboundTools::graph_types$cost,
-                           graph_params = ReboundTools::default_graph_params,
+                           graph_params = ReboundTools::path_graph_params,
                            
                            C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                            C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
@@ -262,7 +262,7 @@ iso_cost_lines <- function(.rebound_data,
 #'   iso_budget_lines_prefs()
 iso_budget_lines_prefs <- function(.rebound_data, 
                                    graph_type = ReboundTools::graph_types$preferences,
-                                   graph_params = ReboundTools::default_graph_params,
+                                   graph_params = ReboundTools::path_graph_params,
                                    
                                    p_s_orig = ReboundTools::orig_vars$p_s_orig, 
                                    q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
@@ -388,9 +388,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
 #' @param graph_type The type of graph associated with this segment. 
 #'                   Default is See `ReboundTools::graph_types$preferences`.
 #' @param line_name A name for this budget line 
-#' @param colour The colour for this budget line. Default is `ReboundTools::default_graph_params$prefs_grid_colour`.
-#' @param size The size (width) for this budget line Default is `ReboundTools::default_graph_params$prefs_grid_size`.
-#' @param linetype The line type for this budget line Default is `ReboundTools::default_graph_params$prefs_grid_linetype`.
+#' @param colour The colour for this budget line. Default is `ReboundTools::path_graph_params$prefs_grid_colour`.
+#' @param size The size (width) for this budget line Default is `ReboundTools::path_graph_params$prefs_grid_size`.
+#' @param linetype The line type for this budget line Default is `ReboundTools::path_graph_params$prefs_grid_linetype`.
 #' @param slope The slope of this budget line.
 #' @param intercept The intercept of this budget line.
 #' @param graph_df_colnames A list of column names in graph data frames. 
@@ -409,9 +409,9 @@ add_budget_line <- function(.DF = NULL,
                             meta, 
                             graph_type = ReboundTools::graph_types$preferences, 
                             line_name,
-                            colour = ReboundTools::default_graph_params$prefs_grid_colour, 
-                            size = ReboundTools::default_graph_params$prefs_grid_size, 
-                            linetype = ReboundTools::default_graph_params$prefs_grid_linetype,
+                            colour = ReboundTools::path_graph_params$prefs_grid_colour, 
+                            size = ReboundTools::path_graph_params$prefs_grid_size, 
+                            linetype = ReboundTools::path_graph_params$prefs_grid_linetype,
                             slope, intercept, 
                             graph_df_colnames = ReboundTools::graph_df_colnames) {
   out <- meta %>% 
@@ -450,9 +450,9 @@ add_budget_line <- function(.DF = NULL,
 #'             This metadata data frame provides the left-most columns of the return value.
 #' @param graph_type The type of graph associated with this segment. See `ReboundTools::graph_types`.
 #' @param iso_name A name for this iso line.
-#' @param colour The colour for this iso line. Default is `ReboundTools::default_graph_params$energy_grid_colour`.
-#' @param size Line width. Default is `ReboundTools::default_graph_params$energy_grid_size`.
-#' @param linetype Line type for this iso line. Default is `ReboundTools::default_graph_params$energy_grid_linetype`. 
+#' @param colour The colour for this iso line. Default is `ReboundTools::path_graph_params$energy_grid_colour`.
+#' @param size Line width. Default is `ReboundTools::path_graph_params$energy_grid_size`.
+#' @param linetype Line type for this iso line. Default is `ReboundTools::path_graph_params$energy_grid_linetype`. 
 #' @param x_orig,y_orig The (x,y) coordinates of the starting point for the path on this graph, 
 #'                      used for indexing.
 #' @param x,y The (x,y) coordinates of a point on this iso line. 
@@ -475,9 +475,9 @@ add_iso <- function(.DF = NULL,
                     meta, 
                     graph_type, 
                     iso_name, 
-                    colour = ReboundTools::default_graph_params$energy_grid_colour, 
-                    size = ReboundTools::default_graph_params$energy_grid_size, 
-                    linetype = ReboundTools::default_graph_params$energy_grid_linetype, 
+                    colour = ReboundTools::path_graph_params$energy_grid_colour, 
+                    size = ReboundTools::path_graph_params$energy_grid_size, 
+                    linetype = ReboundTools::path_graph_params$energy_grid_linetype, 
                     x_orig, y_orig, 
                     x, y,
                     graph_df_colnames = ReboundTools::graph_df_colnames) {

@@ -8,7 +8,7 @@
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
 #' @param graph_type See `ReboundTools::graph_types`. Default is `ReboundTools::graph_types$preferences`.
-#' @param graph_params Parameters that control the appearance of the graph. Default is `ReboundTools::default_graph_params`.
+#' @param graph_params Parameters that control the appearance of the graph. Default is `ReboundTools::path_graph_params`.
 #' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
 #' @param q_dot_s_hat See `ReboundTools::hat_vars`.
 #' @param q_dot_s_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
@@ -23,7 +23,7 @@
 #'   indifference_lines()
 indifference_lines <- function(.rebound_data, 
                                graph_type = ReboundTools::graph_types$preferences,
-                               graph_params = ReboundTools::default_graph_params,
+                               graph_params = ReboundTools::path_graph_params,
                                
                                q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
                                C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
@@ -129,7 +129,7 @@ add_indifference_curve <- function(.DF = NULL,
                                    graph_type = ReboundTools::graph_types$preferences, 
                                    line_name, 
                                    qs1_qs0, Co1_Co0, qs2_qs0 = NULL, f_Cs_orig, sigma,
-                                   graph_params = ReboundTools::default_graph_params,
+                                   graph_params = ReboundTools::path_graph_params,
                                    eeu_base_params = ReboundTools::eeu_base_params,
                                    graph_df_colnames = ReboundTools::graph_df_colnames) {
   # Calculate x values at which indifference curve should be evaluated.

@@ -13,7 +13,7 @@ A path to an example data file.
 Sample energy efficiency upgrade (EEU) data gives examples and enables testing.
 This function returns a string path to an Excel file containing
 example data from the paper ---------------------.
-Two energy efficiency upgrade examples are provided: a car and a light.
+Two energy efficiency upgrade examples are provided: a car and an electric lamp.
 }
 \details{
 Users can provide their own EEU files in similar format to

@@ -7,7 +7,7 @@
 indifference_lines(
   .rebound_data,
   graph_type = ReboundTools::graph_types$preferences,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
@@ -23,7 +23,7 @@ likely created by \code{rebound_analysis()}.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}. Default is \code{ReboundTools::graph_types$preferences}.}
 
-\item{graph_params}{Parameters that control the appearance of the graph. Default is \code{ReboundTools::default_graph_params}.}
+\item{graph_params}{Parameters that control the appearance of the graph. Default is \code{ReboundTools::path_graph_params}.}
 
 \item{q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma}{See \code{ReboundTools::orig_vars}.}
 

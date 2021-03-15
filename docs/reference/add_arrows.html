@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create rebound graphs — rebound_graphs • ReboundTools</title>
+<title>Add arrow descriptions to a paths data frame — add_arrows • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create rebound graphs — rebound_graphs" />
-<meta property="og:description" content="Create rebound graphs" />
+<meta property="og:title" content="Add arrow descriptions to a paths data frame — add_arrows" />
+<meta property="og:description" content="Add arrow descriptions to a paths data frame" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -109,74 +109,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create rebound graphs</h1>
+    <h1>Add arrow descriptions to a paths data frame</h1>
     
-    <div class="hidden name"><code>rebound_graphs.Rd</code></div>
+    <div class="hidden name"><code>add_arrows.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create rebound graphs</p>
+    <p>Add arrow descriptions to a paths data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rebound_graphs</span><span class='op'>(</span>
-  <span class='va'>.analysis_data</span>,
-  indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cases <span class='op'>=</span> <span class='va'>.analysis_data</span><span class='op'>[[</span><span class='va'>case_colname</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>,
-  graph_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
-  grid_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
-  case_colname <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
-  graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
+    <pre class="usage"><span class='fu'>add_arrows</span><span class='op'>(</span>
+  <span class='va'>.paths</span>,
+  <span class='va'>graph_params</span>,
+  <span class='va'>graph_df_colnames</span>,
+  rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.analysis_data</th>
-      <td><p>Rebound analysis data, likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>indexed</th>
-      <td><p>A boolean that tells whether to index the graph to its initial path point. Default is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>cases</th>
-      <td><p>A string list saying which cases in <code>.rebound_data</code> to include. Default is <code>.rebound_data[[case_colname]] %&gt;% unique()</code>, i.e. all cases.</p></td>
-    </tr>
-    <tr>
-      <th>graph_types</th>
-      <td><p>A string list of graph types to include in the returned object. Default is <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>, i.e. all graph types.</p></td>
-    </tr>
-    <tr>
-      <th>grid_types</th>
-      <td><p>A string list of graph types on which grids (guide lines) are to be included. Default is <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>, i.e. include grids on all graph types.</p></td>
+      <th>.paths</th>
+      <td><p>The data frame to which arrows should be added.</p></td>
     </tr>
     <tr>
       <th>graph_params</th>
-      <td><p>A string list of parameters that control the appearance of this graph.
-Default is <code><a href='default_graph_params.html'>ReboundTools::default_graph_params</a></code>, which can be
-modified and passed as an argument to control graph appearance.</p></td>
-    </tr>
-    <tr>
-      <th>case_colname</th>
-      <td><p>The name of the Case column in <code>.rebound_data</code>. Default is <code>ReboundTools::eeu_base_params$case</code>.</p></td>
+      <td><p>See <code><a href='path_graph_params.html'>ReboundTools::path_graph_params</a></code>.</p></td>
     </tr>
     <tr>
       <th>graph_df_colnames</th>
-      <td><p>The names of column names in data frames of graph data. Default is <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
+      <td><p>See <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>rebound_segments</th>
+      <td><p>See <code><a href='rebound_segments.html'>ReboundTools::rebound_segments</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>ggplot2</code> object with the graphs</p>
+    <p>A version of <code>.paths</code> with a column for arrow descriptions.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>rebound_graphs</span><span class='op'>(</span>indexed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='rebound_graphs-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

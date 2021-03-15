@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Graph data frame columns — graph_df_colnames • ReboundTools</title>
+<title>Names of graph data frame columns — graph_df_colnames • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Graph data frame columns — graph_df_colnames" />
+<meta property="og:title" content="Names of graph data frame columns — graph_df_colnames" />
 <meta property="og:description" content="The list of names of graph data frame columns.
 These are default names for columns produced internally." />
 
@@ -73,7 +73,7 @@ These are default names for columns produced internally." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@ These are default names for columns produced internally." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Graph data frame columns</h1>
+    <h1>Names of graph data frame columns</h1>
     
     <div class="hidden name"><code>graph_df_colnames.Rd</code></div>
     </div>
@@ -125,7 +125,7 @@ These are default names for columns produced internally.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 17 entries.</p><dl>
+    <p>A string list with 25 entries.</p><dl>
 <dt>colour_col</dt><dd><p>The name of the column containing line colours.</p></dd>
 <dt>size_col</dt><dd><p>The name of the column containing line sizes (widths).</p></dd>
 <dt>linetype_col</dt><dd><p>The name of the column containing line types.</p></dd>
@@ -143,6 +143,10 @@ These are default names for columns produced internally.</p>
 <dt>sigma_col</dt><dd><p>The name of the column containing ending sigma values for this indifference curve.</p></dd>
 <dt>start_point_col</dt><dd><p>The name of the boolean column telling whether this row contains a segment that should have a starting point.</p></dd>
 <dt>end_arrow_col</dt><dd><p>The name of the boolean column telling whether this row contains a segment that should have an ending arrow.</p></dd>
+<dt>Re_names</dt><dd><p>The name of the column of rebound names.</p></dd>
+<dt>Re_values</dt><dd><p>The name of the column of rebound values.</p></dd>
+<dt>y_names_col</dt><dd><p>The name of the column of y-axis variable names.</p></dd>
+<dt>y_vals_col</dt><dd><p>The name of the column of y-axis variable names.</p></dd>
 
 </dl>
 
@@ -155,6 +159,15 @@ These are default names for columns produced internally.</p>
 #&gt; $size_col
 #&gt; [1] "size"
 #&gt; 
+#&gt; $shape_col
+#&gt; [1] "shape"
+#&gt; 
+#&gt; $fill_col
+#&gt; [1] "fill"
+#&gt; 
+#&gt; $stroke_col
+#&gt; [1] "stroke"
+#&gt; 
 #&gt; $linetype_col
 #&gt; [1] "linetype"
 #&gt; 
@@ -163,6 +176,9 @@ These are default names for columns produced internally.</p>
 #&gt; 
 #&gt; $line_name_col
 #&gt; [1] "line_name"
+#&gt; 
+#&gt; $point_name_col
+#&gt; [1] "point_name"
 #&gt; 
 #&gt; $slope_col
 #&gt; [1] "slope"
@@ -199,6 +215,18 @@ These are default names for columns produced internally.</p>
 #&gt; 
 #&gt; $end_arrow_col
 #&gt; [1] "end_arrow"
+#&gt; 
+#&gt; $Re_names
+#&gt; [1] "Re_names"
+#&gt; 
+#&gt; $Re_values
+#&gt; [1] "Re_values"
+#&gt; 
+#&gt; $y_names_col
+#&gt; [1] "y_names"
+#&gt; 
+#&gt; $y_vals_col
+#&gt; [1] "y_vals"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -9,7 +9,8 @@ Each stage of the rebound process is represented in the data frame.}
 cost_paths(
   .rebound_data,
   indexed = FALSE,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$cost,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
@@ -21,7 +22,8 @@ cost_paths(
   Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -33,6 +35,8 @@ at its start.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
+
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
 \item{C_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
@@ -40,6 +44,8 @@ at its start.}
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
 
 \item{Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
+\item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A data frame with cost rebound path segments.

@@ -6,14 +6,16 @@
 \usage{
 prefs_paths(
   .rebound_data,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$preferences,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -22,11 +24,15 @@ likely created by \code{rebound_analysis()}.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
+
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
 \item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
 
 \item{Delta_q_dot_s_hat, Delta_C_dot_o_hat, Delta_q_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
+\item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A data frame of information for creating preference graphs.

@@ -7,7 +7,8 @@
 energy_paths(
   .rebound_data,
   indexed = FALSE,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
+  rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$energy,
   k = ReboundTools::eeu_base_params$k,
   I_E = ReboundTools::eeu_base_params$I_E,
@@ -22,7 +23,8 @@ energy_paths(
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar
+  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
 \arguments{
@@ -34,6 +36,8 @@ at its start.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
+\item{rebound_segments}{See \code{ReboundTools::rebound_segments}.}
+
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
 \item{k, I_E}{See \code{ReboundTools::eeu_base_params}.}
@@ -43,6 +47,8 @@ at its start.}
 \item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
 
 \item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar, N_dot_hat}{See \code{ReboundTools::Delta_vars}.}
+
+\item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A data frame with energy rebound path segments.

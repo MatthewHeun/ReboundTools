@@ -73,7 +73,7 @@ The iso lines are accumulated in rows at the bottom of the data frame." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -126,9 +126,9 @@ The iso lines are accumulated in rows at the bottom of the data frame.</p>
   <span class='va'>meta</span>,
   <span class='va'>graph_type</span>,
   <span class='va'>iso_name</span>,
-  colour <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span><span class='op'>$</span><span class='va'>energy_grid_colour</span>,
-  size <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span><span class='op'>$</span><span class='va'>energy_grid_size</span>,
-  linetype <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span><span class='op'>$</span><span class='va'>energy_grid_linetype</span>,
+  colour <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>energy_grid_colour</span>,
+  size <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>energy_grid_size</span>,
+  linetype <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span><span class='op'>$</span><span class='va'>energy_grid_linetype</span>,
   <span class='va'>x_orig</span>,
   <span class='va'>y_orig</span>,
   <span class='va'>x</span>,
@@ -165,15 +165,15 @@ This metadata data frame provides the left-most columns of the return value.</p>
     </tr>
     <tr>
       <th>colour</th>
-      <td><p>The colour for this iso line. Default is <code>ReboundTools::default_graph_params$energy_grid_colour</code>.</p></td>
+      <td><p>The colour for this iso line. Default is <code>ReboundTools::path_graph_params$energy_grid_colour</code>.</p></td>
     </tr>
     <tr>
       <th>size</th>
-      <td><p>Line width. Default is <code>ReboundTools::default_graph_params$energy_grid_size</code>.</p></td>
+      <td><p>Line width. Default is <code>ReboundTools::path_graph_params$energy_grid_size</code>.</p></td>
     </tr>
     <tr>
       <th>linetype</th>
-      <td><p>Line type for this iso line. Default is <code>ReboundTools::default_graph_params$energy_grid_linetype</code>.</p></td>
+      <td><p>Line type for this iso line. Default is <code>ReboundTools::path_graph_params$energy_grid_linetype</code>.</p></td>
     </tr>
     <tr>
       <th>x_orig, y_orig</th>
@@ -210,7 +210,7 @@ call <code>add_iso()</code> internally.</p>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 8</span><span>
 #&gt;   Case      graph_type line_name    colour  size linetype slope intercept
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Test case Test type  Test segment gray     0.1 solid       -</span><span style='color: #BB0000;'>1</span><span>        50</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Test case Test type  Test segment black    0.1 solid       -</span><span style='color: #BB0000;'>1</span><span>        50</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

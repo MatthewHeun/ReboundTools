@@ -1,3 +1,65 @@
+# ReboundTools 0.1.14 (2021-03-14)
+
+* Fixed a bug with line layering in 
+  `sensitivity_graphs()` and `rebound_terms_graph()`.
+* Now including `Re_cap` in rebound calculations.
+* Renamed `Re_d` and `Re_i` to `Re_dir` and `Re_indir`.
+* New tests for new features.
+    - Now at 454 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.13 (2021-03-11)
+
+* Many improvements to graphs.
+* New function `rebound_terms_graph()`
+  that makes graphs of all rebound terms.
+* Re-implement `sensitivity_graphs()`.
+* New tests for new features.
+    - Now at 452 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.12 (2021-03-10)
+
+* Removed `sensitivity_graphs()` for now.
+* New constants for sensitivity graphs, `sens_graph_params`.
+* Name changes: 
+    * `default_graph_params` --> `path_graph_params`
+    * `rebound_graphs()` --> `path_graphs()`.
+* Added graph parameters for total rebound.
+* New tests for new features.
+    - Now at 447 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.11 (2021-03-02)
+
+* New function `sensitivity_graphs()` makes graphs from parametric data.
+* `parametric_analysis()` now optionally returns the original point,
+  which may be helpful for graphing purposes.
+  E.g., one could make a graph with lines for the swept parameters and 
+  red dots for the original (base) points.
+* Added a first version of the `parametric_analysis()` function.
+* New tests for new features.
+    - Now at 449 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.10 (2021-02-09)
+
+* New colors for graphs, using the Viridis palette, plasma option.
+* Now allowing an approximation for the substitution effect.
+  New argument `use_sub_approx` triggers the approximation
+  and is set `FALSE` in several places.
+* Calculating hat point (after substitution effect)
+  via new derivation that ensures expenditure line is tangent to indifference curve.
+* Fixed a bug that swapped order of energy and cost path graphs.
+* New tests for new features.
+    - Now at 412 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.9 (2021-01-17)
 
 * Added efficiency in engineering units (e.g., mpg) to stages table.

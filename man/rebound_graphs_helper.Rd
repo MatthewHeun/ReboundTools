@@ -6,9 +6,10 @@
 \usage{
 rebound_graphs_helper(
   .path_data,
+  .points_data = NULL,
   .grid_data = NULL,
   .indifference_data = NULL,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   graph_types = ReboundTools::graph_types,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
@@ -17,11 +18,13 @@ rebound_graphs_helper(
 \item{.path_data}{A data frame of paths to be added to the graph.
 The columns "colour" and "size" control the colour and width of the segment}
 
+\item{.points_data}{A data frame of points between rebound effects.}
+
 \item{.grid_data}{A data frame of lines to be added to the graph.}
 
 \item{.indifference_data}{A data frame of indifference curves to be added to the graph.}
 
-\item{graph_params}{A list of appearance parameters for this graph. Default is \code{ReboundTools::default_graph_params}.}
+\item{graph_params}{A list of appearance parameters for this graph. Default is \code{ReboundTools::path_graph_params}.}
 
 \item{graph_types}{A list of graph types. Default is \code{ReboundTools::graph_types}.}
 
@@ -31,7 +34,7 @@ The columns "colour" and "size" control the colour and width of the segment}
 A \code{ggplot2} object containing graphs.
 }
 \description{
-This is a helper function for \code{rebound_graphs()}.
+This is a helper function for \code{path_graphs()}.
 There is normally no need to call this function.
 }
 \examples{

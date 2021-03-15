@@ -7,7 +7,7 @@
 iso_budget_lines_prefs(
   .rebound_data,
   graph_type = ReboundTools::graph_types$preferences,
-  graph_params = ReboundTools::default_graph_params,
+  graph_params = ReboundTools::path_graph_params,
   p_s_orig = ReboundTools::orig_vars$p_s_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,

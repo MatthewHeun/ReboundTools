@@ -78,7 +78,7 @@ Each stage of the rebound process is represented in the data frame." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -131,7 +131,8 @@ Each stage of the rebound process is represented in the data frame.</p>
     <pre class="usage"><span class='fu'>cost_paths</span><span class='op'>(</span>
   <span class='va'>.rebound_data</span>,
   indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='default_graph_params.html'>default_graph_params</a></span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
+  rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>,
   graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>cost</span>,
   C_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_s_orig</span>,
   C_dot_cap_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_orig</span>,
@@ -143,7 +144,8 @@ Each stage of the rebound process is represented in the data frame.</p>
   Delta_C_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_s_hat</span>,
   Delta_C_dot_o_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_hat</span>,
   Delta_C_dot_s_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_s_bar</span>,
-  Delta_C_dot_o_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_bar</span>
+  Delta_C_dot_o_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_bar</span>,
+  graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -164,6 +166,10 @@ at its start.</p></td>
       <td><p>See <code>ReboundTools::graph_params</code>.</p></td>
     </tr>
     <tr>
+      <th>rebound_segments</th>
+      <td><p>See <code><a href='rebound_segments.html'>ReboundTools::rebound_segments</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>graph_type</th>
       <td><p>See <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>.</p></td>
     </tr>
@@ -179,6 +185,10 @@ at its start.</p></td>
       <th>Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar</th>
       <td><p>See <code><a href='Delta_vars.html'>ReboundTools::Delta_vars</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>graph_df_colnames</th>
+      <td><p>See <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -189,25 +199,25 @@ at its start.</p></td>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>cost_paths</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 14 x 15</span><span>
-#&gt;    Reference Case  Original Upgrade graph_type line_name colour  size linetype
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fu… Ford F… Cost       G_dot     #F5C2…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incande… LED     Cost       G_dot     #F5C2…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fu… Ford F… Cost       Delta_C_… #F5C2…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incande… LED     Cost       Delta_C_… #F5C2…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fu… Ford F… Cost       Delta_C_… #F5C2…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incande… LED     Cost       Delta_C_… #F5C2…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fu… Ford F… Cost       Delta_C_… #FAE0…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incande… LED     Cost       Delta_C_… #FAE0…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fu… Ford F… Cost       Delta_C_… #FAE0…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incande… LED     Cost       Delta_C_… #FAE0…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fu… Ford F… Cost       Delta_C_… #CDFD…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incande… LED     Cost       Delta_C_… #CDFD…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> None yet  Car   Ford Fu… Ford F… Cost       Delta_C_… #CDFD…     1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> None yet  Lamp  Incande… LED     Cost       Delta_C_… #CDFD…     1 solid   
-#&gt; </span><span style='color: #949494;'># … with 6 more variables: start_point </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, end_arrow </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, x </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,</span><span>
-#&gt; </span><span style='color: #949494;'>#   y </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, xend </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, yend </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 14 x 14</span><span>
+#&gt;    Reference Case  Original  Upgrade  graph_type line_name colour  size linetype
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       dempl     #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandes… LED      Cost       dempl     #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       cap       #1507…   1.5 11      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandes… LED      Cost       cap       #1507…   1.5 11      
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       md        #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandes… LED      Cost       md        #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       isub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandes… LED      Cost       isub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       dsub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandes… LED      Cost       dsub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       dinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incandes… LED      Cost       dinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> None yet  Car   Ford Fus… Ford Fu… Cost       iinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> None yet  Lamp  Incandes… LED      Cost       iinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #949494;'># … with 5 more variables: x &lt;dbl&gt;, y &lt;dbl&gt;, xend &lt;dbl&gt;, yend &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   end_arrow &lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
