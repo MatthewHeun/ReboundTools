@@ -1,4 +1,5 @@
 * Implemented `points_atop_paths` for `rebound_terms_graph()`.
+  Default now set to `TRUE`.
 
 
 # ReboundTools 0.1.15 (2021-03-15)
