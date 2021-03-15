@@ -1,3 +1,6 @@
+* Implemented `points_atop_paths` for `rebound_terms_graph()`.
+
+
 # ReboundTools 0.1.15 (2021-03-15)
 
 * Dots now take on colour of their lines in `sensitivity_graphs()`.
