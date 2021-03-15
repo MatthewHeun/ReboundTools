@@ -15,7 +15,7 @@ rebound_results_table(
   case = ReboundTools::eeu_base_params$case,
   subtotals = c(ReboundTools::rebound_terms$Re_empl,
     ReboundTools::rebound_terms$Re_sub, ReboundTools::rebound_terms$Re_inc,
-    ReboundTools::rebound_terms$Re_d, ReboundTools::rebound_terms$Re_i),
+    ReboundTools::rebound_terms$Re_dir, ReboundTools::rebound_terms$Re_indir),
   total = ReboundTools::rebound_terms$Re_tot,
   term_name = "Rebound term",
   latex_term_name = "LaTeX rebound term",

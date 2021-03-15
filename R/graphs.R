@@ -309,6 +309,10 @@ rebound_graphs_helper <- function(.path_data,
 #' A function to make sensitivity graphs for rebound analysis.
 #' 
 #' The caller can adjust the aesthetics of the graph with manual scales.
+#' 
+#' The order of `y_var` will determine layering on the graph.
+#' The first item in `y_var` will be the lowest layer.
+#' The last item in `y_var` will be the highest layer.
 #'
 #' @param .parametric_data A data frame, likely the result of calling `parametric_analysis()`.
 #'                         Default is `parametric_analysis(rebound_data, parameterization)`.
@@ -367,8 +371,11 @@ rebound_graphs_helper <- function(.path_data,
 #'                     Lamp = list(k = seq(0, 2, by = 0.5),
 #'                                 I_E = seq(2, 5, by = 1), 
 #'                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+#' # Choose which rebound variables to include and their order.
 #' sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
-#'                    x_var = "I_E", y_var = "Re_tot", line_var = "Case") +
+#'                    x_var = "I_E", 
+#'                    y_var = "Re_tot",
+#'                    line_var = "Case") +
 #'   ggplot2::facet_grid(rows = ggplot2::vars(k), 
 #'                       cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
 #'   ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
@@ -381,8 +388,10 @@ rebound_graphs_helper <- function(.path_data,
 #' # Plot all rebound terms as a function of post-upgrade efficiency
 #' sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
 #'                       Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
-#' rebound_vars <- setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg) %>% 
-#'   unlist()
+#' # Choose rebound terms to include in the graph and their order
+#' rebound_vars <- c("Re_dempl", "Re_emb", "Re_md", "Re_dsub", "Re_isub", 
+#'                   "Re_dinc", "Re_iinc", "Re_prod")
+#'                   
 #' sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
 #'                    x_var = "eta_engr_units_tilde", 
 #'                    y_var = rebound_vars) + 
@@ -440,7 +449,12 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
   p_data <- .parametric_data %>%
     tidyr::pivot_longer(cols = tidyselect::all_of(y_var), names_to = y_names_col, values_to = y_vals_col) %>% 
     # Arrange by the x variable so that all points (for geom_point) are in order.
-    dplyr::arrange(.data[[x_var]])
+    dplyr::arrange(.data[[x_var]]) %>% 
+    dplyr::mutate(
+      # Set the factor levels so that the layering order will be 
+      # in the same order as the variables coming in here.
+      "{y_names_col}" := factor(.data[[y_names_col]], levels = y_var)
+    )
 
   orig_data <- p_data %>%
     dplyr::filter(.data[[ReboundTools::parametric_analysis_point_types$point_type_colname]] == orig_points)
@@ -497,8 +511,8 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
 #'                    `x_var` must be a single string.
 #'                    `y_var` can be a vector of strings. 
 #'                    See examples.
-#' @param include_Re_tot A boolean that tells whether to include a line for total rebound.
-#'                       Default is `TRUE`.
+#' @param Re_terms A string vector that tells which rebound terms to include in the graph. 
+#'                 Default is `unlist(ReboundTools::rebound_terms)`.
 #' @param graph_params A list of parameters to control graph appearance. 
 #'                     See `ReboundTools::sens_graph_params`.
 #' @param point_type_colname,sweep_points,orig_points See `ReboundTools::parametric_analysis_point_types`.
@@ -526,7 +540,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                 rebound_data, 
                                 parameterization,
                                 x_var,
-                                include_Re_tot = TRUE,
+                                Re_terms = unlist(ReboundTools::rebound_terms),
                                 line_var = y_names_col,
                                 include_x_axis = TRUE,
                                 y_names_col = ReboundTools::graph_df_colnames$y_names_col,
@@ -535,23 +549,11 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                 point_type_colname = ReboundTools::parametric_analysis_point_types$point_type_colname,
                                 sweep_points = ReboundTools::parametric_analysis_point_types$sweep,
                                 orig_points = ReboundTools::parametric_analysis_point_types$orig) {
-  # Make a list of the rebound terms to graph.
-  # These are the individual components.
-  Re_vars_to_graph <- setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg)
-  if (include_Re_tot) {
-    Re_vars_to_graph <- append(Re_vars_to_graph, ReboundTools::rebound_terms$Re_tot)
-  }
-  # Swap indirect substitution and direct substitution effects to get a more-pleasing order.
-  Re_vars_to_graph <- Re_vars_to_graph %>% 
-    unlist() %>% 
-    replace(c(4,5), Re_vars_to_graph[c(5,4)]) %>% 
-    unlist() %>% 
-    # Reverse to put total and productivity on the bottom
-    rev()
-  
+  Re_terms <- match.arg(Re_terms, several.ok = TRUE)
+
   sensitivity_graphs(.parametric_data = .parametric_data, 
                      x_var = x_var, 
-                     y_var = Re_vars_to_graph, 
+                     y_var = Re_terms, 
                      line_var = line_var, 
                      include_x_axis = include_x_axis,
                      y_vals_col = y_vals_col,
@@ -562,33 +564,51 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                      orig_points = orig_points) +
     ggplot2::scale_colour_manual(values = c(Re_dempl = graph_params$dempl_colour,
                                             Re_emb = graph_params$emb_colour,
+                                            Re_cap = graph_params$cap_colour,
                                             Re_md = graph_params$md_colour, 
+                                            Re_empl = graph_params$empl_colour,
                                             Re_dsub = graph_params$dsub_colour,
                                             Re_isub = graph_params$isub_colour, 
+                                            Re_sub = graph_params$sub_colour,
                                             Re_dinc = graph_params$dinc_colour,
                                             Re_iinc = graph_params$iinc_colour,
+                                            Re_inc = graph_params$inc_colour,
                                             Re_prod = graph_params$prod_colour,
+                                            Re_dir = graph_params$dir_colour,
+                                            Re_indir = graph_params$indir_colour,
                                             Re_tot = graph_params$tot_colour), 
-                                 breaks = Re_vars_to_graph) +
-    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size, 
+                                 breaks = Re_terms) +
+    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size,
                                           Re_emb = graph_params$emb_size,
-                                          Re_md = graph_params$md_size, 
+                                          Re_md = graph_params$md_size,
+                                          Re_cap = graph_params$cap_size,
+                                          Re_empl = graph_params$empl_size,
                                           Re_dsub = graph_params$dsub_size,
-                                          Re_isub = graph_params$isub_size, 
+                                          Re_isub = graph_params$isub_size,
+                                          Re_sub = graph_params$sub_size,
                                           Re_dinc = graph_params$dinc_size,
                                           Re_iinc = graph_params$iinc_size,
-                                          Re_prod = graph_params$prod_size, 
-                                          Re_tot = graph_params$tot_size), 
-                               breaks = Re_vars_to_graph) +
+                                          Re_inc = graph_params$inc_size,
+                                          Re_prod = graph_params$prod_size,
+                                          Re_dir = graph_params$dir_size,
+                                          Re_indir = graph_params$indir_size,
+                                          Re_tot = graph_params$tot_size),
+                               breaks = Re_terms) +
     ggplot2::scale_linetype_manual(values = c(Re_dempl = graph_params$dempl_linetype, 
                                               Re_emb = graph_params$emb_linetype,
+                                              Re_cap = graph_params$cap_linetype,
                                               Re_md = graph_params$md_linetype,
+                                              Re_empl = graph_params$empl_linetype,
                                               Re_dsub = graph_params$dsub_linetype,
                                               Re_isub = graph_params$isub_linetype,
+                                              Re_sub = graph_params$sub_linetype,
                                               Re_dinc = graph_params$dinc_linetype,
                                               Re_iinc = graph_params$iinc_linetype,
+                                              Re_inc = graph_params$inc_linetype,
                                               Re_prod = graph_params$prod_linetype, 
+                                              Re_dir = graph_params$dir_linetype,
+                                              Re_indir = graph_params$indir_linetype,
                                               Re_tot = graph_params$tot_linetype), 
-                                   breaks = Re_vars_to_graph)
+                                   breaks = Re_terms)
 }
 

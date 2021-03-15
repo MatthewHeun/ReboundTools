@@ -9,7 +9,7 @@ rebound_terms_graph(
   rebound_data,
   parameterization,
   x_var,
-  include_Re_tot = TRUE,
+  Re_terms = unlist(ReboundTools::rebound_terms),
   line_var = y_names_col,
   include_x_axis = TRUE,
   y_names_col = ReboundTools::graph_df_colnames$y_names_col,
@@ -40,8 +40,8 @@ These variables must appear in \code{.parametric_data}.
 \code{y_var} can be a vector of strings.
 See examples.}
 
-\item{include_Re_tot}{A boolean that tells whether to include a line for total rebound.
-Default is \code{TRUE}.}
+\item{Re_terms}{A string vector that tells which rebound terms to include in the graph.
+Default is \code{unlist(ReboundTools::rebound_terms)}.}
 
 \item{line_var}{The name of variable to be used to discriminate lines on the graph.
 Default is \code{y_names_col}.}
