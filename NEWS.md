@@ -1,3 +1,5 @@
+* New default for nominal points in sensitivity graphs:
+  filled black dot.
 * New option to use LaTeX for legend labels in
   `rebound_terms_graph()`.
 
