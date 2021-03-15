@@ -787,8 +787,8 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param e_qs_ps,e_qo_ps,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
 #' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
-#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param Re_dempl,Re_emb,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_d,Re_i,Re_tot See `ReboundTools::rebound_terms`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_prod,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
 #'
 #' @return A data frame with rebound terms added as columns.
 #' 
@@ -845,8 +845,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_prod = ReboundTools::rebound_terms$Re_prod,
                          Re_dir = ReboundTools::rebound_terms$Re_dir,
                          Re_indir = ReboundTools::rebound_terms$Re_indir,
-                         Re_tot = ReboundTools::rebound_terms$Re_tot
-                         ) {
+                         Re_tot = ReboundTools::rebound_terms$Re_tot) {
   
   rebound_fun <- function(Delta_E_dot_emb_star_val, 
                           S_dot_dev_val,

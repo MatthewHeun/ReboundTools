@@ -95,8 +95,11 @@ sens_params_2 <- list(Car = list(k = seq(0, 2, by = 0.5),
                     Lamp = list(k = seq(0, 2, by = 0.5),
                                 I_E = seq(2, 5, by = 1), 
                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+# Choose which rebound variables to include and their order.
 sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
-                   x_var = "I_E", y_var = "Re_tot", line_var = "Case") +
+                   x_var = "I_E", 
+                   y_var = "Re_tot",
+                   line_var = "Case") +
   ggplot2::facet_grid(rows = ggplot2::vars(k), 
                       cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
   ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
@@ -109,8 +112,10 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_2,
 # Plot all rebound terms as a function of post-upgrade efficiency
 sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
                       Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
-rebound_vars <- setdiff(ReboundTools::rebound_terms, ReboundTools::rebound_terms_agg) \%>\% 
-  unlist()
+# Choose rebound terms to include in the graph and their order
+rebound_vars <- c("Re_dempl", "Re_emb", "Re_md", "Re_dsub", "Re_isub", 
+                  "Re_dinc", "Re_iinc", "Re_prod")
+                  
 sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
                    x_var = "eta_engr_units_tilde", 
                    y_var = rebound_vars) + 

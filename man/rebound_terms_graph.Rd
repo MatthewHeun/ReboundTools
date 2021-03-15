@@ -40,6 +40,9 @@ These variables must appear in \code{.parametric_data}.
 \code{y_var} can be a vector of strings.
 See examples.}
 
+\item{Re_terms}{A string vector that tells which rebound terms to include in the graph.
+Default is \code{unlist(ReboundTools::rebound_terms)}.}
+
 \item{line_var}{The name of variable to be used to discriminate lines on the graph.
 Default is \code{y_names_col}.}
 
@@ -52,9 +55,6 @@ Default is \code{TRUE}.}
 See \code{ReboundTools::sens_graph_params}.}
 
 \item{point_type_colname, sweep_points, orig_points}{See \code{ReboundTools::parametric_analysis_point_types}.}
-
-\item{include_Re_tot}{A boolean that tells whether to include a line for total rebound.
-Default is \code{TRUE}.}
 }
 \value{
 A ggplot2 graph showing sensitivity of all rebound terms to \code{x_var}.

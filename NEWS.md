@@ -1,3 +1,5 @@
+* Fixed a bug with line layering in 
+  `sensitivity_graphs()` and `rebound_terms_graph()`.
 * Now including `Re_cap` in rebound calculations.
 * Renamed `Re_d` and `Re_i` to `Re_dir` and `Re_indir`.
 
