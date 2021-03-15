@@ -466,8 +466,8 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
   }
   g + 
     ggplot2::geom_point(data = orig_data,
-                        mapping = ggplot2::aes_string(x = x_var, y = y_vals_col),
-                        colour = graph_params$orig_point_colour,
+                        # Pick up the dot colour from the line colour.
+                        mapping = ggplot2::aes_string(x = x_var, y = y_vals_col, colour = line_var),
                         size = graph_params$orig_point_size,
                         shape = graph_params$orig_point_shape,
                         stroke = graph_params$orig_point_stroke,
