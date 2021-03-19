@@ -541,7 +541,7 @@ sens_graph_params <- list(# Base condition points on graphs
                           dempl_linetype = "solid",
                           emb_linetype = "11",
                           cap_linetype = "11",
-                          md_linetype = "31", 
+                          md_linetype = "41", 
                           empl_linetype = "solid",
                           dsub_linetype = "solid",
                           isub_linetype = "11",
