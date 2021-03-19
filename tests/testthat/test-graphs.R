@@ -400,10 +400,24 @@ test_that("a simple rebound_terms_graph works", {
                                          "Re_prod",
                                          "Re_dir", "Re_indir",
                                          "Re_tot")
-                            # Re_terms = unlist(ReboundTools::rebound_terms)
                       ) +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x")
   expect_true(!is.null(g2))
+})
+
+
+test_that("points_atop_paths works for rebound_terms_graph()", {
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  graph_params <- ReboundTools::sens_graph_params
+  graph_params[["points_atop_paths"]] <- FALSE
+  
+  g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                           x_var = "eta_engr_units_tilde", 
+                           graph_params = graph_params) +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(g))
 })
 
 

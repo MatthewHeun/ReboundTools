@@ -464,23 +464,44 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
     g <- g +
       ggplot2::geom_hline(yintercept = 0, size = 0.2)
   }
-  g + 
-    ggplot2::geom_point(data = orig_data,
-                        # Pick up the dot colour from the line colour.
-                        mapping = ggplot2::aes_string(x = x_var, y = y_vals_col, colour = line_var),
-                        size = graph_params$orig_point_size,
-                        shape = graph_params$orig_point_shape,
-                        stroke = graph_params$orig_point_stroke,
-                        fill = graph_params$orig_point_fill) +
-    # Use geom_path so that we get nice rounded segments when using dashes.
-    ggplot2::geom_path(data = line_data,
-                       mapping = ggplot2::aes_string(x = x_var,
-                                                     y = y_vals_col,
-                                                     linetype = line_var,
-                                                     colour = line_var,
-                                                     size = line_var), 
-                       lineend = graph_params$lineend, 
-                       linejoin = graph_params$linejoin)
+  if (graph_params$points_atop_paths) {
+    g <- g + 
+      # Use geom_path so that we get nice rounded segments when using dashes.
+      ggplot2::geom_path(data = line_data,
+                         mapping = ggplot2::aes_string(x = x_var,
+                                                       y = y_vals_col,
+                                                       linetype = line_var,
+                                                       colour = line_var,
+                                                       size = line_var), 
+                         lineend = graph_params$lineend, 
+                         linejoin = graph_params$linejoin) + 
+      ggplot2::geom_point(data = orig_data,
+                          # Pick up the dot colour from the line colour.
+                          mapping = ggplot2::aes_string(x = x_var, y = y_vals_col, colour = line_var),
+                          size = graph_params$orig_point_size,
+                          shape = graph_params$orig_point_shape,
+                          stroke = graph_params$orig_point_stroke,
+                          fill = graph_params$orig_point_fill)
+  } else {
+    # Want points beneath paths
+    g <- g + 
+      ggplot2::geom_point(data = orig_data,
+                          # Pick up the dot colour from the line colour.
+                          mapping = ggplot2::aes_string(x = x_var, y = y_vals_col, colour = line_var),
+                          size = graph_params$orig_point_size,
+                          shape = graph_params$orig_point_shape,
+                          stroke = graph_params$orig_point_stroke,
+                          fill = graph_params$orig_point_fill) +
+      ggplot2::geom_path(data = line_data,
+                         mapping = ggplot2::aes_string(x = x_var,
+                                                       y = y_vals_col,
+                                                       linetype = line_var,
+                                                       colour = line_var,
+                                                       size = line_var), 
+                         lineend = graph_params$lineend, 
+                         linejoin = graph_params$linejoin)
+  }
+  return(g)
 }
 
 
