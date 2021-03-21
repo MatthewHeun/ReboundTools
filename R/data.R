@@ -231,6 +231,7 @@
 #' \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)`.}
 #' \item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption \[--\].}
+#' \item{rho}{The exponent in the CES utility model, defined as rho = 1/sigma - 1 \[--\].}
 #' \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device \[MJ\].}
 #' \item{t_life_orig}{The expected lifetime of the original (pre-EEU) device \[year\].}
 #' \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand\[MJ/year\], calculated by `E_dot_emb / t_orig`.}

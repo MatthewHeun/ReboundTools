@@ -5,7 +5,7 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 21 entries.
+A string list with 22 entries.
 \describe{
 \item{p_E}{The price of energy [$/MJ], calculated by \code{p_E_engr_units / MJ_engr_unit}.}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/year] [lumen-hours/year].}
@@ -24,6 +24,7 @@ A string list with 21 entries.
 \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC + f_Cs_orig*e_qs_M}.}
 \item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)}.}
 \item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption [--].}
+\item{rho}{The exponent in the CES utility model, defined as rho = 1/sigma - 1 [--].}
 \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device [MJ].}
 \item{t_life_orig}{The expected lifetime of the original (pre-EEU) device [year].}
 \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand[MJ/year], calculated by \code{E_dot_emb / t_orig}.}

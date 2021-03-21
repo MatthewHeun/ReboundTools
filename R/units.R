@@ -18,7 +18,7 @@
 #' @param escape_latex A boolean that tells whether to encode the result as LaTeX output.
 #' @param surround_left,surround_right,leading_delta_pattern,energy_si,time_unit,currency,currency_latex,unitless,unitless_latex See `ReboundTools::rebound_units`.
 #' @param service_unit_name,energy_engr_unit_name,energy_converter,p_E_engr_units,k,I_E See `ReboundTools::eeu_base_params`.
-#' @param p_E,p_s,q_dot_s,eta_engr_units,efficiency,sigma,income_rate,income,freed_cash_rate,freed_cash,energy 
+#' @param p_E,p_s,q_dot_s,eta_engr_units,efficiency,sigma,rho,income_rate,income,freed_cash_rate,freed_cash,energy 
 #'        These arguments describe string prefixes that identify variables for unit determination. 
 #' @param S_dot_dev,G_dot,f_Cs See `ReboundTools::star_vars`. 
 #'        These arguments describe string patterns that identify variables for unit determination. 
@@ -66,6 +66,7 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
                               eta_engr_units = sub(x = ReboundTools::orig_vars$eta_engr_units_orig, pattern = trim_stage_pattern, replacement = ""),
                               efficiency = sub(x = ReboundTools::orig_vars$eta_orig, pattern = trim_stage_pattern, replacement = ""),
                               sigma = ReboundTools::orig_vars$sigma,
+                              rho = ReboundTools::orig_vars$rho,
                               income_rate = sub(x = ReboundTools::orig_vars$M_dot_orig, pattern = trim_stage_pattern, replacement = ""), 
                               income = sub(x = income_rate, pattern = trim_stage_pattern, replacement = ""), 
                               freed_cash_rate = sub(x = ReboundTools::orig_vars$N_dot_orig, pattern = trim_stage_pattern, replacement = ""), 
@@ -167,7 +168,7 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
     # k or elasticities (both are unitless)
     # Needs to be after efficiencies to distinguish between "eta" and "e".
     
-    else if (startsWith(v, k) | startsWith(v, elasticities) | startsWith(v, sigma)) {
+    else if (startsWith(v, k) | startsWith(v, elasticities) | startsWith(v, sigma) | startsWith(v, rho)) {
       out <- unitless
     }
     
