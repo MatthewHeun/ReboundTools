@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
       <h1 data-toc-skip>ReboundTools</h1>
                         <h4 class="author">Matthew Kuperus Heun</h4>
             
-            <h4 class="date">2021-03-18</h4>
+            <h4 class="date">2021-03-21</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -144,7 +144,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <code class="sourceCode R"><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
-<span class="co">#&gt; Columns: 153</span>
+<span class="co">#&gt; Columns: 154</span>
 <span class="co">#&gt; $ Reference                  &lt;chr&gt; "None yet", "None yet"</span>
 <span class="co">#&gt; $ Case                       &lt;chr&gt; "Car", "Lamp"</span>
 <span class="co">#&gt; $ Original                   &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
@@ -183,6 +183,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ e_qs_ps                    &lt;dbl&gt; -0.03782471, -0.39967510</span>
 <span class="co">#&gt; $ e_qo_ps                    &lt;dbl&gt; 0.0025076778, 0.0001298969</span>
 <span class="co">#&gt; $ sigma                      &lt;dbl&gt; 0.04033238, 0.39980500</span>
+<span class="co">#&gt; $ rho                        &lt;dbl&gt; -23.793972, -1.501219</span>
 <span class="co">#&gt; $ E_dot_emb_orig             &lt;dbl&gt; 2428.571429, 1.222222</span>
 <span class="co">#&gt; $ N_dot_orig                 &lt;dbl&gt; 0, 0</span>
 <span class="co">#&gt; $ eta_star                   &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
@@ -349,7 +350,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Thu Mar 18 21:01:32 2021 -->
+<!-- Sun Mar 21 18:47:47 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -635,7 +636,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Thu Mar 18 21:01:32 2021 -->
+<!-- Sun Mar 21 18:47:47 2021 -->
 <table class="table">
 <tr>
 <th>

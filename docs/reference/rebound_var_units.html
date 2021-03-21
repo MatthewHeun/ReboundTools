@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
       </span>
     </div>
 
@@ -149,6 +149,7 @@
   efficiency <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>eta_orig</span>, pattern <span class='op'>=</span> <span class='va'>trim_stage_pattern</span>,
     replacement <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>,
   sigma <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>sigma</span>,
+  rho <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>rho</span>,
   income_rate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>M_dot_orig</span>, pattern <span class='op'>=</span>
     <span class='va'>trim_stage_pattern</span>, replacement <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>,
   income <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>income_rate</span>, pattern <span class='op'>=</span> <span class='va'>trim_stage_pattern</span>, replacement <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>,
@@ -201,7 +202,7 @@
 Default is "<em>[^</em>]*$", which trims all characters beyond the last "_" in a string.</p></td>
     </tr>
     <tr>
-      <th>p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, income_rate, income, freed_cash_rate, freed_cash, energy</th>
+      <th>p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, rho, income_rate, income, freed_cash_rate, freed_cash, energy</th>
       <td><p>These arguments describe string prefixes that identify variables for unit determination.</p></td>
     </tr>
     <tr>
