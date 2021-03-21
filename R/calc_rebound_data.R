@@ -381,7 +381,6 @@ calc_hat <- function(.star_data = NULL,
       # Preliminary calculations to make the actual expression easier to debug.
       a <- f_Cs_orig_val # Simpler variable name
       x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
-      # rho <- (sigma_val - 1) / sigma_val
       a_ratio <- (1-a) / a
       inv_a_ratio <- a / (1-a) # Inverse of a_ratio
       rho_ratio <- (1-rho_val) / rho_val
