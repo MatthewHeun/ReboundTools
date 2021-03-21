@@ -16,6 +16,7 @@ calc_hat(
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   sigma = ReboundTools::orig_vars$sigma,
+  rho = ReboundTools::orig_vars$rho,
   eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
   eta_star = ReboundTools::star_vars$eta_star,
   p_s_star = ReboundTools::star_vars$p_s_star,
@@ -56,7 +57,7 @@ See details.}
 
 \item{p_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{e_qo_ps, e_qs_ps, C_dot_cap_orig, C_dot_md_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma}{See \code{ReboundTools::orig_vars}.}
+\item{e_qo_ps, e_qs_ps, C_dot_cap_orig, C_dot_md_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma, rho}{See \code{ReboundTools::orig_vars}.}
 
 \item{eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, C_dot_md_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 

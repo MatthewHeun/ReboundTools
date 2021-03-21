@@ -35,6 +35,7 @@ rebound_var_units(
   efficiency = sub(x = ReboundTools::orig_vars$eta_orig, pattern = trim_stage_pattern,
     replacement = ""),
   sigma = ReboundTools::orig_vars$sigma,
+  rho = ReboundTools::orig_vars$rho,
   income_rate = sub(x = ReboundTools::orig_vars$M_dot_orig, pattern =
     trim_stage_pattern, replacement = ""),
   income = sub(x = income_rate, pattern = trim_stage_pattern, replacement = ""),
@@ -70,7 +71,7 @@ rebound_var_units(
 \item{trim_stage_pattern}{A regex that trims the rebound stage from a variable name.
 Default is "\emph{[^}]*$", which trims all characters beyond the last "_" in a string.}
 
-\item{p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, income_rate, income, freed_cash_rate, freed_cash, energy}{These arguments describe string prefixes that identify variables for unit determination.}
+\item{p_E, p_s, q_dot_s, eta_engr_units, efficiency, sigma, rho, income_rate, income, freed_cash_rate, freed_cash, energy}{These arguments describe string prefixes that identify variables for unit determination.}
 
 \item{S_dot_dev, G_dot, f_Cs}{See \code{ReboundTools::star_vars}.
 These arguments describe string patterns that identify variables for unit determination.}

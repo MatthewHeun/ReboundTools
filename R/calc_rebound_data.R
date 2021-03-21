@@ -9,7 +9,7 @@
 #' @param .eeu_data An optional data frame containing EEU base data. 
 #'                  See `ReboundTools::eeu_base_params`.
 #' @param MJ_engr_unit,p_E_engr_units,e_qs_ps_UC,e_qs_M See `ReboundTools::eeu_base_params`.
-#' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps,e_qo_ps,sigma,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
+#' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps,e_qo_ps,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
 #' 
@@ -45,6 +45,7 @@ calc_orig <- function(.eeu_data = NULL,
                       e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
                       e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
                       sigma = ReboundTools::orig_vars$sigma,
+                      rho = ReboundTools::orig_vars$rho,
                       E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                       N_dot_orig = ReboundTools::orig_vars$N_dot_orig) {
   
@@ -72,6 +73,7 @@ calc_orig <- function(.eeu_data = NULL,
     e_qs_ps_val <- e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val
     e_qo_ps_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
     sigma_val <- (f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
+    rho_val <- (sigma_val - 1)/sigma_val
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
     N_dot_orig_val <- 0
     
@@ -86,6 +88,7 @@ calc_orig <- function(.eeu_data = NULL,
          e_qs_ps_val,
          e_qo_ps_val, 
          sigma_val,
+         rho_val,
          E_dot_emb_orig_val,
          N_dot_orig_val) %>% 
       magrittr::set_names(c(p_E, 
@@ -99,6 +102,7 @@ calc_orig <- function(.eeu_data = NULL,
                             e_qs_ps, 
                             e_qo_ps, 
                             sigma,
+                            rho,
                             E_dot_emb_orig,
                             N_dot_orig))
   }
@@ -283,7 +287,7 @@ calc_star <- function(.orig_data = NULL,
 #'                       Default is `FALSE`.
 #'                       See details.
 #' @param p_E See `ReboundTools::eeu_base_params`.
-#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma See `ReboundTools::orig_vars`.
+#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
 #' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
@@ -308,6 +312,7 @@ calc_hat <- function(.star_data = NULL,
                      q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
                      C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                      sigma = ReboundTools::orig_vars$sigma,
+                     rho = ReboundTools::orig_vars$rho,
                        
                      eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
                      eta_star = ReboundTools::star_vars$eta_star,
@@ -348,6 +353,7 @@ calc_hat <- function(.star_data = NULL,
                            q_dot_s_orig_val,
                            C_dot_o_orig_val,
                            sigma_val, 
+                           rho_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
                            e_qs_ps_val,
@@ -375,14 +381,13 @@ calc_hat <- function(.star_data = NULL,
       # Preliminary calculations to make the actual expression easier to debug.
       a <- f_Cs_orig_val # Simpler variable name
       x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
-      rho <- (sigma_val - 1) / sigma_val
       a_ratio <- (1-a) / a
       inv_a_ratio <- a / (1-a) # Inverse of a_ratio
-      rho_ratio <- (1-rho) / rho
-      inv_rho_ratio <- rho / (1-rho) # Inverse of rho_ratio
+      rho_ratio <- (1-rho_val) / rho_val
+      inv_rho_ratio <- rho_val / (1-rho_val) # Inverse of rho_ratio
       
       # Q_s_hat_val is the dimensionless q_dot_s_hat defined as q_dot_s_hat / q_dot_s_orig
-      Q_s_hat_val <- ( a + (1 - a) * ( (a_ratio*x)^(inv_rho_ratio) ) ) ^ (-1/rho) 
+      Q_s_hat_val <- ( a + (1 - a) * ( (a_ratio*x)^(inv_rho_ratio) ) ) ^ (-1/rho_val) 
       # Recover q_dot_s_hat by multiplying by q_dot_s_orig.
       q_dot_s_hat_val <- Q_s_hat_val * q_dot_s_orig_val
     }
@@ -401,7 +406,7 @@ calc_hat <- function(.star_data = NULL,
       # Wolfram alpha (correctly) says it can be simplified to the following:
       term <- x * (1-a) / a
       denom <- 1 + a*(term^(1-sigma_val)  - 1)
-      C_o_hat_val <- (1 / denom)^(1/rho)
+      C_o_hat_val <- (1 / denom)^(1/rho_val)
       # Recover C_dot_o_hat by multiplying by C_dot_o_orig
       C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
     }
@@ -449,6 +454,7 @@ calc_hat <- function(.star_data = NULL,
                            q_dot_s_orig_val = q_dot_s_orig,
                            C_dot_o_orig_val = C_dot_o_orig,
                            sigma_val = sigma,
+                           rho_val = rho,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
                            e_qs_ps_val = e_qs_ps,

@@ -1,10 +1,18 @@
+# ReboundTools 0.1.17 (2021-03-21)
+
+* Added rho to orig output.
+* Two new tests.
+    - Now at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.16 (2021-03-18)
 
 * Adjusted some graph parameters:
   line widths and dashes for `rebound_terms_graph()`
 * Implemented `points_atop_paths` for `rebound_terms_graph()`.
   Default now set to `TRUE`.
-* One new tests.
+* One new test.
     - Now at 456 tests, all passing.
     - Test coverage remains at 100%.
 
