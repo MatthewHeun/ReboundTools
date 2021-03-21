@@ -73,7 +73,7 @@ stage (pre-EEU)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
       </span>
     </div>
 
@@ -145,6 +145,7 @@ stage (pre-EEU).</p>
   e_qs_ps <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>e_qs_ps</span>,
   e_qo_ps <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>e_qo_ps</span>,
   sigma <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>sigma</span>,
+  rho <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>rho</span>,
   E_dot_emb_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>E_dot_emb_orig</span>,
   N_dot_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>N_dot_orig</span>
 <span class='op'>)</span></pre>
@@ -162,7 +163,7 @@ See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code
       <td><p>See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code>.</p></td>
     </tr>
     <tr>
-      <th>eta_engr_units_orig, q_dot_s_orig, C_cap_orig, t_own_orig, M_dot_orig, C_dot_md_orig, E_emb_orig, t_life_orig, p_E, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_o_orig, f_Cs_orig, e_qs_ps, e_qo_ps, sigma, E_dot_emb_orig, N_dot_orig</th>
+      <th>eta_engr_units_orig, q_dot_s_orig, C_cap_orig, t_own_orig, M_dot_orig, C_dot_md_orig, E_emb_orig, t_life_orig, p_E, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_o_orig, f_Cs_orig, e_qs_ps, e_qo_ps, sigma, rho, E_dot_emb_orig, N_dot_orig</th>
       <td><p>See <code><a href='orig_vars.html'>ReboundTools::orig_vars</a></code>.</p></td>
     </tr>
     </table>
@@ -174,12 +175,12 @@ See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>calc_orig</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 40</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 41</span><span>
 #&gt;   Reference Case  Original     Upgrade            service_unit energy_engr_unit
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fusion  Ford Fusion Hybrid mile         gal             
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incandescent LED                lm-hr        W-hr            
-#&gt; </span><span style='color: #949494;'># … with 34 more variables: MJ/energy_engr_unit &lt;dbl&gt;, I_E &lt;dbl&gt;, k &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'># … with 35 more variables: MJ/energy_engr_unit &lt;dbl&gt;, I_E &lt;dbl&gt;, k &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   p_E_engr_units &lt;dbl&gt;, e_qs_ps_UC &lt;dbl&gt;, e_qs_M &lt;dbl&gt;, e_qo_M &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   eta_engr_units_orig &lt;dbl&gt;, eta_engr_units_star &lt;dbl&gt;, q_dot_s_orig &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   M_dot_orig &lt;dbl&gt;, C_cap_orig &lt;dbl&gt;, t_own_orig &lt;dbl&gt;, C_cap_star &lt;dbl&gt;,</span><span>
@@ -187,7 +188,7 @@ See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code
 #&gt; </span><span style='color: #949494;'>#   E_emb_orig &lt;dbl&gt;, t_life_orig &lt;dbl&gt;, E_emb_star &lt;dbl&gt;, t_life_star &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   p_E &lt;dbl&gt;, eta_orig &lt;dbl&gt;, E_dot_s_orig &lt;dbl&gt;, C_dot_cap_orig &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   p_s_orig &lt;dbl&gt;, C_dot_s_orig &lt;dbl&gt;, C_dot_o_orig &lt;dbl&gt;, f_Cs_orig &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   e_qs_ps &lt;dbl&gt;, e_qo_ps &lt;dbl&gt;, sigma &lt;dbl&gt;, E_dot_emb_orig &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   e_qs_ps &lt;dbl&gt;, e_qo_ps &lt;dbl&gt;, sigma &lt;dbl&gt;, rho &lt;dbl&gt;, E_dot_emb_orig &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   N_dot_orig &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
