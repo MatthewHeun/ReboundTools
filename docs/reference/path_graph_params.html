@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.18</span>
       </span>
     </div>
 
@@ -148,9 +148,9 @@ in the <code>ReboundTools</code> package.</p>
 <dt>dinc_colour</dt><dd><p>The colour for direct income lines.</p></dd>
 <dt>iinc_colour</dt><dd><p>The colour for indirect income lines.</p></dd>
 <dt>inc_colour</dt><dd><p>The colour for income lines.</p></dd>
-<dt>macro_colour</dt><dd><p>The colour for productivity lines.</p></dd>
+<dt>macro_colour</dt><dd><p>The colour for macro lines.</p></dd>
 <dt>dir_colour</dt><dd><p>The colour for direct lines.</p></dd>
-<dt>indir_colour</dt><dd><p>The colour for productivity lines.</p></dd>
+<dt>indir_colour</dt><dd><p>The colour for macro lines.</p></dd>
 <dt>tot_colour</dt><dd><p>The colour for total rebound lines.</p></dd>
 <dt>dempl_size</dt><dd><p>The size for direct emplacment lines.</p></dd>
 <dt>emb_size</dt><dd><p>The size for embodied energy lines.</p></dd>
@@ -163,7 +163,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>dinc_size</dt><dd><p>The size for direct income lines.</p></dd>
 <dt>iinc_size</dt><dd><p>The size for indirect income lines.</p></dd>
 <dt>inc_size</dt><dd><p>The size for income lines.</p></dd>
-<dt>prod_size</dt><dd><p>The size for productivity lines.</p></dd>
+<dt>macro_size</dt><dd><p>The size for macro lines.</p></dd>
 <dt>dir_size</dt><dd><p>The size for direct lines.</p></dd>
 <dt>indir_size</dt><dd><p>The size for indirect lines.</p></dd>
 <dt>tot_size</dt><dd><p>The size for total rebound lines.</p></dd>
@@ -178,15 +178,15 @@ in the <code>ReboundTools</code> package.</p>
 <dt>dinc_linetype</dt><dd><p>The linetype for direct income lines.</p></dd>
 <dt>iinc_linetype</dt><dd><p>The linetype for indirect income lines.</p></dd>
 <dt>inc_linetype</dt><dd><p>The linetype for income lines.</p></dd>
-<dt>prod_linetype</dt><dd><p>The linetype for productivity lines.</p></dd>
+<dt>macro_linetype</dt><dd><p>The linetype for macro lines.</p></dd>
 <dt>dir_linetype</dt><dd><p>The linetype for direct lines.</p></dd>
 <dt>indir_linetype</dt><dd><p>The linetype for indirect lines.</p></dd>
 <dt>tot_linetype</dt><dd><p>The linetype for total rebound lines.</p></dd>
 <dt>lineend</dt><dd><p>The line end style.</p></dd>
 <dt>linejoin</dt><dd><p>The line join style.</p></dd>
 <dt>reverse_path_drawing_order</dt><dd><p>Tells whether to reverse the drawing order for paths. The default (<code>FALSE</code>)
-draws emplacement on the bottom, followed by substitution, income, and productivity paths.
-<code>TRUE</code> puts productivity paths on the bottom, followed by income, substitution, and
+draws emplacement on the bottom, followed by substitution, income, and macro paths.
+<code>TRUE</code> puts macro paths on the bottom, followed by income, substitution, and
 emplacement paths.
 Setting <code>TRUE</code> produces attractive layering when many paths have arrows, because
 arrows overlay their following points.</p></dd>
@@ -270,7 +270,7 @@ to change graph appearance.</p>
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span> dsub      FALSE    
 #&gt; </span><span style='color: #BCBCBC;'>7</span><span> dinc      FALSE    
 #&gt; </span><span style='color: #BCBCBC;'>8</span><span> iinc      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> prod      FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span> macro     FALSE    
 #&gt; 
 #&gt; $last_arrow
 #&gt; [1] TRUE
@@ -369,7 +369,7 @@ to change graph appearance.</p>
 #&gt; $inc_size
 #&gt; [1] 1
 #&gt; 
-#&gt; $prod_size
+#&gt; $macro_size
 #&gt; [1] 1
 #&gt; 
 #&gt; $dir_size
@@ -414,7 +414,7 @@ to change graph appearance.</p>
 #&gt; $sinc_linetype
 #&gt; [1] "solid"
 #&gt; 
-#&gt; $prod_linetype
+#&gt; $macro_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $dir_linetype
