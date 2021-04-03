@@ -62,7 +62,7 @@ rebound_stages <- list(orig  = "orig",
                        star  = "star",  # After emplacement effect
                        hat   = "hat",   # After subsituttion effect
                        bar   = "bar",   # After income effect
-                       tilde = "tilde") # After productivity effect
+                       tilde = "tilde") # After macro effect
 usethis::use_data(rebound_stages, overwrite = TRUE)
 
 
@@ -94,7 +94,7 @@ rebound_segments <- list(dempl = "dempl",
                          dsub = "dsub",
                          dinc = "dinc", 
                          iinc = "iinc", 
-                         prod = "prod")
+                         prod = "macro")
 usethis::use_data(rebound_segments, overwrite = TRUE)
 
 #
@@ -263,7 +263,7 @@ rebound_terms <- list(Re_dempl = "Re_dempl",
                       Re_dinc = "Re_dinc", 
                       Re_iinc = "Re_iinc", 
                       Re_inc = "Re_inc",
-                      Re_prod = "Re_prod", 
+                      Re_prod = "Re_macro", 
                       Re_dir = "Re_dir",
                       Re_indir = "Re_indir",
                       Re_tot = "Re_tot")
@@ -299,7 +299,7 @@ latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
                             Re_dinc = "$Re_{dinc}$", 
                             Re_iinc = "$Re_{iinc}$", 
                             Re_inc = "$Re_{inc}$",
-                            Re_prod = "$Re_{prod}$", 
+                            Re_prod = "$Re_{macro}$", 
                             Re_dir = "$Re_{dir}$",
                             Re_indir = "$Re_{indir}$",
                             Re_tot = "$Re_{tot}$")
@@ -356,14 +356,14 @@ usethis::use_data(graph_df_colnames, overwrite = TRUE)
 # emb_colour <- rgb(245, 194, 193, maxColorValue = 255, alpha = 255)
 # sub_colour <- rgb(250, 224, 195, maxColorValue = 255, alpha = 255)
 # inc_colour <- rgb(205, 253, 197, maxColorValue = 255, alpha = 255)
-# prod_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
+# macro_colour <- rgb(191, 192, 250, maxColorValue = 255, alpha = 255)
 
 # These colours approximately match the colours in the rebound paper,
 # but they are a little bolder.
 # empl_colour <- "pink2"
 # sub_colour <- "peachpuff"
 # inc_colour <- "palegreen2"
-# prod_colour <- "slateblue1"
+# macro_colour <- "slateblue1"
 
 
 # These colours are obtained from the viridis colour scale

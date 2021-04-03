@@ -102,7 +102,7 @@ complicated <- eeu_data %>%
   calc_star() %>%    # Calculate all parameters after the emplacement effect
   calc_hat() %>%     # Calculate all parameters after the substitution effect
   calc_bar() %>%     # Calculate all parameters after the income effect
-  calc_tilde() %>%   # Calculate all parameters after the productivity effect
+  calc_tilde() %>%   # Calculate all parameters after the macro effect
   calc_Deltas() %>%  # Calculate all differences between stages
   calc_rebound()     # Calculate all rebound terms
 all(simple == complicated)
@@ -205,7 +205,7 @@ indirect energy consumption on the vertical axis.
 Diagonal lines with negative slope indicate lines of constant energy consumption.
 The thicker lines show 0 % rebound (lower left) and 100 % rebound (upper right).
 Thinner lines show rebound after each effect in order from the 0 % line to the 100 % line:
-emplacement, substitution, income, and productivity.
+emplacement, substitution, income, and macro.
 The following example illustrates an energy path graph. 
 
 ```{r}

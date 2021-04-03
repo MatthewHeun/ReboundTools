@@ -341,7 +341,7 @@ rebound_graphs_helper <- function(.path_data,
 #' @export
 #'
 #' @examples
-#' # Sensitivity of total rebound (Re_tot) to productivity multiplier (k)
+#' # Sensitivity of total rebound (Re_tot) to macro multiplier (k)
 #' df <- load_eeu_data()
 #' sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
 #'                     Lamp = list(k = seq(0, 2, by = 1)))
@@ -357,7 +357,7 @@ rebound_graphs_helper <- function(.path_data,
 #'                linetype = ggplot2::element_blank())
 #'                
 #' # A more-complicated example that shows multi-variate sensitivity.
-#' # Values of the productivity parameter (k) is shown in rows of the lattice plot.
+#' # Values of the macro parameter (k) is shown in rows of the lattice plot.
 #' # Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) 
 #' # is shown in columns of the lattice plot.
 #' # Total rebound (Re_tot) is given on the y-axis, and 
