@@ -1,3 +1,9 @@
+* Change nomenclature from productivity rebound to macro rebound.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.17 (2021-03-21)
 
 * Added rho to orig output.

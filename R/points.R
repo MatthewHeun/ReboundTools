@@ -65,11 +65,11 @@ extract_points <- function(.paths,
       # and eliminate the line names column.
       "{graph_df_colnames$point_name_col}" := dplyr::case_when(
         # Set the point name.
-        .data[[graph_df_colnames$line_name]] == rebound_segments$dempl ~ rebound_stages$orig, 
-        .data[[graph_df_colnames$line_name]] == rebound_segments$isub  ~ rebound_stages$star, 
-        .data[[graph_df_colnames$line_name]] == rebound_segments$dinc  ~ rebound_stages$hat,
-        .data[[graph_df_colnames$line_name]] == rebound_segments$prod  ~ rebound_stages$bar, 
-        .data[[graph_df_colnames$line_name]] == ls                     ~ lp
+        .data[[graph_df_colnames$line_name]] == rebound_segments$dempl  ~ rebound_stages$orig, 
+        .data[[graph_df_colnames$line_name]] == rebound_segments$isub   ~ rebound_stages$star, 
+        .data[[graph_df_colnames$line_name]] == rebound_segments$dinc   ~ rebound_stages$hat,
+        .data[[graph_df_colnames$line_name]] == rebound_segments$macro  ~ rebound_stages$bar, 
+        .data[[graph_df_colnames$line_name]] == ls                      ~ lp
       ), 
       # Eliminate unneeded columns
       "{graph_df_colnames$line_name_col}" := NULL,

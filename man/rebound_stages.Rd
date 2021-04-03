@@ -10,8 +10,8 @@ A string list with 5 entries.
 \item{orig}{The original (pre-EEU) stage.}
 \item{star}{The upgraded condition (post-EEU), before any behavior changes.}
 \item{hat}{After the substitution effect but before the income effect.}
-\item{bar}{After the income effect but before the productivity effect.}
-\item{tilde}{After the productivity effect.}
+\item{bar}{After the income effect but before the macro effect.}
+\item{tilde}{After the macro effect.}
 }
 }
 \usage{

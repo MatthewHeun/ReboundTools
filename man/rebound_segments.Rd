@@ -15,7 +15,7 @@ A list frame with 9 entries
 \item{isub}{Indirect substitution effects.}
 \item{dinc}{Direct income effects.}
 \item{iinc}{Indirect income effects.}
-\item{prod}{Productivity effects.}
+\item{macro}{Macro effects.}
 }
 }
 \usage{

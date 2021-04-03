@@ -8,14 +8,14 @@
 A string list with 12 entries.
 \describe{
 \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_bar}.}
-\item{p_s_tilde}{The energy service price after the productivity effect [$/service], exactly \code{p_s_bar}.}
-\item{C_dot_cap_tilde}{The capital expenditure rate after the productivity effect [$/year], exactly \code{C_dot_cap_bar}.}
-\item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the productivity effect [$/year], exactly \code{C_dot_md_bar}.}
-\item{E_dot_emb_tilde}{The embodied energy rate after the productivity effect [MJ/year], exactly \code{E_dot_emb_bar}.}
-\item{M_dot_tilde}{Real income after the productivity effect [MJ/year], exactly \code{M_dot_bar}.}
-\item{q_dot_s_tilde}{The rate of energy service consumption after the productivity effect\ [service/year], exactly \code{q_dot_s_bar}.}
-\item{C_dot_o_tilde}{The rate of other goods expenditures after the productivity effect [$/year], exactly \code{C_dot_o_bar}.}
-\item{N_dot_tilde}{The freed cash rate after the productivity effect [$/year], exactly \code{0}.}
+\item{p_s_tilde}{The energy service price after the macro effect [$/service], exactly \code{p_s_bar}.}
+\item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect [$/year], exactly \code{C_dot_cap_bar}.}
+\item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect [$/year], exactly \code{C_dot_md_bar}.}
+\item{E_dot_emb_tilde}{The embodied energy rate after the macro effect [MJ/year], exactly \code{E_dot_emb_bar}.}
+\item{M_dot_tilde}{Real income after the macro effect [MJ/year], exactly \code{M_dot_bar}.}
+\item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/year], exactly \code{q_dot_s_bar}.}
+\item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect [$/year], exactly \code{C_dot_o_bar}.}
+\item{N_dot_tilde}{The freed cash rate after the macro effect [$/year], exactly \code{0}.}
 }
 
 [service/year]: R:service/year\%5C
@@ -24,7 +24,7 @@ A string list with 12 entries.
 tilde_vars
 }
 \description{
-This is the list of the derived variables at the tilde stage (after productivity effect) of a rebound analysis.
+This is the list of the derived variables at the tilde stage (after macro effect) of a rebound analysis.
 }
 \examples{
 tilde_vars

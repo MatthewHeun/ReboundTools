@@ -87,8 +87,8 @@
 #' \item{orig}{The original (pre-EEU) stage.}
 #' \item{star}{The upgraded condition (post-EEU), before any behavior changes.}
 #' \item{hat}{After the substitution effect but before the income effect.}
-#' \item{bar}{After the income effect but before the productivity effect.}
-#' \item{tilde}{After the productivity effect.}
+#' \item{bar}{After the income effect but before the macro effect.}
+#' \item{tilde}{After the macro effect.}
 #' }
 #' 
 #' @examples
@@ -125,7 +125,7 @@
 #' \item{isub}{Indirect substitution effects.}
 #' \item{dinc}{Direct income effects.}
 #' \item{iinc}{Indirect income effects.}
-#' \item{prod}{Productivity effects.}
+#' \item{macro}{Macro effects.}
 #' }
 #' 
 #' @examples
@@ -170,8 +170,8 @@
 #' \item{orig}{The original device, prior to the EEU.}
 #' \item{star}{After the emplacement effect and before the substitution effect.}
 #' \item{hat}{After the substitution effect and before the income effect.}
-#' \item{bar}{After the income effect and before the productivity effect.}
-#' \item{tilde}{After the productivity effect.}
+#' \item{bar}{After the income effect and before the macro effect.}
+#' \item{tilde}{After the macro effect.}
 #' \item{I}{An economic intensity (per $).}
 #' \item{p}{Price.}
 #' \item{E}{Energy, typically final energy.}
@@ -196,7 +196,7 @@
 #' \item{energy_engr_unit}{A string to identify the energy units of the service, e.g., "gal" in "miles/gal" or "kW-hr" in "lm-hr/kW-hr".}
 #' \item{MJ_engr_unit}{A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, `MJ_engr_unit` should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.}
 #' \item{I_E}{The energy intensity of the economy \[MJ/$\].}
-#' \item{k}{The productivity effect factor \[--\].}
+#' \item{k}{The macro effect factor \[--\].}
 #' \item{p_E_engr_units}{The price of energy in engineering units, e.g., $/gal or $/kW-hr \[$/energy_engr_unit\].}
 #' \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption \[--\].}
@@ -319,19 +319,19 @@
 
 #' EEU tilde data 
 #' 
-#' This is the list of the derived variables at the tilde stage (after productivity effect) of a rebound analysis.
+#' This is the list of the derived variables at the tilde stage (after macro effect) of a rebound analysis.
 #' 
 #' @format A string list with `r length(tilde_vars)` entries.
 #' \describe{
 #' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_bar`.}
-#' \item{p_s_tilde}{The energy service price after the productivity effect \[$/service\], exactly `p_s_bar`.}
-#' \item{C_dot_cap_tilde}{The capital expenditure rate after the productivity effect \[$/year\], exactly `C_dot_cap_bar`.}
-#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the productivity effect \[$/year\], exactly `C_dot_md_bar`.}
-#' \item{E_dot_emb_tilde}{The embodied energy rate after the productivity effect \[MJ/year\], exactly `E_dot_emb_bar`.}
-#' \item{M_dot_tilde}{Real income after the productivity effect \[MJ/year\], exactly `M_dot_bar`.}
-#' \item{q_dot_s_tilde}{The rate of energy service consumption after the productivity effect\ [service/year\], exactly `q_dot_s_bar`.}
-#' \item{C_dot_o_tilde}{The rate of other goods expenditures after the productivity effect \[$/year\], exactly `C_dot_o_bar`.}
-#' \item{N_dot_tilde}{The freed cash rate after the productivity effect \[$/year\], exactly `0`.}
+#' \item{p_s_tilde}{The energy service price after the macro effect \[$/service\], exactly `p_s_bar`.}
+#' \item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect \[$/year\], exactly `C_dot_cap_bar`.}
+#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect \[$/year\], exactly `C_dot_md_bar`.}
+#' \item{E_dot_emb_tilde}{The embodied energy rate after the macro effect \[MJ/year\], exactly `E_dot_emb_bar`.}
+#' \item{M_dot_tilde}{Real income after the macro effect \[MJ/year\], exactly `M_dot_bar`.}
+#' \item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/year\], exactly `q_dot_s_bar`.}
+#' \item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect \[$/year\], exactly `C_dot_o_bar`.}
+#' \item{N_dot_tilde}{The freed cash rate after the macro effect \[$/year\], exactly `0`.}
 #' }
 #' @examples
 #' tilde_vars
@@ -355,7 +355,7 @@
 #' \item{Re_dinc}{Direct income effect rebound.}
 #' \item{Re_iinc}{Indirect income effect rebound.}
 #' \item{Re_inc}{Income effect rebound.}
-#' \item{Re_prod}{Indirect productivity effect rebound.}
+#' \item{Re_macro}{Indirect macro effect rebound.}
 #' \item{Re_d}{Sum of all direct rebound effects.}
 #' \item{Re_i}{Sum of all indirect rebound effects.}
 #' \item{Re_tot}{Total rebound.}
@@ -399,7 +399,7 @@
 #' \item{Re_dinc}{Direct income effect rebound.}
 #' \item{Re_iinc}{Indirect income effect rebound.}
 #' \item{Re_inc}{Income effect rebound.}
-#' \item{Re_prod}{Indirect productivity effect rebound.}
+#' \item{Re_macro}{Indirect macro effect rebound.}
 #' \item{Re_d}{Sum of all direct rebound effects.}
 #' \item{Re_i}{Sum of all indirect rebound effects.}
 #' \item{Re_tot}{Total rebound.}
@@ -490,9 +490,9 @@
 #' \item{dinc_colour}{The colour for direct income lines.}
 #' \item{iinc_colour}{The colour for indirect income lines.}
 #' \item{inc_colour}{The colour for income lines.}
-#' \item{prod_colour}{The colour for productivity lines.}
+#' \item{macro_colour}{The colour for macro lines.}
 #' \item{dir_colour}{The colour for direct lines.}
-#' \item{indir_colour}{The colour for productivity lines.}
+#' \item{indir_colour}{The colour for macro lines.}
 #' \item{tot_colour}{The colour for total rebound lines.}
 #' \item{dempl_size}{The size for direct emplacment lines.}
 #' \item{emb_size}{The size for embodied energy lines.}
@@ -505,7 +505,7 @@
 #' \item{dinc_size}{The size for direct income lines.}
 #' \item{iinc_size}{The size for indirect income lines.}
 #' \item{inc_size}{The size for income lines.}
-#' \item{prod_size}{The size for productivity lines.}
+#' \item{macro_size}{The size for macro lines.}
 #' \item{dir_size}{The size for direct lines.}
 #' \item{indir_size}{The size for indirect lines.}
 #' \item{tot_size}{The size for total rebound lines.}
@@ -520,15 +520,15 @@
 #' \item{dinc_linetype}{The linetype for direct income lines.}
 #' \item{iinc_linetype}{The linetype for indirect income lines.}
 #' \item{inc_linetype}{The linetype for income lines.}
-#' \item{prod_linetype}{The linetype for productivity lines.}
+#' \item{macro_linetype}{The linetype for macro lines.}
 #' \item{dir_linetype}{The linetype for direct lines.}
 #' \item{indir_linetype}{The linetype for indirect lines.}
 #' \item{tot_linetype}{The linetype for total rebound lines.}
 #' \item{lineend}{The line end style.}
 #' \item{linejoin}{The line join style.}
 #' \item{reverse_path_drawing_order}{Tells whether to reverse the drawing order for paths. The default (`FALSE`)
-#'                                   draws emplacement on the bottom, followed by substitution, income, and productivity paths.
-#'                                   `TRUE` puts productivity paths on the bottom, followed by income, substitution, and
+#'                                   draws emplacement on the bottom, followed by substitution, income, and macro paths.
+#'                                   `TRUE` puts macro paths on the bottom, followed by income, substitution, and
 #'                                   emplacement paths.
 #'                                   Setting `TRUE` produces attractive layering when many paths have arrows, because
 #'                                   arrows overlay their following points.}
@@ -601,9 +601,9 @@
 #' \item{dinc_colour}{The colour for direct income lines.}
 #' \item{iinc_colour}{The colour for indirect income lines.}
 #' \item{inc_colour}{The colour for income lines.}
-#' \item{prod_colour}{The colour for productivity lines.}
+#' \item{macro_colour}{The colour for macro lines.}
 #' \item{dir_colour}{The colour for direct lines.}
-#' \item{indir_colour}{The colour for productivity lines.}
+#' \item{indir_colour}{The colour for indirect lines.}
 #' \item{tot_colour}{The colour for total rebound lines.}
 #' \item{dempl_size}{The size for direct emplacment lines.}
 #' \item{emb_size}{The size for embodied energy lines.}
@@ -616,7 +616,7 @@
 #' \item{dinc_size}{The size for direct income lines.}
 #' \item{iinc_size}{The size for indirect income lines.}
 #' \item{inc_size}{The size for income lines.}
-#' \item{prod_size}{The size for productivity lines.}
+#' \item{macro_size}{The size for macro lines.}
 #' \item{dir_size}{The size for direct lines.}
 #' \item{indir_size}{The size for indirect lines.}
 #' \item{tot_size}{The size for total rebound lines.}
@@ -631,7 +631,7 @@
 #' \item{dinc_linetype}{The linetype for direct income lines.}
 #' \item{iinc_linetype}{The linetype for indirect income lines.}
 #' \item{inc_linetype}{The linetype for income lines.}
-#' \item{prod_linetype}{The linetype for productivity lines.}
+#' \item{macro_linetype}{The linetype for macro lines.}
 #' \item{dir_linetype}{The linetype for direct lines.}
 #' \item{indir_linetype}{The linetype for indirect lines.}
 #' \item{tot_linetype}{The linetype for total rebound lines.}

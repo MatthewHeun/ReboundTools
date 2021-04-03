@@ -63,7 +63,7 @@ The first item in \code{y_var} will be the lowest layer.
 The last item in \code{y_var} will be the highest layer.
 }
 \examples{
-# Sensitivity of total rebound (Re_tot) to productivity multiplier (k)
+# Sensitivity of total rebound (Re_tot) to macro multiplier (k)
 df <- load_eeu_data()
 sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
                     Lamp = list(k = seq(0, 2, by = 1)))
@@ -79,7 +79,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params,
                linetype = ggplot2::element_blank())
                
 # A more-complicated example that shows multi-variate sensitivity.
-# Values of the productivity parameter (k) is shown in rows of the lattice plot.
+# Values of the macro parameter (k) is shown in rows of the lattice plot.
 # Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) 
 # is shown in columns of the lattice plot.
 # Total rebound (Re_tot) is given on the y-axis, and 
@@ -110,7 +110,7 @@ sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)),
                       Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
 # Choose rebound terms to include in the graph and their order
 rebound_vars <- c("Re_dempl", "Re_emb", "Re_md", "Re_dsub", "Re_isub", 
-                  "Re_dinc", "Re_iinc", "Re_prod")
+                  "Re_dinc", "Re_iinc", "Re_macro")
                   
 sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
                    x_var = "eta_engr_units_tilde", 
@@ -124,7 +124,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
           Re_isub = ReboundTools::path_graph_params$isub_colour, 
           Re_dinc = ReboundTools::path_graph_params$dinc_colour,
           Re_iinc = ReboundTools::path_graph_params$iinc_colour,
-          Re_prod = ReboundTools::path_graph_params$prod_colour), 
+          Re_macro = ReboundTools::path_graph_params$macro_colour), 
                                breaks = rebound_vars) +
  ggplot2::scale_size_manual(values = 
         c(Re_dempl = 0.2, 
@@ -134,7 +134,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
           Re_isub = ReboundTools::path_graph_params$isub_size, 
           Re_dinc = ReboundTools::path_graph_params$dinc_size,
           Re_iinc = ReboundTools::path_graph_params$iinc_size,
-          Re_prod = ReboundTools::path_graph_params$prod_size), 
+          Re_macro = ReboundTools::path_graph_params$macro_size), 
                             breaks = rebound_vars) +
 ggplot2::scale_linetype_manual(values = 
         c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
@@ -144,7 +144,7 @@ ggplot2::scale_linetype_manual(values =
           Re_isub = "11",
           Re_dinc = ReboundTools::path_graph_params$dinc_linetype,
           Re_iinc = "11",
-          Re_prod = ReboundTools::path_graph_params$prod_linetype), 
+          Re_macro = ReboundTools::path_graph_params$macro_linetype), 
                                breaks = rebound_vars) +
 ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"), 
               y = "Re terms [-]", 
