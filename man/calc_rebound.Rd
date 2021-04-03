@@ -37,7 +37,7 @@ calc_rebound(
   Re_dinc = ReboundTools::rebound_terms$Re_dinc,
   Re_iinc = ReboundTools::rebound_terms$Re_iinc,
   Re_inc = ReboundTools::rebound_terms$Re_inc,
-  Re_prod = ReboundTools::rebound_terms$Re_prod,
+  Re_macro = ReboundTools::rebound_terms$Re_macro,
   Re_dir = ReboundTools::rebound_terms$Re_dir,
   Re_indir = ReboundTools::rebound_terms$Re_indir,
   Re_tot = ReboundTools::rebound_terms$Re_tot
@@ -58,7 +58,7 @@ calc_rebound(
 
 \item{Delta_E_dot_emb_star, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
 
-\item{Re_dempl, Re_emb, Re_cap, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_prod, Re_dir, Re_indir, Re_tot}{See \code{ReboundTools::rebound_terms}.}
+\item{Re_dempl, Re_emb, Re_cap, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_macro, Re_dir, Re_indir, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
 A data frame with rebound terms added as columns.

@@ -46,7 +46,7 @@ A list or data frame of derived rebound values for the bar stage (after the inco
 }
 \description{
 This function calculates energy rebound information for the tilde
-stage (immediately after the productivity effect).
+stage (immediately after the macro effect).
 }
 \examples{
 load_eeu_data() \%>\% 

@@ -15,7 +15,7 @@ A string list with 13 entries.
 \item{energy_engr_unit}{A string to identify the energy units of the service, e.g., "gal" in "miles/gal" or "kW-hr" in "lm-hr/kW-hr".}
 \item{MJ_engr_unit}{A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, \code{MJ_engr_unit} should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.}
 \item{I_E}{The energy intensity of the economy [MJ/$].}
-\item{k}{The productivity effect factor [--].}
+\item{k}{The macro effect factor [--].}
 \item{p_E_engr_units}{The price of energy in engineering units, e.g., $/gal or $/kW-hr [$/energy_engr_unit].}
 \item{e_qs_ps_UC}{The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption [--].}
@@ -40,8 +40,8 @@ Note the following meanings for the default parameter names:
 \item{orig}{The original device, prior to the EEU.}
 \item{star}{After the emplacement effect and before the substitution effect.}
 \item{hat}{After the substitution effect and before the income effect.}
-\item{bar}{After the income effect and before the productivity effect.}
-\item{tilde}{After the productivity effect.}
+\item{bar}{After the income effect and before the macro effect.}
+\item{tilde}{After the macro effect.}
 \item{I}{An economic intensity (per $).}
 \item{p}{Price.}
 \item{E}{Energy, typically final energy.}
