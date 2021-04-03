@@ -207,19 +207,19 @@ energy_paths <- function(.rebound_data,
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Productivity effect (prod)
+  # Macro effect (macro)
   x <- xend
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[k]] * .rebound_data[[N_dot_hat]] * .rebound_data[[I_E]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
-                colour = graph_params$prod_colour, 
-                size = graph_params$prod_size,
-                linetype = graph_params$prod_linetype,
+                colour = graph_params$macro_colour, 
+                size = graph_params$macro_size,
+                linetype = graph_params$macro_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = rebound_segments$prod, 
+                segment_name = rebound_segments$macro, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   

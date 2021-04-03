@@ -149,7 +149,7 @@ test_that("cost path creation works with reverse drawing order", {
   
   expected <- ReboundTools::rebound_segments
   expected$emb <- NULL
-  expected$prod <- NULL
+  expected$macro <- NULL
   expected <- expected %>% unlist() %>% unname()
   expect_equal(cp$line_name %>% unique(), expected)
   
@@ -175,7 +175,7 @@ test_that("prefs path creation works with reverse drawing order", {
   expected$cap <- NULL
   expected$md <- NULL
   expected$emb <- NULL
-  expected$prod <- NULL
+  expected$macro <- NULL
   expected <- expected %>% unlist() %>% unname()
   expect_equal(pp$line_name %>% unique(), expected)
   
