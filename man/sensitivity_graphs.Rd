@@ -134,7 +134,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
           Re_isub = ReboundTools::path_graph_params$isub_size, 
           Re_dinc = ReboundTools::path_graph_params$dinc_size,
           Re_iinc = ReboundTools::path_graph_params$iinc_size,
-          Re_macro = ReboundTools::path_graph_params$prod_size), 
+          Re_macro = ReboundTools::path_graph_params$macro_size), 
                             breaks = rebound_vars) +
 ggplot2::scale_linetype_manual(values = 
         c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
@@ -144,7 +144,7 @@ ggplot2::scale_linetype_manual(values =
           Re_isub = "11",
           Re_dinc = ReboundTools::path_graph_params$dinc_linetype,
           Re_iinc = "11",
-          Re_macro = ReboundTools::path_graph_params$prod_linetype), 
+          Re_macro = ReboundTools::path_graph_params$macro_linetype), 
                                breaks = rebound_vars) +
 ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"), 
               y = "Re terms [-]", 
