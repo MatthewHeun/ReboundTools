@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create iso-budget (expenditure) lines for a preferences graph — iso_budget_lines_prefs • ReboundTools</title>
+<title>A data frame of expenditure path segments — expenditure_paths • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Create iso-budget (expenditure) lines for a preferences graph — iso_budget_lines_prefs" />
-<meta property="og:description" content="This function creates a data frame of constant-budget (expenditure) lines
-at various rebound stages.
-The iso lines are described by slope and intercept." />
+<meta property="og:title" content="A data frame of expenditure path segments — expenditure_paths" />
+<meta property="og:description" content="Makes a data frame of segments for an expenditure path graph.
+Each stage of the rebound process is represented in the data frame." />
 
 
 
@@ -111,35 +110,34 @@ The iso lines are described by slope and intercept." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create iso-budget (expenditure) lines for a preferences graph</h1>
+    <h1>A data frame of expenditure path segments</h1>
     
-    <div class="hidden name"><code>iso_budget_lines_prefs.Rd</code></div>
+    <div class="hidden name"><code>expenditure_paths.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function creates a data frame of constant-budget (expenditure) lines
-at various rebound stages.
-The iso lines are described by slope and intercept.</p>
+    <p>Makes a data frame of segments for an expenditure path graph.
+Each stage of the rebound process is represented in the data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>iso_budget_lines_prefs</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>expenditure_paths</span><span class='op'>(</span>
   <span class='va'>.rebound_data</span>,
-  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>preferences</span>,
+  indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
   graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
-  p_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>p_s_orig</span>,
-  q_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_orig</span>,
+  rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>,
+  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>expenditure</span>,
+  C_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_s_orig</span>,
   C_dot_cap_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_orig</span>,
   C_dot_md_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_orig</span>,
   C_dot_o_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_orig</span>,
-  M_dot_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>M_dot_orig</span>,
-  p_s_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>p_s_star</span>,
   G_dot <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>G_dot</span>,
-  q_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_hat</span>,
-  C_dot_o_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_hat</span>,
-  Delta_q_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_q_dot_s_hat</span>,
   Delta_C_dot_cap_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_cap_star</span>,
   Delta_C_dot_md_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_md_star</span>,
-  Delta_C_dot_o_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_hat</span>
+  Delta_C_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_s_hat</span>,
+  Delta_C_dot_o_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_hat</span>,
+  Delta_C_dot_s_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_s_bar</span>,
+  Delta_C_dot_o_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_bar</span>,
+  graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -147,60 +145,71 @@ The iso lines are described by slope and intercept.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.rebound_data</th>
-      <td><p>A data frame of rebound information,
+      <td><p>A data frame of rebound analysis results,
 likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>graph_type</th>
-      <td><p>See <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>.</p></td>
+      <th>indexed</th>
+      <td><p>A boolean telling whether the rebound path should be indexed to <code>1</code>
+at its start.</p></td>
     </tr>
     <tr>
       <th>graph_params</th>
       <td><p>See <code>ReboundTools::graph_params</code>.</p></td>
     </tr>
     <tr>
-      <th>p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig, M_dot_orig</th>
+      <th>rebound_segments</th>
+      <td><p>See <code><a href='rebound_segments.html'>ReboundTools::rebound_segments</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>graph_type</th>
+      <td><p>See <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>C_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig</th>
       <td><p>See <code><a href='orig_vars.html'>ReboundTools::orig_vars</a></code>.</p></td>
     </tr>
     <tr>
-      <th>p_s_star, G_dot</th>
+      <th>G_dot</th>
       <td><p>See <code><a href='star_vars.html'>ReboundTools::star_vars</a></code>.</p></td>
     </tr>
     <tr>
-      <th>q_dot_s_hat, C_dot_o_hat</th>
-      <td><p>See <code><a href='hat_vars.html'>ReboundTools::hat_vars</a></code>.</p></td>
+      <th>Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar</th>
+      <td><p>See <code><a href='Delta_vars.html'>ReboundTools::Delta_vars</a></code>.</p></td>
     </tr>
     <tr>
-      <th>Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_C_dot_o_hat</th>
-      <td><p>See <code><a href='Delta_vars.html'>ReboundTools::Delta_vars</a></code>.</p></td>
+      <th>graph_df_colnames</th>
+      <td><p>See <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of iso-budget lines for a preferences graph.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The preferences graph is <em>always</em> indexed, so there is no <code>indexed</code> argument.</p>
+    <p>A data frame with cost rebound path segments.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>iso_budget_lines_prefs</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 11</span><span>
+  <span class='fu'>expenditure_paths</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 14 x 14</span><span>
 #&gt;    Reference Case  Original  Upgrade  graph_type line_name colour  size linetype
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… orig      black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandes… LED      Preferenc… orig      black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… star      black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandes… LED      Preferenc… star      black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… hat       black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandes… LED      Preferenc… hat       black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… bar       black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandes… LED      Preferenc… bar       black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fus… Ford Fu… Preferenc… ray       black    0.1 solid   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandes… LED      Preferenc… ray       black    0.1 solid   
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: slope &lt;dbl&gt;, intercept &lt;dbl&gt;</span><span></div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… dempl     #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandes… LED      Expenditu… dempl     #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… cap       #1507…   1.5 11      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandes… LED      Expenditu… cap       #1507…   1.5 11      
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… md        #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandes… LED      Expenditu… md        #1507…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… isub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandes… LED      Expenditu… isub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… dsub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandes… LED      Expenditu… dsub      #9914…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… dinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incandes… LED      Expenditu… dinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> None yet  Car   Ford Fus… Ford Fu… Expenditu… iinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> None yet  Lamp  Incandes… LED      Expenditu… iinc      #E76F…   1   solid   
+#&gt; </span><span style='color: #949494;'># … with 5 more variables: x &lt;dbl&gt;, y &lt;dbl&gt;, xend &lt;dbl&gt;, yend &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   end_arrow &lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
