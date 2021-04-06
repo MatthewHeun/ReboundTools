@@ -1,3 +1,11 @@
+# ReboundTools 0.1.19 (2021-04-06)
+
+* Change cost --> expenditure in many places.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.18 (2021-04-03)
 
 * Change nomenclature from productivity rebound to macro rebound.

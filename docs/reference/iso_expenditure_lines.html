@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract a metadata data frame from rebound data — extract_meta • ReboundTools</title>
+<title>Create a data frame of iso-expenditure lines — iso_expenditure_lines • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,10 @@
 
 
 
-<meta property="og:title" content="Extract a metadata data frame from rebound data — extract_meta" />
-<meta property="og:description" content="Many functions in ReboundTools use the metadata from energy efficiency upgrade
-parameters as a starting point for rebound paths or other graph creation.
-This function provides a way to quickly extract that metadata." />
+<meta property="og:title" content="Create a data frame of iso-expenditure lines — iso_expenditure_lines" />
+<meta property="og:description" content="This function creates a data frame of constant expenditure lines
+at various rebound stages.
+The iso lines are described by slope and intercept." />
 
 
 
@@ -111,24 +111,27 @@ This function provides a way to quickly extract that metadata." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract a metadata data frame from rebound data</h1>
+    <h1>Create a data frame of iso-expenditure lines</h1>
     
-    <div class="hidden name"><code>extract_meta.Rd</code></div>
+    <div class="hidden name"><code>iso_expenditure_lines.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Many functions in <code>ReboundTools</code> use the metadata from energy efficiency upgrade
-parameters as a starting point for rebound paths or other graph creation.
-This function provides a way to quickly extract that metadata.</p>
+    <p>This function creates a data frame of constant expenditure lines
+at various rebound stages.
+The iso lines are described by slope and intercept.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>extract_meta</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>iso_expenditure_lines</span><span class='op'>(</span>
   <span class='va'>.rebound_data</span>,
-  meta_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>reference</span>, <span class='va'>case</span>, <span class='va'>original</span>, <span class='va'>upgrade</span><span class='op'>)</span>,
-  reference <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>reference</span>,
-  case <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
-  original <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>original</span>,
-  upgrade <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>upgrade</span>
+  indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>expenditure</span>,
+  graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
+  C_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_s_orig</span>,
+  C_dot_cap_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_orig</span>,
+  C_dot_md_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_orig</span>,
+  C_dot_o_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_orig</span>,
+  G_dot <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>G_dot</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -136,30 +139,48 @@ This function provides a way to quickly extract that metadata.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.rebound_data</th>
-      <td><p>The data frame from which metadata is to be extracted.</p></td>
+      <td><p>A data frame of rebound information,
+likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>meta_cols</th>
-      <td><p>A vector of column names for metadata columns. Default is <code><a href='https://rdrr.io/r/base/c.html'>c(reference, case, original, upgrade)</a></code>.</p></td>
+      <th>indexed</th>
+      <td><p>A boolean telling whether the rebound path should be indexed to <code>1</code>
+at its start.</p></td>
     </tr>
     <tr>
-      <th>reference, case, original, upgrade</th>
-      <td><p>Names of metadata columns. See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code>.</p></td>
+      <th>graph_type</th>
+      <td><p>See <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>graph_params</th>
+      <td><p>See <code>ReboundTools::graph_params</code>.</p></td>
+    </tr>
+    <tr>
+      <th>C_dot_s_orig, C_dot_cap_orig, C_dot_md_orig, C_dot_o_orig</th>
+      <td><p>See <code><a href='orig_vars.html'>ReboundTools::orig_vars</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>G_dot</th>
+      <td><p>See <code><a href='star_vars.html'>ReboundTools::star_vars</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame containing only metadata columns.</p>
+    <p>A data frame of iso-expenditure lines for an expenditure graph.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>extract_meta</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span><span>
-#&gt;   Reference Case  Original     Upgrade           
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fusion  Ford Fusion Hybrid
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incandescent LED               </div></span></pre>
+  <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>iso_expenditure_lines</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span><span>
+#&gt;   Reference Case  Original  Upgrade   graph_type line_name colour  size linetype
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fus… Ford Fus… Expenditu… orig      black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incandes… LED       Expenditu… orig      black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> None yet  Car   Ford Fus… Ford Fus… Expenditu… G_dot     black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> None yet  Lamp  Incandes… LED       Expenditu… G_dot     black    0.3 solid   
+#&gt; </span><span style='color: #949494;'># … with 2 more variables: slope &lt;dbl&gt;, intercept &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

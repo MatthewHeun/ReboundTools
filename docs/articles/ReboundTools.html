@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.19</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
       <h1 data-toc-skip>ReboundTools</h1>
                         <h4 class="author">Matthew Kuperus Heun</h4>
             
-            <h4 class="date">2021-04-03</h4>
+            <h4 class="date">2021-04-06</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -82,7 +82,7 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p><code>ReboundTools</code> is an <code>R</code> package that provides functions to analyze energy rebound,<br>
-the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions perform analysis calculations to move from known parameters to rebound estimates. Other functions create rebound graphs in energy, cost, and preference spaces. The functions in this package were used for the analyses and graphs in the paper **********.</p>
+the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions perform analysis calculations to move from known parameters to rebound estimates. Graphing functions create rebound path graphs in energy, expenditure, and preference spaces. Other graphing functions create sensitivity graphs. The functions in this package were used for the analyses and graphs in the paper **********.</p>
 </div>
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
@@ -322,17 +322,17 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <a href="#stages-table" class="anchor"></a>Stages table</h3>
 <p>After a rebound analysis has been performed, the results can be displayed in a stages table, which has rebound parameters in rows and rebound stages in columns.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">digs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># eta_engr_units</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># eta</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># p_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># q_dot_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># E_dot_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># E_dot_emb</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># C_dot_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># C_dot_cap</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># C_dot_md</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># C_dot_o</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># N_dot</span>
+<code class="sourceCode R"><span class="va">digs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># eta_engr_units</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># eta</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># p_s</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># q_dot_s</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># E_dot_s</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># E_dot_emb</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_s</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_cap</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_md</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_o</span>
+                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># N_dot</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>, <span class="co"># M_dot</span>
                nrow <span class="op">=</span> <span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">7</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -349,8 +349,8 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         caption.placement <span class="op">=</span> <span class="st">"top"</span>,
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Sat Apr  3 12:34:26 2021 -->
+<!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
+<!-- Tue Apr  6 16:03:34 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -623,7 +623,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     Case <span class="op">=</span> <span class="cn">NULL</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ReboundTools</span><span class="fu">::</span><span class="fu"><a href="../reference/rebound_results_table.html">rebound_results_table</a></span><span class="op">(</span>include_subtotals <span class="op">=</span> <span class="cn">FALSE</span>, 
                                       label <span class="op">=</span> <span class="st">"tab:car_results"</span>, 
                                       digits <span class="op">=</span> <span class="fl">1</span>, 
@@ -635,8 +635,8 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         hline.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>,
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<!-- html table generated in R 4.0.3 by xtable 1.8-4 package -->
-<!-- Sat Apr  3 12:34:26 2021 -->
+<!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
+<!-- Tue Apr  6 16:03:34 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -735,10 +735,10 @@ Value [%]
 <p>Rebound graphs can be created with the <code><a href="../reference/path_graphs.html">path_graphs()</a></code> function. Three types of rebound graphs are available:</p>
 <ul>
 <li>Energy paths,</li>
-<li>Cost paths, and</li>
+<li>Expenditure paths, and</li>
 <li>Preference paths.</li>
 </ul>
-<p>The <code>graph_type</code> argument to <code><a href="../reference/path_graphs.html">path_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Cost”, or “Preferences”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
+<p>The <code>graph_type</code> argument to <code><a href="../reference/path_graphs.html">path_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Expenditure”, or “Preferences”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
 <div id="energy-path-graph" class="section level3">
 <h3 class="hasAnchor">
 <a href="#energy-path-graph" class="anchor"></a>Energy path graph</h3>
@@ -750,21 +750,21 @@ Value [%]
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="ReboundTools_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
-<div id="cost-path-graph" class="section level3">
+<div id="expenditure-path-graph" class="section level3">
 <h3 class="hasAnchor">
-<a href="#cost-path-graph" class="anchor"></a>Cost path graph</h3>
-<p>The cost path graph shows costs for rebound effects. Direct costs for the energy service (including substitution and income takebacks) are shown in the horizontal axis; capital costs, maintenance and disposal costs, substitution effect savings, and income effect costs are shown in the vertical axis. Diagonal lines with negative slope indicate lines of constant expenditure. The lower-left line indicates expected expenditure options before capital cost changes, maintenance cost changes, or behavior changes. Note that the beginning (cot) and end (arrow) of the cost path graph lie on the same expenditure line, indicating that all freed cash (after the emplacement and substitution effects) is re-spent in the income effect.</p>
+<a href="#expenditure-path-graph" class="anchor"></a>Expenditure path graph</h3>
+<p>The expenditure path graph shows expenditures for rebound effects. Direct expenditures for the energy service (including substitution and income takebacks) are shown in the horizontal axis; capital expenditures, maintenance and disposal expenditures, substitution effect savings, and income effect expenditures are shown in the vertical axis. Diagonal lines with negative slope indicate lines of constant expenditure. The lower-left line indicates expected expenditure options before capital expenditure changes, maintenance expenditure changes, or behavior changes. Note that the beginning (dot) and end (arrow) of the expenditure path both lie on the same expenditure line, indicating that all freed cash (after the emplacement and substitution effects) is re-spent in the income effect.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Cost"</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Expenditure"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="ReboundTools_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="preferences-path-graph" class="section level3">
 <h3 class="hasAnchor">
 <a href="#preferences-path-graph" class="anchor"></a>Preferences path graph</h3>
-<p>The preferences path graph shows details of the substitution and income effects, with normalized energy service consumption on the horizontal axis and normalized costs of other goods on the vertical axis. Diagonal grid lines with negative slope indicate constant expenditure sum of the energy service (horizontal axis) and other goods (vertical axis). Negative-sloping lines show the tradeoff between consumption of the energy service (horizontal axis) and consumption of other goods (vertical axis). The swooping, concave-upward grid lines indicate lines of constant utility: indifference curves.</p>
+<p>The preferences path graph shows details of the substitution and income effects, with normalized energy service consumption on the horizontal axis and normalized expenditures on other goods on the vertical axis. Diagonal grid lines with negative slope indicate constant expenditure sum of the energy service (horizontal axis) and other goods (vertical axis). Negative-sloping lines show the tradeoff between consumption of the energy service (horizontal axis) and consumption of other goods (vertical axis). The swooping, concave-upward grid lines indicate lines of constant utility: indifference curves.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -865,11 +865,11 @@ Value [%]
 <h4 class="hasAnchor">
 <a href="#grid_types" class="anchor"></a><code>grid_types</code>
 </h4>
-<p>The <code>grid_types</code> argument tells which grids to include on the rebound graphs. By default, grids are provided for all graph types. In the example below, grids are provided only for the energy and cost path graphs.</p>
+<p>The <code>grid_types</code> argument tells which grids to include on the rebound graphs. By default, grids are provided for all graph types. In the example below, grids are provided only for the energy and expenditure path graphs.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, grid_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Energy"</span>, <span class="st">"Cost"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, grid_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Energy"</span>, <span class="st">"Expenditure"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">Case</span><span class="op">)</span>,
                       cols <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">graph_type</span><span class="op">)</span>, 
                       scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
@@ -1102,7 +1102,7 @@ Value [%]
 <span class="co">#&gt; $energy_rebound_lines_colour</span>
 <span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $cost_grid_colour</span>
+<span class="co">#&gt; $expenditure_grid_colour</span>
 <span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $prefs_grid_colour</span>
@@ -1126,7 +1126,7 @@ Value [%]
 <span class="co">#&gt; $energy_rebound_lines_size</span>
 <span class="co">#&gt; [1] 0.1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $cost_grid_size</span>
+<span class="co">#&gt; $expenditure_grid_size</span>
 <span class="co">#&gt; [1] 0.3</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $prefs_grid_size</span>
@@ -1150,7 +1150,7 @@ Value [%]
 <span class="co">#&gt; $energy_rebound_lines_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $cost_grid_linetype</span>
+<span class="co">#&gt; $expenditure_grid_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $prefs_grid_linetype</span>
