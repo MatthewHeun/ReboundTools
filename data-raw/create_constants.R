@@ -311,7 +311,7 @@ usethis::use_data(latex_rebound_terms, overwrite = TRUE)
 # 
 
 graph_types <- list(energy = "Energy",
-                    cost = "Cost",
+                    expenditure = "Expenditure",
                     preferences = "Preferences")
 usethis::use_data(graph_types, overwrite = TRUE)
 

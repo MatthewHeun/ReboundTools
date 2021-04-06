@@ -192,7 +192,7 @@ Three types of rebound graphs are available:
    
 The `graph_type` argument to `path_graphs()` controls which
 type of path graph is returned
-(one of "Energy", "Cost", or "Preferences").
+(one of "Energy", "Expenditure", or "Preferences").
 By default, all three graph types are returned.
 The `cases` argument determines which cases are plotted.
 By default, all cases are returned.
@@ -217,17 +217,17 @@ load_eeu_data() %>%
 ```
 
 
-### Cost path graph
+### Expenditure path graph
 
-The cost path graph shows costs for rebound effects. 
-Direct costs for the energy service (including substitution and income takebacks)
+The expenditure path graph shows expenditures for rebound effects. 
+Direct expenditures for the energy service (including substitution and income takebacks)
 are shown in the horizontal axis;
-capital costs, maintenance and disposal costs, substitution effect savings, and
-income effect costs are shown in the vertical axis. 
+capital expenditures, maintenance and disposal expenditures, substitution effect savings, and
+income effect expenditures are shown in the vertical axis. 
 Diagonal lines with negative slope indicate lines of constant expenditure.
 The lower-left line indicates expected expenditure options before 
 capital cost changes, maintenance cost changes, or behavior changes.
-Note that the beginning (cot) and end (arrow) of the cost path graph lie on the same
+Note that the beginning (dot) and end (arrow) of the expenditure path both lie on the same
 expenditure line, indicating that all freed cash 
 (after the emplacement and substitution effects) 
 is re-spent in the income effect.
@@ -235,7 +235,7 @@ is re-spent in the income effect.
 ```{r}
 load_eeu_data() %>% 
   rebound_analysis() %>% 
-  path_graphs(cases = "Car", graph_types = "Cost") +
+  path_graphs(cases = "Car", graph_types = "Expenditure") +
   ggplot2::theme_classic()
 ```
 

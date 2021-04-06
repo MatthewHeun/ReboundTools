@@ -190,7 +190,7 @@ iso_energy_lines <- function(.rebound_data,
 #'   iso_cost_lines()
 iso_cost_lines <- function(.rebound_data, 
                            indexed = FALSE,
-                           graph_type = ReboundTools::graph_types$cost,
+                           graph_type = ReboundTools::graph_types$expenditure,
                            graph_params = ReboundTools::path_graph_params,
                            
                            C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 

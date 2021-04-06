@@ -43,7 +43,7 @@ path_graphs <- function(.analysis_data,
   e_paths <- analysis_data %>%
     energy_paths(indexed = indexed, graph_params = graph_params)
   c_paths <- analysis_data %>% 
-    cost_paths(indexed = indexed, graph_params = graph_params)
+    expenditure_paths(indexed = indexed, graph_params = graph_params)
   p_paths <- analysis_data %>% 
     prefs_paths(graph_params = graph_params)
   # Bundle all paths together
@@ -120,7 +120,7 @@ path_graphs <- function(.analysis_data,
         ggplot2::ylab(expression(dot(E)[indir] * " [MJ/year]"))
     }
   }
-  if (graph_types == ReboundTools::graph_types$cost) {
+  if (graph_types == ReboundTools::graph_types$expenditure) {
     if (indexed) {
       g <- g +
         # Horizontal axis label C_dot_dir/C_dot_dir_orig
