@@ -66,9 +66,9 @@
 #' \item{q_dot_s}{The rate of energy service consumption \[service/year\], calculated by `eta*E_dot_s`.}
 #' \item{E_dot_s}{The rate of final energy consumption by the energy conversion device \[MJ/year\].}
 #' \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device \[MJ/year\], calculated by `E_emb/t_life`.}
-#' \item{C_dot_s}{The cost rate of energy consumption by the device \[$/year\], calculated by `p_s*q_dot_s`.}
-#' \item{C_dot_cap}{The capital cost rate of the device \[$/year\], calculated by `C_cap/t_own`.}
-#' \item{C_dot_md}{The maintenance and disposal cost rate of the device \[$/year\].}
+#' \item{C_dot_s}{The expenditure rate of energy consumption by the device \[$/year\], calculated by `p_s*q_dot_s`.}
+#' \item{C_dot_cap}{The capital expenditure rate of the device \[$/year\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_md}{The maintenance and disposal expenditure rate of the device \[$/year\].}
 #' \item{C_dot_o}{The other goods consumption rate \[$/year\], calculated, initially, as a residual of the budget constraint.}
 #' \item{M_dot}{Real income \[$/year\].}
 #' }
@@ -119,7 +119,7 @@
 #' \describe{
 #' \item{dempl}{Direct emplacement effects.}
 #' \item{emb}{Embodied energy effects.}
-#' \item{cap}{Capital cost effects.}
+#' \item{cap}{Capital expenditure effects.}
 #' \item{md}{Maintenance and disposal effects.}
 #' \item{dsub}{Direct substitution effects.}
 #' \item{isub}{Indirect substitution effects.}
@@ -216,16 +216,16 @@
 #' \describe{
 #' \item{p_E}{The price of energy \[$/MJ\], calculated by `p_E_engr_units / MJ_engr_unit`.}
 #' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/year\] \[lumen-hours/year\].}
-#' \item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
+#' \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/year\].}
 #' \item{t_own_orig}{The expected ownership duration of the original device \[year\].}
-#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal expenditure rate \[$/year\].}
 #' \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_engr_units_orig / MJ_engr_unit`.}
 #' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
-#' \item{C_dot_cap_orig}{The original (pre-EEU) capital cost rate \[$/year\], calculated by `C_cap_orig / t_orig`.}
+#' \item{C_dot_cap_orig}{The original (pre-EEU) capital expenditure rate \[$/year\], calculated by `C_cap_orig / t_orig`.}
 #' \item{p_s_orig}{The original (pre-EEU) energy service price \[$/service\], calculated by `p_E / eta_orig`.}
-#' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy cost expenditures for the device \[$/year\], calculated by `p_E * E_dot_s_orig`.}
+#' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device \[$/year\], calculated by `p_E * E_dot_s_orig`.}
 #' \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods \[$/year\], calculated by `M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig`.}
 #' \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.}
 #' \item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC + f_Cs_orig*e_qs_M`.}
@@ -248,9 +248,9 @@
 #' 
 #' @format A string list with `r length(star_vars)` entries.
 #' \describe{
-#' \item{C_cap_star}{The net capital cost of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
+#' \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{t_own_star}{The expected ownership duration of the upgraded device \[year\].}
-#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate \[$/year\].}
+#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate \[$/year\].}
 #' \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device \[MJ\].}
 #' \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device \[year\].}
 #' \item{eta_engr_units_star}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
@@ -260,9 +260,9 @@
 #' \item{G_dot}{The expected device-level energy gross cost savings rate \[MJ/year\], calculated by `p_E * S_dot_dev`.}
 #' \item{p_s_star}{The upgraded (post-EEU) energy service price \[$/service\], calculated by `p_E / eta_star = p_E / eta_tilde`.}
 #' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/year\], same as `q_dot_s_orig`.}
-#' \item{C_dot_cap_star}{The upgraded (post-EEU) capital cost rate \[$/year\], calculated by `C_cap_star / t_star`.}
+#' \item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate \[$/year\], calculated by `C_cap_star / t_star`.}
 #' \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate \[MJ/year\], calculated by `E_emb_star / t_star`.}
-#' \item{C_dot_s_star}{The upgraded (post-EEU) energy cost rate \[$/year\], calculated by `p_s_star * q_dot_s_star`.}
+#' \item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate \[$/year\], calculated by `p_s_star * q_dot_s_star`.}
 #' \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings \[$/year\], exactly `M_dot_orig`.}
 #' \item{N_dot_star}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
 #' \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate \[$/year\], exactly `C_dot_o_orig`.}
@@ -346,7 +346,7 @@
 #' \describe{
 #' \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 #' \item{Re_emb}{Indirect embodied energy effect rebound.}
-#' \item{Re_cap}{Indirect capital cost effect rebound.}
+#' \item{Re_cap}{Indirect capital expenditure effect rebound.}
 #' \item{Re_md}{Indirect maintenance and disposal effect rebound.}
 #' \item{Re_empl}{Emplacement effect rebound.}
 #' \item{Re_dsub}{Direct substitution effect rebound.}
@@ -390,7 +390,7 @@
 #' \describe{
 #' \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 #' \item{Re_emb}{Indirect embodied energy effect rebound.}
-#' \item{Re_cap}{Indirect capital cost effect rebound.}
+#' \item{Re_cap}{Indirect capital expenditure effect rebound.}
 #' \item{Re_md}{Indirect maintenance and disposal effect rebound.}
 #' \item{Re_empl}{Emplacement effect rebound.}
 #' \item{Re_dsub}{Direct substitution effect rebound.}
@@ -416,7 +416,7 @@
 #' @format A string list with `r length(graph_types)` entries.
 #' \describe{
 #' \item{energy}{The energy graph type.}
-#' \item{cost}{The cost graph type.}
+#' \item{expenditure}{The expenditure graph type.}
 #' \item{preferences}{The preferences graph type.}
 #' }
 #' @examples
@@ -461,7 +461,7 @@
 #' Path graph parameters
 #' 
 #' The list of graph parameters for drawing
-#' energy path graphs, cost path graphs, and preference path graphs
+#' energy path graphs, expenditure path graphs, and preference path graphs
 #' in the `ReboundTools` package.
 #' 
 #' This list is passed to several graphing functions.
@@ -481,7 +481,7 @@
 #' \item{arrow_style}{An `arrow` object created by `grid::arrow`.}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
-#' \item{cap_colour}{The colour for capital cost lines.}
+#' \item{cap_colour}{The colour for capital expenditure lines.}
 #' \item{md_colour}{The colour for maintenance and disposal lines.}
 #' \item{empl_colour}{The colour for emplacement lines.}
 #' \item{dsub_colour}{The colour for direct substitution lines.}
@@ -496,7 +496,7 @@
 #' \item{tot_colour}{The colour for total rebound lines.}
 #' \item{dempl_size}{The size for direct emplacment lines.}
 #' \item{emb_size}{The size for embodied energy lines.}
-#' \item{cap_size}{The size for capital cost lines.}
+#' \item{cap_size}{The size for capital expenditure lines.}
 #' \item{md_size}{The size for maintenance and disposal lines.}
 #' \item{empl_size}{The size for emplacement lines.}
 #' \item{dsub_size}{The size for direct substitution lines.}
@@ -511,7 +511,7 @@
 #' \item{tot_size}{The size for total rebound lines.}
 #' \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 #' \item{emb_linetype}{The linetype for embodied energy lines.}
-#' \item{cap_linetype}{The linetype for capital cost lines.}
+#' \item{cap_linetype}{The linetype for capital expenditure lines.}
 #' \item{md_linetype}{The linetype for maintenance and disposal lines.}
 #' \item{empl_linetype}{The linetype for emplacement lines.}
 #' \item{dsub_linetype}{The linetype for direct substitution lines.}
@@ -537,24 +537,24 @@
 #' \item{zero_perc_rebound_grid_colour}{The colour for energy the 0% rebound lines.}
 #' \item{hundred_perc_rebound_grid_colour}{The colour for the 100% rebound lines.}
 #' \item{energy_rebound_lines_colour}{The colour for energy rebound lines.}
-#' \item{cost_grid_colour}{The colour for cost grid lines.}
-#' \item{cost_ray_colour}{The colour for cost rays.}
+#' \item{expenditure_grid_colour}{The colour for expenditure grid lines.}
+#' \item{expenditure_ray_colour}{The colour for expenditure rays.}
 #' \item{prefs_grid_colour}{The colour for preferences grid lines.}
 #' \item{prefs_indiff_curve_colour}{The colour for indifference curve lines.}
 #' \item{energy_grid_size}{The size for energy grid lines.}
 #' \item{zero_perc_rebound_grid_size}{The size for 0% rebound grid lines.}
 #' \item{hundred_perc_rebound_grid_size}{The size for the 100% rebound grid lines.}
 #' \item{energy_rebound_lines_size}{The size for energy rebound lines.}
-#' \item{cost_grid_size}{The size for cost grid lines.}
-#' \item{cost_ray_size}{The size for cost rays.}
+#' \item{expenditure_grid_size}{The size for expenditure grid lines.}
+#' \item{expenditure_ray_size}{The size for expenditure rays.}
 #' \item{prefs_grid_size}{The size for preferences grid lines.}
 #' \item{prefs_indiff_curve_size}{The size for indifference curve lines.}
 #' \item{energy_grid_linetype}{The linetype for energy grid lines.}
 #' \item{zero_perc_rebound_grid_linetype}{The linetype for 0% rebound grid lines.}
 #' \item{hundred_perc_rebound_grid_linetype}{The linetype for the 100% rebound grid lines.}
 #' \item{energy_rebound_lines_linetype}{The linetype for energy rebound lines.}
-#' \item{cost_grid_linetype}{The linetype for cost grid lines.}
-#' \item{cost_ray_linetype}{The linetype for cost rays.}
+#' \item{expenditure_grid_linetype}{The linetype for expenditure grid lines.}
+#' \item{expenditure_ray_linetype}{The linetype for expenditure rays.}
 #' \item{prefs_grid_linetype}{The linetype for preferences grid lines.}
 #' \item{prefs_indiff_curve_linetype}{The linetype for indifference curve lines.}
 #' \item{n_indiff_curve_points}{The number of points on the indifference curves.}
@@ -592,7 +592,7 @@
 #' \item{orig_point_fill}{The fill colour for original points. Default is "black".}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
-#' \item{cap_colour}{The colour for capital cost lines.}
+#' \item{cap_colour}{The colour for capital expenditure lines.}
 #' \item{md_colour}{The colour for maintenance and disposal lines.}
 #' \item{empl_colour}{The colour for emplacement lines.}
 #' \item{dsub_colour}{The colour for direct substitution lines.}
@@ -607,7 +607,7 @@
 #' \item{tot_colour}{The colour for total rebound lines.}
 #' \item{dempl_size}{The size for direct emplacment lines.}
 #' \item{emb_size}{The size for embodied energy lines.}
-#' \item{cap_size}{The size for capital cost lines.}
+#' \item{cap_size}{The size for capital expenditure lines.}
 #' \item{md_size}{The size for maintenance and disposal lines.}
 #' \item{empl_size}{The size for emplacement lines.}
 #' \item{dsub_size}{The size for direct substitution lines.}
@@ -622,7 +622,7 @@
 #' \item{tot_size}{The size for total rebound lines.}
 #' \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 #' \item{emb_linetype}{The linetype for embodied energy lines.}
-#' \item{cap_linetype}{The linetype for capital cost lines.}
+#' \item{cap_linetype}{The linetype for capital expenditure lines.}
 #' \item{md_linetype}{The linetype for maintenance and disposal lines.}
 #' \item{empl_linetype}{The linetype for emplacement lines.}
 #' \item{dsub_linetype}{The linetype for direct substitution lines.}

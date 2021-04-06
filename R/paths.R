@@ -236,8 +236,9 @@ energy_paths <- function(.rebound_data,
 
 
 
-#' Make a data frame of segments 
-#' for a cost rebound graph.
+#' A data frame of expenditure path segments 
+#' 
+#' Makes a data frame of segments for an expenditure path graph.
 #' Each stage of the rebound process is represented in the data frame.
 #'
 #' @param .rebound_data A data frame of rebound analysis results, 

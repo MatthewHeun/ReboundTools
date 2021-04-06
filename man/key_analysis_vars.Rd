@@ -13,9 +13,9 @@ A string list with 12 entries.
 \item{q_dot_s}{The rate of energy service consumption [service/year], calculated by \code{eta*E_dot_s}.}
 \item{E_dot_s}{The rate of final energy consumption by the energy conversion device [MJ/year].}
 \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device [MJ/year], calculated by \code{E_emb/t_life}.}
-\item{C_dot_s}{The cost rate of energy consumption by the device [$/year], calculated by \code{p_s*q_dot_s}.}
-\item{C_dot_cap}{The capital cost rate of the device [$/year], calculated by \code{C_cap/t_own}.}
-\item{C_dot_md}{The maintenance and disposal cost rate of the device [$/year].}
+\item{C_dot_s}{The expenditure rate of energy consumption by the device [$/year], calculated by \code{p_s*q_dot_s}.}
+\item{C_dot_cap}{The capital expenditure rate of the device [$/year], calculated by \code{C_cap/t_own}.}
+\item{C_dot_md}{The maintenance and disposal expenditure rate of the device [$/year].}
 \item{C_dot_o}{The other goods consumption rate [$/year], calculated, initially, as a residual of the budget constraint.}
 \item{M_dot}{Real income [$/year].}
 }

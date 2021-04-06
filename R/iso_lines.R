@@ -165,9 +165,9 @@ iso_energy_lines <- function(.rebound_data,
 }
 
 
-#' Create a data frame of iso-cost lines
+#' Create a data frame of iso-expenditure lines
 #' 
-#' This function creates a data frame of constant-cost lines 
+#' This function creates a data frame of constant expenditure lines 
 #' at various rebound stages.
 #' The iso lines are described by slope and intercept.
 #' 
@@ -180,15 +180,15 @@ iso_energy_lines <- function(.rebound_data,
 #' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
 #'
-#' @return A data frame of iso-cost lines for a cost graph.
+#' @return A data frame of iso-expenditure lines for an expenditure graph.
 #' 
 #' @export
 #'
 #' @examples
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   iso_cost_lines()
-iso_cost_lines <- function(.rebound_data, 
+#'   iso_expenditure_lines()
+iso_expenditure_lines <- function(.rebound_data, 
                            indexed = FALSE,
                            graph_type = ReboundTools::graph_types$expenditure,
                            graph_params = ReboundTools::path_graph_params,
@@ -202,7 +202,7 @@ iso_cost_lines <- function(.rebound_data,
   
   meta <- extract_meta(.rebound_data)
   
-  # Iso-cost line at the orig point.
+  # Iso-expenditure line at the orig point.
   x_orig <- .rebound_data[[C_dot_s_orig]]
   y_orig <- .rebound_data[[C_dot_cap_orig]] + .rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]
   x <- x_orig
@@ -211,13 +211,13 @@ iso_cost_lines <- function(.rebound_data,
                   meta = meta, 
                   graph_type = graph_type, 
                   iso_name = ReboundTools::rebound_stages$orig,
-                  colour = graph_params$cost_grid_colour, 
-                  size = graph_params$cost_grid_size, 
-                  linetype = graph_params$cost_grid_linetype, 
+                  colour = graph_params$expenditure_grid_colour, 
+                  size = graph_params$expenditure_grid_size, 
+                  linetype = graph_params$expenditure_grid_linetype, 
                   x_orig = x_orig, y_orig = y_orig, 
                   x = x, y = y)
   
-  # Iso-cost line after expected savings
+  # Iso-expenditure line after expected savings
   x <- x - .rebound_data[[G_dot]]
   y <- y
   isos <- isos %>% 
@@ -225,9 +225,9 @@ iso_cost_lines <- function(.rebound_data,
             meta = meta, 
             graph_type = graph_type, 
             iso_name = "G_dot",
-            colour = graph_params$cost_grid_colour, 
-            size = graph_params$cost_grid_size, 
-            linetype = graph_params$cost_grid_linetype, 
+            colour = graph_params$expenditure_grid_colour, 
+            size = graph_params$expenditure_grid_size, 
+            linetype = graph_params$expenditure_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig, 
             x = x, y = y)
 
@@ -438,7 +438,7 @@ add_budget_line <- function(.DF = NULL,
 #' The iso lines are accumulated in rows at the bottom of the data frame.
 #' 
 #' There is usually no need to call this function directly. 
-#' Functions like `iso_energy_lines()` and `iso_cost_lines()` 
+#' Functions like `iso_energy_lines()` and `iso_expenditure_lines()` 
 #' call `add_iso()` internally.
 #'
 #' @param .DF A data frame that accumulates iso lines. 

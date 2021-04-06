@@ -32,14 +32,14 @@ test_that("expenditure_paths() works as expected", {
     rebound_analysis() %>% 
     expenditure_paths()
   
-  # Check values on the car absolute cost path.
-  car_cost_path_abs <- expenditure_paths_abs %>% 
+  # Check values on the car absolute expenditure path.
+  car_expenditure_path_abs <- expenditure_paths_abs %>% 
     dplyr::filter(Case == "Car", graph_type == ReboundTools::graph_types$expenditure, 
                   line_name == ReboundTools::rebound_segments$dempl)
-  expect_equal(car_cost_path_abs$x, 1275.17)
-  expect_equal(car_cost_path_abs$xend, 759.02976190476181272970)
-  expect_equal(car_cost_path_abs$y, 26126.10769302945845993236)
-  expect_equal(car_cost_path_abs$yend, 26126.10769302945845993236)
+  expect_equal(car_expenditure_path_abs$x, 1275.17)
+  expect_equal(car_expenditure_path_abs$xend, 759.02976190476181272970)
+  expect_equal(car_expenditure_path_abs$y, 26126.10769302945845993236)
+  expect_equal(car_expenditure_path_abs$yend, 26126.10769302945845993236)
   
   # Calculate the indexed paths
   expenditure_paths_indexed <- load_eeu_data() %>% 
@@ -140,7 +140,7 @@ test_that("energy path creation works with reverse drawing order", {
 })
 
 
-test_that("cost path creation works with reverse drawing order", {
+test_that("expenditure path creation works with reverse drawing order", {
   reverse_order <- ReboundTools::path_graph_params
   expect_false(reverse_order$reverse_path_drawing_order)
   reverse_order$reverse_path_drawing_order <- TRUE

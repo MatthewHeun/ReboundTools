@@ -226,7 +226,9 @@ capital expenditures, maintenance and disposal expenditures, substitution effect
 income effect expenditures are shown in the vertical axis. 
 Diagonal lines with negative slope indicate lines of constant expenditure.
 The lower-left line indicates expected expenditure options before 
-capital cost changes, maintenance cost changes, or behavior changes.
+capital expenditure changes, 
+maintenance expenditure changes, or
+behavior changes.
 Note that the beginning (dot) and end (arrow) of the expenditure path both lie on the same
 expenditure line, indicating that all freed cash 
 (after the emplacement and substitution effects) 
@@ -235,7 +237,7 @@ is re-spent in the income effect.
 ```{r}
 load_eeu_data() %>% 
   rebound_analysis() %>% 
-  path_graphs(cases = "Car", graph_types = "Expenditure") +
+path_graphs(cases = "Car", graph_types = "Expenditure") +
   ggplot2::theme_classic()
 ```
 
@@ -244,7 +246,7 @@ load_eeu_data() %>%
 
 The preferences path graph shows details of the substitution and income effects, 
 with normalized energy service consumption on the horizontal axis
-and normalized costs of other goods on the vertical axis.
+and normalized expenditures on other goods on the vertical axis.
 Diagonal grid lines with negative slope indicate constant expenditure sum
 of the energy service (horizontal axis) and other goods (vertical axis).
 Negative-sloping lines show the tradeoff between consumption of the energy service 
@@ -363,12 +365,12 @@ load_eeu_data() %>%
 
 The `grid_types` argument tells which grids to include on the rebound graphs.
 By default, grids are provided for all graph types.
-In the example below, grids are provided only for the energy and cost path graphs.
+In the example below, grids are provided only for the energy and expenditure path graphs.
 
 ```{r}
 load_eeu_data() %>% 
   rebound_analysis() %>% 
-  path_graphs(indexed = TRUE, grid_types = c("Energy", "Cost")) +
+  path_graphs(indexed = TRUE, grid_types = c("Energy", "Expenditure")) +
   ggplot2::facet_grid(rows = vars(Case),
                       cols = vars(graph_type), 
                       scales = "free") +

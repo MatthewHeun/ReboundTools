@@ -2,9 +2,7 @@
 % Please edit documentation in R/paths.R
 \name{expenditure_paths}
 \alias{expenditure_paths}
-\title{Make a data frame of segments
-for a cost rebound graph.
-Each stage of the rebound process is represented in the data frame.}
+\title{A data frame of expenditure path segments}
 \usage{
 expenditure_paths(
   .rebound_data,
@@ -51,8 +49,7 @@ at its start.}
 A data frame with cost rebound path segments.
 }
 \description{
-Make a data frame of segments
-for a cost rebound graph.
+Makes a data frame of segments for an expenditure path graph.
 Each stage of the rebound process is represented in the data frame.
 }
 \examples{

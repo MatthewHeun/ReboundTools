@@ -15,7 +15,7 @@ A string list with 56 entries.
 \item{orig_point_fill}{The fill colour for original points. Default is "black".}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
-\item{cap_colour}{The colour for capital cost lines.}
+\item{cap_colour}{The colour for capital expenditure lines.}
 \item{md_colour}{The colour for maintenance and disposal lines.}
 \item{empl_colour}{The colour for emplacement lines.}
 \item{dsub_colour}{The colour for direct substitution lines.}
@@ -30,7 +30,7 @@ A string list with 56 entries.
 \item{tot_colour}{The colour for total rebound lines.}
 \item{dempl_size}{The size for direct emplacment lines.}
 \item{emb_size}{The size for embodied energy lines.}
-\item{cap_size}{The size for capital cost lines.}
+\item{cap_size}{The size for capital expenditure lines.}
 \item{md_size}{The size for maintenance and disposal lines.}
 \item{empl_size}{The size for emplacement lines.}
 \item{dsub_size}{The size for direct substitution lines.}
@@ -45,7 +45,7 @@ A string list with 56 entries.
 \item{tot_size}{The size for total rebound lines.}
 \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 \item{emb_linetype}{The linetype for embodied energy lines.}
-\item{cap_linetype}{The linetype for capital cost lines.}
+\item{cap_linetype}{The linetype for capital expenditure lines.}
 \item{md_linetype}{The linetype for maintenance and disposal lines.}
 \item{empl_linetype}{The linetype for emplacement lines.}
 \item{dsub_linetype}{The linetype for direct substitution lines.}

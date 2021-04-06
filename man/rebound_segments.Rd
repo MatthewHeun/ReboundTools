@@ -9,7 +9,7 @@ A list frame with 9 entries
 \describe{
 \item{dempl}{Direct emplacement effects.}
 \item{emb}{Embodied energy effects.}
-\item{cap}{Capital cost effects.}
+\item{cap}{Capital expenditure effects.}
 \item{md}{Maintenance and disposal effects.}
 \item{dsub}{Direct substitution effects.}
 \item{isub}{Indirect substitution effects.}
