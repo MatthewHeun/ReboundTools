@@ -59,44 +59,44 @@ test_that("extract_points() works as expected", {
   # If there were a tilde point, it should have this colour
   # expect_true(is.na(car_energy_points_tilde$colour %>% unique()))
   
-  # Calculate absolute cost paths
-  cost_points_abs <- load_eeu_data() %>% 
+  # Calculate absolute expenditure paths
+  expenditure_points_abs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     expenditure_paths() %>% 
     extract_points()
   
   # Orig point.
-  car_cost_points_orig <- cost_points_abs %>% 
+  car_expenditure_points_orig <- expenditure_points_abs %>% 
     dplyr::filter(Case == "Car",
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$orig)
-  expect_equal(car_cost_points_orig$x, 1275.17)
-  expect_equal(car_cost_points_orig$y, 26126.10769302945846)
+  expect_equal(car_expenditure_points_orig$x, 1275.17)
+  expect_equal(car_expenditure_points_orig$y, 26126.10769302945846)
   
   # Star point.
-  car_cost_points_star <- cost_points_abs %>% 
+  car_expenditure_points_star <- expenditure_points_abs %>% 
     dplyr::filter(Case == "Car", 
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$star)
-  expect_equal(car_cost_points_star$x, 759.02976190476181273)
-  expect_equal(car_cost_points_star$y, 25940.684414189981908)
+  expect_equal(car_expenditure_points_star$x, 759.02976190476181273)
+  expect_equal(car_expenditure_points_star$y, 25940.684414189981908)
   
   # Hat point.
-  car_cost_points_hat <- cost_points_abs %>% 
+  car_expenditure_points_hat <- expenditure_points_abs %>% 
     dplyr::filter(Case == "Car", 
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$hat)
-  expect_equal(car_cost_points_hat$x, 774.27545561799774987)
-  expect_equal(car_cost_points_hat$y, 25920.739701178415999)
+  expect_equal(car_expenditure_points_hat$x, 774.27545561799774987)
+  expect_equal(car_expenditure_points_hat$y, 25920.739701178415999)
   
   # Bar point.
-  car_cost_points_bar <- cost_points_abs %>% 
+  car_expenditure_points_bar <- expenditure_points_abs %>% 
     dplyr::filter(Case == "Car",
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ".last_point")
   # There is not a bar point.  There is a "last_point"
-  expect_equal(car_cost_points_bar$x, 801.63336575829112007)
-  expect_equal(car_cost_points_bar$y, 26599.644327271169459)
+  expect_equal(car_expenditure_points_bar$x, 801.63336575829112007)
+  expect_equal(car_expenditure_points_bar$y, 26599.644327271169459)
   
 
   # Calculate preferences paths
