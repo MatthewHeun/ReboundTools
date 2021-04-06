@@ -1,3 +1,10 @@
+* Split graphs into their own vignette.
+* Added a vignette section on sensitivity graphs.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.19 (2021-04-06)
 
 * Change cost --> expenditure in many places.
