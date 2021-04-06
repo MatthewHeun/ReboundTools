@@ -15,7 +15,7 @@ A string list with 56 entries.
 \item{orig_point_fill}{The fill colour for original points. Default is "black".}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
-\item{cap_colour}{The colour for capital cost lines.}
+\item{cap_colour}{The colour for capital expenditure lines.}
 \item{md_colour}{The colour for maintenance and disposal lines.}
 \item{empl_colour}{The colour for emplacement lines.}
 \item{dsub_colour}{The colour for direct substitution lines.}
@@ -24,13 +24,13 @@ A string list with 56 entries.
 \item{dinc_colour}{The colour for direct income lines.}
 \item{iinc_colour}{The colour for indirect income lines.}
 \item{inc_colour}{The colour for income lines.}
-\item{prod_colour}{The colour for productivity lines.}
+\item{macro_colour}{The colour for macro lines.}
 \item{dir_colour}{The colour for direct lines.}
-\item{indir_colour}{The colour for productivity lines.}
+\item{indir_colour}{The colour for indirect lines.}
 \item{tot_colour}{The colour for total rebound lines.}
 \item{dempl_size}{The size for direct emplacment lines.}
 \item{emb_size}{The size for embodied energy lines.}
-\item{cap_size}{The size for capital cost lines.}
+\item{cap_size}{The size for capital expenditure lines.}
 \item{md_size}{The size for maintenance and disposal lines.}
 \item{empl_size}{The size for emplacement lines.}
 \item{dsub_size}{The size for direct substitution lines.}
@@ -39,13 +39,13 @@ A string list with 56 entries.
 \item{dinc_size}{The size for direct income lines.}
 \item{iinc_size}{The size for indirect income lines.}
 \item{inc_size}{The size for income lines.}
-\item{prod_size}{The size for productivity lines.}
+\item{macro_size}{The size for macro lines.}
 \item{dir_size}{The size for direct lines.}
 \item{indir_size}{The size for indirect lines.}
 \item{tot_size}{The size for total rebound lines.}
 \item{dempl_linetyps}{The linetype for direct emplacment lines.}
 \item{emb_linetype}{The linetype for embodied energy lines.}
-\item{cap_linetype}{The linetype for capital cost lines.}
+\item{cap_linetype}{The linetype for capital expenditure lines.}
 \item{md_linetype}{The linetype for maintenance and disposal lines.}
 \item{empl_linetype}{The linetype for emplacement lines.}
 \item{dsub_linetype}{The linetype for direct substitution lines.}
@@ -54,7 +54,7 @@ A string list with 56 entries.
 \item{dinc_linetype}{The linetype for direct income lines.}
 \item{iinc_linetype}{The linetype for indirect income lines.}
 \item{inc_linetype}{The linetype for income lines.}
-\item{prod_linetype}{The linetype for productivity lines.}
+\item{macro_linetype}{The linetype for macro lines.}
 \item{dir_linetype}{The linetype for direct lines.}
 \item{indir_linetype}{The linetype for indirect lines.}
 \item{tot_linetype}{The linetype for total rebound lines.}

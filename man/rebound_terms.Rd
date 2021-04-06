@@ -9,7 +9,7 @@ A string list with 15 entries.
 \describe{
 \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 \item{Re_emb}{Indirect embodied energy effect rebound.}
-\item{Re_cap}{Indirect capital cost effect rebound.}
+\item{Re_cap}{Indirect capital expenditure effect rebound.}
 \item{Re_md}{Indirect maintenance and disposal effect rebound.}
 \item{Re_empl}{Emplacement effect rebound.}
 \item{Re_dsub}{Direct substitution effect rebound.}
@@ -18,7 +18,7 @@ A string list with 15 entries.
 \item{Re_dinc}{Direct income effect rebound.}
 \item{Re_iinc}{Indirect income effect rebound.}
 \item{Re_inc}{Income effect rebound.}
-\item{Re_prod}{Indirect productivity effect rebound.}
+\item{Re_macro}{Indirect macro effect rebound.}
 \item{Re_d}{Sum of all direct rebound effects.}
 \item{Re_i}{Sum of all indirect rebound effects.}
 \item{Re_tot}{Total rebound.}

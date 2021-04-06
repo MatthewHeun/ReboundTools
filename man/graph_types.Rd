@@ -8,7 +8,7 @@
 A string list with 3 entries.
 \describe{
 \item{energy}{The energy graph type.}
-\item{cost}{The cost graph type.}
+\item{expenditure}{The expenditure graph type.}
 \item{preferences}{The preferences graph type.}
 }
 }

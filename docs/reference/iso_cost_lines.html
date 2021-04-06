@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a data frame of iso-cost lines — iso_cost_lines • ReboundTools</title>
+<title>Create a data frame of iso-cost lines — iso_expenditure_lines • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Create a data frame of iso-cost lines — iso_cost_lines" />
+<meta property="og:title" content="Create a data frame of iso-cost lines — iso_expenditure_lines" />
 <meta property="og:description" content="This function creates a data frame of constant-cost lines
 at various rebound stages.
 The iso lines are described by slope and intercept." />
@@ -74,7 +74,7 @@ The iso lines are described by slope and intercept." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.18</span>
       </span>
     </div>
 
@@ -113,7 +113,7 @@ The iso lines are described by slope and intercept." />
     <div class="page-header">
     <h1>Create a data frame of iso-cost lines</h1>
     
-    <div class="hidden name"><code>iso_cost_lines.Rd</code></div>
+    <div class="hidden name"><code>iso_expenditure_lines.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -122,7 +122,7 @@ at various rebound stages.
 The iso lines are described by slope and intercept.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>iso_cost_lines</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>iso_expenditure_lines</span><span class='op'>(</span>
   <span class='va'>.rebound_data</span>,
   indexed <span class='op'>=</span> <span class='cn'>FALSE</span>,
   graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>cost</span>,
@@ -172,7 +172,7 @@ at its start.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>iso_cost_lines</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'>iso_expenditure_lines</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span><span>
 #&gt;   Reference Case  Original  Upgrade   graph_type line_name colour  size linetype
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   

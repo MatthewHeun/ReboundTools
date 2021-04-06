@@ -1,22 +1,26 @@
-test_that("iso_cost_lines() works as expected", {
-  iso_cost_lines_abs <- load_eeu_data() %>% 
+test_that("iso_expenditure_lines() works as expected", {
+  iso_expenditure_lines_abs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    iso_cost_lines()
+    iso_expenditure_lines()
   
     # Check values on the car absolute iso line.
-    car_cost_iso_lines_abs <- iso_cost_lines_abs %>%
-      dplyr::filter(Case == "Car", graph_type == "Cost", line_name == "orig")
-    expect_equal(car_cost_iso_lines_abs$slope, -1)
-    expect_equal(car_cost_iso_lines_abs$intercept, 27401.27769302945671370253)
+    car_expenditure_iso_lines_abs <- iso_expenditure_lines_abs %>%
+      dplyr::filter(Case == "Car",
+                    graph_type == ReboundTools::graph_types$expenditure,
+                    line_name == "orig")
+    expect_equal(car_expenditure_iso_lines_abs$slope, -1)
+    expect_equal(car_expenditure_iso_lines_abs$intercept, 27401.27769302945671370253)
 
-    # Calculate the indexed iso cost line.
-    car_cost_iso_lines_indexed <- load_eeu_data() %>%
+    # Calculate the indexed iso expenditure line.
+    car_expenditure_iso_lines_indexed <- load_eeu_data() %>%
       rebound_analysis() %>%
-      iso_cost_lines(indexed = TRUE)
-    car_cost_iso_lines_indexed <- car_cost_iso_lines_indexed %>%
-      dplyr::filter(Case == "Car", graph_type == "Cost", line_name == "orig")
-    expect_equal(car_cost_iso_lines_indexed$slope, -0.04880826547079648164)
-    expect_equal(car_cost_iso_lines_indexed$intercept, 1.04880826547079641919)
+      iso_expenditure_lines(indexed = TRUE)
+    car_expenditure_iso_lines_indexed <- car_expenditure_iso_lines_indexed %>%
+      dplyr::filter(Case == "Car",
+                    graph_type == ReboundTools::graph_types$expenditure,
+                    line_name == "orig")
+    expect_equal(car_expenditure_iso_lines_indexed$slope, -0.04880826547079648164)
+    expect_equal(car_expenditure_iso_lines_indexed$intercept, 1.04880826547079641919)
 })
 
 

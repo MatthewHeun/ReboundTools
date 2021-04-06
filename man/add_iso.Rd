@@ -59,7 +59,7 @@ The iso lines are accumulated in rows at the bottom of the data frame.
 }
 \details{
 There is usually no need to call this function directly.
-Functions like \code{iso_energy_lines()} and \code{iso_cost_lines()}
+Functions like \code{iso_energy_lines()} and \code{iso_expenditure_lines()}
 call \code{add_iso()} internally.
 }
 \examples{

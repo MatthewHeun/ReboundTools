@@ -207,19 +207,19 @@ energy_paths <- function(.rebound_data,
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Productivity effect (prod)
+  # Macro effect (macro)
   x <- xend
   y <- yend
   xend <- x
   yend <- y + .rebound_data[[k]] * .rebound_data[[N_dot_hat]] * .rebound_data[[I_E]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
-                colour = graph_params$prod_colour, 
-                size = graph_params$prod_size,
-                linetype = graph_params$prod_linetype,
+                colour = graph_params$macro_colour, 
+                size = graph_params$macro_size,
+                linetype = graph_params$macro_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = rebound_segments$prod, 
+                segment_name = rebound_segments$macro, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -236,8 +236,9 @@ energy_paths <- function(.rebound_data,
 
 
 
-#' Make a data frame of segments 
-#' for a cost rebound graph.
+#' A data frame of expenditure path segments 
+#' 
+#' Makes a data frame of segments for an expenditure path graph.
 #' Each stage of the rebound process is represented in the data frame.
 #'
 #' @param .rebound_data A data frame of rebound analysis results, 
@@ -259,12 +260,12 @@ energy_paths <- function(.rebound_data,
 #' @examples
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   cost_paths()
-cost_paths <- function(.rebound_data, 
+#'   expenditure_paths()
+expenditure_paths <- function(.rebound_data, 
                        indexed = FALSE,
                        graph_params = ReboundTools::path_graph_params,
                        rebound_segments = ReboundTools::rebound_segments,
-                       graph_type = ReboundTools::graph_types$cost,
+                       graph_type = ReboundTools::graph_types$expenditure,
 
                        C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                        C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 

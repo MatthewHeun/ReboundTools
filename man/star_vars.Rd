@@ -7,9 +7,9 @@
 \format{
 A string list with 19 entries.
 \describe{
-\item{C_cap_star}{The net capital cost of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
+\item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{t_own_star}{The expected ownership duration of the upgraded device [year].}
-\item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal cost rate [$/year].}
+\item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate [$/year].}
 \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device [MJ].}
 \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device [year].}
 \item{eta_engr_units_star}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
@@ -19,9 +19,9 @@ A string list with 19 entries.
 \item{G_dot}{The expected device-level energy gross cost savings rate [MJ/year], calculated by \code{p_E * S_dot_dev}.}
 \item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
 \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/year], same as \code{q_dot_s_orig}.}
-\item{C_dot_cap_star}{The upgraded (post-EEU) capital cost rate [$/year], calculated by \code{C_cap_star / t_star}.}
+\item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate [$/year], calculated by \code{C_cap_star / t_star}.}
 \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate [MJ/year], calculated by \code{E_emb_star / t_star}.}
-\item{C_dot_s_star}{The upgraded (post-EEU) energy cost rate [$/year], calculated by \code{p_s_star * q_dot_s_star}.}
+\item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate [$/year], calculated by \code{p_s_star * q_dot_s_star}.}
 \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/year], exactly \code{M_dot_orig}.}
 \item{N_dot_star}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
 \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate [$/year], exactly \code{C_dot_o_orig}.}

@@ -90,7 +90,7 @@ test_that("not including total works as expected", {
   expect_true(ReboundTools::rebound_terms$Re_empl %in% Re_types)
   expect_true(ReboundTools::rebound_terms$Re_sub %in% Re_types)
   expect_true(ReboundTools::rebound_terms$Re_inc %in% Re_types)
-  expect_true(ReboundTools::rebound_terms$Re_prod %in% Re_types)
+  expect_true(ReboundTools::rebound_terms$Re_macro %in% Re_types)
   expect_true(ReboundTools::rebound_terms$Re_dir %in% Re_types)
   expect_true(ReboundTools::rebound_terms$Re_indir %in% Re_types)
   
@@ -98,13 +98,13 @@ test_that("not including total works as expected", {
 })
 
 
-test_that("we get Re_prod", {
+test_that("we get Re_macro", {
   t1 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     rebound_results_table(escape_latex = FALSE)
   Re_types <- t1$`Rebound term`
 
-  expect_true(ReboundTools::rebound_terms$Re_prod %in% Re_types)  
+  expect_true(ReboundTools::rebound_terms$Re_macro %in% Re_types)  
   
   t2 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
@@ -112,6 +112,6 @@ test_that("we get Re_prod", {
                           include_subtotals = FALSE)
   Re_types2 <- t2$`Rebound term`
   
-  expect_true(ReboundTools::rebound_terms$Re_prod %in% Re_types2)  
+  expect_true(ReboundTools::rebound_terms$Re_macro %in% Re_types2)  
 })
 

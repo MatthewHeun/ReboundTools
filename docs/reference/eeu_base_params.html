@@ -75,7 +75,7 @@ but they can always be overridden by function arguments." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.19</span>
       </span>
     </div>
 
@@ -138,7 +138,7 @@ but they can always be overridden by function arguments.</p>
 <dt>energy_engr_unit</dt><dd><p>A string to identify the energy units of the service, e.g., "gal" in "miles/gal" or "kW-hr" in "lm-hr/kW-hr".</p></dd>
 <dt>MJ_engr_unit</dt><dd><p>A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, <code>MJ_engr_unit</code> should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.</p></dd>
 <dt>I_E</dt><dd><p>The energy intensity of the economy [MJ/$].</p></dd>
-<dt>k</dt><dd><p>The productivity effect factor [--].</p></dd>
+<dt>k</dt><dd><p>The macro effect factor [--].</p></dd>
 <dt>p_E_engr_units</dt><dd><p>The price of energy in engineering units, e.g., $/gal or $/kW-hr [$/energy_engr_unit].</p></dd>
 <dt>e_qs_ps_UC</dt><dd><p>The uncompensated ("UC") energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].</p></dd>
 <dt>e_qs_M</dt><dd><p>The income ("M") elasticity ("e") of energy service ("qs") consumption [--].</p></dd>
@@ -154,8 +154,8 @@ energy efficiency upgrades for cars and electric lamps.</p>
 <dt>orig</dt><dd><p>The original device, prior to the EEU.</p></dd>
 <dt>star</dt><dd><p>After the emplacement effect and before the substitution effect.</p></dd>
 <dt>hat</dt><dd><p>After the substitution effect and before the income effect.</p></dd>
-<dt>bar</dt><dd><p>After the income effect and before the productivity effect.</p></dd>
-<dt>tilde</dt><dd><p>After the productivity effect.</p></dd>
+<dt>bar</dt><dd><p>After the income effect and before the macro effect.</p></dd>
+<dt>tilde</dt><dd><p>After the macro effect.</p></dd>
 <dt>I</dt><dd><p>An economic intensity (per $).</p></dd>
 <dt>p</dt><dd><p>Price.</p></dd>
 <dt>E</dt><dd><p>Energy, typically final energy.</p></dd>

@@ -14,7 +14,7 @@ extract_points(
 }
 \arguments{
 \item{.paths}{A data frame of rebound paths,
-likely created by \code{energy_paths()}, \code{cost_paths()}, or \code{prefs_paths()}.}
+likely created by \code{energy_paths()}, \code{expenditure_paths()}, or \code{prefs_paths()}.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
@@ -39,7 +39,7 @@ load_eeu_data() \%>\%
   extract_points()
 load_eeu_data() \%>\% 
   rebound_analysis() \%>\% 
-  cost_paths() \%>\% 
+  expenditure_paths() \%>\% 
   extract_points()
 load_eeu_data() \%>\% 
   rebound_analysis() \%>\% 
