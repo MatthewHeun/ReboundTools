@@ -37,8 +37,9 @@ of the benefits of energy efficiency
 due to behavior change and economy-wide effects.
 Many functions perform analysis calculations to move from 
 known parameters to rebound estimates.
-Other functions create rebound graphs in 
-energy, cost, and preference spaces.
+Graphing functions create rebound path graphs in 
+energy, expenditure, and preference spaces.
+Other graphing functions create sensitivity graphs. 
 The functions in this package were used for the 
 analyses and graphs in the paper **********.
 
@@ -123,17 +124,17 @@ rebound parameters in rows and
 rebound stages in columns.
 
 ```{r, results="asis"}
-digs <- matrix(c(rep(1, 7), # eta_engr_units
-                 rep(3, 7), # eta
-                 rep(3, 7), # p_s
-                 rep(0, 7), # q_dot_s
-                 rep(0, 7), # E_dot_s
-                 rep(0, 7), # E_dot_emb
-                 rep(0, 7), # C_dot_s
-                 rep(0, 7), # C_dot_cap
-                 rep(0, 7), # C_dot_md
-                 rep(0, 7), # C_dot_o
-                 rep(0, 7), # N_dot
+digs <- matrix(c(rep(1, 7),  # eta_engr_units
+                 rep(3, 7),  # eta
+                 rep(3, 7),  # p_s
+                 rep(0, 7),  # q_dot_s
+                 rep(0, 7),  # E_dot_s
+                 rep(0, 7),  # E_dot_emb
+                 rep(0, 7),  # C_dot_s
+                 rep(0, 7),  # C_dot_cap
+                 rep(0, 7),  # C_dot_md
+                 rep(0, 7),  # C_dot_o
+                 rep(0, 7),  # N_dot
                  rep(0, 7)), # M_dot
                nrow = 12, ncol = 7, byrow = TRUE)
 load_eeu_data() %>% 
@@ -164,7 +165,7 @@ load_eeu_data() %>%
   rebound_analysis() %>% 
   dplyr::mutate(
     Case = NULL
-  ) %>% 
+  ) %>%
   ReboundTools::rebound_results_table(include_subtotals = FALSE, 
                                       label = "tab:car_results", 
                                       digits = 1, 
@@ -186,7 +187,7 @@ Rebound graphs can be created with the `path_graphs()` function.
 Three types of rebound graphs are available:
 
 * Energy paths,
-* Cost paths, and
+* Expenditure paths, and
 * Preference paths.
    
 The `graph_type` argument to `path_graphs()` controls which
