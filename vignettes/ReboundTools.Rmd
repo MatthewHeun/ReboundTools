@@ -181,7 +181,7 @@ load_eeu_data() %>%
 
 
 
-## Rebound graphs
+## Rebound path graphs
 
 Rebound graphs can be created with the `path_graphs()` function.
 Three types of rebound graphs are available:
@@ -403,13 +403,124 @@ my_graph_params$dempl_colour <- "darkred"
 load_eeu_data() %>% 
   rebound_analysis() %>% 
   path_graphs(indexed = TRUE,
-                 graph_types = ReboundTools::graph_types$energy, 
-                 graph_params = my_graph_params) +
+              graph_types = ReboundTools::graph_types$energy, 
+              graph_params = my_graph_params) +
   ggplot2::facet_wrap(facets = ReboundTools::eeu_base_params$case) +
   ggplot2::theme_classic()
 ```
 
 See help for `path_graph_params` for additional information. 
+
+
+## Sensitivity graphs
+
+Sensitivity graphs can be created by the `sensitivity_graphs()` function.
+A named list of sensitivity parameters is required.
+These graphs are easiest described via examples.
+
+The first example shows the sensitivity of total rebound ($Re_{tot}$) to 
+the macro parameter ($k$).
+
+```{r}
+df <- load_eeu_data()
+sens_params <- list(Car = list(k = seq(0.5, 1.5, by = 0.5)), 
+                    Lamp = list(k = seq(0, 2, by = 1)))
+sensitivity_graphs(rebound_data = df, parameterization = sens_params, 
+                   x_var = "k", y_var = "Re_tot") +
+  ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+  ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = FALSE) + 
+  ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = FALSE) + 
+  ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = FALSE) +
+  ggplot2::labs(y = expression(Re[tot]), 
+                colour = ggplot2::element_blank(),
+                size = ggplot2::element_blank(),
+                linetype = ggplot2::element_blank()) +
+  ggplot2::theme_classic()
+```
+
+The next example shows multi-variate sensitivity.
+Values of the macro parameter ($k$) are shown in rows of the lattice plot.
+Uncompensated price elasticity of energy service consumption ($\epsilon_{\dot{q}_s,p_s,UC}$) 
+is shown in columns of the lattice plot.
+Total rebound ($Re_{tot}$) is given on the $y$-axis, and 
+energy intensity of the economy ($I_E$) is given on the $x$-axis.
+The cases (Car and Lamp) are shown as different lines.
+
+```{r}
+sens_params_2 <- list(Car = list(k = seq(0, 2, by = 0.5), 
+                                 I_E = seq(2, 5, by = 1), 
+                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
+                      Lamp = list(k = seq(0, 2, by = 0.5),
+                                  I_E = seq(2, 5, by = 1), 
+                                  e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+# Choose which rebound variables to include and their order.
+sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
+                   x_var = "I_E", 
+                   y_var = "Re_tot",
+                   line_var = "Case") +
+  ggplot2::facet_grid(rows = ggplot2::vars(k), 
+                      cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
+  ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
+  ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1.0)) + 
+  ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
+  ggplot2::labs(colour = ggplot2::element_blank(), 
+                size = ggplot2::element_blank(),
+                linetype = ggplot2::element_blank()) +
+  ggplot2::theme_classic()
+```
+
+
+A third sensitivity example shows 
+
+```{r}
+sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+# Choose rebound terms to include in the graph and their order
+rebound_vars <- c("Re_dempl", "Re_emb", "Re_md", "Re_dsub", "Re_isub", 
+                  "Re_dinc", "Re_iinc", "Re_macro")
+
+sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
+                   x_var = "eta_engr_units_tilde", 
+                   y_var = rebound_vars) + 
+  ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
+  ggplot2::scale_colour_manual(values = 
+                                 c(Re_dempl = ReboundTools::path_graph_params$dempl_colour,
+                                   Re_emb = ReboundTools::path_graph_params$emb_colour,
+                                   Re_md = ReboundTools::path_graph_params$md_colour, 
+                                   Re_dsub = ReboundTools::path_graph_params$dsub_colour,
+                                   Re_isub = ReboundTools::path_graph_params$isub_colour, 
+                                   Re_dinc = ReboundTools::path_graph_params$dinc_colour,
+                                   Re_iinc = ReboundTools::path_graph_params$iinc_colour,
+                                   Re_macro = ReboundTools::path_graph_params$macro_colour), 
+                               breaks = rebound_vars) +
+  ggplot2::scale_size_manual(values = 
+                               c(Re_dempl = 0.2, 
+                                 Re_emb = ReboundTools::path_graph_params$emb_size,
+                                 Re_md = ReboundTools::path_graph_params$md_size, 
+                                 Re_dsub = ReboundTools::path_graph_params$dsub_size,
+                                 Re_isub = ReboundTools::path_graph_params$isub_size, 
+                                 Re_dinc = ReboundTools::path_graph_params$dinc_size,
+                                 Re_iinc = ReboundTools::path_graph_params$iinc_size,
+                                 Re_macro = ReboundTools::path_graph_params$macro_size), 
+                             breaks = rebound_vars) +
+  ggplot2::scale_linetype_manual(values = 
+                                   c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
+                                     Re_emb = ReboundTools::path_graph_params$emb_linetype,
+                                     Re_md = ReboundTools::path_graph_params$md_linetype,
+                                     Re_dsub = ReboundTools::path_graph_params$dsub_linetype,
+                                     Re_isub = "11",
+                                     Re_dinc = ReboundTools::path_graph_params$dinc_linetype,
+                                     Re_iinc = "11",
+                                     Re_macro = ReboundTools::path_graph_params$macro_linetype), 
+                                 breaks = rebound_vars) +
+  ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"), 
+                y = "Re terms [-]", 
+                colour = ggplot2::element_blank(),
+                size = ggplot2::element_blank(),
+                linetype = ggplot2::element_blank()) + 
+  ggplot2::theme_classic()
+```
+
 
 
 ## Conclusion
@@ -421,9 +532,11 @@ In particular,
 * the `rebound_analysis()` function performs rebound analysis 
 on energy efficiency upgrades,
 * the `stages_table()` function returns an `xtable` object
-suitable for inclusion in papers and reports, and 
+suitable for inclusion in papers and reports,
 * the `path_graphs()` function returns `ggplot2` objects 
-that show rebound path graphs.
+that show rebound path graphs, and 
+* the `sensitivity_graphs()` function returns `ggplot2` objects
+that show sensitivity analyses. 
 
 Taken together, these functions provide important capabilities to analyze
 rebound effects for energy efficiency upgrades.
