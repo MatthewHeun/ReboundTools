@@ -180,7 +180,6 @@ load_eeu_data() %>%
 ```
 
 
-
 ## Rebound path graphs
 
 Rebound graphs can be created with the `path_graphs()` function.
