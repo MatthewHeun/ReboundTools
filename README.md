@@ -8,7 +8,7 @@ status](https://www.r-pkg.org/badges/version/ReboundTools)](https://cran.r-proje
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Travis-CI Build
-Status](https://travis-ci.org/MatthewHeun/ReboundTools.svg?branch=master)](https://travis-ci.org/MatthewHeun/ReboundTools)
+Status](https://travis-ci.org/MatthewHeun/ReboundTools.svg?branch=main)](https://travis-ci.org/MatthewHeun/ReboundTools)
 [![Coverage
 status](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/master/graph/badge.svg)](https://codecov.io/github/MatthewHeun/ReboundTools?branch=master)
 
