@@ -1,3 +1,4 @@
+* Improved website landing page.
 * Split graphs into their own vignette.
 * Added a vignette section on sensitivity graphs.
 * No new tests.
