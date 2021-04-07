@@ -1,3 +1,6 @@
+* Set up Travis CI continuous integration.
+
+
 # ReboundTools 0.1.20 (2021-04-06)
 
 * Improved website landing page.
