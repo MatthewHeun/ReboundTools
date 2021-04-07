@@ -9,7 +9,6 @@ status](https://www.r-pkg.org/badges/version/ReboundTools)](https://cran.r-proje
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
-<!-- [![Travis-CI Build Status](https://travis-ci.org/MatthewHeun/ReboundTools.svg?branch=main)](https://travis-ci.org/MatthewHeun/ReboundTools) -->
 [![Codecov test
 coverage](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg)](https://codecov.io/gh/MatthewHeun/ReboundTools?branch=main)
 <!-- badges: end -->

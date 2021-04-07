@@ -1,6 +1,14 @@
+* Remove Travis continuous integration.
+* Add badges for GitHub actions and CodeCov.
+* Add GitHub actions for continuous integration.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.21 (2021-04-07)
 
-* Set up Travis CI continuous integration.
+* Set up Travis continuous integration.
 * No new tests.
     - Still at 458 tests, all passing.
     - Test coverage remains at 100%.
