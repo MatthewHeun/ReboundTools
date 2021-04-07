@@ -1,16 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd -->
+<!-- badges: start -->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ReboundTools)](https://cran.r-project.org/package=ReboundTools)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![Travis-CI Build
-Status](https://travis-ci.org/MatthewHeun/ReboundTools.svg?branch=main)](https://travis-ci.org/MatthewHeun/ReboundTools)
-[![Coverage
-status](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/master/graph/badge.svg)](https://codecov.io/github/MatthewHeun/ReboundTools?branch=master)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
+<!-- [![Travis-CI Build Status](https://travis-ci.org/MatthewHeun/ReboundTools.svg?branch=main)](https://travis-ci.org/MatthewHeun/ReboundTools) -->
+[![Codecov test
+coverage](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg)](https://codecov.io/gh/MatthewHeun/ReboundTools?branch=main)
+<!-- badges: end -->
+
+<!-- This is the badge code from GitHub. The badge above is from usethis::use_github_action_check_standard() -->
+<!-- [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml) -->
 
 # ReboundTools
 
