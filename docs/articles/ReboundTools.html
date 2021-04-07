@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.20</span>
       </span>
     </div>
 
@@ -48,6 +48,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/Graphs.html">Graphs</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -82,7 +94,7 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p><code>ReboundTools</code> is an <code>R</code> package that provides functions to analyze energy rebound,<br>
-the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions perform analysis calculations to move from known parameters to rebound estimates. Graphing functions create rebound path graphs in energy, expenditure, and preference spaces. Other graphing functions create sensitivity graphs. The functions in this package were used for the analyses and graphs in the paper **********.</p>
+the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions perform analysis calculations to move from known parameters to rebound estimates. Graphing functions (described in the <code>Graphs</code> vignette) create rebound path graphs in energy, expenditure, and preference spaces. Other graphing functions create sensitivity graphs. The functions in this package were used for the analyses and graphs in the paper **********.</p>
 </div>
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
@@ -350,7 +362,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
-<!-- Tue Apr  6 16:03:34 2021 -->
+<!-- Tue Apr  6 20:59:06 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -636,7 +648,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.4 by xtable 1.8-4 package -->
-<!-- Tue Apr  6 16:03:34 2021 -->
+<!-- Tue Apr  6 20:59:06 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -729,471 +741,13 @@ Value [%]
 </table>
 </div>
 </div>
-<div id="rebound-graphs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rebound-graphs" class="anchor"></a>Rebound graphs</h2>
-<p>Rebound graphs can be created with the <code><a href="../reference/path_graphs.html">path_graphs()</a></code> function. Three types of rebound graphs are available:</p>
-<ul>
-<li>Energy paths,</li>
-<li>Expenditure paths, and</li>
-<li>Preference paths.</li>
-</ul>
-<p>The <code>graph_type</code> argument to <code><a href="../reference/path_graphs.html">path_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Expenditure”, or “Preferences”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
-<div id="energy-path-graph" class="section level3">
-<h3 class="hasAnchor">
-<a href="#energy-path-graph" class="anchor"></a>Energy path graph</h3>
-<p>An energy path graph shows the energy effects of the energy efficiency upgrade, with direct energy consumption on the horizontal axis and indirect energy consumption on the vertical axis. Diagonal lines with negative slope indicate lines of constant energy consumption. The thicker lines show 0 % rebound (lower left) and 100 % rebound (upper right). Thinner lines show rebound after each effect in order from the 0 % line to the 100 % line: emplacement, substitution, income, and macro. The following example illustrates an energy path graph.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
-<div id="expenditure-path-graph" class="section level3">
-<h3 class="hasAnchor">
-<a href="#expenditure-path-graph" class="anchor"></a>Expenditure path graph</h3>
-<p>The expenditure path graph shows expenditures for rebound effects. Direct expenditures for the energy service (including substitution and income takebacks) are shown in the horizontal axis; capital expenditures, maintenance and disposal expenditures, substitution effect savings, and income effect expenditures are shown in the vertical axis. Diagonal lines with negative slope indicate lines of constant expenditure. The lower-left line indicates expected expenditure options before capital expenditure changes, maintenance expenditure changes, or behavior changes. Note that the beginning (dot) and end (arrow) of the expenditure path both lie on the same expenditure line, indicating that all freed cash (after the emplacement and substitution effects) is re-spent in the income effect.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-<span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Expenditure"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
-<div id="preferences-path-graph" class="section level3">
-<h3 class="hasAnchor">
-<a href="#preferences-path-graph" class="anchor"></a>Preferences path graph</h3>
-<p>The preferences path graph shows details of the substitution and income effects, with normalized energy service consumption on the horizontal axis and normalized expenditures on other goods on the vertical axis. Diagonal grid lines with negative slope indicate constant expenditure sum of the energy service (horizontal axis) and other goods (vertical axis). Negative-sloping lines show the tradeoff between consumption of the energy service (horizontal axis) and consumption of other goods (vertical axis). The swooping, concave-upward grid lines indicate lines of constant utility: indifference curves.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Preferences"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.995</span>, <span class="fl">1.06</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.995</span>, <span class="fl">1.04</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
-<div id="arguments-to-path_graphs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#arguments-to-path_graphs" class="anchor"></a>Arguments to <code>path_graphs()</code>
-</h3>
-<p>In addition to the <code>graph_types</code> and <code>cases</code> arguments, the following arguments adjust the composition and appearance of graphs:</p>
-<ul>
-<li>
-<code>indexed</code>,</li>
-<li>
-<code>graph_types</code>,</li>
-<li>
-<code>grid_types</code>, and</li>
-<li><code>graph_params.</code></li>
-</ul>
-<div id="indexed" class="section level4">
-<h4 class="hasAnchor">
-<a href="#indexed" class="anchor"></a><code>indexed</code>
-</h4>
-<p>Setting <code>indexed = TRUE</code> normalizes the rebound data to conditions before emplacement of the energy efficient device, such that the starting point is always (1, 1).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
-<p>As discussed above, the <code>cases</code> argument tells which <code>Case</code>s should be plotted. All cases are plotted by default, although the result is rarely pleasing.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Car"</span>, <span class="st">"Lamp"</span><span class="op">)</span>, 
-                   graph_types <span class="op">=</span> <span class="st">"Energy"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;"></p>
-<p>When the cases are overlapping or very different (as above), faceting and indexing may improve the appearance of the graph.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>,
-                   graph_types <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/graph_types.html">graph_types</a></span><span class="op">$</span><span class="va">energy</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
-<div id="graph_types" class="section level4">
-<h4 class="hasAnchor">
-<a href="#graph_types" class="anchor"></a><code>graph_types</code>
-</h4>
-<p>The <code>graph_types</code> argument tells which type of graph should be created. The default <code><a href="../reference/graph_types.html">ReboundTools::graph_types</a></code> returns all three graph types. Again, faceting and indexing may be beneficial.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, cases <span class="op">=</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/graph_df_colnames.html">graph_df_colnames</a></span><span class="op">$</span><span class="va">graph_type_col</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">1.08</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 280 row(s) containing missing values (geom_path).</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;"></p>
-<p>Note that the <code><a href="../reference/path_graphs.html">path_graphs()</a></code> function applies labels to the x and y axes whenever the labels are unambiguous. However, when multiple path graphs are included in the same figure, the x and y axis labels are unclear. The user can apply labels appropriate to their situation.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, cases <span class="op">=</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/graph_df_colnames.html">graph_df_colnames</a></span><span class="op">$</span><span class="va">graph_type_col</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">1.08</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"my x label"</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"my y label"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 280 row(s) containing missing values (geom_path).</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">Case</span><span class="op">)</span>,
-                      cols <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">graph_type</span><span class="op">)</span>, 
-                      scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">1.08</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 334 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning: Removed 15 rows containing missing values (geom_segment).</span>
-<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_segment).</span>
-<span class="co">#&gt; Warning: Removed 6 rows containing missing values (geom_point).</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
-<div id="grid_types" class="section level4">
-<h4 class="hasAnchor">
-<a href="#grid_types" class="anchor"></a><code>grid_types</code>
-</h4>
-<p>The <code>grid_types</code> argument tells which grids to include on the rebound graphs. By default, grids are provided for all graph types. In the example below, grids are provided only for the energy and expenditure path graphs.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>, grid_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Energy"</span>, <span class="st">"Expenditure"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">Case</span><span class="op">)</span>,
-                      cols <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">graph_type</span><span class="op">)</span>, 
-                      scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">1.08</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 15 rows containing missing values (geom_segment).</span>
-<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_segment).</span>
-<span class="co">#&gt; Warning: Removed 6 rows containing missing values (geom_point).</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
-<div id="graph_params" class="section level4">
-<h4 class="hasAnchor">
-<a href="#graph_params" class="anchor"></a><code>graph_params</code>
-</h4>
-<p>While <code>indexed</code> controls <em>how</em> the data are quantified and <code>graph_types</code> and <code>grid_types</code> control <em>what</em> data are shown, <code>graph_params</code> controls the <em>appearance</em> of rebound graphs. <code>graph_params</code> should be a named list. The default <code>graph_params</code> list is <code>path_graph_params</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/path_graph_params.html">path_graph_params</a></span>
-<span class="co">#&gt; $which_points</span>
-<span class="co">#&gt; # A tibble: 5 x 2</span>
-<span class="co">#&gt;   point_name start_point</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1 orig       TRUE       </span>
-<span class="co">#&gt; 2 star       TRUE       </span>
-<span class="co">#&gt; 3 hat        TRUE       </span>
-<span class="co">#&gt; 4 bar        TRUE       </span>
-<span class="co">#&gt; 5 tilde      FALSE      </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $last_point</span>
-<span class="co">#&gt; [1] FALSE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $point_shape</span>
-<span class="co">#&gt; [1] 19</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $point_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $point_stroke</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $which_arrows</span>
-<span class="co">#&gt; # A tibble: 9 x 2</span>
-<span class="co">#&gt;   line_name end_arrow</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;lgl&gt;    </span>
-<span class="co">#&gt; 1 dempl     FALSE    </span>
-<span class="co">#&gt; 2 emb       FALSE    </span>
-<span class="co">#&gt; 3 cap       FALSE    </span>
-<span class="co">#&gt; 4 md        FALSE    </span>
-<span class="co">#&gt; 5 isub      FALSE    </span>
-<span class="co">#&gt; 6 dsub      FALSE    </span>
-<span class="co">#&gt; 7 dinc      FALSE    </span>
-<span class="co">#&gt; 8 iinc      FALSE    </span>
-<span class="co">#&gt; 9 macro     FALSE    </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $last_arrow</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $arrow_style</span>
-<span class="co">#&gt; $angle</span>
-<span class="co">#&gt; [1] 20</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $length</span>
-<span class="co">#&gt; [1] 0.1inches</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $ends</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $type</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "arrow"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dempl_colour</span>
-<span class="co">#&gt; [1] "#150789FF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $emb_colour</span>
-<span class="co">#&gt; [1] "#150789FF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cap_colour</span>
-<span class="co">#&gt; [1] "#150789FF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $md_colour</span>
-<span class="co">#&gt; [1] "#150789FF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $empl_colour</span>
-<span class="co">#&gt; [1] "#150789FF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $isub_colour</span>
-<span class="co">#&gt; [1] "#99149FFF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dsub_colour</span>
-<span class="co">#&gt; [1] "#99149FFF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $sub_colour</span>
-<span class="co">#&gt; [1] "#99149FFF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dinc_colour</span>
-<span class="co">#&gt; [1] "#E76F5AFF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $iinc_colour</span>
-<span class="co">#&gt; [1] "#E76F5AFF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $inc_colour</span>
-<span class="co">#&gt; [1] "#E76F5AFF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $macro_colour</span>
-<span class="co">#&gt; [1] "#F7E225FF"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dir_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $indir_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $tot_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dempl_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $emb_size</span>
-<span class="co">#&gt; [1] 1.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cap_size</span>
-<span class="co">#&gt; [1] 1.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $md_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $empl_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $isub_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dsub_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $sub_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dinc_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $iinc_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $inc_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $macro_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dir_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $indir_size</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $tot_size</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dempl_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $emb_linetype</span>
-<span class="co">#&gt; [1] "11"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cap_linetype</span>
-<span class="co">#&gt; [1] "11"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $md_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $empl_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dsub_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $isub_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $sub_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dinc_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $iinc_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $sinc_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $macro_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dir_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $indir_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $tot_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lineend</span>
-<span class="co">#&gt; [1] "round"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $linejoin</span>
-<span class="co">#&gt; [1] "round"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $reverse_path_drawing_order</span>
-<span class="co">#&gt; [1] FALSE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $points_atop_paths</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $energy_grid_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $zero_perc_rebound_grid_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $hundred_perc_rebound_grid_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $energy_rebound_lines_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $expenditure_grid_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_grid_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_ray_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_indiff_grid_colour</span>
-<span class="co">#&gt; [1] "black"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $energy_grid_size</span>
-<span class="co">#&gt; [1] 0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $zero_perc_rebound_grid_size</span>
-<span class="co">#&gt; [1] 0.3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $hundred_perc_rebound_grid_size</span>
-<span class="co">#&gt; [1] 0.3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $energy_rebound_lines_size</span>
-<span class="co">#&gt; [1] 0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $expenditure_grid_size</span>
-<span class="co">#&gt; [1] 0.3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_grid_size</span>
-<span class="co">#&gt; [1] 0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_ray_size</span>
-<span class="co">#&gt; [1] 0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_indiff_grid_size</span>
-<span class="co">#&gt; [1] 0.5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $energy_grid_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $zero_perc_rebound_grid_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $hundred_perc_rebound_grid_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $energy_rebound_lines_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $expenditure_grid_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_grid_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_ray_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_indiff_grid_linetype</span>
-<span class="co">#&gt; [1] "solid"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $n_indiff_curve_points</span>
-<span class="co">#&gt; [1] 200</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $qs_qs0_lower</span>
-<span class="co">#&gt; [1] 0.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $qs_qs0_upper</span>
-<span class="co">#&gt; [1] 10</span></code></pre></div>
-<p>Most parameters are self-explanatory. For example, <code>ReboundTools::path_graph_params$dempl_colour</code> sets the colour of the direct emplacement path.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_graph_params</span> <span class="op">&lt;-</span> <span class="va">path_graph_params</span>
-<span class="va">my_graph_params</span><span class="op">$</span><span class="va">dempl_colour</span> <span class="op">&lt;-</span> <span class="st">"darkred"</span>
-<span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>indexed <span class="op">=</span> <span class="cn">TRUE</span>,
-                 graph_types <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/graph_types.html">graph_types</a></span><span class="op">$</span><span class="va">energy</span>, 
-                 graph_params <span class="op">=</span> <span class="va">my_graph_params</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ReboundTools_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;"></p>
-<p>See help for <code>path_graph_params</code> for additional information.</p>
-</div>
-</div>
-</div>
 <div id="conclusion" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conclusion" class="anchor"></a>Conclusion</h2>
 <p>The <code>ReboundTools</code> package assists with analyzing rebound effects and displaying the results. In particular,</p>
 <ul>
-<li>the <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> function performs rebound analysis on energy efficiency upgrades,</li>
-<li>the <code><a href="../reference/stages_table.html">stages_table()</a></code> function returns an <code>xtable</code> object suitable for inclusion in papers and reports, and</li>
-<li>the <code><a href="../reference/path_graphs.html">path_graphs()</a></code> function returns <code>ggplot2</code> objects that show rebound path graphs.</li>
+<li>the <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> function performs rebound analysis on energy efficiency upgrades and</li>
+<li>the <code><a href="../reference/stages_table.html">stages_table()</a></code> function returns an <code>xtable</code> object suitable for inclusion in papers and reports,</li>
 </ul>
 <p>Taken together, these functions provide important capabilities to analyze rebound effects for energy efficiency upgrades.</p>
 </div>

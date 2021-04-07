@@ -79,7 +79,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params,
                linetype = ggplot2::element_blank())
                
 # A more-complicated example that shows multi-variate sensitivity.
-# Values of the macro parameter (k) is shown in rows of the lattice plot.
+# Values of the macro parameter (k) are shown in rows of the lattice plot.
 # Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) 
 # is shown in columns of the lattice plot.
 # Total rebound (Re_tot) is given on the y-axis, and 
