@@ -12,11 +12,6 @@ output: github_document
 <!-- badges: end -->
 
 
-<!-- This is the badge code from GitHub. The badge above is from usethis::use_github_action_check_standard() -->
-<!-- [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml) -->
-
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
