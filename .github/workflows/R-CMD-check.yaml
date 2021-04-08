@@ -1,8 +1,8 @@
 # For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
 # 
-# Created with the command usethis::use_github_action_check_standard()
-# Then, I added "- develop" to the "on:" section.
+# This file was created with the command usethis::use_github_action_check_standard()
+# Then, I added "- develop" to the "on:" sections.
 on:
   push:
     branches:
@@ -12,6 +12,8 @@ on:
     branches:
       - main
       - develop
+  schedule:
+    - cron: "0 3 * * *"
 
 name: R-CMD-check
 
