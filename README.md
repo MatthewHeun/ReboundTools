@@ -9,8 +9,7 @@ status](https://www.r-pkg.org/badges/version/ReboundTools)](https://cran.r-proje
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg)](https://codecov.io/gh/MatthewHeun/ReboundTools?branch=main)
+[![codecov](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg?token=20kytlPnGF)](https://codecov.io/gh/MatthewHeun/ReboundTools)
 <!-- badges: end -->
 
 <!-- This is the badge code from GitHub. The badge above is from usethis::use_github_action_check_standard() -->
