@@ -1,3 +1,11 @@
+# ReboundTools 0.1.23 (2021-04-09)
+
+* Set up CodeCov from GitHub Actions.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.22 (2021-04-08)
 
 * Remove Travis continuous integration.
