@@ -15,7 +15,7 @@ on:
       - main
       - develop
   schedule:
-    - cron: "0 3 * * *"   # Daily at 3 AM.
+    - cron: "0 7 * * *"  # Build main daily at 7 AM UTC, 2 AM EST, 3 AM EDT.
 
 name: R-CMD-check
 
