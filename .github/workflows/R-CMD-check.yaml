@@ -15,7 +15,7 @@ on:
       - main
       - develop
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "0 3 * * *"   # Daily at 3 AM.
 
 name: R-CMD-check
 
