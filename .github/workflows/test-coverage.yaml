@@ -1,6 +1,6 @@
 # This file was created with
 # usethis::use_github_action("test-coverage")
-# Then, modified to eliminate branches I don't want to cover.
+# Then, modified to eliminate branches for which I don't want test coverage analysis.
 on:
   push:
     branches:
