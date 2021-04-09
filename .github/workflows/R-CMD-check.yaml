@@ -3,8 +3,8 @@
 # 
 # This file was created with the command usethis::use_github_action_check_standard()
 # Then, I added 
-#   * "- develop" to the "on: push" and "on: pull_request" sections.
-#   * "- cron: "0 3 * * *" to the "on: schedule" section.
+#   * "- develop" branches to the "on: push" and "on: pull_request" sections.
+#   * "- cron: "0 7 * * *" to the "on: schedule" section.
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ on:
       - main
       - develop
   schedule:
-    - cron: "0 3 * * *"   # Daily at 3 AM.
+    - cron: "0 7 * * *"  # Build main daily at 7 AM UTC, 2 AM EST, 3 AM EDT.
 
 name: R-CMD-check
 
