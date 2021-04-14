@@ -27,7 +27,7 @@ calc_orig(
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
-  e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+  e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
   sigma = ReboundTools::orig_vars$sigma,
   rho = ReboundTools::orig_vars$rho,
   E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
@@ -40,7 +40,7 @@ See \code{ReboundTools::eeu_base_params}.}
 
 \item{MJ_engr_unit, p_E_engr_units, e_qs_ps_UC, e_qs_M}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{eta_engr_units_orig, q_dot_s_orig, C_cap_orig, t_own_orig, M_dot_orig, C_dot_md_orig, E_emb_orig, t_life_orig, p_E, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_o_orig, f_Cs_orig, e_qs_ps_C, e_qo_ps, sigma, rho, E_dot_emb_orig, N_dot_orig}{See \code{ReboundTools::orig_vars}.}
+\item{eta_engr_units_orig, q_dot_s_orig, C_cap_orig, t_own_orig, M_dot_orig, C_dot_md_orig, E_emb_orig, t_life_orig, p_E, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_o_orig, f_Cs_orig, e_qs_ps_C, e_qo_ps_C, sigma, rho, E_dot_emb_orig, N_dot_orig}{See \code{ReboundTools::orig_vars}.}
 }
 \value{
 A list or data frame of derived rebound values.

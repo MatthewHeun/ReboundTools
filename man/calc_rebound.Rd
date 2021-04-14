@@ -12,7 +12,7 @@ calc_rebound(
   e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
   k = ReboundTools::eeu_base_params$k,
   e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
-  e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+  e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
@@ -50,7 +50,7 @@ calc_rebound(
 
 \item{I_E, e_qs_M, e_qo_M, k}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{e_qs_ps_C, e_qo_ps, C_dot_o_orig, E_dot_s_orig}{See \code{ReboundTools::orig_vars}.}
+\item{e_qs_ps_C, e_qo_ps_C, C_dot_o_orig, E_dot_s_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{S_dot_dev, eta_ratio}{See \code{ReboundTools::star_vars}.}
 
