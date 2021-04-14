@@ -353,3 +353,10 @@ test_that("calc_rebound() works as expected with approximated hat", {
   
 })
   
+
+test_that("compensated elasticities have suffix '_C'", {
+  res <- load_eeu_data() %>% 
+    rebound_analysis()
+  expect_true("e_qs_ps_C" %in% names(res))
+  expect_true("e_qo_ps_C" %in% names(res))
+})
