@@ -9,7 +9,7 @@
 #' @param .eeu_data An optional data frame containing EEU base data. 
 #'                  See `ReboundTools::eeu_base_params`.
 #' @param MJ_engr_unit,p_E_engr_units,e_qs_ps_UC,e_qs_M See `ReboundTools::eeu_base_params`.
-#' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps,e_qo_ps,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
+#' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qs_ps_C,e_qo_ps_C,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
 #' 
@@ -42,8 +42,8 @@ calc_orig <- function(.eeu_data = NULL,
                       C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
                       C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                       f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
-                      e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
-                      e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+                      e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
+                      e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
                       sigma = ReboundTools::orig_vars$sigma,
                       rho = ReboundTools::orig_vars$rho,
                       E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
@@ -70,8 +70,8 @@ calc_orig <- function(.eeu_data = NULL,
     C_dot_s_orig_val <- p_E_val * E_dot_s_orig_val
     C_dot_o_orig_val <- M_dot_orig_val - C_dot_s_orig_val - C_dot_cap_orig_val - C_dot_md_orig_val
     f_Cs_orig_val <- C_dot_s_orig_val / (C_dot_s_orig_val + C_dot_o_orig_val)
-    e_qs_ps_val <- e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val
-    e_qo_ps_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
+    e_qs_ps_C_val <- e_qs_ps_UC_val + f_Cs_orig_val*e_qs_M_val
+    e_qo_ps_C_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
     sigma_val <- (f_Cs_orig_val + e_qs_ps_UC_val) / (f_Cs_orig_val - 1)
     rho_val <- (sigma_val - 1)/sigma_val
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
@@ -85,8 +85,8 @@ calc_orig <- function(.eeu_data = NULL,
          C_dot_s_orig_val,
          C_dot_o_orig_val,
          f_Cs_orig_val,
-         e_qs_ps_val,
-         e_qo_ps_val, 
+         e_qs_ps_C_val,
+         e_qo_ps_C_val, 
          sigma_val,
          rho_val,
          E_dot_emb_orig_val,
@@ -99,8 +99,8 @@ calc_orig <- function(.eeu_data = NULL,
                             C_dot_s_orig,
                             C_dot_o_orig,
                             f_Cs_orig,
-                            e_qs_ps, 
-                            e_qo_ps, 
+                            e_qs_ps_C, 
+                            e_qo_ps_C, 
                             sigma,
                             rho,
                             E_dot_emb_orig,
@@ -287,7 +287,7 @@ calc_star <- function(.orig_data = NULL,
 #'                       Default is `FALSE`.
 #'                       See details.
 #' @param p_E See `ReboundTools::eeu_base_params`.
-#' @param e_qo_ps,e_qs_ps,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
+#' @param e_qo_ps_C,e_qs_ps_C,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
 #' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
@@ -304,8 +304,8 @@ calc_hat <- function(.star_data = NULL,
                      use_sub_approx = FALSE,
                      # Input names
                      p_E = ReboundTools::orig_vars$p_E,
-                     e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
-                     e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
+                     e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
+                     e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
                      C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
                      f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
@@ -356,9 +356,9 @@ calc_hat <- function(.star_data = NULL,
                            rho_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
-                           e_qs_ps_val,
+                           e_qs_ps_C_val,
                            C_dot_o_star_val,
-                           e_qo_ps_val,
+                           e_qo_ps_C_val,
                            N_dot_star_val,
                            p_E_val,
                            E_dot_s_star_val,
@@ -375,7 +375,7 @@ calc_hat <- function(.star_data = NULL,
     
     if (use_sub_approx) {
       # This is the approximate expression for q_dot_s_hat.
-      q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_val)
+      q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_C_val)
     } else {
       # Here is the exact expression for q_dot_s_hat
       # Preliminary calculations to make the actual expression easier to debug.
@@ -397,7 +397,7 @@ calc_hat <- function(.star_data = NULL,
 
     if (use_sub_approx) {
       # This is the approximate expression for C_dot_o_hat.
-      C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_val)
+      C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_C_val)
     } else {
       # Here is the exact expression for C_dot_o_hat
       # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
@@ -457,9 +457,9 @@ calc_hat <- function(.star_data = NULL,
                            rho_val = rho,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
-                           e_qs_ps_val = e_qs_ps,
+                           e_qs_ps_C_val = e_qs_ps_C,
                            C_dot_o_star_val = C_dot_o_star,
-                           e_qo_ps_val = e_qo_ps,
+                           e_qo_ps_C_val = e_qo_ps_C,
                            N_dot_star_val = N_dot_star,
                            p_E_val = p_E, 
                            E_dot_s_star_val = E_dot_s_star,
@@ -790,7 +790,7 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param .Deltas_data A data frame containing Delta values, likely created by `ReboundTools::calc_Deltas()`
 #' @param tol The tolerance for checking internal consistency of rebound calculations. Default is `1e-6`.
 #' @param I_E,e_qs_M,e_qo_M,k See `ReboundTools::eeu_base_params`.
-#' @param e_qs_ps,e_qo_ps,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
+#' @param e_qs_ps_C,e_qo_ps_C,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
 #' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
@@ -817,8 +817,8 @@ calc_rebound <- function(.Deltas_data = NULL,
                          e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
                          k = ReboundTools::eeu_base_params$k,
                          
-                         e_qs_ps = ReboundTools::orig_vars$e_qs_ps,
-                         e_qo_ps = ReboundTools::orig_vars$e_qo_ps,
+                         e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
+                         e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
                          C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          
@@ -859,9 +859,9 @@ calc_rebound <- function(.Deltas_data = NULL,
                           Delta_C_dot_md_star_val, 
                           I_E_val,
                           eta_ratio_val, 
-                          e_qs_ps_val,
+                          e_qs_ps_C_val,
                           Delta_E_dot_s_hat_val,
-                          e_qo_ps_val,
+                          e_qo_ps_C_val,
                           C_dot_o_orig_val,
                           E_dot_s_orig_val,
                           Delta_C_dot_o_hat_val,
@@ -963,9 +963,9 @@ calc_rebound <- function(.Deltas_data = NULL,
                            Delta_C_dot_md_star_val = Delta_C_dot_md_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 
-                           e_qs_ps_val = e_qs_ps,
+                           e_qs_ps_C_val = e_qs_ps_C,
                            Delta_E_dot_s_hat_val = Delta_E_dot_s_hat,
-                           e_qo_ps_val = e_qo_ps,
+                           e_qo_ps_C_val = e_qo_ps_C,
                            C_dot_o_orig_val = C_dot_o_orig,
                            E_dot_s_orig_val = E_dot_s_orig,
                            Delta_C_dot_o_hat_val = Delta_C_dot_o_hat,

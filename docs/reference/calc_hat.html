@@ -136,8 +136,8 @@ stage (immediately after the substitution effect).</p>
   .star_data <span class='op'>=</span> <span class='cn'>NULL</span>,
   use_sub_approx <span class='op'>=</span> <span class='cn'>FALSE</span>,
   p_E <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>p_E</span>,
-  e_qo_ps <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>e_qo_ps</span>,
-  e_qs_ps <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>e_qs_ps</span>,
+  e_qo_ps_C <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>e_qo_ps_C</span>,
+  e_qs_ps_C <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>e_qs_ps_C</span>,
   C_dot_cap_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_orig</span>,
   C_dot_md_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_orig</span>,
   f_Cs_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>f_Cs_orig</span>,
@@ -194,7 +194,7 @@ See details.</p></td>
       <td><p>See <code><a href='eeu_base_params.html'>ReboundTools::eeu_base_params</a></code>.</p></td>
     </tr>
     <tr>
-      <th>e_qo_ps, e_qs_ps, C_dot_cap_orig, C_dot_md_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma, rho</th>
+      <th>e_qo_ps_C, e_qs_ps_C, C_dot_cap_orig, C_dot_md_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma, rho</th>
       <td><p>See <code><a href='orig_vars.html'>ReboundTools::orig_vars</a></code>.</p></td>
     </tr>
     <tr>
@@ -245,11 +245,11 @@ but a different (and incorrect) consumption bundle after the substitution effect
 #&gt; </span><span style='color: #949494;'>#   E_emb_orig &lt;dbl&gt;, t_life_orig &lt;dbl&gt;, E_emb_star &lt;dbl&gt;, t_life_star &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   p_E &lt;dbl&gt;, eta_orig &lt;dbl&gt;, E_dot_s_orig &lt;dbl&gt;, C_dot_cap_orig &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   p_s_orig &lt;dbl&gt;, C_dot_s_orig &lt;dbl&gt;, C_dot_o_orig &lt;dbl&gt;, f_Cs_orig &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   e_qs_ps &lt;dbl&gt;, e_qo_ps &lt;dbl&gt;, sigma &lt;dbl&gt;, rho &lt;dbl&gt;, E_dot_emb_orig &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   N_dot_orig &lt;dbl&gt;, eta_star &lt;dbl&gt;, eta_ratio &lt;dbl&gt;, S_dot_dev &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   G_dot &lt;dbl&gt;, p_s_star &lt;dbl&gt;, q_dot_s_star &lt;dbl&gt;, C_dot_cap_star &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   E_dot_emb_star &lt;dbl&gt;, C_dot_s_star &lt;dbl&gt;, M_dot_star &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   N_dot_star &lt;dbl&gt;, C_dot_o_star &lt;dbl&gt;, E_dot_s_star &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   e_qs_ps_C &lt;dbl&gt;, e_qo_ps_C &lt;dbl&gt;, sigma &lt;dbl&gt;, rho &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   E_dot_emb_orig &lt;dbl&gt;, N_dot_orig &lt;dbl&gt;, eta_star &lt;dbl&gt;, eta_ratio &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   S_dot_dev &lt;dbl&gt;, G_dot &lt;dbl&gt;, p_s_star &lt;dbl&gt;, q_dot_s_star &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   C_dot_cap_star &lt;dbl&gt;, E_dot_emb_star &lt;dbl&gt;, C_dot_s_star &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   M_dot_star &lt;dbl&gt;, N_dot_star &lt;dbl&gt;, C_dot_o_star &lt;dbl&gt;, E_dot_s_star &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   eta_engr_units_hat &lt;dbl&gt;, eta_hat &lt;dbl&gt;, p_s_hat &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   C_dot_cap_hat &lt;dbl&gt;, C_dot_md_hat &lt;dbl&gt;, E_dot_emb_hat &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   M_dot_hat &lt;dbl&gt;, q_dot_s_hat &lt;dbl&gt;, E_dot_s_hat &lt;dbl&gt;, C_dot_s_hat &lt;dbl&gt;,</span><span>

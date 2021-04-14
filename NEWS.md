@@ -1,3 +1,8 @@
+* Change names around elasticities:
+    - e_qs_ps --> e_qs_ps_C (for "compensated")
+    - e_qo_ps --> e_qo_ps_C (for "compensated")
+
+
 # ReboundTools 0.1.23 (2021-04-09)
 
 * Set up CodeCov from GitHub Actions.
