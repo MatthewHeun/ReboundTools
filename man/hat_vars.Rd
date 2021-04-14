@@ -13,7 +13,7 @@ A string list with 13 entries.
 \item{C_dot_md_hat}{The maintenance and disposal expenditure rate after the substitution effect [$/year], exactly \code{C_dot_md_star}.}
 \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect [MJ/year], exactly \code{E_dot_emb_star}.}
 \item{M_dot_hat}{Real income after the substitution effect [MJ/year], exactly \code{M_dot_star}.}
-\item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/year], calculated by \code{q_dot_s_star * eta_ratio^(-e_qs_ps)}.}
+\item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/year], calculated by \code{q_dot_s_star * eta_ratio^(-e_qs_ps_C)}.}
 \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/year], calculated by \code{q_dot_s_hat / eta_hat}.}
 \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect [$/year], calculated by \code{C_dot_o_star * eta_ratio^(-e_qo_ps)}.}
 \item{N_dot_hat}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
