@@ -301,7 +301,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params,
 
 The next example shows multi-variate sensitivity.
 Values of the macro parameter ($k$) are shown in rows of the lattice plot.
-Uncompensated price elasticity of energy service consumption ($\epsilon_{\dot{q}_s,p_s,UC}$) 
+Uncompensated price elasticity of energy service consumption ($\epsilon_{\dot{q}_s,p_s}$) 
 is shown in columns of the lattice plot.
 Total rebound ($Re_{tot}$) is given on the $y$-axis, and 
 energy intensity of the economy ($I_E$) is given on the $x$-axis.

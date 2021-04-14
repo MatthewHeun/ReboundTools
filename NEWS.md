@@ -1,3 +1,13 @@
+# ReboundTools 0.1.24 (2021-04-14)
+
+* Change names around elasticities:
+    - e_qs_ps --> e_qs_ps_C (for "compensated")
+    - e_qo_ps --> e_qo_ps_C (for "compensated")
+* A couple new tests.
+    - Now at 460 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.23 (2021-04-09)
 
 * Set up CodeCov from GitHub Actions.

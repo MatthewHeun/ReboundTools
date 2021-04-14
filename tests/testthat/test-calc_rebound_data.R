@@ -25,11 +25,11 @@ test_that("calc_orig() works as expected", {
   expect_equal(res[[ReboundTools::orig_vars$f_Cs_orig]][[1]], 0.06217529318067448879)
   expect_equal(res[[ReboundTools::orig_vars$f_Cs_orig]][[2]], 0.00032490051888371175)
 
-  expect_equal(res[[ReboundTools::orig_vars$e_qs_ps]][[1]], -0.03782470681932551676)
-  expect_equal(res[[ReboundTools::orig_vars$e_qs_ps]][[2]], -0.39967509922119587307)
+  expect_equal(res[[ReboundTools::orig_vars$e_qs_ps_C]][[1]], -0.03782470681932551676)
+  expect_equal(res[[ReboundTools::orig_vars$e_qs_ps_C]][[2]], -0.39967509922119587307)
   
-  expect_equal(res[[ReboundTools::orig_vars$e_qo_ps]][[1]], 0.00250767784092693468)
-  expect_equal(res[[ReboundTools::orig_vars$e_qo_ps]][[2]], 0.00012989685076052724)
+  expect_equal(res[[ReboundTools::orig_vars$e_qo_ps_C]][[1]], 0.00250767784092693468)
+  expect_equal(res[[ReboundTools::orig_vars$e_qo_ps_C]][[2]], 0.00012989685076052724)
   
   expect_equal(res[[ReboundTools::orig_vars$sigma]][[1]], 0.04033238466025244884)
   expect_equal(res[[ReboundTools::orig_vars$sigma]][[2]], 0.39980499617582315741)
@@ -353,3 +353,10 @@ test_that("calc_rebound() works as expected with approximated hat", {
   
 })
   
+
+test_that("compensated elasticities have suffix '_C'", {
+  res <- load_eeu_data() %>% 
+    rebound_analysis()
+  expect_true("e_qs_ps_C" %in% names(res))
+  expect_true("e_qo_ps_C" %in% names(res))
+})

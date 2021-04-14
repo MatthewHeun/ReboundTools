@@ -12,9 +12,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![codecov](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg?token=20kytlPnGF)](https://codecov.io/gh/MatthewHeun/ReboundTools)
 <!-- badges: end -->
 
-<!-- This is the badge code from GitHub. The badge above is from usethis::use_github_action_check_standard() -->
-<!-- [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml) -->
-
 # ReboundTools
 
 `ReboundTools` is an `R` package that provides functions to analyze
