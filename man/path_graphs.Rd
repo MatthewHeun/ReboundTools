@@ -26,7 +26,8 @@ path_graphs(
 
 \item{graph_types}{A string list of graph types to include in the returned object. Default is \code{ReboundTools::graph_types}, i.e. all graph types.}
 
-\item{grid_types}{A string list of graph types on which grids (guide lines) are to be included. Default is \code{ReboundTools::graph_types}, i.e. include grids on all graph types.}
+\item{grid_types}{A string list of graph types on which grids (guide lines) are to be included. Default is \code{ReboundTools::graph_types}, i.e. include grids on all graph types.
+Set \code{NULL} to eliminate grids.}
 
 \item{graph_params}{A string list of parameters that control the appearance of this graph.
 Default is \code{ReboundTools::path_graph_params}, which can be

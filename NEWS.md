@@ -1,3 +1,11 @@
+# ReboundTools 0.1.26 (2021-04-22)
+
+* Fixed a bug where missing meta columns would cause graphing failure.
+* New tests to trigger the bug.
+    - Now at 469 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.25 (2021-04-21)
 
 * New function `calibrate_k()` that calculates a value for `k`
