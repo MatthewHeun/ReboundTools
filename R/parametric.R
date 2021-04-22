@@ -100,7 +100,7 @@ parametric_analysis <- function(original_cases, parameterization,
     original_cases %>% dplyr::mutate("{point_type_colname}" := orig), 
     original_cases %>% dplyr::mutate("{point_type_colname}" := sweep)
   ) %>% 
-    # Keep only those cases requeste in parameterization
+    # Keep only those cases requested2 in parameterization
     dplyr::filter(.data[[case_colname]] %in% cases)
   if (!include_orig_point) {
     # Empty the rows

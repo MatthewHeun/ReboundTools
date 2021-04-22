@@ -1,3 +1,10 @@
+* New function `calibrate_k()` that calculates a value for `k`
+  when a target value for `Re_tot` is provided.
+* New tests for the new function.
+    - Now at 466 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.24 (2021-04-14)
 
 * Change names around elasticities:
