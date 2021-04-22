@@ -1,3 +1,66 @@
+# ReboundTools 0.1.25 (2021-04-21)
+
+* New function `calibrate_k()` that calculates a value for `k`
+  when a target value for `Re_tot` is provided.
+* New tests for the new function.
+    - Now at 467 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.24 (2021-04-14)
+
+* Change names around elasticities:
+    - e_qs_ps --> e_qs_ps_C (for "compensated")
+    - e_qo_ps --> e_qo_ps_C (for "compensated")
+* A couple new tests.
+    - Now at 460 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.23 (2021-04-09)
+
+* Set up CodeCov from GitHub Actions.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.22 (2021-04-08)
+
+* Remove Travis continuous integration.
+* Add badges for GitHub actions and CodeCov.
+* Add GitHub actions for continuous integration.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.21 (2021-04-07)
+
+* Set up Travis continuous integration.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.20 (2021-04-06)
+
+* Improved website landing page.
+* Split graphs into their own vignette.
+* Added a vignette section on sensitivity graphs.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.19 (2021-04-06)
+
+* Change cost --> expenditure in many places.
+* No new tests.
+    - Still at 458 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.18 (2021-04-03)
 
 * Change nomenclature from productivity rebound to macro rebound.

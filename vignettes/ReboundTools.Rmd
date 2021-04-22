@@ -37,8 +37,10 @@ of the benefits of energy efficiency
 due to behavior change and economy-wide effects.
 Many functions perform analysis calculations to move from 
 known parameters to rebound estimates.
-Other functions create rebound graphs in 
-energy, cost, and preference spaces.
+Graphing functions (described in the `Graphs` vignette)
+create rebound path graphs in 
+energy, expenditure, and preference spaces.
+Other graphing functions create sensitivity graphs. 
 The functions in this package were used for the 
 analyses and graphs in the paper **********.
 
@@ -123,17 +125,17 @@ rebound parameters in rows and
 rebound stages in columns.
 
 ```{r, results="asis"}
-digs <- matrix(c(rep(1, 7), # eta_engr_units
-                 rep(3, 7), # eta
-                 rep(3, 7), # p_s
-                 rep(0, 7), # q_dot_s
-                 rep(0, 7), # E_dot_s
-                 rep(0, 7), # E_dot_emb
-                 rep(0, 7), # C_dot_s
-                 rep(0, 7), # C_dot_cap
-                 rep(0, 7), # C_dot_md
-                 rep(0, 7), # C_dot_o
-                 rep(0, 7), # N_dot
+digs <- matrix(c(rep(1, 7),  # eta_engr_units
+                 rep(3, 7),  # eta
+                 rep(3, 7),  # p_s
+                 rep(0, 7),  # q_dot_s
+                 rep(0, 7),  # E_dot_s
+                 rep(0, 7),  # E_dot_emb
+                 rep(0, 7),  # C_dot_s
+                 rep(0, 7),  # C_dot_cap
+                 rep(0, 7),  # C_dot_md
+                 rep(0, 7),  # C_dot_o
+                 rep(0, 7),  # N_dot
                  rep(0, 7)), # M_dot
                nrow = 12, ncol = 7, byrow = TRUE)
 load_eeu_data() %>% 
@@ -164,7 +166,7 @@ load_eeu_data() %>%
   rebound_analysis() %>% 
   dplyr::mutate(
     Case = NULL
-  ) %>% 
+  ) %>%
   ReboundTools::rebound_results_table(include_subtotals = FALSE, 
                                       label = "tab:car_results", 
                                       digits = 1, 
@@ -179,236 +181,6 @@ load_eeu_data() %>%
 ```
 
 
-
-## Rebound graphs
-
-Rebound graphs can be created with the `path_graphs()` function.
-Three types of rebound graphs are available:
-
-* Energy paths,
-* Cost paths, and
-* Preference paths.
-   
-The `graph_type` argument to `path_graphs()` controls which
-type of path graph is returned
-(one of "Energy", "Cost", or "Preferences").
-By default, all three graph types are returned.
-The `cases` argument determines which cases are plotted.
-By default, all cases are returned.
-
-
-### Energy path graph
-
-An energy path graph shows the energy effects of the energy efficiency upgrade,
-with direct energy consumption on the horizontal axis and
-indirect energy consumption on the vertical axis.
-Diagonal lines with negative slope indicate lines of constant energy consumption.
-The thicker lines show 0 % rebound (lower left) and 100 % rebound (upper right).
-Thinner lines show rebound after each effect in order from the 0 % line to the 100 % line:
-emplacement, substitution, income, and macro.
-The following example illustrates an energy path graph. 
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(cases = "Car", graph_types = "Energy") +
-  ggplot2::theme_classic()
-```
-
-
-### Cost path graph
-
-The cost path graph shows costs for rebound effects. 
-Direct costs for the energy service (including substitution and income takebacks)
-are shown in the horizontal axis;
-capital costs, maintenance and disposal costs, substitution effect savings, and
-income effect costs are shown in the vertical axis. 
-Diagonal lines with negative slope indicate lines of constant expenditure.
-The lower-left line indicates expected expenditure options before 
-capital cost changes, maintenance cost changes, or behavior changes.
-Note that the beginning (cot) and end (arrow) of the cost path graph lie on the same
-expenditure line, indicating that all freed cash 
-(after the emplacement and substitution effects) 
-is re-spent in the income effect.
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(cases = "Car", graph_types = "Cost") +
-  ggplot2::theme_classic()
-```
-
-
-### Preferences path graph
-
-The preferences path graph shows details of the substitution and income effects, 
-with normalized energy service consumption on the horizontal axis
-and normalized costs of other goods on the vertical axis.
-Diagonal grid lines with negative slope indicate constant expenditure sum
-of the energy service (horizontal axis) and other goods (vertical axis).
-Negative-sloping lines show the tradeoff between consumption of the energy service 
-(horizontal axis) and consumption of other goods (vertical axis).
-The swooping, concave-upward grid lines indicate lines of constant utility:
-indifference curves.
-
-```{r warning = FALSE, message = FALSE}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(cases = "Car", graph_types = "Preferences") +
-  ggplot2::xlim(0.995, 1.06) + 
-  ggplot2::ylim(0.995, 1.04) +
-  ggplot2::theme_classic()
-```
-
-
-### Arguments to `path_graphs()`
-
-In addition to the `graph_types` and `cases` arguments, 
-the following arguments adjust the composition and appearance of graphs:
-
-* `indexed`,
-* `graph_types`, 
-* `grid_types`, and
-* `graph_params.`
-
-
-#### `indexed`
-
-Setting `indexed = TRUE` normalizes the rebound data to conditions
-before emplacement of the energy efficient device, 
-such that the starting point is always (1, 1).
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE, cases = "Car", graph_types = "Energy") +
-  ggplot2::theme_classic()
-```
-
-As discussed above, the `cases` argument tells which `Case`s should be plotted.
-All cases are plotted by default, although the result is rarely pleasing.
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(cases = c("Car", "Lamp"), 
-                   graph_types = "Energy") +
-  ggplot2::theme_classic()
-```
-
-When the cases are overlapping or very different (as above),
-faceting and indexing may improve the appearance of the graph.
-
-```{r, fig.width=5, fig.height=3, fig.align="center"}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE,
-                   graph_types = ReboundTools::graph_types$energy) +
-    ggplot2::facet_wrap(facets = ReboundTools::eeu_base_params$case) +
-  ggplot2::theme_classic()
-```
-
-
-#### `graph_types`
-
-The `graph_types` argument tells which type of graph should be created. 
-The default `ReboundTools::graph_types` returns all three graph types.
-Again, faceting and indexing may be beneficial.
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE, cases = "Car") +
-  ggplot2::facet_wrap(facets = ReboundTools::graph_df_colnames$graph_type_col) +
-  ggplot2::xlim(0.5, 1.2) +
-  ggplot2::ylim(0.99, 1.08) +
-  ggplot2::theme_classic()
-```
-
-Note that the `path_graphs()` function applies labels to the x and y axes
-whenever the labels are unambiguous.
-However, when multiple path graphs are included in the same figure, 
-the x and y axis labels are unclear.
-The user can apply labels appropriate to their situation.
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE, cases = "Car") +
-  ggplot2::facet_wrap(facets = ReboundTools::graph_df_colnames$graph_type_col) +
-  ggplot2::xlim(0.5, 1.2) +
-  ggplot2::ylim(0.99, 1.08) +
-  ggplot2::xlab("my x label") + 
-  ggplot2::ylab("my y label") +
-  ggplot2::theme_classic()
-```
-
-
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE) +
-  ggplot2::facet_grid(rows = vars(Case),
-                      cols = vars(graph_type), 
-                      scales = "free") +
-  ggplot2::xlim(0.5, 1.2) +
-  ggplot2::ylim(0.99, 1.08) +
-  ggplot2::theme_classic()
-```
-
-
-#### `grid_types`
-
-The `grid_types` argument tells which grids to include on the rebound graphs.
-By default, grids are provided for all graph types.
-In the example below, grids are provided only for the energy and cost path graphs.
-
-```{r}
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE, grid_types = c("Energy", "Cost")) +
-  ggplot2::facet_grid(rows = vars(Case),
-                      cols = vars(graph_type), 
-                      scales = "free") +
-  ggplot2::xlim(0.5, 1.2) +
-  ggplot2::ylim(0.99, 1.08) +
-  ggplot2::theme_classic()
-```
-
-
-#### `graph_params`
-
-While `indexed` controls _how_ the data are quantified and 
-`graph_types` and `grid_types` control _what_ data are shown,
-`graph_params` controls the _appearance_ of rebound graphs.
-`graph_params` should be a named list.
-The default `graph_params` list is
-`path_graph_params`.
-
-```{r}
-ReboundTools::path_graph_params
-```
-
-Most parameters are self-explanatory.
-For example, `ReboundTools::path_graph_params$dempl_colour` 
-sets the colour of the direct emplacement path.
-
-```{r}
-my_graph_params <- path_graph_params
-my_graph_params$dempl_colour <- "darkred"
-load_eeu_data() %>% 
-  rebound_analysis() %>% 
-  path_graphs(indexed = TRUE,
-                 graph_types = ReboundTools::graph_types$energy, 
-                 graph_params = my_graph_params) +
-  ggplot2::facet_wrap(facets = ReboundTools::eeu_base_params$case) +
-  ggplot2::theme_classic()
-```
-
-See help for `path_graph_params` for additional information. 
-
-
 ## Conclusion
 
 The `ReboundTools` package assists with analyzing rebound effects and 
@@ -416,11 +188,9 @@ displaying the results.
 In particular, 
 
 * the `rebound_analysis()` function performs rebound analysis 
-on energy efficiency upgrades,
+on energy efficiency upgrades and
 * the `stages_table()` function returns an `xtable` object
-suitable for inclusion in papers and reports, and 
-* the `path_graphs()` function returns `ggplot2` objects 
-that show rebound path graphs.
+suitable for inclusion in papers and reports,
 
 Taken together, these functions provide important capabilities to analyze
 rebound effects for energy efficiency upgrades.

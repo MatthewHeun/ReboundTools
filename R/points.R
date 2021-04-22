@@ -5,7 +5,7 @@
 #' Each available stage of the rebound process is represented in the data frame.
 #'
 #' @param .paths A data frame of rebound paths, 
-#'                      likely created by `energy_paths()`, `cost_paths()`, or `prefs_paths()`.
+#'                      likely created by `energy_paths()`, `expenditure_paths()`, or `prefs_paths()`.
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_stages See `ReboundTools::rebound_stages`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
@@ -22,7 +22,7 @@
 #'   extract_points()
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   cost_paths() %>% 
+#'   expenditure_paths() %>% 
 #'   extract_points()
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 

@@ -13,7 +13,7 @@ Energy rebound is the unanticipated reduction
              Many functions perform analysis calculations to move from 
              known parameters to rebound estimates.
              Other functions create rebound graphs in 
-             energy, cost, and preference spaces.
+             energy, expenditure, and preference spaces.
              The functions in this package were used for the 
              analyses and graphs in the paper **********.
 }

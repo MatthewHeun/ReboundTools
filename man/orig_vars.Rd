@@ -9,20 +9,20 @@ A string list with 22 entries.
 \describe{
 \item{p_E}{The price of energy [$/MJ], calculated by \code{p_E_engr_units / MJ_engr_unit}.}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/year] [lumen-hours/year].}
-\item{C_cap_orig}{The net capital cost of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
+\item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings [$/year].}
 \item{t_own_orig}{The expected ownership duration of the original device [year].}
-\item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal cost rate [$/year].}
+\item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal expenditure rate [$/year].}
 \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
 \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_engr_units_orig / MJ_engr_unit}.}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/year], calculated by \code{q_dot_s_orig / eta_orig}.}
-\item{C_dot_cap_orig}{The original (pre-EEU) capital cost rate [$/year], calculated by \code{C_cap_orig / t_orig}.}
+\item{C_dot_cap_orig}{The original (pre-EEU) capital expenditure rate [$/year], calculated by \code{C_cap_orig / t_orig}.}
 \item{p_s_orig}{The original (pre-EEU) energy service price [$/service], calculated by \code{p_E / eta_orig}.}
-\item{C_dot_s_orig}{The original (pre-EEU) rate of energy cost expenditures for the device [$/year], calculated by \code{p_E * E_dot_s_orig}.}
+\item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device [$/year], calculated by \code{p_E * E_dot_s_orig}.}
 \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods [$/year], calculated by \code{M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig}.}
 \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)}.}
-\item{e_qs_ps}{The energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC + f_Cs_orig*e_qs_M}.}
-\item{e_qo_ps}{The energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)}.}
+\item{e_qs_ps_C}{The compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC + f_Cs_orig*e_qs_M}.}
+\item{e_qo_ps_C}{The compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)}.}
 \item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption [--].}
 \item{rho}{The exponent in the CES utility model, defined as rho = 1/sigma - 1 [--].}
 \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device [MJ].}

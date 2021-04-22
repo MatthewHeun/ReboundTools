@@ -9,71 +9,77 @@ test_that("path_graphs() works as expected", {
   # Try with only one type of graph
   graphs_energy <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    path_graphs(graph_types = "Energy")
+    path_graphs(graph_types = ReboundTools::graph_types$energy)
   expect_true(!is.null(graphs_energy))
-  expect_equal(graphs_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
+  expect_equal(graphs_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), 
+               ReboundTools::graph_types$energy)
   
-  # Try with only one case, Car Energy
+  # Try with only one case, Car energy
   graphs_car_energy <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Car", 
-                   graph_types = "Energy")
+                   graph_types = ReboundTools::graph_types$energy)
   expect_true(!is.null(graphs_car_energy))
   expect_equal(graphs_car_energy$plot_env$.path_data$Case %>% unique(), "Car")
-  expect_equal(graphs_car_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
+  expect_equal(graphs_car_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), 
+               ReboundTools::graph_types$energy)
 
-  # Try Car Cost
-  graphs_car_cost <- load_eeu_data() %>% 
+  # Try Car expenditures
+  graphs_car_expenditures <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Car", 
-                   graph_types = "Cost")
-  expect_true(!is.null(graphs_car_cost))
-  expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
-  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Cost")
+                   graph_types = ReboundTools::graph_types$expenditure)
+  expect_true(!is.null(graphs_car_expenditures))
+  expect_equal(graphs_car_expenditures$plot_env$.path_data$Case %>% unique(), "Car")
+  expect_equal(graphs_car_expenditures$plot_env$.path_data$graph_type %>% unique() %>% as.character(), 
+               ReboundTools::graph_types$expenditure)
   
-  # Try indexed Car Cost
-  graphs_car_cost <- load_eeu_data() %>% 
+  # Try indexed Car expenditures
+  graphs_car_expenditures <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(indexed = TRUE,
                    cases = "Car", 
-                   graph_types = "Cost")
-  expect_true(!is.null(graphs_car_cost))
-  expect_equal(graphs_car_cost$plot_env$.path_data$Case %>% unique(), "Car")
-  expect_equal(graphs_car_cost$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Cost")
+                   graph_types = ReboundTools::graph_types$expenditure)
+  expect_true(!is.null(graphs_car_expenditures))
+  expect_equal(graphs_car_expenditures$plot_env$.path_data$Case %>% unique(), "Car")
+  expect_equal(graphs_car_expenditures$plot_env$.path_data$graph_type %>% unique() %>% as.character(), 
+               ReboundTools::graph_types$expenditure)
 
-  # Eliminate the grids for Car Cost graph.
-  graphs_car_cost_no_grids <- load_eeu_data() %>% 
+  # Eliminate the grids for Car expenditures graph.
+  graphs_car_expenditure_no_grids <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Car", 
-                   graph_types = "Cost", 
+                   graph_types = ReboundTools::graph_types$expenditure, 
                    grid_types = NULL)
-  expect_true(!is.null(graphs_car_cost_no_grids))
-  expect_equal(graphs_car_cost_no_grids$plot_env$.grid_data %>% nrow(), 0)
+  expect_true(!is.null(graphs_car_expenditure_no_grids))
+  expect_equal(graphs_car_expenditure_no_grids$plot_env$.grid_data %>% nrow(), 0)
   
-  # Try an Energy graph for lamps
+  # Try an energy graph for lamps
   graphs_lamp_energy <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Lamp", 
-                   graph_types = "Energy")
+                   graph_types = ReboundTools::graph_types$energy)
   expect_true(!is.null(graphs_lamp_energy))
   expect_equal(graphs_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
-  expect_equal(graphs_lamp_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
+  expect_equal(graphs_lamp_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), 
+               ReboundTools::graph_types$energy)
   
-  # Try an indexed Energy graph for lamps
+  # Try an indexed energy graph for lamps
   graphs_indexed_lamp_energy <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(indexed = TRUE, 
                    cases = "Lamp", 
-                   graph_types = "Energy")
+                   graph_types = ReboundTools::graph_types$energy)
   expect_true(!is.null(graphs_indexed_lamp_energy))
   expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$Case %>% unique(), "Lamp")
-  expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), "Energy")
+  expect_equal(graphs_indexed_lamp_energy$plot_env$.path_data$graph_type %>% unique() %>% as.character(), 
+               ReboundTools::graph_types$energy)
   
   # Try two cases
   graphs_two_cases_indexed_energy <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(indexed = TRUE,
-                   graph_types = "Energy") +
+                   graph_types = ReboundTools::graph_types$energy) +
     ggplot2::facet_wrap(facets = "Case")
   expect_true(!is.null(graphs_two_cases_indexed_energy))
   
@@ -82,7 +88,7 @@ test_that("path_graphs() works as expected", {
     rebound_analysis() %>% 
     path_graphs(cases = c("Car", "Lamp"), 
                    indexed = TRUE,
-                   graph_types = "Energy") +
+                   graph_types = ReboundTools::graph_types$energy) +
     ggplot2::facet_wrap(facets = "Case")
   expect_true(!is.null(graphs_two_cases_indexed_energy_2))
 
@@ -90,7 +96,7 @@ test_that("path_graphs() works as expected", {
   graphs_lamp_prefs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Lamp", 
-                   graph_types = "Preferences")
+                   graph_types = ReboundTools::graph_types$preferences)
   expect_true(!is.null(graphs_lamp_prefs))
   
   # Try a preferences graph for lamps with fewer indifference curve points
@@ -98,8 +104,7 @@ test_that("path_graphs() works as expected", {
   graph_prefs$n_indiff_curve_points <- 200
   graphs_lamp_prefs_2 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    path_graphs(cases = "Lamp", 
-                   graph_types = "Preferences", graph_params = graph_prefs) +  
+    path_graphs(cases = "Lamp", graph_types = ReboundTools::graph_types$preferences, graph_params = graph_prefs) +  
     ggplot2::xlim(0.9, 2.5)
     ggplot2::ylim(0.99, 1.003)
   expect_true(!is.null(graphs_lamp_prefs_2))
@@ -127,25 +132,25 @@ test_that("rebound_graphs_helper() works as expected", {
                         scales = "free")
   expect_true(!is.null(indexed_energy_graph))
 
-  abs_cost_paths <- load_eeu_data() %>% 
+  abs_expenditure_paths <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    cost_paths()
-  abs_cost_graph <- abs_cost_paths %>% 
+    expenditure_paths()
+  abs_expenditure_graph <- abs_expenditure_paths %>% 
     rebound_graphs_helper() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
-  expect_true(!is.null(abs_cost_graph))
+  expect_true(!is.null(abs_expenditure_graph))
 
-  indexed_cost_paths <- load_eeu_data() %>% 
+  indexed_expenditure_paths <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    cost_paths(indexed = TRUE)  
-  indexed_cost_graph <- indexed_cost_paths %>% 
+    expenditure_paths(indexed = TRUE)  
+  indexed_expenditure_graph <- indexed_expenditure_paths %>% 
     rebound_graphs_helper() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free")
-  expect_true(!is.null(indexed_cost_graph))
+  expect_true(!is.null(indexed_expenditure_graph))
   
-  abs_graph <- dplyr::bind_rows(abs_energy_paths, abs_cost_paths) %>% 
+  abs_graph <- dplyr::bind_rows(abs_energy_paths, abs_expenditure_paths) %>% 
     dplyr::mutate(
       graph_type = factor(graph_type, levels = ReboundTools::graph_types)
     ) %>% 
@@ -153,7 +158,7 @@ test_that("rebound_graphs_helper() works as expected", {
     ggplot2::facet_grid(rows = ggplot2::vars(Case), cols = ggplot2::vars(graph_type))
   expect_true(!is.null(abs_graph))
   
-  indexed_graph <- dplyr::bind_rows(indexed_energy_paths, indexed_cost_paths) %>%  
+  indexed_graph <- dplyr::bind_rows(indexed_energy_paths, indexed_expenditure_paths) %>%  
     rebound_graphs_helper() +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
@@ -166,10 +171,10 @@ test_that("rebound_graphs_helper() works with grids", {
   rebound_data <- load_eeu_data() %>% 
     rebound_analysis()
   paths <- dplyr::bind_rows(rebound_data %>% energy_paths(), 
-                            rebound_data %>% cost_paths())
+                            rebound_data %>% expenditure_paths())
   points_data <- extract_points(paths)
   abs_iso_grids <- rebound_data %>% 
-    iso_cost_lines()
+    iso_expenditure_lines()
   abs_graph <- rebound_graphs_helper(paths, points_data, abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
@@ -208,32 +213,32 @@ test_that("rebound_graphs_helper() works with a energy-only graph with grids", {
 })
 
 
-test_that("rebound_graphs_helper() works with a cost-only graph with grids", {
+test_that("rebound_graphs_helper() works with a expenditure-only graph with grids", {
   rebound_data <- load_eeu_data() %>% 
     dplyr::filter(Case == "Car") %>% 
     rebound_analysis()
   paths <- rebound_data %>% 
-    cost_paths()
+    expenditure_paths()
   abs_iso_grids <- rebound_data %>% 
-    iso_cost_lines()
-  abs_car_cost_graph <- rebound_graphs_helper(.path_data = paths, 
+    iso_expenditure_lines()
+  abs_car_expenditure_graph <- rebound_graphs_helper(.path_data = paths, 
                                               .grid_data = abs_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free") 
-  expect_true(!is.null(abs_car_cost_graph))
+  expect_true(!is.null(abs_car_expenditure_graph))
   
   # Now try with indexed data
   indexed_paths <- rebound_data %>% 
-    cost_paths(indexed = TRUE)
+    expenditure_paths(indexed = TRUE)
   indexed_iso_grids <- rebound_data %>% 
-    iso_cost_lines(indexed = TRUE)
-  indexed_car_cost_graph <- rebound_graphs_helper(.path_data = indexed_paths, 
+    iso_expenditure_lines(indexed = TRUE)
+  indexed_car_expenditure_graph <- rebound_graphs_helper(.path_data = indexed_paths, 
                                                   .grid_data = indexed_iso_grids) +
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
                         scales = "free")
-  expect_true(!is.null(indexed_car_cost_graph))
+  expect_true(!is.null(indexed_car_expenditure_graph))
   
 })
 

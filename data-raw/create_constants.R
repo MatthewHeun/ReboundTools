@@ -153,8 +153,8 @@ orig_vars <- list(p_E = "p_E",
                   C_dot_s_orig = "C_dot_s_orig",
                   C_dot_o_orig = "C_dot_o_orig",
                   f_Cs_orig = "f_Cs_orig",
-                  e_qs_ps = "e_qs_ps",
-                  e_qo_ps = "e_qo_ps", 
+                  e_qs_ps_C = "e_qs_ps_C",
+                  e_qo_ps_C = "e_qo_ps_C", 
                   sigma = "sigma",
                   rho = "rho",
                   E_emb_orig = "E_emb_orig",
@@ -311,7 +311,7 @@ usethis::use_data(latex_rebound_terms, overwrite = TRUE)
 # 
 
 graph_types <- list(energy = "Energy",
-                    cost = "Cost",
+                    expenditure = "Expenditure",
                     preferences = "Preferences")
 usethis::use_data(graph_types, overwrite = TRUE)
 
@@ -463,7 +463,7 @@ path_graph_params <- list(# Points on paths
                           zero_perc_rebound_grid_colour = "black",
                           hundred_perc_rebound_grid_colour = "black",
                           energy_rebound_lines_colour = "black",
-                          cost_grid_colour = "black",
+                          expenditure_grid_colour = "black",
                           prefs_grid_colour = "black",
                           prefs_ray_colour = "black",
                           prefs_indiff_grid_colour = "black",
@@ -473,7 +473,7 @@ path_graph_params <- list(# Points on paths
                           zero_perc_rebound_grid_size = 0.3,
                           hundred_perc_rebound_grid_size = 0.3,
                           energy_rebound_lines_size = 0.1,
-                          cost_grid_size = 0.3,
+                          expenditure_grid_size = 0.3,
                           prefs_grid_size = 0.1,
                           prefs_ray_size = 0.1,
                           prefs_indiff_grid_size = 0.5,
@@ -483,7 +483,7 @@ path_graph_params <- list(# Points on paths
                           zero_perc_rebound_grid_linetype = "solid",
                           hundred_perc_rebound_grid_linetype = "solid",
                           energy_rebound_lines_linetype = "solid",
-                          cost_grid_linetype = "solid",
+                          expenditure_grid_linetype = "solid",
                           prefs_grid_linetype = "solid",
                           prefs_ray_linetype = "solid",
                           prefs_indiff_grid_linetype = "solid", 

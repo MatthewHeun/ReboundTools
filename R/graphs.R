@@ -39,15 +39,15 @@ path_graphs <- function(.analysis_data,
   analysis_data <- .analysis_data %>%
     dplyr::filter(.data[[case_colname]] %in% cases)
   
-  # Calculate energy, cost, and preferences paths
+  # Calculate energy, expenditure, and preferences paths
   e_paths <- analysis_data %>%
     energy_paths(indexed = indexed, graph_params = graph_params)
-  c_paths <- analysis_data %>% 
-    cost_paths(indexed = indexed, graph_params = graph_params)
+  exp_paths <- analysis_data %>% 
+    expenditure_paths(indexed = indexed, graph_params = graph_params)
   p_paths <- analysis_data %>% 
     prefs_paths(graph_params = graph_params)
   # Bundle all paths together
-  paths <- dplyr::bind_rows(e_paths, c_paths, p_paths) %>% 
+  paths <- dplyr::bind_rows(e_paths, exp_paths, p_paths) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
   
   # Extract points between rebound effects
@@ -56,7 +56,7 @@ path_graphs <- function(.analysis_data,
                    rebound_stages = rebound_stages, 
                    rebound_segments = rebound_segments, 
                    graph_df_colnames = graph_df_colnames)
-  c_points <- c_paths %>% 
+  exp_points <- exp_paths %>% 
     extract_points(graph_params = graph_params, 
                    rebound_stages = rebound_stages, 
                    rebound_segments = rebound_segments, 
@@ -67,21 +67,21 @@ path_graphs <- function(.analysis_data,
                    rebound_segments = rebound_segments, 
                    graph_df_colnames = graph_df_colnames)
   # Bundle all points together
-  points <- dplyr::bind_rows(e_points, c_points, p_points) %>% 
+  points <- dplyr::bind_rows(e_points, exp_points, p_points) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
 
-  # Calculate energy, cost, and preferences grids/guide lines
+  # Calculate energy, expenditure, and preferences grids/guide lines
   e_grid_data <- analysis_data %>% 
     iso_energy_lines(indexed = indexed, graph_params = graph_params)
-  c_grid_data <- analysis_data %>% 
-    iso_cost_lines(indexed = indexed, graph_params = graph_params)
+  exp_grid_data <- analysis_data %>% 
+    iso_expenditure_lines(indexed = indexed, graph_params = graph_params)
   p_grid_data <- analysis_data %>% 
     iso_budget_lines_prefs(graph_params = graph_params)
   # Decide which grids we want to keep.
   # I.e., we should not keep grids for graphs that we're not making.
   keep_grids <- intersect(graph_types, grid_types)
   # Bundle them together
-  grids <- dplyr::bind_rows(e_grid_data, c_grid_data, p_grid_data) %>% 
+  grids <- dplyr::bind_rows(e_grid_data, exp_grid_data, p_grid_data) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
 
   # Calculate indifference curves for the preferences graph  
@@ -120,7 +120,7 @@ path_graphs <- function(.analysis_data,
         ggplot2::ylab(expression(dot(E)[indir] * " [MJ/year]"))
     }
   }
-  if (graph_types == ReboundTools::graph_types$cost) {
+  if (graph_types == ReboundTools::graph_types$expenditure) {
     if (indexed) {
       g <- g +
         # Horizontal axis label C_dot_dir/C_dot_dir_orig
@@ -357,7 +357,7 @@ rebound_graphs_helper <- function(.path_data,
 #'                linetype = ggplot2::element_blank())
 #'                
 #' # A more-complicated example that shows multi-variate sensitivity.
-#' # Values of the macro parameter (k) is shown in rows of the lattice plot.
+#' # Values of the macro parameter (k) are shown in rows of the lattice plot.
 #' # Uncompensated price elasticity of energy service consumption (e_qs_ps_UC) 
 #' # is shown in columns of the lattice plot.
 #' # Total rebound (Re_tot) is given on the y-axis, and 

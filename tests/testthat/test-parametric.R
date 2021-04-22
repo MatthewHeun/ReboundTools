@@ -75,3 +75,20 @@ test_that("parametric_studies() works with orig point.", {
                c(ReboundTools::parametric_analysis_point_types$orig, 
                  ReboundTools::parametric_analysis_point_types$sweep))
 })
+
+
+test_that("parametric_studies() works with single k values.", {
+  k_vals <- list(Car = list(k = 3),
+                 Lamp = list(k = 3))
+  
+  rebound_results_with_k_3 <- load_eeu_data() %>% 
+    ReboundTools::parametric_analysis(parameterization = k_vals,
+                                      include_orig_point = FALSE)
+  
+  # Re_macro should be triple the avlues from the default analysis (with k = 1).
+  rebound_results <- load_eeu_data() %>% 
+    rebound_analysis()
+  
+  expect_equal(rebound_results_with_k_3[[ReboundTools::rebound_terms$Re_macro]], 
+               rebound_results[[ReboundTools::rebound_terms$Re_macro]] * 3)
+})

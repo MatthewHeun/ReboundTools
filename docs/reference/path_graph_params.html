@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Path graph parameters — path_graph_params" />
 <meta property="og:description" content="The list of graph parameters for drawing
-energy path graphs, cost path graphs, and preference path graphs
+energy path graphs, expenditure path graphs, and preference path graphs
 in the ReboundTools package." />
 
 
@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -91,6 +91,18 @@ in the ReboundTools package." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Graphs.html">Graphs</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -118,7 +130,7 @@ in the ReboundTools package." />
 
     <div class="ref-description">
     <p>The list of graph parameters for drawing
-energy path graphs, cost path graphs, and preference path graphs
+energy path graphs, expenditure path graphs, and preference path graphs
 in the <code>ReboundTools</code> package.</p>
     </div>
 
@@ -139,7 +151,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>arrow_style</dt><dd><p>An <code>arrow</code> object created by <code><a href='https://rdrr.io/r/grid/arrow.html'>grid::arrow</a></code>.</p></dd>
 <dt>dempl_colour</dt><dd><p>The colour for direct emplacment lines.</p></dd>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
-<dt>cap_colour</dt><dd><p>The colour for capital cost lines.</p></dd>
+<dt>cap_colour</dt><dd><p>The colour for capital expenditure lines.</p></dd>
 <dt>md_colour</dt><dd><p>The colour for maintenance and disposal lines.</p></dd>
 <dt>empl_colour</dt><dd><p>The colour for emplacement lines.</p></dd>
 <dt>dsub_colour</dt><dd><p>The colour for direct substitution lines.</p></dd>
@@ -154,7 +166,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>tot_colour</dt><dd><p>The colour for total rebound lines.</p></dd>
 <dt>dempl_size</dt><dd><p>The size for direct emplacment lines.</p></dd>
 <dt>emb_size</dt><dd><p>The size for embodied energy lines.</p></dd>
-<dt>cap_size</dt><dd><p>The size for capital cost lines.</p></dd>
+<dt>cap_size</dt><dd><p>The size for capital expenditure lines.</p></dd>
 <dt>md_size</dt><dd><p>The size for maintenance and disposal lines.</p></dd>
 <dt>empl_size</dt><dd><p>The size for emplacement lines.</p></dd>
 <dt>dsub_size</dt><dd><p>The size for direct substitution lines.</p></dd>
@@ -169,7 +181,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>tot_size</dt><dd><p>The size for total rebound lines.</p></dd>
 <dt>dempl_linetyps</dt><dd><p>The linetype for direct emplacment lines.</p></dd>
 <dt>emb_linetype</dt><dd><p>The linetype for embodied energy lines.</p></dd>
-<dt>cap_linetype</dt><dd><p>The linetype for capital cost lines.</p></dd>
+<dt>cap_linetype</dt><dd><p>The linetype for capital expenditure lines.</p></dd>
 <dt>md_linetype</dt><dd><p>The linetype for maintenance and disposal lines.</p></dd>
 <dt>empl_linetype</dt><dd><p>The linetype for emplacement lines.</p></dd>
 <dt>dsub_linetype</dt><dd><p>The linetype for direct substitution lines.</p></dd>
@@ -195,24 +207,24 @@ arrows overlay their following points.</p></dd>
 <dt>zero_perc_rebound_grid_colour</dt><dd><p>The colour for energy the 0% rebound lines.</p></dd>
 <dt>hundred_perc_rebound_grid_colour</dt><dd><p>The colour for the 100% rebound lines.</p></dd>
 <dt>energy_rebound_lines_colour</dt><dd><p>The colour for energy rebound lines.</p></dd>
-<dt>cost_grid_colour</dt><dd><p>The colour for cost grid lines.</p></dd>
-<dt>cost_ray_colour</dt><dd><p>The colour for cost rays.</p></dd>
+<dt>expenditure_grid_colour</dt><dd><p>The colour for expenditure grid lines.</p></dd>
+<dt>expenditure_ray_colour</dt><dd><p>The colour for expenditure rays.</p></dd>
 <dt>prefs_grid_colour</dt><dd><p>The colour for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_colour</dt><dd><p>The colour for indifference curve lines.</p></dd>
 <dt>energy_grid_size</dt><dd><p>The size for energy grid lines.</p></dd>
 <dt>zero_perc_rebound_grid_size</dt><dd><p>The size for 0% rebound grid lines.</p></dd>
 <dt>hundred_perc_rebound_grid_size</dt><dd><p>The size for the 100% rebound grid lines.</p></dd>
 <dt>energy_rebound_lines_size</dt><dd><p>The size for energy rebound lines.</p></dd>
-<dt>cost_grid_size</dt><dd><p>The size for cost grid lines.</p></dd>
-<dt>cost_ray_size</dt><dd><p>The size for cost rays.</p></dd>
+<dt>expenditure_grid_size</dt><dd><p>The size for expenditure grid lines.</p></dd>
+<dt>expenditure_ray_size</dt><dd><p>The size for expenditure rays.</p></dd>
 <dt>prefs_grid_size</dt><dd><p>The size for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_size</dt><dd><p>The size for indifference curve lines.</p></dd>
 <dt>energy_grid_linetype</dt><dd><p>The linetype for energy grid lines.</p></dd>
 <dt>zero_perc_rebound_grid_linetype</dt><dd><p>The linetype for 0% rebound grid lines.</p></dd>
 <dt>hundred_perc_rebound_grid_linetype</dt><dd><p>The linetype for the 100% rebound grid lines.</p></dd>
 <dt>energy_rebound_lines_linetype</dt><dd><p>The linetype for energy rebound lines.</p></dd>
-<dt>cost_grid_linetype</dt><dd><p>The linetype for cost grid lines.</p></dd>
-<dt>cost_ray_linetype</dt><dd><p>The linetype for cost rays.</p></dd>
+<dt>expenditure_grid_linetype</dt><dd><p>The linetype for expenditure grid lines.</p></dd>
+<dt>expenditure_ray_linetype</dt><dd><p>The linetype for expenditure rays.</p></dd>
 <dt>prefs_grid_linetype</dt><dd><p>The linetype for preferences grid lines.</p></dd>
 <dt>prefs_indiff_curve_linetype</dt><dd><p>The linetype for indifference curve lines.</p></dd>
 <dt>n_indiff_curve_points</dt><dd><p>The number of points on the indifference curves.</p></dd>
@@ -450,7 +462,7 @@ to change graph appearance.</p>
 #&gt; $energy_rebound_lines_colour
 #&gt; [1] "black"
 #&gt; 
-#&gt; $cost_grid_colour
+#&gt; $expenditure_grid_colour
 #&gt; [1] "black"
 #&gt; 
 #&gt; $prefs_grid_colour
@@ -474,7 +486,7 @@ to change graph appearance.</p>
 #&gt; $energy_rebound_lines_size
 #&gt; [1] 0.1
 #&gt; 
-#&gt; $cost_grid_size
+#&gt; $expenditure_grid_size
 #&gt; [1] 0.3
 #&gt; 
 #&gt; $prefs_grid_size
@@ -498,7 +510,7 @@ to change graph appearance.</p>
 #&gt; $energy_rebound_lines_linetype
 #&gt; [1] "solid"
 #&gt; 
-#&gt; $cost_grid_linetype
+#&gt; $expenditure_grid_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $prefs_grid_linetype
