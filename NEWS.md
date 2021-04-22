@@ -1,3 +1,5 @@
+# ReboundTools 0.1.26 (2021-04-22)
+
 * Fixed a bug where missing meta columns would cause graphing failure.
 * New tests to trigger the bug.
     - Now at 469 tests, all passing.
