@@ -22,7 +22,7 @@ extract_meta <- function(.rebound_data,
                          original = ReboundTools::eeu_base_params$original, 
                          upgrade = ReboundTools::eeu_base_params$upgrade) {
   .rebound_data %>% 
-    dplyr::select(dplyr::all_of(meta_cols))
+    dplyr::select(dplyr::any_of(meta_cols))
 }
 
 

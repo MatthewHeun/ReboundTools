@@ -5,6 +5,7 @@
 #' @param cases A string list saying which cases in `.rebound_data` to include. Default is `.analysis_data[[case_colname]] %>% unique()`, i.e. all cases in `.analysis_data`.
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
 #' @param grid_types A string list of graph types on which grids (guide lines) are to be included. Default is `ReboundTools::graph_types`, i.e. include grids on all graph types.
+#'                   Set `NULL` to eliminate grids.
 #' @param graph_params A string list of parameters that control the appearance of this graph. 
 #'                     Default is `ReboundTools::path_graph_params`, which can be 
 #'                     modified and passed as an argument to control graph appearance.
