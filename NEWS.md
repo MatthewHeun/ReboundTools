@@ -1,3 +1,5 @@
+# ReboundTools 0.1.25 (2021-04-21)
+
 * New function `calibrate_k()` that calculates a value for `k`
   when a target value for `Re_tot` is provided.
 * New tests for the new function.
