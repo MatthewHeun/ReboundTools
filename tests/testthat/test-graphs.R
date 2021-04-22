@@ -108,7 +108,23 @@ test_that("path_graphs() works as expected", {
     ggplot2::xlim(0.9, 2.5)
     ggplot2::ylim(0.99, 1.003)
   expect_true(!is.null(graphs_lamp_prefs_2))
-  
+})
+
+
+test_that("path_graphs() works with grid_types = NULL", {
+  graphs <- load_eeu_data() %>% 
+    rebound_analysis() %>% 
+    path_graphs(grid_types = NULL)
+  expect_true(!is.null(graphs))
+})
+
+
+test_that("path_graphs() works when the Reference column is missing", {
+  graphs <- load_eeu_data() %>% 
+    dplyr::select(-Reference) %>% 
+    rebound_analysis() %>% 
+    path_graphs()
+  expect_true(!is.null(graphs))
 })
 
 
