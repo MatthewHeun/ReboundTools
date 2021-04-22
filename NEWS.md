@@ -1,7 +1,7 @@
 * New function `calibrate_k()` that calculates a value for `k`
   when a target value for `Re_tot` is provided.
 * New tests for the new function.
-    - Now at 466 tests, all passing.
+    - Now at 467 tests, all passing.
     - Test coverage remains at 100%.
 
 
