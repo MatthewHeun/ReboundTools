@@ -11,5 +11,6 @@ test_that("calibrate_k() works as expected", {
   new_k_2 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     calibrate_k(c(0.4, 0.7))
-  expect_equal(new_k_2[[1]], )
+  expect_equal(new_k_2[[1]], 2.9321855)
+  expect_equal(new_k_2[[2]], 2.1459482)
 })

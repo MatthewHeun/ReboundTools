@@ -7,12 +7,12 @@
 calibrate_k(
   .rebound_data,
   Re_tot_target,
-  case = ReboundTools::eeu_base_params$case,
-  I_E = ReboundTools::eeu_base_params$I_E,
-  S_dot_dev = ReboundTools::star_vars$S_dot_dev,
-  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
-  Re_macro = ReboundTools::rebound_terms$Re_macro,
-  Re_tot = ReboundTools::rebound_terms$Re_tot
+  case_colname = ReboundTools::eeu_base_params$case,
+  I_E_colname = ReboundTools::eeu_base_params$I_E,
+  S_dot_dev_colname = ReboundTools::star_vars$S_dot_dev,
+  N_dot_hat_colname = ReboundTools::hat_vars$N_dot_hat,
+  Re_macro_colname = ReboundTools::rebound_terms$Re_macro,
+  Re_tot_colname = ReboundTools::rebound_terms$Re_tot
 )
 }
 \arguments{
@@ -22,13 +22,13 @@ calibrate_k(
 A number or a vector of numbers of same length as the number of observations
 in \code{.rebound_data}.}
 
-\item{case, I_E}{See \code{ReboundTools::eeu_base_params}.}
+\item{case_colname, I_E_colname}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
+\item{S_dot_dev_colname}{See \code{ReboundTools::star_vars}.}
 
-\item{N_dot_hat}{See \code{ReboundTools::hat_vars}.}
+\item{N_dot_hat_colname}{See \code{ReboundTools::hat_vars}.}
 
-\item{Re_macro, Re_tot}{See \code{ReboundTools::rebound_terms}.}
+\item{Re_macro_colname, Re_tot_colname}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
 A number or vector of numbers of $k$ values which make total rebound match \code{target_Re_tot}.
