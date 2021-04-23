@@ -18,11 +18,11 @@ rebound_graphs_helper(
 \item{.path_data}{A data frame of paths to be added to the graph.
 The columns "colour" and "size" control the colour and width of the segment}
 
-\item{.points_data}{A data frame of points between rebound effects.}
+\item{.points_data}{A data frame of points between rebound effects. Default is \code{NULL}, meaning that no data points are to be added to the graphs.}
 
-\item{.grid_data}{A data frame of lines to be added to the graph.}
+\item{.grid_data}{A data frame of lines to be added to the graph. Default is \code{NULL}, meaning that no grid lines are to be added to the graphs.}
 
-\item{.indifference_data}{A data frame of indifference curves to be added to the graph.}
+\item{.indifference_data}{A data frame of indifference curves to be added to the graph. Default is \code{NULL}, meaning no indifference curves are added to the graph.}
 
 \item{graph_params}{A list of appearance parameters for this graph. Default is \code{ReboundTools::path_graph_params}.}
 

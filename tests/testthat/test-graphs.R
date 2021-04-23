@@ -119,6 +119,16 @@ test_that("path_graphs() works with grid_types = NULL", {
 })
 
 
+test_that("path_graphs() works with show_indifference_curves = FALSE", {
+  graphs <- load_eeu_data() %>% 
+    dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Lamp") %>% 
+    rebound_analysis() %>% 
+    path_graphs(graph_types = ReboundTools::graph_types$preferences, 
+                show_indifference_curves = FALSE)
+  expect_true(!is.null(graphs))
+})
+
+
 test_that("path_graphs() works when the Reference column is missing", {
   graphs <- load_eeu_data() %>% 
     dplyr::select(-Reference) %>% 

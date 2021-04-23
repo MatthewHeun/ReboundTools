@@ -1,3 +1,6 @@
+* Added argument `show_indifference_curves` to `path_graphs()`.
+
+
 # ReboundTools 0.1.26 (2021-04-22)
 
 * Fixed a bug where missing meta columns would cause graphing failure.
