@@ -6,7 +6,6 @@
 #' @param graph_types A string list of graph types to include in the returned object. Default is `ReboundTools::graph_types`, i.e. all graph types.
 #' @param grid_types A string list of graph types on which grids (guide lines) are to be included. Default is `ReboundTools::graph_types`, i.e. include grids on all graph types.
 #'                   Set `NULL` to eliminate grids.
-#' @param show_indifference_curves A boolean that tells whether to include indifference curves on preferences path graphs. Default is `TRUE`. Set `FALSE` to disable.
 #' @param graph_params A string list of parameters that control the appearance of this graph. 
 #'                     Default is `ReboundTools::path_graph_params`, which can be 
 #'                     modified and passed as an argument to control graph appearance.
@@ -28,7 +27,6 @@ path_graphs <- function(.analysis_data,
                         cases = .analysis_data[[case_colname]] %>% unique(),
                         graph_types = ReboundTools::graph_types,
                         grid_types = ReboundTools::graph_types,
-                        show_indifference_curves = TRUE,
                         graph_params = ReboundTools::path_graph_params, 
                         case_colname = ReboundTools::eeu_base_params$case, 
                         rebound_stages = ReboundTools::rebound_stages,
@@ -88,7 +86,7 @@ path_graphs <- function(.analysis_data,
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
 
   # Calculate indifference curves for the preferences graph  
-  if (show_indifference_curves) {
+  if (graph_params$show_indifference_curves) {
     indifference_curves <- analysis_data %>% 
       indifference_lines(graph_params = graph_params) %>% 
       dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)

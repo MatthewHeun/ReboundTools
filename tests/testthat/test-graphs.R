@@ -120,11 +120,13 @@ test_that("path_graphs() works with grid_types = NULL", {
 
 
 test_that("path_graphs() works with show_indifference_curves = FALSE", {
+  pgp <- ReboundTools::path_graph_params
+  pgp$show_indifference_curves <- FALSE
   graphs <- load_eeu_data() %>% 
     dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Lamp") %>% 
     rebound_analysis() %>% 
     path_graphs(graph_types = ReboundTools::graph_types$preferences, 
-                show_indifference_curves = FALSE)
+                graph_params = pgp)
   expect_true(!is.null(graphs))
 })
 
