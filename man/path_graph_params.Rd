@@ -5,7 +5,7 @@
 \alias{path_graph_params}
 \title{Path graph parameters}
 \format{
-A string list with 84 entries.
+A string list with 85 entries.
 \describe{
 
 \item{which_points}{A data frame telling which points to include in the graph.}
@@ -16,6 +16,7 @@ A string list with 84 entries.
 \item{which_arrows}{A data frame telling which ending arrows to include in the graph.}
 \item{last_arrow}{Tells whether to show the last arrow. Overrides \code{which_arrows}.}
 \item{arrow_style}{An \code{arrow} object created by \code{grid::arrow}.}
+\item{show_indifference_curves}{A boolean that tells whether to include indifference curves on preferences path graphs. Default is \code{TRUE}.}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital expenditure lines.}

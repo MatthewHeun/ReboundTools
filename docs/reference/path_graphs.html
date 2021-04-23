@@ -136,7 +136,6 @@
   cases <span class='op'>=</span> <span class='va'>.analysis_data</span><span class='op'>[[</span><span class='va'>case_colname</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>,
   graph_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
   grid_types <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span>,
-  show_indifference_curves <span class='op'>=</span> <span class='cn'>TRUE</span>,
   graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
   case_colname <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='eeu_base_params.html'>eeu_base_params</a></span><span class='op'>$</span><span class='va'>case</span>,
   rebound_stages <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_stages.html'>rebound_stages</a></span>,
@@ -167,10 +166,6 @@
       <th>grid_types</th>
       <td><p>A string list of graph types on which grids (guide lines) are to be included. Default is <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>, i.e. include grids on all graph types.
 Set <code>NULL</code> to eliminate grids.</p></td>
-    </tr>
-    <tr>
-      <th>show_indifference_curves</th>
-      <td><p>A boolean that tells whether to include indifference curves on preferences path graphs. Default is <code>TRUE</code>. Set <code>FALSE</code> to disable.</p></td>
     </tr>
     <tr>
       <th>graph_params</th>

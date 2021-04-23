@@ -139,7 +139,7 @@ in the <code>ReboundTools</code> package.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A string list with 84 entries.</p><dl>
+    <p>A string list with 85 entries.</p><dl>
 
 <dt>which_points</dt><dd><p>A data frame telling which points to include in the graph.</p></dd>
 <dt>last_point</dt><dd><p>Tells whether to show the last point in a path. Overrides <code>which_points</code>.</p></dd>
@@ -149,6 +149,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>which_arrows</dt><dd><p>A data frame telling which ending arrows to include in the graph.</p></dd>
 <dt>last_arrow</dt><dd><p>Tells whether to show the last arrow. Overrides <code>which_arrows</code>.</p></dd>
 <dt>arrow_style</dt><dd><p>An <code>arrow</code> object created by <code><a href='https://rdrr.io/r/grid/arrow.html'>grid::arrow</a></code>.</p></dd>
+<dt>show_indifference_curves</dt><dd><p>A boolean that tells whether to include indifference curves on preferences path graphs. Default is <code>TRUE</code>.</p></dd>
 <dt>dempl_colour</dt><dd><p>The colour for direct emplacment lines.</p></dd>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
 <dt>cap_colour</dt><dd><p>The colour for capital expenditure lines.</p></dd>
@@ -302,6 +303,9 @@ to change graph appearance.</p>
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "arrow"
+#&gt; 
+#&gt; $show_indifference_curves
+#&gt; [1] TRUE
 #&gt; 
 #&gt; $dempl_colour
 #&gt; [1] "#150789FF"
