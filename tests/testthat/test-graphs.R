@@ -96,7 +96,7 @@ test_that("path_graphs() works as expected", {
   graphs_lamp_prefs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Lamp", 
-                   graph_types = ReboundTools::graph_types$preferences)
+                graph_types = ReboundTools::graph_types$preferences)
   expect_true(!is.null(graphs_lamp_prefs))
   
   # Try a preferences graph for lamps with fewer indifference curve points
