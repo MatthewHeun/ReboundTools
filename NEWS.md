@@ -1,6 +1,6 @@
 # ReboundTools 0.1.26 (2021-04-23)
 
-* Added argument `show_indifference_curves` to `path_graphs()`.
+* Added item `show_indifference_curves` to `graph_params` item of `path_graphs()` function.
 * New tests for the new argument.
     - Now at 470 tests, all passing.
     - Test coverage remains at 100%.
