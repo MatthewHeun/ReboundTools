@@ -382,6 +382,7 @@
 #' rebound_terms_agg
 "rebound_terms_agg"
 
+
 #' LaTeX version of rebound terms
 #'
 #' This is the list of the rebound terms in LaTeX form.
@@ -479,6 +480,7 @@
 #' \item{which_arrows}{A data frame telling which ending arrows to include in the graph.}
 #' \item{last_arrow}{Tells whether to show the last arrow. Overrides `which_arrows`.}
 #' \item{arrow_style}{An `arrow` object created by `grid::arrow`.}
+#' \item{show_indifference_curves}{A boolean that tells whether to include indifference curves on preferences path graphs. Default is `TRUE`.}
 #' \item{dempl_colour}{The colour for direct emplacment lines.}
 #' \item{emb_colour}{The colour for embodied energy lines.}
 #' \item{cap_colour}{The colour for capital expenditure lines.}

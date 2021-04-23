@@ -86,9 +86,13 @@ path_graphs <- function(.analysis_data,
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
 
   # Calculate indifference curves for the preferences graph  
-  indifference_curves <- analysis_data %>% 
-    indifference_lines(graph_params = graph_params) %>% 
-    dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
+  if (graph_params$show_indifference_curves) {
+    indifference_curves <- analysis_data %>% 
+      indifference_lines(graph_params = graph_params) %>% 
+      dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
+  } else {
+    indifference_curves <- NULL
+  }
   
   g <- rebound_graphs_helper(.path_data = paths, 
                              .points_data = points,
@@ -156,9 +160,9 @@ path_graphs <- function(.analysis_data,
 #' 
 #' @param .path_data A data frame of paths to be added to the graph. 
 #'                   The columns "colour" and "size" control the colour and width of the segment
-#' @param .points_data A data frame of points between rebound effects.
-#' @param .grid_data A data frame of lines to be added to the graph.
-#' @param .indifference_data A data frame of indifference curves to be added to the graph.
+#' @param .points_data A data frame of points between rebound effects. Default is `NULL`, meaning that no data points are to be added to the graphs.
+#' @param .grid_data A data frame of lines to be added to the graph. Default is `NULL`, meaning that no grid lines are to be added to the graphs.
+#' @param .indifference_data A data frame of indifference curves to be added to the graph. Default is `NULL`, meaning no indifference curves are added to the graph.
 #' @param graph_params A list of appearance parameters for this graph. Default is `ReboundTools::path_graph_params`.
 #' @param graph_types A list of graph types. Default is `ReboundTools::graph_types`.
 #' @param graph_df_colnames The names of column names in data frames of graph data. Default is `ReboundTools::graph_df_colnames`.

@@ -396,6 +396,9 @@ path_graph_params <- list(# Points on paths
                           last_arrow = TRUE,
                           arrow_style = arr_style,
                           
+                          # Whether to show indifference curves on preferences path graphs
+                          show_indifference_curves = TRUE,
+                          
                           # Path colours
                           dempl_colour = empl_colour, 
                           emb_colour = empl_colour,
