@@ -5,7 +5,7 @@
 \alias{rebound_terms}
 \title{Rebound terms}
 \format{
-A string list with 15 entries.
+A string list with 16 entries.
 \describe{
 \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 \item{Re_emb}{Indirect embodied energy effect rebound.}
@@ -18,6 +18,7 @@ A string list with 15 entries.
 \item{Re_dinc}{Direct income effect rebound.}
 \item{Re_iinc}{Indirect income effect rebound.}
 \item{Re_inc}{Income effect rebound.}
+\item{Re_micro}{Sum of all micro rebound effects.}
 \item{Re_macro}{Indirect macro effect rebound.}
 \item{Re_d}{Sum of all direct rebound effects.}
 \item{Re_i}{Sum of all indirect rebound effects.}

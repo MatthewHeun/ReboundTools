@@ -794,7 +794,7 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
 #' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_macro,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
+#' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_micro,Re_macro,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
 #'
 #' @return A data frame with rebound terms added as columns.
 #' 
@@ -848,6 +848,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_dinc = ReboundTools::rebound_terms$Re_dinc,
                          Re_iinc = ReboundTools::rebound_terms$Re_iinc,
                          Re_inc = ReboundTools::rebound_terms$Re_inc,
+                         Re_micro = ReboundTools::rebound_terms$Re_micro,
                          Re_macro = ReboundTools::rebound_terms$Re_macro,
                          Re_dir = ReboundTools::rebound_terms$Re_dir,
                          Re_indir = ReboundTools::rebound_terms$Re_indir,
@@ -908,6 +909,9 @@ calc_rebound <- function(.Deltas_data = NULL,
     # Income effect rebound
     Re_inc_val <- Re_dinc_val + Re_iinc_val
     
+    # Sum of all micro rebound effects
+    Re_micro_val <- Re_empl_val + Re_sub_val + Re_inc_val
+
     # Macro effect rebound
     Re_macro_val <- k_val * N_dot_hat_val * I_E_val / S_dot_dev_val
     
@@ -935,6 +939,7 @@ calc_rebound <- function(.Deltas_data = NULL,
          Re_dinc_val,
          Re_iinc_val,
          Re_inc_val,
+         Re_micro_val,
          Re_macro_val,
          Re_dir_val,
          Re_indir_val,
@@ -950,6 +955,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                             Re_dinc,
                             Re_iinc,
                             Re_inc,
+                            Re_micro,
                             Re_macro,
                             Re_dir,
                             Re_indir,

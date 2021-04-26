@@ -339,6 +339,11 @@ test_that("calc_rebound() works as expected with approximated hat", {
   expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[1]], 0.07839106417780371261)
   expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[2]], 0.24744089023629611823)
 
+  expect_equal(res[[ReboundTools::rebound_terms$Re_micro]], 
+               res[[ReboundTools::rebound_terms$Re_empl]] + 
+                 res[[ReboundTools::rebound_terms$Re_sub]] + 
+                 res[[ReboundTools::rebound_terms$Re_inc]])
+  
   expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[1]], 0.08154999933180497040)
   expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[2]], 0.24746203473015923602)
 
