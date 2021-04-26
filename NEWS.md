@@ -1,6 +1,8 @@
-* Added new calculation of micro rebound.
+# ReboundTools 0.1.28 (2021-04-26)
+
+* Now calculating micro rebound.
 * New test for the new feature.
-    - Now at 471 tests, all passing.
+    - Now at 472 tests, all passing.
     - Test coverage remains at 100%.
 
 
