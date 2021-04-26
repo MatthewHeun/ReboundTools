@@ -5,7 +5,7 @@
 \alias{path_graph_params}
 \title{Path graph parameters}
 \format{
-A string list with 85 entries.
+A string list with 88 entries.
 \describe{
 
 \item{which_points}{A data frame telling which points to include in the graph.}

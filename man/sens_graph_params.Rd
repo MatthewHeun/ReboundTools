@@ -5,7 +5,7 @@
 \alias{sens_graph_params}
 \title{Sensitivity graph parameters}
 \format{
-A string list with 56 entries.
+A string list with 59 entries.
 \describe{
 
 \item{orig_point_shape}{The shape for points between rebound effects. Default is \code{1}, an open circle..}

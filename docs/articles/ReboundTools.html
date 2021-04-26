@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.28</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
       <h1 data-toc-skip>ReboundTools</h1>
                         <h4 class="author">Matthew Kuperus Heun</h4>
             
-            <h4 class="date">2021-04-23</h4>
+            <h4 class="date">2021-04-26</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -156,7 +156,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <code class="sourceCode R"><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
-<span class="co">#&gt; Columns: 154</span>
+<span class="co">#&gt; Columns: 155</span>
 <span class="co">#&gt; $ Reference                  &lt;chr&gt; "None yet", "None yet"</span>
 <span class="co">#&gt; $ Case                       &lt;chr&gt; "Car", "Lamp"</span>
 <span class="co">#&gt; $ Original                   &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
@@ -307,6 +307,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $ Re_dinc                    &lt;dbl&gt; 0.0530048001, 0.0001275617</span>
 <span class="co">#&gt; $ Re_iinc                    &lt;dbl&gt; 0.0778109, 0.1904348</span>
 <span class="co">#&gt; $ Re_inc                     &lt;dbl&gt; 0.1308157, 0.1905624</span>
+<span class="co">#&gt; $ Re_micro                   &lt;dbl&gt; 0.1626500, 0.2913018</span>
 <span class="co">#&gt; $ Re_macro                   &lt;dbl&gt; 0.08094646, 0.19045111</span>
 <span class="co">#&gt; $ Re_dir                     &lt;dbl&gt; 0.08254269, 0.17377699</span>
 <span class="co">#&gt; $ Re_indir                   &lt;dbl&gt; 0.1610537, 0.3079759</span>
@@ -362,7 +363,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.5 by xtable 1.8-4 package -->
-<!-- Fri Apr 23 16:15:18 2021 -->
+<!-- Mon Apr 26 16:53:07 2021 -->
 <table class="table">
 <tr>
 <th>
@@ -648,7 +649,7 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
         sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
         format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <!-- html table generated in R 4.0.5 by xtable 1.8-4 package -->
-<!-- Fri Apr 23 16:15:18 2021 -->
+<!-- Mon Apr 26 16:53:07 2021 -->
 <table class="table">
 <tr>
 <th>

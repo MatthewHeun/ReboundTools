@@ -263,6 +263,7 @@ rebound_terms <- list(Re_dempl = "Re_dempl",
                       Re_dinc = "Re_dinc", 
                       Re_iinc = "Re_iinc", 
                       Re_inc = "Re_inc",
+                      Re_micro = "Re_micro", 
                       Re_macro = "Re_macro", 
                       Re_dir = "Re_dir",
                       Re_indir = "Re_indir",
@@ -299,6 +300,7 @@ latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
                             Re_dinc = "$Re_{dinc}$", 
                             Re_iinc = "$Re_{iinc}$", 
                             Re_inc = "$Re_{inc}$",
+                            Re_micro = "$Re_{micro}$",
                             Re_macro = "$Re_{macro}$", 
                             Re_dir = "$Re_{dir}$",
                             Re_indir = "$Re_{indir}$",
@@ -375,6 +377,7 @@ v_colours <- viridis::viridis(4, option = "plasma", begin = 0.01, end = 0.95)
 empl_colour <- v_colours[1]
 sub_colour <- v_colours[2]
 inc_colour <- v_colours[3]
+micro_colour <- v_colours[4]
 macro_colour <- v_colours[4]
 tot_colour <- "black"
 
@@ -411,6 +414,7 @@ path_graph_params <- list(# Points on paths
                           dinc_colour = inc_colour,
                           iinc_colour = inc_colour, 
                           inc_colour = inc_colour,
+                          micro_colour = micro_colour,
                           macro_colour = macro_colour, 
                           dir_colour = tot_colour, 
                           indir_colour = tot_colour, 
@@ -428,6 +432,7 @@ path_graph_params <- list(# Points on paths
                           dinc_size = 1,
                           iinc_size = 1, 
                           inc_size = 1,
+                          micro_size = 1,
                           macro_size = 1,
                           dir_size = 1,
                           indir_size = 1,
@@ -445,6 +450,7 @@ path_graph_params <- list(# Points on paths
                           dinc_linetype = "solid",
                           iinc_linetype = "solid", 
                           sinc_linetype = "solid",
+                          micro_linetype = "solid",
                           macro_linetype = "solid",
                           dir_linetype = "solid",
                           indir_linetype = "solid",
@@ -519,6 +525,7 @@ sens_graph_params <- list(# Base condition points on graphs
                           dinc_colour = inc_colour,
                           iinc_colour = inc_colour, 
                           inc_colour = inc_colour, 
+                          micro_colour = micro_colour, 
                           macro_colour = macro_colour, 
                           dir_colour = tot_colour,
                           indir_colour = tot_colour,
@@ -536,6 +543,7 @@ sens_graph_params <- list(# Base condition points on graphs
                           dinc_size = 0.5,
                           iinc_size = 0.5,
                           inc_size = 0.5,
+                          micro_size = 0.5,
                           macro_size = 0.5,
                           dir_size = 0.5,
                           indir_size = 0.5,
@@ -553,6 +561,7 @@ sens_graph_params <- list(# Base condition points on graphs
                           dinc_linetype = "solid",
                           iinc_linetype = "11", 
                           inc_linetype = "solid",
+                          micro_linetype = "solid",
                           macro_linetype = "solid",
                           dir_linetype = "solid", 
                           indir_linetype = "11", 
