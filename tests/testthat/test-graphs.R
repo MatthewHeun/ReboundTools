@@ -471,3 +471,13 @@ test_that("LaTeX legends works as expected.", {
   expect_true(!is.null(g))
 })
 
+
+test_that("Rebound terms graph works as expected.", {
+  df <- load_eeu_data()
+  sens_params <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
+                      Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
+  graph <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
+                      x_var = "eta_engr_units_tilde") +
+    ggplot2::facet_wrap(facets = "Case", scales = "free_x")
+  expect_true(!is.null(graph))
+})
