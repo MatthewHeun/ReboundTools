@@ -74,7 +74,7 @@ The iso lines are described by slope and intercept." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.28</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.29</span>
       </span>
     </div>
 
@@ -143,7 +143,14 @@ The iso lines are described by slope and intercept.</p>
   C_dot_cap_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_orig</span>,
   C_dot_md_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_orig</span>,
   C_dot_o_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_orig</span>,
-  G_dot <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>G_dot</span>
+  G_dot <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>G_dot</span>,
+  C_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>C_dot_s_hat</span>,
+  C_dot_cap_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_star</span>,
+  C_dot_md_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_star</span>,
+  C_dot_o_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_star</span>,
+  C_dot_cap_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>C_dot_cap_hat</span>,
+  C_dot_md_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>C_dot_md_hat</span>,
+  C_dot_o_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_hat</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -175,23 +182,35 @@ at its start.</p></td>
       <th>G_dot</th>
       <td><p>See <code><a href='star_vars.html'>ReboundTools::star_vars</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>C_dot_s_hat, C_dot_cap_hat, C_dot_md_hat, C_dot_o_hat</th>
+      <td><p>See <code><a href='hat_vars.html'>ReboundTools::hat_vars</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>C_dot_cap_star, C_dot_md_star, C_dot_o_star</th>
+      <td><p>See <code><a href='star_vars.html'>ReboundTools::star_vars</a></code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of iso-expenditure lines for an expenditure graph.</p>
+    <p>A data frame of iso-expenditure lines for an expenditure path graph.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>iso_expenditure_lines</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 8 x 11</span><span>
 #&gt;   Reference Case  Original  Upgrade   graph_type line_name colour  size linetype
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fus… Ford Fus… Expenditu… orig      black    0.3 solid   
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incandes… LED       Expenditu… orig      black    0.3 solid   
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span> None yet  Car   Ford Fus… Ford Fus… Expenditu… G_dot     black    0.3 solid   
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span> None yet  Lamp  Incandes… LED       Expenditu… G_dot     black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> None yet  Car   Ford Fus… Ford Fus… Expenditu… star      black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> None yet  Lamp  Incandes… LED       Expenditu… star      black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> None yet  Car   Ford Fus… Ford Fus… Expenditu… hat       black    0.3 solid   
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> None yet  Lamp  Incandes… LED       Expenditu… hat       black    0.3 solid   
 #&gt; </span><span style='color: #949494;'># … with 2 more variables: slope &lt;dbl&gt;, intercept &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
