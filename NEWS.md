@@ -1,3 +1,7 @@
+* Added isoquant lines through the * and ^ point
+  to the grid created by the `iso_expenditure_lines()` function.
+
+
 # ReboundTools 0.1.28 (2021-04-26)
 
 * Now calculating micro rebound.
