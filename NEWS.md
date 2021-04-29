@@ -1,5 +1,10 @@
+# ReboundTools 0.1.29 (2021-04-29)
+
 * Added isoquant lines through the * and ^ point
   to the grid created by the `iso_expenditure_lines()` function.
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.28 (2021-04-26)
