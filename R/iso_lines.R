@@ -179,8 +179,10 @@ iso_energy_lines <- function(.rebound_data,
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
+#' @param C_dot_cap_star,C_dot_md_star,C_dot_o_star See `ReboundTools::star_vars`.
+#' @param C_dot_s_hat,C_dot_cap_hat,C_dot_md_hat,C_dot_o_hat See `ReboundTools::hat_vars`.
 #'
-#' @return A data frame of iso-expenditure lines for an expenditure graph.
+#' @return A data frame of iso-expenditure lines for an expenditure path graph.
 #' 
 #' @export
 #'
@@ -198,7 +200,14 @@ iso_expenditure_lines <- function(.rebound_data,
                            C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig, 
                            C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig, 
                            
-                           G_dot = ReboundTools::star_vars$G_dot) {
+                           G_dot = ReboundTools::star_vars$G_dot,
+                           C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat, 
+                           C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star, 
+                           C_dot_md_star = ReboundTools::star_vars$C_dot_md_star, 
+                           C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                           C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat, 
+                           C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat, 
+                           C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -217,7 +226,7 @@ iso_expenditure_lines <- function(.rebound_data,
                   x_orig = x_orig, y_orig = y_orig, 
                   x = x, y = y)
   
-  # Iso-expenditure line after expected savings
+  # Iso-expenditure line after expected savings (through the "a" point)
   x <- x - .rebound_data[[G_dot]]
   y <- y
   isos <- isos %>% 
@@ -230,7 +239,35 @@ iso_expenditure_lines <- function(.rebound_data,
             linetype = graph_params$expenditure_grid_linetype, 
             x_orig = x_orig, y_orig = y_orig, 
             x = x, y = y)
+  
+  # Iso-expenditure line after the emplacement effect (through the "star" point)
+  # Same x value as iso-expenditure line through the "a" point
+  y <- .rebound_data[[C_dot_cap_star]] + .rebound_data[[C_dot_md_star]] + .rebound_data[[C_dot_o_star]]
+  isos <- isos %>% 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = graph_type, 
+            iso_name = ReboundTools::rebound_stages$star,
+            colour = graph_params$expenditure_grid_colour, 
+            size = graph_params$expenditure_grid_size, 
+            linetype = graph_params$expenditure_grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig, 
+            x = x, y = y)
 
+  # Iso-expenditure line after the substitution effect (through the "hat" point)
+  x <- .rebound_data[[C_dot_s_hat]]
+  y <- .rebound_data[[C_dot_cap_hat]] + .rebound_data[[C_dot_md_hat]] + .rebound_data[[C_dot_o_hat]]
+  isos <- isos %>% 
+    add_iso(indexed = indexed, 
+            meta = meta, 
+            graph_type = graph_type, 
+            iso_name = ReboundTools::rebound_stages$hat,
+            colour = graph_params$expenditure_grid_colour, 
+            size = graph_params$expenditure_grid_size, 
+            linetype = graph_params$expenditure_grid_linetype, 
+            x_orig = x_orig, y_orig = y_orig, 
+            x = x, y = y)
+  
   return(isos)
 }
 
