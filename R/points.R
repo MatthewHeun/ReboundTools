@@ -26,7 +26,7 @@
 #'   extract_points()
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   prefs_paths() %>% 
+#'   consumption_paths() %>% 
 #'   extract_points()
 extract_points <- function(.paths, 
                            graph_params = ReboundTools::path_graph_params, 
