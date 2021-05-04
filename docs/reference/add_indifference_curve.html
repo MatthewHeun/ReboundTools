@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Add an indifference curve to a data frame — add_indifference_curve" />
 <meta property="og:description" content="Adds an indifference curve to a data frame of indifference curves
-to be plotted on a preferences graph.
+to be plotted on a consumption path graph.
 The indifference curves are accumulated in rows." />
 
 
@@ -74,7 +74,7 @@ The indifference curves are accumulated in rows." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.30</span>
       </span>
     </div>
 
@@ -130,14 +130,14 @@ The indifference curves are accumulated in rows." />
 
     <div class="ref-description">
     <p>Adds an indifference curve to a data frame of indifference curves
-to be plotted on a preferences graph.
+to be plotted on a consumption path graph.
 The indifference curves are accumulated in rows.</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_indifference_curve</span><span class='op'>(</span>
   .DF <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>meta</span>,
-  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>preferences</span>,
+  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>consumption</span>,
   <span class='va'>line_name</span>,
   <span class='va'>qs1_qs0</span>,
   <span class='va'>Co1_Co0</span>,
@@ -154,7 +154,7 @@ The indifference curves are accumulated in rows.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.DF</th>
-      <td><p>A data frame that accumulates preferences curves.
+      <td><p>A data frame that accumulates indifference curves for consumption path graphs.
 When <code>NULL</code>, the default, a new data frame is created and returned.
 When not <code>NULL</code>, rows for the curves are added to the bottom of <code>.DF</code>.</p></td>
     </tr>
@@ -166,7 +166,7 @@ This metadata data frame provides the left-most columns of the return value.</p>
     <tr>
       <th>graph_type</th>
       <td><p>The graph type for the indifference curve.
-Default is <code>ReboundTools::graph_types$preferences</code>.</p></td>
+Default is <code>ReboundTools::graph_types$consumption</code>.</p></td>
     </tr>
     <tr>
       <th>line_name</th>
@@ -209,7 +209,7 @@ Default is <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colname
     <p>A version of <code>.DF</code> with new indifference curves added at the bottom.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The preferences graph is <em>always</em> indexed, so there is no <code>indexed</code> argument.</p>
+    <p>The consumption path graph is <em>always</em> indexed, so there is no <code>indexed</code> argument.</p>
 <p>This function finds a reasonable range over which to sweep the <code>qs_qs0</code> variable
 when generating the indifference curve, depending on the value of <code>qs2_qs0</code>.
 When <code>qs2_qs0</code> is <code>NULL</code> (the default), the curve is generated over the range
@@ -225,16 +225,16 @@ When <code>qs2_qs0</code> is non-<code>NULL</code>, the curve is generated over 
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 183 x 12</span><span>
 #&gt;    Case   graph_type line_name   colour  size linetype qs1_qs0 Co1_Co0 f_Cs_orig
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Test … Preferenc… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Test … Consumpti… Test indif… black    0.5 solid          2       3    0.000</span><span style='text-decoration: underline;'>1</span><span>
 #&gt; </span><span style='color: #949494;'># … with 173 more rows, and 3 more variables: sigma &lt;dbl&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

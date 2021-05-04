@@ -5,7 +5,7 @@ test_that("indifference_lines() works as expected", {
     rebound_analysis() %>% 
     indifference_lines()
   expect_equal(indiff_lines$line_name[[1]], ReboundTools::rebound_stages$orig)
-  expect_equal(indiff_lines$graph_type[[1]], ReboundTools::graph_types$preferences)
+  expect_equal(indiff_lines$graph_type[[1]], ReboundTools::graph_types$consumption)
   expect_equal(indiff_lines$qs1_qs0[[1]], 1)
 })
 
@@ -28,7 +28,7 @@ test_that("add_indifference_curve() works as expected", {
   
   # Try with two cases
   meta2 <- tibble::tibble(Case = c("Case 1", "Case 2"))
-  res2 <- add_indifference_curve(meta = meta2, graph_type = c("Preferences", "Preferences"), 
+  res2 <- add_indifference_curve(meta = meta2, graph_type = c("Consumption", "Consumption"), 
                                  line_name = c("Test indiff1", "Test indiff2"), 
                                  qs1_qs0 = c(1.5,1.6), Co1_Co0 = c(0.999,0.998), 
                                  qs2_qs0 = c(7,8), f_Cs_orig = c(0.1,0.2), sigma = c(0.04,0.05))

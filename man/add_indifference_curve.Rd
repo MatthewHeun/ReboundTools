@@ -7,7 +7,7 @@
 add_indifference_curve(
   .DF = NULL,
   meta,
-  graph_type = ReboundTools::graph_types$preferences,
+  graph_type = ReboundTools::graph_types$consumption,
   line_name,
   qs1_qs0,
   Co1_Co0,
@@ -20,7 +20,7 @@ add_indifference_curve(
 )
 }
 \arguments{
-\item{.DF}{A data frame that accumulates preferences curves.
+\item{.DF}{A data frame that accumulates indifference curves for consumption path graphs.
 When \code{NULL}, the default, a new data frame is created and returned.
 When not \code{NULL}, rows for the curves are added to the bottom of \code{.DF}.}
 
@@ -28,7 +28,7 @@ When not \code{NULL}, rows for the curves are added to the bottom of \code{.DF}.
 This metadata data frame provides the left-most columns of the return value.}
 
 \item{graph_type}{The graph type for the indifference curve.
-Default is \code{ReboundTools::graph_types$preferences}.}
+Default is \code{ReboundTools::graph_types$consumption}.}
 
 \item{line_name}{A name for this indifference curve.}
 
@@ -53,11 +53,11 @@ A version of \code{.DF} with new indifference curves added at the bottom.
 }
 \description{
 Adds an indifference curve to a data frame of indifference curves
-to be plotted on a preferences graph.
+to be plotted on a consumption path graph.
 The indifference curves are accumulated in rows.
 }
 \details{
-The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+The consumption path graph is \emph{always} indexed, so there is no \code{indexed} argument.
 
 This function finds a reasonable range over which to sweep the \code{qs_qs0} variable
 when generating the indifference curve, depending on the value of \code{qs2_qs0}.

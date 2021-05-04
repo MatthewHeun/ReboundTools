@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Indifference curve lines — indifference_lines • ReboundTools</title>
+<title>A data frame of consumption paths — consumption_paths • ReboundTools</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Indifference curve lines — indifference_lines" />
-<meta property="og:description" content="This function calculates indifference curves
-to be drawn on the consumption path graph." />
+<meta property="og:title" content="A data frame of consumption paths — consumption_paths" />
+<meta property="og:description" content="Make a data frame of segments
+for a consumption path graph.
+Each stage of the rebound process is represented in the data frame." />
 
 
 
@@ -122,27 +123,29 @@ to be drawn on the consumption path graph." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Indifference curve lines</h1>
+    <h1>A data frame of consumption paths</h1>
     
-    <div class="hidden name"><code>indifference_lines.Rd</code></div>
+    <div class="hidden name"><code>consumption_paths.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function calculates indifference curves
-to be drawn on the consumption path graph.</p>
+    <p>Make a data frame of segments
+for a consumption path graph.
+Each stage of the rebound process is represented in the data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>indifference_lines</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>consumption_paths</span><span class='op'>(</span>
   <span class='va'>.rebound_data</span>,
-  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>consumption</span>,
   graph_params <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='path_graph_params.html'>path_graph_params</a></span>,
-  q_dot_s_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_orig</span>,
-  C_dot_o_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_orig</span>,
-  f_Cs_orig <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>f_Cs_orig</span>,
-  sigma <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='orig_vars.html'>orig_vars</a></span><span class='op'>$</span><span class='va'>sigma</span>,
-  q_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='hat_vars.html'>hat_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_hat</span>,
-  q_dot_s_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='bar_vars.html'>bar_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_bar</span>,
-  C_dot_o_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='bar_vars.html'>bar_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_bar</span>
+  rebound_segments <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='rebound_segments.html'>rebound_segments</a></span>,
+  graph_type <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_types.html'>graph_types</a></span><span class='op'>$</span><span class='va'>consumption</span>,
+  q_dot_s_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>q_dot_s_star</span>,
+  C_dot_o_star <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='star_vars.html'>star_vars</a></span><span class='op'>$</span><span class='va'>C_dot_o_star</span>,
+  Delta_q_dot_s_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_q_dot_s_hat</span>,
+  Delta_C_dot_o_hat <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_hat</span>,
+  Delta_q_dot_s_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_q_dot_s_bar</span>,
+  Delta_C_dot_o_bar <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='Delta_vars.html'>Delta_vars</a></span><span class='op'>$</span><span class='va'>Delta_C_dot_o_bar</span>,
+  graph_df_colnames <span class='op'>=</span> <span class='fu'>ReboundTools</span><span class='fu'>::</span><span class='va'><a href='graph_df_colnames.html'>graph_df_colnames</a></span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -150,34 +153,38 @@ to be drawn on the consumption path graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.rebound_data</th>
-      <td><p>A data frame of rebound information,
+      <td><p>A data frame of rebound analysis results,
 likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>graph_type</th>
-      <td><p>See <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>. Default is <code>ReboundTools::graph_types$consumption</code>.</p></td>
-    </tr>
-    <tr>
       <th>graph_params</th>
-      <td><p>Parameters that control the appearance of the graph. Default is <code><a href='path_graph_params.html'>ReboundTools::path_graph_params</a></code>.</p></td>
+      <td><p>See <code>ReboundTools::graph_params</code>.</p></td>
     </tr>
     <tr>
-      <th>q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma</th>
-      <td><p>See <code><a href='orig_vars.html'>ReboundTools::orig_vars</a></code>.</p></td>
+      <th>rebound_segments</th>
+      <td><p>See <code><a href='rebound_segments.html'>ReboundTools::rebound_segments</a></code>.</p></td>
     </tr>
     <tr>
-      <th>q_dot_s_hat</th>
-      <td><p>See <code><a href='hat_vars.html'>ReboundTools::hat_vars</a></code>.</p></td>
+      <th>graph_type</th>
+      <td><p>See <code><a href='graph_types.html'>ReboundTools::graph_types</a></code>.</p></td>
     </tr>
     <tr>
-      <th>q_dot_s_bar, C_dot_o_bar</th>
-      <td><p>See <code><a href='bar_vars.html'>ReboundTools::bar_vars</a></code>.</p></td>
+      <th>q_dot_s_star, C_dot_o_star</th>
+      <td><p>See <code><a href='star_vars.html'>ReboundTools::star_vars</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>Delta_q_dot_s_hat, Delta_C_dot_o_hat, Delta_q_dot_s_bar, Delta_C_dot_o_bar</th>
+      <td><p>See <code><a href='Delta_vars.html'>ReboundTools::Delta_vars</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>graph_df_colnames</th>
+      <td><p>See <code><a href='graph_df_colnames.html'>ReboundTools::graph_df_colnames</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of indifference curves for a consumption path graph.</p>
+    <p>A data frame of information for creating consumption path graphs.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The consumption path graph is <em>always</em> indexed, so there is no <code>indexed</code> argument.</p>
@@ -185,22 +192,20 @@ likely created by <code><a href='rebound_analysis.html'>rebound_analysis()</a></
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>indifference_lines</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 617 x 15</span><span>
-#&gt;    Reference Case  Original  Upgrade  graph_type line_name colour  size linetype
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Car   Ford Fus… Ford Fu… Consumpti… orig      black    0.5 solid   
-#&gt; </span><span style='color: #949494;'># … with 607 more rows, and 6 more variables: qs1_qs0 &lt;dbl&gt;, Co1_Co0 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   f_Cs_orig &lt;dbl&gt;, sigma &lt;dbl&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;</span><span></div></span></pre>
+  <span class='fu'>consumption_paths</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 8 x 14</span><span>
+#&gt;   Reference Case  Original  Upgrade   graph_type line_name colour  size linetype
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> None yet  Car   Ford Fus… Ford Fus… Consumpti… isub      #9914…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> None yet  Lamp  Incandes… LED       Consumpti… isub      #9914…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> None yet  Car   Ford Fus… Ford Fus… Consumpti… dsub      #9914…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> None yet  Lamp  Incandes… LED       Consumpti… dsub      #9914…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> None yet  Car   Ford Fus… Ford Fus… Consumpti… dinc      #E76F…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> None yet  Lamp  Incandes… LED       Consumpti… dinc      #E76F…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> None yet  Car   Ford Fus… Ford Fus… Consumpti… iinc      #E76F…     1 solid   
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> None yet  Lamp  Incandes… LED       Consumpti… iinc      #E76F…     1 solid   
+#&gt; </span><span style='color: #949494;'># … with 5 more variables: x &lt;dbl&gt;, y &lt;dbl&gt;, xend &lt;dbl&gt;, yend &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   end_arrow &lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

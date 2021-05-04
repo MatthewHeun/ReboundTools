@@ -55,25 +55,25 @@ test_that("expenditure_paths() works as expected", {
 })
 
 
-test_that("prefs_paths() works as expected with approximated hat", {
-  prefs_paths <- load_eeu_data() %>% 
+test_that("consumption_paths() works as expected with approximated hat", {
+  cons_paths <- load_eeu_data() %>% 
     rebound_analysis(use_sub_approx = TRUE) %>% 
-    prefs_paths()
+    consumption_paths()
   
   # Check values on the lighting graph.
-  lighting_prefs_path <- prefs_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == "Preferences", line_name == ReboundTools::rebound_segments$isub)
-  expect_equal(lighting_prefs_path$x, 1)
-  expect_equal(lighting_prefs_path$y, 1)
-  expect_equal(lighting_prefs_path$xend, 1)
-  expect_equal(lighting_prefs_path$yend, 0.99971092431922392585)
+  lighting_cons_path <- cons_paths %>% 
+    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption, line_name == ReboundTools::rebound_segments$isub)
+  expect_equal(lighting_cons_path$x, 1)
+  expect_equal(lighting_cons_path$y, 1)
+  expect_equal(lighting_cons_path$xend, 1)
+  expect_equal(lighting_cons_path$yend, 0.99971092431922392585)
   
-  lighting_prefs_path2 <- prefs_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == "Preferences", line_name == ReboundTools::rebound_segments$dsub)
-  expect_equal(lighting_prefs_path2$x, 1)
-  expect_equal(lighting_prefs_path2$y, 0.99971092431922392585)
-  expect_equal(lighting_prefs_path2$xend, 2.43409438974531644462)
-  expect_equal(lighting_prefs_path2$yend, 0.99971092431922392585)
+  lighting_cons_path2 <- cons_paths %>% 
+    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption, line_name == ReboundTools::rebound_segments$dsub)
+  expect_equal(lighting_cons_path2$x, 1)
+  expect_equal(lighting_cons_path2$y, 0.99971092431922392585)
+  expect_equal(lighting_cons_path2$xend, 2.43409438974531644462)
+  expect_equal(lighting_cons_path2$yend, 0.99971092431922392585)
 })
 
 
@@ -163,14 +163,14 @@ test_that("expenditure path creation works with reverse drawing order", {
 })
 
 
-test_that("prefs path creation works with reverse drawing order", {
+test_that("consumption path creation works with reverse drawing order", {
   reverse_order <- ReboundTools::path_graph_params
   expect_false(reverse_order$reverse_path_drawing_order)
   reverse_order$reverse_path_drawing_order <- TRUE
   
   pp <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    prefs_paths()
+    consumption_paths()
   
   expected <- ReboundTools::rebound_segments
   expected$dempl <- NULL
@@ -184,7 +184,7 @@ test_that("prefs path creation works with reverse drawing order", {
   
   pp_rev <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    prefs_paths(graph_params = reverse_order)
+    consumption_paths(graph_params = reverse_order)
   expect_equal(pp_rev$line_name %>% unique(), rev(expected))
 })
 

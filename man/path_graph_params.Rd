@@ -16,7 +16,7 @@ A string list with 88 entries.
 \item{which_arrows}{A data frame telling which ending arrows to include in the graph.}
 \item{last_arrow}{Tells whether to show the last arrow. Overrides \code{which_arrows}.}
 \item{arrow_style}{An \code{arrow} object created by \code{grid::arrow}.}
-\item{show_indifference_curves}{A boolean that tells whether to include indifference curves on preferences path graphs. Default is \code{TRUE}.}
+\item{show_indifference_curves}{A boolean that tells whether to include indifference curves on consumption path graphs. Default is \code{TRUE}.}
 \item{dempl_colour}{The colour for direct emplacment lines.}
 \item{emb_colour}{The colour for embodied energy lines.}
 \item{cap_colour}{The colour for capital expenditure lines.}
@@ -77,24 +77,24 @@ arrows overlay their following points.}
 \item{energy_rebound_lines_colour}{The colour for energy rebound lines.}
 \item{expenditure_grid_colour}{The colour for expenditure grid lines.}
 \item{expenditure_ray_colour}{The colour for expenditure rays.}
-\item{prefs_grid_colour}{The colour for preferences grid lines.}
-\item{prefs_indiff_curve_colour}{The colour for indifference curve lines.}
+\item{cons_grid_colour}{The colour for consumption grid lines.}
+\item{cons_indiff_curve_colour}{The colour for indifference curve lines.}
 \item{energy_grid_size}{The size for energy grid lines.}
 \item{zero_perc_rebound_grid_size}{The size for 0\% rebound grid lines.}
 \item{hundred_perc_rebound_grid_size}{The size for the 100\% rebound grid lines.}
 \item{energy_rebound_lines_size}{The size for energy rebound lines.}
 \item{expenditure_grid_size}{The size for expenditure grid lines.}
 \item{expenditure_ray_size}{The size for expenditure rays.}
-\item{prefs_grid_size}{The size for preferences grid lines.}
-\item{prefs_indiff_curve_size}{The size for indifference curve lines.}
+\item{cons_grid_size}{The size for consumption grid lines.}
+\item{cons_indiff_curve_size}{The size for consumption curve lines.}
 \item{energy_grid_linetype}{The linetype for energy grid lines.}
 \item{zero_perc_rebound_grid_linetype}{The linetype for 0\% rebound grid lines.}
 \item{hundred_perc_rebound_grid_linetype}{The linetype for the 100\% rebound grid lines.}
 \item{energy_rebound_lines_linetype}{The linetype for energy rebound lines.}
 \item{expenditure_grid_linetype}{The linetype for expenditure grid lines.}
 \item{expenditure_ray_linetype}{The linetype for expenditure rays.}
-\item{prefs_grid_linetype}{The linetype for preferences grid lines.}
-\item{prefs_indiff_curve_linetype}{The linetype for indifference curve lines.}
+\item{cons_grid_linetype}{The linetype for consumption grid lines.}
+\item{cons_indiff_curve_linetype}{The linetype for indifference curve lines.}
 \item{n_indiff_curve_points}{The number of points on the indifference curves.}
 \item{qs_qs0_lower}{The lower bound for the x value in the indifference curves.}
 \item{qs_qs0_upper}{The upper bound for the x value in the indifference curves.}
@@ -112,7 +112,7 @@ path_graph_params
 }
 \description{
 The list of graph parameters for drawing
-energy path graphs, expenditure path graphs, and preference path graphs
+energy path graphs, expenditure path graphs, and consumption path graphs
 in the \code{ReboundTools} package.
 }
 \details{

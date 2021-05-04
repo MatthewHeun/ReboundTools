@@ -1,3 +1,11 @@
+# ReboundTools 0.1.30 (2021-05-03)
+
+* "preference path graphs" --> "consumption path graphs"
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
+
+
 # ReboundTools 0.1.29 (2021-04-29)
 
 * Added isoquant lines through the * and ^ point
