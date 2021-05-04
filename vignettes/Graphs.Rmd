@@ -36,7 +36,7 @@ Many functions
 perform analysis calculations to move from 
 known parameters to rebound estimates.
 Graphing functions create rebound path graphs in 
-energy, expenditure, and preference spaces.
+energy, expenditure, and consumption spaces.
 Other graphing functions create sensitivity graphs. 
 The functions in this package were used for the 
 analyses and graphs in the paper **********.
@@ -49,11 +49,11 @@ Three types of rebound graphs are available:
 
 * Energy paths,
 * Expenditure paths, and
-* Preference paths.
+* Consumption paths.
    
 The `graph_type` argument to `path_graphs()` controls which
 type of path graph is returned
-(one of "Energy", "Expenditure", or "Preferences").
+(one of "Energy", "Expenditure", or "Consumption").
 By default, all three graph types are returned.
 The `cases` argument determines which cases are plotted.
 By default, all cases are returned.
@@ -103,9 +103,9 @@ path_graphs(cases = "Car", graph_types = "Expenditure") +
 ```
 
 
-### Preferences path graph
+### Consumption path graph
 
-The preferences path graph shows details of the substitution and income effects, 
+The consumption path graph shows details of the substitution and income effects, 
 with normalized energy service consumption on the horizontal axis
 and normalized expenditures on other goods on the vertical axis.
 Diagonal grid lines with negative slope indicate constant expenditure sum
@@ -118,7 +118,7 @@ indifference curves.
 ```{r warning = FALSE, message = FALSE}
 load_eeu_data() %>% 
   rebound_analysis() %>% 
-  path_graphs(cases = "Car", graph_types = "Preferences") +
+  path_graphs(cases = "Car", graph_types = "Consumption") +
   ggplot2::xlim(0.995, 1.06) + 
   ggplot2::ylim(0.995, 1.04) +
   ggplot2::theme_classic()

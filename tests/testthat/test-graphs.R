@@ -93,21 +93,21 @@ test_that("path_graphs() works as expected", {
   expect_true(!is.null(graphs_two_cases_indexed_energy_2))
 
   # Try a consumption path graph for lamps
-  graphs_lamp_prefs <- load_eeu_data() %>% 
+  graphs_lamp_cons <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Lamp", 
                 graph_types = ReboundTools::graph_types$consumption)
-  expect_true(!is.null(graphs_lamp_prefs))
+  expect_true(!is.null(graphs_lamp_cons))
   
   # Try a consumption path graph for lamps with fewer indifference curve points
-  graph_prefs <- ReboundTools::path_graph_params
-  graph_prefs$n_indiff_curve_points <- 200
-  graphs_lamp_prefs_2 <- load_eeu_data() %>% 
+  graph_cons <- ReboundTools::path_graph_params
+  graph_cons$n_indiff_curve_points <- 200
+  graphs_lamp_cons_2 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    path_graphs(cases = "Lamp", graph_types = ReboundTools::graph_types$consumption, graph_params = graph_prefs) +  
+    path_graphs(cases = "Lamp", graph_types = ReboundTools::graph_types$consumption, graph_params = graph_cons) +  
     ggplot2::xlim(0.9, 2.5) +
     ggplot2::ylim(0.99, 1.003)
-  expect_true(!is.null(graphs_lamp_prefs_2))
+  expect_true(!is.null(graphs_lamp_cons_2))
 })
 
 
