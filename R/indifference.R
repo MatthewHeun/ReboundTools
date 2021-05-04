@@ -1,19 +1,19 @@
 #' Indifference curve lines
 #' 
 #' This function calculates indifference curves 
-#' to be drawn on the preferences graph.
+#' to be drawn on the consumption path graph.
 #'
-#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
+#' The consumption path graph is _always_ indexed, so there is no `indexed` argument.
 #'
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
-#' @param graph_type See `ReboundTools::graph_types`. Default is `ReboundTools::graph_types$preferences`.
+#' @param graph_type See `ReboundTools::graph_types`. Default is `ReboundTools::graph_types$consumption`.
 #' @param graph_params Parameters that control the appearance of the graph. Default is `ReboundTools::path_graph_params`.
 #' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
 #' @param q_dot_s_hat See `ReboundTools::hat_vars`.
 #' @param q_dot_s_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
 #'
-#' @return A data frame of indifference curves for a preferences graph.
+#' @return A data frame of indifference curves for a consumption path graph.
 #' 
 #' @export
 #'
@@ -22,7 +22,7 @@
 #'   rebound_analysis() %>% 
 #'   indifference_lines()
 indifference_lines <- function(.rebound_data, 
-                               graph_type = ReboundTools::graph_types$preferences,
+                               graph_type = ReboundTools::graph_types$consumption,
                                graph_params = ReboundTools::path_graph_params,
                                
                                q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
@@ -85,10 +85,10 @@ indifference_lines <- function(.rebound_data,
 #' Add an indifference curve to a data frame
 #' 
 #' Adds an indifference curve to a data frame of indifference curves
-#' to be plotted on a preferences graph.
+#' to be plotted on a consumption path graph.
 #' The indifference curves are accumulated in rows.
 #' 
-#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
+#' The consumption path graph is _always_ indexed, so there is no `indexed` argument.
 #' 
 #' This function finds a reasonable range over which to sweep the `qs_qs0` variable
 #' when generating the indifference curve, depending on the value of `qs2_qs0`.
@@ -98,13 +98,13 @@ indifference_lines <- function(.rebound_data,
 #' `grqph_params$qs_qs0_lower * min(qs1_qs0, qs2_qs0)` to
 #' `grqph_params$qs_qs0_upper * max(qs1_qs0, qs2_qs0)`.
 #'
-#' @param .DF A data frame that accumulates preferences curves. 
+#' @param .DF A data frame that accumulates indifference curves for consumption path graphs. 
 #'            When `NULL`, the default, a new data frame is created and returned.
 #'            When not `NULL`, rows for the curves are added to the bottom of `.DF`.
 #' @param meta A data frame of metadata for the segment to be added. 
 #'             This metadata data frame provides the left-most columns of the return value.
 #' @param graph_type The graph type for the indifference curve.
-#'                   Default is `ReboundTools::graph_types$preferences`.
+#'                   Default is `ReboundTools::graph_types$consumption`.
 #' @param line_name A name for this indifference curve.
 #' @param qs1_qs0,Co1_Co0 The (x,y) coordinates of a point on this indifference curve.
 #' @param qs2_qs0 A second x value at which a a point on the indifference curve should be calculated. Default is `NULL`.
@@ -126,7 +126,7 @@ indifference_lines <- function(.rebound_data,
 #'                        qs1_qs0 = 2, Co1_Co0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
 add_indifference_curve <- function(.DF = NULL, 
                                    meta, 
-                                   graph_type = ReboundTools::graph_types$preferences, 
+                                   graph_type = ReboundTools::graph_types$consumption, 
                                    line_name, 
                                    qs1_qs0, Co1_Co0, qs2_qs0 = NULL, f_Cs_orig, sigma,
                                    graph_params = ReboundTools::path_graph_params,
@@ -161,9 +161,9 @@ add_indifference_curve <- function(.DF = NULL,
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := graph_type, 
       "{graph_df_colnames$line_name_col}" := line_name,
-      "{graph_df_colnames$colour_col}" := graph_params$prefs_indiff_grid_colour, 
-      "{graph_df_colnames$size_col}" := graph_params$prefs_indiff_grid_size,
-      "{graph_df_colnames$linetype_col}" := graph_params$prefs_indiff_grid_linetype, 
+      "{graph_df_colnames$colour_col}" := graph_params$cons_indiff_grid_colour, 
+      "{graph_df_colnames$size_col}" := graph_params$cons_indiff_grid_size,
+      "{graph_df_colnames$linetype_col}" := graph_params$cons_indiff_grid_linetype, 
       "{graph_df_colnames$qs1_qs0_col}" := qs1_qs0,
       "{graph_df_colnames$Co1_Co0_col}" := Co1_Co0,
       "{graph_df_colnames$f_Cs_orig_col}" := f_Cs_orig, 

@@ -1,4 +1,4 @@
-#' Create rebound graphs
+#' Create rebound path graphs
 #'
 #' @param .analysis_data Rebound analysis data, likely created by `rebound_analysis()`.
 #' @param indexed A boolean that tells whether to index the graph to its initial path point. Default is `FALSE`.
@@ -40,13 +40,13 @@ path_graphs <- function(.analysis_data,
   analysis_data <- .analysis_data %>%
     dplyr::filter(.data[[case_colname]] %in% cases)
   
-  # Calculate energy, expenditure, and preferences paths
+  # Calculate energy, expenditure, and consumption paths
   e_paths <- analysis_data %>%
     energy_paths(indexed = indexed, graph_params = graph_params)
   exp_paths <- analysis_data %>% 
     expenditure_paths(indexed = indexed, graph_params = graph_params)
   p_paths <- analysis_data %>% 
-    prefs_paths(graph_params = graph_params)
+    consumption_paths(graph_params = graph_params)
   # Bundle all paths together
   paths <- dplyr::bind_rows(e_paths, exp_paths, p_paths) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
@@ -71,13 +71,13 @@ path_graphs <- function(.analysis_data,
   points <- dplyr::bind_rows(e_points, exp_points, p_points) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% graph_types)
 
-  # Calculate energy, expenditure, and preferences grids/guide lines
+  # Calculate energy, expenditure, and consumption grids/guide lines
   e_grid_data <- analysis_data %>% 
     iso_energy_lines(indexed = indexed, graph_params = graph_params)
   exp_grid_data <- analysis_data %>% 
     iso_expenditure_lines(indexed = indexed, graph_params = graph_params)
   p_grid_data <- analysis_data %>% 
-    iso_budget_lines_prefs(graph_params = graph_params)
+    iso_budget_lines_cons(graph_params = graph_params)
   # Decide which grids we want to keep.
   # I.e., we should not keep grids for graphs that we're not making.
   keep_grids <- intersect(graph_types, grid_types)
@@ -85,7 +85,7 @@ path_graphs <- function(.analysis_data,
   grids <- dplyr::bind_rows(e_grid_data, exp_grid_data, p_grid_data) %>% 
     dplyr::filter(.data[[graph_df_colnames$graph_type_col]] %in% keep_grids)
 
-  # Calculate indifference curves for the preferences graph  
+  # Calculate indifference curves for the consumption path graph  
   if (graph_params$show_indifference_curves) {
     indifference_curves <- analysis_data %>% 
       indifference_lines(graph_params = graph_params) %>% 
@@ -140,8 +140,8 @@ path_graphs <- function(.analysis_data,
         ggplot2::ylab(expression(dot(C)[indir] * " [$/year]"))
     }
   }
-  if (graph_types == ReboundTools::graph_types$preferences) {
-    # Preferences graphs are always indexed
+  if (graph_types == ReboundTools::graph_types$consumption) {
+    # Consumption path graphs are always indexed
     g <- g +
       # Horizontal axis label q_dot_s/q_dot_s_orig
       ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^degree * " [-]")) + 

@@ -92,20 +92,20 @@ test_that("path_graphs() works as expected", {
     ggplot2::facet_wrap(facets = "Case")
   expect_true(!is.null(graphs_two_cases_indexed_energy_2))
 
-  # Try a preferences graph for lamps
+  # Try a consumption path graph for lamps
   graphs_lamp_prefs <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Lamp", 
-                graph_types = ReboundTools::graph_types$preferences)
+                graph_types = ReboundTools::graph_types$consumption)
   expect_true(!is.null(graphs_lamp_prefs))
   
-  # Try a preferences graph for lamps with fewer indifference curve points
+  # Try a consumption path graph for lamps with fewer indifference curve points
   graph_prefs <- ReboundTools::path_graph_params
   graph_prefs$n_indiff_curve_points <- 200
   graphs_lamp_prefs_2 <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    path_graphs(cases = "Lamp", graph_types = ReboundTools::graph_types$preferences, graph_params = graph_prefs) +  
-    ggplot2::xlim(0.9, 2.5)
+    path_graphs(cases = "Lamp", graph_types = ReboundTools::graph_types$consumption, graph_params = graph_prefs) +  
+    ggplot2::xlim(0.9, 2.5) +
     ggplot2::ylim(0.99, 1.003)
   expect_true(!is.null(graphs_lamp_prefs_2))
 })
@@ -125,7 +125,7 @@ test_that("path_graphs() works with show_indifference_curves = FALSE", {
   graphs <- load_eeu_data() %>% 
     dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Lamp") %>% 
     rebound_analysis() %>% 
-    path_graphs(graph_types = ReboundTools::graph_types$preferences, 
+    path_graphs(graph_types = ReboundTools::graph_types$consumption, 
                 graph_params = pgp)
   expect_true(!is.null(graphs))
 })
@@ -271,16 +271,16 @@ test_that("rebound_graphs_helper() works with a expenditure-only graph with grid
 })
 
 
-test_that("rebound_graphs_helper() works with a preferences graph with grids for car example", {
+test_that("rebound_graphs_helper() works with a consumption path graph with grids for car example", {
   rebound_data <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     dplyr::filter(Case == "Car")
-  prefs_paths <- rebound_data %>% prefs_paths()
-  prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+  cons_paths <- rebound_data %>% consumption_paths()
+  cons_grid <- rebound_data %>% iso_budget_lines_cons()
   indiff_curve <- rebound_data %>% indifference_lines()
   
-  graph <- rebound_graphs_helper(.path_data = prefs_paths, 
-                                 .grid_data = prefs_grid,
+  graph <- rebound_graphs_helper(.path_data = cons_paths, 
+                                 .grid_data = cons_grid,
                                  .indifference_data = indiff_curve) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
@@ -292,16 +292,16 @@ test_that("rebound_graphs_helper() works with a preferences graph with grids for
 })
 
 
-test_that("rebound_graphs_helper() works with a preferences graph with grids for lamp example", {
+test_that("rebound_graphs_helper() works with a consumption path graph with grids for lamp example", {
   rebound_data <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     dplyr::filter(Case == "Lamp")
-  prefs_paths <- rebound_data %>% prefs_paths()
-  prefs_grid <- rebound_data %>% iso_budget_lines_prefs()
+  cons_paths <- rebound_data %>% consumption_paths()
+  cons_grid <- rebound_data %>% iso_budget_lines_cons()
   indiff_curve <- rebound_data %>% indifference_lines()
   
-  graph <- rebound_graphs_helper(.path_data = prefs_paths, 
-                                 .grid_data = prefs_grid, 
+  graph <- rebound_graphs_helper(.path_data = cons_paths, 
+                                 .grid_data = cons_grid, 
                                  .indifference_data = indiff_curve) + 
     ggplot2::facet_grid(rows = ggplot2::vars(Case), 
                         cols = ggplot2::vars(graph_type), 
@@ -481,3 +481,4 @@ test_that("Rebound terms graph works as expected.", {
     ggplot2::facet_wrap(facets = "Case", scales = "free_x")
   expect_true(!is.null(graph))
 })
+

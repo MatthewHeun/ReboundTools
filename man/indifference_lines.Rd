@@ -6,7 +6,7 @@
 \usage{
 indifference_lines(
   .rebound_data,
-  graph_type = ReboundTools::graph_types$preferences,
+  graph_type = ReboundTools::graph_types$consumption,
   graph_params = ReboundTools::path_graph_params,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
@@ -21,7 +21,7 @@ indifference_lines(
 \item{.rebound_data}{A data frame of rebound information,
 likely created by \code{rebound_analysis()}.}
 
-\item{graph_type}{See \code{ReboundTools::graph_types}. Default is \code{ReboundTools::graph_types$preferences}.}
+\item{graph_type}{See \code{ReboundTools::graph_types}. Default is \code{ReboundTools::graph_types$consumption}.}
 
 \item{graph_params}{Parameters that control the appearance of the graph. Default is \code{ReboundTools::path_graph_params}.}
 
@@ -32,14 +32,14 @@ likely created by \code{rebound_analysis()}.}
 \item{q_dot_s_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
 }
 \value{
-A data frame of indifference curves for a preferences graph.
+A data frame of indifference curves for a consumption path graph.
 }
 \description{
 This function calculates indifference curves
-to be drawn on the preferences graph.
+to be drawn on the consumption path graph.
 }
 \details{
-The preferences graph is \emph{always} indexed, so there is no \code{indexed} argument.
+The consumption path graph is \emph{always} indexed, so there is no \code{indexed} argument.
 }
 \examples{
 load_eeu_data() \%>\% 

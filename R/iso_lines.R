@@ -1,4 +1,4 @@
-#' Iso-energy lines for energy rebound paths
+#' Iso-energy lines for energy rebound path graphs
 #' 
 #' This function creates a data frame of constant-energy lines 
 #' at various rebound stages.
@@ -272,13 +272,13 @@ iso_expenditure_lines <- function(.rebound_data,
 }
 
 
-#' Create iso-budget (expenditure) lines for a preferences graph
+#' Create iso-budget (expenditure) lines for a consumption path graph
 #' 
 #' This function creates a data frame of constant-budget (expenditure) lines 
 #' at various rebound stages.
 #' The iso lines are described by slope and intercept.
 #' 
-#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
+#' The consumption path graph is _always_ indexed, so there is no `indexed` argument.
 #'
 #' @param .rebound_data A data frame of rebound information, 
 #'                      likely created by `rebound_analysis()`.
@@ -289,35 +289,35 @@ iso_expenditure_lines <- function(.rebound_data,
 #' @param q_dot_s_hat,C_dot_o_hat See `ReboundTools::hat_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_o_hat See `ReboundTools::Delta_vars`.
 #'
-#' @return A data frame of iso-budget lines for a preferences graph.
+#' @return A data frame of iso-budget lines for a consumption path graph.
 #' 
 #' @export
 #'
 #' @examples
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   iso_budget_lines_prefs()
-iso_budget_lines_prefs <- function(.rebound_data, 
-                                   graph_type = ReboundTools::graph_types$preferences,
-                                   graph_params = ReboundTools::path_graph_params,
-                                   
-                                   p_s_orig = ReboundTools::orig_vars$p_s_orig, 
-                                   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-                                   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
-                                   C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
-                                   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
-                                   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
-                                   
-                                   p_s_star = ReboundTools::star_vars$p_s_star,
-                                   G_dot = ReboundTools::star_vars$G_dot,
-                                   
-                                   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
-                                   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
-                                   
-                                   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-                                   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-                                   Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
-                                   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat) {
+#'   iso_budget_lines_cons()
+iso_budget_lines_cons <- function(.rebound_data, 
+                                  graph_type = ReboundTools::graph_types$consumption,
+                                  graph_params = ReboundTools::path_graph_params,
+                                  
+                                  p_s_orig = ReboundTools::orig_vars$p_s_orig, 
+                                  q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
+                                  C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
+                                  C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                                  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                                  M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
+                                  
+                                  p_s_star = ReboundTools::star_vars$p_s_star,
+                                  G_dot = ReboundTools::star_vars$G_dot,
+                                  
+                                  q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
+                                  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
+                                  
+                                  Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
+                                  Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+                                  Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                                  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat) {
   
   meta <- extract_meta(.rebound_data)
   
@@ -331,9 +331,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
   out <- add_budget_line(meta = meta, 
                          graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$orig, 
-                         colour = graph_params$prefs_grid_colour, 
-                         size = graph_params$prefs_grid_size, 
-                         linetype = graph_params$prefs_grid_linetype, 
+                         colour = graph_params$cons_grid_colour, 
+                         size = graph_params$cons_grid_size, 
+                         linetype = graph_params$cons_grid_linetype, 
                          slope = slope_orig,
                          intercept = intercept_orig)
   
@@ -347,9 +347,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
   out <- add_budget_line(out, meta = meta, 
                          graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$star, 
-                         colour = graph_params$prefs_grid_colour, 
-                         size = graph_params$prefs_grid_size, 
-                         linetype = graph_params$prefs_grid_linetype, 
+                         colour = graph_params$cons_grid_colour, 
+                         size = graph_params$cons_grid_size, 
+                         linetype = graph_params$cons_grid_linetype, 
                          slope = slope_star,
                          intercept = intercept_star)
   
@@ -366,9 +366,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
   out <- add_budget_line(out, meta = meta, 
                          graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$hat, 
-                         colour = graph_params$prefs_grid_colour, 
-                         size = graph_params$prefs_grid_size, 
-                         linetype = graph_params$prefs_grid_linetype, 
+                         colour = graph_params$cons_grid_colour, 
+                         size = graph_params$cons_grid_size, 
+                         linetype = graph_params$cons_grid_linetype, 
                          slope = slope_hat,
                          intercept = intercept_hat)
   
@@ -382,9 +382,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
   out <- add_budget_line(out, meta = meta, 
                          graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$bar, 
-                         colour = graph_params$prefs_grid_colour, 
-                         size = graph_params$prefs_grid_size, 
-                         linetype = graph_params$prefs_grid_linetype, 
+                         colour = graph_params$cons_grid_colour, 
+                         size = graph_params$cons_grid_size, 
+                         linetype = graph_params$cons_grid_linetype, 
                          slope = slope_bar,
                          intercept = intercept_bar)
 
@@ -396,9 +396,9 @@ iso_budget_lines_prefs <- function(.rebound_data,
   out <- add_budget_line(out, meta = meta, 
           graph_type = graph_type, 
           line_name = "ray",
-          colour = graph_params$prefs_ray_colour, 
-          size = graph_params$prefs_ray_size, 
-          linetype = graph_params$prefs_ray_linetype, 
+          colour = graph_params$cons_ray_colour, 
+          size = graph_params$cons_ray_size, 
+          linetype = graph_params$cons_ray_linetype, 
           slope = slope_ray, 
           intercept = intercept_ray)
   return(out)
@@ -414,7 +414,7 @@ iso_budget_lines_prefs <- function(.rebound_data,
 #' The budget lines are accumulated in rows.
 #' 
 #' There is usually no need to call this function directly. 
-#' Functions like `iso_budget_lines_prefs()` `add_iso()` 
+#' Functions like `iso_budget_lines_cons()` `add_iso()` 
 #' call `add_budget_line()` internally.
 #'
 #' @param .DF The data frame to which lines are appended. 
@@ -423,11 +423,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
 #' @param meta A data frame of metadata for the segment to be added. 
 #'             This metadata data frame provides the left-most columns of the return value.
 #' @param graph_type The type of graph associated with this segment. 
-#'                   Default is See `ReboundTools::graph_types$preferences`.
+#'                   Default is See `ReboundTools::graph_types$consumption`.
 #' @param line_name A name for this budget line 
-#' @param colour The colour for this budget line. Default is `ReboundTools::path_graph_params$prefs_grid_colour`.
-#' @param size The size (width) for this budget line Default is `ReboundTools::path_graph_params$prefs_grid_size`.
-#' @param linetype The line type for this budget line Default is `ReboundTools::path_graph_params$prefs_grid_linetype`.
+#' @param colour The colour for this budget line. Default is `ReboundTools::path_graph_params$cons_grid_colour`.
+#' @param size The size (width) for this budget line Default is `ReboundTools::path_graph_params$cons_grid_size`.
+#' @param linetype The line type for this budget line Default is `ReboundTools::path_graph_params$cons_grid_linetype`.
 #' @param slope The slope of this budget line.
 #' @param intercept The intercept of this budget line.
 #' @param graph_df_colnames A list of column names in graph data frames. 
@@ -444,11 +444,11 @@ iso_budget_lines_prefs <- function(.rebound_data,
 #'   slope = -1, intercept = 5)
 add_budget_line <- function(.DF = NULL, 
                             meta, 
-                            graph_type = ReboundTools::graph_types$preferences, 
+                            graph_type = ReboundTools::graph_types$consumption, 
                             line_name,
-                            colour = ReboundTools::path_graph_params$prefs_grid_colour, 
-                            size = ReboundTools::path_graph_params$prefs_grid_size, 
-                            linetype = ReboundTools::path_graph_params$prefs_grid_linetype,
+                            colour = ReboundTools::path_graph_params$cons_grid_colour, 
+                            size = ReboundTools::path_graph_params$cons_grid_size, 
+                            linetype = ReboundTools::path_graph_params$cons_grid_linetype,
                             slope, intercept, 
                             graph_df_colnames = ReboundTools::graph_df_colnames) {
   out <- meta %>% 

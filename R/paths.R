@@ -417,13 +417,13 @@ expenditure_paths <- function(.rebound_data,
 }
 
 
-#' A data frame of preferences paths
+#' A data frame of consumption paths
 #' 
 #' Make a data frame of segments 
-#' for a preferences graph.
+#' for a consumption path graph.
 #' Each stage of the rebound process is represented in the data frame.
 #' 
-#' The preferences graph is _always_ indexed, so there is no `indexed` argument.
+#' The consumption path graph is _always_ indexed, so there is no `indexed` argument.
 #'
 #' @param .rebound_data A data frame of rebound analysis results, 
 #'                      likely created by `rebound_analysis()`.
@@ -434,28 +434,28 @@ expenditure_paths <- function(.rebound_data,
 #' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #'
-#' @return A data frame of information for creating preference graphs.
+#' @return A data frame of information for creating consumption path graphs.
 #' 
 #' @export
 #'
 #' @examples
 #' load_eeu_data() %>% 
 #'   rebound_analysis() %>% 
-#'   prefs_paths()
-prefs_paths <- function(.rebound_data, 
-                        graph_params = ReboundTools::path_graph_params,
-                        rebound_segments = ReboundTools::rebound_segments,
-                        graph_type = ReboundTools::graph_types$preferences,
-                        
-                        q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
-                        C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
-                        
-                        Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
-                        Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-                        Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
-                        
-                        graph_df_colnames = ReboundTools::graph_df_colnames) {
+#'   consumption_paths()
+consumption_paths <- function(.rebound_data, 
+                              graph_params = ReboundTools::path_graph_params,
+                              rebound_segments = ReboundTools::rebound_segments,
+                              graph_type = ReboundTools::graph_types$consumption,
+                              
+                              q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
+                              C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                              
+                              Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
+                              Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+                              Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
+                              Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                              
+                              graph_df_colnames = ReboundTools::graph_df_colnames) {
   
   # A metadata data frame for all these segments
   meta <- extract_meta(.rebound_data)
@@ -467,7 +467,7 @@ prefs_paths <- function(.rebound_data,
     
   # Substitution effect.
   
-  # Delta_C_dot_o_star segment for prefs graph (isub)
+  # Delta_C_dot_o_star segment for consumption path graph (isub)
   x <- x_star
   y <- y_star
   xend <- x
@@ -482,7 +482,7 @@ prefs_paths <- function(.rebound_data,
                        x_orig = x_star, y_orig = y_star, 
                        x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_q_dot_s_star segment for prefs graph (dsub)
+  # Delta_q_dot_s_star segment for consumption path graph (dsub)
   x <- xend
   y <- yend
   xend <- x + .rebound_data[[Delta_q_dot_s_hat]]
@@ -500,7 +500,7 @@ prefs_paths <- function(.rebound_data,
   
   # Income effect
   
-  # Delta_q_dot_s_bar segment for prefs graph (dinc)
+  # Delta_q_dot_s_bar segment for consumption path graph (dinc)
   x <- xend
   y <- yend
   xend <- x + .rebound_data[[Delta_q_dot_s_bar]]
@@ -516,7 +516,7 @@ prefs_paths <- function(.rebound_data,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_o_bar segment for prefs graph (iinc)
+  # Delta_C_dot_o_bar segment for consumption path graph (iinc)
   x <- xend
   y <- yend
   xend <- x

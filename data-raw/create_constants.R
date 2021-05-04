@@ -314,7 +314,7 @@ usethis::use_data(latex_rebound_terms, overwrite = TRUE)
 
 graph_types <- list(energy = "Energy",
                     expenditure = "Expenditure",
-                    preferences = "Preferences")
+                    consumption = "Consumption")
 usethis::use_data(graph_types, overwrite = TRUE)
 
 
@@ -399,7 +399,7 @@ path_graph_params <- list(# Points on paths
                           last_arrow = TRUE,
                           arrow_style = arr_style,
                           
-                          # Whether to show indifference curves on preferences path graphs
+                          # Whether to show indifference curves on consumption path graphs
                           show_indifference_curves = TRUE,
                           
                           # Path colours
@@ -473,9 +473,9 @@ path_graph_params <- list(# Points on paths
                           hundred_perc_rebound_grid_colour = "black",
                           energy_rebound_lines_colour = "black",
                           expenditure_grid_colour = "black",
-                          prefs_grid_colour = "black",
-                          prefs_ray_colour = "black",
-                          prefs_indiff_grid_colour = "black",
+                          cons_grid_colour = "black",
+                          cons_ray_colour = "black",
+                          cons_indiff_grid_colour = "black",
                           
                           # Grid line sizes
                           energy_grid_size = 0.1,
@@ -483,9 +483,9 @@ path_graph_params <- list(# Points on paths
                           hundred_perc_rebound_grid_size = 0.3,
                           energy_rebound_lines_size = 0.1,
                           expenditure_grid_size = 0.3,
-                          prefs_grid_size = 0.1,
-                          prefs_ray_size = 0.1,
-                          prefs_indiff_grid_size = 0.5,
+                          cons_grid_size = 0.1,
+                          cons_ray_size = 0.1,
+                          cons_indiff_grid_size = 0.5,
                           
                           # Grid line types
                           energy_grid_linetype = "solid",
@@ -493,9 +493,9 @@ path_graph_params <- list(# Points on paths
                           hundred_perc_rebound_grid_linetype = "solid",
                           energy_rebound_lines_linetype = "solid",
                           expenditure_grid_linetype = "solid",
-                          prefs_grid_linetype = "solid",
-                          prefs_ray_linetype = "solid",
-                          prefs_indiff_grid_linetype = "solid", 
+                          cons_grid_linetype = "solid",
+                          cons_ray_linetype = "solid",
+                          cons_indiff_grid_linetype = "solid", 
                           n_indiff_curve_points = 200,
                           qs_qs0_lower = 0.1,
                           qs_qs0_upper = 10)
