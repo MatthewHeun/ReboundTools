@@ -7,9 +7,9 @@
 \format{
 A string list with 3 entries.
 \describe{
-\item{energy}{The energy graph type.}
-\item{expenditure}{The expenditure graph type.}
-\item{preferences}{The preferences graph type.}
+\item{energy}{The energy path graph type.}
+\item{expenditure}{The expenditure path graph type.}
+\item{consumption}{The consumption path graph type.}
 }
 }
 \usage{

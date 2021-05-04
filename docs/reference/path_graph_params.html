@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Path graph parameters — path_graph_params" />
 <meta property="og:description" content="The list of graph parameters for drawing
-energy path graphs, expenditure path graphs, and preference path graphs
+energy path graphs, expenditure path graphs, and consumption path graphs
 in the ReboundTools package." />
 
 
@@ -74,7 +74,7 @@ in the ReboundTools package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.30</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ in the ReboundTools package." />
 
     <div class="ref-description">
     <p>The list of graph parameters for drawing
-energy path graphs, expenditure path graphs, and preference path graphs
+energy path graphs, expenditure path graphs, and consumption path graphs
 in the <code>ReboundTools</code> package.</p>
     </div>
 
@@ -149,7 +149,7 @@ in the <code>ReboundTools</code> package.</p>
 <dt>which_arrows</dt><dd><p>A data frame telling which ending arrows to include in the graph.</p></dd>
 <dt>last_arrow</dt><dd><p>Tells whether to show the last arrow. Overrides <code>which_arrows</code>.</p></dd>
 <dt>arrow_style</dt><dd><p>An <code>arrow</code> object created by <code><a href='https://rdrr.io/r/grid/arrow.html'>grid::arrow</a></code>.</p></dd>
-<dt>show_indifference_curves</dt><dd><p>A boolean that tells whether to include indifference curves on preferences path graphs. Default is <code>TRUE</code>.</p></dd>
+<dt>show_indifference_curves</dt><dd><p>A boolean that tells whether to include indifference curves on consumption path graphs. Default is <code>TRUE</code>.</p></dd>
 <dt>dempl_colour</dt><dd><p>The colour for direct emplacment lines.</p></dd>
 <dt>emb_colour</dt><dd><p>The colour for embodied energy lines.</p></dd>
 <dt>cap_colour</dt><dd><p>The colour for capital expenditure lines.</p></dd>
@@ -210,24 +210,24 @@ arrows overlay their following points.</p></dd>
 <dt>energy_rebound_lines_colour</dt><dd><p>The colour for energy rebound lines.</p></dd>
 <dt>expenditure_grid_colour</dt><dd><p>The colour for expenditure grid lines.</p></dd>
 <dt>expenditure_ray_colour</dt><dd><p>The colour for expenditure rays.</p></dd>
-<dt>prefs_grid_colour</dt><dd><p>The colour for preferences grid lines.</p></dd>
-<dt>prefs_indiff_curve_colour</dt><dd><p>The colour for indifference curve lines.</p></dd>
+<dt>cons_grid_colour</dt><dd><p>The colour for consumption grid lines.</p></dd>
+<dt>cons_indiff_curve_colour</dt><dd><p>The colour for indifference curve lines.</p></dd>
 <dt>energy_grid_size</dt><dd><p>The size for energy grid lines.</p></dd>
 <dt>zero_perc_rebound_grid_size</dt><dd><p>The size for 0% rebound grid lines.</p></dd>
 <dt>hundred_perc_rebound_grid_size</dt><dd><p>The size for the 100% rebound grid lines.</p></dd>
 <dt>energy_rebound_lines_size</dt><dd><p>The size for energy rebound lines.</p></dd>
 <dt>expenditure_grid_size</dt><dd><p>The size for expenditure grid lines.</p></dd>
 <dt>expenditure_ray_size</dt><dd><p>The size for expenditure rays.</p></dd>
-<dt>prefs_grid_size</dt><dd><p>The size for preferences grid lines.</p></dd>
-<dt>prefs_indiff_curve_size</dt><dd><p>The size for indifference curve lines.</p></dd>
+<dt>cons_grid_size</dt><dd><p>The size for consumption grid lines.</p></dd>
+<dt>cons_indiff_curve_size</dt><dd><p>The size for consumption curve lines.</p></dd>
 <dt>energy_grid_linetype</dt><dd><p>The linetype for energy grid lines.</p></dd>
 <dt>zero_perc_rebound_grid_linetype</dt><dd><p>The linetype for 0% rebound grid lines.</p></dd>
 <dt>hundred_perc_rebound_grid_linetype</dt><dd><p>The linetype for the 100% rebound grid lines.</p></dd>
 <dt>energy_rebound_lines_linetype</dt><dd><p>The linetype for energy rebound lines.</p></dd>
 <dt>expenditure_grid_linetype</dt><dd><p>The linetype for expenditure grid lines.</p></dd>
 <dt>expenditure_ray_linetype</dt><dd><p>The linetype for expenditure rays.</p></dd>
-<dt>prefs_grid_linetype</dt><dd><p>The linetype for preferences grid lines.</p></dd>
-<dt>prefs_indiff_curve_linetype</dt><dd><p>The linetype for indifference curve lines.</p></dd>
+<dt>cons_grid_linetype</dt><dd><p>The linetype for consumption grid lines.</p></dd>
+<dt>cons_indiff_curve_linetype</dt><dd><p>The linetype for indifference curve lines.</p></dd>
 <dt>n_indiff_curve_points</dt><dd><p>The number of points on the indifference curves.</p></dd>
 <dt>qs_qs0_lower</dt><dd><p>The lower bound for the x value in the indifference curves.</p></dd>
 <dt>qs_qs0_upper</dt><dd><p>The upper bound for the x value in the indifference curves.</p></dd>
@@ -478,13 +478,13 @@ to change graph appearance.</p>
 #&gt; $expenditure_grid_colour
 #&gt; [1] "black"
 #&gt; 
-#&gt; $prefs_grid_colour
+#&gt; $cons_grid_colour
 #&gt; [1] "black"
 #&gt; 
-#&gt; $prefs_ray_colour
+#&gt; $cons_ray_colour
 #&gt; [1] "black"
 #&gt; 
-#&gt; $prefs_indiff_grid_colour
+#&gt; $cons_indiff_grid_colour
 #&gt; [1] "black"
 #&gt; 
 #&gt; $energy_grid_size
@@ -502,13 +502,13 @@ to change graph appearance.</p>
 #&gt; $expenditure_grid_size
 #&gt; [1] 0.3
 #&gt; 
-#&gt; $prefs_grid_size
+#&gt; $cons_grid_size
 #&gt; [1] 0.1
 #&gt; 
-#&gt; $prefs_ray_size
+#&gt; $cons_ray_size
 #&gt; [1] 0.1
 #&gt; 
-#&gt; $prefs_indiff_grid_size
+#&gt; $cons_indiff_grid_size
 #&gt; [1] 0.5
 #&gt; 
 #&gt; $energy_grid_linetype
@@ -526,13 +526,13 @@ to change graph appearance.</p>
 #&gt; $expenditure_grid_linetype
 #&gt; [1] "solid"
 #&gt; 
-#&gt; $prefs_grid_linetype
+#&gt; $cons_grid_linetype
 #&gt; [1] "solid"
 #&gt; 
-#&gt; $prefs_ray_linetype
+#&gt; $cons_ray_linetype
 #&gt; [1] "solid"
 #&gt; 
-#&gt; $prefs_indiff_grid_linetype
+#&gt; $cons_indiff_grid_linetype
 #&gt; [1] "solid"
 #&gt; 
 #&gt; $n_indiff_curve_points
