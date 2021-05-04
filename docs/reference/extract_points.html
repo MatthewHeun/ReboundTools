@@ -74,7 +74,7 @@ Each available stage of the rebound process is represented in the data frame." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.30</span>
       </span>
     </div>
 
@@ -148,7 +148,7 @@ Each available stage of the rebound process is represented in the data frame.</p
     <tr>
       <th>.paths</th>
       <td><p>A data frame of rebound paths,
-likely created by <code><a href='energy_paths.html'>energy_paths()</a></code>, <code><a href='expenditure_paths.html'>expenditure_paths()</a></code>, or <code><a href='prefs_paths.html'>prefs_paths()</a></code>.</p></td>
+likely created by <code><a href='energy_paths.html'>energy_paths()</a></code>, <code><a href='expenditure_paths.html'>expenditure_paths()</a></code>, or <code>prefs_paths()</code>.</p></td>
     </tr>
     <tr>
       <th>graph_params</th>
@@ -225,21 +225,21 @@ likely created by <code><a href='energy_paths.html'>energy_paths()</a></code>, <
 #&gt; </span><span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span><span></div><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='prefs_paths.html'>prefs_paths</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='consumption_paths.html'>consumption_paths</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>extract_points</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 14</span><span>
 #&gt;    Reference Case  Original   Upgrade       graph_type colour   size     x     y
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fusi… Ford Fusion … Preferenc… #E76F5…     1  1.06 1.03 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandesc… LED           Preferenc… #E76F5…     1  2.44 1.00 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fusi… Ford Fusion … Preferenc… #99149…     1  1    1    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandesc… LED           Preferenc… #99149…     1  1    1    
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fusi… Ford Fusion … Preferenc… #99149…     1  1    0.999
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandesc… LED           Preferenc… #99149…     1  1    1.00 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fusi… Ford Fusion … Preferenc… #E76F5…     1  1.02 0.999
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandesc… LED           Preferenc… #E76F5…     1  2.43 1.00 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fusi… Ford Fusion … Preferenc… #E76F5…     1  1.06 0.999
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandesc… LED           Preferenc… #E76F5…     1  2.44 1.00 
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.06 1.03 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.44 1.00 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #99149…     1  1    1    
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #99149…     1  1    1    
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #99149…     1  1    0.999
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #99149…     1  1    1.00 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.02 0.999
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.43 1.00 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.06 0.999
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.44 1.00 
 #&gt; </span><span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span><span></div></span></pre>
   </div>

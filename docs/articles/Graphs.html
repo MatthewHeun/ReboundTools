@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.30</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p><code>ReboundTools</code> is an <code>R</code> package that provides functions to analyze energy rebound,<br>
-the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions (described in the <code>ReboundTools</code> vignette) perform analysis calculations to move from known parameters to rebound estimates. Graphing functions create rebound path graphs in energy, expenditure, and preference spaces. Other graphing functions create sensitivity graphs. The functions in this package were used for the analyses and graphs in the paper **********.</p>
+the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions (described in the <code>ReboundTools</code> vignette) perform analysis calculations to move from known parameters to rebound estimates. Graphing functions create rebound path graphs in energy, expenditure, and consumption spaces. Other graphing functions create sensitivity graphs. The functions in this package were used for the analyses and graphs in the paper **********.</p>
 </div>
 <div id="rebound-path-graphs" class="section level2">
 <h2 class="hasAnchor">
@@ -101,9 +101,9 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <ul>
 <li>Energy paths,</li>
 <li>Expenditure paths, and</li>
-<li>Preference paths.</li>
+<li>Consumption paths.</li>
 </ul>
-<p>The <code>graph_type</code> argument to <code><a href="../reference/path_graphs.html">path_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Expenditure”, or “Preferences”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
+<p>The <code>graph_type</code> argument to <code><a href="../reference/path_graphs.html">path_graphs()</a></code> controls which type of path graph is returned (one of “Energy”, “Expenditure”, or “Consumption”). By default, all three graph types are returned. The <code>cases</code> argument determines which cases are plotted. By default, all cases are returned.</p>
 <div id="energy-path-graph" class="section level3">
 <h3 class="hasAnchor">
 <a href="#energy-path-graph" class="anchor"></a>Energy path graph</h3>
@@ -126,14 +126,14 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="Graphs_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
-<div id="preferences-path-graph" class="section level3">
+<div id="consumption-path-graph" class="section level3">
 <h3 class="hasAnchor">
-<a href="#preferences-path-graph" class="anchor"></a>Preferences path graph</h3>
-<p>The preferences path graph shows details of the substitution and income effects, with normalized energy service consumption on the horizontal axis and normalized expenditures on other goods on the vertical axis. Diagonal grid lines with negative slope indicate constant expenditure sum of the energy service (horizontal axis) and other goods (vertical axis). Negative-sloping lines show the tradeoff between consumption of the energy service (horizontal axis) and consumption of other goods (vertical axis). The swooping, concave-upward grid lines indicate lines of constant utility: indifference curves.</p>
+<a href="#consumption-path-graph" class="anchor"></a>Consumption path graph</h3>
+<p>The consumption path graph shows details of the substitution and income effects, with normalized energy service consumption on the horizontal axis and normalized expenditures on other goods on the vertical axis. Diagonal grid lines with negative slope indicate constant expenditure sum of the energy service (horizontal axis) and other goods (vertical axis). Negative-sloping lines show the tradeoff between consumption of the energy service (horizontal axis) and consumption of other goods (vertical axis). The swooping, concave-upward grid lines indicate lines of constant utility: indifference curves.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Preferences"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/path_graphs.html">path_graphs</a></span><span class="op">(</span>cases <span class="op">=</span> <span class="st">"Car"</span>, graph_types <span class="op">=</span> <span class="st">"Consumption"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0.995</span>, <span class="fl">1.06</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.995</span>, <span class="fl">1.04</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -482,13 +482,13 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $expenditure_grid_colour</span>
 <span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_grid_colour</span>
+<span class="co">#&gt; $cons_grid_colour</span>
 <span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_ray_colour</span>
+<span class="co">#&gt; $cons_ray_colour</span>
 <span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_indiff_grid_colour</span>
+<span class="co">#&gt; $cons_indiff_grid_colour</span>
 <span class="co">#&gt; [1] "black"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $energy_grid_size</span>
@@ -506,13 +506,13 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $expenditure_grid_size</span>
 <span class="co">#&gt; [1] 0.3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_grid_size</span>
+<span class="co">#&gt; $cons_grid_size</span>
 <span class="co">#&gt; [1] 0.1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_ray_size</span>
+<span class="co">#&gt; $cons_ray_size</span>
 <span class="co">#&gt; [1] 0.1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_indiff_grid_size</span>
+<span class="co">#&gt; $cons_indiff_grid_size</span>
 <span class="co">#&gt; [1] 0.5</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $energy_grid_linetype</span>
@@ -530,13 +530,13 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 <span class="co">#&gt; $expenditure_grid_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_grid_linetype</span>
+<span class="co">#&gt; $cons_grid_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_ray_linetype</span>
+<span class="co">#&gt; $cons_ray_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $prefs_indiff_grid_linetype</span>
+<span class="co">#&gt; $cons_indiff_grid_linetype</span>
 <span class="co">#&gt; [1] "solid"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $n_indiff_curve_points</span>
