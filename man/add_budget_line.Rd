@@ -7,11 +7,11 @@
 add_budget_line(
   .DF = NULL,
   meta,
-  graph_type = ReboundTools::graph_types$preferences,
+  graph_type = ReboundTools::graph_types$consumption,
   line_name,
-  colour = ReboundTools::path_graph_params$prefs_grid_colour,
-  size = ReboundTools::path_graph_params$prefs_grid_size,
-  linetype = ReboundTools::path_graph_params$prefs_grid_linetype,
+  colour = ReboundTools::path_graph_params$cons_grid_colour,
+  size = ReboundTools::path_graph_params$cons_grid_size,
+  linetype = ReboundTools::path_graph_params$cons_grid_linetype,
   slope,
   intercept,
   graph_df_colnames = ReboundTools::graph_df_colnames
@@ -26,15 +26,15 @@ When not \code{NULL}, rows for the budget lines are added to the bottom of \code
 This metadata data frame provides the left-most columns of the return value.}
 
 \item{graph_type}{The type of graph associated with this segment.
-Default is See \code{ReboundTools::graph_types$preferences}.}
+Default is See \code{ReboundTools::graph_types$consumption}.}
 
 \item{line_name}{A name for this budget line}
 
-\item{colour}{The colour for this budget line. Default is \code{ReboundTools::path_graph_params$prefs_grid_colour}.}
+\item{colour}{The colour for this budget line. Default is \code{ReboundTools::path_graph_params$cons_grid_colour}.}
 
-\item{size}{The size (width) for this budget line Default is \code{ReboundTools::path_graph_params$prefs_grid_size}.}
+\item{size}{The size (width) for this budget line Default is \code{ReboundTools::path_graph_params$cons_grid_size}.}
 
-\item{linetype}{The line type for this budget line Default is \code{ReboundTools::path_graph_params$prefs_grid_linetype}.}
+\item{linetype}{The line type for this budget line Default is \code{ReboundTools::path_graph_params$cons_grid_linetype}.}
 
 \item{slope}{The slope of this budget line.}
 
@@ -52,7 +52,7 @@ The budget lines are accumulated in rows.
 }
 \details{
 There is usually no need to call this function directly.
-Functions like \code{iso_budget_lines_prefs()} \code{add_iso()}
+Functions like \code{iso_budget_lines_cons()} \code{add_iso()}
 call \code{add_budget_line()} internally.
 }
 \examples{

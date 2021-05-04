@@ -2,7 +2,7 @@
 % Please edit documentation in R/graphs.R
 \name{path_graphs}
 \alias{path_graphs}
-\title{Create rebound graphs}
+\title{Create rebound path graphs}
 \usage{
 path_graphs(
   .analysis_data,
@@ -45,7 +45,7 @@ modified and passed as an argument to control graph appearance.}
 A \code{ggplot2} object with the graphs
 }
 \description{
-Create rebound graphs
+Create rebound path graphs
 }
 \examples{
 load_eeu_data() \%>\% 

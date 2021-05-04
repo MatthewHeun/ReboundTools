@@ -2,7 +2,7 @@
 % Please edit documentation in R/iso_lines.R
 \name{iso_energy_lines}
 \alias{iso_energy_lines}
-\title{Iso-energy lines for energy rebound paths}
+\title{Iso-energy lines for energy rebound path graphs}
 \usage{
 iso_energy_lines(
   .rebound_data,

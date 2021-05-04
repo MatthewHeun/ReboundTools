@@ -1,3 +1,6 @@
+* "preference path graphs" --> "consumption path graphs"
+
+
 # ReboundTools 0.1.29 (2021-04-29)
 
 * Added isoquant lines through the * and ^ point

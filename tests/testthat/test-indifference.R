@@ -5,7 +5,7 @@ test_that("indifference_lines() works as expected", {
     rebound_analysis() %>% 
     indifference_lines()
   expect_equal(indiff_lines$line_name[[1]], ReboundTools::rebound_stages$orig)
-  expect_equal(indiff_lines$graph_type[[1]], ReboundTools::graph_types$preferences)
+  expect_equal(indiff_lines$graph_type[[1]], ReboundTools::graph_types$consumption)
   expect_equal(indiff_lines$qs1_qs0[[1]], 1)
 })
 

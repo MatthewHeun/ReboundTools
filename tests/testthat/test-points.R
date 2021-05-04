@@ -99,35 +99,35 @@ test_that("extract_points() works as expected", {
   expect_equal(car_expenditure_points_bar$y, 26599.644327271169459)
   
 
-  # Calculate preferences paths
-  prefs_points <- load_eeu_data() %>% 
+  # Calculate consumption paths
+  cons_points <- load_eeu_data() %>% 
     rebound_analysis() %>% 
-    prefs_paths() %>% 
+    consumption_paths() %>% 
     extract_points()
   
   # Star point.
-  lamp_prefs_points_star <- prefs_points %>% 
+  lamp_cons_points_star <- cons_points %>% 
     dplyr::filter(Case == "Lamp", 
-                  graph_type == ReboundTools::graph_types$preferences,
+                  graph_type == ReboundTools::graph_types$consumption,
                   point_name == ReboundTools::rebound_stages$star)
-  expect_equal(lamp_prefs_points_star$x, 1)
-  expect_equal(lamp_prefs_points_star$y, 1)
+  expect_equal(lamp_cons_points_star$x, 1)
+  expect_equal(lamp_cons_points_star$y, 1)
 
   # Hat point
-  lamp_prefs_points_hat <- prefs_points %>% 
+  lamp_cons_points_hat <- cons_points %>% 
     dplyr::filter(Case == "Lamp", 
-                  graph_type == ReboundTools::graph_types$preferences,
+                  graph_type == ReboundTools::graph_types$consumption,
                   point_name == ReboundTools::rebound_stages$hat)
-  expect_equal(lamp_prefs_points_hat$x, 2.4344098152813411495)
-  expect_equal(lamp_prefs_points_hat$y, 0.99984047291445865557)
+  expect_equal(lamp_cons_points_hat$x, 2.4344098152813411495)
+  expect_equal(lamp_cons_points_hat$y, 0.99984047291445865557)
   
   # bar point
-  lamp_prefs_points_bar <- prefs_points %>% 
-    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$preferences,
+  lamp_cons_points_bar <- cons_points %>% 
+    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption,
                   point_name == ".last_point")
   # There is not a bar point.  There is a "last_point"
-  expect_equal(lamp_prefs_points_bar$x, 2.4354635233051604715)
-  expect_equal(lamp_prefs_points_bar$y, 1.0002732430759311288)
+  expect_equal(lamp_cons_points_bar$x, 2.4354635233051604715)
+  expect_equal(lamp_cons_points_bar$y, 1.0002732430759311288)
   
 })
 
