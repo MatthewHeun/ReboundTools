@@ -1,3 +1,6 @@
+* Eliminated last vestiges of preference path graphs
+
+
 # ReboundTools 0.1.30 (2021-05-03)
 
 * "preference path graphs" --> "consumption path graphs"
