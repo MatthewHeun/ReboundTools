@@ -1,4 +1,6 @@
-* Eliminated last vestiges of preference path graphs
+* Added `N_dot` description for `key_analysis_vars` in `data.R`.
+  Thanks to Zeke Marshall for noting it was missing.
+* Eliminated last vestiges of preference path graphs.
 
 
 # ReboundTools 0.1.30 (2021-05-03)
