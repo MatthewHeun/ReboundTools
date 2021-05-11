@@ -1,6 +1,8 @@
 * Moved to new formula for calculating M_dot_hat_prime:
   `M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_star_val - C_dot_md_star_val - N_dot_hat_val`
-* Eliminated last vestiges of preference path graphs
+* Added `N_dot` description for `key_analysis_vars` in `data.R`.
+  Thanks to Zeke Marshall for noting it was missing.
+* Eliminated last vestiges of preference path graphs.
 
 
 # ReboundTools 0.1.30 (2021-05-03)
