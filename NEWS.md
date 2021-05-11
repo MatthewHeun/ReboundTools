@@ -1,3 +1,5 @@
+* Moved to new formula for calculating M_dot_hat_prime:
+  `M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_star_val - C_dot_md_star_val - N_dot_hat_val`
 * Eliminated last vestiges of preference path graphs
 
 

@@ -412,8 +412,8 @@ calc_hat <- function(.star_data = NULL,
     }
 
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
-    M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_orig_val - C_dot_md_orig_val - G_dot_val + p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) + (C_dot_o_hat_val - C_dot_o_star_val)
-
+    M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_star_val - C_dot_md_star_val - N_dot_hat_val
+    
     list(eta_engr_units_hat_val,
          eta_hat_val,
          p_s_hat_val,
