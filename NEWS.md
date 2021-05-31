@@ -1,3 +1,5 @@
+# ReboundTools 0.1.31 (2021-05-31)
+
 * Changed default for dashed lines in sensitivity plots from "11" to "22"
   to improve visibility.
 * Moved to new formula for calculating M_dot_hat_prime:
