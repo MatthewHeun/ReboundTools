@@ -551,20 +551,20 @@ sens_graph_params <- list(# Base condition points on graphs
                           
                           # linetypes for rebound effects
                           dempl_linetype = "solid",
-                          emb_linetype = "11",
-                          cap_linetype = "11",
+                          emb_linetype = "22",
+                          cap_linetype = "22",
                           md_linetype = "41", 
                           empl_linetype = "solid",
                           dsub_linetype = "solid",
-                          isub_linetype = "11",
+                          isub_linetype = "22",
                           sub_linetype = "solid",
                           dinc_linetype = "solid",
-                          iinc_linetype = "11", 
+                          iinc_linetype = "22", 
                           inc_linetype = "solid",
                           micro_linetype = "solid",
                           macro_linetype = "solid",
                           dir_linetype = "solid", 
-                          indir_linetype = "11", 
+                          indir_linetype = "22", 
                           tot_linetype = "solid",
                           
                           # line end and join for sensitivity graphs

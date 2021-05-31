@@ -14,7 +14,7 @@ extract_points(
 }
 \arguments{
 \item{.paths}{A data frame of rebound paths,
-likely created by \code{energy_paths()}, \code{expenditure_paths()}, or \code{prefs_paths()}.}
+likely created by \code{energy_paths()}, \code{expenditure_paths()}, or \code{consumption_paths()}.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 

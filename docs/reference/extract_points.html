@@ -74,7 +74,7 @@ Each available stage of the rebound process is represented in the data frame." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.30</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.31</span>
       </span>
     </div>
 
@@ -148,7 +148,7 @@ Each available stage of the rebound process is represented in the data frame.</p
     <tr>
       <th>.paths</th>
       <td><p>A data frame of rebound paths,
-likely created by <code><a href='energy_paths.html'>energy_paths()</a></code>, <code><a href='expenditure_paths.html'>expenditure_paths()</a></code>, or <code>prefs_paths()</code>.</p></td>
+likely created by <code><a href='energy_paths.html'>energy_paths()</a></code>, <code><a href='expenditure_paths.html'>expenditure_paths()</a></code>, or <code><a href='consumption_paths.html'>consumption_paths()</a></code>.</p></td>
     </tr>
     <tr>
       <th>graph_params</th>
@@ -177,71 +177,71 @@ likely created by <code><a href='energy_paths.html'>energy_paths()</a></code>, <
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='energy_paths.html'>energy_paths</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>extract_points</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 18 x 14</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 18 x 14</span>
 #&gt;    Reference Case  Original   Upgrade     graph_type colour   size      x      y
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #F7E22…     1 4.59</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>82</span><span>080.
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandesc… LED         Energy     #F7E22…     1 6.22</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>905.
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #15078…     1 7.31</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>317.
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandesc… LED         Energy     #15078…     1 2.37</span><span style='color: #949494;'>e</span><span>2 </span><span style='text-decoration: underline;'>92</span><span>840.
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #15078…     1 4.35</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>317.
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandesc… LED         Energy     #15078…     1 2.55</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>840.
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #15078…     1 4.35</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>745.
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandesc… LED         Energy     #15078…     1 2.55</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>839.
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #99149…     1 4.35</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>452.
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandesc… LED         Energy     #99149…     1 2.55</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>839.
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #99149…     1 4.35</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>385.
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incandesc… LED         Energy     #99149…     1 2.55</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>824.
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #E76F5…     1 4.44</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>385.
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> None yet  Lamp  Incandesc… LED         Energy     #E76F5…     1 6.22</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>824.
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #E76F5…     1 4.59</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>77</span><span>385.
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> None yet  Lamp  Incandesc… LED         Energy     #E76F5…     1 6.22</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>824.
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #F7E22…     1 4.59</span><span style='color: #949494;'>e</span><span>4 </span><span style='text-decoration: underline;'>79</span><span>686.
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span> None yet  Lamp  Incandesc… LED         Energy     #F7E22…     1 6.22</span><span style='color: #949494;'>e</span><span>1 </span><span style='text-decoration: underline;'>92</span><span>865.
-#&gt; </span><span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span><span></div><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #F7E22…     1 4.59<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>82</span>080.
+#&gt; <span style='color: #BCBCBC;'> 2</span> None yet  Lamp  Incandesc… LED         Energy     #F7E22…     1 6.22<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>905.
+#&gt; <span style='color: #BCBCBC;'> 3</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #15078…     1 7.31<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>317.
+#&gt; <span style='color: #BCBCBC;'> 4</span> None yet  Lamp  Incandesc… LED         Energy     #15078…     1 2.37<span style='color: #949494;'>e</span>2 <span style='text-decoration: underline;'>92</span>840.
+#&gt; <span style='color: #BCBCBC;'> 5</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #15078…     1 4.35<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>317.
+#&gt; <span style='color: #BCBCBC;'> 6</span> None yet  Lamp  Incandesc… LED         Energy     #15078…     1 2.55<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>840.
+#&gt; <span style='color: #BCBCBC;'> 7</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #15078…     1 4.35<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>745.
+#&gt; <span style='color: #BCBCBC;'> 8</span> None yet  Lamp  Incandesc… LED         Energy     #15078…     1 2.55<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>839.
+#&gt; <span style='color: #BCBCBC;'> 9</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #99149…     1 4.35<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>452.
+#&gt; <span style='color: #BCBCBC;'>10</span> None yet  Lamp  Incandesc… LED         Energy     #99149…     1 2.55<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>839.
+#&gt; <span style='color: #BCBCBC;'>11</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #99149…     1 4.35<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>385.
+#&gt; <span style='color: #BCBCBC;'>12</span> None yet  Lamp  Incandesc… LED         Energy     #99149…     1 2.55<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>824.
+#&gt; <span style='color: #BCBCBC;'>13</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #E76F5…     1 4.44<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>385.
+#&gt; <span style='color: #BCBCBC;'>14</span> None yet  Lamp  Incandesc… LED         Energy     #E76F5…     1 6.22<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>824.
+#&gt; <span style='color: #BCBCBC;'>15</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #E76F5…     1 4.59<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>77</span>385.
+#&gt; <span style='color: #BCBCBC;'>16</span> None yet  Lamp  Incandesc… LED         Energy     #E76F5…     1 6.22<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>824.
+#&gt; <span style='color: #BCBCBC;'>17</span> None yet  Car   Ford Fusi… Ford Fusio… Energy     #F7E22…     1 4.59<span style='color: #949494;'>e</span>4 <span style='text-decoration: underline;'>79</span>686.
+#&gt; <span style='color: #BCBCBC;'>18</span> None yet  Lamp  Incandesc… LED         Energy     #F7E22…     1 6.22<span style='color: #949494;'>e</span>1 <span style='text-decoration: underline;'>92</span>865.
+#&gt; <span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span></div><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='expenditure_paths.html'>expenditure_paths</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>extract_points</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 16 x 14</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 16 x 14</span>
 #&gt;    Reference Case  Original   Upgrade     graph_type colour  size       x      y
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #E76F…     1 8.02</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>26</span><span>600.
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #E76F…     1 2.34</span><span style='color: #949494;'>e</span><span>+0 </span><span style='text-decoration: underline;'>27</span><span>399.
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #1507…     1 1.28</span><span style='color: #949494;'>e</span><span>+3 </span><span style='text-decoration: underline;'>26</span><span>126.
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #1507…     1 8.90</span><span style='color: #949494;'>e</span><span>+0 </span><span style='text-decoration: underline;'>27</span><span>392.
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #1507…     1 7.59</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>26</span><span>126.
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #1507…     1 9.61</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span><span> </span><span style='text-decoration: underline;'>27</span><span>392.
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #1507…     1 7.59</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>26</span><span>027.
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #1507…     1 9.61</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span><span> </span><span style='text-decoration: underline;'>27</span><span>391.
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #9914…     1 7.59</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>25</span><span>941.
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #9914…     1 9.61</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span><span> </span><span style='text-decoration: underline;'>27</span><span>391.
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #9914…     1 7.59</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>25</span><span>921.
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #9914…     1 9.61</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span><span> </span><span style='text-decoration: underline;'>27</span><span>387.
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #E76F…     1 7.74</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>25</span><span>921.
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #E76F…     1 2.34</span><span style='color: #949494;'>e</span><span>+0 </span><span style='text-decoration: underline;'>27</span><span>387.
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #E76F…     1 8.02</span><span style='color: #949494;'>e</span><span>+2 </span><span style='text-decoration: underline;'>25</span><span>921.
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> None yet  Lamp  Incandesc… LED         Expenditu… #E76F…     1 2.34</span><span style='color: #949494;'>e</span><span>+0 </span><span style='text-decoration: underline;'>27</span><span>387.
-#&gt; </span><span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span><span></div><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #E76F…     1 8.02<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>26</span>600.
+#&gt; <span style='color: #BCBCBC;'> 2</span> None yet  Lamp  Incandesc… LED         Expenditu… #E76F…     1 2.34<span style='color: #949494;'>e</span>+0 <span style='text-decoration: underline;'>27</span>399.
+#&gt; <span style='color: #BCBCBC;'> 3</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #1507…     1 1.28<span style='color: #949494;'>e</span>+3 <span style='text-decoration: underline;'>26</span>126.
+#&gt; <span style='color: #BCBCBC;'> 4</span> None yet  Lamp  Incandesc… LED         Expenditu… #1507…     1 8.90<span style='color: #949494;'>e</span>+0 <span style='text-decoration: underline;'>27</span>392.
+#&gt; <span style='color: #BCBCBC;'> 5</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #1507…     1 7.59<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>26</span>126.
+#&gt; <span style='color: #BCBCBC;'> 6</span> None yet  Lamp  Incandesc… LED         Expenditu… #1507…     1 9.61<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span> <span style='text-decoration: underline;'>27</span>392.
+#&gt; <span style='color: #BCBCBC;'> 7</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #1507…     1 7.59<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>26</span>027.
+#&gt; <span style='color: #BCBCBC;'> 8</span> None yet  Lamp  Incandesc… LED         Expenditu… #1507…     1 9.61<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span> <span style='text-decoration: underline;'>27</span>391.
+#&gt; <span style='color: #BCBCBC;'> 9</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #9914…     1 7.59<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>25</span>941.
+#&gt; <span style='color: #BCBCBC;'>10</span> None yet  Lamp  Incandesc… LED         Expenditu… #9914…     1 9.61<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span> <span style='text-decoration: underline;'>27</span>391.
+#&gt; <span style='color: #BCBCBC;'>11</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #9914…     1 7.59<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>25</span>921.
+#&gt; <span style='color: #BCBCBC;'>12</span> None yet  Lamp  Incandesc… LED         Expenditu… #9914…     1 9.61<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span> <span style='text-decoration: underline;'>27</span>387.
+#&gt; <span style='color: #BCBCBC;'>13</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #E76F…     1 7.74<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>25</span>921.
+#&gt; <span style='color: #BCBCBC;'>14</span> None yet  Lamp  Incandesc… LED         Expenditu… #E76F…     1 2.34<span style='color: #949494;'>e</span>+0 <span style='text-decoration: underline;'>27</span>387.
+#&gt; <span style='color: #BCBCBC;'>15</span> None yet  Car   Ford Fusi… Ford Fusio… Expenditu… #E76F…     1 8.02<span style='color: #949494;'>e</span>+2 <span style='text-decoration: underline;'>25</span>921.
+#&gt; <span style='color: #BCBCBC;'>16</span> None yet  Lamp  Incandesc… LED         Expenditu… #E76F…     1 2.34<span style='color: #949494;'>e</span>+0 <span style='text-decoration: underline;'>27</span>387.
+#&gt; <span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span></div><div class='input'><span class='fu'><a href='load_eeu_data.html'>load_eeu_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='rebound_analysis.html'>rebound_analysis</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='consumption_paths.html'>consumption_paths</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>extract_points</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 14</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 14</span>
 #&gt;    Reference Case  Original   Upgrade       graph_type colour   size     x     y
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.06 1.03 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.44 1.00 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #99149…     1  1    1    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #99149…     1  1    1    
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #99149…     1  1    0.999
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #99149…     1  1    1.00 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.02 0.999
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.43 1.00 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.06 0.999
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.44 1.00 
-#&gt; </span><span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span><span></div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.06 1.03 
+#&gt; <span style='color: #BCBCBC;'> 2</span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.44 1.00 
+#&gt; <span style='color: #BCBCBC;'> 3</span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #99149…     1  1    1    
+#&gt; <span style='color: #BCBCBC;'> 4</span> None yet  Lamp  Incandesc… LED           Consumpti… #99149…     1  1    1    
+#&gt; <span style='color: #BCBCBC;'> 5</span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #99149…     1  1    0.999
+#&gt; <span style='color: #BCBCBC;'> 6</span> None yet  Lamp  Incandesc… LED           Consumpti… #99149…     1  1    1.00 
+#&gt; <span style='color: #BCBCBC;'> 7</span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.02 0.999
+#&gt; <span style='color: #BCBCBC;'> 8</span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.43 1.00 
+#&gt; <span style='color: #BCBCBC;'> 9</span> None yet  Car   Ford Fusi… Ford Fusion … Consumpti… #E76F5…     1  1.06 0.999
+#&gt; <span style='color: #BCBCBC;'>10</span> None yet  Lamp  Incandesc… LED           Consumpti… #E76F5…     1  2.44 1.00 
+#&gt; <span style='color: #949494;'># … with 5 more variables: point_name &lt;chr&gt;, start_point &lt;lgl&gt;, shape &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   stroke &lt;dbl&gt;, fill &lt;chr&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

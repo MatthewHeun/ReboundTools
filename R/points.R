@@ -5,7 +5,7 @@
 #' Each available stage of the rebound process is represented in the data frame.
 #'
 #' @param .paths A data frame of rebound paths, 
-#'                      likely created by `energy_paths()`, `expenditure_paths()`, or `prefs_paths()`.
+#'                      likely created by `energy_paths()`, `expenditure_paths()`, or `consumption_paths()`.
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_stages See `ReboundTools::rebound_stages`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.

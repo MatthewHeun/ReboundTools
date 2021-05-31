@@ -70,6 +70,7 @@
 #' \item{C_dot_cap}{The capital expenditure rate of the device \[$/year\], calculated by `C_cap/t_own`.}
 #' \item{C_dot_md}{The maintenance and disposal expenditure rate of the device \[$/year\].}
 #' \item{C_dot_o}{The other goods consumption rate \[$/year\], calculated, initially, as a residual of the budget constraint.}
+#' \item{N_dot}{Net income \[$/year\].}
 #' \item{M_dot}{Real income \[$/year\].}
 #' }
 #' 
