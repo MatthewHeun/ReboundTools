@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.30</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.31</span>
       </span>
     </div>
 
@@ -124,6 +124,23 @@
       
     </div>
 
+    <div id="reboundtools-0131-2021-05-31" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.31">
+<a href="#reboundtools-0131-2021-05-31" class="anchor"></a>ReboundTools 0.1.31 (2021-05-31)</h1>
+<ul>
+<li>Changed default for dashed lines in sensitivity plots from “11” to “22” to improve visibility.</li>
+<li>Moved to new formula for calculating M_dot_hat_prime: <code>M_dot_hat_prime_val &lt;- M_dot_hat_val - C_dot_cap_star_val - C_dot_md_star_val - N_dot_hat_val</code>
+</li>
+<li>Added <code>N_dot</code> description for <code>key_analysis_vars</code> in <code>data.R</code>. Thanks to Zeke Marshall for noting it was missing.</li>
+<li>Eliminated last vestiges of preference path graphs.</li>
+<li>No new tests.
+<ul>
+<li>Still at 472 tests, all passing.</li>
+<li>Test coverage remains at 100%.</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="reboundtools-0130-2021-05-03" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.30">
 <a href="#reboundtools-0130-2021-05-03" class="anchor"></a>ReboundTools 0.1.30 (2021-05-03)</h1>

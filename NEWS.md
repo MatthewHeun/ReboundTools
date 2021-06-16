@@ -1,8 +1,15 @@
+# ReboundTools 0.1.31 (2021-05-31)
+
+* Changed default for dashed lines in sensitivity plots from "11" to "22"
+  to improve visibility.
 * Moved to new formula for calculating M_dot_hat_prime:
   `M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_star_val - C_dot_md_star_val - N_dot_hat_val`
 * Added `N_dot` description for `key_analysis_vars` in `data.R`.
   Thanks to Zeke Marshall for noting it was missing.
 * Eliminated last vestiges of preference path graphs.
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.30 (2021-05-03)
@@ -212,7 +219,7 @@
 
 * Added efficiency in engineering units (e.g., mpg) to stages table.
 * Now at 344 tests, all passing.
-* Test coverage remains at 100%
+* Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.8 (2021-01-16)
