@@ -15,7 +15,8 @@ Energy rebound is the unanticipated reduction
              Other functions create rebound graphs in 
              energy, expenditure, and consumption spaces.
              The functions in this package were used for the 
-             analyses and graphs in the paper **********.
+             analyses and graphs in the paper "A comprehensive, partial-equilibrium
+             energy rebound analysis framework".
 }
 \author{
 \strong{Maintainer}: Matthew Heun \email{matthew.heun@me.com} (\href{https://orcid.org/0000-0002-7438-214X}{ORCID})
