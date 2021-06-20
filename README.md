@@ -24,7 +24,8 @@ estimates. Graphing functions (described in the `Graphs` vignette)
 create rebound path graphs in energy, expenditure, and consumption
 spaces. Other graphing functions create sensitivity graphs. The
 functions in this package were used for the analyses and graphs in the
-paper by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway,
+paper *A comprehensive, partial-equilibrium energy rebound analysis
+framework* by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway,
 2021.
 
 ## Installation
