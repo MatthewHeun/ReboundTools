@@ -1,4 +1,10 @@
+# ReboundTools 0.1.32 (2021-06-20)
+
+* Final release before minting a DOI and submitting paper.
 * Changed lifecycle badge from experimental to stable in preparation for first submission of paper.
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.31 (2021-05-31)
