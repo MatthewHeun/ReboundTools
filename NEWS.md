@@ -1,3 +1,6 @@
+* Changed lifecycle badge from experimental to stable in preparation for first submission of paper.
+
+
 # ReboundTools 0.1.31 (2021-05-31)
 
 * Changed default for dashed lines in sensitivity plots from "11" to "22"
