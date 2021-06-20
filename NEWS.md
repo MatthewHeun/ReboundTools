@@ -1,4 +1,4 @@
-# ReboundTools 0.1.32 (2021-06-20)
+# ReboundTools 0.1.32 (2021-06-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999847.svg)](https://doi.org/10.5281/zenodo.4999847)
 
 * Final release before minting a DOI and submitting paper.
 * Changed lifecycle badge from experimental to stable in preparation for first submission of paper.
