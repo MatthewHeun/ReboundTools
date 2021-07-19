@@ -11,6 +11,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
 [![codecov](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg?token=20kytlPnGF)](https://codecov.io/gh/MatthewHeun/ReboundTools)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999846.svg)](https://doi.org/10.5281/zenodo.4999846)
 <!-- badges: end -->
 
 # ReboundTools
