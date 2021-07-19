@@ -17,15 +17,14 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 # ReboundTools
 
 `ReboundTools` is an `R` package that provides functions to analyze
-energy rebound,  
-the unanticipated reduction of the benefits of energy efficiency due to
-behavior change and economy-wide effects. Many functions perform
-analysis calculations to move from known parameters to rebound
-estimates. Graphing functions (described in the `Graphs` vignette)
-create rebound path graphs in energy, expenditure, and consumption
-spaces. Other graphing functions create sensitivity graphs. The
-functions in this package were used for the analyses and graphs in the
-paper *A comprehensive, partial-equilibrium energy rebound analysis
+energy rebound, the unanticipated reduction of the benefits of energy
+efficiency due to behavior change and economy-wide effects. Many
+functions perform analysis calculations to move from known parameters to
+rebound estimates. Graphing functions (described in the `Graphs`
+vignette) create rebound path graphs in energy, expenditure, and
+consumption spaces. Other graphing functions create sensitivity graphs.
+The functions in this package were used for the analyses and graphs in
+the paper *A comprehensive, partial-equilibrium energy rebound analysis
 framework* by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway,
 2021.
 
