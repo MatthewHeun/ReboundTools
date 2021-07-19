@@ -48,8 +48,9 @@ devtools::install_github("MatthewHeun/ReboundTools", build_vignettes = TRUE)
 
 ## History
 
-The functions in this package were used in the paper by Matthew Kuperus
-Heun, Gregor Semieniuk, and Paul Brockway, 2021.
+The functions in this package were used in the paper *A comprehensive,
+partial-equilibrium energy rebound analysis framework* by Matthew
+Kuperus Heun, Gregor Semieniuk, and Paul Brockway, 2021.
 
 ## More Information
 
