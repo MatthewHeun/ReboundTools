@@ -6,17 +6,7 @@
 \alias{ReboundTools-package}
 \title{ReboundTools: Analyze and Display Estimates of Energy Rebound}
 \description{
-Energy rebound is the unanticipated reduction 
-             of the benefits of energy efficiency 
-             due to behavior change and economy-wide effects.
-             `ReboundTools` provides assistance for energy rebound analysis.
-             Many functions perform analysis calculations to move from 
-             known parameters to rebound estimates.
-             Other functions create rebound graphs in 
-             energy, expenditure, and consumption spaces.
-             The functions in this package were used for the 
-             analyses and graphs in the paper "A comprehensive, partial-equilibrium
-             energy rebound analysis framework".
+Energy rebound is the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. `ReboundTools` provides assistance for energy rebound analysis. Many functions perform analysis calculations to move from known parameters to rebound estimates. Other functions create rebound graphs in energy, expenditure, and consumption spaces. The functions in this package were used for the analyses and graphs in the paper "A comprehensive, partial-equilibrium energy rebound analysis framework".
 }
 \author{
 \strong{Maintainer}: Matthew Heun \email{matthew.heun@me.com} (\href{https://orcid.org/0000-0002-7438-214X}{ORCID})
