@@ -75,7 +75,8 @@ stages_table <- function(.analysis_data,
       "{.var_stage}" := NULL
     ) %>% 
     dplyr::arrange() %>% 
-    tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
+    # tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
+    tidyr::pivot_wider(names_from = .stage, values_from = .value) %>% 
     dplyr::mutate(
       "{.unit_col}" := rebound_var_units(.var_name = .data[[.name]], 
                                          service_unit = .data[[service_unit]],
@@ -233,24 +234,20 @@ rebound_results_table <- function(.analysis_data,
         "{term_name}" := NULL
       ) %>%
       dplyr::rename(
-        # "{term_name}" := .data[[latex_term_name]]
         "{term_name}" := dplyr::all_of(latex_term_name)
       ) %>%
-      # dplyr::relocate(.data[[term_name]], .before = .data[[Re_val_colname]])
-      dplyr::relocate(dplyr::all_of(term_name), .before = .data[[Re_val_colname]])
+      dplyr::relocate(dplyr::all_of(term_name), .before = dplyr::all_of(Re_val_colname))
   }
   
   # Adjust the value column name if needed.
   if (escape_latex & as_percent) {
     table_data <- table_data %>% 
       dplyr::rename(
-        # "{latex_perc_Re_val_colname}" := .data[[Re_val_colname]]
         "{latex_perc_Re_val_colname}" := dplyr::all_of(Re_val_colname)
       )
   } else if (as_percent) {
     table_data <- table_data %>% 
       dplyr::rename(
-        # "{perc_Re_val_colname}" := .data[[Re_val_colname]]
         "{perc_Re_val_colname}" := dplyr::all_of(Re_val_colname)
       )
     

@@ -16,7 +16,7 @@ rebound_graphs_helper(
 }
 \arguments{
 \item{.path_data}{A data frame of paths to be added to the graph.
-The columns "colour" and "size" control the colour and width of the segment}
+The columns "colour" and "size" control the colour and width of the segment.}
 
 \item{.points_data}{A data frame of points between rebound effects. Default is \code{NULL}, meaning that no data points are to be added to the graphs.}
 
