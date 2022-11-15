@@ -11,7 +11,7 @@ add_iso(
   graph_type,
   iso_name,
   colour = ReboundTools::path_graph_params$energy_grid_colour,
-  size = ReboundTools::path_graph_params$energy_grid_size,
+  linewidth = ReboundTools::path_graph_params$energy_grid_size,
   linetype = ReboundTools::path_graph_params$energy_grid_linetype,
   x_orig,
   y_orig,
@@ -37,7 +37,7 @@ This metadata data frame provides the left-most columns of the return value.}
 
 \item{colour}{The colour for this iso line. Default is \code{ReboundTools::path_graph_params$energy_grid_colour}.}
 
-\item{size}{Line width. Default is \code{ReboundTools::path_graph_params$energy_grid_size}.}
+\item{linewidth}{Line width. Default is \code{ReboundTools::path_graph_params$energy_grid_size}.}
 
 \item{linetype}{Line type for this iso line. Default is \code{ReboundTools::path_graph_params$energy_grid_linetype}.}
 

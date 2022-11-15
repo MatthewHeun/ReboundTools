@@ -33,7 +33,6 @@ Imports:
     matsindf,
     readxl,
     rlang,
-    rlist,
     tibble, 
     tidyr,
     tidyselect,

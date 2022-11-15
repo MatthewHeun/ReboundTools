@@ -213,15 +213,8 @@ rebound_graphs_helper <- function(.path_data,
   # Add grid data as first layer
   if (!is.null(.grid_data)) {
     g <- g + 
-      # ggplot2::geom_abline(data = .grid_data, 
-      #                      mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-      #                                                    size = graph_df_colnames$size_col, 
-      #                                                    linetype = graph_df_colnames$linetype_col,
-      #                                                    slope = graph_df_colnames$slope_col,
-      #                                                    intercept =graph_df_colnames$ intercept_col))
       ggplot2::geom_abline(data = .grid_data, 
                            mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                  # size = .data[[graph_df_colnames$size_col]], 
                                                   linewidth = .data[[graph_df_colnames$size_col]], 
                                                   linetype = .data[[graph_df_colnames$linetype_col]],
                                                   slope = .data[[graph_df_colnames$slope_col]],
@@ -236,7 +229,6 @@ rebound_graphs_helper <- function(.path_data,
                                                 y = .data[[graph_df_colnames$y_col]],
                                                 group = .data[[graph_df_colnames$line_name_col]],
                                                 colour = .data[[graph_df_colnames$colour_col]],
-                                                # size = .data[[graph_df_colnames$size_col]],
                                                 linewidth = .data[[graph_df_colnames$size_col]],
                                                 linetype = .data[[graph_df_colnames$linetype_col]]))
   }
@@ -268,7 +260,6 @@ rebound_graphs_helper <- function(.path_data,
   g <- g +
     ggplot2::geom_segment(data = without_arrows, 
                           mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                 # size = .data[[graph_df_colnames$size_col]],
                                                  linewidth = .data[[graph_df_colnames$size_col]],
                                                  linetype = .data[[graph_df_colnames$linetype_col]],
                                                  x = .data[[graph_df_colnames$x_col]], 
@@ -281,7 +272,6 @@ rebound_graphs_helper <- function(.path_data,
   g <- g +
     ggplot2::geom_segment(data = with_arrows, 
                           mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                 # size = .data[[graph_df_colnames$size_col]],
                                                  linewidth = .data[[graph_df_colnames$size_col]],
                                                  linetype = .data[[graph_df_colnames$linetype_col]],
                                                  x = .data[[graph_df_colnames$x_col]], 
@@ -477,7 +467,6 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
   g <- ggplot2::ggplot()
   if (graph_params$include_x_axis) {
     g <- g +
-      # ggplot2::geom_hline(yintercept = 0, size = 0.2)
       ggplot2::geom_hline(yintercept = 0, linewidth = 0.2)
   }
   if (graph_params$points_atop_paths) {
@@ -493,7 +482,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                          linejoin = graph_params$linejoin) + 
       ggplot2::geom_point(data = orig_data,
                           # Pick up the dot colour from the line colour.
-                          mapping = ggplot2::aes_string(x = x_var, y = y_vals_col, colour = line_var),
+                          mapping = ggplot2::aes(x = .data[[x_var]], y = .data[[y_vals_col]], colour = .data[[line_var]]),
                           size = graph_params$orig_point_size,
                           shape = graph_params$orig_point_shape,
                           stroke = graph_params$orig_point_stroke,
@@ -503,17 +492,17 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
     g <- g + 
       ggplot2::geom_point(data = orig_data,
                           # Pick up the dot colour from the line colour.
-                          mapping = ggplot2::aes_string(x = x_var, y = y_vals_col, colour = line_var),
+                          mapping = ggplot2::aes(x = .data[[x_var]], y = .data[[y_vals_col]], colour = .data[[line_var]]),
                           size = graph_params$orig_point_size,
                           shape = graph_params$orig_point_shape,
                           stroke = graph_params$orig_point_stroke,
                           fill = graph_params$orig_point_fill) +
       ggplot2::geom_path(data = line_data,
-                         mapping = ggplot2::aes_string(x = x_var,
-                                                       y = y_vals_col,
-                                                       linetype = line_var,
-                                                       colour = line_var,
-                                                       size = line_var), 
+                         mapping = ggplot2::aes(x = .data[[x_var]],
+                                                y = .data[[y_vals_col]],
+                                                linetype = .data[[line_var]],
+                                                colour = .data[[line_var]],
+                                                linewidth = .data[[line_var]]), 
                          lineend = graph_params$lineend, 
                          linejoin = graph_params$linejoin)
   }
