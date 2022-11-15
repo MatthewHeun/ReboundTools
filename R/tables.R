@@ -96,10 +96,12 @@ stages_table <- function(.analysis_data,
       dplyr::rename(
         # names(latex_vars)[[2]] is the name of the column in latex_vars
         # that contains the LaTeX version of the names.
-        "{.name}" := .data[[ names(latex_vars)[[2]] ]]
+        # "{.name}" := .data[[ names(latex_vars)[[2]] ]]
+        "{.name}" := dplyr::all_of(names(latex_vars)[[2]])
       ) %>% 
       # stages[[1]] is the first stage, usually "orig".
-      dplyr::relocate(.data[[.name]], .before = stages[[1]])
+      # dplyr::relocate(.data[[.name]], .before = stages[[1]])
+      dplyr::relocate(dplyr::all_of(.name), .before = stages[[1]])
   }
   # Now add the units to the variable name, if desired.
   if (add_units) {
@@ -129,14 +131,14 @@ stages_table <- function(.analysis_data,
         "{.stage}" := NULL
       ) %>% 
       dplyr::rename(
-        "{.stage}" := .data[[ names(latex_stages)[[2]] ]]
+        "{.stage}" := dplyr::all_of(names(latex_stages)[[2]])
       ) %>% 
       tidyr::pivot_wider(names_from = .stage, values_from = .value)
   }
   # Eliminate "name" title from name column. It looks stupid.
   rebound_table_data <- rebound_table_data %>% 
     dplyr::rename(
-      ` ` = .data[[.name]]
+      ` ` = dplyr::all_of(.name)
     )
   
   # Create the xtable and return.
