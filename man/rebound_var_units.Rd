@@ -36,8 +36,8 @@ rebound_var_units(
     replacement = ""),
   sigma = ReboundTools::orig_vars$sigma,
   rho = ReboundTools::orig_vars$rho,
-  income_rate = sub(x = ReboundTools::orig_vars$M_dot_orig, pattern =
-    trim_stage_pattern, replacement = ""),
+  income_rate = sub(x = ReboundTools::orig_vars$M_dot_orig, pattern = trim_stage_pattern,
+    replacement = ""),
   income = sub(x = income_rate, pattern = trim_stage_pattern, replacement = ""),
   freed_cash_rate = sub(x = ReboundTools::orig_vars$N_dot_orig, pattern =
     trim_stage_pattern, replacement = ""),

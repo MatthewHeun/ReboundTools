@@ -7,7 +7,8 @@
 calc_Deltas(
   .tilde_data = NULL,
   key_analysis_vars = ReboundTools::key_analysis_vars,
-  rebound_stages = ReboundTools::rebound_stages
+  rebound_stages = ReboundTools::rebound_stages,
+  .all_vars = "all_vars"
 )
 }
 \arguments{
@@ -18,6 +19,9 @@ likely calculated by \code{calc_tilde()}.}
 \item{key_analysis_vars}{See \code{ReboundTools::key_analysis_vars}.}
 
 \item{rebound_stages}{See \code{ReboundTools::rebound_stages}.}
+
+\item{.all_vars}{A column names used internally for all variables.
+Default is ".all_vars".}
 }
 \value{
 \code{.tilde_data} with additional columns containing all possible difference terms.

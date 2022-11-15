@@ -734,6 +734,8 @@ calc_tilde <- function(.bar_data = NULL,
 #'                    likely calculated by `calc_tilde()`.
 #' @param key_analysis_vars See `ReboundTools::key_analysis_vars`.
 #' @param rebound_stages See `ReboundTools::rebound_stages`.
+#' @param .all_vars A column names used internally for all variables.
+#'                  Default is ".all_vars".
 #'
 #' @return `.tilde_data` with additional columns containing all possible difference terms.
 #' 
@@ -749,15 +751,16 @@ calc_tilde <- function(.bar_data = NULL,
 #'   calc_Deltas()
 calc_Deltas <- function(.tilde_data = NULL, 
                         key_analysis_vars = ReboundTools::key_analysis_vars,
-                        rebound_stages = ReboundTools::rebound_stages) {
+                        rebound_stages = ReboundTools::rebound_stages, 
+                        .all_vars = "all_vars") {
   
   # Eliminate the first stage, because we're dealing with Deltas between stages.
   vars <- expand.grid(key_analysis_vars, rebound_stages) %>% 
     magrittr::set_names(c("key_analysis_vars", "rebound_stages")) %>% 
     dplyr::mutate(
-      all_vars = paste0(.data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
+      "{.all_vars}" := paste0(.data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
     ) %>% 
-    dplyr::select(.data[["all_vars"]])
+    dplyr::select(dplyr::all_of(.all_vars))
   
   n_vars <- length(key_analysis_vars)
   n_stages <- length(rebound_stages)

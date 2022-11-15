@@ -106,7 +106,7 @@ Delta_vars <- expand.grid(key_analysis_vars, rebound_stages) %>%
   dplyr::mutate(
     Delta_vars = paste0("Delta_", .data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
   ) %>% 
-  dplyr::select(.data[["Delta_vars"]]) %>% 
+  dplyr::select("Delta_vars") %>% 
   dplyr::filter(!endsWith(.data[["Delta_vars"]], paste0("_", ReboundTools::rebound_stages[["orig"]]))) %>% 
   unlist()
 Delta_vars <- Delta_vars %>% 
