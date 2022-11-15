@@ -96,11 +96,9 @@ stages_table <- function(.analysis_data,
       dplyr::rename(
         # names(latex_vars)[[2]] is the name of the column in latex_vars
         # that contains the LaTeX version of the names.
-        # "{.name}" := .data[[ names(latex_vars)[[2]] ]]
         "{.name}" := dplyr::all_of(names(latex_vars)[[2]])
       ) %>% 
       # stages[[1]] is the first stage, usually "orig".
-      # dplyr::relocate(.data[[.name]], .before = stages[[1]])
       dplyr::relocate(dplyr::all_of(.name), .before = stages[[1]])
   }
   # Now add the units to the variable name, if desired.
@@ -235,21 +233,25 @@ rebound_results_table <- function(.analysis_data,
         "{term_name}" := NULL
       ) %>%
       dplyr::rename(
-        "{term_name}" := .data[[latex_term_name]]
+        # "{term_name}" := .data[[latex_term_name]]
+        "{term_name}" := dplyr::all_of(latex_term_name)
       ) %>%
-      dplyr::relocate(.data[[term_name]], .before = .data[[Re_val_colname]])
+      # dplyr::relocate(.data[[term_name]], .before = .data[[Re_val_colname]])
+      dplyr::relocate(dplyr::all_of(term_name), .before = .data[[Re_val_colname]])
   }
   
   # Adjust the value column name if needed.
   if (escape_latex & as_percent) {
     table_data <- table_data %>% 
       dplyr::rename(
-        "{latex_perc_Re_val_colname}" := .data[[Re_val_colname]]
+        # "{latex_perc_Re_val_colname}" := .data[[Re_val_colname]]
+        "{latex_perc_Re_val_colname}" := dplyr::all_of(Re_val_colname)
       )
   } else if (as_percent) {
     table_data <- table_data %>% 
       dplyr::rename(
-        "{perc_Re_val_colname}" := .data[[Re_val_colname]]
+        # "{perc_Re_val_colname}" := .data[[Re_val_colname]]
+        "{perc_Re_val_colname}" := dplyr::all_of(Re_val_colname)
       )
     
   }
