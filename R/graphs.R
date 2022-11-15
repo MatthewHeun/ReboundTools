@@ -221,7 +221,8 @@ rebound_graphs_helper <- function(.path_data,
       #                                                    intercept =graph_df_colnames$ intercept_col))
       ggplot2::geom_abline(data = .grid_data, 
                            mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                  size = .data[[graph_df_colnames$size_col]], 
+                                                  # size = .data[[graph_df_colnames$size_col]], 
+                                                  linewidth = .data[[graph_df_colnames$size_col]], 
                                                   linetype = .data[[graph_df_colnames$linetype_col]],
                                                   slope = .data[[graph_df_colnames$slope_col]],
                                                   intercept = .data[[graph_df_colnames$intercept_col]]))
@@ -235,7 +236,8 @@ rebound_graphs_helper <- function(.path_data,
                                                 y = .data[[graph_df_colnames$y_col]],
                                                 group = .data[[graph_df_colnames$line_name_col]],
                                                 colour = .data[[graph_df_colnames$colour_col]],
-                                                size = .data[[graph_df_colnames$size_col]],
+                                                # size = .data[[graph_df_colnames$size_col]],
+                                                linewidth = .data[[graph_df_colnames$size_col]],
                                                 linetype = .data[[graph_df_colnames$linetype_col]]))
   }
   
@@ -245,14 +247,6 @@ rebound_graphs_helper <- function(.path_data,
       # Points are to be drawn beneath paths. 
       # So add points now.
       g <- g +
-        # ggplot2::geom_point(data = .points_data,
-        #                     mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
-        #                                                   y = graph_df_colnames$y_col,
-        #                                                   shape = graph_df_colnames$shape_col,
-        #                                                   size = graph_df_colnames$size_col,
-        #                                                   fill = graph_df_colnames$fill_col,
-        #                                                   stroke = graph_df_colnames$stroke_col,
-        #                                                   colour = graph_df_colnames$colour_col))
         ggplot2::geom_point(data = .points_data,
                             mapping = ggplot2::aes(x = .data[[graph_df_colnames$x_col]],
                                                    y = .data[[graph_df_colnames$y_col]],
@@ -272,17 +266,10 @@ rebound_graphs_helper <- function(.path_data,
     dplyr::filter(! .data[[graph_df_colnames$end_arrow_col]])
   # Segments without arrows
   g <- g +
-    # ggplot2::geom_segment(data = without_arrows, 
-    #                       mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-    #                                                     size = graph_df_colnames$size_col,
-    #                                                     linetype = graph_df_colnames$linetype_col,
-    #                                                     x = graph_df_colnames$x_col, 
-    #                                                     y = graph_df_colnames$y_col, 
-    #                                                     xend = graph_df_colnames$xend_col, 
-    #                                                     yend = graph_df_colnames$yend_col), 
     ggplot2::geom_segment(data = without_arrows, 
                           mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                 size = .data[[graph_df_colnames$size_col]],
+                                                 # size = .data[[graph_df_colnames$size_col]],
+                                                 linewidth = .data[[graph_df_colnames$size_col]],
                                                  linetype = .data[[graph_df_colnames$linetype_col]],
                                                  x = .data[[graph_df_colnames$x_col]], 
                                                  y = .data[[graph_df_colnames$y_col]], 
@@ -292,17 +279,10 @@ rebound_graphs_helper <- function(.path_data,
                           linejoin = graph_params$linejoin)
   # Segments with arrows
   g <- g +
-    # ggplot2::geom_segment(data = with_arrows, 
-    #                       mapping = ggplot2::aes_string(colour = graph_df_colnames$colour_col, 
-    #                                                     size = graph_df_colnames$size_col,
-    #                                                     linetype = graph_df_colnames$linetype_col,
-    #                                                     x = graph_df_colnames$x_col, 
-    #                                                     y = graph_df_colnames$y_col, 
-    #                                                     xend = graph_df_colnames$xend_col, 
-    #                                                     yend = graph_df_colnames$yend_col), 
     ggplot2::geom_segment(data = with_arrows, 
                           mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                 size = .data[[graph_df_colnames$size_col]],
+                                                 # size = .data[[graph_df_colnames$size_col]],
+                                                 linewidth = .data[[graph_df_colnames$size_col]],
                                                  linetype = .data[[graph_df_colnames$linetype_col]],
                                                  x = .data[[graph_df_colnames$x_col]], 
                                                  y = .data[[graph_df_colnames$y_col]], 
@@ -318,14 +298,6 @@ rebound_graphs_helper <- function(.path_data,
       # Points are to be drawn atop paths. 
       # So add points as a final layer.
       g <- g +
-        # ggplot2::geom_point(data = .points_data,
-        #                     mapping = ggplot2::aes_string(x = graph_df_colnames$x_col,
-        #                                                   y = graph_df_colnames$y_col,
-        #                                                   shape = graph_df_colnames$shape_col,
-        #                                                   size = graph_df_colnames$size_col,
-        #                                                   fill = graph_df_colnames$fill_col,
-        #                                                   stroke = graph_df_colnames$stroke_col,
-        #                                                   colour = graph_df_colnames$colour_col))
         ggplot2::geom_point(data = .points_data,
                             mapping = ggplot2::aes(x = .data[[graph_df_colnames$x_col]],
                                                    y = .data[[graph_df_colnames$y_col]],
@@ -505,17 +477,18 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
   g <- ggplot2::ggplot()
   if (graph_params$include_x_axis) {
     g <- g +
-      ggplot2::geom_hline(yintercept = 0, size = 0.2)
+      # ggplot2::geom_hline(yintercept = 0, size = 0.2)
+      ggplot2::geom_hline(yintercept = 0, linewidth = 0.2)
   }
   if (graph_params$points_atop_paths) {
     g <- g + 
       # Use geom_path so that we get nice rounded segments when using dashes.
       ggplot2::geom_path(data = line_data,
-                         mapping = ggplot2::aes_string(x = x_var,
-                                                       y = y_vals_col,
-                                                       linetype = line_var,
-                                                       colour = line_var,
-                                                       size = line_var), 
+                         mapping = ggplot2::aes(x = .data[[x_var]],
+                                                y = .data[[y_vals_col]],
+                                                linetype = .data[[line_var]],
+                                                colour = .data[[line_var]],
+                                                linewidth = .data[[line_var]]), 
                          lineend = graph_params$lineend, 
                          linejoin = graph_params$linejoin) + 
       ggplot2::geom_point(data = orig_data,
