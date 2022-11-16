@@ -11,7 +11,7 @@ add_segment(
   graph_type,
   segment_name,
   colour = "black",
-  size = 1,
+  linewidth = 1,
   linetype = "solid",
   x_orig,
   y_orig,
@@ -39,7 +39,7 @@ This metadata data frame provides the left-most columns of the return value.}
 
 \item{colour}{The colour for this segment. Default is "black".}
 
-\item{size}{The size (width) for this segment. Default is \code{1}.}
+\item{linewidth}{The line width for this segment. Default is \code{1}.}
 
 \item{linetype}{The line type for this segment. Default is "solid".}
 

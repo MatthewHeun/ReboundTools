@@ -323,7 +323,7 @@ usethis::use_data(graph_types, overwrite = TRUE)
 # 
 
 graph_df_colnames <- list(colour_col = "colour", 
-                          size_col = "size", 
+                          size_col = "linewidth", 
                           shape_col = "shape",
                           fill_col = "fill",
                           stroke_col = "stroke",

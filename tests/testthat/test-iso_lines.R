@@ -47,7 +47,7 @@ test_that("add_iso() works as expected", {
   expect_equal(res$graph_type, "Test type")
   expect_equal(res$line_name, "Test iso")
   expect_equal(res$colour, "black")
-  expect_equal(res$size, 0.1)
+  expect_equal(res$linewidth, 0.1)
   expect_equal(res$linetype, "solid")
   expect_equal(res$slope, -1)
   expect_equal(res$intercept, 50)
