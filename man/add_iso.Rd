@@ -11,7 +11,7 @@ add_iso(
   graph_type,
   iso_name,
   colour = ReboundTools::path_graph_params$energy_grid_colour,
-  linewidth = ReboundTools::path_graph_params$energy_grid_size,
+  linewidth = ReboundTools::path_graph_params$energy_grid_linewidth,
   linetype = ReboundTools::path_graph_params$energy_grid_linetype,
   x_orig,
   y_orig,

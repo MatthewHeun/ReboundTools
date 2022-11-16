@@ -215,7 +215,7 @@ rebound_graphs_helper <- function(.path_data,
     g <- g + 
       ggplot2::geom_abline(data = .grid_data, 
                            mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                  linewidth = .data[[graph_df_colnames$size_col]], 
+                                                  linewidth = .data[[graph_df_colnames$linewidth_col]], 
                                                   linetype = .data[[graph_df_colnames$linetype_col]],
                                                   slope = .data[[graph_df_colnames$slope_col]],
                                                   intercept = .data[[graph_df_colnames$intercept_col]]))
@@ -229,7 +229,7 @@ rebound_graphs_helper <- function(.path_data,
                                                 y = .data[[graph_df_colnames$y_col]],
                                                 group = .data[[graph_df_colnames$line_name_col]],
                                                 colour = .data[[graph_df_colnames$colour_col]],
-                                                linewidth = .data[[graph_df_colnames$size_col]],
+                                                linewidth = .data[[graph_df_colnames$linewidth_col]],
                                                 linetype = .data[[graph_df_colnames$linetype_col]]))
   }
   
@@ -260,7 +260,7 @@ rebound_graphs_helper <- function(.path_data,
   g <- g +
     ggplot2::geom_segment(data = without_arrows, 
                           mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                 linewidth = .data[[graph_df_colnames$size_col]],
+                                                 linewidth = .data[[graph_df_colnames$linewidth_col]],
                                                  linetype = .data[[graph_df_colnames$linetype_col]],
                                                  x = .data[[graph_df_colnames$x_col]], 
                                                  y = .data[[graph_df_colnames$y_col]], 
@@ -272,7 +272,7 @@ rebound_graphs_helper <- function(.path_data,
   g <- g +
     ggplot2::geom_segment(data = with_arrows, 
                           mapping = ggplot2::aes(colour = .data[[graph_df_colnames$colour_col]], 
-                                                 linewidth = .data[[graph_df_colnames$size_col]],
+                                                 linewidth = .data[[graph_df_colnames$linewidth_col]],
                                                  linetype = .data[[graph_df_colnames$linetype_col]],
                                                  x = .data[[graph_df_colnames$x_col]], 
                                                  y = .data[[graph_df_colnames$y_col]], 
