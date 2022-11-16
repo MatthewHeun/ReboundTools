@@ -300,8 +300,9 @@ rebound_graphs_helper <- function(.path_data,
   }
   
   g +  
-    # Use the colour, size, linetype, and shape columns/data directly.
+    # Use the colour, linewidth, linetype, and shape columns/data directly.
     ggplot2::scale_colour_identity() + 
+    ggplot2::scale_linewidth(trans = "identity", guide = NULL) + 
     ggplot2::scale_size_identity() + 
     ggplot2::scale_linetype_identity() + 
     ggplot2::scale_shape_identity() + 
@@ -475,9 +476,9 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
       ggplot2::geom_path(data = line_data,
                          mapping = ggplot2::aes(x = .data[[x_var]],
                                                 y = .data[[y_vals_col]],
+                                                linewidth = .data[[line_var]],
                                                 linetype = .data[[line_var]],
-                                                colour = .data[[line_var]],
-                                                linewidth = .data[[line_var]]), 
+                                                colour = .data[[line_var]]), 
                          lineend = graph_params$lineend, 
                          linejoin = graph_params$linejoin) + 
       ggplot2::geom_point(data = orig_data,
@@ -500,9 +501,9 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
       ggplot2::geom_path(data = line_data,
                          mapping = ggplot2::aes(x = .data[[x_var]],
                                                 y = .data[[y_vals_col]],
+                                                linewidth = .data[[line_var]],
                                                 linetype = .data[[line_var]],
-                                                colour = .data[[line_var]],
-                                                linewidth = .data[[line_var]]), 
+                                                colour = .data[[line_var]]), 
                          lineend = graph_params$lineend, 
                          linejoin = graph_params$linejoin)
   }
