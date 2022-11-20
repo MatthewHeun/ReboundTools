@@ -188,6 +188,9 @@ rebound_graphs_helper <- function(.path_data,
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
     )
+  # Figure out the line width scale
+  linewidth_min <- min(.path_data[[graph_df_colnames$linewidth_col]])
+  linewidth_max <- max(.path_data[[graph_df_colnames$linewidth_col]])
   if (!is.null(.points_data)) {
     .points_data <- .points_data %>% 
       # Only show points for which start_point_col is TRUE.
@@ -201,12 +204,20 @@ rebound_graphs_helper <- function(.path_data,
       dplyr::mutate(
         "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
       )
+    if (nrow(.grid_data) > 0) {
+      linewidth_min <- min(linewidth_min, min(.grid_data[[graph_df_colnames$linewidth_col]]))
+      linewidth_max <- max(linewidth_max, max(.grid_data[[graph_df_colnames$linewidth_col]]))
+    }
   }
   if (!is.null(.indifference_data)) {
     .indifference_data <- .indifference_data %>% 
       dplyr::mutate(
         "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
       )
+    if (nrow(.indifference_data) > 0) {
+      linewidth_min <- min(linewidth_min, min(.indifference_data[[graph_df_colnames$linewidth_col]]))
+      linewidth_max <- max(linewidth_max, max(.indifference_data[[graph_df_colnames$linewidth_col]]))
+    }
   }
   
   g <- ggplot2::ggplot()
@@ -302,7 +313,7 @@ rebound_graphs_helper <- function(.path_data,
   g +  
     # Use the colour, linewidth, linetype, and shape columns/data directly.
     ggplot2::scale_colour_identity() + 
-    ggplot2::scale_linewidth(trans = "identity", guide = NULL) + 
+    ggplot2::scale_linewidth(trans = "identity", guide = "none", range = c(linewidth_min, linewidth_max)) + 
     ggplot2::scale_size_identity() + 
     ggplot2::scale_linetype_identity() + 
     ggplot2::scale_shape_identity() + 
@@ -476,7 +487,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
       ggplot2::geom_path(data = line_data,
                          mapping = ggplot2::aes(x = .data[[x_var]],
                                                 y = .data[[y_vals_col]],
-                                                linewidth = .data[[line_var]],
+                                                size = .data[[line_var]],
                                                 linetype = .data[[line_var]],
                                                 colour = .data[[line_var]]), 
                          lineend = graph_params$lineend, 
@@ -501,7 +512,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
       ggplot2::geom_path(data = line_data,
                          mapping = ggplot2::aes(x = .data[[x_var]],
                                                 y = .data[[y_vals_col]],
-                                                linewidth = .data[[line_var]],
+                                                size = .data[[line_var]],
                                                 linetype = .data[[line_var]],
                                                 colour = .data[[line_var]]), 
                          lineend = graph_params$lineend, 
@@ -609,24 +620,6 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                             Re_tot = graph_params$tot_colour), 
                                  labels = legend_labs,
                                  breaks = Re_terms) +
-    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_size,
-                                          Re_emb = graph_params$emb_size,
-                                          Re_md = graph_params$md_size,
-                                          Re_cap = graph_params$cap_size,
-                                          Re_empl = graph_params$empl_size,
-                                          Re_dsub = graph_params$dsub_size,
-                                          Re_isub = graph_params$isub_size,
-                                          Re_sub = graph_params$sub_size,
-                                          Re_dinc = graph_params$dinc_size,
-                                          Re_iinc = graph_params$iinc_size,
-                                          Re_inc = graph_params$inc_size,
-                                          Re_micro = graph_params$micro_size,
-                                          Re_macro = graph_params$macro_size,
-                                          Re_dir = graph_params$dir_size,
-                                          Re_indir = graph_params$indir_size,
-                                          Re_tot = graph_params$tot_size),
-                               labels = legend_labs,
-                               breaks = Re_terms) +
     ggplot2::scale_linetype_manual(values = c(Re_dempl = graph_params$dempl_linetype, 
                                               Re_emb = graph_params$emb_linetype,
                                               Re_cap = graph_params$cap_linetype,
@@ -644,6 +637,24 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                               Re_indir = graph_params$indir_linetype,
                                               Re_tot = graph_params$tot_linetype), 
                                    labels = legend_labs,
-                                   breaks = Re_terms)
+                                   breaks = Re_terms) + 
+    ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_linewidth,
+                                          Re_emb = graph_params$emb_linewidth,
+                                          Re_md = graph_params$md_linewidth,
+                                          Re_cap = graph_params$cap_linewidth,
+                                          Re_empl = graph_params$empl_linewidth,
+                                          Re_dsub = graph_params$dsub_linewidth,
+                                          Re_isub = graph_params$isub_linewidth,
+                                          Re_sub = graph_params$sub_linewidth,
+                                          Re_dinc = graph_params$dinc_linewidth,
+                                          Re_iinc = graph_params$iinc_linewidth,
+                                          Re_inc = graph_params$inc_linewidth,
+                                          Re_micro = graph_params$micro_linewidth,
+                                          Re_macro = graph_params$macro_linewidth,
+                                          Re_dir = graph_params$dir_linewidth,
+                                          Re_indir = graph_params$indir_linewidth,
+                                          Re_tot = graph_params$tot_linewidth),
+                               labels = legend_labs,
+                               breaks = Re_terms)
 }
 
