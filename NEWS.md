@@ -1,6 +1,9 @@
 * Now using the `linewidth` aesthetic in `ggplot2` where possible.
 * Responded to changes in `tidyselect` and `ggplot2`.
   Many functions were throwing deprecation warnings.
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.32 (2021-06-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999847.svg)](https://doi.org/10.5281/zenodo.4999847)
