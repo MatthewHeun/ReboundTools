@@ -32,7 +32,9 @@ Default is See \code{ReboundTools::graph_types$consumption}.}
 
 \item{colour}{The colour for this budget line. Default is \code{ReboundTools::path_graph_params$cons_grid_colour}.}
 
-\item{linetype}{The line type for this budget line Default is \code{ReboundTools::path_graph_params$cons_grid_linetype}.}
+\item{linewidth}{The size (width) for this budget line.  Default is \code{ReboundTools::path_graph_params$cons_grid_linewidth}.}
+
+\item{linetype}{The line type for this budget line.  Default is \code{ReboundTools::path_graph_params$cons_grid_linetype}.}
 
 \item{slope}{The slope of this budget line.}
 
@@ -40,8 +42,6 @@ Default is See \code{ReboundTools::graph_types$consumption}.}
 
 \item{graph_df_colnames}{A list of column names in graph data frames.
 Default is \code{ReboundTools::graph_df_colnames}.}
-
-\item{size}{The size (width) for this budget line Default is \code{ReboundTools::path_graph_params$cons_grid_size}.}
 }
 \value{
 A version of \code{.DF} with budget lines added at the bottom.

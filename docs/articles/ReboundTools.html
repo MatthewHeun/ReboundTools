@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.32</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.33</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/ReboundTools.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -75,13 +71,14 @@
 
       
 
-      </header><script src="ReboundTools_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ReboundTools</h1>
-                        <h4 class="author">Matthew Kuperus Heun</h4>
+                        <h4 data-toc-skip class="author">Matthew Kuperus
+Heun</h4>
             
-            <h4 class="date">2021-06-20</h4>
+            <h4 data-toc-skip class="date">2022-11-20</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -90,281 +87,313 @@
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><code>ReboundTools</code> is an <code>R</code> package that provides functions to analyze energy rebound,<br>
-the unanticipated reduction of the benefits of energy efficiency due to behavior change and economy-wide effects. Many functions perform analysis calculations to move from known parameters to rebound estimates. Graphing functions (described in the <code>Graphs</code> vignette) create rebound path graphs in energy, expenditure, and consumption spaces. Other graphing functions create sensitivity graphs. The functions in this package were used for the analyses and graphs in the paper **********.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p><code>ReboundTools</code> is an <code>R</code> package that provides
+functions to analyze energy rebound,<br>
+the unanticipated reduction of the benefits of energy efficiency due to
+behavior change and economy-wide effects. Many functions perform
+analysis calculations to move from known parameters to rebound
+estimates. Graphing functions (described in the <code>Graphs</code>
+vignette) create rebound path graphs in energy, expenditure, and
+consumption spaces. Other graphing functions create sensitivity graphs.
+The functions in this package were used for the analyses and graphs in
+the paper **********.</p>
 </div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started</h2>
-<p>The first step in a rebound analysis is specifying parameters for the energy efficiency upgrade (EEU) and rebound analysis, typically in a Excel spreadsheet. The path to an example spreadsheet can be found with the function <code><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path()</a></code>. Data can be loaded into a data frame as follows:</p>
+<div class="section level2">
+<h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
+<p>The first step in a rebound analysis is specifying parameters for the
+energy efficiency upgrade (EEU) and rebound analysis, typically in a
+Excel spreadsheet. The path to an example spreadsheet can be found with
+the function <code><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path()</a></code>. Data can be loaded
+into a data frame as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">eeu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Uses the readxl package internally.</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 2</span>
-<span class="co">#&gt; Columns: 27</span>
-<span class="co">#&gt; $ Reference             &lt;chr&gt; "None yet", "None yet"</span>
-<span class="co">#&gt; $ Case                  &lt;chr&gt; "Car", "Lamp"</span>
-<span class="co">#&gt; $ Original              &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
-<span class="co">#&gt; $ Upgrade               &lt;chr&gt; "Ford Fusion Hybrid", "LED"</span>
-<span class="co">#&gt; $ service_unit          &lt;chr&gt; "mile", "lm-hr"</span>
-<span class="co">#&gt; $ energy_engr_unit      &lt;chr&gt; "gal", "W-hr"</span>
-<span class="co">#&gt; $ `MJ/energy_engr_unit` &lt;dbl&gt; 126.6216, 0.0036</span>
-<span class="co">#&gt; $ I_E                   &lt;dbl&gt; 3.389339, 3.389339</span>
-<span class="co">#&gt; $ k                     &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ p_E_engr_units        &lt;dbl&gt; 2.2100000, 0.0001355</span>
-<span class="co">#&gt; $ e_qs_ps_UC            &lt;dbl&gt; -0.1, -0.4</span>
-<span class="co">#&gt; $ e_qs_M                &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ e_qo_M                &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ eta_engr_units_orig   &lt;dbl&gt; 25.000000, 8.833333</span>
-<span class="co">#&gt; $ eta_engr_units_star   &lt;dbl&gt; 42.0, 81.8</span>
-<span class="co">#&gt; $ q_dot_s_orig          &lt;dbl&gt; 14425, 580350</span>
-<span class="co">#&gt; $ M_dot_orig            &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ C_cap_orig            &lt;dbl&gt; 28216.10, 1.88</span>
-<span class="co">#&gt; $ t_own_orig            &lt;dbl&gt; 7.0, 1.8</span>
-<span class="co">#&gt; $ C_cap_star            &lt;dbl&gt; 27523.40, 1.21</span>
-<span class="co">#&gt; $ t_own_star            &lt;dbl&gt; 7, 10</span>
-<span class="co">#&gt; $ C_dot_md_orig         &lt;dbl&gt; 2861.134, 0.000</span>
-<span class="co">#&gt; $ C_dot_md_star         &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_emb_orig            &lt;dbl&gt; 34000.0, 2.2</span>
-<span class="co">#&gt; $ t_life_orig           &lt;dbl&gt; 14.0, 1.8</span>
-<span class="co">#&gt; $ E_emb_star            &lt;dbl&gt; 40000.0, 6.5</span>
-<span class="co">#&gt; $ t_life_star           &lt;dbl&gt; 14, 10</span></code></pre></div>
-<p>Variable names (columns in the EEU spreadsheet) are described by various constants in the package, including <code>eeu_base_params</code>, <code>key_analysis_vars</code>, and <code>rebound_stages</code>. Get help on any of those constants to see descriptions of parameters, variables, and stages.</p>
-<p>Rows of the EEU spreadsheet should describe the cases to be analyzed. The example file at <code><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path()</a></code> contains two cases: a car and an electric lamp. Columns of the EEU spreadsheet should contain rebound parameters for each case. Required columns are shown in the example file and in the <code>eeu_data</code> data frame.</p>
+<code class="sourceCode R"><span><span class="va">eeu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Uses the readxl package internally.</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 2</span></span>
+<span><span class="co">#&gt; Columns: 27</span></span>
+<span><span class="co">#&gt; $ Reference             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "None yet", "None yet"</span></span>
+<span><span class="co">#&gt; $ Case                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Car", "Lamp"</span></span>
+<span><span class="co">#&gt; $ Original              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ford Fusion", "Incandescent"</span></span>
+<span><span class="co">#&gt; $ Upgrade               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ford Fusion Hybrid", "LED"</span></span>
+<span><span class="co">#&gt; $ service_unit          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "mile", "lm-hr"</span></span>
+<span><span class="co">#&gt; $ energy_engr_unit      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "gal", "W-hr"</span></span>
+<span><span class="co">#&gt; $ `MJ/energy_engr_unit` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 126.6216, 0.0036</span></span>
+<span><span class="co">#&gt; $ I_E                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.389339, 3.389339</span></span>
+<span><span class="co">#&gt; $ k                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
+<span><span class="co">#&gt; $ p_E_engr_units        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.2100000, 0.0001355</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
+<span><span class="co">#&gt; $ e_qs_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
+<span><span class="co">#&gt; $ e_qo_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_orig   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25.000000, 8.833333</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_star   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
+<span><span class="co">#&gt; $ q_dot_s_orig          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14425, 580350</span></span>
+<span><span class="co">#&gt; $ M_dot_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27401.28, 27401.28</span></span>
+<span><span class="co">#&gt; $ C_cap_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28216.10, 1.88</span></span>
+<span><span class="co">#&gt; $ t_own_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7.0, 1.8</span></span>
+<span><span class="co">#&gt; $ C_cap_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27523.40, 1.21</span></span>
+<span><span class="co">#&gt; $ t_own_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7, 10</span></span>
+<span><span class="co">#&gt; $ C_dot_md_orig         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2861.134, 0.000</span></span>
+<span><span class="co">#&gt; $ C_dot_md_star         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2774.668, 0.000</span></span>
+<span><span class="co">#&gt; $ E_emb_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34000.0, 2.2</span></span>
+<span><span class="co">#&gt; $ t_life_orig           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14.0, 1.8</span></span>
+<span><span class="co">#&gt; $ E_emb_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40000.0, 6.5</span></span>
+<span><span class="co">#&gt; $ t_life_star           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 10</span></span></code></pre></div>
+<p>Variable names (columns in the EEU spreadsheet) are described by
+various constants in the package, including
+<code>eeu_base_params</code>, <code>key_analysis_vars</code>, and
+<code>rebound_stages</code>. Get help on any of those constants to see
+descriptions of parameters, variables, and stages.</p>
+<p>Rows of the EEU spreadsheet should describe the cases to be analyzed.
+The example file at <code><a href="../reference/sample_eeu_data_path.html">sample_eeu_data_path()</a></code> contains two
+cases: a car and an electric lamp. Columns of the EEU spreadsheet should
+contain rebound parameters for each case. Required columns are shown in
+the example file and in the <code>eeu_data</code> data frame.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "Reference"           "Case"                "Original"           </span>
-<span class="co">#&gt;  [4] "Upgrade"             "service_unit"        "energy_engr_unit"   </span>
-<span class="co">#&gt;  [7] "MJ/energy_engr_unit" "I_E"                 "k"                  </span>
-<span class="co">#&gt; [10] "p_E_engr_units"      "e_qs_ps_UC"          "e_qs_M"             </span>
-<span class="co">#&gt; [13] "e_qo_M"              "eta_engr_units_orig" "eta_engr_units_star"</span>
-<span class="co">#&gt; [16] "q_dot_s_orig"        "M_dot_orig"          "C_cap_orig"         </span>
-<span class="co">#&gt; [19] "t_own_orig"          "C_cap_star"          "t_own_star"         </span>
-<span class="co">#&gt; [22] "C_dot_md_orig"       "C_dot_md_star"       "E_emb_orig"         </span>
-<span class="co">#&gt; [25] "t_life_orig"         "E_emb_star"          "t_life_star"</span></code></pre></div>
-<p>Rows can be used for sensitivity analysis, varying one or many parameters in each row of the spreadsheet.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "Reference"           "Case"                "Original"           </span></span>
+<span><span class="co">#&gt;  [4] "Upgrade"             "service_unit"        "energy_engr_unit"   </span></span>
+<span><span class="co">#&gt;  [7] "MJ/energy_engr_unit" "I_E"                 "k"                  </span></span>
+<span><span class="co">#&gt; [10] "p_E_engr_units"      "e_qs_ps_UC"          "e_qs_M"             </span></span>
+<span><span class="co">#&gt; [13] "e_qo_M"              "eta_engr_units_orig" "eta_engr_units_star"</span></span>
+<span><span class="co">#&gt; [16] "q_dot_s_orig"        "M_dot_orig"          "C_cap_orig"         </span></span>
+<span><span class="co">#&gt; [19] "t_own_orig"          "C_cap_star"          "t_own_star"         </span></span>
+<span><span class="co">#&gt; [22] "C_dot_md_orig"       "C_dot_md_star"       "E_emb_orig"         </span></span>
+<span><span class="co">#&gt; [25] "t_life_orig"         "E_emb_star"          "t_life_star"</span></span></code></pre></div>
+<p>Rows can be used for sensitivity analysis, varying one or many
+parameters in each row of the spreadsheet.</p>
 </div>
-<div id="performing-the-analysis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#performing-the-analysis" class="anchor"></a>Performing the analysis</h2>
-<p>After data are loaded, rebound analyses can be performed. A rebound analysis consists of calculating all rebound terms and intermediate results, once for each row of the EEU data frame. A convenient function to perform the rebound analysis is named, aptly, <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code>. Columns for intermediate and final results are added to the right of the data frame.</p>
+<div class="section level2">
+<h2 id="performing-the-analysis">Performing the analysis<a class="anchor" aria-label="anchor" href="#performing-the-analysis"></a>
+</h2>
+<p>After data are loaded, rebound analyses can be performed. A rebound
+analysis consists of calculating all rebound terms and intermediate
+results, once for each row of the EEU data frame. A convenient function
+to perform the rebound analysis is named, aptly,
+<code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code>. Columns for intermediate and final
+results are added to the right of the data frame.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 2</span>
-<span class="co">#&gt; Columns: 155</span>
-<span class="co">#&gt; $ Reference                  &lt;chr&gt; "None yet", "None yet"</span>
-<span class="co">#&gt; $ Case                       &lt;chr&gt; "Car", "Lamp"</span>
-<span class="co">#&gt; $ Original                   &lt;chr&gt; "Ford Fusion", "Incandescent"</span>
-<span class="co">#&gt; $ Upgrade                    &lt;chr&gt; "Ford Fusion Hybrid", "LED"</span>
-<span class="co">#&gt; $ service_unit               &lt;chr&gt; "mile", "lm-hr"</span>
-<span class="co">#&gt; $ energy_engr_unit           &lt;chr&gt; "gal", "W-hr"</span>
-<span class="co">#&gt; $ `MJ/energy_engr_unit`      &lt;dbl&gt; 126.6216, 0.0036</span>
-<span class="co">#&gt; $ I_E                        &lt;dbl&gt; 3.389339, 3.389339</span>
-<span class="co">#&gt; $ k                          &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ p_E_engr_units             &lt;dbl&gt; 2.2100000, 0.0001355</span>
-<span class="co">#&gt; $ e_qs_ps_UC                 &lt;dbl&gt; -0.1, -0.4</span>
-<span class="co">#&gt; $ e_qs_M                     &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ e_qo_M                     &lt;dbl&gt; 1, 1</span>
-<span class="co">#&gt; $ eta_engr_units_orig        &lt;dbl&gt; 25.000000, 8.833333</span>
-<span class="co">#&gt; $ eta_engr_units_star        &lt;dbl&gt; 42.0, 81.8</span>
-<span class="co">#&gt; $ q_dot_s_orig               &lt;dbl&gt; 14425, 580350</span>
-<span class="co">#&gt; $ M_dot_orig                 &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ C_cap_orig                 &lt;dbl&gt; 28216.10, 1.88</span>
-<span class="co">#&gt; $ t_own_orig                 &lt;dbl&gt; 7.0, 1.8</span>
-<span class="co">#&gt; $ C_cap_star                 &lt;dbl&gt; 27523.40, 1.21</span>
-<span class="co">#&gt; $ t_own_star                 &lt;dbl&gt; 7, 10</span>
-<span class="co">#&gt; $ C_dot_md_orig              &lt;dbl&gt; 2861.134, 0.000</span>
-<span class="co">#&gt; $ C_dot_md_star              &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_emb_orig                 &lt;dbl&gt; 34000.0, 2.2</span>
-<span class="co">#&gt; $ t_life_orig                &lt;dbl&gt; 14.0, 1.8</span>
-<span class="co">#&gt; $ E_emb_star                 &lt;dbl&gt; 40000.0, 6.5</span>
-<span class="co">#&gt; $ t_life_star                &lt;dbl&gt; 14, 10</span>
-<span class="co">#&gt; $ p_E                        &lt;dbl&gt; 0.01745357, 0.03763889</span>
-<span class="co">#&gt; $ eta_orig                   &lt;dbl&gt; 0.1974386, 2453.7036944</span>
-<span class="co">#&gt; $ E_dot_s_orig               &lt;dbl&gt; 73060.68, 236.52</span>
-<span class="co">#&gt; $ C_dot_cap_orig             &lt;dbl&gt; 4030.871429, 1.044444</span>
-<span class="co">#&gt; $ p_s_orig                   &lt;dbl&gt; 8.840000e-02, 1.533962e-05</span>
-<span class="co">#&gt; $ C_dot_s_orig               &lt;dbl&gt; 1275.17000, 8.90235</span>
-<span class="co">#&gt; $ C_dot_o_orig               &lt;dbl&gt; 19234.10, 27391.33</span>
-<span class="co">#&gt; $ f_Cs_orig                  &lt;dbl&gt; 0.0621752932, 0.0003249005</span>
-<span class="co">#&gt; $ e_qs_ps_C                  &lt;dbl&gt; -0.03782471, -0.39967510</span>
-<span class="co">#&gt; $ e_qo_ps_C                  &lt;dbl&gt; 0.0025076778, 0.0001298969</span>
-<span class="co">#&gt; $ sigma                      &lt;dbl&gt; 0.04033238, 0.39980500</span>
-<span class="co">#&gt; $ rho                        &lt;dbl&gt; -23.793972, -1.501219</span>
-<span class="co">#&gt; $ E_dot_emb_orig             &lt;dbl&gt; 2428.571429, 1.222222</span>
-<span class="co">#&gt; $ N_dot_orig                 &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ eta_star                   &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ eta_ratio                  &lt;dbl&gt; 1.680000, 9.260377</span>
-<span class="co">#&gt; $ S_dot_dev                  &lt;dbl&gt; 29572.1802, 210.9789</span>
-<span class="co">#&gt; $ G_dot                      &lt;dbl&gt; 516.140238, 7.941012</span>
-<span class="co">#&gt; $ p_s_star                   &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ q_dot_s_star               &lt;dbl&gt; 14425, 580350</span>
-<span class="co">#&gt; $ C_dot_cap_star             &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ E_dot_emb_star             &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ C_dot_s_star               &lt;dbl&gt; 759.0297619, 0.9613377</span>
-<span class="co">#&gt; $ M_dot_star                 &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ N_dot_star                 &lt;dbl&gt; 701.563517, 8.864457</span>
-<span class="co">#&gt; $ C_dot_o_star               &lt;dbl&gt; 19234.10, 27391.33</span>
-<span class="co">#&gt; $ E_dot_s_star               &lt;dbl&gt; 43488.50030, 25.54108</span>
-<span class="co">#&gt; $ eta_engr_units_hat         &lt;dbl&gt; 42.0, 81.8</span>
-<span class="co">#&gt; $ eta_hat                    &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ p_s_hat                    &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ C_dot_cap_hat              &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ C_dot_md_hat               &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_dot_emb_hat              &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ M_dot_hat                  &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ q_dot_s_hat                &lt;dbl&gt; 14714.74, 1412809.74</span>
-<span class="co">#&gt; $ E_dot_s_hat                &lt;dbl&gt; 44362.00012, 62.17745</span>
-<span class="co">#&gt; $ C_dot_s_hat                &lt;dbl&gt; 774.27546, 2.34029</span>
-<span class="co">#&gt; $ C_dot_o_hat                &lt;dbl&gt; 19214.16, 27386.96</span>
-<span class="co">#&gt; $ N_dot_hat                  &lt;dbl&gt; 706.26254, 11.85516</span>
-<span class="co">#&gt; $ M_dot_hat_prime            &lt;dbl&gt; 19988.43, 27389.30</span>
-<span class="co">#&gt; $ eta_engr_units_bar         &lt;dbl&gt; 42.0, 81.8</span>
-<span class="co">#&gt; $ eta_bar                    &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ p_s_bar                    &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ C_dot_cap_bar              &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ C_dot_md_bar               &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_dot_emb_bar              &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ M_dot_bar                  &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ q_dot_s_bar                &lt;dbl&gt; 15234.66, 1413421.26</span>
-<span class="co">#&gt; $ E_dot_s_bar                &lt;dbl&gt; 45929.46762, 62.20436</span>
-<span class="co">#&gt; $ C_dot_s_bar                &lt;dbl&gt; 801.633366, 2.341303</span>
-<span class="co">#&gt; $ C_dot_o_bar                &lt;dbl&gt; 19893.06, 27398.82</span>
-<span class="co">#&gt; $ N_dot_bar                  &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ eta_engr_units_tilde       &lt;dbl&gt; 42.0, 81.8</span>
-<span class="co">#&gt; $ eta_tilde                  &lt;dbl&gt; 3.316969e-01, 2.272222e+04</span>
-<span class="co">#&gt; $ p_s_tilde                  &lt;dbl&gt; 5.261905e-02, 1.656479e-06</span>
-<span class="co">#&gt; $ C_dot_cap_tilde            &lt;dbl&gt; 3931.914, 0.121</span>
-<span class="co">#&gt; $ C_dot_md_tilde             &lt;dbl&gt; 2774.668, 0.000</span>
-<span class="co">#&gt; $ E_dot_emb_tilde            &lt;dbl&gt; 2857.143, 0.650</span>
-<span class="co">#&gt; $ M_dot_tilde                &lt;dbl&gt; 27401.28, 27401.28</span>
-<span class="co">#&gt; $ q_dot_s_tilde              &lt;dbl&gt; 15234.66, 1413421.26</span>
-<span class="co">#&gt; $ E_dot_s_tilde              &lt;dbl&gt; 45929.46762, 62.20436</span>
-<span class="co">#&gt; $ C_dot_s_tilde              &lt;dbl&gt; 801.633366, 2.341303</span>
-<span class="co">#&gt; $ C_dot_o_tilde              &lt;dbl&gt; 19893.06, 27398.82</span>
-<span class="co">#&gt; $ N_dot_tilde                &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_engr_units_star  &lt;dbl&gt; 17.00000, 72.96667</span>
-<span class="co">#&gt; $ Delta_eta_star             &lt;dbl&gt; 1.342583e-01, 2.026852e+04</span>
-<span class="co">#&gt; $ Delta_p_s_star             &lt;dbl&gt; -3.578095e-02, -1.368314e-05</span>
-<span class="co">#&gt; $ Delta_q_dot_s_star         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_E_dot_s_star         &lt;dbl&gt; -29572.1802, -210.9789</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_star       &lt;dbl&gt; 428.5714286, -0.5722222</span>
-<span class="co">#&gt; $ Delta_C_dot_s_star         &lt;dbl&gt; -516.140238, -7.941012</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_star       &lt;dbl&gt; -98.9571429, -0.9234444</span>
-<span class="co">#&gt; $ Delta_C_dot_md_star        &lt;dbl&gt; -86.46614, 0.00000</span>
-<span class="co">#&gt; $ Delta_C_dot_o_star         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_N_dot_star           &lt;dbl&gt; 701.563517, 8.864457</span>
-<span class="co">#&gt; $ Delta_M_dot_star           &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_engr_units_hat   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_hat              &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_p_s_hat              &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_hat          &lt;dbl&gt; 289.7372, 832459.7384</span>
-<span class="co">#&gt; $ Delta_E_dot_s_hat          &lt;dbl&gt; 873.49981, 36.63637</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_hat        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_s_hat          &lt;dbl&gt; 15.245694, 1.378952</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_hat        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_md_hat         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_o_hat          &lt;dbl&gt; -19.944713, -4.369659</span>
-<span class="co">#&gt; $ Delta_N_dot_hat            &lt;dbl&gt; 4.699019, 2.990707</span>
-<span class="co">#&gt; $ Delta_M_dot_hat            &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_engr_units_bar   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_bar              &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_p_s_bar              &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_bar          &lt;dbl&gt; 519.9241, 611.5195</span>
-<span class="co">#&gt; $ Delta_E_dot_s_bar          &lt;dbl&gt; 1.567468e+03, 2.691284e-02</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_bar        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_s_bar          &lt;dbl&gt; 27.357910140, 0.001012969</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_bar        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_md_bar         &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_o_bar          &lt;dbl&gt; 678.90463, 11.85415</span>
-<span class="co">#&gt; $ Delta_N_dot_bar            &lt;dbl&gt; -706.26254, -11.85516</span>
-<span class="co">#&gt; $ Delta_M_dot_bar            &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_engr_units_tilde &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_eta_tilde            &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_p_s_tilde            &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_q_dot_s_tilde        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_E_dot_s_tilde        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_E_dot_emb_tilde      &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_s_tilde        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_cap_tilde      &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_md_tilde       &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_C_dot_o_tilde        &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_N_dot_tilde          &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Delta_M_dot_tilde          &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Re_dempl                   &lt;dbl&gt; 0, 0</span>
-<span class="co">#&gt; $ Re_emb                     &lt;dbl&gt; 0.014492385, -0.002712225</span>
-<span class="co">#&gt; $ Re_cap                     &lt;dbl&gt; -0.01134172, -0.01483497</span>
-<span class="co">#&gt; $ Re_md                      &lt;dbl&gt; -0.009910093, 0.000000000</span>
-<span class="co">#&gt; $ Re_empl                    &lt;dbl&gt; 0.004582292, -0.002712225</span>
-<span class="co">#&gt; $ Re_isub                    &lt;dbl&gt; -0.002285912, -0.070197801</span>
-<span class="co">#&gt; $ Re_dsub                    &lt;dbl&gt; 0.02953789, 0.17364943</span>
-<span class="co">#&gt; $ Re_sub                     &lt;dbl&gt; 0.02725198, 0.10345163</span>
-<span class="co">#&gt; $ Re_dinc                    &lt;dbl&gt; 0.0530048001, 0.0001275617</span>
-<span class="co">#&gt; $ Re_iinc                    &lt;dbl&gt; 0.0778109, 0.1904348</span>
-<span class="co">#&gt; $ Re_inc                     &lt;dbl&gt; 0.1308157, 0.1905624</span>
-<span class="co">#&gt; $ Re_micro                   &lt;dbl&gt; 0.1626500, 0.2913018</span>
-<span class="co">#&gt; $ Re_macro                   &lt;dbl&gt; 0.08094646, 0.19045111</span>
-<span class="co">#&gt; $ Re_dir                     &lt;dbl&gt; 0.08254269, 0.17377699</span>
-<span class="co">#&gt; $ Re_indir                   &lt;dbl&gt; 0.1610537, 0.3079759</span>
-<span class="co">#&gt; $ Re_tot                     &lt;dbl&gt; 0.2435964, 0.4817529</span></code></pre></div>
-<p>Note that <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> is a convenience function that calls several helper functions in turn. Each helper function calculates rebound parameters after one of the rebound effects.</p>
+<code class="sourceCode R"><span><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 2</span></span>
+<span><span class="co">#&gt; Columns: 155</span></span>
+<span><span class="co">#&gt; $ Reference                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "None yet", "None yet"</span></span>
+<span><span class="co">#&gt; $ Case                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Car", "Lamp"</span></span>
+<span><span class="co">#&gt; $ Original                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ford Fusion", "Incandescent"</span></span>
+<span><span class="co">#&gt; $ Upgrade                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ford Fusion Hybrid", "LED"</span></span>
+<span><span class="co">#&gt; $ service_unit               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "mile", "lm-hr"</span></span>
+<span><span class="co">#&gt; $ energy_engr_unit           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "gal", "W-hr"</span></span>
+<span><span class="co">#&gt; $ `MJ/energy_engr_unit`      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 126.6216, 0.0036</span></span>
+<span><span class="co">#&gt; $ I_E                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.389339, 3.389339</span></span>
+<span><span class="co">#&gt; $ k                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
+<span><span class="co">#&gt; $ p_E_engr_units             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.2100000, 0.0001355</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
+<span><span class="co">#&gt; $ e_qs_M                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
+<span><span class="co">#&gt; $ e_qo_M                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_orig        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25.000000, 8.833333</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_star        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
+<span><span class="co">#&gt; $ q_dot_s_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14425, 580350</span></span>
+<span><span class="co">#&gt; $ M_dot_orig                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27401.28, 27401.28</span></span>
+<span><span class="co">#&gt; $ C_cap_orig                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28216.10, 1.88</span></span>
+<span><span class="co">#&gt; $ t_own_orig                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7.0, 1.8</span></span>
+<span><span class="co">#&gt; $ C_cap_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27523.40, 1.21</span></span>
+<span><span class="co">#&gt; $ t_own_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7, 10</span></span>
+<span><span class="co">#&gt; $ C_dot_md_orig              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2861.134, 0.000</span></span>
+<span><span class="co">#&gt; $ C_dot_md_star              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2774.668, 0.000</span></span>
+<span><span class="co">#&gt; $ E_emb_orig                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34000.0, 2.2</span></span>
+<span><span class="co">#&gt; $ t_life_orig                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14.0, 1.8</span></span>
+<span><span class="co">#&gt; $ E_emb_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40000.0, 6.5</span></span>
+<span><span class="co">#&gt; $ t_life_star                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 10</span></span>
+<span><span class="co">#&gt; $ p_E                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.01745357, 0.03763889</span></span>
+<span><span class="co">#&gt; $ eta_orig                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1974386, 2453.7036944</span></span>
+<span><span class="co">#&gt; $ E_dot_s_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 73060.68, 236.52</span></span>
+<span><span class="co">#&gt; $ C_dot_cap_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4030.871429, 1.044444</span></span>
+<span><span class="co">#&gt; $ p_s_orig                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8.840000e-02, 1.533962e-05</span></span>
+<span><span class="co">#&gt; $ C_dot_s_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1275.17000, 8.90235</span></span>
+<span><span class="co">#&gt; $ C_dot_o_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19234.10, 27391.33</span></span>
+<span><span class="co">#&gt; $ f_Cs_orig                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0621752932, 0.0003249005</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_C                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.39967510</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_C                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025076778, 0.0001298969</span></span>
+<span><span class="co">#&gt; $ sigma                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04033238, 0.39980500</span></span>
+<span><span class="co">#&gt; $ rho                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -23.793972, -1.501219</span></span>
+<span><span class="co">#&gt; $ E_dot_emb_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2428.571429, 1.222222</span></span>
+<span><span class="co">#&gt; $ N_dot_orig                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ eta_star                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.316969e-01, 2.272222e+04</span></span>
+<span><span class="co">#&gt; $ eta_ratio                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.680000, 9.260377</span></span>
+<span><span class="co">#&gt; $ S_dot_dev                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 29572.1802, 210.9789</span></span>
+<span><span class="co">#&gt; $ G_dot                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 516.140238, 7.941012</span></span>
+<span><span class="co">#&gt; $ p_s_star                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.261905e-02, 1.656479e-06</span></span>
+<span><span class="co">#&gt; $ q_dot_s_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14425, 580350</span></span>
+<span><span class="co">#&gt; $ C_dot_cap_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3931.914, 0.121</span></span>
+<span><span class="co">#&gt; $ E_dot_emb_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2857.143, 0.650</span></span>
+<span><span class="co">#&gt; $ C_dot_s_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 759.0297619, 0.9613377</span></span>
+<span><span class="co">#&gt; $ M_dot_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27401.28, 27401.28</span></span>
+<span><span class="co">#&gt; $ N_dot_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 701.563517, 8.864457</span></span>
+<span><span class="co">#&gt; $ C_dot_o_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19234.10, 27391.33</span></span>
+<span><span class="co">#&gt; $ E_dot_s_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43488.50030, 25.54108</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_hat         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
+<span><span class="co">#&gt; $ eta_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.316969e-01, 2.272222e+04</span></span>
+<span><span class="co">#&gt; $ p_s_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.261905e-02, 1.656479e-06</span></span>
+<span><span class="co">#&gt; $ C_dot_cap_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3931.914, 0.121</span></span>
+<span><span class="co">#&gt; $ C_dot_md_hat               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2774.668, 0.000</span></span>
+<span><span class="co">#&gt; $ E_dot_emb_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2857.143, 0.650</span></span>
+<span><span class="co">#&gt; $ M_dot_hat                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27401.28, 27401.28</span></span>
+<span><span class="co">#&gt; $ q_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14714.74, 1412809.74</span></span>
+<span><span class="co">#&gt; $ E_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 44362.00012, 62.17745</span></span>
+<span><span class="co">#&gt; $ C_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 774.27546, 2.34029</span></span>
+<span><span class="co">#&gt; $ C_dot_o_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19214.16, 27386.96</span></span>
+<span><span class="co">#&gt; $ N_dot_hat                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 706.26254, 11.85516</span></span>
+<span><span class="co">#&gt; $ M_dot_hat_prime            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19988.43, 27389.30</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_bar         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
+<span><span class="co">#&gt; $ eta_bar                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.316969e-01, 2.272222e+04</span></span>
+<span><span class="co">#&gt; $ p_s_bar                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.261905e-02, 1.656479e-06</span></span>
+<span><span class="co">#&gt; $ C_dot_cap_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3931.914, 0.121</span></span>
+<span><span class="co">#&gt; $ C_dot_md_bar               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2774.668, 0.000</span></span>
+<span><span class="co">#&gt; $ E_dot_emb_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2857.143, 0.650</span></span>
+<span><span class="co">#&gt; $ M_dot_bar                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27401.28, 27401.28</span></span>
+<span><span class="co">#&gt; $ q_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15234.66, 1413421.26</span></span>
+<span><span class="co">#&gt; $ E_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45929.46762, 62.20436</span></span>
+<span><span class="co">#&gt; $ C_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 801.633366, 2.341303</span></span>
+<span><span class="co">#&gt; $ C_dot_o_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19893.06, 27398.82</span></span>
+<span><span class="co">#&gt; $ N_dot_bar                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ eta_engr_units_tilde       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
+<span><span class="co">#&gt; $ eta_tilde                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.316969e-01, 2.272222e+04</span></span>
+<span><span class="co">#&gt; $ p_s_tilde                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.261905e-02, 1.656479e-06</span></span>
+<span><span class="co">#&gt; $ C_dot_cap_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3931.914, 0.121</span></span>
+<span><span class="co">#&gt; $ C_dot_md_tilde             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2774.668, 0.000</span></span>
+<span><span class="co">#&gt; $ E_dot_emb_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2857.143, 0.650</span></span>
+<span><span class="co">#&gt; $ M_dot_tilde                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27401.28, 27401.28</span></span>
+<span><span class="co">#&gt; $ q_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15234.66, 1413421.26</span></span>
+<span><span class="co">#&gt; $ E_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45929.46762, 62.20436</span></span>
+<span><span class="co">#&gt; $ C_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 801.633366, 2.341303</span></span>
+<span><span class="co">#&gt; $ C_dot_o_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19893.06, 27398.82</span></span>
+<span><span class="co">#&gt; $ N_dot_tilde                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_engr_units_star  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17.00000, 72.96667</span></span>
+<span><span class="co">#&gt; $ Delta_eta_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.342583e-01, 2.026852e+04</span></span>
+<span><span class="co">#&gt; $ Delta_p_s_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.578095e-02, -1.368314e-05</span></span>
+<span><span class="co">#&gt; $ Delta_q_dot_s_star         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_s_star         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -29572.1802, -210.9789</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_emb_star       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 428.5714286, -0.5722222</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_s_star         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -516.140238, -7.941012</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_cap_star       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -98.9571429, -0.9234444</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_md_star        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -86.46614, 0.00000</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_o_star         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_N_dot_star           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 701.563517, 8.864457</span></span>
+<span><span class="co">#&gt; $ Delta_M_dot_star           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_engr_units_hat   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_p_s_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_q_dot_s_hat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 289.7372, 832459.7384</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_s_hat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 873.49981, 36.63637</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_emb_hat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_s_hat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15.245694, 1.378952</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_cap_hat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_md_hat         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_o_hat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -19.944713, -4.369659</span></span>
+<span><span class="co">#&gt; $ Delta_N_dot_hat            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.699019, 2.990707</span></span>
+<span><span class="co">#&gt; $ Delta_M_dot_hat            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_engr_units_bar   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_p_s_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_q_dot_s_bar          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 519.9241, 611.5195</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_s_bar          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.567468e+03, 2.691284e-02</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_emb_bar        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_s_bar          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27.357910140, 0.001012969</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_cap_bar        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_md_bar         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_o_bar          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 678.90463, 11.85415</span></span>
+<span><span class="co">#&gt; $ Delta_N_dot_bar            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -706.26254, -11.85516</span></span>
+<span><span class="co">#&gt; $ Delta_M_dot_bar            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_engr_units_tilde <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_eta_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_p_s_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_q_dot_s_tilde        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_s_tilde        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_E_dot_emb_tilde      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_s_tilde        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_cap_tilde      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_md_tilde       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_C_dot_o_tilde        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_N_dot_tilde          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Delta_M_dot_tilde          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Re_dempl                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
+<span><span class="co">#&gt; $ Re_emb                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.014492385, -0.002712225</span></span>
+<span><span class="co">#&gt; $ Re_cap                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.01134172, -0.01483497</span></span>
+<span><span class="co">#&gt; $ Re_md                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.009910093, 0.000000000</span></span>
+<span><span class="co">#&gt; $ Re_empl                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.004582292, -0.002712225</span></span>
+<span><span class="co">#&gt; $ Re_isub                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.002285912, -0.070197801</span></span>
+<span><span class="co">#&gt; $ Re_dsub                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.02953789, 0.17364943</span></span>
+<span><span class="co">#&gt; $ Re_sub                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.02725198, 0.10345163</span></span>
+<span><span class="co">#&gt; $ Re_dinc                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0530048001, 0.0001275617</span></span>
+<span><span class="co">#&gt; $ Re_iinc                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0778109, 0.1904348</span></span>
+<span><span class="co">#&gt; $ Re_inc                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1308157, 0.1905624</span></span>
+<span><span class="co">#&gt; $ Re_micro                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1626500, 0.2913018</span></span>
+<span><span class="co">#&gt; $ Re_macro                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.08094646, 0.19045111</span></span>
+<span><span class="co">#&gt; $ Re_dir                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.08254269, 0.17377699</span></span>
+<span><span class="co">#&gt; $ Re_indir                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1610537, 0.3079759</span></span>
+<span><span class="co">#&gt; $ Re_tot                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2435964, 0.4817529</span></span></code></pre></div>
+<p>Note that <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> is a convenience function
+that calls several helper functions in turn. Each helper function
+calculates rebound parameters after one of the rebound effects.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span>
-<span class="va">complicated</span> <span class="op">&lt;-</span> <span class="va">eeu_data</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/calc_orig.html">calc_orig</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>    <span class="co"># Calculate all parameters before the emplacement effect</span>
-  <span class="fu"><a href="../reference/calc_star.html">calc_star</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>    <span class="co"># Calculate all parameters after the emplacement effect</span>
-  <span class="fu"><a href="../reference/calc_hat.html">calc_hat</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>     <span class="co"># Calculate all parameters after the substitution effect</span>
-  <span class="fu"><a href="../reference/calc_bar.html">calc_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>     <span class="co"># Calculate all parameters after the income effect</span>
-  <span class="fu"><a href="../reference/calc_tilde.html">calc_tilde</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>   <span class="co"># Calculate all parameters after the macro effect</span>
-  <span class="fu"><a href="../reference/calc_Deltas.html">calc_Deltas</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># Calculate all differences between stages</span>
-  <span class="fu"><a href="../reference/calc_rebound.html">calc_rebound</a></span><span class="op">(</span><span class="op">)</span>     <span class="co"># Calculate all rebound terms</span>
-<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">simple</span> <span class="op">==</span> <span class="va">complicated</span><span class="op">)</span>
-<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span></span>
+<span><span class="va">complicated</span> <span class="op">&lt;-</span> <span class="va">eeu_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/calc_orig.html">calc_orig</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>    <span class="co"># Calculate all parameters before the emplacement effect</span></span>
+<span>  <span class="fu"><a href="../reference/calc_star.html">calc_star</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>    <span class="co"># Calculate all parameters after the emplacement effect</span></span>
+<span>  <span class="fu"><a href="../reference/calc_hat.html">calc_hat</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>     <span class="co"># Calculate all parameters after the substitution effect</span></span>
+<span>  <span class="fu"><a href="../reference/calc_bar.html">calc_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>     <span class="co"># Calculate all parameters after the income effect</span></span>
+<span>  <span class="fu"><a href="../reference/calc_tilde.html">calc_tilde</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>   <span class="co"># Calculate all parameters after the macro effect</span></span>
+<span>  <span class="fu"><a href="../reference/calc_Deltas.html">calc_Deltas</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  <span class="co"># Calculate all differences between stages</span></span>
+<span>  <span class="fu"><a href="../reference/calc_rebound.html">calc_rebound</a></span><span class="op">(</span><span class="op">)</span>     <span class="co"># Calculate all rebound terms</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">simple</span> <span class="op">==</span> <span class="va">complicated</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
-<div id="rebound-tables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rebound-tables" class="anchor"></a>Rebound tables</h2>
-<p><code>ReboundTools</code> contains two functions to create tables: <code><a href="../reference/stages_table.html">stages_table()</a></code> and <code><a href="../reference/rebound_results_table.html">rebound_results_table()</a></code>.</p>
-<div id="stages-table" class="section level3">
-<h3 class="hasAnchor">
-<a href="#stages-table" class="anchor"></a>Stages table</h3>
-<p>After a rebound analysis has been performed, the results can be displayed in a stages table, which has rebound parameters in rows and rebound stages in columns.</p>
+<div class="section level2">
+<h2 id="rebound-tables">Rebound tables<a class="anchor" aria-label="anchor" href="#rebound-tables"></a>
+</h2>
+<p><code>ReboundTools</code> contains two functions to create tables:
+<code><a href="../reference/stages_table.html">stages_table()</a></code> and
+<code><a href="../reference/rebound_results_table.html">rebound_results_table()</a></code>.</p>
+<div class="section level3">
+<h3 id="stages-table">Stages table<a class="anchor" aria-label="anchor" href="#stages-table"></a>
+</h3>
+<p>After a rebound analysis has been performed, the results can be
+displayed in a stages table, which has rebound parameters in rows and
+rebound stages in columns.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">digs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># eta_engr_units</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># eta</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># p_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># q_dot_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># E_dot_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># E_dot_emb</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_s</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_cap</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_md</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_o</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># N_dot</span>
-                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>, <span class="co"># M_dot</span>
-               nrow <span class="op">=</span> <span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">7</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-    Case <span class="op">=</span> <span class="cn">NULL</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/stages_table.html">stages_table</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">digs</span>, 
-               align <span class="op">=</span> <span class="st">"lrrrrrr"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"html"</span>,
-        include.rownames <span class="op">=</span> <span class="cn">FALSE</span>, 
-        booktabs <span class="op">=</span> <span class="cn">TRUE</span>,
-        caption.placement <span class="op">=</span> <span class="st">"top"</span>,
-        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
-        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<!-- html table generated in R 4.1.0 by xtable 1.8-4 package -->
-<!-- Sun Jun 20 08:51:57 2021 -->
-<table class="table">
+<code class="sourceCode R"><span><span class="va">digs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># eta_engr_units</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># eta</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># p_s</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># q_dot_s</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># E_dot_s</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># E_dot_emb</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_s</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_cap</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_md</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># C_dot_o</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span>,  <span class="co"># N_dot</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>, <span class="co"># M_dot</span></span>
+<span>               nrow <span class="op">=</span> <span class="fl">12</span>, ncol <span class="op">=</span> <span class="fl">7</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    Case <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/stages_table.html">stages_table</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">digs</span>, </span>
+<span>               align <span class="op">=</span> <span class="st">"lrrrrrr"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"html"</span>,</span>
+<span>        include.rownames <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>        booktabs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        caption.placement <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,</span>
+<span>        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
+<!-- Sun Nov 20 20:18:16 2022 -->
+<table border="1" class="table">
 <tr>
 <th>
 </th>
@@ -626,31 +655,32 @@ the unanticipated reduction of the benefits of energy efficiency due to behavior
 </tr>
 </table>
 </div>
-<div id="rebound-results-table" class="section level3">
-<h3 class="hasAnchor">
-<a href="#rebound-results-table" class="anchor"></a>Rebound results table</h3>
-<p>Rebound analysis results can also be displayed in a rebound results table. A rebound results table shows rebound terms and values.</p>
+<div class="section level3">
+<h3 id="rebound-results-table">Rebound results table<a class="anchor" aria-label="anchor" href="#rebound-results-table"></a>
+</h3>
+<p>Rebound analysis results can also be displayed in a rebound results
+table. A rebound results table shows rebound terms and values.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Case</span> <span class="op">==</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-    Case <span class="op">=</span> <span class="cn">NULL</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ReboundTools</span><span class="fu">::</span><span class="fu"><a href="../reference/rebound_results_table.html">rebound_results_table</a></span><span class="op">(</span>include_subtotals <span class="op">=</span> <span class="cn">FALSE</span>, 
-                                      label <span class="op">=</span> <span class="st">"tab:car_results"</span>, 
-                                      digits <span class="op">=</span> <span class="fl">1</span>, 
-                                      align <span class="op">=</span> <span class="st">"rrr"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"html"</span>,
-        include.rownames <span class="op">=</span> <span class="cn">FALSE</span>, 
-        booktabs <span class="op">=</span> <span class="cn">TRUE</span>,
-        caption.placement <span class="op">=</span> <span class="st">"top"</span>,
-        hline.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>,
-        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,
-        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<!-- html table generated in R 4.1.0 by xtable 1.8-4 package -->
-<!-- Sun Jun 20 08:51:57 2021 -->
-<table class="table">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Case</span> <span class="op">==</span> <span class="st">"Car"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    Case <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">ReboundTools</span><span class="fu">::</span><span class="fu"><a href="../reference/rebound_results_table.html">rebound_results_table</a></span><span class="op">(</span>include_subtotals <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                                      label <span class="op">=</span> <span class="st">"tab:car_results"</span>, </span>
+<span>                                      digits <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>                                      align <span class="op">=</span> <span class="st">"rrr"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"html"</span>,</span>
+<span>        include.rownames <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>        booktabs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        caption.placement <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>        hline.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,</span>
+<span>        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
+<!-- Sun Nov 20 20:18:16 2022 -->
+<table border="1" class="table">
 <tr>
 <th>
 Rebound term
@@ -742,15 +772,20 @@ Value [%]
 </table>
 </div>
 </div>
-<div id="conclusion" class="section level2">
-<h2 class="hasAnchor">
-<a href="#conclusion" class="anchor"></a>Conclusion</h2>
-<p>The <code>ReboundTools</code> package assists with analyzing rebound effects and displaying the results. In particular,</p>
+<div class="section level2">
+<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h2>
+<p>The <code>ReboundTools</code> package assists with analyzing rebound
+effects and displaying the results. In particular,</p>
 <ul>
-<li>the <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> function performs rebound analysis on energy efficiency upgrades and</li>
-<li>the <code><a href="../reference/stages_table.html">stages_table()</a></code> function returns an <code>xtable</code> object suitable for inclusion in papers and reports,</li>
+<li>the <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> function performs rebound
+analysis on energy efficiency upgrades and</li>
+<li>the <code><a href="../reference/stages_table.html">stages_table()</a></code> function returns an
+<code>xtable</code> object suitable for inclusion in papers and
+reports,</li>
 </ul>
-<p>Taken together, these functions provide important capabilities to analyze rebound effects for energy efficiency upgrades.</p>
+<p>Taken together, these functions provide important capabilities to
+analyze rebound effects for energy efficiency upgrades.</p>
 </div>
   </div>
 
@@ -765,11 +800,13 @@ Value [%]
 
 
       <footer><div class="copyright">
-  <p>Developed by Matthew Heun.</p>
+  <p></p>
+<p>Developed by Matthew Heun.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -777,6 +814,8 @@ Value [%]
 
   
 
+
+  
 
   </body>
 </html>

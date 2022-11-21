@@ -3,13 +3,13 @@ citHeader("To cite ReboundTools in publications use:")
 citEntry(entry = "Manual",
   title        = "ReboundTools: Tools for munging and manipulating IEA extended energy balance data",
   author       = personList(as.person("Matthew Kuperus Heun")),
-  year         = "2021",
-  note         = "R package version 0.1.32",
+  year         = "2022",
+  note         = "R package version 0.1.33",
   url          = "https://github.com/MatthewHeun/ReboundTools",
 
   textVersion  =
-  paste("Matthew Kuperus Heun (2021).",
+  paste("Matthew Kuperus Heun (2022).",
         "ReboundTools: Analyze and Display Energy Rebound Estimates.",
-        "R package version 0.1.32.",
+        "R package version 0.1.33.",
         "https://github.com/MatthewHeun/ReboundTools")
 )

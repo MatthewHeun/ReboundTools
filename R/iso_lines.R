@@ -423,8 +423,8 @@ iso_budget_lines_cons <- function(.rebound_data,
 #'                   Default is See `ReboundTools::graph_types$consumption`.
 #' @param line_name A name for this budget line 
 #' @param colour The colour for this budget line. Default is `ReboundTools::path_graph_params$cons_grid_colour`.
-#' @param size The size (width) for this budget line Default is `ReboundTools::path_graph_params$cons_grid_size`.
-#' @param linetype The line type for this budget line Default is `ReboundTools::path_graph_params$cons_grid_linetype`.
+#' @param linewidth The size (width) for this budget line.  Default is `ReboundTools::path_graph_params$cons_grid_linewidth`.
+#' @param linetype The line type for this budget line.  Default is `ReboundTools::path_graph_params$cons_grid_linetype`.
 #' @param slope The slope of this budget line.
 #' @param intercept The intercept of this budget line.
 #' @param graph_df_colnames A list of column names in graph data frames. 
