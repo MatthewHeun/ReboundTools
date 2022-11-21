@@ -1,4 +1,4 @@
-# ReboundTools 0.1.33 (2022-11-20)
+# ReboundTools 0.1.33 (2022-11-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7340040.svg)](https://doi.org/10.5281/zenodo.7340040)
 
 * Now using the `linewidth` aesthetic in `ggplot2` where possible.
 * Responded to changes in `tidyselect` and `ggplot2`.
