@@ -75,7 +75,8 @@ stages_table <- function(.analysis_data,
       "{.var_stage}" := NULL
     ) %>% 
     dplyr::arrange() %>% 
-    tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
+    # tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
+    tidyr::pivot_wider(names_from = .stage, values_from = .value) %>% 
     dplyr::mutate(
       "{.unit_col}" := rebound_var_units(.var_name = .data[[.name]], 
                                          service_unit = .data[[service_unit]],
@@ -96,10 +97,10 @@ stages_table <- function(.analysis_data,
       dplyr::rename(
         # names(latex_vars)[[2]] is the name of the column in latex_vars
         # that contains the LaTeX version of the names.
-        "{.name}" := .data[[ names(latex_vars)[[2]] ]]
+        "{.name}" := dplyr::all_of(names(latex_vars)[[2]])
       ) %>% 
       # stages[[1]] is the first stage, usually "orig".
-      dplyr::relocate(.data[[.name]], .before = stages[[1]])
+      dplyr::relocate(dplyr::all_of(.name), .before = stages[[1]])
   }
   # Now add the units to the variable name, if desired.
   if (add_units) {
@@ -129,14 +130,14 @@ stages_table <- function(.analysis_data,
         "{.stage}" := NULL
       ) %>% 
       dplyr::rename(
-        "{.stage}" := .data[[ names(latex_stages)[[2]] ]]
+        "{.stage}" := dplyr::all_of(names(latex_stages)[[2]])
       ) %>% 
       tidyr::pivot_wider(names_from = .stage, values_from = .value)
   }
   # Eliminate "name" title from name column. It looks stupid.
   rebound_table_data <- rebound_table_data %>% 
     dplyr::rename(
-      ` ` = .data[[.name]]
+      ` ` = dplyr::all_of(.name)
     )
   
   # Create the xtable and return.
@@ -233,21 +234,21 @@ rebound_results_table <- function(.analysis_data,
         "{term_name}" := NULL
       ) %>%
       dplyr::rename(
-        "{term_name}" := .data[[latex_term_name]]
+        "{term_name}" := dplyr::all_of(latex_term_name)
       ) %>%
-      dplyr::relocate(.data[[term_name]], .before = .data[[Re_val_colname]])
+      dplyr::relocate(dplyr::all_of(term_name), .before = dplyr::all_of(Re_val_colname))
   }
   
   # Adjust the value column name if needed.
   if (escape_latex & as_percent) {
     table_data <- table_data %>% 
       dplyr::rename(
-        "{latex_perc_Re_val_colname}" := .data[[Re_val_colname]]
+        "{latex_perc_Re_val_colname}" := dplyr::all_of(Re_val_colname)
       )
   } else if (as_percent) {
     table_data <- table_data %>% 
       dplyr::rename(
-        "{perc_Re_val_colname}" := .data[[Re_val_colname]]
+        "{perc_Re_val_colname}" := dplyr::all_of(Re_val_colname)
       )
     
   }

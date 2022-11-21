@@ -348,9 +348,9 @@ test_that("sensitivity_graphs() works as expected", {
   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params,
                           x_var = "k", y_var = "Re_tot") +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
-    ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = FALSE) + 
-    ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = FALSE) + 
-    ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = FALSE) +
+    ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = "none") + 
+    ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = "none") + 
+    ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = "none") +
     ggplot2::labs(colour = ggplot2::element_blank(),
                   size = ggplot2::element_blank(),
                   linetype = ggplot2::element_blank())

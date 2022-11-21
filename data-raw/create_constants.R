@@ -106,7 +106,7 @@ Delta_vars <- expand.grid(key_analysis_vars, rebound_stages) %>%
   dplyr::mutate(
     Delta_vars = paste0("Delta_", .data[["key_analysis_vars"]], "_", .data[["rebound_stages"]])
   ) %>% 
-  dplyr::select(.data[["Delta_vars"]]) %>% 
+  dplyr::select("Delta_vars") %>% 
   dplyr::filter(!endsWith(.data[["Delta_vars"]], paste0("_", ReboundTools::rebound_stages[["orig"]]))) %>% 
   unlist()
 Delta_vars <- Delta_vars %>% 
@@ -327,6 +327,7 @@ graph_df_colnames <- list(colour_col = "colour",
                           shape_col = "shape",
                           fill_col = "fill",
                           stroke_col = "stroke",
+                          linewidth_col = "linewidth",
                           linetype_col = "linetype",
                           graph_type_col = "graph_type",
                           line_name_col = "line_name",
@@ -421,22 +422,22 @@ path_graph_params <- list(# Points on paths
                           tot_colour = tot_colour,
                           
                           # Path line widths
-                          dempl_size = 1, 
-                          emb_size = 1.5,
-                          cap_size = 1.5,
-                          md_size = 1, 
-                          empl_size = 1,
-                          isub_size = 1,
-                          dsub_size = 1,
-                          sub_size = 1,
-                          dinc_size = 1,
-                          iinc_size = 1, 
-                          inc_size = 1,
-                          micro_size = 1,
-                          macro_size = 1,
-                          dir_size = 1,
-                          indir_size = 1,
-                          tot_size = 2,
+                          dempl_linewidth = 1, 
+                          emb_linewidth = 1.5,
+                          cap_linewidth = 1.5,
+                          md_linewidth = 1, 
+                          empl_linewidth = 1,
+                          isub_linewidth = 1,
+                          dsub_linewidth = 1,
+                          sub_linewidth = 1,
+                          dinc_linewidth = 1,
+                          iinc_linewidth = 1, 
+                          inc_linewidth = 1,
+                          micro_linewidth = 1,
+                          macro_linewidth = 1,
+                          dir_linewidth = 1,
+                          indir_linewidth = 1,
+                          tot_linewidth = 2,
                           
                           # Path linetypes
                           dempl_linetype = "solid",
@@ -478,14 +479,14 @@ path_graph_params <- list(# Points on paths
                           cons_indiff_grid_colour = "black",
                           
                           # Grid line sizes
-                          energy_grid_size = 0.1,
-                          zero_perc_rebound_grid_size = 0.3,
-                          hundred_perc_rebound_grid_size = 0.3,
-                          energy_rebound_lines_size = 0.1,
-                          expenditure_grid_size = 0.3,
-                          cons_grid_size = 0.1,
-                          cons_ray_size = 0.1,
-                          cons_indiff_grid_size = 0.5,
+                          energy_grid_linewidth = 0.1,
+                          zero_perc_rebound_grid_linewidth = 0.3,
+                          hundred_perc_rebound_grid_linewidth = 0.3,
+                          energy_rebound_lines_linewidth = 0.1,
+                          expenditure_grid_linewidth = 0.3,
+                          cons_grid_linewidth = 0.1,
+                          cons_ray_linewidth = 0.1,
+                          cons_indiff_grid_linewidth = 0.5,
                           
                           # Grid line types
                           energy_grid_linetype = "solid",
@@ -532,22 +533,22 @@ sens_graph_params <- list(# Base condition points on graphs
                           tot_colour = tot_colour,
                           
                           # Line widths for rebound effects
-                          dempl_size = 0.5, 
-                          emb_size = 0.5,
-                          cap_size = 0.5,
-                          md_size = 0.5, 
-                          empl_size = 0.5,
-                          dsub_size = 0.5,
-                          isub_size = 0.5,
-                          sub_size = 0.5,
-                          dinc_size = 0.5,
-                          iinc_size = 0.5,
-                          inc_size = 0.5,
-                          micro_size = 0.5,
-                          macro_size = 0.5,
-                          dir_size = 0.5,
-                          indir_size = 0.5,
-                          tot_size = 1,
+                          dempl_linewidth = 0.5, 
+                          emb_linewidth = 0.5,
+                          cap_linewidth = 0.5,
+                          md_linewidth = 0.5, 
+                          empl_linewidth = 0.5,
+                          dsub_linewidth = 0.5,
+                          isub_linewidth = 0.5,
+                          sub_linewidth = 0.5,
+                          dinc_linewidth = 0.5,
+                          iinc_linewidth = 0.5,
+                          inc_linewidth = 0.5,
+                          micro_linewidth = 0.5,
+                          macro_linewidth = 0.5,
+                          dir_linewidth = 0.5,
+                          indir_linewidth = 0.5,
+                          tot_linewidth = 1,
                           
                           # linetypes for rebound effects
                           dempl_linetype = "solid",

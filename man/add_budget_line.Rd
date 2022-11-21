@@ -10,7 +10,7 @@ add_budget_line(
   graph_type = ReboundTools::graph_types$consumption,
   line_name,
   colour = ReboundTools::path_graph_params$cons_grid_colour,
-  size = ReboundTools::path_graph_params$cons_grid_size,
+  linewidth = ReboundTools::path_graph_params$cons_grid_linewidth,
   linetype = ReboundTools::path_graph_params$cons_grid_linetype,
   slope,
   intercept,
@@ -32,9 +32,9 @@ Default is See \code{ReboundTools::graph_types$consumption}.}
 
 \item{colour}{The colour for this budget line. Default is \code{ReboundTools::path_graph_params$cons_grid_colour}.}
 
-\item{size}{The size (width) for this budget line Default is \code{ReboundTools::path_graph_params$cons_grid_size}.}
+\item{linewidth}{The size (width) for this budget line.  Default is \code{ReboundTools::path_graph_params$cons_grid_linewidth}.}
 
-\item{linetype}{The line type for this budget line Default is \code{ReboundTools::path_graph_params$cons_grid_linetype}.}
+\item{linetype}{The line type for this budget line.  Default is \code{ReboundTools::path_graph_params$cons_grid_linetype}.}
 
 \item{slope}{The slope of this budget line.}
 

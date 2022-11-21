@@ -48,8 +48,8 @@ extract_points <- function(.paths,
       "{graph_df_colnames$line_name_col}" := ls
     ) %>% 
     dplyr::rename(
-      "{graph_df_colnames$x_col}" := .data[[graph_df_colnames$xend]], 
-      "{graph_df_colnames$y_col}" := .data[[graph_df_colnames$yend]]
+      "{graph_df_colnames$x_col}" := dplyr::all_of(graph_df_colnames$xend), 
+      "{graph_df_colnames$y_col}" := dplyr::all_of(graph_df_colnames$yend)
     )
   # Get the other points.
   other_points <- .paths %>% 

@@ -11,20 +11,20 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
 [![codecov](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg?token=20kytlPnGF)](https://codecov.io/gh/MatthewHeun/ReboundTools)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999846.svg)](https://doi.org/10.5281/zenodo.4999846)
 <!-- badges: end -->
 
 # ReboundTools
 
 `ReboundTools` is an `R` package that provides functions to analyze
-energy rebound,  
-the unanticipated reduction of the benefits of energy efficiency due to
-behavior change and economy-wide effects. Many functions perform
-analysis calculations to move from known parameters to rebound
-estimates. Graphing functions (described in the `Graphs` vignette)
-create rebound path graphs in energy, expenditure, and consumption
-spaces. Other graphing functions create sensitivity graphs. The
-functions in this package were used for the analyses and graphs in the
-paper *A comprehensive, partial-equilibrium energy rebound analysis
+energy rebound, the unanticipated reduction of the benefits of energy
+efficiency due to behavior change and economy-wide effects. Many
+functions perform analysis calculations to move from known parameters to
+rebound estimates. Graphing functions (described in the `Graphs`
+vignette) create rebound path graphs in energy, expenditure, and
+consumption spaces. Other graphing functions create sensitivity graphs.
+The functions in this package were used for the analyses and graphs in
+the paper *A comprehensive, partial-equilibrium energy rebound analysis
 framework* by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway,
 2021.
 
@@ -48,8 +48,9 @@ devtools::install_github("MatthewHeun/ReboundTools", build_vignettes = TRUE)
 
 ## History
 
-The functions in this package were used in the paper by Matthew Kuperus
-Heun, Gregor Semieniuk, and Paul Brockway, 2021.
+The functions in this package were used in the paper *A comprehensive,
+partial-equilibrium energy rebound analysis framework* by Matthew
+Kuperus Heun, Gregor Semieniuk, and Paul Brockway, 2021.
 
 ## More Information
 

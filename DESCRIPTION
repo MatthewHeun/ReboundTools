@@ -1,7 +1,7 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.32
-Date: 2021-06-20
+Version: 0.1.33
+Date: 2022-11-20
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",
@@ -23,7 +23,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.2
 Imports: 
     assertthat,
     dplyr,
@@ -33,7 +33,6 @@ Imports:
     matsindf,
     readxl,
     rlang,
-    rlist,
     tibble, 
     tidyr,
     tidyselect,

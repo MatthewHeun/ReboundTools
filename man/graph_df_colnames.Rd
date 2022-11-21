@@ -5,7 +5,7 @@
 \alias{graph_df_colnames}
 \title{Names of graph data frame columns}
 \format{
-A string list with 25 entries.
+A string list with 26 entries.
 \describe{
 \item{colour_col}{The name of the column containing line colours.}
 \item{size_col}{The name of the column containing line sizes (widths).}
