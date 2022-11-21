@@ -1,3 +1,5 @@
+# ReboundTools 0.1.33 (2022-11-20)
+
 * Now using the `linewidth` aesthetic in `ggplot2` where possible.
 * Responded to changes in `tidyselect` and `ggplot2`.
   Many functions were throwing deprecation warnings.
