@@ -10,7 +10,7 @@ calibrate_k(
   case_colname = ReboundTools::eeu_base_params$case,
   I_E_colname = ReboundTools::eeu_base_params$I_E,
   S_dot_dev_colname = ReboundTools::star_vars$S_dot_dev,
-  N_dot_hat_colname = ReboundTools::hat_vars$N_dot_hat,
+  N_dot_star_colname = ReboundTools::star_vars$N_dot_star,
   Re_macro_colname = ReboundTools::rebound_terms$Re_macro,
   Re_tot_colname = ReboundTools::rebound_terms$Re_tot
 )
@@ -26,7 +26,7 @@ in \code{.rebound_data}.}
 
 \item{S_dot_dev_colname}{See \code{ReboundTools::star_vars}.}
 
-\item{N_dot_hat_colname}{See \code{ReboundTools::hat_vars}.}
+\item{N_dot_star_colname}{See \code{ReboundTools::star_vars}.}
 
 \item{Re_macro_colname, Re_tot_colname}{See \code{ReboundTools::rebound_terms}.}
 }
@@ -41,7 +41,7 @@ such that a desired total rebound value (\code{target_Re_tot}) is obtained.
 }
 \details{
 The calibrated value of \code{k} is calculated by
-\verb{S_dot_dev / (N_dot_hat * I_E) * [Re_macro + (Re_tot_target - Re_tot)]}.
+\verb{S_dot_dev / (N_dot_star * I_E) * [Re_macro + (Re_tot_target - Re_tot)]}.
 
 Names of return values are taken from the case column in \code{.rebound_data}.
 }
