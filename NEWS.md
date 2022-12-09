@@ -1,4 +1,6 @@
 
+* Macro rebound now tied to N_dot_star 
+  (instead of N_dot_hat).
 * Now using `ggplot2::scale_discrete_manual()` and 
   `ggplot2::scale_discrete_identity()` for 
   various rebound graphs, thereby 
