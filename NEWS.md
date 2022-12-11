@@ -1,5 +1,5 @@
 
-# ReboundTools 0.1.34 (2022-12-10)
+# ReboundTools 0.1.34 (2022-12-10) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg)](https://doi.org/10.5281/zenodo.7423306)
 
 * Finish the task of responding to the new `linewidth` aesthetic
   in `ggplot2`, especially for sensitivity graphs
