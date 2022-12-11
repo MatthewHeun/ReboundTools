@@ -1,4 +1,7 @@
 
+* Finish the task of responding to the new `linewidth` aesthetic
+  in `ggplot2`, especially for sensitivity graphs
+  and the vignettes.
 * Macro rebound now tied to N_dot_star 
   (instead of N_dot_hat).
 * Now using `ggplot2::scale_discrete_manual()` and 

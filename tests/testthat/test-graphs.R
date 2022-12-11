@@ -407,7 +407,8 @@ test_that("sensitivity graphs correctly order points", {
                                                               ReboundTools::rebound_terms$Re_iinc)) +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
     ggplot2::scale_colour_manual(values = c(Re_macro = "black", Re_iinc = "red"), guide = FALSE) + 
-    ggplot2::scale_size_manual(values = c(Re_macro = 0.5, Re_iinc = 0.5), guide = FALSE) + 
+    ggplot2::scale_discrete_manual(aesthetics = "linewidth", 
+                                   values = c(Re_macro = 0.5, Re_iinc = 0.5), guide = FALSE) + 
     ggplot2::scale_linetype_manual(values = c(Re_macro = "solid", Re_iinc = "dashed"), guide = FALSE) +
     ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"),
                   y = expression(Re[tot]*" [-]"),
