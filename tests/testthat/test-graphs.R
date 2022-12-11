@@ -349,7 +349,7 @@ test_that("sensitivity_graphs() works as expected", {
                           x_var = "k", y_var = "Re_tot") +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
     ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = "none") + 
-    ggplot2::scale_size_manual(values = c(Re_tot = 0.5), guide = "none") + 
+    ggplot2::scale_discrete_manual(aesthetics = "linewidth", values = c(Re_tot = 0.5), guide = "none") + 
     ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = "none") +
     ggplot2::labs(colour = ggplot2::element_blank(),
                   size = ggplot2::element_blank(),
@@ -371,11 +371,12 @@ test_that("sensitivity_graphs() works with more than 1 line variation", {
     ggplot2::facet_grid(rows = ggplot2::vars(k), 
                         cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
     ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
-    ggplot2::scale_size_manual(values = c(Car = 0.5, Lamp = 1.0)) + 
+    ggplot2::scale_discrete_manual(aesthetics = "linewidth", values = c(Car = 0.5, Lamp = 1.0)) + 
     ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 
     ggplot2::labs(colour = ggplot2::element_blank(), 
                   size = ggplot2::element_blank(),
-                  linetype = ggplot2::element_blank())
+                  linetype = ggplot2::element_blank(), 
+                  linewidth = ggplot2::element_blank())
   expect_true(!is.null(g))
 })
 
@@ -406,7 +407,8 @@ test_that("sensitivity graphs correctly order points", {
                                                               ReboundTools::rebound_terms$Re_iinc)) +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
     ggplot2::scale_colour_manual(values = c(Re_macro = "black", Re_iinc = "red"), guide = FALSE) + 
-    ggplot2::scale_size_manual(values = c(Re_macro = 0.5, Re_iinc = 0.5), guide = FALSE) + 
+    ggplot2::scale_discrete_manual(aesthetics = "linewidth", 
+                                   values = c(Re_macro = 0.5, Re_iinc = 0.5), guide = FALSE) + 
     ggplot2::scale_linetype_manual(values = c(Re_macro = "solid", Re_iinc = "dashed"), guide = FALSE) +
     ggplot2::labs(x = expression(tilde(eta)*" [mpg (Car) or lm/W (Lamp)]"),
                   y = expression(Re[tot]*" [-]"),

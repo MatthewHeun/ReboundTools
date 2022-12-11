@@ -604,7 +604,6 @@ calc_bar <- function(.hat_data = NULL,
                            p_E_val = p_E,
                            E_dot_s_hat_val = E_dot_s_hat
                            )
-  
 }
 
 
@@ -795,7 +794,8 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param I_E,e_qs_M,e_qo_M,k See `ReboundTools::eeu_base_params`.
 #' @param e_qs_ps_C,e_qo_ps_C,C_dot_o_orig,E_dot_s_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev,eta_ratio See `ReboundTools::star_vars`.
-#' @param N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#' @param N_dot_star See `ReboundTools::star_vars`.
+#' @param M_dot_hat_prime See `ReboundTools::hat_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
 #' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_micro,Re_macro,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
 #'
@@ -828,7 +828,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
                          eta_ratio = ReboundTools::star_vars$eta_ratio, 
                          
-                         N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
+                         N_dot_star = ReboundTools::star_vars$N_dot_star,
                          M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
@@ -861,6 +861,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                           S_dot_dev_val,
                           Delta_C_dot_cap_star_val,
                           Delta_C_dot_md_star_val, 
+                          N_dot_star_val,
                           I_E_val,
                           eta_ratio_val, 
                           e_qs_ps_C_val,
@@ -869,7 +870,6 @@ calc_rebound <- function(.Deltas_data = NULL,
                           C_dot_o_orig_val,
                           E_dot_s_orig_val,
                           Delta_C_dot_o_hat_val,
-                          N_dot_hat_val,
                           M_dot_hat_prime_val,
                           e_qs_M_val,
                           Delta_E_dot_s_bar_val, 
@@ -916,7 +916,7 @@ calc_rebound <- function(.Deltas_data = NULL,
     Re_micro_val <- Re_empl_val + Re_sub_val + Re_inc_val
 
     # Macro effect rebound
-    Re_macro_val <- k_val * N_dot_hat_val * I_E_val / S_dot_dev_val
+    Re_macro_val <- k_val * N_dot_star_val * I_E_val / S_dot_dev_val
     
     # Direct rebound
     Re_dir_val <- Re_dsub_val + Re_dinc_val
@@ -970,6 +970,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                            S_dot_dev_val = S_dot_dev,
                            Delta_C_dot_cap_star_val = Delta_C_dot_cap_star,
                            Delta_C_dot_md_star_val = Delta_C_dot_md_star,
+                           N_dot_star_val = N_dot_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 
                            e_qs_ps_C_val = e_qs_ps_C,
@@ -978,7 +979,6 @@ calc_rebound <- function(.Deltas_data = NULL,
                            C_dot_o_orig_val = C_dot_o_orig,
                            E_dot_s_orig_val = E_dot_s_orig,
                            Delta_C_dot_o_hat_val = Delta_C_dot_o_hat,
-                           N_dot_hat_val = N_dot_hat,
                            M_dot_hat_prime_val = M_dot_hat_prime,
                            e_qs_M_val = e_qs_M,
                            Delta_E_dot_s_bar_val = Delta_E_dot_s_bar,
