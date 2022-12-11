@@ -344,17 +344,17 @@ test_that("calc_rebound() works as expected with approximated hat", {
                  res[[ReboundTools::rebound_terms$Re_sub]] + 
                  res[[ReboundTools::rebound_terms$Re_inc]])
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[1]], 0.08154999933180497040)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[2]], 0.24746203473015923602)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[1]], 0.08040789)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[2]], 0.142405928)
 
   expect_equal(res[[ReboundTools::rebound_terms$Re_dir]][[1]], 0.08254269035631409124)
   expect_equal(res[[ReboundTools::rebound_terms$Re_dir]][[2]], 0.17377699112626410205)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[1]], 0.16165728036807847090)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[2]], 0.36498684109797319142)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[1]], 0.16051517)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[2]], 0.259930734)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[1]], 0.24419997072439253438)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[2]], 0.53876383227013735500)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[1]], 0.24305786)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[2]], 0.43370773)
   
 })
   

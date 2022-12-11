@@ -20,7 +20,7 @@ such that a desired total rebound value (target_Re_tot) is obtained."><!-- mathj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.33</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@ such that a desired total rebound value (<code>target_Re_tot</code>) is obtained
 <span>  case_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">case</span>,</span>
 <span>  I_E_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">I_E</span>,</span>
 <span>  S_dot_dev_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">S_dot_dev</span>,</span>
-<span>  N_dot_hat_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">N_dot_hat</span>,</span>
+<span>  N_dot_star_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">N_dot_star</span>,</span>
 <span>  Re_macro_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="rebound_terms.html">rebound_terms</a></span><span class="op">$</span><span class="va">Re_macro</span>,</span>
 <span>  Re_tot_colname <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="rebound_terms.html">rebound_terms</a></span><span class="op">$</span><span class="va">Re_tot</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -98,8 +98,8 @@ in <code>.rebound_data</code>.</p></dd>
 <dd><p>See <code><a href="star_vars.html">ReboundTools::star_vars</a></code>.</p></dd>
 
 
-<dt>N_dot_hat_colname</dt>
-<dd><p>See <code><a href="hat_vars.html">ReboundTools::hat_vars</a></code>.</p></dd>
+<dt>N_dot_star_colname</dt>
+<dd><p>See <code><a href="star_vars.html">ReboundTools::star_vars</a></code>.</p></dd>
 
 
 <dt>Re_macro_colname, Re_tot_colname</dt>
@@ -115,7 +115,7 @@ in <code>.rebound_data</code>.</p></dd>
     <div id="details">
     <h2>Details</h2>
     <p>The calibrated value of <code>k</code> is calculated by
-<code>S_dot_dev / (N_dot_hat * I_E) * [Re_macro + (Re_tot_target - Re_tot)]</code>.</p>
+<code>S_dot_dev / (N_dot_star * I_E) * [Re_macro + (Re_tot_target - Re_tot)]</code>.</p>
 <p>Names of return values are taken from the case column in <code>.rebound_data</code>.</p>
     </div>
 
@@ -124,8 +124,8 @@ in <code>.rebound_data</code>.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="load_eeu_data.html">load_eeu_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu"><a href="rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu">calibrate_k</span><span class="op">(</span><span class="fl">0.63</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Car    Lamp </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5.77357 1.77840 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Car     Lamp </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5.812241 2.378400 </span>
 </code></pre></div>
     </div>
   </div>

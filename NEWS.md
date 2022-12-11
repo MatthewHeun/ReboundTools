@@ -1,4 +1,21 @@
-# ReboundTools 0.1.33 (2022-11-20)
+
+# ReboundTools 0.1.34 (2022-12-10)
+
+* Finish the task of responding to the new `linewidth` aesthetic
+  in `ggplot2`, especially for sensitivity graphs
+  and the vignettes.
+* Macro rebound now tied to N_dot_star 
+  (instead of N_dot_hat).
+* Now using `ggplot2::scale_discrete_manual()` and 
+  `ggplot2::scale_discrete_identity()` for 
+  various rebound graphs, thereby 
+  eliminating some warnings.
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.33 (2022-11-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7340040.svg)](https://doi.org/10.5281/zenodo.7340040)
 
 * Now using the `linewidth` aesthetic in `ggplot2` where possible.
 * Responded to changes in `tidyselect` and `ggplot2`.

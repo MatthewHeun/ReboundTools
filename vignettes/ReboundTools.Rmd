@@ -31,7 +31,7 @@ library(ReboundTools)
 ## Introduction
 
 `ReboundTools` is an `R` package that provides functions to analyze 
-energy rebound,  
+energy rebound,
 the unanticipated reduction 
 of the benefits of energy efficiency 
 due to behavior change and economy-wide effects.

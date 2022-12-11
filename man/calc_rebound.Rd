@@ -17,7 +17,7 @@ calc_rebound(
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
-  N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
+  N_dot_star = ReboundTools::star_vars$N_dot_star,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
   Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
@@ -55,7 +55,9 @@ calc_rebound(
 
 \item{S_dot_dev, eta_ratio}{See \code{ReboundTools::star_vars}.}
 
-\item{N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
+\item{N_dot_star}{See \code{ReboundTools::star_vars}.}
+
+\item{M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 
 \item{Delta_E_dot_emb_star, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
 
