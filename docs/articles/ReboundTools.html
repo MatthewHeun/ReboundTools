@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.33</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Matthew Kuperus
 Heun</h4>
             
-            <h4 data-toc-skip class="date">2022-11-20</h4>
+            <h4 data-toc-skip class="date">2022-12-10</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -91,15 +91,14 @@ Heun</h4>
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p><code>ReboundTools</code> is an <code>R</code> package that provides
-functions to analyze energy rebound,<br>
-the unanticipated reduction of the benefits of energy efficiency due to
-behavior change and economy-wide effects. Many functions perform
-analysis calculations to move from known parameters to rebound
-estimates. Graphing functions (described in the <code>Graphs</code>
-vignette) create rebound path graphs in energy, expenditure, and
-consumption spaces. Other graphing functions create sensitivity graphs.
-The functions in this package were used for the analyses and graphs in
-the paper **********.</p>
+functions to analyze energy rebound, the unanticipated reduction of the
+benefits of energy efficiency due to behavior change and economy-wide
+effects. Many functions perform analysis calculations to move from known
+parameters to rebound estimates. Graphing functions (described in the
+<code>Graphs</code> vignette) create rebound path graphs in energy,
+expenditure, and consumption spaces. Other graphing functions create
+sensitivity graphs. The functions in this package were used for the
+analyses and graphs in the paper **********.</p>
 </div>
 <div class="section level2">
 <h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
@@ -331,10 +330,10 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ Re_iinc                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0778109, 0.1904348</span></span>
 <span><span class="co">#&gt; $ Re_inc                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1308157, 0.1905624</span></span>
 <span><span class="co">#&gt; $ Re_micro                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1626500, 0.2913018</span></span>
-<span><span class="co">#&gt; $ Re_macro                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.08094646, 0.19045111</span></span>
+<span><span class="co">#&gt; $ Re_macro                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.08040789, 0.14240593</span></span>
 <span><span class="co">#&gt; $ Re_dir                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.08254269, 0.17377699</span></span>
-<span><span class="co">#&gt; $ Re_indir                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1610537, 0.3079759</span></span>
-<span><span class="co">#&gt; $ Re_tot                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2435964, 0.4817529</span></span></code></pre></div>
+<span><span class="co">#&gt; $ Re_indir                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1605152, 0.2599307</span></span>
+<span><span class="co">#&gt; $ Re_tot                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2430579, 0.4337077</span></span></code></pre></div>
 <p>Note that <code><a href="../reference/rebound_analysis.html">rebound_analysis()</a></code> is a convenience function
 that calls several helper functions in turn. Each helper function
 calculates rebound parameters after one of the rebound effects.</p>
@@ -392,7 +391,7 @@ rebound stages in columns.</p>
 <span>        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,</span>
 <span>        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Sun Nov 20 20:18:16 2022 -->
+<!-- Sat Dec 10 21:01:56 2022 -->
 <table border="1" class="table">
 <tr>
 <th>
@@ -679,7 +678,7 @@ table. A rebound results table shows rebound terms and values.</p>
 <span>        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,</span>
 <span>        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Sun Nov 20 20:18:16 2022 -->
+<!-- Sat Dec 10 21:01:56 2022 -->
 <table border="1" class="table">
 <tr>
 <th>
@@ -758,7 +757,7 @@ Value [%]
 <span class="math inline">\(Re_{macro}\)</span>
 </td>
 <td align="right">
-8.1
+8.0
 </td>
 </tr>
 <tr>
@@ -766,7 +765,7 @@ Value [%]
 <span class="math inline">\(Re_{tot}\)</span>
 </td>
 <td align="right">
-24.4
+24.3
 </td>
 </tr>
 </table>
