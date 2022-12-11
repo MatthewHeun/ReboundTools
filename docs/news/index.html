@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.33</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
       </span>
     </div>
 
@@ -55,7 +55,18 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.33" id="reboundtools-0133-2022-11-20">ReboundTools 0.1.33 (2022-11-20)<a class="anchor" aria-label="anchor" href="#reboundtools-0133-2022-11-20"></a></h2>
+<h2 class="page-header" data-toc-text="0.1.34" id="reboundtools-0134-2022-12-10">ReboundTools 0.1.34 (2022-12-10)<a class="anchor" aria-label="anchor" href="#reboundtools-0134-2022-12-10"></a></h2>
+<ul><li>Finish the task of responding to the new <code>linewidth</code> aesthetic in <code>ggplot2</code>, especially for sensitivity graphs and the vignettes.</li>
+<li>Macro rebound now tied to N_dot_star (instead of N_dot_hat).</li>
+<li>Now using <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">ggplot2::scale_discrete_manual()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">ggplot2::scale_discrete_identity()</a></code> for various rebound graphs, thereby eliminating some warnings.</li>
+<li>No new tests.
+<ul><li>Still at 472 tests, all passing.</li>
+<li>Test coverage remains at 100%.</li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.33" id="reboundtools-0133-2022-11-20-doi">ReboundTools 0.1.33 (2022-11-20) <a href="https://doi.org/10.5281/zenodo.7340040" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7340040.svg" alt="DOI"></a>
+<a class="anchor" aria-label="anchor" href="#reboundtools-0133-2022-11-20-doi"></a></h2>
 <ul><li>Now using the <code>linewidth</code> aesthetic in <code>ggplot2</code> where possible.</li>
 <li>Responded to changes in <code>tidyselect</code> and <code>ggplot2</code>. Many functions were throwing deprecation warnings.</li>
 <li>No new tests.
