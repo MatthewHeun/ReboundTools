@@ -188,9 +188,6 @@ rebound_graphs_helper <- function(.path_data,
     dplyr::mutate(
       "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
     )
-  # Figure out the line width scale
-  linewidth_min <- min(.path_data[[graph_df_colnames$linewidth_col]])
-  linewidth_max <- max(.path_data[[graph_df_colnames$linewidth_col]])
   if (!is.null(.points_data)) {
     .points_data <- .points_data %>% 
       # Only show points for which start_point_col is TRUE.
@@ -204,20 +201,12 @@ rebound_graphs_helper <- function(.path_data,
       dplyr::mutate(
         "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
       )
-    if (nrow(.grid_data) > 0) {
-      linewidth_min <- min(linewidth_min, min(.grid_data[[graph_df_colnames$linewidth_col]]))
-      linewidth_max <- max(linewidth_max, max(.grid_data[[graph_df_colnames$linewidth_col]]))
-    }
   }
   if (!is.null(.indifference_data)) {
     .indifference_data <- .indifference_data %>% 
       dplyr::mutate(
         "{graph_df_colnames$graph_type_col}" := factor(.data[[graph_df_colnames$graph_type_col]], ReboundTools::graph_types)
       )
-    if (nrow(.indifference_data) > 0) {
-      linewidth_min <- min(linewidth_min, min(.indifference_data[[graph_df_colnames$linewidth_col]]))
-      linewidth_max <- max(linewidth_max, max(.indifference_data[[graph_df_colnames$linewidth_col]]))
-    }
   }
   
   g <- ggplot2::ggplot()
