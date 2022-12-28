@@ -227,14 +227,13 @@ calc_star <- function(.orig_data = NULL,
     C_dot_o_star_val <- C_dot_o_orig_val
     E_dot_s_star_val <- q_dot_s_star_val / eta_star_val
     f_Cs_star_val <- C_dot_s_star_val / (C_dot_s_star_val + C_dot_o_star_val)
-    # Elasticities at star point are same as elasticities at the orig point,
+    # Price elasticities at star point are same as elasticities at the orig point,
     # because we have not moved in the consumption plane.
     e_qs_ps_UC_star_val <- e_qs_ps_UC_orig_val
     e_qo_ps_UC_star_val <- e_qo_ps_UC_orig_val 
     e_qs_ps_C_star_val <- e_qs_ps_C_orig_val
     e_qo_ps_C_star_val <- e_qo_ps_C_orig_val
 
-        
     list(eta_star_val,
          eta_ratio_val,
          S_dot_dev_val,
@@ -325,8 +324,9 @@ calc_star <- function(.orig_data = NULL,
 #'                       Default is `FALSE`.
 #'                       See details.
 #' @param p_E See `ReboundTools::eeu_base_params`.
+#' @param e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param e_qo_ps_C,e_qs_ps_C,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
-#' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
 #' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
@@ -341,6 +341,9 @@ calc_star <- function(.orig_data = NULL,
 calc_hat <- function(.star_data = NULL,
                      use_sub_approx = FALSE,
                      # Input names
+                     e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
+                     e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+
                      p_E = ReboundTools::orig_vars$p_E,
                      e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
                      e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
@@ -362,6 +365,10 @@ calc_hat <- function(.star_data = NULL,
                      q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
                      eta_ratio = ReboundTools::star_vars$eta_ratio,
                      C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                     e_qs_ps_UC_star = ReboundTools::star_vars$e_qs_ps_UC_star,
+                     e_qo_ps_UC_star = ReboundTools::star_vars$e_qo_ps_UC_star,
+                     e_qs_ps_C_star = ReboundTools::star_vars$e_qs_ps_C_star,
+                     e_qo_ps_C_star = ReboundTools::star_vars$e_qo_ps_C_star,
                      N_dot_star = ReboundTools::star_vars$N_dot_star,
                      E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
                      G_dot = ReboundTools::star_vars$G_dot,
@@ -377,10 +384,17 @@ calc_hat <- function(.star_data = NULL,
                      E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
                      C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
                      C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+                     f_Cs_hat = ReboundTools::hat_vars$f_Cs_hat,
+                     e_qs_ps_UC_hat = ReboundTools::hat_vars$e_qs_ps_UC_hat,
+                     e_qo_ps_UC_hat = ReboundTools::hat_vars$e_qo_ps_UC_hat,
+                     e_qs_ps_C_hat = ReboundTools::hat_vars$e_qs_ps_C_hat,
+                     e_qo_ps_C_hat = ReboundTools::hat_vars$e_qo_ps_C_hat,
                      N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
                      M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime) {
   
-  calc_hat_fun <- function(eta_engr_units_star_val,
+  calc_hat_fun <- function(e_qs_M_val, 
+                           e_qo_M_val, 
+                           eta_engr_units_star_val,
                            eta_star_val,
                            p_s_star_val,
                            C_dot_cap_star_val,
@@ -394,9 +408,11 @@ calc_hat <- function(.star_data = NULL,
                            rho_val,
                            q_dot_s_star_val,
                            eta_ratio_val,
-                           e_qs_ps_C_val,
+                           e_qs_ps_C_star_val,
+                           e_qo_ps_C_star_val,
+                           e_qs_ps_UC_star_val,
+                           e_qo_ps_UC_star_val,
                            C_dot_o_star_val,
-                           e_qo_ps_C_val,
                            N_dot_star_val,
                            p_E_val,
                            E_dot_s_star_val,
@@ -413,7 +429,7 @@ calc_hat <- function(.star_data = NULL,
     
     if (use_sub_approx) {
       # This is the approximate expression for q_dot_s_hat.
-      q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_C_val)
+      q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_C_star_val)
     } else {
       # Here is the exact expression for q_dot_s_hat
       # Preliminary calculations to make the actual expression easier to debug.
@@ -435,7 +451,7 @@ calc_hat <- function(.star_data = NULL,
 
     if (use_sub_approx) {
       # This is the approximate expression for C_dot_o_hat.
-      C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_C_val)
+      C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_C_star_val)
     } else {
       # Here is the exact expression for C_dot_o_hat
       # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
@@ -449,6 +465,31 @@ calc_hat <- function(.star_data = NULL,
       C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
     }
 
+    f_Cs_hat_val <- C_dot_s_hat_val / (C_dot_s_hat_val + C_dot_o_hat_val)
+    
+    # Elasticities
+    if (use_sub_approx) {
+      e_qs_ps_C_hat_val <- e_qs_ps_C_star_val
+      e_qo_ps_C_hat_val <- e_qo_ps_C_star_val
+      e_qs_ps_UC_hat_val <- e_qs_ps_UC_star_val
+      e_qo_ps_UC_hat_val <- e_qo_ps_UC_star_val
+    } else {
+      # Elasticities
+      f <- f_Cs_orig_val
+      g <- 1 - f
+      h <- q_dot_s_orig_val / C_dot_o_orig_val
+      m_o <- rho_val / (rho_val - 1)
+      m_s <- rho_val / (1 - rho_val)
+      n <- - 1/rho_val
+      z <- g/f * h
+      zpsms <- (z * p_s_hat_val)^m_s
+      zpsmo <- (z * p_s_hat_val)^m_o
+      e_qs_ps_C_hat_val <- (m_s * n * g * zpsms) / (f + g*zpsms)
+      e_qo_ps_C_hat_val <- (m_o * n * f * zpsmo) / (1 + f*(zpsmo - 1))
+      e_qs_ps_UC_hat_val <- e_qs_ps_C_hat_val - f_Cs_hat_val * e_qs_M_val
+      e_qo_ps_UC_hat_val <- -9999
+    }
+      
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
     M_dot_hat_prime_val <- M_dot_hat_val - C_dot_cap_star_val - C_dot_md_star_val - N_dot_hat_val
     
@@ -463,6 +504,11 @@ calc_hat <- function(.star_data = NULL,
          E_dot_s_hat_val,
          C_dot_s_hat_val,
          C_dot_o_hat_val,
+         f_Cs_hat_val,
+         e_qs_ps_C_hat_val, 
+         e_qo_ps_C_hat_val,
+         e_qs_ps_UC_hat_val, 
+         e_qo_ps_UC_hat_val,
          N_dot_hat_val,
          M_dot_hat_prime_val) %>%
       magrittr::set_names(c(eta_engr_units_hat,
@@ -476,11 +522,18 @@ calc_hat <- function(.star_data = NULL,
                             E_dot_s_hat,
                             C_dot_s_hat,
                             C_dot_o_hat,
+                            f_Cs_hat,
+                            e_qs_ps_C_hat, 
+                            e_qo_ps_C_hat,
+                            e_qs_ps_UC_hat, 
+                            e_qo_ps_UC_hat,
                             N_dot_hat,
                             M_dot_hat_prime))
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
+                           e_qs_M_val = e_qs_M, 
+                           e_qo_M_val = e_qo_M,
                            eta_engr_units_star_val = eta_engr_units_star,
                            eta_star_val = eta_star, 
                            p_s_star_val = p_s_star,
@@ -495,9 +548,11 @@ calc_hat <- function(.star_data = NULL,
                            rho_val = rho,
                            q_dot_s_star_val = q_dot_s_star,
                            eta_ratio_val = eta_ratio,
-                           e_qs_ps_C_val = e_qs_ps_C,
+                           e_qs_ps_C_star_val = e_qs_ps_C_star,
+                           e_qo_ps_C_star_val = e_qo_ps_C_star,
+                           e_qs_ps_UC_star_val = e_qs_ps_UC_star,
+                           e_qo_ps_UC_star_val = e_qo_ps_UC_star,
                            C_dot_o_star_val = C_dot_o_star,
-                           e_qo_ps_C_val = e_qo_ps_C,
                            N_dot_star_val = N_dot_star,
                            p_E_val = p_E, 
                            E_dot_s_star_val = E_dot_s_star,
