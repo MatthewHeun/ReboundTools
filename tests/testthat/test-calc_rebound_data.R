@@ -37,6 +37,9 @@ test_that("calc_orig() works as expected", {
   expect_equal(res[[ReboundTools::orig_vars$e_qo_ps_UC]][[1]], 0.0000000000)
   expect_equal(res[[ReboundTools::orig_vars$e_qo_ps_UC]][[2]], 0.0000000000)
 
+  
+  
+  
   expect_equal(res[[ReboundTools::orig_vars$sigma]][[1]], 0.04033238466025244884)
   expect_equal(res[[ReboundTools::orig_vars$sigma]][[2]], 0.39980499617582315741)
   
@@ -107,6 +110,10 @@ test_that("calc_star() works as expected", {
   
   expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[1]], 0.0000000000)
   expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[2]], 0.0000000000)
+  
+  
+  
+  
   
   expect_equal(res[[ReboundTools::star_vars$E_dot_s_star]][[1]], 43488.50030357143259607255)
   expect_equal(res[[ReboundTools::star_vars$E_dot_s_star]][[2]], 25.54107579462102606271)
