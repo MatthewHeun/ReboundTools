@@ -469,12 +469,16 @@ calc_hat <- function(.star_data = NULL,
     
     # Elasticities
     if (use_sub_approx) {
+      # In the approximate utility model,
+      # elasticities are assumed constant across the substitution effect
+      # between the star and hat stages.
       e_qs_ps_C_hat_val <- e_qs_ps_C_star_val
       e_qo_ps_C_hat_val <- e_qo_ps_C_star_val
       e_qs_ps_UC_hat_val <- e_qs_ps_UC_star_val
       e_qo_ps_UC_hat_val <- e_qo_ps_UC_star_val
     } else {
-      # Elasticities
+      # In the exact utility model, 
+      # we need to do more calculating.
       f <- f_Cs_orig_val
       g <- 1 - f
       h <- q_dot_s_orig_val / C_dot_o_orig_val

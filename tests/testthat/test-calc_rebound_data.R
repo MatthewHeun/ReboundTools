@@ -185,7 +185,7 @@ test_that("calc_hat(use_sub_approx = FALSE) works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat()
+    calc_hat() # default is (use_sub_approx = FALSE)
   
   expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[1]], 42)
   expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[2]], 81.8)
@@ -219,7 +219,26 @@ test_that("calc_hat(use_sub_approx = FALSE) works as expected", {
   
   expect_equal(res[[ReboundTools::hat_vars$C_dot_o_hat]][[1]], 19214.157294673186698)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_o_hat]][[2]], 27386.961239397664031)
+
+  expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[1]], 0.038736176)
+  expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[2]], 8.5445405e-05)
   
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C]][[1]], -0.038770062)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C]][[2]], -0.39977083)
+  
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C]][[1]], 0.00156232236)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C]][[2]], 0.0000341615)
+  
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC]][[1]], -0.077506239)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC]][[2]], -0.39985628)
+  
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[1]], 0.0000000000)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[2]], 0.0000000000)
+
+  
+  
+  
+    
   expect_equal(res[[ReboundTools::hat_vars$N_dot_hat]][[1]], 706.26253623304467055)
   expect_equal(res[[ReboundTools::hat_vars$N_dot_hat]][[2]], 11.855163665186063682)
   
