@@ -199,7 +199,7 @@
 #' \item{I_E}{The energy intensity of the economy \[MJ/$\].}
 #' \item{k}{The macro effect factor \[--\].}
 #' \item{p_E_engr_units}{The price of energy in engineering units, e.g., $/gal or $/kW-hr \[$/energy_engr_unit\].}
-#' \item{e_qs_ps_UC}{The uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
+#' \item{e_qs_ps_UC_orig}{The original uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption \[--\].}
 #' \item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption \[--\].}
 #' }
@@ -229,8 +229,9 @@
 #' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device \[$/year\], calculated by `p_E * E_dot_s_orig`.}
 #' \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods \[$/year\], calculated by `M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig`.}
 #' \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.}
-#' \item{e_qs_ps_C}{The compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC + f_Cs_orig*e_qs_M`.}
-#' \item{e_qo_ps_C}{The compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC) / (f_Cs_orig - 1)`.}
+#' \item{e_qs_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
+#' \item{e_qo_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
+#' \item{e_qo_ps_UC_orig}{The original uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
 #' \item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption \[--\].}
 #' \item{rho}{The exponent in the CES utility model, defined as rho = 1/sigma - 1 \[--\].}
 #' \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device \[MJ\].}
@@ -267,6 +268,11 @@
 #' \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings \[$/year\], exactly `M_dot_orig`.}
 #' \item{N_dot_star}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
 #' \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate \[$/year\], exactly `C_dot_o_orig`.}
+#' \item{f_Cs_star}{The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
+#' \item{e_qs_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
+#' \item{e_qo_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
+#' \item{e_qs_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
+#' \item{e_qo_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
 #' \item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate \[MJ/year\], calculated by `q_dot_s_star / eta_star`.}
 #' }
 #' @examples
@@ -289,6 +295,11 @@
 #' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/year\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps_C)`.}
 #' \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/year\], calculated by `q_dot_s_hat / eta_hat`.}
 #' \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect \[$/year\], calculated by `C_dot_o_star * eta_ratio^(-e_qo_ps_C)`.}
+#' \item{f_Cs_hat}{The post-substitution effect fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
+#' \item{e_qs_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
+#' \item{e_qo_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
+#' \item{e_qs_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
+#' \item{e_qo_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
 #' \item{N_dot_hat}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
 #' \item{M_dot_hat_prime}{Modified `M_dot` for the income effect \[$/year\], calculated by `M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_o_hat - C_dot_o_star)`}
 #' }
@@ -311,6 +322,11 @@
 #' \item{M_dot_bar}{Real income after the income effect \[MJ/year\], exactly `M_dot_hat`.}
 #' \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/year\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)`.}
 #' \item{C_dot_o_bar}{The rate of other goods expenditures after the income effect \[$/year\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qo_M)`.}
+#' \item{f_Cs_bar}{The post-income effect fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
+#' \item{e_qs_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
+#' \item{e_qo_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
+#' \item{e_qs_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
+#' \item{e_qo_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
 #' \item{N_dot_bar}{The freed cash rate after the income effect \[$/year\], exactly `0`.}
 #' }
 #' @examples
@@ -332,6 +348,11 @@
 #' \item{M_dot_tilde}{Real income after the macro effect \[MJ/year\], exactly `M_dot_bar`.}
 #' \item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/year\], exactly `q_dot_s_bar`.}
 #' \item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect \[$/year\], exactly `C_dot_o_bar`.}
+#' \item{f_Cs_tilde}{The post-macro effect fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
+#' \item{e_qs_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
+#' \item{e_qo_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
+#' \item{e_qs_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
+#' \item{e_qo_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
 #' \item{N_dot_tilde}{The freed cash rate after the macro effect \[$/year\], exactly `0`.}
 #' }
 #' @examples
