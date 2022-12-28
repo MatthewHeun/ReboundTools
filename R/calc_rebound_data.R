@@ -577,7 +577,7 @@ calc_hat <- function(.star_data = NULL,
 #' @param tol The tolerance with which the budget constraint should be satisfied. Default is `1e-6`.
 #' @param e_qs_M,e_qo_M,p_E See `ReboundTools::eeu_base_params`.
 #' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
-#' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,f_Cs_bar,e_qs_ps_UC_bar,e_qo_ps_UC_bar,e_qs_ps_C_bar,e_qo_ps_C_bar,N_dot_bar See `ReboundTools::bar_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
@@ -608,6 +608,10 @@ calc_bar <- function(.hat_data = NULL,
                      N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                      M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
                      C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+                     e_qs_ps_UC_hat = ReboundTools::hat_vars$e_qs_ps_UC_hat,
+                     e_qo_ps_UC_hat = ReboundTools::hat_vars$e_qo_ps_UC_hat,
+                     e_qs_ps_C_hat = ReboundTools::hat_vars$e_qs_ps_C_hat,
+                     e_qo_ps_C_hat = ReboundTools::hat_vars$e_qo_ps_C_hat,
                      E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
                      
                      # Output names
@@ -622,6 +626,11 @@ calc_bar <- function(.hat_data = NULL,
                      E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
                      C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
                      C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+                     f_Cs_bar = ReboundTools::bar_vars$f_Cs_bar,
+                     e_qs_ps_UC_bar = ReboundTools::bar_vars$e_qs_ps_UC_bar,
+                     e_qo_ps_UC_bar = ReboundTools::bar_vars$e_qo_ps_UC_bar,
+                     e_qs_ps_C_bar = ReboundTools::bar_vars$e_qs_ps_C_bar,
+                     e_qo_ps_C_bar = ReboundTools::bar_vars$e_qo_ps_C_bar,
                      N_dot_bar = ReboundTools::bar_vars$N_dot_bar
 ) {
   
@@ -639,7 +648,11 @@ calc_bar <- function(.hat_data = NULL,
                            C_dot_o_hat_val,
                            e_qo_M_val, 
                            p_E_val, 
-                           E_dot_s_hat_val) {
+                           E_dot_s_hat_val,
+                           e_qs_ps_UC_hat_val,
+                           e_qo_ps_UC_hat_val,
+                           e_qs_ps_C_hat_val, 
+                           e_qo_ps_C_hat_val) {
     eta_engr_units_bar_val <- eta_engr_units_hat_val
     eta_bar_val <- eta_hat_val
     p_s_bar_val <- p_s_hat_val
@@ -658,6 +671,15 @@ calc_bar <- function(.hat_data = NULL,
     assertthat::assert_that(all(abs(should_be_0) < tol))
     N_dot_bar_val <- rep(0, length(eta_hat_val))
     
+    # Expenditure ratio
+    f_Cs_bar_val <- C_dot_s_bar_val / (C_dot_s_bar_val + C_dot_o_bar_val) 
+    
+    # Elasticities are unchanged across the income effect
+    e_qs_ps_UC_bar_val <- e_qs_ps_UC_hat_val
+    e_qo_ps_UC_bar_val <- e_qo_ps_UC_hat_val
+    e_qs_ps_C_bar_val <- e_qs_ps_C_hat_val
+    e_qo_ps_C_bar_val <- e_qo_ps_C_hat_val
+    
     list(eta_engr_units_bar_val,
          eta_bar_val,
          p_s_bar_val,
@@ -669,6 +691,11 @@ calc_bar <- function(.hat_data = NULL,
          E_dot_s_bar_val,
          C_dot_s_bar_val,
          C_dot_o_bar_val,
+         f_Cs_bar_val,
+         e_qs_ps_UC_bar_val, 
+         e_qo_ps_UC_bar_val, 
+         e_qs_ps_C_bar_val,
+         e_qo_ps_C_bar_val,
          N_dot_bar_val) %>% 
       magrittr::set_names(c(eta_engr_units_bar,
                             eta_bar,
@@ -681,6 +708,11 @@ calc_bar <- function(.hat_data = NULL,
                             E_dot_s_bar,
                             C_dot_s_bar,
                             C_dot_o_bar, 
+                            f_Cs_bar,
+                            e_qs_ps_UC_bar,
+                            e_qo_ps_UC_bar,
+                            e_qs_ps_C_bar, 
+                            e_qo_ps_C_bar, 
                             N_dot_bar))
   }
   
@@ -699,8 +731,11 @@ calc_bar <- function(.hat_data = NULL,
                            C_dot_o_hat_val = C_dot_o_hat,
                            e_qo_M_val = e_qo_M,
                            p_E_val = p_E,
-                           E_dot_s_hat_val = E_dot_s_hat
-                           )
+                           E_dot_s_hat_val = E_dot_s_hat,
+                           e_qs_ps_UC_hat_val = e_qs_ps_UC_hat,
+                           e_qo_ps_UC_hat_val = e_qo_ps_UC_hat,
+                           e_qs_ps_C_hat_val = e_qs_ps_C_hat,
+                           e_qo_ps_C_hat_val = e_qo_ps_C_hat)
 }
 
 

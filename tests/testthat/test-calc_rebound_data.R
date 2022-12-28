@@ -99,17 +99,17 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[1]], 0.037964526)
   expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[2]], 3.509519e-05)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C]][[1]], -0.03782470681932551676)
-  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C]][[2]], -0.39967509922119587307)
+  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C_star]][[1]], -0.03782470681932551676)
+  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C_star]][[2]], -0.39967509922119587307)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C]][[1]], 0.00250767784092693468)
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C]][[2]], 0.00012989685076052724)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C_star]][[1]], 0.00250767784092693468)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C_star]][[2]], 0.00012989685076052724)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_UC]][[1]], -0.10)
-  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_UC]][[2]], -0.4)
+  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_UC_star]][[1]], -0.10)
+  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_UC_star]][[2]], -0.4)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[1]], 0.0000000000)
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[2]], 0.0000000000)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC_star]][[1]], 0.0000000000)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC_star]][[2]], 0.0000000000)
   
   
   
@@ -162,17 +162,17 @@ test_that("calc_hat(use_sub_approx = TRUE) works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[1]], 0.038736176)
   expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[2]], 8.5445405e-05)
   
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C]][[1]], -0.03782470681932551676)
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C]][[2]], -0.39967509922119587307)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C_hat]][[1]], -0.03782470681932551676)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C_hat]][[2]], -0.39967509922119587307)
   
-  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C]][[1]], 0.00250767784092693468)
-  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C]][[2]], 0.00012989685076052724)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C_hat]][[1]], 0.00250767784092693468)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C_hat]][[2]], 0.00012989685076052724)
   
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC]][[1]], -0.10)
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC]][[2]], -0.4)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC_hat]][[1]], -0.10)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC_hat]][[2]], -0.4)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[1]], 0.0000000000)
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[2]], 0.0000000000)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_UC_hat]][[1]], 0.0000000000)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_UC_hat]][[2]], 0.0000000000)
   
   
   
@@ -230,17 +230,17 @@ test_that("calc_hat(use_sub_approx = FALSE) works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[1]], 0.038736176)
   expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[2]], 8.5445405e-05)
   
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C]][[1]], -0.038770062)
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C]][[2]], -0.39977083)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C_hat]][[1]], -0.038770062)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_C_hat]][[2]], -0.39977083)
   
-  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C]][[1]], 0.00156232236)
-  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C]][[2]], 0.0000341615)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C_hat]][[1]], 0.00156232236)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_C_hat]][[2]], 0.0000341615)
   
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC]][[1]], -0.077506239)
-  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC]][[2]], -0.39985628)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC_hat]][[1]], -0.077506239)
+  expect_equal(res[[ReboundTools::hat_vars$e_qs_ps_UC_hat]][[2]], -0.39985628)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[1]], 0.0000000000)
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC]][[2]], 0.0000000000)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_UC_hat]][[1]], 0.0000000000)
+  expect_equal(res[[ReboundTools::hat_vars$e_qo_ps_UC_hat]][[2]], 0.0000000000)
 
   
   
@@ -293,6 +293,24 @@ test_that("calc_bar() works as expected with approximated hat", {
   
   expect_equal(res[[ReboundTools::bar_vars$C_dot_o_bar]][[1]], 19893.06192076593652018346)
   expect_equal(res[[ReboundTools::bar_vars$C_dot_o_bar]][[2]], 27398.81538822091170004569)
+  
+  expect_equal(res[[ReboundTools::bar_vars$f_Cs_bar]][[1]], 0.038736176)
+  expect_equal(res[[ReboundTools::bar_vars$f_Cs_bar]][[2]], 8.5445405e-05)
+  
+  expect_equal(res[[ReboundTools::bar_vars$e_qs_ps_C_bar]][[1]], -0.037824707)
+  expect_equal(res[[ReboundTools::bar_vars$e_qs_ps_C_bar]][[2]], -0.3996751)
+  
+  expect_equal(res[[ReboundTools::bar_vars$e_qo_ps_C_bar]][[1]], 0.00250767784)
+  expect_equal(res[[ReboundTools::bar_vars$e_qo_ps_C_bar]][[2]], 0.00012989685)
+  
+  expect_equal(res[[ReboundTools::bar_vars$e_qs_ps_UC_bar]][[1]], -0.1)
+  expect_equal(res[[ReboundTools::bar_vars$e_qs_ps_UC_bar]][[2]], -0.4)
+  
+  expect_equal(res[[ReboundTools::bar_vars$e_qo_ps_UC_bar]][[1]], 0.0000000000)
+  expect_equal(res[[ReboundTools::bar_vars$e_qo_ps_UC_bar]][[2]], 0.0000000000)
+  
+  
+  
   
   expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[1]], 0)
   expect_equal(res[[ReboundTools::bar_vars$N_dot_bar]][[2]], 0)
