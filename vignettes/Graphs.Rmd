@@ -310,17 +310,17 @@ The cases (Car and Lamp) are shown as different lines.
 ```{r}
 sens_params_2 <- list(Car = list(k = seq(0, 2, by = 0.5), 
                                  I_E = seq(2, 5, by = 1), 
-                                 e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
+                                 e_qs_ps_UC_orig = seq(-0.5, -0.1, by = 0.1)), 
                       Lamp = list(k = seq(0, 2, by = 0.5),
                                   I_E = seq(2, 5, by = 1), 
-                                  e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+                                  e_qs_ps_UC_orig = seq(-0.5, -0.1, by = 0.1)))
 # Choose which rebound variables to include and their order.
 sensitivity_graphs(rebound_data = df, parameterization = sens_params_2, 
                    x_var = "I_E", 
                    y_var = "Re_tot",
                    line_var = "Case") +
   ggplot2::facet_grid(rows = ggplot2::vars(k), 
-                      cols = ggplot2::vars(e_qs_ps_UC), scales = "free_y") +
+                      cols = ggplot2::vars(e_qs_ps_UC_orig), scales = "free_y") +
   ggplot2::scale_colour_manual(values = c(Car = "black", Lamp = "red")) + 
   ggplot2::scale_discrete_manual(aesthetics = "linewidth", values = c(Car = 0.5, Lamp = 1.0)) + 
   ggplot2::scale_linetype_manual(values = c(Car = "solid", Lamp = "dashed")) + 

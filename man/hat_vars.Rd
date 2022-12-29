@@ -5,7 +5,7 @@
 \alias{hat_vars}
 \title{EEU hat data}
 \format{
-A string list with 13 entries.
+A string list with 18 entries.
 \describe{
 \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_star}.}
 \item{p_s_hat}{The energy service price after the substitution effect [$/service], exactly \code{p_s_star}.}
@@ -16,6 +16,11 @@ A string list with 13 entries.
 \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/year], calculated by \code{q_dot_s_star * eta_ratio^(-e_qs_ps_C)}.}
 \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/year], calculated by \code{q_dot_s_hat / eta_hat}.}
 \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect [$/year], calculated by \code{C_dot_o_star * eta_ratio^(-e_qo_ps_C)}.}
+\item{f_Cs_hat}{The post-substitution effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
+\item{e_qs_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
+\item{e_qo_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qs_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
+\item{e_qo_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{N_dot_hat}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
 \item{M_dot_hat_prime}{Modified \code{M_dot} for the income effect [$/year], calculated by \code{M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_o_hat - C_dot_o_star)}}
 }

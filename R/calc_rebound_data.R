@@ -138,7 +138,7 @@ calc_orig <- function(.eeu_data = NULL,
 #'                   likely calculated by `calc_orig()`.
 #' @param MJ_engr_unit,p_E See `ReboundTools::eeu_base_params`.
 #' @param eta_orig,E_dot_s_orig,q_dot_s_orig,M_dot_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig,e_qs_ps_UC_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig See `ReboundTools::orig_vars`.
-#' @param eta_engr_units_star,E_emb_star,t_life_star,C_cap_star,t_own_star,C_dot_md_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,E_dot_s_star See `ReboundTools::star_vars`.
+#' @param eta_engr_units_star,E_emb_star,t_life_star,C_cap_star,t_own_star,C_dot_md_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,f_Cs_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,E_dot_s_star See `ReboundTools::star_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the star stage (after the emplacement effect).
 #' 
@@ -327,7 +327,7 @@ calc_star <- function(.orig_data = NULL,
 #' @param e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param e_qo_ps_C,e_qs_ps_C,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
 #' @param eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
-#' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,f_Cs_hat,e_qs_ps_UC_hat,e_qo_ps_UC_hat,e_qs_ps_C_hat,e_qo_ps_C_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
 #' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
 #' 

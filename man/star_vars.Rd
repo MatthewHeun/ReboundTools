@@ -5,7 +5,7 @@
 \alias{star_vars}
 \title{EEU star data}
 \format{
-A string list with 19 entries.
+A string list with 24 entries.
 \describe{
 \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{t_own_star}{The expected ownership duration of the upgraded device [year].}
@@ -25,6 +25,11 @@ A string list with 19 entries.
 \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/year], exactly \code{M_dot_orig}.}
 \item{N_dot_star}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
 \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate [$/year], exactly \code{C_dot_o_orig}.}
+\item{f_Cs_star}{The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
+\item{e_qs_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
+\item{e_qo_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qs_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
+\item{e_qo_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/year], calculated by \code{q_dot_s_star / eta_star}.}
 }
 }
