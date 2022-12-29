@@ -434,15 +434,15 @@
 "latex_rebound_terms"
 
 
-#' Graph types
+#' Plane types
 #' 
-#' The list of graph types in the `ReboundTools` package.
+#' The list of plane types in the `ReboundTools` package.
 #' 
 #' @format A string list with `r length(graph_types)` entries.
 #' \describe{
-#' \item{energy}{The energy path graph type.}
-#' \item{expenditure}{The expenditure path graph type.}
-#' \item{consumption}{The consumption path graph type.}
+#' \item{energy}{The energy plane graph type.}
+#' \item{expenditure}{The expenditure plane graph type.}
+#' \item{consumption}{The consumption plane graph type.}
 #' }
 #' @examples
 #' graph_types
