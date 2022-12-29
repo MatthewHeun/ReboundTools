@@ -1,4 +1,10 @@
 
+* Fixed `linewidth`s in a few sensitivity graph examples.
+* Now calculating elasticities 
+  (e_qs_ps_C, e_qo_ps_C, e_qs_ps_UC, and e_qo_ps_UC) 
+  at every stage
+  (orig, star, hat, bar, tilde)
+  for both the approximate utility model and the exact utility model.
 * Deleted some old code dealing with linewidths.
 
 

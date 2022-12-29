@@ -17,6 +17,10 @@ calc_tilde(
   E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
   C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
   C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+  e_qs_ps_UC_bar = ReboundTools::bar_vars$e_qs_ps_UC_bar,
+  e_qo_ps_UC_bar = ReboundTools::bar_vars$e_qo_ps_UC_bar,
+  e_qs_ps_C_bar = ReboundTools::bar_vars$e_qs_ps_C_bar,
+  e_qo_ps_C_bar = ReboundTools::bar_vars$e_qo_ps_C_bar,
   N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
   eta_engr_units_tilde = ReboundTools::tilde_vars$eta_engr_units_tilde,
   eta_tilde = ReboundTools::tilde_vars$eta_tilde,
@@ -29,6 +33,11 @@ calc_tilde(
   E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
   C_dot_s_tilde = ReboundTools::tilde_vars$C_dot_s_tilde,
   C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
+  f_Cs_tilde = ReboundTools::tilde_vars$f_Cs_tilde,
+  e_qs_ps_UC_tilde = ReboundTools::tilde_vars$e_qs_ps_UC_tilde,
+  e_qo_ps_UC_tilde = ReboundTools::tilde_vars$e_qo_ps_UC_tilde,
+  e_qs_ps_C_tilde = ReboundTools::tilde_vars$e_qs_ps_C_tilde,
+  e_qo_ps_C_tilde = ReboundTools::tilde_vars$e_qo_ps_C_tilde,
   N_dot_tilde = ReboundTools::tilde_vars$N_dot_tilde
 )
 }
@@ -37,9 +46,9 @@ calc_tilde(
 star data, hat data, and bar data,
 likely calculated by \code{calc_bar()}.}
 
-\item{eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
+\item{eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, C_dot_md_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, e_qs_ps_UC_bar, e_qo_ps_UC_bar, e_qs_ps_C_bar, e_qo_ps_C_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
 
-\item{eta_engr_units_tilde, eta_tilde, p_s_tilde, C_dot_cap_tilde, C_dot_md_tilde, E_dot_emb_tilde, M_dot_tilde, q_dot_s_tilde, E_dot_s_tilde, C_dot_s_tilde, C_dot_o_tilde, N_dot_tilde}{See \code{ReboundTools::tilde_vars}.}
+\item{eta_engr_units_tilde, eta_tilde, p_s_tilde, C_dot_cap_tilde, C_dot_md_tilde, E_dot_emb_tilde, M_dot_tilde, q_dot_s_tilde, E_dot_s_tilde, C_dot_s_tilde, C_dot_o_tilde, f_Cs_tilde, e_qs_ps_UC_tilde, e_qo_ps_UC_tilde, e_qs_ps_C_tilde, e_qo_ps_C_tilde, N_dot_tilde}{See \code{ReboundTools::tilde_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).

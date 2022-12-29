@@ -3,20 +3,20 @@
 \docType{data}
 \name{graph_types}
 \alias{graph_types}
-\title{Graph types}
+\title{Plane types}
 \format{
 A string list with 3 entries.
 \describe{
-\item{energy}{The energy path graph type.}
-\item{expenditure}{The expenditure path graph type.}
-\item{consumption}{The consumption path graph type.}
+\item{energy}{The energy plane graph type.}
+\item{expenditure}{The expenditure plane graph type.}
+\item{consumption}{The consumption plane graph type.}
 }
 }
 \usage{
 graph_types
 }
 \description{
-The list of graph types in the \code{ReboundTools} package.
+The list of plane types in the \code{ReboundTools} package.
 }
 \examples{
 graph_types
