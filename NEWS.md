@@ -1,5 +1,14 @@
 
-# ReboundTools 0.1.34 (2022-12-10)
+* Fixed `linewidth`s in a few sensitivity graph examples.
+* Now calculating elasticities 
+  (e_qs_ps_C, e_qo_ps_C, e_qs_ps_UC, and e_qo_ps_UC) 
+  at every stage
+  (orig, star, hat, bar, tilde)
+  for both the approximate utility model and the exact utility model.
+* Deleted some old code dealing with linewidths.
+
+
+# ReboundTools 0.1.34 (2022-12-10) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg)](https://doi.org/10.5281/zenodo.7423306)
 
 * Finish the task of responding to the new `linewidth` aesthetic
   in `ggplot2`, especially for sensitivity graphs

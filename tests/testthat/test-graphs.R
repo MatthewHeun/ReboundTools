@@ -362,10 +362,10 @@ test_that("sensitivity_graphs() works with more than 1 line variation", {
   orig_data <- load_eeu_data()
   sens_params <- list(Car = list(k = seq(0, 2, by = 0.5), 
                                    I_E = seq(2, 5, by = 1), 
-                                   e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)), 
+                                   e_qs_ps_UC_orig = seq(-0.5, -0.1, by = 0.1)), 
                         Lamp = list(k = seq(0, 2, by = 0.5),
                                     I_E = seq(2, 5, by = 1), 
-                                    e_qs_ps_UC = seq(-0.5, -0.1, by = 0.1)))
+                                    e_qs_ps_UC_orig = seq(-0.5, -0.1, by = 0.1)))
   g <- sensitivity_graphs(rebound_data = orig_data, parameterization = sens_params, 
                      x_var = "I_E", y_var = "Re_tot", line_var = "Case") +
     ggplot2::facet_grid(rows = ggplot2::vars(k), 

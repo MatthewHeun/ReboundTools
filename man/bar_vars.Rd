@@ -5,7 +5,7 @@
 \alias{bar_vars}
 \title{EEU bar data}
 \format{
-A string list with 12 entries.
+A string list with 17 entries.
 \describe{
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}
@@ -15,6 +15,11 @@ A string list with 12 entries.
 \item{M_dot_bar}{Real income after the income effect [MJ/year], exactly \code{M_dot_hat}.}
 \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/year], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)}.}
 \item{C_dot_o_bar}{The rate of other goods expenditures after the income effect [$/year], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qo_M)}.}
+\item{f_Cs_bar}{The post-income effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
+\item{e_qs_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
+\item{e_qo_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qs_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
+\item{e_qo_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{N_dot_bar}{The freed cash rate after the income effect [$/year], exactly \code{0}.}
 }
 
