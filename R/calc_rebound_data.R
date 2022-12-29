@@ -576,7 +576,7 @@ calc_hat <- function(.star_data = NULL,
 #'                  likely calculated by `calc_hat()`.
 #' @param tol The tolerance with which the budget constraint should be satisfied. Default is `1e-6`.
 #' @param e_qs_M,e_qo_M,p_E See `ReboundTools::eeu_base_params`.
-#' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
+#' @param eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,e_qs_ps_UC_hat,e_qo_ps_UC_hat,e_qs_ps_C_hat,e_qo_ps_C_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
 #' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,f_Cs_bar,e_qs_ps_UC_bar,e_qo_ps_UC_bar,e_qs_ps_C_bar,e_qo_ps_C_bar,N_dot_bar See `ReboundTools::bar_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
@@ -747,8 +747,8 @@ calc_bar <- function(.hat_data = NULL,
 #' @param .bar_data An optional data frame containing rebound calculations, original data, 
 #'                  star data, hat data, and bar data,
 #'                  likely calculated by `calc_bar()`.
-#' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,N_dot_bar See `ReboundTools::bar_vars`.
-#' @param eta_engr_units_tilde,eta_tilde,p_s_tilde,C_dot_cap_tilde,C_dot_md_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,N_dot_tilde See `ReboundTools::tilde_vars`.
+#' @param eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,C_dot_md_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,e_qs_ps_UC_bar,e_qo_ps_UC_bar,e_qs_ps_C_bar,e_qo_ps_C_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' @param eta_engr_units_tilde,eta_tilde,p_s_tilde,C_dot_cap_tilde,C_dot_md_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,f_Cs_tilde,e_qs_ps_UC_tilde,e_qo_ps_UC_tilde,e_qs_ps_C_tilde,e_qo_ps_C_tilde,N_dot_tilde See `ReboundTools::tilde_vars`.
 #'
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
@@ -774,6 +774,10 @@ calc_tilde <- function(.bar_data = NULL,
                        E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
                        C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
                        C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+                       e_qs_ps_UC_bar = ReboundTools::bar_vars$e_qs_ps_UC_bar,
+                       e_qo_ps_UC_bar = ReboundTools::bar_vars$e_qo_ps_UC_bar,
+                       e_qs_ps_C_bar = ReboundTools::bar_vars$e_qs_ps_C_bar,
+                       e_qo_ps_C_bar = ReboundTools::bar_vars$e_qo_ps_C_bar,
                        N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
                        
                        # Output names
@@ -788,6 +792,11 @@ calc_tilde <- function(.bar_data = NULL,
                        E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
                        C_dot_s_tilde = ReboundTools::tilde_vars$C_dot_s_tilde,
                        C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde,
+                       f_Cs_tilde = ReboundTools::tilde_vars$f_Cs_tilde,
+                       e_qs_ps_UC_tilde = ReboundTools::tilde_vars$e_qs_ps_UC_tilde,
+                       e_qo_ps_UC_tilde = ReboundTools::tilde_vars$e_qo_ps_UC_tilde,
+                       e_qs_ps_C_tilde = ReboundTools::tilde_vars$e_qs_ps_C_tilde,
+                       e_qo_ps_C_tilde = ReboundTools::tilde_vars$e_qo_ps_C_tilde,
                        N_dot_tilde = ReboundTools::tilde_vars$N_dot_tilde
 ) {
   
@@ -802,6 +811,10 @@ calc_tilde <- function(.bar_data = NULL,
                              E_dot_s_bar_val,
                              C_dot_s_bar_val,
                              C_dot_o_bar_val,
+                             e_qs_ps_UC_bar_val,
+                             e_qo_ps_UC_bar_val,
+                             e_qs_ps_C_bar_val, 
+                             e_qo_ps_C_bar_val,
                              N_dot_bar_val) {
     eta_engr_units_tilde_val <- eta_engr_units_bar_val
     eta_tilde_val <- eta_bar_val
@@ -814,6 +827,14 @@ calc_tilde <- function(.bar_data = NULL,
     E_dot_s_tilde_val <- E_dot_s_bar_val
     C_dot_s_tilde_val <- C_dot_s_bar_val
     C_dot_o_tilde_val <- C_dot_o_bar_val
+    # Expenditure fraction
+    f_Cs_tilde_val <- C_dot_s_tilde_val / (C_dot_s_tilde_val + C_dot_o_tilde_val)
+    # Elasticities are unchanged across the macro effect
+    e_qs_ps_UC_tilde_val <- e_qs_ps_UC_bar_val
+    e_qo_ps_UC_tilde_val <- e_qo_ps_UC_bar_val
+    e_qs_ps_C_tilde_val <- e_qs_ps_C_bar_val
+    e_qo_ps_C_tilde_val <- e_qo_ps_C_bar_val
+    
     N_dot_tilde_val <- N_dot_bar_val
     
     list(eta_engr_units_tilde_val,
@@ -827,6 +848,11 @@ calc_tilde <- function(.bar_data = NULL,
          E_dot_s_tilde_val,
          C_dot_s_tilde_val,
          C_dot_o_tilde_val,
+         f_Cs_tilde_val,
+         e_qs_ps_UC_tilde_val,
+         e_qo_ps_UC_tilde_val,
+         e_qs_ps_C_tilde_val,
+         e_qo_ps_C_tilde_val,
          N_dot_tilde_val) %>% 
       magrittr::set_names(c(eta_engr_units_tilde,
                             eta_tilde,
@@ -839,6 +865,11 @@ calc_tilde <- function(.bar_data = NULL,
                             E_dot_s_tilde,
                             C_dot_s_tilde,
                             C_dot_o_tilde, 
+                            f_Cs_tilde,
+                            e_qs_ps_UC_tilde,
+                            e_qo_ps_UC_tilde,
+                            e_qs_ps_C_tilde,
+                            e_qo_ps_C_tilde,
                             N_dot_tilde))
   }
   
@@ -854,6 +885,10 @@ calc_tilde <- function(.bar_data = NULL,
                            E_dot_s_bar_val = E_dot_s_bar,
                            C_dot_s_bar_val = C_dot_s_bar,
                            C_dot_o_bar_val = C_dot_o_bar,
+                           e_qs_ps_UC_bar_val = e_qs_ps_UC_bar,
+                           e_qo_ps_UC_bar_val = e_qo_ps_UC_bar,
+                           e_qs_ps_C_bar_val = e_qs_ps_C_bar,
+                           e_qo_ps_C_bar_val =  e_qo_ps_C_bar,
                            N_dot_bar_val = N_dot_bar)
 }
 
