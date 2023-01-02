@@ -4,7 +4,7 @@
   (e_qs_ps_C, e_qo_ps_C, e_qs_ps_UC, and e_qo_ps_UC) 
   at every stage
   (orig, star, hat, bar, tilde)
-  for both the approximate utility model and the exact utility model.
+  for both the CPE utility model and the CES utility model.
 * Deleted some old code dealing with linewidths.
 
 
