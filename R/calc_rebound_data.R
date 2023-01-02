@@ -77,7 +77,7 @@ calc_orig <- function(.eeu_data = NULL,
     f_Cs_orig_val <- C_dot_s_orig_val / (C_dot_s_orig_val + C_dot_o_orig_val)
     sigma_val <- (f_Cs_orig_val + e_qs_ps_UC_orig_val) / (f_Cs_orig_val - 1)
     rho_val <- (sigma_val - 1)/sigma_val
-    e_qo_ps_UC_orig_val <- f_Cs_orig_val * (e_qo_M_val - sigma_val)
+    e_qo_ps_UC_orig_val <- f_Cs_orig_val * (sigma_val - e_qo_M_val)
     e_qs_ps_C_orig_val <- e_qs_ps_UC_orig_val + f_Cs_orig_val*e_qs_M_val
     e_qo_ps_C_orig_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_orig_val) / (f_Cs_orig_val - 1)
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
@@ -496,7 +496,7 @@ calc_hat <- function(.star_data = NULL,
       e_qs_ps_C_hat_val <- (m_s * n * g * zpsms) / (f + g*zpsms)
       e_qo_ps_C_hat_val <- (m_o * n * f * zpsmo) / (1 + f*(zpsmo - 1))
       e_qs_ps_UC_hat_val <- e_qs_ps_C_hat_val - f_Cs_hat_val * e_qs_M_val
-      e_qo_ps_UC_hat_val <- f_Cs_hat_val * (e_qo_M_val - sigma_val)
+      e_qo_ps_UC_hat_val <- f_Cs_hat_val * (sigma_val - e_qo_M_val)
     }
       
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
