@@ -8,6 +8,9 @@
   (orig, star, hat, bar, tilde)
   for both the CPE utility model and the CES utility model.
 * Deleted some old code dealing with linewidths.
+* No new tests.
+    - Still at 472 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.34 (2022-12-10) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg)](https://doi.org/10.5281/zenodo.7423306)
