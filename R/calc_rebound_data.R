@@ -8,7 +8,7 @@
 #'
 #' @param .eeu_data An optional data frame containing EEU base data. 
 #'                  See `ReboundTools::eeu_base_params`.
-#' @param MJ_engr_unit,p_E_engr_units,e_qs_ps_UC_orig,e_qs_M See `ReboundTools::eeu_base_params`.
+#' @param MJ_engr_unit,p_E_engr_units,e_qs_ps_UC_orig,e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
@@ -77,7 +77,7 @@ calc_orig <- function(.eeu_data = NULL,
     f_Cs_orig_val <- C_dot_s_orig_val / (C_dot_s_orig_val + C_dot_o_orig_val)
     sigma_val <- (f_Cs_orig_val + e_qs_ps_UC_orig_val) / (f_Cs_orig_val - 1)
     rho_val <- (sigma_val - 1)/sigma_val
-    e_qo_ps_UC_orig_val <- f_Cs_orig_val * (e_qo_M_val - sigma_val)
+    e_qo_ps_UC_orig_val <- f_Cs_orig_val * (sigma_val - e_qo_M_val)
     e_qs_ps_C_orig_val <- e_qs_ps_UC_orig_val + f_Cs_orig_val*e_qs_M_val
     e_qo_ps_C_orig_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_orig_val) / (f_Cs_orig_val - 1)
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
@@ -441,7 +441,6 @@ calc_hat <- function(.star_data = NULL,
       a <- f_Cs_orig_val # Simpler variable name
       x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
       a_ratio <- (1-a) / a
-      inv_a_ratio <- a / (1-a) # Inverse of a_ratio
       rho_ratio <- (1-rho_val) / rho_val
       inv_rho_ratio <- rho_val / (1-rho_val) # Inverse of rho_ratio
       
@@ -463,9 +462,9 @@ calc_hat <- function(.star_data = NULL,
       # This is the original derived equation
       # C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
       # Wolfram alpha (correctly) says it can be simplified to the following:
-      term <- x * (1-a) / a
-      denom <- 1 + a*(term^(1-sigma_val)  - 1)
-      C_o_hat_val <- (1 / denom)^(1/rho_val)
+      inner_term <- ( x * a_ratio ) ^ (rho_val/(rho_val-1))
+      C_o_hat_val <- (1 + a*(inner_term-1)) ^ (-1/rho_val)
+      
       # Recover C_dot_o_hat by multiplying by C_dot_o_orig
       C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
     }
@@ -496,7 +495,7 @@ calc_hat <- function(.star_data = NULL,
       e_qs_ps_C_hat_val <- (m_s * n * g * zpsms) / (f + g*zpsms)
       e_qo_ps_C_hat_val <- (m_o * n * f * zpsmo) / (1 + f*(zpsmo - 1))
       e_qs_ps_UC_hat_val <- e_qs_ps_C_hat_val - f_Cs_hat_val * e_qs_M_val
-      e_qo_ps_UC_hat_val <- f_Cs_hat_val * (e_qo_M_val - sigma_val)
+      e_qo_ps_UC_hat_val <- f_Cs_hat_val * (sigma_val - e_qo_M_val)
     }
       
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
