@@ -1,4 +1,5 @@
 
+* Simplified calculations at the hat stage.
 * Fixed `linewidth`s in a few sensitivity graph examples.
 * Now calculating elasticities 
   (e_qs_ps_C, e_qo_ps_C, e_qs_ps_UC, and e_qo_ps_UC) 
