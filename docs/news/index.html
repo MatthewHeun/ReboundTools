@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.35</span>
       </span>
     </div>
 
@@ -55,7 +55,19 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.34" id="reboundtools-0134-2022-12-10">ReboundTools 0.1.34 (2022-12-10)<a class="anchor" aria-label="anchor" href="#reboundtools-0134-2022-12-10"></a></h2>
+<h2 class="page-header" data-toc-text="0.1.35" id="reboundtools-0135-2023-01-02">ReboundTools 0.1.35 (2023-01-02)<a class="anchor" aria-label="anchor" href="#reboundtools-0135-2023-01-02"></a></h2>
+<ul><li>Simplified calculations at the hat stage.</li>
+<li>Fixed <code>linewidth</code>s in a few sensitivity graph examples.</li>
+<li>Now calculating elasticities (e_qs_ps_C, e_qo_ps_C, e_qs_ps_UC, and e_qo_ps_UC) at every stage (orig, star, hat, bar, tilde) for both the CPE utility model and the CES utility model.</li>
+<li>Deleted some old code dealing with linewidths.</li>
+<li>Additional tests for new features.
+<ul><li>Now up to 612 tests, all passing.</li>
+<li>Test coverage remains at 100%.</li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.34" id="reboundtools-0134-2022-12-10-doi">ReboundTools 0.1.34 (2022-12-10) <a href="https://doi.org/10.5281/zenodo.7423306" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg" alt="DOI"></a>
+<a class="anchor" aria-label="anchor" href="#reboundtools-0134-2022-12-10-doi"></a></h2>
 <ul><li>Finish the task of responding to the new <code>linewidth</code> aesthetic in <code>ggplot2</code>, especially for sensitivity graphs and the vignettes.</li>
 <li>Macro rebound now tied to N_dot_star (instead of N_dot_hat).</li>
 <li>Now using <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">ggplot2::scale_discrete_manual()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">ggplot2::scale_discrete_identity()</a></code> for various rebound graphs, thereby eliminating some warnings.</li>
@@ -383,7 +395,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
