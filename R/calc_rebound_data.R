@@ -441,7 +441,6 @@ calc_hat <- function(.star_data = NULL,
       a <- f_Cs_orig_val # Simpler variable name
       x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
       a_ratio <- (1-a) / a
-      inv_a_ratio <- a / (1-a) # Inverse of a_ratio
       rho_ratio <- (1-rho_val) / rho_val
       inv_rho_ratio <- rho_val / (1-rho_val) # Inverse of rho_ratio
       
@@ -463,7 +462,7 @@ calc_hat <- function(.star_data = NULL,
       # This is the original derived equation
       # C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
       # Wolfram alpha (correctly) says it can be simplified to the following:
-      inner_term <- ( x * (1-a)/a ) ^ (rho_val/(rho_val-1))
+      inner_term <- ( x * a_ratio ) ^ (rho_val/(rho_val-1))
       C_o_hat_val <- (1 + a*(inner_term-1)) ^ (-1/rho_val)
       
       # Recover C_dot_o_hat by multiplying by C_dot_o_orig
