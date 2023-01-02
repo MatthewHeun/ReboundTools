@@ -8,8 +8,8 @@
   (orig, star, hat, bar, tilde)
   for both the CPE utility model and the CES utility model.
 * Deleted some old code dealing with linewidths.
-* No new tests.
-    - Still at 472 tests, all passing.
+* Additional tests for new features.
+    - Now up to 612 tests, all passing.
     - Test coverage remains at 100%.
 
 
