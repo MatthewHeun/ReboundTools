@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.36</span>
       </span>
     </div>
 
@@ -65,20 +65,20 @@
 
     <div id="format">
     <h2>Format</h2>
-    <p>A string list with 19 entries.</p><dl><dt>C_cap_star</dt>
+    <p>A string list with 24 entries.</p><dl><dt>C_cap_star</dt>
 <dd><p>The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].</p></dd>
 
 <dt>t_own_star</dt>
-<dd><p>The expected ownership duration of the upgraded device [year].</p></dd>
+<dd><p>The expected ownership duration of the upgraded device [yr].</p></dd>
 
 <dt>C_dot_md_star</dt>
-<dd><p>The upgraded (post-EEU) maintenance and disposal expenditure rate [$/year].</p></dd>
+<dd><p>The upgraded (post-EEU) maintenance and disposal expenditure rate [$/yr].</p></dd>
 
 <dt>E_emb_star</dt>
 <dd><p>The embodied energy of the upgraded (post-EEU) device [MJ].</p></dd>
 
 <dt>t_life_star</dt>
-<dd><p>The expected lifetime of the upgraded (post-EEU) device [year].</p></dd>
+<dd><p>The expected lifetime of the upgraded (post-EEU) device [yr].</p></dd>
 
 <dt>eta_engr_units_star</dt>
 <dd><p>The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of <code>eta_engr_units_orig</code> is assumed to be the same as the denominator unit of <code>MJ_engr_unit</code>.</p></dd>
@@ -90,37 +90,52 @@
 <dd><p>The energy service efficiency ratio [--], calculated by <code>eta_star/eta_orig</code>.</p></dd>
 
 <dt>S_dot_dev</dt>
-<dd><p>The expected device-level energy savings rate [MJ/year], calculated by <code>(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig</code>.</p></dd>
+<dd><p>The expected device-level energy savings rate [MJ/yr], calculated by <code>(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig</code>.</p></dd>
 
 <dt>G_dot</dt>
-<dd><p>The expected device-level energy gross cost savings rate [MJ/year], calculated by <code>p_E * S_dot_dev</code>.</p></dd>
+<dd><p>The expected device-level energy gross cost savings rate [MJ/yr], calculated by <code>p_E * S_dot_dev</code>.</p></dd>
 
 <dt>p_s_star</dt>
 <dd><p>The upgraded (post-EEU) energy service price [$/service], calculated by <code>p_E / eta_star = p_E / eta_tilde</code>.</p></dd>
 
 <dt>q_dot_s_star</dt>
-<dd><p>The upgraded (post-EEU) energy service consumption rate [service/year], same as <code>q_dot_s_orig</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) energy service consumption rate [service/yr], same as <code>q_dot_s_orig</code>.</p></dd>
 
 <dt>C_dot_cap_star</dt>
-<dd><p>The upgraded (post-EEU) capital expenditure rate [$/year], calculated by <code>C_cap_star / t_star</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) capital expenditure rate [$/yr], calculated by <code>C_cap_star / t_star</code>.</p></dd>
 
 <dt>E_dot_emb_star</dt>
-<dd><p>The upgraded (post-EEU) embodied energy rate [MJ/year], calculated by <code>E_emb_star / t_star</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) embodied energy rate [MJ/yr], calculated by <code>E_emb_star / t_star</code>.</p></dd>
 
 <dt>C_dot_s_star</dt>
-<dd><p>The upgraded (post-EEU) energy expenditure rate [$/year], calculated by <code>p_s_star * q_dot_s_star</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) energy expenditure rate [$/yr], calculated by <code>p_s_star * q_dot_s_star</code>.</p></dd>
 
 <dt>M_dot_star</dt>
-<dd><p>The disposable income rate, exclusive of taxes and savings [$/year], exactly <code>M_dot_orig</code>.</p></dd>
+<dd><p>The disposable income rate, exclusive of taxes and savings [$/yr], exactly <code>M_dot_orig</code>.</p></dd>
 
 <dt>N_dot_star</dt>
-<dd><p>The freed cash rate [$/year], calculated by <code>G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)</code>.</p></dd>
+<dd><p>The freed cash rate [$/yr], calculated by <code>G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)</code>.</p></dd>
 
 <dt>C_dot_o_star</dt>
-<dd><p>The upgraded (post-EEU) other goods expenditure rate [$/year], exactly <code>C_dot_o_orig</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) other goods expenditure rate [$/yr], exactly <code>C_dot_o_orig</code>.</p></dd>
+
+<dt>f_Cs_star</dt>
+<dd><p>The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by <code>C_dot_s_star / (C_dot_s_star + C_dot_o_star)</code>.</p></dd>
+
+<dt>e_qs_ps_C_star</dt>
+<dd><p>The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by <code>e_qs_ps_UC_orig + f_Cs_orig*e_qs_M</code>.</p></dd>
+
+<dt>e_qo_ps_C_star</dt>
+<dd><p>The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by <code>f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)</code>.</p></dd>
+
+<dt>e_qs_ps_UC_star</dt>
+<dd><p>The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].</p></dd>
+
+<dt>e_qo_ps_UC_star</dt>
+<dd><p>The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].</p></dd>
 
 <dt>E_dot_s_star</dt>
-<dd><p>The upgraded (post-EEU) energy consumption rate [MJ/year], calculated by <code>q_dot_s_star / eta_star</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) energy consumption rate [MJ/yr], calculated by <code>q_dot_s_star / eta_star</code>.</p></dd>
 
 
 </dl></div>
@@ -182,6 +197,21 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_o_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_o_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $f_Cs_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "f_Cs_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qs_ps_C_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qs_ps_C_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qs_ps_UC_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qs_ps_UC_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_C_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_C_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_UC_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_UC_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $E_dot_s_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "E_dot_s_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -199,7 +229,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

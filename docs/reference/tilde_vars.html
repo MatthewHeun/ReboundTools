@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.36</span>
       </span>
     </div>
 
@@ -65,35 +65,50 @@
 
     <div id="format">
     <h2>Format</h2>
-    <p>A string list with 12 entries.</p><dl><dt>eta_tilde</dt>
+    <p>A string list with 17 entries.</p><dl><dt>eta_tilde</dt>
 <dd><p>Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly <code>eta_bar</code>.</p></dd>
 
 <dt>p_s_tilde</dt>
 <dd><p>The energy service price after the macro effect [$/service], exactly <code>p_s_bar</code>.</p></dd>
 
 <dt>C_dot_cap_tilde</dt>
-<dd><p>The capital expenditure rate after the macro effect [$/year], exactly <code>C_dot_cap_bar</code>.</p></dd>
+<dd><p>The capital expenditure rate after the macro effect [$/yr], exactly <code>C_dot_cap_bar</code>.</p></dd>
 
 <dt>C_dot_md_tilde</dt>
-<dd><p>The maintenance and disposal expenditure rate after the macro effect [$/year], exactly <code>C_dot_md_bar</code>.</p></dd>
+<dd><p>The maintenance and disposal expenditure rate after the macro effect [$/yr], exactly <code>C_dot_md_bar</code>.</p></dd>
 
 <dt>E_dot_emb_tilde</dt>
-<dd><p>The embodied energy rate after the macro effect [MJ/year], exactly <code>E_dot_emb_bar</code>.</p></dd>
+<dd><p>The embodied energy rate after the macro effect [MJ/yr], exactly <code>E_dot_emb_bar</code>.</p></dd>
 
 <dt>M_dot_tilde</dt>
-<dd><p>Real income after the macro effect [MJ/year], exactly <code>M_dot_bar</code>.</p></dd>
+<dd><p>Real income after the macro effect [MJ/yr], exactly <code>M_dot_bar</code>.</p></dd>
 
 <dt>q_dot_s_tilde</dt>
-<dd><p>The rate of energy service consumption after the macro effect\ [service/year], exactly <code>q_dot_s_bar</code>.</p></dd>
+<dd><p>The rate of energy service consumption after the macro effect\ [service/yr], exactly <code>q_dot_s_bar</code>.</p></dd>
 
 <dt>C_dot_o_tilde</dt>
-<dd><p>The rate of other goods expenditures after the macro effect [$/year], exactly <code>C_dot_o_bar</code>.</p></dd>
+<dd><p>The rate of other goods expenditures after the macro effect [$/yr], exactly <code>C_dot_o_bar</code>.</p></dd>
+
+<dt>f_Cs_tilde</dt>
+<dd><p>The post-macro effect fraction of the energy and other budget spent on the energy service [--], calculated by <code>C_dot_s_star / (C_dot_s_star + C_dot_o_star)</code>.</p></dd>
+
+<dt>e_qs_ps_C_tilde</dt>
+<dd><p>The post-macro effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by <code>e_qs_ps_UC_orig + f_Cs_orig*e_qs_M</code>.</p></dd>
+
+<dt>e_qo_ps_C_tilde</dt>
+<dd><p>The post-macro effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by <code>f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)</code>.</p></dd>
+
+<dt>e_qs_ps_UC_tilde</dt>
+<dd><p>The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].</p></dd>
+
+<dt>e_qo_ps_UC_tilde</dt>
+<dd><p>The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].</p></dd>
 
 <dt>N_dot_tilde</dt>
-<dd><p>The freed cash rate after the macro effect [$/year], exactly <code>0</code>.</p></dd>
+<dd><p>The freed cash rate after the macro effect [$/yr], exactly <code>0</code>.</p></dd>
 
 
-</dl><p>[service/year]: R:service/year%5C</p>
+</dl><p>[service/yr]: R:service/yr%5C</p>
     </div>
 
     <div id="ref-examples">
@@ -132,6 +147,21 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_o_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_o_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $f_Cs_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "f_Cs_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qs_ps_C_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qs_ps_C_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qs_ps_UC_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qs_ps_UC_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_C_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_C_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_UC_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_UC_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $N_dot_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "N_dot_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -149,7 +179,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

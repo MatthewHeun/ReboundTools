@@ -9,21 +9,21 @@ A string list with 17 entries.
 \describe{
 \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_bar}.}
 \item{p_s_tilde}{The energy service price after the macro effect [$/service], exactly \code{p_s_bar}.}
-\item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect [$/year], exactly \code{C_dot_cap_bar}.}
-\item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect [$/year], exactly \code{C_dot_md_bar}.}
-\item{E_dot_emb_tilde}{The embodied energy rate after the macro effect [MJ/year], exactly \code{E_dot_emb_bar}.}
-\item{M_dot_tilde}{Real income after the macro effect [MJ/year], exactly \code{M_dot_bar}.}
-\item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/year], exactly \code{q_dot_s_bar}.}
-\item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect [$/year], exactly \code{C_dot_o_bar}.}
+\item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect [$/yr], exactly \code{C_dot_cap_bar}.}
+\item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect [$/yr], exactly \code{C_dot_md_bar}.}
+\item{E_dot_emb_tilde}{The embodied energy rate after the macro effect [MJ/yr], exactly \code{E_dot_emb_bar}.}
+\item{M_dot_tilde}{Real income after the macro effect [MJ/yr], exactly \code{M_dot_bar}.}
+\item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/yr], exactly \code{q_dot_s_bar}.}
+\item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect [$/yr], exactly \code{C_dot_o_bar}.}
 \item{f_Cs_tilde}{The post-macro effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
 \item{e_qs_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
 \item{e_qo_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qo_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
-\item{N_dot_tilde}{The freed cash rate after the macro effect [$/year], exactly \code{0}.}
+\item{N_dot_tilde}{The freed cash rate after the macro effect [$/yr], exactly \code{0}.}
 }
 
-[service/year]: R:service/year\%5C
+[service/yr]: R:service/yr\%5C
 }
 \usage{
 tilde_vars

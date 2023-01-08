@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.36</span>
       </span>
     </div>
 
@@ -656,17 +656,17 @@ shown as different lines.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sens_params_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Car <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, </span>
 <span>                                 I_E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, </span>
-<span>                                 e_qs_ps_UC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>                                 e_qs_ps_UC_orig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>                      Lamp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>                                  I_E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, </span>
-<span>                                  e_qs_ps_UC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                  e_qs_ps_UC_orig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Choose which rebound variables to include and their order.</span></span>
 <span><span class="fu"><a href="../reference/sensitivity_graphs.html">sensitivity_graphs</a></span><span class="op">(</span>rebound_data <span class="op">=</span> <span class="va">df</span>, parameterization <span class="op">=</span> <span class="va">sens_params_2</span>, </span>
 <span>                   x_var <span class="op">=</span> <span class="st">"I_E"</span>, </span>
 <span>                   y_var <span class="op">=</span> <span class="st">"Re_tot"</span>,</span>
 <span>                   line_var <span class="op">=</span> <span class="st">"Case"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span>, </span>
-<span>                      cols <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">e_qs_ps_UC</span><span class="op">)</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                      cols <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">e_qs_ps_UC_orig</span><span class="op">)</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Car <span class="op">=</span> <span class="st">"black"</span>, Lamp <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_discrete_manual</a></span><span class="op">(</span>aesthetics <span class="op">=</span> <span class="st">"linewidth"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Car <span class="op">=</span> <span class="fl">0.5</span>, Lamp <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_linetype_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Car <span class="op">=</span> <span class="st">"solid"</span>, Lamp <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -698,16 +698,6 @@ shown as different lines.</p>
 <span>                                   Re_iinc <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/path_graph_params.html">path_graph_params</a></span><span class="op">$</span><span class="va">iinc_colour</span>,</span>
 <span>                                   Re_macro <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="../reference/path_graph_params.html">path_graph_params</a></span><span class="op">$</span><span class="va">macro_colour</span><span class="op">)</span>, </span>
 <span>                               breaks <span class="op">=</span> <span class="va">rebound_vars</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># ggplot2::scale_size_manual(values = </span></span>
-<span>  <span class="co">#                              c(Re_dempl = 0.2, </span></span>
-<span>  <span class="co">#                                Re_emb = ReboundTools::path_graph_params$emb_size,</span></span>
-<span>  <span class="co">#                                Re_md = ReboundTools::path_graph_params$md_size, </span></span>
-<span>  <span class="co">#                                Re_dsub = ReboundTools::path_graph_params$dsub_size,</span></span>
-<span>  <span class="co">#                                Re_isub = ReboundTools::path_graph_params$isub_size, </span></span>
-<span>  <span class="co">#                                Re_dinc = ReboundTools::path_graph_params$dinc_size,</span></span>
-<span>  <span class="co">#                                Re_iinc = ReboundTools::path_graph_params$iinc_size,</span></span>
-<span>  <span class="co">#                                Re_macro = ReboundTools::path_graph_params$macro_size), </span></span>
-<span>  <span class="co">#                            breaks = rebound_vars) +</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_discrete_manual</a></span><span class="op">(</span>aesthetics <span class="op">=</span> <span class="st">"linewidth"</span>, </span>
 <span>                                 values <span class="op">=</span> </span>
 <span>                                   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Re_dempl <span class="op">=</span> <span class="fl">0.2</span>, </span>
@@ -771,7 +761,7 @@ analyze rebound effects for energy efficiency upgrades.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

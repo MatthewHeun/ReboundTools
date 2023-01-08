@@ -1,11 +1,21 @@
+# ReboundTools 0.1.36 (2023-01-08)
 
+* Switch to "yr" instead of "year" for default time unit.
+
+
+# ReboundTools 0.1.35 (2023-01-02) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7499769.svg)](https://doi.org/10.5281/zenodo.7499769)
+
+* Simplified calculations at the hat stage.
 * Fixed `linewidth`s in a few sensitivity graph examples.
 * Now calculating elasticities 
   (e_qs_ps_C, e_qo_ps_C, e_qs_ps_UC, and e_qo_ps_UC) 
   at every stage
   (orig, star, hat, bar, tilde)
-  for both the approximate utility model and the exact utility model.
+  for both the CPE utility model and the CES utility model.
 * Deleted some old code dealing with linewidths.
+* Additional tests for new features.
+    - Now up to 612 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.34 (2022-12-10) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg)](https://doi.org/10.5281/zenodo.7423306)

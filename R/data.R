@@ -23,7 +23,7 @@
 #' @format A list with `r length(rebound_units)` entries.
 #' \describe{
 #' \item{energy_si}{The SI energy unit ("MJ").}
-#' \item{time_unit}{The time unit ("year").}
+#' \item{time_unit}{The time unit ("yr").}
 #' \item{currency_unit}{The default currency unit ("$").}
 #' \item{currency_unit_latex}{The currency unit in LaTeX format ("\\$").}
 #' \item{unitless}{The identifier for unitless variables ("-").}
@@ -63,15 +63,15 @@
 #' \item{eta_engr_units}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service, in engineering units.}
 #' \item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}
 #' \item{p_s}{Energy service price \[service/MJ\], calculated by `p_E/eta`.}
-#' \item{q_dot_s}{The rate of energy service consumption \[service/year\], calculated by `eta*E_dot_s`.}
-#' \item{E_dot_s}{The rate of final energy consumption by the energy conversion device \[MJ/year\].}
-#' \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device \[MJ/year\], calculated by `E_emb/t_life`.}
-#' \item{C_dot_s}{The expenditure rate of energy consumption by the device \[$/year\], calculated by `p_s*q_dot_s`.}
-#' \item{C_dot_cap}{The capital expenditure rate of the device \[$/year\], calculated by `C_cap/t_own`.}
-#' \item{C_dot_md}{The maintenance and disposal expenditure rate of the device \[$/year\].}
-#' \item{C_dot_o}{The other goods consumption rate \[$/year\], calculated, initially, as a residual of the budget constraint.}
-#' \item{N_dot}{Net income \[$/year\].}
-#' \item{M_dot}{Real income \[$/year\].}
+#' \item{q_dot_s}{The rate of energy service consumption \[service/yr\], calculated by `eta*E_dot_s`.}
+#' \item{E_dot_s}{The rate of final energy consumption by the energy conversion device \[MJ/yr\].}
+#' \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device \[MJ/yr\], calculated by `E_emb/t_life`.}
+#' \item{C_dot_s}{The expenditure rate of energy consumption by the device \[$/yr\], calculated by `p_s*q_dot_s`.}
+#' \item{C_dot_cap}{The capital expenditure rate of the device \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_md}{The maintenance and disposal expenditure rate of the device \[$/yr\].}
+#' \item{C_dot_o}{The other goods consumption rate \[$/yr\], calculated, initially, as a residual of the budget constraint.}
+#' \item{N_dot}{Net income \[$/yr\].}
+#' \item{M_dot}{Real income \[$/yr\].}
 #' }
 #' 
 #' @examples
@@ -180,7 +180,7 @@
 #' \item{o}{Other goods.}
 #' \item{eps}{Elasticity.}
 #' \item{UC}{Uncompensated.}
-#' \item{dot}{Signifies a rate, typically per year.}
+#' \item{dot}{Signifies a rate, typically per yr.}
 #' \item{q}{Quantity of energy service or other goods consumed.}
 #' \item{M}{Income.}
 #' \item{C}{Cost.}
@@ -216,18 +216,18 @@
 #' @format A string list with `r length(orig_vars)` entries.
 #' \describe{
 #' \item{p_E}{The price of energy \[$/MJ\], calculated by `p_E_engr_units / MJ_engr_unit`.}
-#' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/year\] \[lumen-hours/year\].}
+#' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/yr\] \[lumen-hours/yr\].}
 #' \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
-#' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/year\].}
-#' \item{t_own_orig}{The expected ownership duration of the original device \[year\].}
-#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal expenditure rate \[$/year\].}
+#' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/yr\].}
+#' \item{t_own_orig}{The expected ownership duration of the original device \[yr\].}
+#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal expenditure rate \[$/yr\].}
 #' \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_engr_units_orig / MJ_engr_unit`.}
-#' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/year\], calculated by `q_dot_s_orig / eta_orig`.}
-#' \item{C_dot_cap_orig}{The original (pre-EEU) capital expenditure rate \[$/year\], calculated by `C_cap_orig / t_orig`.}
+#' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/yr\], calculated by `q_dot_s_orig / eta_orig`.}
+#' \item{C_dot_cap_orig}{The original (pre-EEU) capital expenditure rate \[$/yr\], calculated by `C_cap_orig / t_orig`.}
 #' \item{p_s_orig}{The original (pre-EEU) energy service price \[$/service\], calculated by `p_E / eta_orig`.}
-#' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device \[$/year\], calculated by `p_E * E_dot_s_orig`.}
-#' \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods \[$/year\], calculated by `M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig`.}
+#' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device \[$/yr\], calculated by `p_E * E_dot_s_orig`.}
+#' \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods \[$/yr\], calculated by `M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig`.}
 #' \item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.}
 #' \item{e_qs_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
@@ -235,9 +235,9 @@
 #' \item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption \[--\].}
 #' \item{rho}{The exponent in the CES utility model, defined as rho = 1/sigma - 1 \[--\].}
 #' \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device \[MJ\].}
-#' \item{t_life_orig}{The expected lifetime of the original (pre-EEU) device \[year\].}
-#' \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand\[MJ/year\], calculated by `E_dot_emb / t_orig`.}
-#' \item{N_dot_orig}{The original (pre-EEU) freed cash rate \[$/year\], exactly `0`.}
+#' \item{t_life_orig}{The expected lifetime of the original (pre-EEU) device \[yr\].}
+#' \item{E_dot_emb_orig}{The original (pre-EEU) rate of embodied energy demand\[MJ/yr\], calculated by `E_dot_emb / t_orig`.}
+#' \item{N_dot_orig}{The original (pre-EEU) freed cash rate \[$/yr\], exactly `0`.}
 #' }
 #' @examples
 #' orig_vars
@@ -251,29 +251,29 @@
 #' @format A string list with `r length(star_vars)` entries.
 #' \describe{
 #' \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
-#' \item{t_own_star}{The expected ownership duration of the upgraded device \[year\].}
-#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate \[$/year\].}
+#' \item{t_own_star}{The expected ownership duration of the upgraded device \[yr\].}
+#' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate \[$/yr\].}
 #' \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device \[MJ\].}
-#' \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device \[year\].}
+#' \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device \[yr\].}
 #' \item{eta_engr_units_star}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], calculated by `eta_tilde_engr_units / MJ_engr_unit`.}
 #' \item{eta_ratio}{The energy service efficiency ratio \[--\], calculated by `eta_star/eta_orig`.}
-#' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/year\], calculated by `(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig`.}
-#' \item{G_dot}{The expected device-level energy gross cost savings rate \[MJ/year\], calculated by `p_E * S_dot_dev`.}
+#' \item{S_dot_dev}{The expected device-level energy savings rate \[MJ/yr\], calculated by `(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig`.}
+#' \item{G_dot}{The expected device-level energy gross cost savings rate \[MJ/yr\], calculated by `p_E * S_dot_dev`.}
 #' \item{p_s_star}{The upgraded (post-EEU) energy service price \[$/service\], calculated by `p_E / eta_star = p_E / eta_tilde`.}
-#' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/year\], same as `q_dot_s_orig`.}
-#' \item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate \[$/year\], calculated by `C_cap_star / t_star`.}
-#' \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate \[MJ/year\], calculated by `E_emb_star / t_star`.}
-#' \item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate \[$/year\], calculated by `p_s_star * q_dot_s_star`.}
-#' \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings \[$/year\], exactly `M_dot_orig`.}
-#' \item{N_dot_star}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
-#' \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate \[$/year\], exactly `C_dot_o_orig`.}
+#' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/yr\], same as `q_dot_s_orig`.}
+#' \item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate \[$/yr\], calculated by `C_cap_star / t_star`.}
+#' \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate \[MJ/yr\], calculated by `E_emb_star / t_star`.}
+#' \item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate \[$/yr\], calculated by `p_s_star * q_dot_s_star`.}
+#' \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings \[$/yr\], exactly `M_dot_orig`.}
+#' \item{N_dot_star}{The freed cash rate \[$/yr\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
+#' \item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate \[$/yr\], exactly `C_dot_o_orig`.}
 #' \item{f_Cs_star}{The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
 #' \item{e_qs_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
 #' \item{e_qs_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qo_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
-#' \item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate \[MJ/year\], calculated by `q_dot_s_star / eta_star`.}
+#' \item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate \[MJ/yr\], calculated by `q_dot_s_star / eta_star`.}
 #' }
 #' @examples
 #' star_vars
@@ -288,20 +288,20 @@
 #' \describe{
 #' \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_star`.}
 #' \item{p_s_hat}{The energy service price after the substitution effect \[$/service\], exactly `p_s_star`.}
-#' \item{C_dot_cap_hat}{The capital expenditure rate after the substitution effect \[$/year\], exactly `C_dot_cap_star`.}
-#' \item{C_dot_md_hat}{The maintenance and disposal expenditure rate after the substitution effect \[$/year\], exactly `C_dot_md_star`.}
-#' \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect \[MJ/year\], exactly `E_dot_emb_star`.}
-#' \item{M_dot_hat}{Real income after the substitution effect \[MJ/year\], exactly `M_dot_star`.}
-#' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/year\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps_C)`.}
-#' \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/year\], calculated by `q_dot_s_hat / eta_hat`.}
-#' \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect \[$/year\], calculated by `C_dot_o_star * eta_ratio^(-e_qo_ps_C)`.}
+#' \item{C_dot_cap_hat}{The capital expenditure rate after the substitution effect \[$/yr\], exactly `C_dot_cap_star`.}
+#' \item{C_dot_md_hat}{The maintenance and disposal expenditure rate after the substitution effect \[$/yr\], exactly `C_dot_md_star`.}
+#' \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect \[MJ/yr\], exactly `E_dot_emb_star`.}
+#' \item{M_dot_hat}{Real income after the substitution effect \[MJ/yr\], exactly `M_dot_star`.}
+#' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/yr\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps_C)`.}
+#' \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/yr\], calculated by `q_dot_s_hat / eta_hat`.}
+#' \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect \[$/yr\], calculated by `C_dot_o_star * eta_ratio^(-e_qo_ps_C)`.}
 #' \item{f_Cs_hat}{The post-substitution effect fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
 #' \item{e_qs_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
 #' \item{e_qs_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qo_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
-#' \item{N_dot_hat}{The freed cash rate \[$/year\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
-#' \item{M_dot_hat_prime}{Modified `M_dot` for the income effect \[$/year\], calculated by `M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_o_hat - C_dot_o_star)`}
+#' \item{N_dot_hat}{The freed cash rate \[$/yr\], calculated by `G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)`.}
+#' \item{M_dot_hat_prime}{Modified `M_dot` for the income effect \[$/yr\], calculated by `M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_o_hat - C_dot_o_star)`}
 #' }
 #' @examples
 #' hat_vars
@@ -316,18 +316,18 @@
 #' \describe{
 #' \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_hat`.}
 #' \item{p_s_bar}{The energy service price after the income effect \[$/service\], exactly `p_s_hat`.}
-#' \item{C_dot_cap_bar}{The capital expenditure rate after the income effect \[$/year\], exactly `C_dot_cap_hat`.}
-#' \item{C_dot_md_bar}{The maintenance and disposal expenditure rate after the income effect \[$/year\], exactly `C_dot_md_hat`.}
-#' \item{E_dot_emb_bar}{The embodied energy rate after the income effect \[MJ/year\], exactly `E_dot_emb_hat`.}
-#' \item{M_dot_bar}{Real income after the income effect \[MJ/year\], exactly `M_dot_hat`.}
-#' \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/year\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)`.}
-#' \item{C_dot_o_bar}{The rate of other goods expenditures after the income effect \[$/year\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qo_M)`.}
+#' \item{C_dot_cap_bar}{The capital expenditure rate after the income effect \[$/yr\], exactly `C_dot_cap_hat`.}
+#' \item{C_dot_md_bar}{The maintenance and disposal expenditure rate after the income effect \[$/yr\], exactly `C_dot_md_hat`.}
+#' \item{E_dot_emb_bar}{The embodied energy rate after the income effect \[MJ/yr\], exactly `E_dot_emb_hat`.}
+#' \item{M_dot_bar}{Real income after the income effect \[MJ/yr\], exactly `M_dot_hat`.}
+#' \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/yr\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)`.}
+#' \item{C_dot_o_bar}{The rate of other goods expenditures after the income effect \[$/yr\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qo_M)`.}
 #' \item{f_Cs_bar}{The post-income effect fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
 #' \item{e_qs_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
 #' \item{e_qs_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qo_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
-#' \item{N_dot_bar}{The freed cash rate after the income effect \[$/year\], exactly `0`.}
+#' \item{N_dot_bar}{The freed cash rate after the income effect \[$/yr\], exactly `0`.}
 #' }
 #' @examples
 #' bar_vars
@@ -342,18 +342,18 @@
 #' \describe{
 #' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_bar`.}
 #' \item{p_s_tilde}{The energy service price after the macro effect \[$/service\], exactly `p_s_bar`.}
-#' \item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect \[$/year\], exactly `C_dot_cap_bar`.}
-#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect \[$/year\], exactly `C_dot_md_bar`.}
-#' \item{E_dot_emb_tilde}{The embodied energy rate after the macro effect \[MJ/year\], exactly `E_dot_emb_bar`.}
-#' \item{M_dot_tilde}{Real income after the macro effect \[MJ/year\], exactly `M_dot_bar`.}
-#' \item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/year\], exactly `q_dot_s_bar`.}
-#' \item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect \[$/year\], exactly `C_dot_o_bar`.}
+#' \item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect \[$/yr\], exactly `C_dot_cap_bar`.}
+#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect \[$/yr\], exactly `C_dot_md_bar`.}
+#' \item{E_dot_emb_tilde}{The embodied energy rate after the macro effect \[MJ/yr\], exactly `E_dot_emb_bar`.}
+#' \item{M_dot_tilde}{Real income after the macro effect \[MJ/yr\], exactly `M_dot_bar`.}
+#' \item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/yr\], exactly `q_dot_s_bar`.}
+#' \item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect \[$/yr\], exactly `C_dot_o_bar`.}
 #' \item{f_Cs_tilde}{The post-macro effect fraction of the energy and other budget spent on the energy service \[--\], calculated by `C_dot_s_star / (C_dot_s_star + C_dot_o_star)`.}
 #' \item{e_qs_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption \[--\], calculated by `e_qs_ps_UC_orig + f_Cs_orig*e_qs_M`.}
 #' \item{e_qo_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption \[--\], calculated by `f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)`.}
 #' \item{e_qs_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) \[--\].}
 #' \item{e_qo_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) \[--\].}
-#' \item{N_dot_tilde}{The freed cash rate after the macro effect \[$/year\], exactly `0`.}
+#' \item{N_dot_tilde}{The freed cash rate after the macro effect \[$/yr\], exactly `0`.}
 #' }
 #' @examples
 #' tilde_vars

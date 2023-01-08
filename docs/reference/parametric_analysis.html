@@ -20,7 +20,7 @@ This function provides a convenient way to do parametric studies."><!-- mathjax 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.36</span>
       </span>
     </div>
 
@@ -142,7 +142,7 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">parametric_analysis</span><span class="op">(</span><span class="va">car_case</span>, <span class="va">params</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 177</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Reference                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "None yet", "None yet", "None yet", "None y…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Case                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Car", "Car", "Car", "Car", "Car", "Car", "…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Original                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ford Fusion", "Ford Fusion", "Ford Fusion"…</span>
@@ -153,7 +153,7 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ I_E                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.389339, 3.389339, 3.389339, 3.389339, 3.3…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ k                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ p_E_engr_units             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.21, 2.21, 1.50, 1.50, 1.50, 1.75, 1.75, 1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_UC                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_UC_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_M                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_M                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ eta_engr_units_orig        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…</span>
@@ -179,8 +179,9 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_s_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1275.17, 1275.17, 865.50, 865.50, 865.50, 1…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_o_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19234.10, 19234.10, 19643.77, 19643.77, 196…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ f_Cs_orig                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.06217529, 0.06217529, 0.04220043, 0.04220…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_C                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.03782471, -0.05779957, -0.0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_C                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.002507678, 0.002507678, 0.002546636, 0.00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_UC_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.05966762, -0.05966762, -0.03965379, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_C_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.03782471, -0.05779957, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_C_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.002507678, 0.002507678, 0.002546636, 0.00…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ sigma                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04033238, 0.04033238, 0.06034621, 0.06034…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ rho                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -23.79397, -23.79397, -15.57105, -15.57105,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ E_dot_emb_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2428.571, 2428.571, 2428.571, 2428.571, 242…</span>
@@ -198,6 +199,11 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ N_dot_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 701.5635, 701.5635, 535.7447, 535.7447, 535…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_o_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19234.10, 19234.10, 19643.77, 19643.77, 196…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ E_dot_s_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43488.5, 43488.5, 43488.5, 43488.5, 43488.5…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ f_Cs_star                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.03796453, 0.03796453, 0.02555582, 0.02555…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_UC_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_UC_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.05966762, -0.05966762, -0.03965379, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_C_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.03782471, -0.05779957, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_C_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.002507678, 0.002507678, 0.002546636, 0.00…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ eta_engr_units_hat         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ eta_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3316969, 0.3316969, 0.3316969, 0.3316969,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ p_s_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.05261905, 0.05261905, 0.03571429, 0.03571…</span>
@@ -209,6 +215,11 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ E_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 44362.00, 44362.00, 44824.26, 44824.26, 448…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 774.2755, 774.2755, 531.0024, 531.0024, 531…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_o_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19214.16, 19214.16, 19623.07, 19623.07, 196…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ f_Cs_hat                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.03873618, 0.03873618, 0.02634715, 0.02634…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_C_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03877006, -0.03877006, -0.05875626, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_C_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.001562322, 0.001562322, 0.001589951, 0.00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_UC_hat             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07750624, -0.07750624, -0.08510341, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_UC_hat             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03717385, -0.03717385, -0.02475720, -0.0…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ N_dot_hat                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 706.2625, 706.2625, 540.6200, 540.6200, 540…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ M_dot_hat_prime            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19988.43, 19988.43, 20154.08, 20154.08, 201…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ eta_engr_units_bar         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42,…</span>
@@ -222,6 +233,11 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ E_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45929.47, 45929.47, 46026.64, 46026.64, 460…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 801.6334, 801.6334, 545.2462, 545.2462, 545…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_o_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19893.06, 19893.06, 20149.45, 20149.45, 201…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ f_Cs_bar                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.03873618, 0.03873618, 0.02634715, 0.02634…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_UC_bar             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07750624, -0.07750624, -0.08510341, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_UC_bar             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03717385, -0.03717385, -0.02475720, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_C_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03877006, -0.03877006, -0.05875626, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_C_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.001562322, 0.001562322, 0.001589951, 0.00…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ N_dot_bar                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ eta_engr_units_tilde       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ eta_tilde                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3316969, 0.3316969, 0.3316969, 0.3316969,…</span>
@@ -234,6 +250,11 @@ I.e., the output of this function will contain only those cases in <code>paramet
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ E_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45929.47, 45929.47, 46026.64, 46026.64, 460…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 801.6334, 801.6334, 545.2462, 545.2462, 545…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ C_dot_o_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19893.06, 19893.06, 20149.45, 20149.45, 201…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ f_Cs_tilde                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.03873618, 0.03873618, 0.02634715, 0.02634…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_UC_tilde           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07750624, -0.07750624, -0.08510341, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_UC_tilde           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03717385, -0.03717385, -0.02475720, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qs_ps_C_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03877006, -0.03877006, -0.05875626, -0.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ e_qo_ps_C_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.001562322, 0.001562322, 0.001589951, 0.00…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ N_dot_tilde                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Delta_eta_engr_units_star  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Delta_eta_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1342583, 0.1342583, 0.1342583, 0.1342583,…</span>
@@ -313,7 +334,7 @@ I.e., the output of this function will contain only those cases in <code>paramet
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

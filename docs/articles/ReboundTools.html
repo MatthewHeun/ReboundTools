@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ReboundTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.36</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Matthew Kuperus
 Heun</h4>
             
-            <h4 data-toc-skip class="date">2022-12-10</h4>
+            <h4 data-toc-skip class="date">2023-01-08</h4>
       
       
       <div class="hidden name"><code>ReboundTools.Rmd</code></div>
@@ -124,7 +124,7 @@ into a data frame as follows:</p>
 <span><span class="co">#&gt; $ I_E                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.389339, 3.389339</span></span>
 <span><span class="co">#&gt; $ k                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
 <span><span class="co">#&gt; $ p_E_engr_units        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.2100000, 0.0001355</span></span>
-<span><span class="co">#&gt; $ e_qs_ps_UC            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC_orig       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
 <span><span class="co">#&gt; $ e_qs_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
 <span><span class="co">#&gt; $ e_qo_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_orig   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25.000000, 8.833333</span></span>
@@ -156,7 +156,7 @@ the example file and in the <code>eeu_data</code> data frame.</p>
 <span><span class="co">#&gt;  [1] "Reference"           "Case"                "Original"           </span></span>
 <span><span class="co">#&gt;  [4] "Upgrade"             "service_unit"        "energy_engr_unit"   </span></span>
 <span><span class="co">#&gt;  [7] "MJ/energy_engr_unit" "I_E"                 "k"                  </span></span>
-<span><span class="co">#&gt; [10] "p_E_engr_units"      "e_qs_ps_UC"          "e_qs_M"             </span></span>
+<span><span class="co">#&gt; [10] "p_E_engr_units"      "e_qs_ps_UC_orig"     "e_qs_M"             </span></span>
 <span><span class="co">#&gt; [13] "e_qo_M"              "eta_engr_units_orig" "eta_engr_units_star"</span></span>
 <span><span class="co">#&gt; [16] "q_dot_s_orig"        "M_dot_orig"          "C_cap_orig"         </span></span>
 <span><span class="co">#&gt; [19] "t_own_orig"          "C_cap_star"          "t_own_star"         </span></span>
@@ -178,7 +178,7 @@ results are added to the right of the data frame.</p>
 <code class="sourceCode R"><span><span class="va">rebound_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="va">eeu_data</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">rebound_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 2</span></span>
-<span><span class="co">#&gt; Columns: 155</span></span>
+<span><span class="co">#&gt; Columns: 176</span></span>
 <span><span class="co">#&gt; $ Reference                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "None yet", "None yet"</span></span>
 <span><span class="co">#&gt; $ Case                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Car", "Lamp"</span></span>
 <span><span class="co">#&gt; $ Original                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ford Fusion", "Incandescent"</span></span>
@@ -189,7 +189,7 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ I_E                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.389339, 3.389339</span></span>
 <span><span class="co">#&gt; $ k                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
 <span><span class="co">#&gt; $ p_E_engr_units             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.2100000, 0.0001355</span></span>
-<span><span class="co">#&gt; $ e_qs_ps_UC                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
 <span><span class="co">#&gt; $ e_qs_M                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
 <span><span class="co">#&gt; $ e_qo_M                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_orig        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25.000000, 8.833333</span></span>
@@ -214,8 +214,9 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ C_dot_s_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1275.17000, 8.90235</span></span>
 <span><span class="co">#&gt; $ C_dot_o_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19234.10, 27391.33</span></span>
 <span><span class="co">#&gt; $ f_Cs_orig                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0621752932, 0.0003249005</span></span>
-<span><span class="co">#&gt; $ e_qs_ps_C                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.39967510</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_C                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025076778, 0.0001298969</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_UC_orig            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0596676153, -0.0001950037</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_C_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.39967510</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_C_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025076778, 0.0001298969</span></span>
 <span><span class="co">#&gt; $ sigma                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04033238, 0.39980500</span></span>
 <span><span class="co">#&gt; $ rho                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -23.793972, -1.501219</span></span>
 <span><span class="co">#&gt; $ E_dot_emb_orig             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2428.571429, 1.222222</span></span>
@@ -233,6 +234,11 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ N_dot_star                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 701.563517, 8.864457</span></span>
 <span><span class="co">#&gt; $ C_dot_o_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19234.10, 27391.33</span></span>
 <span><span class="co">#&gt; $ E_dot_s_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43488.50030, 25.54108</span></span>
+<span><span class="co">#&gt; $ f_Cs_star                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.796453e-02, 3.509519e-05</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_UC_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0596676153, -0.0001950037</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_C_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03782471, -0.39967510</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_C_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025076778, 0.0001298969</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_hat         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
 <span><span class="co">#&gt; $ eta_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.316969e-01, 2.272222e+04</span></span>
 <span><span class="co">#&gt; $ p_s_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.261905e-02, 1.656479e-06</span></span>
@@ -244,6 +250,11 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ E_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 44362.00012, 62.17745</span></span>
 <span><span class="co">#&gt; $ C_dot_s_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 774.27546, 2.34029</span></span>
 <span><span class="co">#&gt; $ C_dot_o_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19214.16, 27386.96</span></span>
+<span><span class="co">#&gt; $ f_Cs_hat                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.873618e-02, 8.544541e-05</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_C_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03877006, -0.39977083</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_C_hat              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0015623224, 0.0000341615</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC_hat             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07750624, -0.39985628</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_UC_hat             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.717385e-02, -5.128391e-05</span></span>
 <span><span class="co">#&gt; $ N_dot_hat                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 706.26254, 11.85516</span></span>
 <span><span class="co">#&gt; $ M_dot_hat_prime            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19988.43, 27389.30</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_bar         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
@@ -257,6 +268,11 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ E_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45929.46762, 62.20436</span></span>
 <span><span class="co">#&gt; $ C_dot_s_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 801.633366, 2.341303</span></span>
 <span><span class="co">#&gt; $ C_dot_o_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19893.06, 27398.82</span></span>
+<span><span class="co">#&gt; $ f_Cs_bar                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.873618e-02, 8.544541e-05</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC_bar             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07750624, -0.39985628</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_UC_bar             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.717385e-02, -5.128391e-05</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_C_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03877006, -0.39977083</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_C_bar              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0015623224, 0.0000341615</span></span>
 <span><span class="co">#&gt; $ N_dot_bar                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_tilde       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8</span></span>
 <span><span class="co">#&gt; $ eta_tilde                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.316969e-01, 2.272222e+04</span></span>
@@ -269,6 +285,11 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ E_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45929.46762, 62.20436</span></span>
 <span><span class="co">#&gt; $ C_dot_s_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 801.633366, 2.341303</span></span>
 <span><span class="co">#&gt; $ C_dot_o_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19893.06, 27398.82</span></span>
+<span><span class="co">#&gt; $ f_Cs_tilde                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.873618e-02, 8.544541e-05</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_UC_tilde           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07750624, -0.39985628</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_UC_tilde           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.717385e-02, -5.128391e-05</span></span>
+<span><span class="co">#&gt; $ e_qs_ps_C_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.03877006, -0.39977083</span></span>
+<span><span class="co">#&gt; $ e_qo_ps_C_tilde            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0015623224, 0.0000341615</span></span>
 <span><span class="co">#&gt; $ N_dot_tilde                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0</span></span>
 <span><span class="co">#&gt; $ Delta_eta_engr_units_star  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17.00000, 72.96667</span></span>
 <span><span class="co">#&gt; $ Delta_eta_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.342583e-01, 2.026852e+04</span></span>
@@ -391,7 +412,7 @@ rebound stages in columns.</p>
 <span>        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,</span>
 <span>        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Sat Dec 10 21:01:56 2022 -->
+<!-- Sun Jan  8 14:58:17 2023 -->
 <table border="1" class="table">
 <tr>
 <th>
@@ -474,7 +495,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{q}_s\)</span> [mile/year]
+<span class="math inline">\(\dot{q}_s\)</span> [mile/yr]
 </td>
 <td align="right">
 14,425
@@ -494,7 +515,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{E}_s\)</span> [MJ/year]
+<span class="math inline">\(\dot{E}_s\)</span> [MJ/yr]
 </td>
 <td align="right">
 73,061
@@ -514,7 +535,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{E}_{emb}\)</span> [MJ/year]
+<span class="math inline">\(\dot{E}_{emb}\)</span> [MJ/yr]
 </td>
 <td align="right">
 2,429
@@ -534,7 +555,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{C}_s\)</span> [$/year]
+<span class="math inline">\(\dot{C}_s\)</span> [$/yr]
 </td>
 <td align="right">
 1,275
@@ -554,7 +575,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{C}_{cap}\)</span> [$/year]
+<span class="math inline">\(\dot{C}_{cap}\)</span> [$/yr]
 </td>
 <td align="right">
 4,031
@@ -574,7 +595,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{C}_{md}\)</span> [$/year]
+<span class="math inline">\(\dot{C}_{md}\)</span> [$/yr]
 </td>
 <td align="right">
 2,861
@@ -594,7 +615,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{C}_o\)</span> [$/year]
+<span class="math inline">\(\dot{C}_o\)</span> [$/yr]
 </td>
 <td align="right">
 19,234
@@ -614,7 +635,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{N}\)</span> [$/year]
+<span class="math inline">\(\dot{N}\)</span> [$/yr]
 </td>
 <td align="right">
 0
@@ -634,7 +655,7 @@ rebound stages in columns.</p>
 </tr>
 <tr>
 <td align="right">
-<span class="math inline">\(\dot{M}\)</span> [$/year]
+<span class="math inline">\(\dot{M}\)</span> [$/yr]
 </td>
 <td align="right">
 27,401
@@ -678,7 +699,7 @@ table. A rebound results table shows rebound terms and values.</p>
 <span>        sanitize.text.function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">}</span>,</span>
 <span>        format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Sat Dec 10 21:01:56 2022 -->
+<!-- Sun Jan  8 14:58:17 2023 -->
 <table border="1" class="table">
 <tr>
 <th>
@@ -805,7 +826,7 @@ analyze rebound effects for energy efficiency upgrades.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

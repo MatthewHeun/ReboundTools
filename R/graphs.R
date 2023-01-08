@@ -119,10 +119,10 @@ path_graphs <- function(.analysis_data,
         ggplot2::ylab(expression(dot(E)[indir] / dot(E)[indir]^degree * " [-]"))
     } else {
       g <- g +
-        # Horizontal axis label E_dot_dir [MJ/year]
-        ggplot2::xlab(expression(dot(E)[dir] * " [MJ/year]")) + 
-        # Vertical axis label is E_dot_indir [MJ/year]
-        ggplot2::ylab(expression(dot(E)[indir] * " [MJ/year]"))
+        # Horizontal axis label E_dot_dir [MJ/yr]
+        ggplot2::xlab(expression(dot(E)[dir] * " [MJ/yr]")) + 
+        # Vertical axis label is E_dot_indir [MJ/yr]
+        ggplot2::ylab(expression(dot(E)[indir] * " [MJ/yr]"))
     }
   }
   if (graph_types == ReboundTools::graph_types$expenditure) {
@@ -134,10 +134,10 @@ path_graphs <- function(.analysis_data,
         ggplot2::ylab(expression(dot(C)[indir] / dot(C)[indir]^degree * " [-]"))
     } else {
       g <- g +
-        # Horizontal axis label C_dot_dir [$/year]
-        ggplot2::xlab(expression(dot(C)[dir] * " [$/year]")) + 
-        # Vertical axis label is C_dot_indir [$/year]
-        ggplot2::ylab(expression(dot(C)[indir] * " [$/year]"))
+        # Horizontal axis label C_dot_dir [$/yr]
+        ggplot2::xlab(expression(dot(C)[dir] * " [$/yr]")) + 
+        # Vertical axis label is C_dot_indir [$/yr]
+        ggplot2::ylab(expression(dot(C)[indir] * " [$/yr]"))
     }
   }
   if (graph_types == ReboundTools::graph_types$consumption) {
