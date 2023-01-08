@@ -8,29 +8,29 @@
 A string list with 24 entries.
 \describe{
 \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
-\item{t_own_star}{The expected ownership duration of the upgraded device [year].}
-\item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate [$/year].}
+\item{t_own_star}{The expected ownership duration of the upgraded device [yr].}
+\item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate [$/yr].}
 \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device [MJ].}
-\item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device [year].}
+\item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device [yr].}
 \item{eta_engr_units_star}{The upgraded (post-EEU) energy service efficiency. This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
 \item{eta_star}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], calculated by \code{eta_tilde_engr_units / MJ_engr_unit}.}
 \item{eta_ratio}{The energy service efficiency ratio [--], calculated by \code{eta_star/eta_orig}.}
-\item{S_dot_dev}{The expected device-level energy savings rate [MJ/year], calculated by \code{(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig}.}
-\item{G_dot}{The expected device-level energy gross cost savings rate [MJ/year], calculated by \code{p_E * S_dot_dev}.}
+\item{S_dot_dev}{The expected device-level energy savings rate [MJ/yr], calculated by \code{(eta_ratio - 1) * (1/eta_ratio) * E_dot_s_orig}.}
+\item{G_dot}{The expected device-level energy gross cost savings rate [MJ/yr], calculated by \code{p_E * S_dot_dev}.}
 \item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
-\item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/year], same as \code{q_dot_s_orig}.}
-\item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate [$/year], calculated by \code{C_cap_star / t_star}.}
-\item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate [MJ/year], calculated by \code{E_emb_star / t_star}.}
-\item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate [$/year], calculated by \code{p_s_star * q_dot_s_star}.}
-\item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/year], exactly \code{M_dot_orig}.}
-\item{N_dot_star}{The freed cash rate [$/year], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
-\item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate [$/year], exactly \code{C_dot_o_orig}.}
+\item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/yr], same as \code{q_dot_s_orig}.}
+\item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate [$/yr], calculated by \code{C_cap_star / t_star}.}
+\item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate [MJ/yr], calculated by \code{E_emb_star / t_star}.}
+\item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate [$/yr], calculated by \code{p_s_star * q_dot_s_star}.}
+\item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/yr], exactly \code{M_dot_orig}.}
+\item{N_dot_star}{The freed cash rate [$/yr], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
+\item{C_dot_o_star}{The upgraded (post-EEU) other goods expenditure rate [$/yr], exactly \code{C_dot_o_orig}.}
 \item{f_Cs_star}{The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
 \item{e_qs_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
 \item{e_qo_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qo_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
-\item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/year], calculated by \code{q_dot_s_star / eta_star}.}
+\item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/yr], calculated by \code{q_dot_s_star / eta_star}.}
 }
 }
 \usage{
