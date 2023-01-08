@@ -1,3 +1,6 @@
+* Switch to "yr" instead of "year" for default time unit.
+
+
 # ReboundTools 0.1.35 (2023-01-02) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7499769.svg)](https://doi.org/10.5281/zenodo.7499769)
 
 * Simplified calculations at the hat stage.
