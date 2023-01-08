@@ -49,7 +49,7 @@ Note the following meanings for the default parameter names:
 \item{o}{Other goods.}
 \item{eps}{Elasticity.}
 \item{UC}{Uncompensated.}
-\item{dot}{Signifies a rate, typically per year.}
+\item{dot}{Signifies a rate, typically per yr.}
 \item{q}{Quantity of energy service or other goods consumed.}
 \item{M}{Income.}
 \item{C}{Cost.}
