@@ -1,4 +1,4 @@
-# ReboundTools 0.1.36 (2023-01-08)
+# ReboundTools 0.1.36 (2023-01-08) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7514249.svg)](https://doi.org/10.5281/zenodo.7514249)
 
 * Switch to "yr" instead of "year" for default time unit.
 
