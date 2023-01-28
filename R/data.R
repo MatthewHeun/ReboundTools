@@ -25,11 +25,11 @@
 #' \item{energy_si}{The SI energy unit ("MJ").}
 #' \item{time_unit}{The time unit ("yr").}
 #' \item{currency_unit}{The default currency unit ("$").}
-#' \item{currency_unit_latex}{The currency unit in LaTeX format ("\\$").}
+#' \item{currency_unit_latex}{The currency unit in LaTeX format ("$" with escaping backslashes).}
 #' \item{unitless}{The identifier for unitless variables ("-").}
 #' \item{unitless_latex}{The identifier for unitless variables in LaTeX format ("--").}
 #' \item{leading_delta_pattern}{A regex pattern that identifies a leading Delta ("^Delta_").}
-#' \item{surround_left}{The left delimiter for units ("\["]).}
+#' \item{surround_left}{The left delimiter for units ("\[").}
 #' \item{surround_right}{The right delimiter for units ("\]").}
 #' }
 #' 
