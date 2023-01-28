@@ -4,7 +4,7 @@ output: html_document
 ---
 
 
-# ReboundTools 0.1.37 (2023-01-28)
+# ReboundTools 0.1.37 (2023-01-28) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7579832.svg)](https://doi.org/10.5281/zenodo.7579832)
 
 * Update to latest versions of GitHub actions.
 * Fix text failures caused by
