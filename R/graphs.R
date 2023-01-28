@@ -456,7 +456,7 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
 
 
   p_data <- .parametric_data %>%
-    tidyr::pivot_longer(cols = tidyselect::all_of(y_var), names_to = y_names_col, values_to = y_vals_col) %>% 
+    tidyr::pivot_longer(cols = tidyselect::all_of(unname(y_var)), names_to = y_names_col, values_to = y_vals_col) %>% 
     # Arrange by the x variable so that all points (for geom_point) are in order.
     dplyr::arrange(.data[[x_var]]) %>% 
     dplyr::mutate(

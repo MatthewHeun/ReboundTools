@@ -120,7 +120,7 @@ stages_table <- function(.analysis_data,
   # Add LaTeX column names, if not NULL.
   if (!is.null(latex_stages)) {
     rebound_table_data <- rebound_table_data %>% 
-      tidyr::pivot_longer(cols = unlist(stages), names_to = .stage, values_to = .value) %>% 
+      tidyr::pivot_longer(cols = unlist(unname(stages)), names_to = .stage, values_to = .value) %>% 
       dplyr::left_join(latex_stages, 
                        # (latex_vars))[[1]] is the name of the 
                        # first column in the latex_vars data frame.
@@ -207,7 +207,7 @@ rebound_results_table <- function(.analysis_data,
   table_data <- .analysis_data %>% 
     dplyr::select(dplyr::any_of(case), 
                   dplyr::any_of(rebound_terms %>% unlist())) %>% 
-    tidyr::pivot_longer(cols = rebound_terms %>% unlist(),
+    tidyr::pivot_longer(cols = unlist(unname(rebound_terms)),
                         names_to = term_name, 
                         values_to = Re_val_colname)
   if (!include_subtotals) {
