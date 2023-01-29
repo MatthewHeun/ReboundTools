@@ -9,7 +9,7 @@ output: html_document
 * Update to latest versions of GitHub actions.
 * Fix text failures caused by
   changes to the renaming policy in tidyr::pivot_longer().
-  Renaming via names vectors is no longer allowed.
+  Renaming via named vectors is no longer allowed.
 * No new tests.
     - Still at 612 tests, all passing.
     - Test coverage remains at 100%.
