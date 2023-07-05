@@ -3,6 +3,9 @@ title: "Release notes for `ReboundTools`"
 output: html_document
 ---
 
+* Fixed a bug in `calc_orig()`.
+  Some calculated parameters were in the argument list.
+
 
 # ReboundTools 0.1.37 (2023-01-28) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7579832.svg)](https://doi.org/10.5281/zenodo.7579832)
 
