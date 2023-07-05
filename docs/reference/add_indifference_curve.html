@@ -14,7 +14,7 @@ The indifference curves are accumulated in rows."><!-- mathjax --><script src="h
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.37</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.38</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,20 +152,20 @@ When <code>qs2_qs0</code> is non-<code>NULL</code>, the curve is generated over 
 <span class="r-in"><span><span class="fu">add_indifference_curve</span><span class="op">(</span>meta <span class="op">=</span> <span class="va">meta</span>, line_name<span class="op">=</span> <span class="st">"Test indifference curve"</span>,</span></span>
 <span class="r-in"><span>                       qs1_qs0 <span class="op">=</span> <span class="fl">2</span>, Co1_Co0 <span class="op">=</span> <span class="fl">3</span>, f_Cs_orig <span class="op">=</span> <span class="fl">0.0001</span>, sigma <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 183 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Case     graph…¹ line_…² colour linew…³ linet…⁴ qs1_qs0 Co1_Co0 f_Cs_…⁵ sigma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Test ca… Consum… Test i… black      0.5 solid         2       3  0.000<span style="text-decoration: underline;">1</span>   0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 173 more rows, 2 more variables: x &lt;dbl&gt;, y &lt;dbl&gt;, and abbreviated</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​graph_type, ²​line_name, ³​linewidth, ⁴​linetype, ⁵​f_Cs_orig</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Case      graph_type  line_name     colour linewidth linetype qs1_qs0 Co1_Co0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Test case Consumption Test indiffe… black        0.5 solid          2       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 173 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: f_Cs_orig &lt;dbl&gt;, sigma &lt;dbl&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
