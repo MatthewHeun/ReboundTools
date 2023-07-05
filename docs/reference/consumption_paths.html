@@ -14,7 +14,7 @@ Each stage of the rebound process is represented in the data frame."><!-- mathja
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.37</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.38</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,19 +123,18 @@ likely created by <code><a href="rebound_analysis.html">rebound_analysis()</a></
 <span class="r-in"><span>  <span class="fu"><a href="rebound_analysis.html">rebound_analysis</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu">consumption_paths</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 14</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Reference Case  Original  Upgrade graph…¹ line_…² colour linew…³ linet…⁴     x</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> None yet  Car   Ford Fus… Ford F… Consum… isub    #9914…       1 solid    1   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> None yet  Lamp  Incandes… LED     Consum… isub    #9914…       1 solid    1   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> None yet  Car   Ford Fus… Ford F… Consum… dsub    #9914…       1 solid    1   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> None yet  Lamp  Incandes… LED     Consum… dsub    #9914…       1 solid    1   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> None yet  Car   Ford Fus… Ford F… Consum… dinc    #E76F…       1 solid    1.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> None yet  Lamp  Incandes… LED     Consum… dinc    #E76F…       1 solid    2.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> None yet  Car   Ford Fus… Ford F… Consum… iinc    #E76F…       1 solid    1.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> None yet  Lamp  Incandes… LED     Consum… iinc    #E76F…       1 solid    2.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more variables: y &lt;dbl&gt;, xend &lt;dbl&gt;, yend &lt;dbl&gt;, end_arrow &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​graph_type, ²​line_name, ³​linewidth,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​linetype</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Reference Case  Original     Upgrade     graph_type line_name colour linewidth</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> None yet  Car   Ford Fusion  Ford Fusio… Consumpti… isub      #9914…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> None yet  Lamp  Incandescent LED         Consumpti… isub      #9914…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> None yet  Car   Ford Fusion  Ford Fusio… Consumpti… dsub      #9914…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> None yet  Lamp  Incandescent LED         Consumpti… dsub      #9914…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> None yet  Car   Ford Fusion  Ford Fusio… Consumpti… dinc      #E76F…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> None yet  Lamp  Incandescent LED         Consumpti… dinc      #E76F…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> None yet  Car   Ford Fusion  Ford Fusio… Consumpti… iinc      #E76F…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> None yet  Lamp  Incandescent LED         Consumpti… iinc      #E76F…         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: linetype &lt;chr&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;, xend &lt;dbl&gt;, yend &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   end_arrow &lt;lgl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

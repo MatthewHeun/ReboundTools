@@ -63,7 +63,6 @@ calc_orig <- function(.eeu_data = NULL,
                             e_qs_ps_UC_orig_val,
                             e_qs_M_val,
                             e_qo_M_val,
-                            sigma_val,
                             E_emb_orig_val,
                             t_life_orig_val) {
     
@@ -122,13 +121,11 @@ calc_orig <- function(.eeu_data = NULL,
                            C_cap_orig_val = C_cap_orig,
                            t_own_orig_val = t_own_orig,
                            p_E_engr_units_val = p_E_engr_units,
-                           p_E_val = p_E,
                            M_dot_orig_val = M_dot_orig,
                            C_dot_md_orig_val = C_dot_md_orig,
                            e_qs_ps_UC_orig_val = e_qs_ps_UC_orig,
                            e_qs_M_val = e_qs_M,
                            e_qo_M_val = e_qo_M,
-                           sigma_val = sigma,
                            E_emb_orig_val = E_emb_orig, 
                            t_life_orig_val = t_life_orig)
 }

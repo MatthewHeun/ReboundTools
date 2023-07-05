@@ -3,13 +3,18 @@ title: "Release notes for `ReboundTools`"
 output: html_document
 ---
 
+# ReboundTools 0.1.38 (2023-07-05) 
 
-# ReboundTools 0.1.37 (2023-01-28)
+* Fixed a bug in `calc_orig()`.
+  Some calculated parameters were in the argument list.
+
+
+# ReboundTools 0.1.37 (2023-01-28) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7579832.svg)](https://doi.org/10.5281/zenodo.7579832)
 
 * Update to latest versions of GitHub actions.
 * Fix text failures caused by
   changes to the renaming policy in tidyr::pivot_longer().
-  Renaming via names vectors is no longer allowed.
+  Renaming via named vectors is no longer allowed.
 * No new tests.
     - Still at 612 tests, all passing.
     - Test coverage remains at 100%.
