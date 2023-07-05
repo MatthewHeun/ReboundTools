@@ -14,7 +14,7 @@ If not all columns are present, an error is thrown."><!-- mathjax --><script src
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.37</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.38</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,17 +92,16 @@ If not all columns are present, an error is thrown.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">load_eeu_data</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 27</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Reference Case  Original   Upgrade servi…¹ energ…² MJ/en…³   I_E     k p_E_e…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> None yet  Car   Ford Fusi… Ford F… mile    gal     1.27<span style="color: #949494;">e</span>+2  3.39     1 2.21<span style="color: #949494;">e</span>+0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> None yet  Lamp  Incandesc… LED     lm-hr   W-hr    3.6 <span style="color: #949494;">e</span><span style="color: #BB0000;">-3</span>  3.39     1 1.35<span style="color: #949494;">e</span><span style="color: #BB0000;">-4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17 more variables: e_qs_ps_UC_orig &lt;dbl&gt;, e_qs_M &lt;dbl&gt;, e_qo_M &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Reference Case  Original     Upgrade            service_unit energy_engr_unit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> None yet  Car   Ford Fusion  Ford Fusion Hybrid mile         gal             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> None yet  Lamp  Incandescent LED                lm-hr        W-hr            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 21 more variables: `MJ/energy_engr_unit` &lt;dbl&gt;, I_E &lt;dbl&gt;, k &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   p_E_engr_units &lt;dbl&gt;, e_qs_ps_UC_orig &lt;dbl&gt;, e_qs_M &lt;dbl&gt;, e_qo_M &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   eta_engr_units_orig &lt;dbl&gt;, eta_engr_units_star &lt;dbl&gt;, q_dot_s_orig &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   M_dot_orig &lt;dbl&gt;, C_cap_orig &lt;dbl&gt;, t_own_orig &lt;dbl&gt;, C_cap_star &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   t_own_star &lt;dbl&gt;, C_dot_md_orig &lt;dbl&gt;, C_dot_md_star &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   E_emb_orig &lt;dbl&gt;, t_life_orig &lt;dbl&gt;, E_emb_star &lt;dbl&gt;, t_life_star &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​service_unit, ²​energy_engr_unit,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​`MJ/energy_engr_unit`, ⁴​p_E_engr_units</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   E_emb_orig &lt;dbl&gt;, t_life_orig &lt;dbl&gt;, E_emb_star &lt;dbl&gt;, t_life_star &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
