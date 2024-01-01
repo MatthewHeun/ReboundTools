@@ -3,6 +3,12 @@ title: "Release notes for `ReboundTools`"
 output: html_document
 ---
 
+
+Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zenodo.4999846), 
+which always resolves to the latest release.
+
+
+
 # ReboundTools 0.1.38 (2023-07-05) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8117284.svg)](https://doi.org/10.5281/zenodo.8117284)
 
 * Fixed a bug in `calc_orig()`.
