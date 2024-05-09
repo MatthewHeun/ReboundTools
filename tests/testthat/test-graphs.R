@@ -468,7 +468,7 @@ test_that("LaTeX legends works as expected.", {
   g <- rebound_terms_graph(rebound_data = df, parameterization = sens_params, 
                            graph_params = Re_graph_params,
                            x_var = "eta_engr_units_tilde",
-                           Re_terms = c("Re_tot", "Re_md")) +
+                           Re_terms = c("Re_tot", "Re_omd")) +
     ggplot2::facet_wrap(facets = "Case", scales = "free_x")
   expect_true(!is.null(g))
 })

@@ -8,7 +8,7 @@
 #'
 #' @param .eeu_data An optional data frame containing EEU base data. 
 #'                  See `ReboundTools::eeu_base_params`.
-#' @param MJ_engr_unit,p_E_engr_units,e_qs_ps_UC_orig,e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
+#' @param r,MJ_engr_unit,p_E_engr_units,e_qs_ps_UC_orig,e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
@@ -20,6 +20,7 @@
 #'   calc_orig()
 calc_orig <- function(.eeu_data = NULL,
                       # Input names
+                      r = ReboundTools::eeu_base_params$reference,
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
                       p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
                       e_qs_ps_UC_orig = ReboundTools::eeu_base_params$e_qs_ps_UC_orig,
@@ -66,6 +67,7 @@ calc_orig <- function(.eeu_data = NULL,
                             E_emb_orig_val,
                             t_life_orig_val) {
     
+    # R_alpha_val <- 
     p_E_val <- p_E_engr_units_val / MJ_engr_unit_val
     eta_orig_val <- eta_engr_units_orig_val / MJ_engr_unit_val
     E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
@@ -1011,7 +1013,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,
                          Re_emb = ReboundTools::rebound_terms$Re_emb, 
                          Re_cap = ReboundTools::rebound_terms$Re_cap, 
-                         Re_md = ReboundTools::rebound_terms$Re_md,
+                         Re_md = ReboundTools::rebound_terms$Re_omd,
                          Re_empl = ReboundTools::rebound_terms$Re_empl,
                          Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
                          Re_isub = ReboundTools::rebound_terms$Re_isub,

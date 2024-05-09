@@ -29,7 +29,7 @@ calc_rebound(
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
   Re_cap = ReboundTools::rebound_terms$Re_cap,
-  Re_md = ReboundTools::rebound_terms$Re_md,
+  Re_md = ReboundTools::rebound_terms$Re_omd,
   Re_empl = ReboundTools::rebound_terms$Re_empl,
   Re_dsub = ReboundTools::rebound_terms$Re_dsub,
   Re_isub = ReboundTools::rebound_terms$Re_isub,
