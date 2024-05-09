@@ -194,6 +194,7 @@
 #' \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 #' \item{original}{A string to identify the original device, e.g., "Incandescent".}
 #' \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}
+#' \item{r}{The discount rate, in units of 1/year. E.g., 3.0% should be entered as 0.03.}
 #' \item{service_unit}{A string to identify the unit of the energy service, e.g., "miles" in "miles/gal" or "lm-hr" in "lm-hr/kW-hr".}
 #' \item{energy_engr_unit}{A string to identify the energy units of the service, e.g., "gal" in "miles/gal" or "kW-hr" in "lm-hr/kW-hr".}
 #' \item{MJ_engr_unit}{A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, `MJ_engr_unit` should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.}
@@ -216,6 +217,8 @@
 #' 
 #' @format A string list with `r length(orig_vars)` entries.
 #' \describe{
+#' \item{R_alpha_orig}{The original discount multiplier for beginning-of-life expenses, such as capital cost.}
+#' \item{R_omega_orig}{The original discount multiplier for end-of-life expenses, such as disposal cost.}
 #' \item{p_E}{The price of energy \[$/MJ\], calculated by `p_E_engr_units / MJ_engr_unit`.}
 #' \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are \[miles/yr\] \[lumen-hours/yr\].}
 #' \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
@@ -251,6 +254,8 @@
 #' 
 #' @format A string list with `r length(star_vars)` entries.
 #' \describe{
+#' \item{R_alpha_star}{The post-emplacement discount multiplier for beginning-of-life expenses, such as capital cost.}
+#' \item{R_omega_star}{The post-emplacement discount multiplier for end-of-life expenses, such as disposal cost.}
 #' \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{t_own_star}{The expected ownership duration of the upgraded device \[yr\].}
 #' \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate \[$/yr\].}
@@ -287,6 +292,8 @@
 #' 
 #' @format A string list with `r length(hat_vars)` entries.
 #' \describe{
+#' \item{R_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as `R_alpha_star`.}
+#' \item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as `R_omega_star`.}
 #' \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_star`.}
 #' \item{p_s_hat}{The energy service price after the substitution effect \[$/service\], exactly `p_s_star`.}
 #' \item{C_dot_cap_hat}{The capital expenditure rate after the substitution effect \[$/yr\], exactly `C_dot_cap_star`.}
@@ -315,6 +322,8 @@
 #' 
 #' @format A string list with `r length(bar_vars)` entries.
 #' \describe{
+#' \item{R_alpha_bar}{The post-income effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as `R_alpha_hat`.}
+#' \item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as `R_omega_hat`.}
 #' \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_hat`.}
 #' \item{p_s_bar}{The energy service price after the income effect \[$/service\], exactly `p_s_hat`.}
 #' \item{C_dot_cap_bar}{The capital expenditure rate after the income effect \[$/yr\], exactly `C_dot_cap_hat`.}
@@ -341,6 +350,8 @@
 #' 
 #' @format A string list with `r length(tilde_vars)` entries.
 #' \describe{
+#' \item{R_alpha_bar}{The post-macro effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as `R_alpha_bar`.}
+#' \item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as `R_omega_bar`.}
 #' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_bar`.}
 #' \item{p_s_tilde}{The energy service price after the macro effect \[$/service\], exactly `p_s_bar`.}
 #' \item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect \[$/yr\], exactly `C_dot_cap_bar`.}

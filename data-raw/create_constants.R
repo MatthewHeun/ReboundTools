@@ -140,7 +140,9 @@ usethis::use_data(eeu_base_params, overwrite = TRUE)
 # Names of calculated variables at the "orig" stage.
 # 
 
-orig_vars <- list(p_E = "p_E",
+orig_vars <- list(R_alpha_orig = "R_alpha_orig", 
+                  R_omega_orig = "R_omega_orig",
+                  p_E = "p_E",
                   q_dot_s_orig = "q_dot_s_orig",
                   M_dot_orig = "M_dot_orig", 
                   C_cap_orig = "C_cap_orig", 
@@ -162,8 +164,6 @@ orig_vars <- list(p_E = "p_E",
                   rho = "rho",
                   E_emb_orig = "E_emb_orig",
                   t_life_orig = "t_life_orig",
-                  R_alpha_orig = "R_alpha_orig", 
-                  R_omega_orig = "R_omega_orig",
                   E_dot_emb_orig = "E_dot_emb_orig", 
                   N_dot_orig = "N_dot_orig")
 usethis::use_data(orig_vars, overwrite = TRUE)
@@ -173,13 +173,13 @@ usethis::use_data(orig_vars, overwrite = TRUE)
 # Names of calculated variables at the "star" stage.
 # 
 
-star_vars <- list(C_cap_star	= "C_cap_star", 
+star_vars <- list(R_alpha_star = "R_alpha_star", 
+                  R_omega_star = "R_omega_star",
+                  C_cap_star	= "C_cap_star", 
                   t_own_star = "t_own_star", 
                   C_dot_md_star = "C_dot_md_star", 
                   E_emb_star = "E_emb_star",
                   t_life_star = "t_life_star",
-                  R_alpha_star = "R_alpha_star", 
-                  R_omega_star = "R_omega_star",
                   eta_engr_units_star = "eta_engr_units_star", 
                   eta_star = "eta_star",
                   eta_ratio = "eta_ratio", 
@@ -206,7 +206,9 @@ usethis::use_data(star_vars, overwrite = TRUE)
 # Names of calculated variables at the "hat" stage.
 # 
 
-hat_vars <- list(eta_engr_units_hat = "eta_engr_units_hat", 
+hat_vars <- list(R_alpha_hat = "R_alpha_hat", 
+                 R_omega_hat = "R_omega_hat",
+                 eta_engr_units_hat = "eta_engr_units_hat", 
                  eta_hat = "eta_hat",
                  p_s_hat = "p_s_hat",
                  C_dot_cap_hat = "C_dot_cap_hat",
@@ -231,7 +233,9 @@ usethis::use_data(hat_vars, overwrite = TRUE)
 # Names of calculated variables at the "bar" stage.
 # 
 
-bar_vars <- list(eta_engr_units_bar = "eta_engr_units_bar",
+bar_vars <- list(R_alpha_bar = "R_alpha_bar", 
+                 R_omega_bar = "R_omega_bar",
+                 eta_engr_units_bar = "eta_engr_units_bar",
                  eta_bar = "eta_bar",
                  p_s_bar = "p_s_bar",
                  C_dot_cap_bar = "C_dot_cap_bar",
@@ -255,7 +259,9 @@ usethis::use_data(bar_vars, overwrite = TRUE)
 # Names of calculated variables at the "tilde" stage.
 # 
 
-tilde_vars <- list(eta_engr_units_tilde = "eta_engr_units_tilde",
+tilde_vars <- list(R_alpha_tilde = "R_alpha_tilde", 
+                   R_omega_tilde = "R_omega_tilde",
+                   eta_engr_units_tilde = "eta_engr_units_tilde",
                    eta_tilde = "eta_tilde",
                    p_s_tilde = "p_s_tilde",
                    C_dot_cap_tilde = "C_dot_cap_tilde",
