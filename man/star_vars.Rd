@@ -5,7 +5,7 @@
 \alias{star_vars}
 \title{EEU star data}
 \format{
-A string list with 24 entries.
+A string list with 26 entries.
 \describe{
 \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{t_own_star}{The expected ownership duration of the upgraded device [yr].}

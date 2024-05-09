@@ -5,7 +5,7 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 24 entries.
+A string list with 26 entries.
 \describe{
 \item{p_E}{The price of energy [$/MJ], calculated by \code{p_E_engr_units / MJ_engr_unit}.}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/yr] [lumen-hours/yr].}

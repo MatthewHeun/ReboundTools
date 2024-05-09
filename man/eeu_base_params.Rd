@@ -5,7 +5,7 @@
 \alias{eeu_base_params}
 \title{EEU base parameters}
 \format{
-A string list with 13 entries.
+A string list with 14 entries.
 \describe{
 \item{reference}{A string for a reference for this case, e.g. bibliographic entry for a paper in which this case appears.}
 \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
