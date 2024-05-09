@@ -24,6 +24,7 @@
 #' \describe{
 #' \item{energy_si}{The SI energy unit ("MJ").}
 #' \item{time_unit}{The time unit ("yr").}
+#' \item{inverse_time_unit}{Inverse time unit ("1/yr").}
 #' \item{currency_unit}{The default currency unit ("$").}
 #' \item{currency_unit_latex}{The currency unit in LaTeX format ("$" with escaping backslashes).}
 #' \item{unitless}{The identifier for unitless variables ("-").}

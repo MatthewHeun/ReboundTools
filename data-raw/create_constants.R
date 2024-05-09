@@ -20,6 +20,7 @@ usethis::use_data(eeu_data_table, overwrite = TRUE)
 
 rebound_units <- list(energy_si = "MJ", 
                       time_unit = "yr", 
+                      inverse_time_unit = "1/yr",
                       currency_unit = "$",
                       currency_unit_latex = "\\$",
                       unitless = "-",
