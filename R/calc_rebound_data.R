@@ -70,12 +70,18 @@ calc_orig <- function(.eeu_data = NULL,
                             E_emb_orig_val,
                             t_life_orig_val) {
     
-    r_term_orig <- (1 + r_val)^t_life_orig_val
-    phi_t_life_orig_val <- r_term_orig / (r_term_orig - 1)
-    phi_1_year_orig_val <- (1 + r) / r
-    gamma_t_life_orig_val <- 1 / (r_term - 1)
-    R_alpha_orig_val <- (phi_t_life_orig_val / phi_1_year_orig_val) * t_life_orig_val # / 1 year
-    R_omega_orig_val <- (gamma_t_life_orig_val / phi_1_year_orig_val) * t_life_orig_val # / 1 year
+    if (r_val == 0) {
+      # Address the degenerate case.
+      R_alpha_orig_val <- 1
+      R_omega_orig_val <- 1
+    } else {
+      r_term_orig <- (1 + r_val)^t_life_orig_val
+      phi_t_life_orig_val <- r_term_orig / (r_term_orig - 1)
+      phi_1_year_orig_val <- (1 + r_val) / r_val
+      gamma_t_life_orig_val <- 1 / (r_term_orig - 1)
+      R_alpha_orig_val <- (phi_t_life_orig_val / phi_1_year_orig_val) * t_life_orig_val # / 1 year
+      R_omega_orig_val <- (gamma_t_life_orig_val / phi_1_year_orig_val) * t_life_orig_val # / 1 year
+    }
       
     p_E_val <- p_E_engr_units_val / MJ_engr_unit_val
     eta_orig_val <- eta_engr_units_orig_val / MJ_engr_unit_val
@@ -110,7 +116,9 @@ calc_orig <- function(.eeu_data = NULL,
          rho_val,
          E_dot_emb_orig_val,
          N_dot_orig_val) %>% 
-      magrittr::set_names(c(p_E, 
+      magrittr::set_names(c(R_alpha_orig, 
+                            R_omega_orig, 
+                            p_E, 
                             eta_orig,
                             E_dot_s_orig,
                             C_dot_cap_orig,
@@ -152,7 +160,7 @@ calc_orig <- function(.eeu_data = NULL,
 #'
 #' @param .orig_data An optional data frame containing EEU base data and original data, 
 #'                   likely calculated by `calc_orig()`.
-#' @param MJ_engr_unit,p_E See `ReboundTools::eeu_base_params`.
+#' @param r,MJ_engr_unit,p_E See `ReboundTools::eeu_base_params`.
 #' @param eta_orig,E_dot_s_orig,q_dot_s_orig,M_dot_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig,e_qs_ps_UC_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig See `ReboundTools::orig_vars`.
 #' @param eta_engr_units_star,E_emb_star,t_life_star,C_cap_star,t_own_star,C_dot_md_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,f_Cs_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,E_dot_s_star See `ReboundTools::star_vars`.
 #' 
@@ -166,6 +174,7 @@ calc_orig <- function(.eeu_data = NULL,
 #'   calc_star()
 calc_star <- function(.orig_data = NULL,
                       # Input names
+                      r = ReboundTools::eeu_base_params$r,
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
                       
                       p_E = ReboundTools::orig_vars$p_E,
@@ -189,6 +198,8 @@ calc_star <- function(.orig_data = NULL,
                       C_dot_md_star = ReboundTools::star_vars$C_dot_md_star,
                       
                       # Output names
+                      R_alpha_star = ReboundTools::star_vars$R_alpha_star, 
+                      R_omega_star = ReboundTools::star_vars$R_omega_star,
                       eta_star = ReboundTools::star_vars$eta_star,
                       eta_ratio = ReboundTools::star_vars$eta_ratio,
                       S_dot_dev = ReboundTools::star_vars$S_dot_dev,
@@ -208,8 +219,8 @@ calc_star <- function(.orig_data = NULL,
                       e_qo_ps_C_star = ReboundTools::star_vars$e_qo_ps_C_star,
                       E_dot_s_star = ReboundTools::star_vars$E_dot_s_star) {
   
-  
-  calc_star_fun <- function(MJ_engr_unit_val, 
+  calc_star_fun <- function(r_val, 
+                            MJ_engr_unit_val, 
                             eta_orig_val,
                             eta_engr_units_star_val,
                             E_dot_s_orig_val, 
@@ -228,6 +239,19 @@ calc_star <- function(.orig_data = NULL,
                             e_qo_ps_UC_orig_val, 
                             e_qs_ps_C_orig_val,
                             e_qo_ps_C_orig_val) {
+    
+    if (r_val == 0) {
+      # Address the degenerate case.
+      R_alpha_star_val <- 1
+      R_omega_star_val <- 1
+    } else {
+      r_term_star <- (1 + r_val)^t_life_star_val
+      phi_t_life_star_val <- r_term_star / (r_term_star - 1)
+      phi_1_year_star_val <- (1 + r_val) / r_val
+      gamma_t_life_star_val <- 1 / (r_term_star - 1)
+      R_alpha_star_val <- (phi_t_life_star_val / phi_1_year_star_val) * t_life_star_val # / 1 year
+      R_omega_star_val <- (gamma_t_life_star_val / phi_1_year_star_val) * t_life_star_val # / 1 year
+    }
     
     eta_star_val <- eta_engr_units_star_val / MJ_engr_unit_val
     eta_ratio_val <- eta_star_val / eta_orig_val
@@ -250,7 +274,9 @@ calc_star <- function(.orig_data = NULL,
     e_qs_ps_C_star_val <- e_qs_ps_C_orig_val
     e_qo_ps_C_star_val <- e_qo_ps_C_orig_val
 
-    list(eta_star_val,
+    list(R_alpha_star_val, 
+         R_omega_star_val, 
+         eta_star_val,
          eta_ratio_val,
          S_dot_dev_val,
          G_dot_val, 
@@ -268,7 +294,9 @@ calc_star <- function(.orig_data = NULL,
          e_qo_ps_UC_star_val,
          e_qs_ps_C_star_val,
          e_qo_ps_C_star_val) %>% 
-      magrittr::set_names(c(eta_star,
+      magrittr::set_names(c(R_alpha_star, 
+                            R_omega_star, 
+                            eta_star,
                             eta_ratio,
                             S_dot_dev,
                             G_dot,
@@ -289,6 +317,7 @@ calc_star <- function(.orig_data = NULL,
   }
   
   matsindf::matsindf_apply(.orig_data, FUN = calc_star_fun, 
+                           r_val = r, 
                            MJ_engr_unit_val = MJ_engr_unit,
                            eta_orig_val = eta_orig,
                            eta_engr_units_star_val = eta_engr_units_star,

@@ -22,7 +22,7 @@
 #'        These arguments describe string prefixes that identify variables for unit determination. 
 #' @param S_dot_dev,G_dot,f_Cs See `ReboundTools::star_vars`. 
 #'        These arguments describe string patterns that identify variables for unit determination. 
-#' @param elasticities,time,cost_rate,cost,energy_rate,rebound Other arguments to identify variable names.
+#' @param elasticities,time,cost_rate,cost,energy_rate,rebound,R_alpha,R_omega Other arguments to identify variable names.
 #' @param trim_stage_pattern A regex that trims the rebound stage from a variable name. 
 #'        Default is "_\[^_\]*$", which trims all characters beyond the last "_" in a string.
 #'        
@@ -85,7 +85,10 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
                               cost_rate = "C_dot",
                               cost = "C_",
                               energy_rate = "E_dot", 
-                              rebound = "Re_"
+                              rebound = "Re_", 
+                              R_alpha = "R_alpha", 
+                              R_omega = "R_omega"
+                              
 ) {
   
   if (escape_latex) {
@@ -185,6 +188,12 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
     
     else if (v == r) {
       out <- inverse_time_unit
+    }
+    
+    # R_alpha and R_omega values
+    
+    else if (startsWith(v, R_alpha) | startsWith(v, R_omega)) {
+      out <- unitless
     }
     
     # No valid variable found.
