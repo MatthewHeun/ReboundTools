@@ -20,7 +20,7 @@
 #'   calc_orig()
 calc_orig <- function(.eeu_data = NULL,
                       # Input names
-                      r = ReboundTools::eeu_base_params$reference,
+                      r = ReboundTools::eeu_base_params$r,
                       MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
                       p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
                       e_qs_ps_UC_orig = ReboundTools::eeu_base_params$e_qs_ps_UC_orig,
@@ -37,6 +37,8 @@ calc_orig <- function(.eeu_data = NULL,
                       t_life_orig = ReboundTools::orig_vars$t_life_orig,
 
                       # Output names
+                      R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig, 
+                      R_omega_orig = ReboundTools::orig_vars$R_omega_orig,
                       p_E = ReboundTools::orig_vars$p_E,
                       eta_orig = ReboundTools::orig_vars$eta_orig,
                       E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
@@ -53,7 +55,8 @@ calc_orig <- function(.eeu_data = NULL,
                       E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                       N_dot_orig = ReboundTools::orig_vars$N_dot_orig) {
   
-  calc_orig_fun <- function(MJ_engr_unit_val,
+  calc_orig_fun <- function(r_val, 
+                            MJ_engr_unit_val,
                             eta_engr_units_orig_val,
                             q_dot_s_orig_val,
                             C_cap_orig_val,
@@ -67,7 +70,13 @@ calc_orig <- function(.eeu_data = NULL,
                             E_emb_orig_val,
                             t_life_orig_val) {
     
-    # R_alpha_val <- 
+    r_term_orig <- (1 + r_val)^t_life_orig_val
+    phi_t_life_orig_val <- r_term_orig / (r_term_orig - 1)
+    phi_1_year_orig_val <- (1 + r) / r
+    gamma_t_life_orig_val <- 1 / (r_term - 1)
+    R_alpha_orig_val <- (phi_t_life_orig_val / phi_1_year_orig_val) * t_life_orig_val # / 1 year
+    R_omega_orig_val <- (gamma_t_life_orig_val / phi_1_year_orig_val) * t_life_orig_val # / 1 year
+      
     p_E_val <- p_E_engr_units_val / MJ_engr_unit_val
     eta_orig_val <- eta_engr_units_orig_val / MJ_engr_unit_val
     E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
@@ -84,7 +93,9 @@ calc_orig <- function(.eeu_data = NULL,
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
     N_dot_orig_val <- 0
     
-    list(p_E_val,
+    list(R_alpha_orig_val, 
+         R_omega_orig_val, 
+         p_E_val,
          eta_orig_val,
          E_dot_s_orig_val,
          C_dot_cap_orig_val,
@@ -117,6 +128,7 @@ calc_orig <- function(.eeu_data = NULL,
   }
   
   matsindf::matsindf_apply(.eeu_data, FUN = calc_orig_fun, 
+                           r_val = r, 
                            MJ_engr_unit_val = MJ_engr_unit,
                            q_dot_s_orig_val = q_dot_s_orig,
                            eta_engr_units_orig_val = eta_engr_units_orig,
