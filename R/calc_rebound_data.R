@@ -9,7 +9,7 @@
 #' @param .eeu_data An optional data frame containing EEU base data. 
 #'                  See `ReboundTools::eeu_base_params`.
 #' @param r,MJ_engr_unit,p_E_engr_units,e_qs_ps_UC_orig,e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
-#' @param R_alpha_orig,R_omega_orig,eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_md_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
+#' @param R_alpha_orig,R_omega_orig,eta_engr_units_orig,q_dot_s_orig,C_cap_orig,t_own_orig,M_dot_orig,C_dot_om_orig,C_dot_d_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
 #' 
@@ -32,7 +32,8 @@ calc_orig <- function(.eeu_data = NULL,
                       C_cap_orig = ReboundTools::orig_vars$C_cap_orig, 
                       t_own_orig = ReboundTools::orig_vars$t_own_orig,
                       M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
-                      C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                      C_dot_om_orig = ReboundTools::orig_vars$C_dot_om_orig,
+                      C_d_orig = ReboundTools::orig_vars$C_d_orig,
                       E_emb_orig = ReboundTools::orig_vars$E_emb_orig,
                       t_life_orig = ReboundTools::orig_vars$t_life_orig,
 
@@ -45,6 +46,8 @@ calc_orig <- function(.eeu_data = NULL,
                       C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                       p_s_orig = ReboundTools::orig_vars$p_s_orig,
                       C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
+                      C_dot_d_orig = ReboundTools::orig_vars$C_dot_d_orig,
+                      C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
                       C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                       f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
                       e_qo_ps_UC_orig = ReboundTools::orig_vars$e_qo_ps_UC_orig,
@@ -63,7 +66,8 @@ calc_orig <- function(.eeu_data = NULL,
                             t_own_orig_val,
                             p_E_engr_units_val,
                             M_dot_orig_val,
-                            C_dot_md_orig_val,
+                            C_dot_om_orig_val,
+                            C_d_orig_val,
                             e_qs_ps_UC_orig_val,
                             e_qs_M_val,
                             e_qo_M_val,
@@ -86,10 +90,12 @@ calc_orig <- function(.eeu_data = NULL,
     p_E_val <- p_E_engr_units_val / MJ_engr_unit_val
     eta_orig_val <- eta_engr_units_orig_val / MJ_engr_unit_val
     E_dot_s_orig_val <- q_dot_s_orig_val / eta_orig_val
-    C_dot_cap_orig_val <- C_cap_orig_val / t_own_orig_val
+    C_dot_cap_orig_val <- C_cap_orig_val / t_life_orig_val
     p_s_orig_val <- p_E_val / eta_orig_val
     C_dot_s_orig_val <- p_E_val * E_dot_s_orig_val
-    C_dot_o_orig_val <- M_dot_orig_val - C_dot_s_orig_val - C_dot_cap_orig_val - C_dot_md_orig_val
+    C_dot_d_orig_val <- C_d_orig_val / t_life_orig_val
+    C_dot_omd_orig_val <- C_dot_om_orig_val + R_omega_orig_val * C_dot_d_orig_val
+    C_dot_o_orig_val <- M_dot_orig_val - C_dot_s_orig_val - R_alpha_orig_val * C_dot_cap_orig_val - C_dot_omd_orig_val
     f_Cs_orig_val <- C_dot_s_orig_val / (C_dot_s_orig_val + C_dot_o_orig_val)
     sigma_val <- (f_Cs_orig_val + e_qs_ps_UC_orig_val) / (f_Cs_orig_val - 1)
     rho_val <- (sigma_val - 1)/sigma_val
@@ -97,7 +103,12 @@ calc_orig <- function(.eeu_data = NULL,
     e_qs_ps_C_orig_val <- e_qs_ps_UC_orig_val + f_Cs_orig_val*e_qs_M_val
     e_qo_ps_C_orig_val <- f_Cs_orig_val*(f_Cs_orig_val + e_qs_ps_UC_orig_val) / (f_Cs_orig_val - 1)
     E_dot_emb_orig_val <- E_emb_orig_val / t_life_orig_val
-    N_dot_orig_val <- 0
+    N_dot_orig_val <- M_dot_orig_val - (R_alpha_orig_val*C_dot_cap_orig_val + 
+                                        C_dot_s_orig_val + 
+                                        C_dot_omd_orig_val +
+                                        C_dot_o_orig_val)
+    # Check the N_dot_orig_val is zero
+    assertthat::assert_that(N_dot_orig_val == 0)
     
     list(R_alpha_orig_val, 
          R_omega_orig_val, 
@@ -107,6 +118,8 @@ calc_orig <- function(.eeu_data = NULL,
          C_dot_cap_orig_val,
          p_s_orig_val,
          C_dot_s_orig_val,
+         C_dot_d_orig_val,
+         C_dot_omd_orig_val,
          C_dot_o_orig_val,
          f_Cs_orig_val,
          e_qo_ps_UC_orig_val,
@@ -124,6 +137,8 @@ calc_orig <- function(.eeu_data = NULL,
                             C_dot_cap_orig,
                             p_s_orig,
                             C_dot_s_orig,
+                            C_dot_d_orig,
+                            C_dot_omd_orig,
                             C_dot_o_orig,
                             f_Cs_orig,
                             e_qo_ps_UC_orig,
@@ -144,7 +159,8 @@ calc_orig <- function(.eeu_data = NULL,
                            t_own_orig_val = t_own_orig,
                            p_E_engr_units_val = p_E_engr_units,
                            M_dot_orig_val = M_dot_orig,
-                           C_dot_md_orig_val = C_dot_md_orig,
+                           C_dot_om_orig_val = C_dot_om_orig,
+                           C_d_orig_val = C_d_orig,
                            e_qs_ps_UC_orig_val = e_qs_ps_UC_orig,
                            e_qs_M_val = e_qs_M,
                            e_qo_M_val = e_qo_M,
@@ -1134,8 +1150,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                           Delta_E_dot_s_bar_val, 
                           e_qo_M_val,
                           Delta_C_dot_o_bar_val, 
-                          k_val
-                          ) {
+                          k_val) {
     # Direct emplacement rebound
     Re_dempl_val <- 0
     

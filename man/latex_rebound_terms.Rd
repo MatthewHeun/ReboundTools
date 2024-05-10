@@ -5,7 +5,7 @@
 \alias{latex_rebound_terms}
 \title{LaTeX version of rebound terms}
 \format{
-A string list with 16 entries.
+A string list with 18 entries.
 \describe{
 \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 \item{Re_emb}{Indirect embodied energy effect rebound.}

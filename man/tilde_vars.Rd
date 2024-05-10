@@ -5,7 +5,7 @@
 \alias{tilde_vars}
 \title{EEU tilde data}
 \format{
-A string list with 19 entries.
+A string list with 22 entries.
 \describe{
 \item{R_alpha_bar}{The post-macro effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_bar}.}
 \item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_bar}.}

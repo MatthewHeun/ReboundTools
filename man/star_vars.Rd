@@ -5,7 +5,7 @@
 \alias{star_vars}
 \title{EEU star data}
 \format{
-A string list with 26 entries.
+A string list with 28 entries.
 \describe{
 \item{R_alpha_star}{The post-emplacement discount multiplier for beginning-of-life expenses, such as capital cost.}
 \item{R_omega_star}{The post-emplacement discount multiplier for end-of-life expenses, such as disposal cost.}

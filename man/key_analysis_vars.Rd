@@ -5,7 +5,7 @@
 \alias{key_analysis_vars}
 \title{Key analysis variables}
 \format{
-A string list with 12 entries.
+A string list with 17 entries.
 \describe{
 \item{eta_engr_units}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service, in engineering units.}
 \item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}

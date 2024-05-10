@@ -5,7 +5,7 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 26 entries.
+A string list with 28 entries.
 \describe{
 \item{R_alpha_orig}{The original discount multiplier for beginning-of-life expenses, such as capital cost.}
 \item{R_omega_orig}{The original discount multiplier for end-of-life expenses, such as disposal cost.}

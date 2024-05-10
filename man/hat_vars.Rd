@@ -5,7 +5,7 @@
 \alias{hat_vars}
 \title{EEU hat data}
 \format{
-A string list with 20 entries.
+A string list with 24 entries.
 \describe{
 \item{R_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_star}.}
 \item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_star}.}
