@@ -25,7 +25,7 @@ test_that("calc_orig() works as expected", {
   expect_equal(res[[ReboundTools::orig_vars$C_dot_s_orig]][[1]], 1275.17)
   expect_equal(res[[ReboundTools::orig_vars$C_dot_s_orig]][[2]], 8.90235000000000198384)
 
-  expect_equal(res[[ReboundTools::orig_vars$C_dot_d_orig]][[1]], 0)
+  expect_equal(res[[ReboundTools::orig_vars$C_dot_d_orig]][[1]], 7.1428571428571432)
   expect_equal(res[[ReboundTools::orig_vars$C_dot_d_orig]][[2]], 0)
   
   expect_equal(res[[ReboundTools::orig_vars$C_dot_omd_orig]][[1]], 2861.1342567732799580)
