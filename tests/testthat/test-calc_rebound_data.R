@@ -68,6 +68,12 @@ test_that("calc_star() works as expected", {
     calc_orig() %>% 
     calc_star()
   
+  expect_equal(res[[ReboundTools::star_vars$R_alpha_star]][[1]], 1.20327063)
+  expect_equal(res[[ReboundTools::star_vars$R_alpha_star]][[2]], 1.1381602583025194)
+  
+  expect_equal(res[[ReboundTools::star_vars$R_omega_star]][[1]], 0.7955036367662678)
+  expect_equal(res[[ReboundTools::star_vars$R_omega_star]][[2]], 0.8468981223801895)
+  
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[2]], 22722.222222222)
 
@@ -86,7 +92,7 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$q_dot_s_star]][[1]], 14425)
   expect_equal(res[[ReboundTools::star_vars$q_dot_s_star]][[2]], 580350)
   
-  expect_equal(res[[ReboundTools::star_vars$C_dot_cap_star]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_cap_star]][[1]], 1965.9571428571430260)
   expect_equal(res[[ReboundTools::star_vars$C_dot_cap_star]][[2]], 0.121)
   
   expect_equal(res[[ReboundTools::star_vars$E_dot_emb_star]][[1]], 2857.14285714285733774886)
@@ -98,26 +104,32 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$M_dot_star]][[1]], 27401.27769302945671370253)
   expect_equal(res[[ReboundTools::star_vars$M_dot_star]][[2]], 27401.27769302945671370253)
   
-  expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[1]], 701.56351693471481212327)
-  expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[2]], 8.86445673050801730142)
+  expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[1]], 662.0856640579992245)
+  expect_equal(res[[ReboundTools::star_vars$N_dot_star]][[2]], 8.8600754979050258)
 
-  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[1]], 19234.10200768475260701962)
-  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[2]], 27391.33089146313432138413)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_d_star]][[1]], 7.2142857142857144)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_d_star]][[2]], 0)
   
-  expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[1]], 0.037964526)
-  expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[2]], 3.509519e-05)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_omd_star]][[1]], 2780.4071113133309154)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_omd_star]][[2]], 0)
+
+  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[1]], 20834.1766716994206945)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[2]], 27391.3185624263605860)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C_star]][[1]], -0.03782470681932551676)
+  expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[1]], 0.0351513224420219)
+  expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[2]], 0.0000350952062932)
+  
+  expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C_star]][[1]], -0.0423243925324916)
   expect_equal(res[[ReboundTools::star_vars$e_qs_ps_C_star]][[2]], -0.39967509922119587307)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C_star]][[1]], 0.00250767784092693468)
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C_star]][[2]], 0.00012989685076052724)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C_star]][[1]], 0.0025904933262359)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_C_star]][[2]], 0.0001298969097041)
   
   expect_equal(res[[ReboundTools::star_vars$e_qs_ps_UC_star]][[1]], -0.10)
   expect_equal(res[[ReboundTools::star_vars$e_qs_ps_UC_star]][[2]], -0.4)
   
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC_star]][[1]], -0.059667615)
-  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC_star]][[2]], -0.00019500367)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC_star]][[1]], -0.0550851141412725)
+  expect_equal(res[[ReboundTools::star_vars$e_qo_ps_UC_star]][[2]], -0.0001950037566824)
   
   expect_equal(res[[ReboundTools::star_vars$E_dot_s_star]][[1]], 43488.50030357143259607255)
   expect_equal(res[[ReboundTools::star_vars$E_dot_s_star]][[2]], 25.54107579462102606271)
