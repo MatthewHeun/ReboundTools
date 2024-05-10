@@ -5,8 +5,10 @@
 \alias{hat_vars}
 \title{EEU hat data}
 \format{
-A string list with 18 entries.
+A string list with 20 entries.
 \describe{
+\item{R_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_star}.}
+\item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_star}.}
 \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_star}.}
 \item{p_s_hat}{The energy service price after the substitution effect [$/service], exactly \code{p_s_star}.}
 \item{C_dot_cap_hat}{The capital expenditure rate after the substitution effect [$/yr], exactly \code{C_dot_cap_star}.}

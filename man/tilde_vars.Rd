@@ -5,8 +5,10 @@
 \alias{tilde_vars}
 \title{EEU tilde data}
 \format{
-A string list with 17 entries.
+A string list with 19 entries.
 \describe{
+\item{R_alpha_bar}{The post-macro effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_bar}.}
+\item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_bar}.}
 \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_bar}.}
 \item{p_s_tilde}{The energy service price after the macro effect [$/service], exactly \code{p_s_bar}.}
 \item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect [$/yr], exactly \code{C_dot_cap_bar}.}

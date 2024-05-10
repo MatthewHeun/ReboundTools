@@ -5,8 +5,10 @@
 \alias{bar_vars}
 \title{EEU bar data}
 \format{
-A string list with 17 entries.
+A string list with 19 entries.
 \describe{
+\item{R_alpha_bar}{The post-income effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_hat}.}
+\item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_hat}.}
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}
 \item{C_dot_cap_bar}{The capital expenditure rate after the income effect [$/yr], exactly \code{C_dot_cap_hat}.}

@@ -5,7 +5,7 @@
 \alias{rebound_units}
 \title{Information for rebound units}
 \format{
-A list with 9 entries.
+A list with 10 entries.
 \describe{
 \item{energy_si}{The SI energy unit ("MJ").}
 \item{time_unit}{The time unit ("yr").}

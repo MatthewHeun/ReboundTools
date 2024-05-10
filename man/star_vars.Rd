@@ -7,6 +7,8 @@
 \format{
 A string list with 26 entries.
 \describe{
+\item{R_alpha_star}{The post-emplacement discount multiplier for beginning-of-life expenses, such as capital cost.}
+\item{R_omega_star}{The post-emplacement discount multiplier for end-of-life expenses, such as disposal cost.}
 \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{t_own_star}{The expected ownership duration of the upgraded device [yr].}
 \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate [$/yr].}

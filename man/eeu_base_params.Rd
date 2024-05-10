@@ -11,6 +11,7 @@ A string list with 14 entries.
 \item{case}{A string to identify the case being analyzed, e.g., "Lamp".}
 \item{original}{A string to identify the original device, e.g., "Incandescent".}
 \item{upgrade}{A string to identify the upgraded device, e.g., "LED".}
+\item{r}{The discount rate, in units of 1/year. E.g., 3.0\% should be entered as 0.03.}
 \item{service_unit}{A string to identify the unit of the energy service, e.g., "miles" in "miles/gal" or "lm-hr" in "lm-hr/kW-hr".}
 \item{energy_engr_unit}{A string to identify the energy units of the service, e.g., "gal" in "miles/gal" or "kW-hr" in "lm-hr/kW-hr".}
 \item{MJ_engr_unit}{A unit conversion factor: the number of MJ per engineering unit for the service efficiency. For example, if the service efficiency is given in miles/gallon, \code{MJ_engr_unit} should be 126.6 MJ/gallon. This unit conversion number is used in calculating the actual service efficiency.}
