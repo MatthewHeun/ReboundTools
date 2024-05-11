@@ -584,32 +584,32 @@ test_that("calc_tilde() works as expected with exact hat", {
   expect_equal(res[[ReboundTools::tilde_vars$M_dot_tilde]][[1]], 27401.27769302945671370253)
   expect_equal(res[[ReboundTools::tilde_vars$M_dot_tilde]][[2]], 27401.27769302945671370253)
   
-  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[1]], 15234.66124970508462865837)
-  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[2]], 1413421.25553010916337370872)
+  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[1]], 15205.1943111712353129)
+  expect_equal(res[[ReboundTools::tilde_vars$q_dot_s_tilde]][[2]], 1413421.0317824832163751)
   
-  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[1]], 45929.46761751178564736620)
-  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[2]], 62.20435843408792919718)
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[1]], 45840.6306701721186982)
+  expect_equal(res[[ReboundTools::tilde_vars$E_dot_s_tilde]][[2]], 62.2043485870041479)
   
-  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[1]], 801.63336575829134744708)
-  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[2]], 2.34130293586974636000)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[1]], 800.0828435163912218)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[2]], 2.3413025648719619)
   
-  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[1]], 19893.06192076593652018346)
-  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[2]], 27398.81538822091170004569)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[1]], 21455.2092541457932384)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[2]], 27398.7986730733282457)
   
-  expect_equal(res[[ReboundTools::tilde_vars$f_Cs_tilde]][[1]], 0.038736176)
-  expect_equal(res[[ReboundTools::tilde_vars$f_Cs_tilde]][[2]], 8.5445405e-05)
+  expect_equal(res[[ReboundTools::tilde_vars$f_Cs_tilde]][[1]], 0.0359502288267174)
+  expect_equal(res[[ReboundTools::tilde_vars$f_Cs_tilde]][[2]], 0.0000854454437645)
   
-  expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_C_tilde]][[1]], -0.038770062)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_C_tilde]][[1]], -0.0433001854343803)
   expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_C_tilde]][[2]], -0.39977083)
   
-  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_C_tilde]][[1]], 0.00156232236)
-  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_C_tilde]][[2]], 0.0000341615)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_C_tilde]][[1]], 0.0016147004243471)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_C_tilde]][[2]], 0.0000341615153233)
   
-  expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_UC_tilde]][[1]], -0.077506239)
-  expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_UC_tilde]][[2]], -0.39985628)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_UC_tilde]][[1]], -0.0792504142610977)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qs_ps_UC_tilde]][[2]], -0.3998562801717589)
   
-  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_UC_tilde]][[1]], -0.037173854)
-  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_UC_tilde]][[2]], -0.000051283905)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_UC_tilde]][[1]], -0.0343355284023703)
+  expect_equal(res[[ReboundTools::tilde_vars$e_qo_ps_UC_tilde]][[2]], -0.0000512839284412)
   
   expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[1]], 0)
   expect_equal(res[[ReboundTools::tilde_vars$N_dot_tilde]][[2]], 0)
