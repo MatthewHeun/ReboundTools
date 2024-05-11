@@ -160,6 +160,9 @@ test_that("calc_hat(use_sub_approx = TRUE) works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$C_dot_d_hat]][[1]], 7.2142857142857144)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_d_hat]][[2]], 0)
   
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_om_hat]][[1]], 2774.6681207909455225)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_om_hat]][[2]], 0)
+  
   expect_equal(res[[ReboundTools::hat_vars$C_dot_omd_hat]][[1]], 2780.4071113133309154)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_omd_hat]][[2]], 0)
 
@@ -228,6 +231,9 @@ test_that("calc_hat(use_sub_approx = FALSE) works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$C_dot_d_hat]][[1]], 7.2142857142857144)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_d_hat]][[2]], 0)
   
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_om_hat]][[1]], 2774.6681207909455225)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_om_hat]][[2]], 0)
+
   expect_equal(res[[ReboundTools::hat_vars$C_dot_omd_hat]][[1]], 2780.4071113133309154)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_omd_hat]][[2]], 0)
   
@@ -288,12 +294,21 @@ test_that("calc_bar() works as expected with approximated hat", {
   expect_equal(res[[ReboundTools::bar_vars$p_s_bar]][[1]], 0.05261904761904762085)
   expect_equal(res[[ReboundTools::bar_vars$p_s_bar]][[2]], 0.00000165647921760391)
 
-  expect_equal(res[[ReboundTools::bar_vars$C_dot_cap_bar]][[1]], 3931.91428571428605209803)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_cap_bar]][[1]], 1965.9571428571430260)
   expect_equal(res[[ReboundTools::bar_vars$C_dot_cap_bar]][[2]], 0.121)
 
-  expect_equal(res[[ReboundTools::bar_vars$C_dot_md_bar]][[1]], 2774.66812079094552245806)
-  expect_equal(res[[ReboundTools::bar_vars$C_dot_md_bar]][[2]], 0)
+  expect_equal(res[[ReboundTools::bar_vars$C_d_bar]][[1]], 101)
+  expect_equal(res[[ReboundTools::bar_vars$C_d_bar]][[2]], 0)
   
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_d_hat]][[1]], 7.2142857142857144)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_d_hat]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_om_hat]][[1]], 2774.6681207909455225)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_om_hat]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_omd_hat]][[1]], 2780.4071113133309154)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_omd_hat]][[2]], 0)
+
   expect_equal(res[[ReboundTools::bar_vars$E_dot_emb_bar]][[1]], 2857.14285714285733774886)
   expect_equal(res[[ReboundTools::bar_vars$E_dot_emb_bar]][[2]], 0.65)
   

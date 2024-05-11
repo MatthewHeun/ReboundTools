@@ -47,7 +47,6 @@ calc_hat(
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
-  C_dot_md_hat = ReboundTools::hat_vars$C_dot_md_hat,
   E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
   M_dot_hat = ReboundTools::hat_vars$M_dot_hat,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
