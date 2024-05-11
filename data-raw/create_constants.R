@@ -39,12 +39,12 @@ latex_key_analysis_vars <- data.frame(
   var_name = c("t_life", "R_alpha", "R_omega",
                "eta_engr_units", "eta", "p_s", "q_dot_s", "E_dot_s",
                "E_dot_emb", "C_dot_s", "C_dot_cap",
-               "C_dot_om", "C_dot_d", "C_dot_omd", 
+               "C_dot_om", "C_d", "C_dot_d", "C_dot_omd", 
                "C_dot_o", "N_dot", "M_dot"), 
   latex_var_name = c("$\\t_{li\\!f\\!e}$", "R_\\alpha", "$R_\\omega$",
                      "$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
-                     "$\\dot{C}_{O\\!M}$", "$\\dot{C}_d$", "$\\dot{C}_{O\\!M\\!d}$", 
+                     "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$", "$\\dot{C}_{O\\!M\\!d}$", 
                      "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
 )
 usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
@@ -93,7 +93,7 @@ usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 rebound_segments <- list(dempl = "dempl",
                          emb = "emb",
                          cap = "cap",
-                         md = "md", 
+                         omd = "OMd", 
                          isub = "isub", 
                          dsub = "dsub",
                          dinc = "dinc", 
