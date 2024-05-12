@@ -1148,7 +1148,6 @@ calc_Deltas <- function(.tilde_data = NULL,
   
   for (i in 1:nrow(subtraction_df)) {
     col_name <- subtraction_df[[i, "var_name"]]
-print(col_name)
     minuend_name <- subtraction_df[[i, "minuend"]]
     subtrahend_name <- subtraction_df[[i, "subtrahend"]]
     .tilde_data[[col_name]] <- .tilde_data[[minuend_name]] - .tilde_data[[subtrahend_name]]
@@ -1208,7 +1207,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
                          Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-                         Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                         Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                          Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
@@ -1218,7 +1217,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,
                          Re_emb = ReboundTools::rebound_terms$Re_emb, 
                          Re_cap = ReboundTools::rebound_terms$Re_cap, 
-                         Re_md = ReboundTools::rebound_terms$Re_omd,
+                         Re_omd = ReboundTools::rebound_terms$Re_omd,
                          Re_empl = ReboundTools::rebound_terms$Re_empl,
                          Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
                          Re_isub = ReboundTools::rebound_terms$Re_isub,
@@ -1235,7 +1234,7 @@ calc_rebound <- function(.Deltas_data = NULL,
   rebound_fun <- function(Delta_E_dot_emb_star_val, 
                           S_dot_dev_val,
                           Delta_C_dot_cap_star_val,
-                          Delta_C_dot_md_star_val, 
+                          Delta_C_dot_omd_star_val, 
                           N_dot_star_val,
                           I_E_val,
                           eta_ratio_val, 
@@ -1263,10 +1262,10 @@ calc_rebound <- function(.Deltas_data = NULL,
     
     # Indirect maintenance and disposal effect energy rebound
     # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
-    Re_md_val <- Delta_C_dot_md_star_val * I_E_val / S_dot_dev_val
+    Re_omd_val <- Delta_C_dot_omd_star_val * I_E_val / S_dot_dev_val
     
     # Emplacement effect rebound
-    Re_empl_val <- Re_emb_val + Re_md_val
+    Re_empl_val <- Re_emb_val + Re_omd_val
     
     # Indirect substitution effect rebound
     Re_isub_val <- Delta_C_dot_o_hat_val * I_E_val / S_dot_dev_val    
@@ -1296,10 +1295,10 @@ calc_rebound <- function(.Deltas_data = NULL,
     Re_dir_val <- Re_dsub_val + Re_dinc_val
     
     # Indirect rebound
-    Re_indir_val <- Re_emb_val + Re_md_val + Re_isub_val + Re_iinc_val + Re_macro_val
+    Re_indir_val <- Re_emb_val + Re_omd_val + Re_isub_val + Re_iinc_val + Re_macro_val
     
     # Total rebound
-    Re_tot_val <- Re_dempl_val + Re_emb_val + Re_md_val + Re_dsub_val + Re_isub_val + Re_dinc_val + Re_iinc_val + Re_macro_val
+    Re_tot_val <- Re_dempl_val + Re_emb_val + Re_omd_val + Re_dsub_val + Re_isub_val + Re_dinc_val + Re_iinc_val + Re_macro_val
     
     # Double-check the sums
     Re_tot_check <- Re_dir_val + Re_indir_val
@@ -1308,7 +1307,7 @@ calc_rebound <- function(.Deltas_data = NULL,
     list(Re_dempl_val,
          Re_emb_val,
          Re_cap_val,
-         Re_md_val,
+         Re_omd_val,
          Re_empl_val,
          Re_isub_val,
          Re_dsub_val,
@@ -1324,7 +1323,7 @@ calc_rebound <- function(.Deltas_data = NULL,
       magrittr::set_names(c(Re_dempl,
                             Re_emb,
                             Re_cap,
-                            Re_md,
+                            Re_omd,
                             Re_empl,
                             Re_isub,
                             Re_dsub,
@@ -1343,7 +1342,7 @@ calc_rebound <- function(.Deltas_data = NULL,
                            Delta_E_dot_emb_star_val = Delta_E_dot_emb_star,
                            S_dot_dev_val = S_dot_dev,
                            Delta_C_dot_cap_star_val = Delta_C_dot_cap_star,
-                           Delta_C_dot_md_star_val = Delta_C_dot_md_star,
+                           Delta_C_dot_omd_star_val = Delta_C_dot_omd_star,
                            N_dot_star_val = N_dot_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 

@@ -630,14 +630,14 @@ test_that("calc_Deltas() works as expected with approximated hat", {
   expect_equal(res[[ReboundTools::Delta_vars$Delta_p_s_star]][[1]], -0.03578095238095238551)
   expect_equal(res[[ReboundTools::Delta_vars$Delta_p_s_star]][[2]], -0.00001368314342390552)
 
-  expect_equal(res[[ReboundTools::Delta_vars$Delta_C_dot_o_bar]][[1]], 683.96658856147041660734)
-  expect_equal(res[[ReboundTools::Delta_vars$Delta_C_dot_o_bar]][[2]], 15.40265280491803423502)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_C_dot_o_bar]][[1]], 649.0134898147225613)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_C_dot_o_bar]][[2]], 15.3982719831765280)
 
   expect_equal(res[[ReboundTools::Delta_vars$Delta_E_dot_s_star]][[1]], -29572.18020642857300117612)
   expect_equal(res[[ReboundTools::Delta_vars$Delta_E_dot_s_star]][[2]], -210.97892420537903035438)
   
-  expect_equal(res[[ReboundTools::Delta_vars$Delta_N_dot_bar]][[1]], -711.52848127756499252428)
-  expect_equal(res[[ReboundTools::Delta_vars$Delta_N_dot_bar]][[2]], -15.40396900329500873283)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_N_dot_bar]][[1]], -673.2157500798405181)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_N_dot_bar]][[2]], -15.3995878077923898)
 })
 
 
@@ -657,44 +657,43 @@ test_that("calc_rebound() works as expected with approximated hat", {
   expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[1]], 0.01449238526141076108)
   expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[2]], -0.00271222457113862387)
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_omd]][[1]], -0.00991009287347477917)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_omd]][[1]], -0.0099035804024098)
   expect_equal(res[[ReboundTools::rebound_terms$Re_omd]][[2]], 0)
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[1]], 0.00458229238793599059)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[1]], 0.0045888048590010)
   expect_equal(res[[ReboundTools::rebound_terms$Re_empl]][[2]], -0.00271222457113862300)
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[1]], 0.02914268260298064420)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[1]], 0.0326477575332916)
   expect_equal(res[[ReboundTools::rebound_terms$Re_dsub]][[2]], 0.17361124407606612352)
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[1]], -0.00286607552946620226)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[1]], -0.0032069594362479)
   expect_equal(res[[ReboundTools::rebound_terms$Re_isub]][[2]], -0.12720385929734354113)
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[1]], 0.02627660707351444150)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[1]], 0.0294407980970437)
   expect_equal(res[[ReboundTools::rebound_terms$Re_sub]][[2]], 0.04640738494919466328)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[1]], 0.05340000775333344357)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[2]], 0.00016574692562592113)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[1]], 0.0468908612016695)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dinc]][[2]], 0.0001656998580358)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[1]], 0.07839106417780371261)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[2]], 0.24744089023629611823)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[1]], 0.0743850050326747)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_iinc]][[2]], 0.2473705120641465)
 
   expect_equal(res[[ReboundTools::rebound_terms$Re_micro]], 
                res[[ReboundTools::rebound_terms$Re_empl]] + 
                  res[[ReboundTools::rebound_terms$Re_sub]] + 
                  res[[ReboundTools::rebound_terms$Re_inc]])
   
-  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[1]], 0.08040789)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[2]], 0.142405928)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[1]], 0.0758832385241722)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_macro]][[2]], 0.1423355435751714)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_dir]][[1]], 0.08254269035631409124)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_dir]][[2]], 0.17377699112626410205)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dir]][[1]], 0.0795386187349611)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_dir]][[2]], 0.1737769437178102)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[1]], 0.16051517)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[2]], 0.259930734)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[1]], 0.1516500889795999)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_indir]][[2]], 0.2597899716800708)
 
-  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[1]], 0.24305786)
-  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[2]], 0.43370773)
-  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[1]], 0.2311887077145610)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_tot]][[2]], 0.4335669153978811)
 })
   
 
