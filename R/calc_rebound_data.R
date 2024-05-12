@@ -401,7 +401,7 @@ calc_star <- function(.orig_data = NULL,
 #' @param p_E See `ReboundTools::eeu_base_params`.
 #' @param e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param e_qo_ps_C,e_qs_ps_C,C_dot_cap_orig,C_dot_md_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
-#' @param R_alpha_star,R_omega_star,eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param t_life_star,R_alpha_star,R_omega_star,eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,C_dot_md_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param R_alpha_hat,R_omega_hat,eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,C_dot_md_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,f_Cs_hat,e_qs_ps_UC_hat,e_qo_ps_UC_hat,e_qs_ps_C_hat,e_qo_ps_C_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
 #'      
 #' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
@@ -416,6 +416,7 @@ calc_star <- function(.orig_data = NULL,
 calc_hat <- function(.star_data = NULL,
                      use_sub_approx = FALSE,
                      # Input names
+                     t_life_star = ReboundTools::star_vars$t_life_star,
                      R_alpha_star = ReboundTools::star_vars$R_alpha_star, 
                      R_omega_star = ReboundTools::star_vars$R_omega_star,
                      
@@ -455,6 +456,7 @@ calc_hat <- function(.star_data = NULL,
                      G_dot = ReboundTools::star_vars$G_dot,
                      
                      # Output names
+                     t_life_hat = ReboundTools::hat_vars$t_life_hat, 
                      R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat, 
                      R_omega_hat = ReboundTools::hat_vars$R_omega_hat,
                      eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
@@ -479,7 +481,8 @@ calc_hat <- function(.star_data = NULL,
                      N_dot_hat = ReboundTools::hat_vars$N_dot_hat, 
                      M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime) {
   
-  calc_hat_fun <- function(R_alpha_star_val, 
+  calc_hat_fun <- function(t_life_star_val,
+                           R_alpha_star_val, 
                            R_omega_star_val, 
                            e_qs_M_val, 
                            e_qo_M_val, 
@@ -511,6 +514,7 @@ calc_hat <- function(.star_data = NULL,
                            C_dot_cap_orig_val,
                            C_dot_md_orig_val,
                            G_dot_val) {
+    t_life_hat_val <- t_life_star_val
     R_alpha_hat_val <- R_alpha_star_val
     R_omega_hat_val <- R_omega_star_val
     eta_engr_units_hat_val <- eta_engr_units_star_val
@@ -595,7 +599,8 @@ calc_hat <- function(.star_data = NULL,
     M_dot_hat_prime_val <- M_dot_hat_val - R_alpha_star_val * C_dot_cap_star_val -
                            C_dot_omd_star_val - N_dot_hat_val
     
-    list(R_alpha_hat_val, 
+    list(t_life_hat_val, 
+         R_alpha_hat_val, 
          R_omega_hat_val, 
          eta_engr_units_hat_val,
          eta_hat_val,
@@ -618,7 +623,8 @@ calc_hat <- function(.star_data = NULL,
          e_qo_ps_UC_hat_val,
          N_dot_hat_val,
          M_dot_hat_prime_val) %>%
-      magrittr::set_names(c(R_alpha_hat, 
+      magrittr::set_names(c(t_life_hat, 
+                            R_alpha_hat, 
                             R_omega_hat, 
                             eta_engr_units_hat,
                             eta_hat,
@@ -644,6 +650,7 @@ calc_hat <- function(.star_data = NULL,
   }
   
   matsindf::matsindf_apply(.star_data, FUN = calc_hat_fun, 
+                           t_life_star_val = t_life_star,
                            R_alpha_star_val = R_alpha_star,
                            R_omega_star_val = R_omega_star,
                            e_qs_M_val = e_qs_M, 
@@ -705,6 +712,7 @@ calc_hat <- function(.star_data = NULL,
 calc_bar <- function(.hat_data = NULL,
                      tol = 1e-6,
                      # Input names
+                     t_life_hat = ReboundTools::hat_vars$t_life_hat,
                      R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat, 
                      R_omega_hat = ReboundTools::hat_vars$R_omega_hat,
                      
@@ -734,6 +742,7 @@ calc_bar <- function(.hat_data = NULL,
                      E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
                      
                      # Output names
+                     t_life_bar = ReboundTools::bar_vars$t_life_bar,
                      R_alpha_bar = ReboundTools::bar_vars$R_alpha_bar, 
                      R_omega_bar = ReboundTools::bar_vars$R_omega_bar,
                      eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
@@ -758,7 +767,8 @@ calc_bar <- function(.hat_data = NULL,
                      N_dot_bar = ReboundTools::bar_vars$N_dot_bar
 ) {
   
-  calc_bar_fun <- function(R_alpha_hat_val, 
+  calc_bar_fun <- function(t_life_hat_val, 
+                           R_alpha_hat_val, 
                            R_omega_hat_val,
                            eta_engr_units_hat_val,
                            eta_hat_val, 
@@ -783,6 +793,7 @@ calc_bar <- function(.hat_data = NULL,
                            e_qs_ps_C_hat_val, 
                            e_qo_ps_C_hat_val) {
     
+    t_life_bar_val <- t_life_hat_val
     R_alpha_bar_val <- R_alpha_hat_val
     R_omega_bar_val <- R_omega_hat_val
     eta_engr_units_bar_val <- eta_engr_units_hat_val
@@ -815,7 +826,8 @@ calc_bar <- function(.hat_data = NULL,
     e_qs_ps_C_bar_val <- e_qs_ps_C_hat_val
     e_qo_ps_C_bar_val <- e_qo_ps_C_hat_val
     
-    list(R_alpha_bar_val, 
+    list(t_life_bar_val, 
+         R_alpha_bar_val, 
          R_omega_bar_val, 
          eta_engr_units_bar_val,
          eta_bar_val,
@@ -837,7 +849,8 @@ calc_bar <- function(.hat_data = NULL,
          e_qs_ps_C_bar_val,
          e_qo_ps_C_bar_val,
          N_dot_bar_val) %>% 
-      magrittr::set_names(c(R_alpha_bar,
+      magrittr::set_names(c(t_life_bar, 
+                            R_alpha_bar,
                             R_omega_bar,
                             eta_engr_units_bar,
                             eta_bar,
@@ -862,6 +875,7 @@ calc_bar <- function(.hat_data = NULL,
   }
   
   matsindf::matsindf_apply(.hat_data, FUN = calc_bar_fun,
+                           t_life_hat_val = t_life_hat,
                            R_alpha_hat_val = R_alpha_hat, 
                            R_omega_hat_val = R_omega_hat,
                            eta_engr_units_hat_val = eta_engr_units_hat,
@@ -913,6 +927,7 @@ calc_bar <- function(.hat_data = NULL,
 #'   calc_tilde()
 calc_tilde <- function(.bar_data = NULL,
                        # Input names
+                       t_life_bar = ReboundTools::bar_vars$t_life_bar,
                        R_alpha_bar = ReboundTools::bar_vars$R_alpha_bar, 
                        R_omega_bar = ReboundTools::bar_vars$R_omega_bar,
                        eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
@@ -936,6 +951,7 @@ calc_tilde <- function(.bar_data = NULL,
                        N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
                        
                        # Output names
+                       t_life_tilde = ReboundTools::tilde_vars$t_life_tilde,
                        R_alpha_tilde = ReboundTools::tilde_vars$R_alpha_tilde, 
                        R_omega_tilde = ReboundTools::tilde_vars$R_omega_tilde,
                        eta_engr_units_tilde = ReboundTools::tilde_vars$eta_engr_units_tilde,
@@ -960,7 +976,8 @@ calc_tilde <- function(.bar_data = NULL,
                        N_dot_tilde = ReboundTools::tilde_vars$N_dot_tilde
 ) {
   
-  calc_tilde_fun <- function(R_alpha_bar_val, 
+  calc_tilde_fun <- function(t_life_bar_val, 
+                             R_alpha_bar_val, 
                              R_omega_bar_val,
                              eta_engr_units_bar_val,
                              eta_bar_val, 
@@ -982,6 +999,7 @@ calc_tilde <- function(.bar_data = NULL,
                              e_qo_ps_C_bar_val,
                              N_dot_bar_val) {
     
+    t_life_tilde_val <- t_life_bar_val
     R_alpha_tilde_val <- R_alpha_bar_val
     R_omega_tilde_val <- R_omega_bar_val
     eta_engr_units_tilde_val <- eta_engr_units_bar_val
@@ -1008,7 +1026,8 @@ calc_tilde <- function(.bar_data = NULL,
     
     N_dot_tilde_val <- N_dot_bar_val
     
-    list(R_alpha_tilde_val, 
+    list(t_life_tilde_val, 
+         R_alpha_tilde_val, 
          R_omega_tilde_val, 
          eta_engr_units_tilde_val,
          eta_tilde_val,
@@ -1030,7 +1049,8 @@ calc_tilde <- function(.bar_data = NULL,
          e_qs_ps_C_tilde_val,
          e_qo_ps_C_tilde_val,
          N_dot_tilde_val) %>% 
-      magrittr::set_names(c(R_alpha_tilde, 
+      magrittr::set_names(c(t_life_tilde, 
+                            R_alpha_tilde, 
                             R_omega_tilde,
                             eta_engr_units_tilde,
                             eta_tilde,
@@ -1055,6 +1075,7 @@ calc_tilde <- function(.bar_data = NULL,
   }
   
   matsindf::matsindf_apply(.bar_data, FUN = calc_tilde_fun,
+                           t_life_bar_val = t_life_bar,
                            R_alpha_bar_val = R_alpha_bar, 
                            R_omega_bar_val = R_omega_bar,
                            eta_engr_units_bar_val = eta_engr_units_bar, 
@@ -1127,6 +1148,7 @@ calc_Deltas <- function(.tilde_data = NULL,
   
   for (i in 1:nrow(subtraction_df)) {
     col_name <- subtraction_df[[i, "var_name"]]
+print(col_name)
     minuend_name <- subtraction_df[[i, "minuend"]]
     subtrahend_name <- subtraction_df[[i, "subtrahend"]]
     .tilde_data[[col_name]] <- .tilde_data[[minuend_name]] - .tilde_data[[subtrahend_name]]

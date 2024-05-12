@@ -7,6 +7,7 @@
 calc_bar(
   .hat_data = NULL,
   tol = 1e-06,
+  t_life_hat = ReboundTools::hat_vars$t_life_hat,
   R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat,
   R_omega_hat = ReboundTools::hat_vars$R_omega_hat,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
@@ -31,6 +32,7 @@ calc_bar(
   e_qs_ps_C_hat = ReboundTools::hat_vars$e_qs_ps_C_hat,
   e_qo_ps_C_hat = ReboundTools::hat_vars$e_qo_ps_C_hat,
   E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
+  t_life_bar = ReboundTools::bar_vars$t_life_bar,
   R_alpha_bar = ReboundTools::bar_vars$R_alpha_bar,
   R_omega_bar = ReboundTools::bar_vars$R_omega_bar,
   eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,

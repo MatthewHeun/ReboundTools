@@ -7,6 +7,7 @@
 calc_hat(
   .star_data = NULL,
   use_sub_approx = FALSE,
+  t_life_star = ReboundTools::star_vars$t_life_star,
   R_alpha_star = ReboundTools::star_vars$R_alpha_star,
   R_omega_star = ReboundTools::star_vars$R_omega_star,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
@@ -41,6 +42,7 @@ calc_hat(
   N_dot_star = ReboundTools::star_vars$N_dot_star,
   E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
+  t_life_hat = ReboundTools::hat_vars$t_life_hat,
   R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat,
   R_omega_hat = ReboundTools::hat_vars$R_omega_hat,
   eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
@@ -76,7 +78,7 @@ calculating the substitution effect.
 Default is \code{FALSE}.
 See details.}
 
-\item{R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, C_dot_md_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+\item{t_life_star, R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, C_dot_md_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
 \item{e_qs_M, e_qo_M}{See \code{ReboundTools::eeu_base_params}.}
 

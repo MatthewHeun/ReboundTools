@@ -214,7 +214,8 @@ usethis::use_data(star_vars, overwrite = TRUE)
 # Names of calculated variables at the "hat" stage.
 # 
 
-hat_vars <- list(R_alpha_hat = "R_alpha_hat", 
+hat_vars <- list(t_life_hat = "t_life_hat", 
+                 R_alpha_hat = "R_alpha_hat", 
                  R_omega_hat = "R_omega_hat",
                  eta_engr_units_hat = "eta_engr_units_hat", 
                  eta_hat = "eta_hat",
@@ -245,7 +246,8 @@ usethis::use_data(hat_vars, overwrite = TRUE)
 # Names of calculated variables at the "bar" stage.
 # 
 
-bar_vars <- list(R_alpha_bar = "R_alpha_bar", 
+bar_vars <- list(t_life_bar = "t_life_bar", 
+                 R_alpha_bar = "R_alpha_bar", 
                  R_omega_bar = "R_omega_bar",
                  eta_engr_units_bar = "eta_engr_units_bar",
                  eta_bar = "eta_bar",
@@ -274,7 +276,8 @@ usethis::use_data(bar_vars, overwrite = TRUE)
 # Names of calculated variables at the "tilde" stage.
 # 
 
-tilde_vars <- list(R_alpha_tilde = "R_alpha_tilde", 
+tilde_vars <- list(t_life_tilde = "t_life_tilde", 
+                   R_alpha_tilde = "R_alpha_tilde", 
                    R_omega_tilde = "R_omega_tilde",
                    eta_engr_units_tilde = "eta_engr_units_tilde",
                    eta_tilde = "eta_tilde",
