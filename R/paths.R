@@ -275,8 +275,11 @@ expenditure_paths <- function(.rebound_data,
                        C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                        
                        G_dot = ReboundTools::star_vars$G_dot,
+                       
+                       R_alpha_star = ReboundTools::orig_vars$R_omega_orig,
+                       C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
 
-                       Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+                       # Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                        Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                        Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -313,7 +316,9 @@ expenditure_paths <- function(.rebound_data,
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
+  # yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
+  yend <- y + (.rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] - 
+               .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]])
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$cap_colour, 
@@ -325,7 +330,7 @@ expenditure_paths <- function(.rebound_data,
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_md segment for cost graph (iempl)
+  # Delta_C_dot_omd segment for cost graph (iempl)
   x <- xend
   y <- yend
   xend <- x

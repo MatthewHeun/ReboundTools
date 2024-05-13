@@ -16,7 +16,8 @@ expenditure_paths(
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   G_dot = ReboundTools::star_vars$G_dot,
-  Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+  R_alpha_star = ReboundTools::orig_vars$R_omega_orig,
+  C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
   Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -42,9 +43,9 @@ at its start.}
 
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
-
 \item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
+
+\item{Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
 }
 \value{
 A data frame with cost rebound path segments.
