@@ -10,6 +10,7 @@ expenditure_paths(
   graph_params = ReboundTools::path_graph_params,
   rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$expenditure,
+  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
@@ -37,7 +38,7 @@ at its start.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
-\item{C_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+\item{R_alpha_orig, C_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
 
