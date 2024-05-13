@@ -62,6 +62,7 @@ energy_paths <- function(.rebound_data,
                          k = ReboundTools::eeu_base_params$k,
                          I_E = ReboundTools::eeu_base_params$I_E,
                          
+                         R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                          C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
@@ -92,7 +93,8 @@ energy_paths <- function(.rebound_data,
   # S_dot_dev segment for energy graph (dempl)
   x_orig <- .rebound_data[[E_dot_s_orig]]
   y_orig <- .rebound_data[[E_dot_emb_orig]] + 
-    (.rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
+            (.rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_omd_orig]] +
+             .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
   x <- x_orig
   y <- y_orig
   xend <- x_orig - .rebound_data[[S_dot_dev]]
