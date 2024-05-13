@@ -107,8 +107,8 @@ calc_orig <- function(.eeu_data = NULL,
                                         C_dot_s_orig_val + 
                                         C_dot_omd_orig_val +
                                         C_dot_o_orig_val)
-    # Check the N_dot_orig_val is zero
-    assertthat::assert_that(N_dot_orig_val == 0)
+    # Check the N_dot_orig_val is zero within a tolerance
+    assertthat::assert_that(abs(N_dot_orig_val) < 1e-10)
     
     list(R_alpha_orig_val, 
          R_omega_orig_val, 

@@ -41,7 +41,7 @@ latex_key_analysis_vars <- data.frame(
                "E_dot_emb", "C_dot_s", "C_dot_cap",
                "C_dot_om", "C_d", "C_dot_d", "C_dot_omd", 
                "C_dot_o", "N_dot", "M_dot"), 
-  latex_var_name = c("$\\t_{li\\!f\\!e}$", "R_\\alpha", "$R_\\omega$",
+  latex_var_name = c("$t_{li\\!f\\!e}$", "$R_\\alpha$", "$R_\\omega$",
                      "$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
                      "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$", "$\\dot{C}_{O\\!M\\!d}$", 
