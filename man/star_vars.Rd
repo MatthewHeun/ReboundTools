@@ -21,7 +21,11 @@ A string list with 28 entries.
 \item{G_dot}{The expected device-level energy gross cost savings rate [MJ/yr], calculated by \code{p_E * S_dot_dev}.}
 \item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
 \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/yr], same as \code{q_dot_s_orig}.}
-\item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate [$/yr], calculated by \code{C_cap_star / t_star}.}
+\item{C_dot_cap_star}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{C_dot_om_star}{The operations and maintenance expenditure rate of the device [$/yr].}
+\item{C_d_star}{The disposal cost for the device [$/yr].}
+\item{C_dot_d_star}{The disposal cost rate of the device without discounting [$/yr].}
+\item{C_dot_omd_star}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate [MJ/yr], calculated by \code{E_emb_star / t_star}.}
 \item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate [$/yr], calculated by \code{p_s_star * q_dot_s_star}.}
 \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings [$/yr], exactly \code{M_dot_orig}.}

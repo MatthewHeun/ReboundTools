@@ -69,7 +69,7 @@ calc_rebound(
 
 \item{M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 
-\item{Delta_E_dot_emb_star, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+\item{Delta_E_dot_emb_star, Delta_C_dot_cap_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
 
 \item{Re_dempl, Re_emb, Re_cap, Re_om, Re_d, Re_omd, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_micro, Re_macro, Re_dir, Re_indir, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }

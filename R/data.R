@@ -68,8 +68,11 @@
 #' \item{E_dot_s}{The rate of final energy consumption by the energy conversion device \[MJ/yr\].}
 #' \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device \[MJ/yr\], calculated by `E_emb/t_life`.}
 #' \item{C_dot_s}{The expenditure rate of energy consumption by the device \[$/yr\], calculated by `p_s*q_dot_s`.}
-#' \item{C_dot_cap}{The capital expenditure rate of the device \[$/yr\], calculated by `C_cap/t_own`.}
-#' \item{C_dot_md}{The maintenance and disposal expenditure rate of the device \[$/yr\].}
+#' \item{C_dot_cap}{The capital expenditure rate of the device without discounting \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_om}{The operations and maintenance expenditure rate of the device \[$/yr\].}
+#' \item{C_d}{The disposal cost for the device \[$/yr\].}
+#' \item{C_dot_d}{The disposal cost rate of the device without discounting \[$/yr\].}
+#' \item{C_dot_omd}{The operations, maintenance, and disposal expenditure rate of the device \[$/yr\].}
 #' \item{C_dot_o}{The other goods consumption rate \[$/yr\], calculated, initially, as a residual of the budget constraint.}
 #' \item{N_dot}{Net income \[$/yr\].}
 #' \item{M_dot}{Real income \[$/yr\].}
@@ -224,11 +227,14 @@
 #' \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership \[$\].}
 #' \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings \[$/yr\].}
 #' \item{t_own_orig}{The expected ownership duration of the original device \[yr\].}
-#' \item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal expenditure rate \[$/yr\].}
 #' \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., \[miles/gallon\] \[lumens/kW\]. Note that the denominator unit of `eta_engr_units_orig` is assumed to be the same as the denominator unit of `MJ_engr_unit`.}
 #' \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis \[service/MJ\], calculated by `eta_engr_units_orig / MJ_engr_unit`.}
 #' \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device \[MJ/yr\], calculated by `q_dot_s_orig / eta_orig`.}
-#' \item{C_dot_cap_orig}{The original (pre-EEU) capital expenditure rate \[$/yr\], calculated by `C_cap_orig / t_orig`.}
+#' \item{C_dot_cap_orig}{The capital expenditure rate of the device without discounting \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_om_orig}{The operations and maintenance expenditure rate of the device \[$/yr\].}
+#' \item{C_d_orig}{The disposal cost for the device \[$/yr\].}
+#' \item{C_dot_d_orig}{The disposal cost rate of the device without discounting \[$/yr\].}
+#' \item{C_dot_omd_orig}{The operations, maintenance, and disposal expenditure rate of the device \[$/yr\].}
 #' \item{p_s_orig}{The original (pre-EEU) energy service price \[$/service\], calculated by `p_E / eta_orig`.}
 #' \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device \[$/yr\], calculated by `p_E * E_dot_s_orig`.}
 #' \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods \[$/yr\], calculated by `M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig`.}
@@ -268,7 +274,11 @@
 #' \item{G_dot}{The expected device-level energy gross cost savings rate \[MJ/yr\], calculated by `p_E * S_dot_dev`.}
 #' \item{p_s_star}{The upgraded (post-EEU) energy service price \[$/service\], calculated by `p_E / eta_star = p_E / eta_tilde`.}
 #' \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate \[service/yr\], same as `q_dot_s_orig`.}
-#' \item{C_dot_cap_star}{The upgraded (post-EEU) capital expenditure rate \[$/yr\], calculated by `C_cap_star / t_star`.}
+#' \item{C_dot_cap_star}{The capital expenditure rate of the device without discounting \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_om_star}{The operations and maintenance expenditure rate of the device \[$/yr\].}
+#' \item{C_d_star}{The disposal cost for the device \[$/yr\].}
+#' \item{C_dot_d_star}{The disposal cost rate of the device without discounting \[$/yr\].}
+#' \item{C_dot_omd_star}{The operations, maintenance, and disposal expenditure rate of the device \[$/yr\].}
 #' \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate \[MJ/yr\], calculated by `E_emb_star / t_star`.}
 #' \item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate \[$/yr\], calculated by `p_s_star * q_dot_s_star`.}
 #' \item{M_dot_star}{The disposable income rate, exclusive of taxes and savings \[$/yr\], exactly `M_dot_orig`.}
@@ -296,8 +306,11 @@
 #' \item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as `R_omega_star`.}
 #' \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_star`.}
 #' \item{p_s_hat}{The energy service price after the substitution effect \[$/service\], exactly `p_s_star`.}
-#' \item{C_dot_cap_hat}{The capital expenditure rate after the substitution effect \[$/yr\], exactly `C_dot_cap_star`.}
-#' \item{C_dot_md_hat}{The maintenance and disposal expenditure rate after the substitution effect \[$/yr\], exactly `C_dot_md_star`.}
+#' \item{C_dot_cap_hat}{The capital expenditure rate of the device without discounting \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_om_hat}{The operations and maintenance expenditure rate of the device \[$/yr\].}
+#' \item{C_d_hat}{The disposal cost for the device \[$/yr\].}
+#' \item{C_dot_d_hat}{The disposal cost rate of the device without discounting \[$/yr\].}
+#' \item{C_dot_omd_hat}{The operations, maintenance, and disposal expenditure rate of the device \[$/yr\].}
 #' \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect \[MJ/yr\], exactly `E_dot_emb_star`.}
 #' \item{M_dot_hat}{Real income after the substitution effect \[MJ/yr\], exactly `M_dot_star`.}
 #' \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/yr\], calculated by `q_dot_s_star * eta_ratio^(-e_qs_ps_C)`.}
@@ -326,8 +339,11 @@
 #' \item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as `R_omega_hat`.}
 #' \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_hat`.}
 #' \item{p_s_bar}{The energy service price after the income effect \[$/service\], exactly `p_s_hat`.}
-#' \item{C_dot_cap_bar}{The capital expenditure rate after the income effect \[$/yr\], exactly `C_dot_cap_hat`.}
-#' \item{C_dot_md_bar}{The maintenance and disposal expenditure rate after the income effect \[$/yr\], exactly `C_dot_md_hat`.}
+#' \item{C_dot_cap_bar}{The capital expenditure rate of the device without discounting \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_om_bar}{The operations and maintenance expenditure rate of the device \[$/yr\].}
+#' \item{C_d_bar}{The disposal cost for the device \[$/yr\].}
+#' \item{C_dot_d_bar}{The disposal cost rate of the device without discounting \[$/yr\].}
+#' \item{C_dot_omd_bar}{The operations, maintenance, and disposal expenditure rate of the device \[$/yr\].}
 #' \item{E_dot_emb_bar}{The embodied energy rate after the income effect \[MJ/yr\], exactly `E_dot_emb_hat`.}
 #' \item{M_dot_bar}{Real income after the income effect \[MJ/yr\], exactly `M_dot_hat`.}
 #' \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/yr\], calculated by `(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)`.}
@@ -354,8 +370,11 @@
 #' \item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as `R_omega_bar`.}
 #' \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks \[service/MJ\], exactly `eta_bar`.}
 #' \item{p_s_tilde}{The energy service price after the macro effect \[$/service\], exactly `p_s_bar`.}
-#' \item{C_dot_cap_tilde}{The capital expenditure rate after the macro effect \[$/yr\], exactly `C_dot_cap_bar`.}
-#' \item{C_dot_md_tilde}{The maintenance and disposal expenditure rate after the macro effect \[$/yr\], exactly `C_dot_md_bar`.}
+#' \item{C_dot_cap_tilde}{The capital expenditure rate of the device without discounting \[$/yr\], calculated by `C_cap/t_own`.}
+#' \item{C_dot_om_tilde}{The operations and maintenance expenditure rate of the device \[$/yr\].}
+#' \item{C_d_tilde}{The disposal cost for the device \[$/yr\].}
+#' \item{C_dot_d_tilde}{The disposal cost rate of the device without discounting \[$/yr\].}
+#' \item{C_dot_omd_tilde}{The operations, maintenance, and disposal expenditure rate of the device \[$/yr\].}
 #' \item{E_dot_emb_tilde}{The embodied energy rate after the macro effect \[MJ/yr\], exactly `E_dot_emb_bar`.}
 #' \item{M_dot_tilde}{Real income after the macro effect \[MJ/yr\], exactly `M_dot_bar`.}
 #' \item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/yr\], exactly `q_dot_s_bar`.}
@@ -381,7 +400,9 @@
 #' \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 #' \item{Re_emb}{Indirect embodied energy effect rebound.}
 #' \item{Re_cap}{Indirect capital expenditure effect rebound.}
-#' \item{Re_md}{Indirect maintenance and disposal effect rebound.}
+#' \item{Re_om}{Indirect operations and maintance expenditure effect rebound.}
+#' \item{Re_d}{Indirect disposal effect rebound.}
+#' \item{Re_omd}{Indirect operations, maintenance, and disposal effect rebound.}
 #' \item{Re_empl}{Emplacement effect rebound.}
 #' \item{Re_dsub}{Direct substitution effect rebound.}
 #' \item{Re_isub}{Indirect substitution effect rebound.}
@@ -391,8 +412,8 @@
 #' \item{Re_inc}{Income effect rebound.}
 #' \item{Re_micro}{Sum of all micro rebound effects.}
 #' \item{Re_macro}{Indirect macro effect rebound.}
-#' \item{Re_d}{Sum of all direct rebound effects.}
-#' \item{Re_i}{Sum of all indirect rebound effects.}
+#' \item{Re_dir}{Sum of all direct rebound effects.}
+#' \item{Re_indir}{Sum of all indirect rebound effects.}
 #' \item{Re_tot}{Total rebound.}
 #' }
 #' @examples
@@ -409,8 +430,8 @@
 #' \item{Re_empl}{Emplacement effect rebound.}
 #' \item{Re_sub}{Substitution effect rebound.}
 #' \item{Re_inc}{Income effect rebound.}
-#' \item{Re_d}{Sum of all direct rebound effects.}
-#' \item{Re_i}{Sum of all indirect rebound effects.}
+#' \item{Re_dir}{Sum of all direct rebound effects.}
+#' \item{Re_indir}{Sum of all indirect rebound effects.}
 #' \item{Re_tot}{Total rebound.}
 #' }
 #' @examples
@@ -437,8 +458,8 @@
 #' \item{Re_inc}{Income effect rebound.}
 #' \item{Re_micro}{Sum of all micro rebound effects.}
 #' \item{Re_macro}{Indirect macro effect rebound.}
-#' \item{Re_d}{Sum of all direct rebound effects.}
-#' \item{Re_i}{Sum of all indirect rebound effects.}
+#' \item{Re_dir}{Sum of all direct rebound effects.}
+#' \item{Re_indir}{Sum of all indirect rebound effects.}
 #' \item{Re_tot}{Total rebound.}
 #' }
 #' @examples

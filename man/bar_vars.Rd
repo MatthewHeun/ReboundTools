@@ -11,8 +11,11 @@ A string list with 23 entries.
 \item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_hat}.}
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}
-\item{C_dot_cap_bar}{The capital expenditure rate after the income effect [$/yr], exactly \code{C_dot_cap_hat}.}
-\item{C_dot_md_bar}{The maintenance and disposal expenditure rate after the income effect [$/yr], exactly \code{C_dot_md_hat}.}
+\item{C_dot_cap_bar}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{C_dot_om_bar}{The operations and maintenance expenditure rate of the device [$/yr].}
+\item{C_d_bar}{The disposal cost for the device [$/yr].}
+\item{C_dot_d_bar}{The disposal cost rate of the device without discounting [$/yr].}
+\item{C_dot_omd_bar}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_bar}{The embodied energy rate after the income effect [MJ/yr], exactly \code{E_dot_emb_hat}.}
 \item{M_dot_bar}{Real income after the income effect [MJ/yr], exactly \code{M_dot_hat}.}
 \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/yr], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)}.}
