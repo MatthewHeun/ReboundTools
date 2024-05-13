@@ -656,6 +656,12 @@ test_that("calc_rebound() works as expected with approximated hat", {
   
   expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[1]], 0.01449238526141076108)
   expect_equal(res[[ReboundTools::rebound_terms$Re_emb]][[2]], -0.00271222457113862387)
+
+  expect_equal(res[[ReboundTools::rebound_terms$Re_om]][[1]], -0.0099100928734748)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_om]][[2]], 0)
+  
+  expect_equal(res[[ReboundTools::rebound_terms$Re_d]][[1]], 0.0000065124710649)
+  expect_equal(res[[ReboundTools::rebound_terms$Re_d]][[2]], 0)
   
   expect_equal(res[[ReboundTools::rebound_terms$Re_omd]][[1]], -0.0099035804024098)
   expect_equal(res[[ReboundTools::rebound_terms$Re_omd]][[2]], 0)
@@ -725,3 +731,4 @@ test_that("compensated and uncompensated elasticities are present in calculated 
   expect_true(ReboundTools::bar_vars$e_qo_ps_UC_bar %in% names(res))
   expect_true(ReboundTools::tilde_vars$e_qo_ps_UC_tilde %in% names(res))
 })
+

@@ -1171,7 +1171,7 @@ calc_Deltas <- function(.tilde_data = NULL,
 #' @param N_dot_star See `ReboundTools::star_vars`.
 #' @param M_dot_hat_prime See `ReboundTools::hat_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
-#' @param Re_dempl,Re_emb,Re_cap,Re_md,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_micro,Re_macro,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
+#' @param Re_dempl,Re_emb,Re_cap,Re_om,Re_d,Re_omd,Re_empl,Re_dsub,Re_isub,Re_sub,Re_dinc,Re_iinc,Re_inc,Re_micro,Re_macro,Re_dir,Re_indir,Re_tot See `ReboundTools::rebound_terms`.
 #'
 #' @return A data frame with rebound terms added as columns.
 #' 
@@ -1204,9 +1204,20 @@ calc_rebound <- function(.Deltas_data = NULL,
                          
                          N_dot_star = ReboundTools::star_vars$N_dot_star,
                          M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
+
+                         R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                         R_alpha_star = ReboundTools::star_vars$R_alpha_star, 
+                         C_dot_cap_orig = ReboundTools::orig_vars$C_cap_orig, 
+                         C_dot_cap_star = ReboundTools::star_vars$C_cap_star,
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
-                         Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+                         
+                         R_omega_orig = ReboundTools::orig_vars$R_omega_orig,
+                         R_omega_star = ReboundTools::star_vars$R_omega_star,
+                         C_dot_d_orig = ReboundTools::orig_vars$C_dot_d_orig,
+                         C_dot_d_star = ReboundTools::star_vars$C_dot_d_star,
+                         
+                         Delta_C_dot_om_star = ReboundTools::Delta_vars$Delta_C_dot_om_star,
                          Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -1217,6 +1228,8 @@ calc_rebound <- function(.Deltas_data = NULL,
                          Re_dempl = ReboundTools::rebound_terms$Re_dempl,
                          Re_emb = ReboundTools::rebound_terms$Re_emb, 
                          Re_cap = ReboundTools::rebound_terms$Re_cap, 
+                         Re_om = ReboundTools::rebound_terms$Re_om,
+                         Re_d = ReboundTools::rebound_terms$Re_d,
                          Re_omd = ReboundTools::rebound_terms$Re_omd,
                          Re_empl = ReboundTools::rebound_terms$Re_empl,
                          Re_dsub = ReboundTools::rebound_terms$Re_dsub, 
@@ -1233,8 +1246,15 @@ calc_rebound <- function(.Deltas_data = NULL,
   
   rebound_fun <- function(Delta_E_dot_emb_star_val, 
                           S_dot_dev_val,
-                          Delta_C_dot_cap_star_val,
-                          Delta_C_dot_omd_star_val, 
+                          R_alpha_orig_val, 
+                          R_alpha_star_val,
+                          C_dot_cap_orig_val, 
+                          C_dot_cap_star_val,
+                          Delta_C_dot_om_star_val, 
+                          R_omega_orig_val, 
+                          R_omega_star_val,
+                          C_dot_d_orig_val, 
+                          C_dot_d_star_val,
                           N_dot_star_val,
                           I_E_val,
                           eta_ratio_val, 
@@ -1258,11 +1278,14 @@ calc_rebound <- function(.Deltas_data = NULL,
     Re_emb_val <- Delta_E_dot_emb_star_val / S_dot_dev_val
 
     # Capital cost rebound
-    Re_cap_val <- Delta_C_dot_cap_star_val * I_E_val / S_dot_dev_val
+    Re_cap_val <- (R_alpha_star_val*C_dot_cap_star_val - R_alpha_orig_val*C_dot_cap_orig_val) * I_E_val / S_dot_dev_val
+
+    Re_om_val <- Delta_C_dot_om_star_val * I_E_val / S_dot_dev_val
     
-    # Indirect maintenance and disposal effect energy rebound
-    # Note: this formulation avoids a division-by-zero error if C_dot_md_orig = 0
-    Re_omd_val <- Delta_C_dot_omd_star_val * I_E_val / S_dot_dev_val
+    Re_d_val <- (R_omega_star_val*C_dot_d_star_val - R_omega_orig_val*C_dot_d_orig_val) * I_E_val / S_dot_dev_val
+    
+    # Indirect operations, maintenance, and disposal effect energy rebound
+    Re_omd_val <- Re_om_val + Re_d_val
     
     # Emplacement effect rebound
     Re_empl_val <- Re_emb_val + Re_omd_val
@@ -1307,6 +1330,8 @@ calc_rebound <- function(.Deltas_data = NULL,
     list(Re_dempl_val,
          Re_emb_val,
          Re_cap_val,
+         Re_om_val,
+         Re_d_val,
          Re_omd_val,
          Re_empl_val,
          Re_isub_val,
@@ -1323,6 +1348,8 @@ calc_rebound <- function(.Deltas_data = NULL,
       magrittr::set_names(c(Re_dempl,
                             Re_emb,
                             Re_cap,
+                            Re_om,
+                            Re_d,
                             Re_omd,
                             Re_empl,
                             Re_isub,
@@ -1341,8 +1368,15 @@ calc_rebound <- function(.Deltas_data = NULL,
   matsindf::matsindf_apply(.Deltas_data, FUN = rebound_fun, 
                            Delta_E_dot_emb_star_val = Delta_E_dot_emb_star,
                            S_dot_dev_val = S_dot_dev,
-                           Delta_C_dot_cap_star_val = Delta_C_dot_cap_star,
-                           Delta_C_dot_omd_star_val = Delta_C_dot_omd_star,
+                           R_alpha_orig_val = R_alpha_orig, 
+                           R_alpha_star_val = R_alpha_star,
+                           C_dot_cap_orig_val = C_dot_cap_orig, 
+                           C_dot_cap_star_val = C_dot_cap_star,
+                           R_omega_orig_val = R_omega_orig, 
+                           R_omega_star_val = R_omega_star,
+                           C_dot_d_orig_val = C_dot_d_orig, 
+                           C_dot_d_star_val = C_dot_d_star,
+                           Delta_C_dot_om_star_val = Delta_C_dot_om_star,
                            N_dot_star_val = N_dot_star,
                            I_E_val = I_E,
                            eta_ratio_val = eta_ratio, 
