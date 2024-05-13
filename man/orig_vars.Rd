@@ -13,7 +13,6 @@ A string list with 28 entries.
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/yr] [lumen-hours/yr].}
 \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings [$/yr].}
-\item{t_own_orig}{The expected ownership duration of the original device [yr].}
 \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
 \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_engr_units_orig / MJ_engr_unit}.}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/yr], calculated by \code{q_dot_s_orig / eta_orig}.}

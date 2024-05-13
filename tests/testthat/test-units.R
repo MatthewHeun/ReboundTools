@@ -54,9 +54,6 @@ test_that("rebound_var_units() works as expected", {
   expect_equal(rebound_var_units("eta", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(eta = "[service/MJ]"))
   
-  expect_equal(rebound_var_units("t_own_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
-               c(t_own_orig = "[yr]"))
-  
   expect_equal(rebound_var_units("MJ/energy_engr_unit", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(`MJ/energy_engr_unit` = "[MJ/energy]"))
 

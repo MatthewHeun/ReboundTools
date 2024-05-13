@@ -77,7 +77,7 @@ calculating the substitution effect.
 Default is \code{FALSE}.
 See details.}
 
-\item{t_life_star, R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+\item{t_life_star, C_dot_om_star, C_d_star, C_dot_d_star, C_dot_omd_star, R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
 \item{e_qs_M, e_qo_M}{See \code{ReboundTools::eeu_base_params}.}
 
@@ -85,7 +85,7 @@ See details.}
 
 \item{e_qo_ps_C, e_qs_ps_C, C_dot_cap_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma, rho}{See \code{ReboundTools::orig_vars}.}
 
-\item{R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
+\item{t_life_hat, C_d_hat, C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the hat stage (after the substitution effect).

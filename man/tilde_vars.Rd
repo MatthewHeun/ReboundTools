@@ -11,7 +11,7 @@ A string list with 23 entries.
 \item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_bar}.}
 \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_bar}.}
 \item{p_s_tilde}{The energy service price after the macro effect [$/service], exactly \code{p_s_bar}.}
-\item{C_dot_cap_tilde}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{C_dot_cap_tilde}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
 \item{C_dot_om_tilde}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_tilde}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_tilde}{The disposal cost rate of the device without discounting [$/yr].}

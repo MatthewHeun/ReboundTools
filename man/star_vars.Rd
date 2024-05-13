@@ -10,7 +10,6 @@ A string list with 28 entries.
 \item{R_alpha_star}{The post-emplacement discount multiplier for beginning-of-life expenses, such as capital cost.}
 \item{R_omega_star}{The post-emplacement discount multiplier for end-of-life expenses, such as disposal cost.}
 \item{C_cap_star}{The net capital expenditure of the upgraded device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
-\item{t_own_star}{The expected ownership duration of the upgraded device [yr].}
 \item{C_dot_md_star}{The upgraded (post-EEU) maintenance and disposal expenditure rate [$/yr].}
 \item{E_emb_star}{The embodied energy of the upgraded (post-EEU) device [MJ].}
 \item{t_life_star}{The expected lifetime of the upgraded (post-EEU) device [yr].}
@@ -21,7 +20,7 @@ A string list with 28 entries.
 \item{G_dot}{The expected device-level energy gross cost savings rate [MJ/yr], calculated by \code{p_E * S_dot_dev}.}
 \item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
 \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/yr], same as \code{q_dot_s_orig}.}
-\item{C_dot_cap_star}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{C_dot_cap_star}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
 \item{C_dot_om_star}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_star}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_star}{The disposal cost rate of the device without discounting [$/yr].}

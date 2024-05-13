@@ -11,7 +11,7 @@ A string list with 23 entries.
 \item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_hat}.}
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}
-\item{C_dot_cap_bar}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{C_dot_cap_bar}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
 \item{C_dot_om_bar}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_bar}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_bar}{The disposal cost rate of the device without discounting [$/yr].}

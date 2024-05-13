@@ -14,7 +14,7 @@ A string list with 18 entries.
 \item{E_dot_s}{The rate of final energy consumption by the energy conversion device [MJ/yr].}
 \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device [MJ/yr], calculated by \code{E_emb/t_life}.}
 \item{C_dot_s}{The expenditure rate of energy consumption by the device [$/yr], calculated by \code{p_s*q_dot_s}.}
-\item{C_dot_cap}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{C_dot_cap}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
 \item{C_dot_om}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d}{The disposal cost for the device [$/yr].}
 \item{C_dot_d}{The disposal cost rate of the device without discounting [$/yr].}

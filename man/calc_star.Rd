@@ -59,7 +59,7 @@ likely calculated by \code{calc_orig()}.}
 
 \item{eta_orig, E_dot_s_orig, q_dot_s_orig, M_dot_orig, C_dot_cap_orig, C_dot_o_orig, e_qs_ps_UC_orig, e_qo_ps_UC_orig, e_qs_ps_C_orig, e_qo_ps_C_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{R_alpha_star, R_omega_star, eta_engr_units_star, E_emb_star, t_life_star, C_cap_star, t_own_star, eta_star, eta_ratio, S_dot_dev, G_dot, p_s_star, q_dot_s_star, C_dot_cap_star, E_dot_emb_star, C_dot_s_star, M_dot_star, N_dot_star, C_dot_o_star, f_Cs_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, E_dot_s_star}{See \code{ReboundTools::star_vars}.}
+\item{R_alpha_star, R_omega_star, eta_engr_units_star, E_emb_star, t_life_star, C_cap_star, eta_star, eta_ratio, S_dot_dev, G_dot, p_s_star, q_dot_s_star, C_dot_cap_star, E_dot_emb_star, C_dot_s_star, M_dot_star, N_dot_star, C_dot_o_star, f_Cs_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, E_dot_s_star}{See \code{ReboundTools::star_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the star stage (after the emplacement effect).
