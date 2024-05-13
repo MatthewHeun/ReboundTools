@@ -6,6 +6,7 @@
 \usage{
 calc_orig(
   .eeu_data = NULL,
+  tol = 1e-06,
   r = ReboundTools::eeu_base_params$r,
   MJ_engr_unit = ReboundTools::eeu_base_params$MJ_engr_unit,
   p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
@@ -44,6 +45,8 @@ calc_orig(
 \arguments{
 \item{.eeu_data}{An optional data frame containing EEU base data.
 See \code{ReboundTools::eeu_base_params}.}
+
+\item{tol}{The tolerance for checking internal consistency of rebound calculations. Default is \code{1e-6}.}
 
 \item{r, MJ_engr_unit, p_E_engr_units, e_qs_ps_UC_orig, e_qs_M, e_qo_M}{See \code{ReboundTools::eeu_base_params}.}
 

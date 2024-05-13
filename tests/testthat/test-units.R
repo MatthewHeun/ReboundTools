@@ -64,7 +64,6 @@ test_that("rebound_var_units() works as expected", {
   
   expect_equal(rebound_var_units("Re_md", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(Re_md = "[--]"))
-  
 })
 
 

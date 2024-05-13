@@ -398,7 +398,7 @@
 #' \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 #' \item{Re_emb}{Indirect embodied energy effect rebound.}
 #' \item{Re_cap}{Indirect capital expenditure effect rebound.}
-#' \item{Re_om}{Indirect operations and maintance expenditure effect rebound.}
+#' \item{Re_om}{Indirect operations and maintenance expenditure effect rebound.}
 #' \item{Re_d}{Indirect disposal effect rebound.}
 #' \item{Re_omd}{Indirect operations, maintenance, and disposal effect rebound.}
 #' \item{Re_empl}{Emplacement effect rebound.}
