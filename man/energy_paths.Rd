@@ -14,11 +14,11 @@ energy_paths(
   I_E = ReboundTools::eeu_base_params$I_E,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
-  C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+  C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
   Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
-  Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+  Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
   Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
@@ -42,11 +42,11 @@ at its start.}
 
 \item{k, I_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{E_dot_s_orig, E_dot_emb_orig, C_dot_md_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+\item{E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
 
-\item{Delta_E_dot_emb_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar, N_dot_hat}{See \code{ReboundTools::Delta_vars}.}
+\item{Delta_E_dot_emb_star, Delta_C_dot_omd_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar, N_dot_hat}{See \code{ReboundTools::Delta_vars}.}
 
 \item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }
