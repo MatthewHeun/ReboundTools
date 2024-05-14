@@ -93,6 +93,8 @@ calc_orig <- function(.eeu_data = NULL,
     C_dot_cap_orig_val <- C_cap_orig_val / t_life_orig_val
     p_s_orig_val <- p_E_val / eta_orig_val
     C_dot_s_orig_val <- p_E_val * E_dot_s_orig_val
+    C_dot_s_orig_val2 <- p_s_orig_val * q_dot_s_orig_val
+    assertthat::assert_that(abs(C_dot_s_orig_val2 - C_dot_s_orig_val) < tol)
     C_dot_d_orig_val <- C_d_orig_val / t_life_orig_val
     C_dot_omd_orig_val <- C_dot_om_orig_val + R_omega_orig_val * C_dot_d_orig_val
     C_dot_o_orig_val <- M_dot_orig_val - C_dot_s_orig_val - R_alpha_orig_val * C_dot_cap_orig_val - C_dot_omd_orig_val
