@@ -318,8 +318,11 @@ iso_budget_lines_cons <- function(.rebound_data,
                                   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                                   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
                                   
+                                  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+                                  C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
                                   p_s_star = ReboundTools::star_vars$p_s_star,
                                   G_dot = ReboundTools::star_vars$G_dot,
+                                  C_dot_omd_star = ReboundTools::star_vars$C_dot_omd_star,
                                   
                                   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
                                   C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat, 
@@ -331,7 +334,7 @@ iso_budget_lines_cons <- function(.rebound_data,
   
   meta <- extract_meta(.rebound_data)
   
-  # Iso-budget line at the orig point.
+  # Iso-budget line at the orig point (o--o, before emplacement) 
   # slope_orig <- -p_s_orig * q_dot_s_orig / C_dot_o_orig
   slope_orig <- -.rebound_data[[p_s_orig]] * .rebound_data[[q_dot_s_orig]] / .rebound_data[[C_dot_o_orig]]
   # intercept_orig <- (M_dot_orig - 
@@ -340,7 +343,7 @@ iso_budget_lines_cons <- function(.rebound_data,
   intercept_orig <- (.rebound_data[[M_dot_orig]] - 
                        .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
                        .rebound_data[[C_dot_omd_orig]]) / 
-                     .rebound_data[[C_dot_o_orig]]
+    .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(meta = meta, 
                          graph_type = graph_type,
                          line_name = ReboundTools::rebound_stages$orig, 
@@ -350,7 +353,7 @@ iso_budget_lines_cons <- function(.rebound_data,
                          slope = slope_orig,
                          intercept = intercept_orig)
   
-  # Iso-budget line at the star point (after emplacement, before substitution)
+  # Iso-budget line at the star point (*--*, after emplacement, before substitution)
   # slope_star <- -p_s_star * q_dot_s_orig / C_dot_o_orig
   slope_star <- -.rebound_data[[p_s_star]] * .rebound_data[[q_dot_s_orig]] / .rebound_data[[C_dot_o_orig]]
   # intercept_star <- (M_dot_orig - 
@@ -400,15 +403,11 @@ iso_budget_lines_cons <- function(.rebound_data,
   # Iso-budget line at the bar point (after income, before productivity)
   slope_bar <- slope_hat
   # intercept_bar <- (M_dot_orig - 
-  #                   R_alpha_orig*C_dot_cap_orig - 
-  #                   C_dot_omd_orig - 
-  #                   Delta_C_dot_cap_star - 
-  #                   Delta_C_dot_omd_star) / C_dot_o_orig
-  intercept_bar <- (.rebound_data[[M_dot_orig]] - 
-                      .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
-                      .rebound_data[[C_dot_omd_orig]] - 
-                      .rebound_data[[Delta_C_dot_cap_star]] - 
-                      .rebound_data[[Delta_C_dot_omd_star]]) / 
+  #                   R_alpha_star*C_dot_cap_star - 
+  #                   C_dot_omd_star) / C_dot_o_orig
+  intercept_bar <- (.rebound_data[[M_dot_orig]] -
+                      .rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] -
+                      .rebound_data[[C_dot_omd_star]]) /
     .rebound_data[[C_dot_o_orig]]
   out <- add_budget_line(out, meta = meta, 
                          graph_type = graph_type,

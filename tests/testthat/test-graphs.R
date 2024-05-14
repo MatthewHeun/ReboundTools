@@ -93,7 +93,7 @@ test_that("path_graphs() works as expected", {
   expect_true(!is.null(graphs_two_cases_indexed_energy_2))
 
   # Try a consumption path graph for cars. Double-check that guide lines are tangent
-  graphs_lamp_cons <- load_eeu_data() %>% 
+  graphs_car_cons <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Car", 
                 graph_types = ReboundTools::graph_types$consumption) + 
