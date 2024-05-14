@@ -276,7 +276,7 @@ expenditure_paths <- function(.rebound_data,
                        
                        G_dot = ReboundTools::star_vars$G_dot,
                        
-                       R_alpha_star = ReboundTools::orig_vars$R_omega_orig,
+                       R_alpha_star = ReboundTools::star_vars$R_alpha_star,
                        C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
 
                        # Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,

@@ -16,7 +16,7 @@ expenditure_paths(
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
   C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
   G_dot = ReboundTools::star_vars$G_dot,
-  R_alpha_star = ReboundTools::orig_vars$R_omega_orig,
+  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
   Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
