@@ -92,14 +92,16 @@ test_that("path_graphs() works as expected", {
     ggplot2::facet_wrap(facets = "Case")
   expect_true(!is.null(graphs_two_cases_indexed_energy_2))
 
-  # Try a consumption path graph for cars. Double-check that guide lines are tangent
+  # Try a consumption path graph for cars. 
+  # Double-check that iso-expenditure lines
+  # are tangent to utility curves.
   graphs_car_cons <- load_eeu_data() %>% 
     rebound_analysis() %>% 
     path_graphs(cases = "Car", 
                 graph_types = ReboundTools::graph_types$consumption) + 
     ggplot2::scale_x_continuous(limits = c(0.8, 1.2)) + 
     ggplot2::scale_y_continuous(limits = c(0.995, 1.04))
-  expect_true(!is.null(graphs_lamp_cons))
+  expect_true(!is.null(graphs_car_cons))
   
   # Try a consumption path graph for lamps
   graphs_lamp_cons <- load_eeu_data() %>% 

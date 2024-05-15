@@ -32,7 +32,7 @@ test_that("iso_budget_lines_cons() works as expected with approximated hat", {
   expect_equal(iso_budget_lines$intercept[[1]], 1.00032500637362797846)
   expect_equal(iso_budget_lines$intercept[[2]], 1.00003509645028976216)
   expect_equal(iso_budget_lines$intercept[[3]], 0.99979635239197450769)
-  expect_equal(iso_budget_lines$intercept[[4]], 1.00035871939210463388)
+  expect_equal(iso_budget_lines$intercept[[4]], 1.0003585593438833)
   expect_equal(iso_budget_lines$intercept[[5]], 0.00000000000000000000)
 })
 

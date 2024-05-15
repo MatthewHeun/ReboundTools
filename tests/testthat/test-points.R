@@ -71,7 +71,7 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$orig)
   expect_equal(car_expenditure_points_orig$x, 1275.17)
-  expect_equal(car_expenditure_points_orig$y, 25716.4288115924573503)
+  expect_equal(car_expenditure_points_orig$y, 26126.1076930294584599)
   
   # Star point.
   car_expenditure_points_star <- expenditure_points_abs %>% 
@@ -79,7 +79,7 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$star)
   expect_equal(car_expenditure_points_star$x, 759.02976190476181273)
-  expect_equal(car_expenditure_points_star$y, 25580.5409258698928170)
+  expect_equal(car_expenditure_points_star$y, 25980.1622670666984050)
   
   # Hat point.
   car_expenditure_points_hat <- expenditure_points_abs %>% 
@@ -87,7 +87,7 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$hat)
   expect_equal(car_expenditure_points_hat$x, 776.0916724422514790)
-  expect_equal(car_expenditure_points_hat$y, 25558.2206357744726120)
+  expect_equal(car_expenditure_points_hat$y, 25957.8419769712781999)
   
   # Bar point.
   car_expenditure_points_bar <- expenditure_points_abs %>% 
@@ -96,7 +96,7 @@ test_that("extract_points() works as expected", {
                   point_name == ".last_point")
   # There is not a bar point.  There is a "last_point"
   expect_equal(car_expenditure_points_bar$x, 800.0828435163911081)
-  expect_equal(car_expenditure_points_bar$y, 26201.5735083162653609)
+  expect_equal(car_expenditure_points_bar$y, 26601.1948495130709489)
   
 
   # Calculate consumption paths

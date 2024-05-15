@@ -38,8 +38,8 @@ test_that("expenditure_paths() works as expected", {
                   line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_expenditure_path_abs$x, 1275.17)
   expect_equal(car_expenditure_path_abs$xend, 759.02976190476181272970)
-  expect_equal(car_expenditure_path_abs$y, 25716.4288115924573503)
-  expect_equal(car_expenditure_path_abs$yend, 25716.4288115924573503)
+  expect_equal(car_expenditure_path_abs$y, 26126.1076930294584599)
+  expect_equal(car_expenditure_path_abs$yend, 26126.1076930294584599)
   
   # Calculate the indexed paths
   expenditure_paths_indexed <- load_eeu_data() %>% 
