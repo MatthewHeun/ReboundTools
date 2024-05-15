@@ -9,7 +9,7 @@ which always resolves to the latest release.
 
 
 
-* Uses new budget constraint with discounting.
+* Use new budget constraint with discounting.
 
 
 # ReboundTools 0.1.38 (2023-07-05) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8117284.svg)](https://doi.org/10.5281/zenodo.8117284)

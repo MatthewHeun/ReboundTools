@@ -294,7 +294,7 @@ iso_expenditure_lines <- function(.rebound_data,
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param R_alpha_orig,p_s_orig,q_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_o_orig,M_dot_orig See `ReboundTools::orig_vars`.
-#' @param p_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param R_alpha_star,C_dot_cap_star,C_dot_omd_star,p_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param q_dot_s_hat,C_dot_o_hat See `ReboundTools::hat_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_o_hat See `ReboundTools::Delta_vars`.
 #'

@@ -43,7 +43,7 @@ at its start.}
 
 \item{k, I_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+\item{R_alpha_orig, E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
 

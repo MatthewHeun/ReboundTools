@@ -38,7 +38,7 @@ likely created by \code{rebound_analysis()}.}
 
 \item{R_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+\item{R_alpha_star, C_dot_cap_star, C_dot_omd_star, p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
 \item{q_dot_s_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
 

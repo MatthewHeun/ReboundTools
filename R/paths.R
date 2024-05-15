@@ -40,7 +40,7 @@ extract_meta <- function(.rebound_data,
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param k,I_E See `ReboundTools::eeu_base_params`.
-#' @param E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param R_alpha_orig,E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_omd_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
@@ -251,7 +251,7 @@ energy_paths <- function(.rebound_data,
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param R_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
-#' @param Delta_C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param R_alpha_star,C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with cost rebound path segments.

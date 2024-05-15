@@ -43,9 +43,9 @@ at its start.}
 
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
+\item{R_alpha_star, C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
 
-\item{Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+\item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }
 \value{
 A data frame with cost rebound path segments.
