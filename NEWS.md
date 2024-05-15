@@ -8,8 +8,12 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+# ReboundTools 0.1.39 (2024-05-15) 
 
 * Use new budget constraint with discounting.
+* Additional tests for new features.
+    - Now up to 692 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.38 (2023-07-05) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8117284.svg)](https://doi.org/10.5281/zenodo.8117284)

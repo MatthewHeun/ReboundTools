@@ -1,7 +1,7 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.38
-Date: 2023-07-05
+Version: 0.1.39
+Date: 2024-05-15
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",

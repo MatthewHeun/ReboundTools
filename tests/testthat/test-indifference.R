@@ -38,7 +38,7 @@ test_that("add_indifference_curve() works as expected", {
     dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Case 1") %>% 
     magrittr::extract2(graph_df_colnames$x_col) %>% 
     magrittr::extract2(length(.)) %>% 
-    expect_equal(16)
+    expect_equal(70)
   res2 %>% 
     dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Case 2") %>% 
     magrittr::extract2(graph_df_colnames$x_col) %>% 
