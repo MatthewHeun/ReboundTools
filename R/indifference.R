@@ -137,8 +137,10 @@ add_indifference_curve <- function(.DF = NULL,
     min_qs <- qs1_qs0
     max_qs <- qs1_qs0
   } else {
-    min_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = min) %>% unlist()
-    max_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = max) %>% unlist()
+    # min_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = min) %>% unlist()
+    # max_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = max) %>% unlist()
+    min_qs <- Map(f = min, qs1_qs0, qs2_qs0) %>% unlist()
+    max_qs <- Map(f = max, qs1_qs0, qs2_qs0) %>% unlist()
   }
   x_vals <- Map(f = geom_seq, 
                 from = graph_params$qs_qs0_lower*min_qs, 
