@@ -12,7 +12,7 @@ which always resolves to the latest release.
 
 * Use new budget constraint with discounting.
 * Additional tests for new features.
-    - Now up to 692 tests, all passing.
+    - Now up to 695 tests, all passing.
     - Test coverage remains at 100%.
 
 
