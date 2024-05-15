@@ -6,7 +6,7 @@
 \usage{
 calc_rebound(
   .Deltas_data = NULL,
-  tol = 1e-06,
+  tol = 1e-10,
   I_E = ReboundTools::eeu_base_params$I_E,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
   e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
@@ -19,9 +19,17 @@ calc_rebound(
   eta_ratio = ReboundTools::star_vars$eta_ratio,
   N_dot_star = ReboundTools::star_vars$N_dot_star,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime,
+  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+  C_dot_cap_orig = ReboundTools::orig_vars$C_cap_orig,
+  C_dot_cap_star = ReboundTools::star_vars$C_cap_star,
   Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
-  Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-  Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+  R_omega_orig = ReboundTools::orig_vars$R_omega_orig,
+  R_omega_star = ReboundTools::star_vars$R_omega_star,
+  C_dot_d_orig = ReboundTools::orig_vars$C_dot_d_orig,
+  C_dot_d_star = ReboundTools::star_vars$C_dot_d_star,
+  Delta_C_dot_om_star = ReboundTools::Delta_vars$Delta_C_dot_om_star,
+  Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
   Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
   Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
   Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
@@ -29,7 +37,9 @@ calc_rebound(
   Re_dempl = ReboundTools::rebound_terms$Re_dempl,
   Re_emb = ReboundTools::rebound_terms$Re_emb,
   Re_cap = ReboundTools::rebound_terms$Re_cap,
-  Re_md = ReboundTools::rebound_terms$Re_md,
+  Re_om = ReboundTools::rebound_terms$Re_om,
+  Re_d = ReboundTools::rebound_terms$Re_d,
+  Re_omd = ReboundTools::rebound_terms$Re_omd,
   Re_empl = ReboundTools::rebound_terms$Re_empl,
   Re_dsub = ReboundTools::rebound_terms$Re_dsub,
   Re_isub = ReboundTools::rebound_terms$Re_isub,
@@ -47,7 +57,7 @@ calc_rebound(
 \arguments{
 \item{.Deltas_data}{A data frame containing Delta values, likely created by \code{ReboundTools::calc_Deltas()}}
 
-\item{tol}{The tolerance for checking internal consistency of rebound calculations. Default is \code{1e-6}.}
+\item{tol}{The tolerance for checking internal consistency of rebound calculations. Default is \code{1e-10}.}
 
 \item{I_E, e_qs_M, e_qo_M, k}{See \code{ReboundTools::eeu_base_params}.}
 
@@ -59,9 +69,11 @@ calc_rebound(
 
 \item{M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
 
-\item{Delta_E_dot_emb_star, Delta_C_dot_cap_star, Delta_C_dot_md_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+\item{R_alpha_orig, C_dot_cap_orig, R_omega_orig, C_dot_d_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{Re_dempl, Re_emb, Re_cap, Re_md, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_micro, Re_macro, Re_dir, Re_indir, Re_tot}{See \code{ReboundTools::rebound_terms}.}
+\item{R_alpha_star, R_omega_star, C_dot_d_star, C_dot_cap_star, Delta_C_dot_om_star, Delta_C_dot_omd_star, Delta_E_dot_emb_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+
+\item{Re_dempl, Re_emb, Re_cap, Re_om, Re_d, Re_omd, Re_empl, Re_dsub, Re_isub, Re_sub, Re_dinc, Re_iinc, Re_inc, Re_micro, Re_macro, Re_dir, Re_indir, Re_tot}{See \code{ReboundTools::rebound_terms}.}
 }
 \value{
 A data frame with rebound terms added as columns.

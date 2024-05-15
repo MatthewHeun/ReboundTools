@@ -355,10 +355,10 @@ rebound_graphs_helper <- function(.path_data,
 #' sensitivity_graphs(rebound_data = df, parameterization = sens_params, 
 #'                    x_var = "k", y_var = "Re_tot") +
 #'  ggplot2::facet_wrap(facets = "Case", scales = "free_x") +
-#'  ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = FALSE) + 
+#'  ggplot2::scale_colour_manual(values = c(Re_tot = "black"), guide = "none") + 
 #'  ggplot2::scale_discrete_manual(aesthetic = "linewidth", 
-#'                                 values = c(Re_tot = 0.5), guide = FALSE) + 
-#'  ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = FALSE) +
+#'                                 values = c(Re_tot = 0.5), guide = "none") + 
+#'  ggplot2::scale_linetype_manual(values = c(Re_tot = "solid"), guide = "none") +
 #'  ggplot2::labs(y = expression(Re[tot]), 
 #'                colour = ggplot2::element_blank(),
 #'                size = ggplot2::element_blank(),
@@ -396,7 +396,7 @@ rebound_graphs_helper <- function(.path_data,
 #' sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
 #'                       Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
 #' # Choose rebound terms to include in the graph and their order
-#' rebound_vars <- c("Re_dempl", "Re_emb", "Re_md", "Re_dsub", "Re_isub", 
+#' rebound_vars <- c("Re_dempl", "Re_emb", "Re_omd", "Re_dsub", "Re_isub", 
 #'                   "Re_dinc", "Re_iinc", "Re_macro")
 #'                   
 #' sensitivity_graphs(rebound_data = df, 

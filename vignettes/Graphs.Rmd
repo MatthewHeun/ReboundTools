@@ -338,7 +338,7 @@ A third sensitivity example shows
 sens_params_3 <- list(Car = list(eta_engr_units_star = seq(35, 50, by = 0.5)), 
                       Lamp = list(eta_engr_units_star = seq(70, 90, by = 5)))
 # Choose rebound terms to include in the graph and their order
-rebound_vars <- c("Re_dempl", "Re_emb", "Re_md", "Re_dsub", "Re_isub", 
+rebound_vars <- c("Re_dempl", "Re_emb", "Re_omd", "Re_dsub", "Re_isub", 
                   "Re_dinc", "Re_iinc", "Re_macro")
 
 sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
@@ -348,7 +348,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
   ggplot2::scale_colour_manual(values = 
                                  c(Re_dempl = ReboundTools::path_graph_params$dempl_colour,
                                    Re_emb = ReboundTools::path_graph_params$emb_colour,
-                                   Re_md = ReboundTools::path_graph_params$md_colour, 
+                                   Re_omd = ReboundTools::path_graph_params$md_colour, 
                                    Re_dsub = ReboundTools::path_graph_params$dsub_colour,
                                    Re_isub = ReboundTools::path_graph_params$isub_colour, 
                                    Re_dinc = ReboundTools::path_graph_params$dinc_colour,
@@ -359,7 +359,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
                                  values = 
                                    c(Re_dempl = 0.2, 
                                      Re_emb = ReboundTools::path_graph_params$emb_linewidth,
-                                     Re_md = ReboundTools::path_graph_params$md_linewidth, 
+                                     Re_omd = ReboundTools::path_graph_params$md_linewidth, 
                                      Re_dsub = ReboundTools::path_graph_params$dsub_linewidth,
                                      Re_isub = ReboundTools::path_graph_params$isub_linewidth, 
                                      Re_dinc = ReboundTools::path_graph_params$dinc_linewidth,
@@ -369,7 +369,7 @@ sensitivity_graphs(rebound_data = df, parameterization = sens_params_3,
   ggplot2::scale_linetype_manual(values = 
                                    c(Re_dempl = ReboundTools::path_graph_params$dempl_linetype, 
                                      Re_emb = ReboundTools::path_graph_params$emb_linetype,
-                                     Re_md = ReboundTools::path_graph_params$md_linetype,
+                                     Re_omd = ReboundTools::path_graph_params$md_linetype,
                                      Re_dsub = ReboundTools::path_graph_params$dsub_linetype,
                                      Re_isub = "11",
                                      Re_dinc = ReboundTools::path_graph_params$dinc_linetype,

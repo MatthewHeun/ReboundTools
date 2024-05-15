@@ -16,13 +16,13 @@
 #' @param service_unit The energy service unit for this case (a string).
 #' @param energy_engr_unit The engineering unit for energy (a string).
 #' @param escape_latex A boolean that tells whether to encode the result as LaTeX output.
-#' @param surround_left,surround_right,leading_delta_pattern,energy_si,time_unit,currency,currency_latex,unitless,unitless_latex See `ReboundTools::rebound_units`.
-#' @param service_unit_name,energy_engr_unit_name,energy_converter,p_E_engr_units,k,I_E See `ReboundTools::eeu_base_params`.
+#' @param surround_left,surround_right,leading_delta_pattern,energy_si,time_unit,inverse_time_unit,currency,currency_latex,unitless,unitless_latex See `ReboundTools::rebound_units`.
+#' @param service_unit_name,energy_engr_unit_name,energy_converter,p_E_engr_units,k,I_E,r See `ReboundTools::eeu_base_params`.
 #' @param p_E,p_s,q_dot_s,eta_engr_units,efficiency,sigma,rho,income_rate,income,freed_cash_rate,freed_cash,energy 
 #'        These arguments describe string prefixes that identify variables for unit determination. 
 #' @param S_dot_dev,G_dot,f_Cs See `ReboundTools::star_vars`. 
 #'        These arguments describe string patterns that identify variables for unit determination. 
-#' @param elasticities,time,cost_rate,cost,energy_rate,rebound Other arguments to identify variable names.
+#' @param elasticities,time,cost_rate,cost,energy_rate,rebound,R_alpha,R_omega Other arguments to identify variable names.
 #' @param trim_stage_pattern A regex that trims the rebound stage from a variable name. 
 #'        Default is "_\[^_\]*$", which trims all characters beyond the last "_" in a string.
 #'        
@@ -47,6 +47,7 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
                               leading_delta_pattern = ReboundTools::rebound_units$leading_delta_pattern,
                               energy_si = ReboundTools::rebound_units$energy_si,
                               time_unit = ReboundTools::rebound_units$time_unit,
+                              inverse_time_unit = ReboundTools::rebound_units$inverse_time_unit,
                               currency = ReboundTools::rebound_units$currency_unit, 
                               currency_latex = ReboundTools::rebound_units$currency_unit_latex,
                               unitless = ReboundTools::rebound_units$unitless, 
@@ -58,6 +59,7 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
                               p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
                               k = ReboundTools::eeu_base_params$k,  
                               I_E = ReboundTools::eeu_base_params$I_E,
+                              r = ReboundTools::eeu_base_params$r,
                               
                               trim_stage_pattern = "_[^_]*$",
                               p_E = ReboundTools::orig_vars$p_E,
@@ -77,12 +79,16 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
                               G_dot = ReboundTools::star_vars$G_dot,
                               f_Cs = sub(x = ReboundTools::orig_vars$f_Cs_orig, pattern = trim_stage_pattern, replacement = ""), 
                               
+                              
                               elasticities = "e",
                               time = "t_", 
                               cost_rate = "C_dot",
                               cost = "C_",
                               energy_rate = "E_dot", 
-                              rebound = "Re_"
+                              rebound = "Re_", 
+                              R_alpha = "R_alpha", 
+                              R_omega = "R_omega"
+                              
 ) {
   
   if (escape_latex) {
@@ -175,6 +181,18 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
     # Rebound
     
     else if (startsWith(v, rebound) | startsWith(v, f_Cs)) {
+      out <- unitless
+    }
+    
+    # Real interest rates
+    
+    else if (v == r) {
+      out <- inverse_time_unit
+    }
+    
+    # R_alpha and R_omega values
+    
+    else if (startsWith(v, R_alpha) | startsWith(v, R_omega)) {
       out <- unitless
     }
     

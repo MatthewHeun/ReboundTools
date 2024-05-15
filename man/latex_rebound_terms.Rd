@@ -5,7 +5,7 @@
 \alias{latex_rebound_terms}
 \title{LaTeX version of rebound terms}
 \format{
-A string list with 16 entries.
+A string list with 18 entries.
 \describe{
 \item{Re_dempl}{Direct emplacement effect rebound, always 0.}
 \item{Re_emb}{Indirect embodied energy effect rebound.}
@@ -20,8 +20,8 @@ A string list with 16 entries.
 \item{Re_inc}{Income effect rebound.}
 \item{Re_micro}{Sum of all micro rebound effects.}
 \item{Re_macro}{Indirect macro effect rebound.}
-\item{Re_d}{Sum of all direct rebound effects.}
-\item{Re_i}{Sum of all indirect rebound effects.}
+\item{Re_dir}{Sum of all direct rebound effects.}
+\item{Re_indir}{Sum of all indirect rebound effects.}
 \item{Re_tot}{Total rebound.}
 }
 }
