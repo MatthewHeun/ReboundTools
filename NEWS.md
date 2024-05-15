@@ -8,7 +8,7 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
-# ReboundTools 0.1.39 (2024-05-15) 
+# ReboundTools 0.1.39 (2024-05-15) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11199447.svg)](https://doi.org/10.5281/zenodo.11199447)
 
 * Use new budget constraint with discounting.
 * Additional tests for new features.
