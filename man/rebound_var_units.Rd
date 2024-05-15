@@ -14,6 +14,7 @@ rebound_var_units(
   leading_delta_pattern = ReboundTools::rebound_units$leading_delta_pattern,
   energy_si = ReboundTools::rebound_units$energy_si,
   time_unit = ReboundTools::rebound_units$time_unit,
+  inverse_time_unit = ReboundTools::rebound_units$inverse_time_unit,
   currency = ReboundTools::rebound_units$currency_unit,
   currency_latex = ReboundTools::rebound_units$currency_unit_latex,
   unitless = ReboundTools::rebound_units$unitless,
@@ -24,6 +25,7 @@ rebound_var_units(
   p_E_engr_units = ReboundTools::eeu_base_params$p_E_engr_units,
   k = ReboundTools::eeu_base_params$k,
   I_E = ReboundTools::eeu_base_params$I_E,
+  r = ReboundTools::eeu_base_params$r,
   trim_stage_pattern = "_[^_]*$",
   p_E = ReboundTools::orig_vars$p_E,
   p_s = sub(x = ReboundTools::orig_vars$p_s_orig, pattern = trim_stage_pattern,
@@ -52,7 +54,9 @@ rebound_var_units(
   cost_rate = "C_dot",
   cost = "C_",
   energy_rate = "E_dot",
-  rebound = "Re_"
+  rebound = "Re_",
+  R_alpha = "R_alpha",
+  R_omega = "R_omega"
 )
 }
 \arguments{
@@ -64,9 +68,9 @@ rebound_var_units(
 
 \item{escape_latex}{A boolean that tells whether to encode the result as LaTeX output.}
 
-\item{surround_left, surround_right, leading_delta_pattern, energy_si, time_unit, currency, currency_latex, unitless, unitless_latex}{See \code{ReboundTools::rebound_units}.}
+\item{surround_left, surround_right, leading_delta_pattern, energy_si, time_unit, inverse_time_unit, currency, currency_latex, unitless, unitless_latex}{See \code{ReboundTools::rebound_units}.}
 
-\item{service_unit_name, energy_engr_unit_name, energy_converter, p_E_engr_units, k, I_E}{See \code{ReboundTools::eeu_base_params}.}
+\item{service_unit_name, energy_engr_unit_name, energy_converter, p_E_engr_units, k, I_E, r}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{trim_stage_pattern}{A regex that trims the rebound stage from a variable name.
 Default is "\emph{[^}]*$", which trims all characters beyond the last "_" in a string.}
@@ -76,7 +80,7 @@ Default is "\emph{[^}]*$", which trims all characters beyond the last "_" in a s
 \item{S_dot_dev, G_dot, f_Cs}{See \code{ReboundTools::star_vars}.
 These arguments describe string patterns that identify variables for unit determination.}
 
-\item{elasticities, time, cost_rate, cost, energy_rate, rebound}{Other arguments to identify variable names.}
+\item{elasticities, time, cost_rate, cost, energy_rate, rebound, R_alpha, R_omega}{Other arguments to identify variable names.}
 }
 \value{
 A string for the units for \code{.var_name}.

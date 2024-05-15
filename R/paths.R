@@ -40,9 +40,9 @@ extract_meta <- function(.rebound_data,
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param k,I_E See `ReboundTools::eeu_base_params`.
-#' @param E_dot_s_orig,E_dot_emb_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param R_alpha_orig,E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
-#' @param Delta_E_dot_emb_star,Delta_C_dot_md_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_omd_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with energy rebound path segments.
@@ -62,15 +62,16 @@ energy_paths <- function(.rebound_data,
                          k = ReboundTools::eeu_base_params$k,
                          I_E = ReboundTools::eeu_base_params$I_E,
                          
+                         R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
-                         C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                         C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
                          C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                          
                          S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
                          
                          Delta_E_dot_emb_star = ReboundTools::Delta_vars$Delta_E_dot_emb_star,
-                         Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                         Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                          
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
                          Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
@@ -92,7 +93,7 @@ energy_paths <- function(.rebound_data,
   # S_dot_dev segment for energy graph (dempl)
   x_orig <- .rebound_data[[E_dot_s_orig]]
   y_orig <- .rebound_data[[E_dot_emb_orig]] + 
-    (.rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
+            (.rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
   x <- x_orig
   y <- y_orig
   xend <- x_orig - .rebound_data[[S_dot_dev]]
@@ -123,19 +124,19 @@ energy_paths <- function(.rebound_data,
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_md_star*I_E segment for energy graph (md)
+  # Delta_C_dot_omd_star*I_E segment for energy graph (md)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_md_star]] * .rebound_data[[I_E]]
+  yend <- y + .rebound_data[[Delta_C_dot_omd_star]] * .rebound_data[[I_E]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
-                colour = graph_params$md_colour, 
-                linewidth = graph_params$md_linewidth,
-                linetype = graph_params$md_linetype,
+                colour = graph_params$omd_colour, 
+                linewidth = graph_params$omd_linewidth,
+                linetype = graph_params$omd_linetype,
                 meta = meta, 
                 graph_type = graph_type, 
-                segment_name = rebound_segments$md, 
+                segment_name = rebound_segments$omd, 
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
@@ -248,9 +249,9 @@ energy_paths <- function(.rebound_data,
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
-#' @param C_dot_s_orig,C_dot_cap_orig,C_dot_md_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param R_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
-#' @param Delta_C_dot_cap_star,Delta_C_dot_md_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param R_alpha_star,C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with cost rebound path segments.
@@ -266,16 +267,20 @@ expenditure_paths <- function(.rebound_data,
                        graph_params = ReboundTools::path_graph_params,
                        rebound_segments = ReboundTools::rebound_segments,
                        graph_type = ReboundTools::graph_types$expenditure,
-
+                       
+                       R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
                        C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                        C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
-                       C_dot_md_orig = ReboundTools::orig_vars$C_dot_md_orig,
+                       C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
                        C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
                        
                        G_dot = ReboundTools::star_vars$G_dot,
+                       
+                       R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+                       C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
 
-                       Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
-                       Delta_C_dot_md_star = ReboundTools::Delta_vars$Delta_C_dot_md_star,
+                       # Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
+                       Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                        Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
                        Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
                        Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
@@ -293,7 +298,8 @@ expenditure_paths <- function(.rebound_data,
   
   # G_dot segment for cost graph (dempl)
   x_orig_cost <- .rebound_data[[C_dot_s_orig]]
-  y_orig_cost <- .rebound_data[[C_dot_cap_orig]] + .rebound_data[[C_dot_md_orig]] + .rebound_data[[C_dot_o_orig]]
+  y_orig_cost <- .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] +
+                 .rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_o_orig]]
   xend <- x_orig_cost - .rebound_data[[G_dot]]
   yend <- y_orig_cost
   paths <- add_segment(indexed = indexed,
@@ -310,7 +316,9 @@ expenditure_paths <- function(.rebound_data,
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
+  # yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
+  yend <- y + (.rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] - 
+               .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]])
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$cap_colour, 
@@ -322,19 +330,19 @@ expenditure_paths <- function(.rebound_data,
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_md segment for cost graph (iempl)
+  # Delta_C_dot_omd segment for cost graph (iempl)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_md_star]]
+  yend <- y + .rebound_data[[Delta_C_dot_omd_star]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
-                colour = graph_params$md_colour, 
-                linewidth = graph_params$md_linewidth,
-                linetype = graph_params$md_linetype,
+                colour = graph_params$omd_colour, 
+                linewidth = graph_params$omd_linewidth,
+                linetype = graph_params$omd_linetype,
                 meta = meta,
                 graph_type = graph_type,
-                segment_name = rebound_segments$md, 
+                segment_name = rebound_segments$omd, 
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   

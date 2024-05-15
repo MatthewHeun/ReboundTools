@@ -79,7 +79,8 @@ test_that("parametric_studies() works with orig point.", {
 
 test_that("parametric_studies() works with single k values.", {
   k_vals <- list(Car = list(k = 3),
-                 Lamp = list(k = 3))
+                 Lamp = list(k = 3), 
+                 `Car, r = 0` = list(k = 3))
   
   rebound_results_with_k_3 <- load_eeu_data() %>% 
     ReboundTools::parametric_analysis(parameterization = k_vals,

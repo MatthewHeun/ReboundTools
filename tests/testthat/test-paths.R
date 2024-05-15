@@ -21,8 +21,8 @@ test_that("energy_paths() works as expected", {
                   line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_energy_path_abs$x, 73060.68051000000559724867)
   expect_equal(car_energy_path_abs$xend, 43488.50030357141804415733)
-  expect_equal(car_energy_path_abs$y, 77316.81880725323571823537)
-  expect_equal(car_energy_path_abs$yend, 77316.81880725323571823537)
+  expect_equal(car_energy_path_abs$y, 82759.2731666039326228)
+  expect_equal(car_energy_path_abs$yend, 82759.2731666039326228)
 })
 
 
@@ -38,8 +38,8 @@ test_that("expenditure_paths() works as expected", {
                   line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_expenditure_path_abs$x, 1275.17)
   expect_equal(car_expenditure_path_abs$xend, 759.02976190476181272970)
-  expect_equal(car_expenditure_path_abs$y, 26126.10769302945845993236)
-  expect_equal(car_expenditure_path_abs$yend, 26126.10769302945845993236)
+  expect_equal(car_expenditure_path_abs$y, 26126.1076930294584599)
+  expect_equal(car_expenditure_path_abs$yend, 26126.1076930294584599)
   
   # Calculate the indexed paths
   expenditure_paths_indexed <- load_eeu_data() %>% 
@@ -175,7 +175,7 @@ test_that("consumption path creation works with reverse drawing order", {
   expected <- ReboundTools::rebound_segments
   expected$dempl <- NULL
   expected$cap <- NULL
-  expected$md <- NULL
+  expected$omd <- NULL
   expected$emb <- NULL
   expected$macro <- NULL
   expected <- expected %>% unlist() %>% unname()

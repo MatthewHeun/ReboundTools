@@ -12,7 +12,7 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$energy,
                   point_name == ReboundTools::rebound_stages$orig)
   expect_equal(car_energy_points_orig$x, 73060.68051000000559724867)
-  expect_equal(car_energy_points_orig$y, 77316.81880725323571823537)
+  expect_equal(car_energy_points_orig$y, 82759.2731666039326228)
   
   # Star point (after emplacement effect)
   car_energy_points_star <- energy_points_abs %>% 
@@ -20,31 +20,31 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$energy,
                   point_name == ReboundTools::rebound_stages$star)
   expect_equal(car_energy_points_star$x, 43488.5)
-  expect_equal(car_energy_points_star$y, 77452.327183507833979)
+  expect_equal(car_energy_points_star$y, 82894.9741308264492545)
 
   # Hat point (after substitution effect)
   car_energy_points_hat <- energy_points_abs %>% 
     dplyr::filter(Case == "Car",
                   graph_type == ReboundTools::graph_types$energy,
                   point_name == ReboundTools::rebound_stages$hat)
-  expect_equal(car_energy_points_hat$x, 44362.00012)
-  expect_equal(car_energy_points_hat$y, 77384.727788596195751)
+  expect_equal(car_energy_points_hat$x, 44466.0599973140051588)
+  expect_equal(car_energy_points_hat$y, 82819.3230997071950696)
   
   # Bar point (after income effect)
   car_energy_points_bar <- energy_points_abs %>% 
     dplyr::filter(Case == "Car",
                   graph_type == ReboundTools::graph_types$energy,
                   point_name == ReboundTools::rebound_stages$bar)
-  expect_equal(car_energy_points_bar$x, 45929.46762)
-  expect_equal(car_energy_points_bar$y, 79685.765757904940983)
+  expect_equal(car_energy_points_bar$x, 45840.6306701721041463)
+  expect_equal(car_energy_points_bar$y, 84999.8641219453711528)
   
   # Tilde point (after productivity effect)
   car_energy_points_tilde <- energy_points_abs %>% 
     dplyr::filter(Case == "Car",
                   graph_type == ReboundTools::graph_types$energy,
                   point_name == ".last_point")
-  expect_equal(car_energy_points_tilde$x, 45929.46762)
-  expect_equal(car_energy_points_tilde$y, 82079.528960735886358)
+  expect_equal(car_energy_points_tilde$x, 45840.6306701721041463)
+  expect_equal(car_energy_points_tilde$y, 87261.7193574736884329)
   
   # Check point colours
   expect_equal(car_energy_points_orig$colour %>% unique(), 
@@ -71,7 +71,7 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$orig)
   expect_equal(car_expenditure_points_orig$x, 1275.17)
-  expect_equal(car_expenditure_points_orig$y, 26126.10769302945846)
+  expect_equal(car_expenditure_points_orig$y, 26126.1076930294584599)
   
   # Star point.
   car_expenditure_points_star <- expenditure_points_abs %>% 
@@ -79,15 +79,15 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$star)
   expect_equal(car_expenditure_points_star$x, 759.02976190476181273)
-  expect_equal(car_expenditure_points_star$y, 25940.684414189981908)
+  expect_equal(car_expenditure_points_star$y, 25980.1622670666984050)
   
   # Hat point.
   car_expenditure_points_hat <- expenditure_points_abs %>% 
     dplyr::filter(Case == "Car", 
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ReboundTools::rebound_stages$hat)
-  expect_equal(car_expenditure_points_hat$x, 774.27545561799774987)
-  expect_equal(car_expenditure_points_hat$y, 25920.739701178415999)
+  expect_equal(car_expenditure_points_hat$x, 776.0916724422514790)
+  expect_equal(car_expenditure_points_hat$y, 25957.8419769712781999)
   
   # Bar point.
   car_expenditure_points_bar <- expenditure_points_abs %>% 
@@ -95,8 +95,8 @@ test_that("extract_points() works as expected", {
                   graph_type == ReboundTools::graph_types$expenditure,
                   point_name == ".last_point")
   # There is not a bar point.  There is a "last_point"
-  expect_equal(car_expenditure_points_bar$x, 801.63336575829112007)
-  expect_equal(car_expenditure_points_bar$y, 26599.644327271169459)
+  expect_equal(car_expenditure_points_bar$x, 800.0828435163911081)
+  expect_equal(car_expenditure_points_bar$y, 26601.1948495130709489)
   
 
   # Calculate consumption paths
@@ -126,8 +126,7 @@ test_that("extract_points() works as expected", {
     dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption,
                   point_name == ".last_point")
   # There is not a bar point.  There is a "last_point"
-  expect_equal(lamp_cons_points_bar$x, 2.4354635233051604715)
-  expect_equal(lamp_cons_points_bar$y, 1.0002732430759311288)
-  
+  expect_equal(lamp_cons_points_bar$x, 2.4354631373868929)
+  expect_equal(lamp_cons_points_bar$y, 1.0002730832628564)
 })
 

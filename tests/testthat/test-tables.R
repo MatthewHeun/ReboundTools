@@ -30,7 +30,6 @@ test_that("stages_table() includes eta in engr units", {
     rebound_analysis() %>% 
     stages_table()
   expect_true(!is.null(t1))
-  
 })
 
 
