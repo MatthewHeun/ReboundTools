@@ -132,6 +132,7 @@ digs <- matrix(c(rep(1, 7),  # t_life
                  rep(3, 7),  # eta
                  rep(3, 7),  # p_s
                  rep(0, 7),  # q_dot_s
+                 rep(4, 7),  # p_E
                  rep(0, 7),  # E_dot_s
                  rep(0, 7),  # E_dot_emb
                  rep(0, 7),  # C_dot_s
@@ -143,7 +144,7 @@ digs <- matrix(c(rep(1, 7),  # t_life
                  rep(0, 7),  # C_dot_o
                  rep(0, 7),  # N_dot
                  rep(0, 7)), # M_dot
-               nrow = 18, ncol = 7, byrow = TRUE)
+               nrow = 19, ncol = 7, byrow = TRUE)
 load_eeu_data() %>% 
   dplyr::filter(.data[[ReboundTools::eeu_base_params$case]] == "Car") %>% 
   dplyr::mutate(
