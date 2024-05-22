@@ -5,7 +5,7 @@
 \alias{Delta_vars}
 \title{Difference variables}
 \format{
-A string list with 72 entries.
+A string list with 76 entries.
 \describe{
 \item{Delta_eta_star}{Calculated as \code{eta_star - eta_orig}.}
 \item{Delta_p_s_star}{Calculated as \code{p_s_star - p_s_orig}.}

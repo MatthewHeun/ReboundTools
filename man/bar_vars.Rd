@@ -5,7 +5,7 @@
 \alias{bar_vars}
 \title{EEU bar data}
 \format{
-A string list with 23 entries.
+A string list with 24 entries.
 \describe{
 \item{R_alpha_bar}{The post-income effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_hat}.}
 \item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_hat}.}
@@ -25,6 +25,7 @@ A string list with 23 entries.
 \item{e_qo_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qo_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{p_E_bar}{The price of energy [$/MJ],}
 \item{N_dot_bar}{The freed cash rate after the income effect [$/yr], exactly \code{0}.}
 }
 

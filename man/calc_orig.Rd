@@ -24,6 +24,7 @@ calc_orig(
   R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
   R_omega_orig = ReboundTools::orig_vars$R_omega_orig,
   p_E = ReboundTools::orig_vars$p_E,
+  p_E_orig = ReboundTools::orig_vars$p_E_orig,
   eta_orig = ReboundTools::orig_vars$eta_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
