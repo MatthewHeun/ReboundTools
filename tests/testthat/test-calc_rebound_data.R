@@ -4,6 +4,9 @@ test_that("calc_orig() works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig()
 
+  expect_equal(res[[ReboundTools::orig_vars$p_E_orig]],
+               res[[ReboundTools::orig_vars$p_E]])
+  
   expect_equal(res[[ReboundTools::orig_vars$R_alpha_orig]][[1]], 1.20327063)
   expect_equal(res[[ReboundTools::orig_vars$R_alpha_orig]][[2]], 1.01181118)
 
@@ -67,6 +70,9 @@ test_that("calc_star() works as expected", {
   res <- load_eeu_data() %>% 
     calc_orig() %>% 
     calc_star()
+  
+  expect_equal(res[[ReboundTools::star_vars$p_E_star]], 
+               res[[ReboundTools::orig_vars$p_E]])
   
   expect_equal(res[[ReboundTools::star_vars$R_alpha_star]][[1]], 1.20327063)
   expect_equal(res[[ReboundTools::star_vars$R_alpha_star]][[2]], 1.1381602583025194)
@@ -141,6 +147,9 @@ test_that("calc_hat(use_sub_approx = TRUE) works as expected", {
     calc_orig() %>% 
     calc_star() %>% 
     calc_hat(use_sub_approx = TRUE)
+  
+  expect_equal(res[[ReboundTools::hat_vars$p_E_hat]], 
+               res[[ReboundTools::orig_vars$p_E]])
 
   expect_equal(res[[ReboundTools::hat_vars$R_alpha_hat]][[1]], 
                res[[ReboundTools::star_vars$R_alpha_star]][[1]])
@@ -222,6 +231,9 @@ test_that("calc_hat(use_sub_approx = FALSE) works as expected", {
     calc_orig() %>% 
     calc_star() %>% 
     calc_hat() # default is (use_sub_approx = FALSE)
+  
+  expect_equal(res[[ReboundTools::hat_vars$p_E_hat]], 
+               res[[ReboundTools::orig_vars$p_E]])
   
   expect_equal(res[[ReboundTools::hat_vars$R_alpha_hat]][[1]], 
                res[[ReboundTools::star_vars$R_alpha_star]][[1]])
@@ -305,6 +317,12 @@ test_that("calc_bar() works as expected with approximated hat", {
     calc_hat(use_sub_approx = TRUE) %>% 
     calc_bar()
   
+  expect_equal(res[[ReboundTools::bar_vars$p_E_bar]], 
+               res[[ReboundTools::orig_vars$p_E]])
+  
+  expect_equal(res[[ReboundTools::bar_vars$p_E_bar]], 
+               res[[ReboundTools::orig_vars$p_E]])
+  
   expect_equal(res[[ReboundTools::bar_vars$R_alpha_bar]][[1]], 
                res[[ReboundTools::star_vars$R_alpha_star]][[1]])
   expect_equal(res[[ReboundTools::bar_vars$R_alpha_bar]][[2]], 
@@ -383,6 +401,9 @@ test_that("calc_bar() works as expected with exact hat", {
     calc_star() %>% 
     calc_hat() %>% 
     calc_bar()
+
+  expect_equal(res[[ReboundTools::bar_vars$p_E_bar]], 
+               res[[ReboundTools::orig_vars$p_E]])
   
   expect_equal(res[[ReboundTools::bar_vars$R_alpha_bar]][[1]], 
                res[[ReboundTools::star_vars$R_alpha_star]][[1]])
@@ -464,6 +485,9 @@ test_that("calc_tilde() works as expected with approximated hat", {
     calc_bar() %>% 
     calc_tilde()
 
+  expect_equal(res[[ReboundTools::tilde_vars$p_E_tilde]], 
+               res[[ReboundTools::orig_vars$p_E]])
+  
   expect_equal(res[[ReboundTools::tilde_vars$R_alpha_tilde]][[1]], 
                res[[ReboundTools::star_vars$R_alpha_star]][[1]])
   expect_equal(res[[ReboundTools::tilde_vars$R_alpha_tilde]][[2]], 
@@ -543,6 +567,9 @@ test_that("calc_tilde() works as expected with exact hat", {
     calc_hat() %>% 
     calc_bar() %>% 
     calc_tilde()
+
+  expect_equal(res[[ReboundTools::tilde_vars$p_E_tilde]], 
+               res[[ReboundTools::orig_vars$p_E]])
   
   expect_equal(res[[ReboundTools::tilde_vars$R_alpha_tilde]][[1]], 
                res[[ReboundTools::star_vars$R_alpha_star]][[1]])
@@ -627,6 +654,12 @@ test_that("calc_Deltas() works as expected with approximated hat", {
   
   # Check a couple Delta values. 
   # Note that there are over 40 values calculated, so this is just a sample.
+  
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_p_E_star]][[1]], 0)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_p_E_hat]][[1]], 0)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_p_E_bar]][[1]], 0)
+  expect_equal(res[[ReboundTools::Delta_vars$Delta_p_E_tilde]][[1]], 0)
+  
   expect_equal(res[[ReboundTools::Delta_vars$Delta_p_s_star]][[1]], -0.03578095238095238551)
   expect_equal(res[[ReboundTools::Delta_vars$Delta_p_s_star]][[2]], -0.00001368314342390552)
 

@@ -37,6 +37,7 @@ calc_bar(
   R_omega_bar = ReboundTools::bar_vars$R_omega_bar,
   eta_engr_units_bar = ReboundTools::bar_vars$eta_engr_units_bar,
   eta_bar = ReboundTools::bar_vars$eta_bar,
+  p_E_bar = ReboundTools::bar_vars$p_E_bar,
   p_s_bar = ReboundTools::bar_vars$p_s_bar,
   C_dot_cap_bar = ReboundTools::bar_vars$C_dot_cap_bar,
   E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,

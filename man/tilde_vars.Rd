@@ -5,7 +5,7 @@
 \alias{tilde_vars}
 \title{EEU tilde data}
 \format{
-A string list with 23 entries.
+A string list with 24 entries.
 \describe{
 \item{R_alpha_bar}{The post-macro effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_bar}.}
 \item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_bar}.}
@@ -25,6 +25,7 @@ A string list with 23 entries.
 \item{e_qo_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qo_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{p_E_tilde}{The price of energy [$/MJ],}
 \item{N_dot_tilde}{The freed cash rate after the macro effect [$/yr], exactly \code{0}.}
 }
 

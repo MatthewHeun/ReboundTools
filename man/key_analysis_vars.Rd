@@ -5,12 +5,13 @@
 \alias{key_analysis_vars}
 \title{Key analysis variables}
 \format{
-A string list with 18 entries.
+A string list with 19 entries.
 \describe{
 \item{eta_engr_units}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service, in engineering units.}
 \item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}
 \item{p_s}{Energy service price [service/MJ], calculated by \code{p_E/eta}.}
 \item{q_dot_s}{The rate of energy service consumption [service/yr], calculated by \code{eta*E_dot_s}.}
+\item{p_E}{The price of energy [$/MJ]}
 \item{E_dot_s}{The rate of final energy consumption by the energy conversion device [MJ/yr].}
 \item{E_dot_emb}{The rate of embodied energy demand by the energy conversion device [MJ/yr], calculated by \code{E_emb/t_life}.}
 \item{C_dot_s}{The expenditure rate of energy consumption by the device [$/yr], calculated by \code{p_s*q_dot_s}.}

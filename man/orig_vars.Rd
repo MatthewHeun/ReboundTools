@@ -5,11 +5,12 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 28 entries.
+A string list with 29 entries.
 \describe{
 \item{R_alpha_orig}{The original discount multiplier for beginning-of-life expenses, such as capital cost.}
 \item{R_omega_orig}{The original discount multiplier for end-of-life expenses, such as disposal cost.}
 \item{p_E}{The price of energy [$/MJ], calculated by \code{p_E_engr_units / MJ_engr_unit}.}
+\item{p_E_orig}{The price of energy [$/MJ].}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/yr] [lumen-hours/yr].}
 \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings [$/yr].}

@@ -5,7 +5,7 @@
 \alias{hat_vars}
 \title{EEU hat data}
 \format{
-A string list with 25 entries.
+A string list with 26 entries.
 \describe{
 \item{R_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_star}.}
 \item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_star}.}
@@ -19,6 +19,7 @@ A string list with 25 entries.
 \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect [MJ/yr], exactly \code{E_dot_emb_star}.}
 \item{M_dot_hat}{Real income after the substitution effect [MJ/yr], exactly \code{M_dot_star}.}
 \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/yr], calculated by \code{q_dot_s_star * eta_ratio^(-e_qs_ps_C)}.}
+\item{p_E_hat}{The price of energy [$/MJ].}
 \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/yr], calculated by \code{q_dot_s_hat / eta_hat}.}
 \item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect [$/yr], calculated by \code{C_dot_o_star * eta_ratio^(-e_qo_ps_C)}.}
 \item{f_Cs_hat}{The post-substitution effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
