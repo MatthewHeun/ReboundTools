@@ -111,6 +111,8 @@ assumes constant price elasticity of energy service consumption.
 is not constant along an indifference curve.)
 The approximation leads to a simple and elegant rebound expression
 but a different (and incorrect) consumption bundle after the substitution effect.
+The approximate method is also called the
+constant price elasticity (CPE) utility model.
 }
 \examples{
 load_eeu_data() \%>\% 

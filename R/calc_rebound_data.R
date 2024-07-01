@@ -399,6 +399,8 @@ calc_star <- function(.orig_data = NULL,
 #' is not constant along an indifference curve.)
 #' The approximation leads to a simple and elegant rebound expression
 #' but a different (and incorrect) consumption bundle after the substitution effect.
+#' The approximate method is also called the 
+#' constant price elasticity (CPE) utility model.
 #'
 #' @param .star_data An optional data frame containing EEU base data, original data, 
 #'                   and star data, 
