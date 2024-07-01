@@ -8,7 +8,7 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
-* Now propogating energy price (p_E)
+* Now propagating energy price (p_E)
   across all stages, despite the fact that it never changes.
 * Additional tests for new features.
     - Now up to 708 tests, all passing.

@@ -10,7 +10,7 @@
 #'                  See `ReboundTools::eeu_base_params`.
 #' @param tol The tolerance for checking internal consistency of rebound calculations. Default is `1e-6`.
 #' @param r,MJ_engr_unit,p_E_engr_units,e_qs_ps_UC_orig,e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
-#' @param R_alpha_orig,R_omega_orig,eta_engr_units_orig,q_dot_s_orig,M_dot_orig,C_cap_orig,C_d_orig,C_dot_omd_orig,C_dot_om_orig,C_dot_d_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig,sigma,rho,E_dot_emb_orig,N_dot_orig See `ReboundTools::orig_vars`.
+#' @param R_alpha_orig,R_omega_orig,eta_engr_units_orig,q_dot_s_orig,M_dot_orig,C_cap_orig,C_d_orig,C_dot_omd_orig,C_dot_om_orig,C_dot_d_orig,E_emb_orig,t_life_orig,p_E,eta_orig,E_dot_s_orig,C_dot_cap_orig,p_s_orig,C_dot_s_orig,C_dot_o_orig,f_Cs_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig,sigma,rho,E_dot_emb_orig,N_dot_orig,p_E_orig See `ReboundTools::orig_vars`.
 #' 
 #' @return A list or data frame of derived rebound values.
 #' 
@@ -183,7 +183,7 @@ calc_orig <- function(.eeu_data = NULL,
 #'                   likely calculated by `calc_orig()`.
 #' @param r,MJ_engr_unit,p_E See `ReboundTools::eeu_base_params`.
 #' @param R_alpha_orig,C_dot_omd_orig,C_dot_om_star,C_d_star,C_dot_d_star,C_dot_omd_star,eta_orig,E_dot_s_orig,q_dot_s_orig,M_dot_orig,C_dot_cap_orig,C_dot_o_orig,e_qs_ps_UC_orig,e_qo_ps_UC_orig,e_qs_ps_C_orig,e_qo_ps_C_orig See `ReboundTools::orig_vars`.
-#' @param R_alpha_star,R_omega_star,eta_engr_units_star,E_emb_star,t_life_star,C_cap_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,f_Cs_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,E_dot_s_star See `ReboundTools::star_vars`.
+#' @param R_alpha_star,R_omega_star,eta_engr_units_star,E_emb_star,t_life_star,C_cap_star,eta_star,eta_ratio,S_dot_dev,G_dot,p_s_star,q_dot_s_star,C_dot_cap_star,E_dot_emb_star,C_dot_s_star,M_dot_star,N_dot_star,C_dot_o_star,f_Cs_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,E_dot_s_star,p_E_star See `ReboundTools::star_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the star stage (after the emplacement effect).
 #' 
@@ -411,7 +411,7 @@ calc_star <- function(.orig_data = NULL,
 #' @param e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param e_qo_ps_C,e_qs_ps_C,C_dot_cap_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
 #' @param t_life_star,C_dot_om_star,C_d_star,C_dot_d_star,C_dot_omd_star,R_alpha_star,R_omega_star,eta_engr_units_star,eta_star,p_s_star,C_dot_cap_star,E_dot_emb_star,M_dot_star,q_dot_s_star,eta_ratio,C_dot_o_star,e_qs_ps_UC_star,e_qo_ps_UC_star,e_qs_ps_C_star,e_qo_ps_C_star,N_dot_star,E_dot_s_star,G_dot See `ReboundTools::star_vars`.
-#' @param t_life_hat,C_d_hat,C_dot_d_hat,C_dot_om_hat,C_dot_omd_hat,R_alpha_hat,R_omega_hat,eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,f_Cs_hat,e_qs_ps_UC_hat,e_qo_ps_UC_hat,e_qs_ps_C_hat,e_qo_ps_C_hat,N_dot_hat,M_dot_hat_prime See `ReboundTools::hat_vars`.
+#' @param t_life_hat,C_d_hat,C_dot_d_hat,C_dot_om_hat,C_dot_omd_hat,R_alpha_hat,R_omega_hat,eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,E_dot_s_hat,C_dot_s_hat,C_dot_o_hat,f_Cs_hat,e_qs_ps_UC_hat,e_qo_ps_UC_hat,e_qs_ps_C_hat,e_qo_ps_C_hat,N_dot_hat,M_dot_hat_prime,p_E_hat See `ReboundTools::hat_vars`.
 #'      
 #' @return A list or data frame of derived rebound values for the hat stage (after the substitution effect).
 #' 
@@ -708,7 +708,7 @@ calc_hat <- function(.star_data = NULL,
 #' @param tol The tolerance with which the budget constraint should be satisfied. Default is `1e-6`.
 #' @param e_qs_M,e_qo_M,p_E See `ReboundTools::eeu_base_params`.
 #' @param t_life_hat,C_d_hat,C_dot_d_hat,C_dot_om_hat,C_dot_omd_hat,R_alpha_hat,R_omega_hat,eta_engr_units_hat,eta_hat,p_s_hat,C_dot_cap_hat,E_dot_emb_hat,M_dot_hat,q_dot_s_hat,N_dot_hat,M_dot_hat_prime,C_dot_o_hat,e_qs_ps_UC_hat,e_qo_ps_UC_hat,e_qs_ps_C_hat,e_qo_ps_C_hat,E_dot_s_hat See `ReboundTools::hat_vars`.
-#' @param t_life_bar,C_d_bar,C_dot_d_bar,C_dot_om_bar,C_dot_omd_bar,R_alpha_bar,R_omega_bar,eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,f_Cs_bar,e_qs_ps_UC_bar,e_qo_ps_UC_bar,e_qs_ps_C_bar,e_qo_ps_C_bar,N_dot_bar See `ReboundTools::bar_vars`.
+#' @param t_life_bar,C_d_bar,C_dot_d_bar,C_dot_om_bar,C_dot_omd_bar,R_alpha_bar,R_omega_bar,eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,f_Cs_bar,e_qs_ps_UC_bar,e_qo_ps_UC_bar,e_qs_ps_C_bar,e_qo_ps_C_bar,N_dot_bar,p_E_bar See `ReboundTools::bar_vars`.
 #' 
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 
@@ -926,8 +926,9 @@ calc_bar <- function(.hat_data = NULL,
 #' @param .bar_data An optional data frame containing rebound calculations, original data, 
 #'                  star data, hat data, and bar data,
 #'                  likely calculated by `calc_bar()`.
+#' @param p_E See `ReboundTools::orig_vars`
 #' @param t_life_bar,C_dot_om_bar,C_d_bar,C_dot_d_bar,C_dot_omd_bar,R_alpha_bar,R_omega_bar,eta_engr_units_bar,eta_bar,p_s_bar,C_dot_cap_bar,E_dot_emb_bar,M_dot_bar,q_dot_s_bar,E_dot_s_bar,C_dot_s_bar,C_dot_o_bar,e_qs_ps_UC_bar,e_qo_ps_UC_bar,e_qs_ps_C_bar,e_qo_ps_C_bar,N_dot_bar See `ReboundTools::bar_vars`.
-#' @param t_life_tilde,C_dot_om_tilde,C_d_tilde,C_dot_d_tilde,C_dot_omd_tilde,R_alpha_tilde,R_omega_tilde,eta_engr_units_tilde,eta_tilde,p_s_tilde,C_dot_cap_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,f_Cs_tilde,e_qs_ps_UC_tilde,e_qo_ps_UC_tilde,e_qs_ps_C_tilde,e_qo_ps_C_tilde,N_dot_tilde See `ReboundTools::tilde_vars`.
+#' @param t_life_tilde,C_dot_om_tilde,C_d_tilde,C_dot_d_tilde,C_dot_omd_tilde,R_alpha_tilde,R_omega_tilde,eta_engr_units_tilde,eta_tilde,p_s_tilde,C_dot_cap_tilde,E_dot_emb_tilde,M_dot_tilde,q_dot_s_tilde,E_dot_s_tilde,C_dot_s_tilde,C_dot_o_tilde,f_Cs_tilde,e_qs_ps_UC_tilde,e_qo_ps_UC_tilde,e_qs_ps_C_tilde,e_qo_ps_C_tilde,N_dot_tilde,p_E_tilde See `ReboundTools::tilde_vars`.
 #'
 #' @return A list or data frame of derived rebound values for the bar stage (after the income effect).
 #' 

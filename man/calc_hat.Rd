@@ -86,7 +86,7 @@ See details.}
 
 \item{e_qo_ps_C, e_qs_ps_C, C_dot_cap_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma, rho}{See \code{ReboundTools::orig_vars}.}
 
-\item{t_life_hat, C_d_hat, C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime}{See \code{ReboundTools::hat_vars}.}
+\item{t_life_hat, C_d_hat, C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime, p_E_hat}{See \code{ReboundTools::hat_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the hat stage (after the substitution effect).

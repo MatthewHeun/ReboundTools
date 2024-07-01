@@ -69,7 +69,7 @@ likely calculated by \code{calc_hat()}.}
 
 \item{e_qs_M, e_qo_M, p_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{t_life_bar, C_d_bar, C_dot_d_bar, C_dot_om_bar, C_dot_omd_bar, R_alpha_bar, R_omega_bar, eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, f_Cs_bar, e_qs_ps_UC_bar, e_qo_ps_UC_bar, e_qs_ps_C_bar, e_qo_ps_C_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
+\item{t_life_bar, C_d_bar, C_dot_d_bar, C_dot_om_bar, C_dot_omd_bar, R_alpha_bar, R_omega_bar, eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_o_bar, f_Cs_bar, e_qs_ps_UC_bar, e_qo_ps_UC_bar, e_qs_ps_C_bar, e_qo_ps_C_bar, N_dot_bar, p_E_bar}{See \code{ReboundTools::bar_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).
