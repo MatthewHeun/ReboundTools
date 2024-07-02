@@ -49,9 +49,9 @@ latex_key_analysis_vars <- data.frame(
                      "$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", 
                      "$p_E$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
-                     "$R_\\alpha\\dot{C}_{cap}}$", 
+                     "$R_{\\alpha}\\dot{C}_{cap}$", 
                      "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$",
-                     "$R_\\omega\\dot{C}_d$",
+                     "$R_{\\omega}\\dot{C}_d$",
                      "$\\dot{C}_{O\\!M\\!d}$", 
                      "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
 )

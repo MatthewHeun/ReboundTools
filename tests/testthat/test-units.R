@@ -91,3 +91,14 @@ test_that("rebound_var_units() works in a data.frame", {
   # First 6 items are Reference, Case, Original, and Upgrade.
   expect_equal(which(res$unit[5:nrow(res)] == "[unknown]") %>% length(), 0)
 })
+
+
+test_that("rebound_var_units() works with R_alpha_C_dot_cap and R_omega_C_dot_d", {
+  su <- "service"
+  eu <- "energy"
+  expect_equal(rebound_var_units("R_alpha_C_dot_cap_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(R_alpha_C_dot_cap_orig = "[\\$/yr]"))
+  expect_equal(rebound_var_units("R_omega_C_dot_d_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(R_omega_C_dot_d_orig = "[\\$/yr]"))
+  
+})

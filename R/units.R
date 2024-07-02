@@ -151,7 +151,8 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
     else if (startsWith(v, cost_rate) | 
              startsWith(v, income_rate) | 
              startsWith(v, freed_cash_rate) | 
-             startsWith(v, G_dot)) {
+             startsWith(v, G_dot) | 
+             ((startsWith(v, R_alpha) | startsWith(v, R_omega)) & grepl(cost_rate, v, fixed = TRUE))) {
       out <- paste0(currency, "/", time_unit)
     } else if (startsWith(v, cost) | 
                startsWith(v, income) | 
