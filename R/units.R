@@ -148,9 +148,14 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
     
     # Cost rate and cost
     
-    else if (startsWith(v, cost_rate) | startsWith(v, income_rate) | startsWith(v, freed_cash_rate) | startsWith(v, G_dot)) {
+    else if (startsWith(v, cost_rate) | 
+             startsWith(v, income_rate) | 
+             startsWith(v, freed_cash_rate) | 
+             startsWith(v, G_dot)) {
       out <- paste0(currency, "/", time_unit)
-    } else if (startsWith(v, cost) | startsWith(v, income) | startsWith(v, freed_cash)) {
+    } else if (startsWith(v, cost) | 
+               startsWith(v, income) | 
+               startsWith(v, freed_cash)) {
       out <- currency
     } 
     

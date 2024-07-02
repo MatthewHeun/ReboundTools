@@ -40,13 +40,19 @@ latex_key_analysis_vars <- data.frame(
                "eta_engr_units", "eta", "p_s", "q_dot_s", 
                "p_E", "E_dot_s",
                "E_dot_emb", "C_dot_s", "C_dot_cap",
-               "C_dot_om", "C_d", "C_dot_d", "C_dot_omd", 
+               "R_alpha_C_dot_cap",
+               "C_dot_om", "C_d", "C_dot_d",
+               "R_omega_C_dot_d",
+               "C_dot_omd", 
                "C_dot_o", "N_dot", "M_dot"), 
   latex_var_name = c("$t_{li\\!f\\!e}$", "$R_\\alpha$", "$R_\\omega$",
                      "$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", 
                      "$p_E$", "$\\dot{E}_s$",
                      "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
-                     "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$", "$\\dot{C}_{O\\!M\\!d}$", 
+                     "$R_\\alpha\\dot{C}_{cap}}$", 
+                     "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$",
+                     "$R_\\omega\\dot{C}_d$",
+                     "$\\dot{C}_{O\\!M\\!d}$", 
                      "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
 )
 usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)

@@ -75,7 +75,6 @@ stages_table <- function(.analysis_data,
       "{.var_stage}" := NULL
     ) %>% 
     dplyr::arrange() %>% 
-    # tidyr::pivot_wider(names_from = .data[[.stage]], values_from = .data[[.value]]) %>% 
     tidyr::pivot_wider(names_from = .stage, values_from = .value) %>% 
     dplyr::mutate(
       "{.unit_col}" := rebound_var_units(.var_name = .data[[.name]], 
