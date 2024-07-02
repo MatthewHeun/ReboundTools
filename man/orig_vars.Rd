@@ -5,7 +5,7 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 29 entries.
+A string list with 31 entries.
 \describe{
 \item{R_alpha_orig}{The original discount multiplier for beginning-of-life expenses, such as capital cost.}
 \item{R_omega_orig}{The original discount multiplier for end-of-life expenses, such as disposal cost.}
@@ -18,9 +18,11 @@ A string list with 29 entries.
 \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_engr_units_orig / MJ_engr_unit}.}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/yr], calculated by \code{q_dot_s_orig / eta_orig}.}
 \item{C_dot_cap_orig}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{R_alpha_C_dot_cap_orig}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_om_orig}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_orig}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_orig}{The disposal cost rate of the device without discounting [$/yr].}
+\item{R_omega_C_dot_d_orig}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_omd_orig}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{p_s_orig}{The original (pre-EEU) energy service price [$/service], calculated by \code{p_E / eta_orig}.}
 \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device [$/yr], calculated by \code{p_E * E_dot_s_orig}.}

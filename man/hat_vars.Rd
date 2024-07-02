@@ -5,16 +5,18 @@
 \alias{hat_vars}
 \title{EEU hat data}
 \format{
-A string list with 26 entries.
+A string list with 28 entries.
 \describe{
 \item{R_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_star}.}
 \item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_star}.}
 \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_star}.}
 \item{p_s_hat}{The energy service price after the substitution effect [$/service], exactly \code{p_s_star}.}
 \item{C_dot_cap_hat}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
+\item{R_alpha_C_dot_cap_hat}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_om_hat}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_hat}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_hat}{The disposal cost rate of the device without discounting [$/yr].}
+\item{R_omega_C_dot_d_hat}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_omd_hat}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect [MJ/yr], exactly \code{E_dot_emb_star}.}
 \item{M_dot_hat}{Real income after the substitution effect [MJ/yr], exactly \code{M_dot_star}.}

@@ -5,16 +5,18 @@
 \alias{tilde_vars}
 \title{EEU tilde data}
 \format{
-A string list with 24 entries.
+A string list with 26 entries.
 \describe{
 \item{R_alpha_bar}{The post-macro effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_bar}.}
 \item{R_omega_bar}{The post-macro effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_bar}.}
 \item{eta_tilde}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_bar}.}
 \item{p_s_tilde}{The energy service price after the macro effect [$/service], exactly \code{p_s_bar}.}
 \item{C_dot_cap_tilde}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
+\item{R_alpha_C_dot_cap_tilde}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_om_tilde}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_tilde}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_tilde}{The disposal cost rate of the device without discounting [$/yr].}
+\item{R_omega_C_dot_d_tilde}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_omd_tilde}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_tilde}{The embodied energy rate after the macro effect [MJ/yr], exactly \code{E_dot_emb_bar}.}
 \item{M_dot_tilde}{Real income after the macro effect [MJ/yr], exactly \code{M_dot_bar}.}

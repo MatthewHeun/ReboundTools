@@ -5,7 +5,7 @@
 \alias{star_vars}
 \title{EEU star data}
 \format{
-A string list with 29 entries.
+A string list with 31 entries.
 \describe{
 \item{R_alpha_star}{The post-emplacement discount multiplier for beginning-of-life expenses, such as capital cost.}
 \item{R_omega_star}{The post-emplacement discount multiplier for end-of-life expenses, such as disposal cost.}
@@ -21,9 +21,11 @@ A string list with 29 entries.
 \item{p_s_star}{The upgraded (post-EEU) energy service price [$/service], calculated by \code{p_E / eta_star = p_E / eta_tilde}.}
 \item{q_dot_s_star}{The upgraded (post-EEU) energy service consumption rate [service/yr], same as \code{q_dot_s_orig}.}
 \item{C_dot_cap_star}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
+\item{R_alpha_C_dot_cap_star}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_om_star}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_star}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_star}{The disposal cost rate of the device without discounting [$/yr].}
+\item{R_omega_C_dot_d_star}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_omd_star}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_star}{The upgraded (post-EEU) embodied energy rate [MJ/yr], calculated by \code{E_emb_star / t_star}.}
 \item{C_dot_s_star}{The upgraded (post-EEU) energy expenditure rate [$/yr], calculated by \code{p_s_star * q_dot_s_star}.}
