@@ -48,7 +48,7 @@ calc_bar(
   C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
   C_d_bar = ReboundTools::bar_vars$C_d_bar,
   C_dot_d_bar = ReboundTools::bar_vars$C_dot_d_bar,
-  R_omega_C_dot_cap_bar = ReboundTools::bar_vars$R_omega_C_dot_cap_bar,
+  R_omega_C_dot_d_bar = ReboundTools::bar_vars$R_omega_C_dot_d_bar,
   C_dot_om_bar = ReboundTools::bar_vars$C_dot_om_bar,
   C_dot_omd_bar = ReboundTools::bar_vars$C_dot_omd_bar,
   C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,

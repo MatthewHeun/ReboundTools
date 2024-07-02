@@ -552,7 +552,7 @@ calc_hat <- function(.star_data = NULL,
     eta_hat_val <- eta_star_val
     p_s_hat_val <- p_s_star_val
     C_dot_cap_hat_val <- C_dot_cap_star_val
-    R_alpha_C_dot_cap_hat <- R_alpha_hat_val * C_dot_cap_hat_val
+    R_alpha_C_dot_cap_hat_val <- R_alpha_hat_val * C_dot_cap_hat_val
     C_dot_om_hat_val <- C_dot_om_star_val
     C_d_hat_val <- C_d_star_val
     C_dot_d_hat_val <- C_dot_d_star_val
@@ -666,6 +666,7 @@ calc_hat <- function(.star_data = NULL,
                             p_E_hat,
                             p_s_hat,
                             C_dot_cap_hat,
+                            R_alpha_C_dot_cap_hat,
                             E_dot_emb_hat,
                             M_dot_hat,
                             q_dot_s_hat,
@@ -673,6 +674,7 @@ calc_hat <- function(.star_data = NULL,
                             C_dot_s_hat,
                             C_d_hat,
                             C_dot_d_hat,
+                            R_omega_C_dot_d_hat,
                             C_dot_om_hat,
                             C_dot_omd_hat,
                             C_dot_o_hat,
@@ -793,7 +795,7 @@ calc_bar <- function(.hat_data = NULL,
                      C_dot_s_bar = ReboundTools::bar_vars$C_dot_s_bar,
                      C_d_bar = ReboundTools::bar_vars$C_d_bar,
                      C_dot_d_bar = ReboundTools::bar_vars$C_dot_d_bar,
-                     R_omega_C_dot_cap_bar = ReboundTools::bar_vars$R_omega_C_dot_cap_bar,
+                     R_omega_C_dot_d_bar = ReboundTools::bar_vars$R_omega_C_dot_d_bar,
                      C_dot_om_bar = ReboundTools::bar_vars$C_dot_om_bar,
                      C_dot_omd_bar = ReboundTools::bar_vars$C_dot_omd_bar,
                      C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
