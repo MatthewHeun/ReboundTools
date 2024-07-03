@@ -4,6 +4,7 @@
 #' These tables enable tracking of variables across the different stages of rebound.
 #'
 #' @param .analysis_data A data frame, usually the result of calling `rebound_analysis()`. Default is `rebound_analysis(load_eeu_data(file))`.
+#' @param include_tilde_stage Tells whether to include the tilde column, which is identical to the bar column.
 #' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
 #' @param escape_latex When `TRUE` (the default), return LaTeX-compatible versions of strings.
 #' @param vars A list of variables for rows of the table. Default is `ReboundTools::key_analysis_vars`.
@@ -14,6 +15,8 @@
 #' @param latex_stages See `ReboundTools::latex_rebound_stages`. Set `NULL` to prevent conversion to LaTeX stage names.
 #' @param case See `ReboundTools::eeu_base_params`.
 #' @param service_unit,energy_engr_unit See `ReboundTools::eeu_base_params`.
+#' @param tilde_stage Used internally to identify the tilde column. 
+#'                    Default is `ReboundTools::rebound_stages$tilde`.
 #' @param ... Arguments passed to `xtable::xtable()`, possibly
 #'            `label`, `caption`, `digits`, etc.
 #' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
@@ -27,6 +30,7 @@
 #'   rebound_analysis() %>% 
 #'   stages_table()
 stages_table <- function(.analysis_data, 
+                         include_tilde_stage = TRUE,
                          add_units = TRUE,
                          escape_latex = TRUE,
                          vars = ReboundTools::key_analysis_vars, 
@@ -36,6 +40,7 @@ stages_table <- function(.analysis_data,
                          case = ReboundTools::eeu_base_params$case, 
                          service_unit = ReboundTools::eeu_base_params$service_unit,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
+                         tilde_stage = ReboundTools::rebound_stages$tilde,
                          ..., 
                          # internal names
                          .var = ".var",
@@ -44,6 +49,13 @@ stages_table <- function(.analysis_data,
                          .value = ".value", 
                          .name = ".name",
                          .unit_col = ".unit_col") {
+  
+  if (!include_tilde_stage) {
+    stage_col_name <- colnames(latex_stages)[[1]] # The name of the stage column
+    stages <- setdiff(stages, tilde_stage)
+    latex_stages <- latex_stages |> 
+      dplyr::filter(.data[[stage_col_name]] != tilde_stage)
+  }
   
   # Build a data frame of all analysis variables.
   analysis_vars <- expand.grid(vars, stages) %>% 

@@ -114,3 +114,10 @@ test_that("we get Re_macro", {
   expect_true(ReboundTools::rebound_terms$Re_macro %in% Re_types2)  
 })
 
+
+test_that("stages_table() works with include_tilde_stage = FALSE", {
+  t1 <- load_eeu_data() |> 
+    rebound_analysis() |> 
+    stages_table(include_tilde_stage = FALSE)
+  expect_true(!is.null(t1))
+})

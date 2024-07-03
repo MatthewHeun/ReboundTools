@@ -6,6 +6,7 @@
 \usage{
 stages_table(
   .analysis_data,
+  include_tilde_stage = TRUE,
   add_units = TRUE,
   escape_latex = TRUE,
   vars = ReboundTools::key_analysis_vars,
@@ -15,6 +16,7 @@ stages_table(
   case = ReboundTools::eeu_base_params$case,
   service_unit = ReboundTools::eeu_base_params$service_unit,
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
+  tilde_stage = ReboundTools::rebound_stages$tilde,
   ...,
   .var = ".var",
   .stage = ".stage",
@@ -26,6 +28,8 @@ stages_table(
 }
 \arguments{
 \item{.analysis_data}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
+
+\item{include_tilde_stage}{Tells whether to include the tilde column, which is identical to the bar column.}
 
 \item{add_units}{When \code{TRUE} (the default), adds a unit specification to variable names in the table.}
 
@@ -44,6 +48,9 @@ Stage order is preserved in the table.}
 \item{case}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{service_unit, energy_engr_unit}{See \code{ReboundTools::eeu_base_params}.}
+
+\item{tilde_stage}{Used internally to identify the tilde column.
+Default is \code{ReboundTools::rebound_stages$tilde}.}
 
 \item{...}{Arguments passed to \code{xtable::xtable()}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
