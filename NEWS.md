@@ -8,6 +8,7 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+* `stages_table()` now allows easy removal of the "tilde" column.
 * Added rows for R_alpha*C_dot_cap and 
   R_omega*C_dot_d 
   in stages table.
