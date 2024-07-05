@@ -55,28 +55,6 @@ test_that("expenditure_paths() works as expected", {
 })
 
 
-test_that("consumption_paths() works as expected with approximated hat", {
-  cons_paths <- load_eeu_data() %>% 
-    rebound_analysis(use_sub_approx = TRUE) %>% 
-    consumption_paths()
-  
-  # Check values on the lighting graph.
-  lighting_cons_path <- cons_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption, line_name == ReboundTools::rebound_segments$isub)
-  expect_equal(lighting_cons_path$x, 1)
-  expect_equal(lighting_cons_path$y, 1)
-  expect_equal(lighting_cons_path$xend, 1)
-  expect_equal(lighting_cons_path$yend, 0.99971092431922392585)
-  
-  lighting_cons_path2 <- cons_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption, line_name == ReboundTools::rebound_segments$dsub)
-  expect_equal(lighting_cons_path2$x, 1)
-  expect_equal(lighting_cons_path2$y, 0.99971092431922392585)
-  expect_equal(lighting_cons_path2$xend, 2.43409438974531644462)
-  expect_equal(lighting_cons_path2$yend, 0.99971092431922392585)
-})
-
-
 test_that("add_segment() works as expected", {
   meta <- tibble::tibble(Case = "Test case")
   res <- add_segment(indexed = FALSE, meta = meta, graph_type = "Test type", 

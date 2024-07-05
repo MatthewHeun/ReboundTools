@@ -399,32 +399,10 @@ calc_star <- function(.orig_data = NULL,
 #' 
 #' This function calculates energy rebound information for the hat
 #' stage (immediately after the substitution effect).
-#' 
-#' By default, this function uses an exact method for calculating
-#' the substitution effect. 
-#' The exact method uses a constant elasticity of substitution (CES) 
-#' formulation of utility, 
-#' which assumes constant elasticity of substitution (sigma) along 
-#' the indifference curve.
-#'  
-#' The approximate method is employed with
-#' `use_sub_approx = TRUE`.
-#' The approximate method 
-#' assumes constant price elasticity of energy service consumption.
-#' (In fact, the price elasticity of energy service consumption
-#' is not constant along an indifference curve.)
-#' The approximation leads to a simple and elegant rebound expression
-#' but a different (and incorrect) consumption bundle after the substitution effect.
-#' The approximate method is also called the 
-#' constant price elasticity (CPE) utility model.
 #'
 #' @param .star_data An optional data frame containing EEU base data, original data, 
 #'                   and star data, 
 #'                   likely calculated by `calc_star()`.
-#' @param use_sub_approx Tells whether to use an approximate method for 
-#'                       calculating the substitution effect. 
-#'                       Default is `FALSE`.
-#'                       See details.
 #' @param p_E See `ReboundTools::eeu_base_params`.
 #' @param e_qs_M,e_qo_M See `ReboundTools::eeu_base_params`.
 #' @param e_qo_ps_C,e_qs_ps_C,C_dot_cap_orig,f_Cs_orig,q_dot_s_orig,C_dot_o_orig,sigma,rho See `ReboundTools::orig_vars`.
@@ -441,7 +419,6 @@ calc_star <- function(.orig_data = NULL,
 #'   calc_star() %>% 
 #'   calc_hat()
 calc_hat <- function(.star_data = NULL,
-                     use_sub_approx = FALSE,
                      # Input names
                      t_life_star = ReboundTools::star_vars$t_life_star,
                      R_alpha_star = ReboundTools::star_vars$R_alpha_star, 
@@ -561,72 +538,48 @@ calc_hat <- function(.star_data = NULL,
     E_dot_emb_hat_val <- E_dot_emb_star_val
     M_dot_hat_val <- M_dot_star_val
     
-    if (use_sub_approx) {
-      # This is the approximate expression for q_dot_s_hat.
-      q_dot_s_hat_val <- q_dot_s_star_val * eta_ratio_val^(-e_qs_ps_C_star_val)
-    } else {
-      # Here is the exact expression for q_dot_s_hat
-      # Preliminary calculations to make the actual expression easier to debug.
-      a <- f_Cs_orig_val # Simpler variable name
-      x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
-      a_ratio <- (1-a) / a
-      rho_ratio <- (1-rho_val) / rho_val
-      inv_rho_ratio <- rho_val / (1-rho_val) # Inverse of rho_ratio
-      
-      # Q_s_hat_val is the dimensionless q_dot_s_hat defined as q_dot_s_hat / q_dot_s_orig
-      Q_s_hat_val <- ( a + (1 - a) * ( (a_ratio*x)^(inv_rho_ratio) ) ) ^ (-1/rho_val) 
-      # Recover q_dot_s_hat by multiplying by q_dot_s_orig.
-      q_dot_s_hat_val <- Q_s_hat_val * q_dot_s_orig_val
-    }
-
+    # Preliminary calculations to make the actual expression easier to debug.
+    a <- f_Cs_orig_val # Simpler variable name
+    x <- p_s_star_val * q_dot_s_orig_val / C_dot_o_orig_val # dimensionless energy service price
+    a_ratio <- (1-a) / a
+    rho_ratio <- (1-rho_val) / rho_val
+    inv_rho_ratio <- rho_val / (1-rho_val) # Inverse of rho_ratio
+    
+    # Q_s_hat_val is the dimensionless q_dot_s_hat defined as q_dot_s_hat / q_dot_s_orig
+    Q_s_hat_val <- ( a + (1 - a) * ( (a_ratio*x)^(inv_rho_ratio) ) ) ^ (-1/rho_val) 
+    # Recover q_dot_s_hat by multiplying by q_dot_s_orig.
+    q_dot_s_hat_val <- Q_s_hat_val * q_dot_s_orig_val
+    
     E_dot_s_hat_val <- q_dot_s_hat_val / eta_hat_val
     C_dot_s_hat_val <- p_s_hat_val * q_dot_s_hat_val
 
-    if (use_sub_approx) {
-      # This is the approximate expression for C_dot_o_hat.
-      C_dot_o_hat_val <- C_dot_o_star_val * eta_ratio_val^(-e_qo_ps_C_star_val)
-    } else {
-      # Here is the exact expression for C_dot_o_hat
-      # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
-      # This is the original derived equation
-      # C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
-      # Wolfram alpha (correctly) says it can be simplified to the following:
-      inner_term <- ( x * a_ratio ) ^ (rho_val/(rho_val-1))
-      C_o_hat_val <- (1 + a*(inner_term-1)) ^ (-1/rho_val)
-      
-      # Recover C_dot_o_hat by multiplying by C_dot_o_orig
-      C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
-    }
-
+    # C_o_hat_val is the dimensionless C_dot_o_hat defined as C_dot_o_hat / C_dot_o_orig
+    # This is the original derived equation
+    # C_o_hat_val <- ( 1/(1-a) - inv_a_ratio * (a + (1 - a) * (a_ratio*x)^inv_rho_ratio) ^ (-1) ) ^ (1/rho)
+    # Wolfram alpha (correctly) says it can be simplified to the following:
+    inner_term <- ( x * a_ratio ) ^ (rho_val/(rho_val-1))
+    C_o_hat_val <- (1 + a*(inner_term-1)) ^ (-1/rho_val)
+    
+    # Recover C_dot_o_hat by multiplying by C_dot_o_orig
+    C_dot_o_hat_val <- C_o_hat_val * C_dot_o_orig_val
+    
     f_Cs_hat_val <- C_dot_s_hat_val / (C_dot_s_hat_val + C_dot_o_hat_val)
     
     # Elasticities
-    if (use_sub_approx) {
-      # In the approximate utility model,
-      # elasticities are assumed constant across the substitution effect
-      # between the star and hat stages.
-      e_qs_ps_C_hat_val <- e_qs_ps_C_star_val
-      e_qo_ps_C_hat_val <- e_qo_ps_C_star_val
-      e_qs_ps_UC_hat_val <- e_qs_ps_UC_star_val
-      e_qo_ps_UC_hat_val <- e_qo_ps_UC_star_val
-    } else {
-      # In the exact utility model, 
-      # we need to do more calculating.
-      f <- f_Cs_orig_val
-      g <- 1 - f
-      h <- q_dot_s_orig_val / C_dot_o_orig_val
-      m_o <- rho_val / (rho_val - 1)
-      m_s <- rho_val / (1 - rho_val)
-      n <- - 1/rho_val
-      z <- g/f * h
-      zpsms <- (z * p_s_hat_val)^m_s
-      zpsmo <- (z * p_s_hat_val)^m_o
-      e_qs_ps_C_hat_val <- (m_s * n * g * zpsms) / (f + g*zpsms)
-      e_qo_ps_C_hat_val <- (m_o * n * f * zpsmo) / (1 + f*(zpsmo - 1))
-      e_qs_ps_UC_hat_val <- e_qs_ps_C_hat_val - f_Cs_hat_val * e_qs_M_val
-      e_qo_ps_UC_hat_val <- f_Cs_hat_val * (sigma_val - e_qo_M_val)
-    }
-      
+    f <- f_Cs_orig_val
+    g <- 1 - f
+    h <- q_dot_s_orig_val / C_dot_o_orig_val
+    m_o <- rho_val / (rho_val - 1)
+    m_s <- rho_val / (1 - rho_val)
+    n <- - 1/rho_val
+    z <- g/f * h
+    zpsms <- (z * p_s_hat_val)^m_s
+    zpsmo <- (z * p_s_hat_val)^m_o
+    e_qs_ps_C_hat_val <- (m_s * n * g * zpsms) / (f + g*zpsms)
+    e_qo_ps_C_hat_val <- (m_o * n * f * zpsmo) / (1 + f*(zpsmo - 1))
+    e_qs_ps_UC_hat_val <- e_qs_ps_C_hat_val - f_Cs_hat_val * e_qs_M_val
+    e_qo_ps_UC_hat_val <- f_Cs_hat_val * (sigma_val - e_qo_M_val)
+    
     N_dot_hat_val <- N_dot_star_val - p_E_val*(E_dot_s_hat_val - E_dot_s_star_val) - (C_dot_o_hat_val - C_dot_o_star_val)
     M_dot_hat_prime_val <- M_dot_hat_val - R_alpha_star_val * C_dot_cap_star_val -
                            C_dot_omd_star_val - N_dot_hat_val
@@ -1468,7 +1421,6 @@ calc_rebound <- function(.Deltas_data = NULL,
 #'
 #' @param .eeu_data Energy efficiency upgrade information in a data frame.
 #'                  See `load_eeu_data()` for an example data frame.
-#' @param use_sub_approx See [ReboundTools::calc_hat()].
 #'
 #' @return `.eeu_data` with all rebound terms added as columns to the right.
 #' 
@@ -1486,11 +1438,11 @@ calc_rebound <- function(.Deltas_data = NULL,
 #' simple <- load_eeu_data() %>% 
 #'   rebound_analysis()
 #' all.equal(complicated, simple)
-rebound_analysis <- function(.eeu_data, use_sub_approx = FALSE) {
+rebound_analysis <- function(.eeu_data) {
   .eeu_data %>% 
     calc_orig() %>% 
     calc_star() %>% 
-    calc_hat(use_sub_approx = use_sub_approx) %>% 
+    calc_hat() %>% 
     calc_bar() %>% 
     calc_tilde() %>% 
     calc_Deltas() %>% 
