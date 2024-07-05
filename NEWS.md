@@ -20,7 +20,7 @@ which always resolves to the latest release.
 * Now propagating energy price (p_E)
   across all stages, despite the fact that it never changes.
 * Additional tests for new features.
-    - Now up to 708 tests, all passing.
+    - Now down to 517 tests, all passing.
     - Test coverage remains at 100%.
 
 
