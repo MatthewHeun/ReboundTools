@@ -8,8 +8,9 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
-* Removed the `sub_approx` option for `calc_hat()`.
-  The substition approximation is not recommended and 
+* Removed the `sub_approx` option for `calc_hat()`
+  and other functions.
+  The substitution approximation is not recommended and 
   not part of our framework. 
   It doesn't belong in this package.
 * `stages_table()` now allows easy removal of the "tilde" column.
