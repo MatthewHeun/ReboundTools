@@ -24,19 +24,6 @@ test_that("iso_expenditure_lines() works as expected", {
 })
 
 
-test_that("iso_budget_lines_cons() works as expected with approximated hat", {
-  iso_budget_lines <- load_eeu_data() %>% 
-    rebound_analysis(use_sub_approx = TRUE) %>% 
-    iso_budget_lines_cons() %>% 
-    dplyr::filter(Case == "Lamp")
-  expect_equal(iso_budget_lines$intercept[[1]], 1.00032500637362797846)
-  expect_equal(iso_budget_lines$intercept[[2]], 1.00003509645028976216)
-  expect_equal(iso_budget_lines$intercept[[3]], 0.99979635239197450769)
-  expect_equal(iso_budget_lines$intercept[[4]], 1.0003585593438833)
-  expect_equal(iso_budget_lines$intercept[[5]], 0.00000000000000000000)
-})
-
-
 test_that("add_iso() works as expected", {
   meta <- tibble::tibble(Case = "Test case")
   res <- add_iso(indexed = FALSE, meta = meta, graph_type = "Test type", 

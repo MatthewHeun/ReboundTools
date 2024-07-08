@@ -6,7 +6,6 @@
 \usage{
 calc_hat(
   .star_data = NULL,
-  use_sub_approx = FALSE,
   t_life_star = ReboundTools::star_vars$t_life_star,
   R_alpha_star = ReboundTools::star_vars$R_alpha_star,
   R_omega_star = ReboundTools::star_vars$R_omega_star,
@@ -75,11 +74,6 @@ calc_hat(
 and star data,
 likely calculated by \code{calc_star()}.}
 
-\item{use_sub_approx}{Tells whether to use an approximate method for
-calculating the substitution effect.
-Default is \code{FALSE}.
-See details.}
-
 \item{t_life_star, C_dot_om_star, C_d_star, C_dot_d_star, C_dot_omd_star, R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
 \item{e_qs_M, e_qo_M}{See \code{ReboundTools::eeu_base_params}.}
@@ -96,25 +90,6 @@ A list or data frame of derived rebound values for the hat stage (after the subs
 \description{
 This function calculates energy rebound information for the hat
 stage (immediately after the substitution effect).
-}
-\details{
-By default, this function uses an exact method for calculating
-the substitution effect.
-The exact method uses a constant elasticity of substitution (CES)
-formulation of utility,
-which assumes constant elasticity of substitution (sigma) along
-the indifference curve.
-
-The approximate method is employed with
-\code{use_sub_approx = TRUE}.
-The approximate method
-assumes constant price elasticity of energy service consumption.
-(In fact, the price elasticity of energy service consumption
-is not constant along an indifference curve.)
-The approximation leads to a simple and elegant rebound expression
-but a different (and incorrect) consumption bundle after the substitution effect.
-The approximate method is also called the
-constant price elasticity (CPE) utility model.
 }
 \examples{
 load_eeu_data() \%>\% 
