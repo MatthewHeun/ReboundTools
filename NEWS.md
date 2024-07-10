@@ -10,6 +10,11 @@ which always resolves to the latest release.
 
 # ReboundTools 0.1.40 (2024-07-09)
 
+* Removed the `sub_approx` option for `calc_hat()`
+  and other functions.
+  The substitution approximation is not recommended and 
+  not part of our framework. 
+  It doesn't belong in this package.
 * `stages_table()` now allows easy removal of the "tilde" column.
 * Added rows for R_alpha*C_dot_cap and 
   R_omega*C_dot_d 
@@ -17,7 +22,7 @@ which always resolves to the latest release.
 * Now propagating energy price (p_E)
   across all stages, despite the fact that it never changes.
 * Additional tests for new features.
-    - Now up to 708 tests, all passing.
+    - Now down to 517 tests, all passing.
     - Test coverage remains at 100%.
 
 
