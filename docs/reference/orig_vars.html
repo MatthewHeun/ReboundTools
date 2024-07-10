@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A string list with 28 entries.</p><dl><dt>R_alpha_orig</dt>
+    <p>A string list with 31 entries.</p><dl><dt>R_alpha_orig</dt>
 <dd><p>The original discount multiplier for beginning-of-life expenses, such as capital cost.</p></dd>
 
 <dt>R_omega_orig</dt>
@@ -67,6 +67,9 @@
 
 <dt>p_E</dt>
 <dd><p>The price of energy [$/MJ], calculated by <code>p_E_engr_units / MJ_engr_unit</code>.</p></dd>
+
+<dt>p_E_orig</dt>
+<dd><p>The price of energy [$/MJ].</p></dd>
 
 <dt>q_dot_s_orig</dt>
 <dd><p>The original (pre-EEU) consumption rate of the energy service. Example units are [miles/yr] [lumen-hours/yr].</p></dd>
@@ -89,6 +92,9 @@
 <dt>C_dot_cap_orig</dt>
 <dd><p>The capital expenditure rate of the device without discounting [$/yr], calculated by <code>C_cap/t_own</code>.</p></dd>
 
+<dt>R_alpha_C_dot_cap_orig</dt>
+<dd><p>The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].</p></dd>
+
 <dt>C_dot_om_orig</dt>
 <dd><p>The operations and maintenance expenditure rate of the device [$/yr].</p></dd>
 
@@ -97,6 +103,9 @@
 
 <dt>C_dot_d_orig</dt>
 <dd><p>The disposal cost rate of the device without discounting [$/yr].</p></dd>
+
+<dt>R_omega_C_dot_d_orig</dt>
+<dd><p>The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].</p></dd>
 
 <dt>C_dot_omd_orig</dt>
 <dd><p>The operations, maintenance, and disposal expenditure rate of the device [$/yr].</p></dd>
@@ -155,6 +164,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $p_E</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "p_E"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p_E_orig</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "p_E_orig"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $q_dot_s_orig</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "q_dot_s_orig"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -176,6 +188,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_cap_orig</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_cap_orig"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $R_alpha_C_dot_cap_orig</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "R_alpha_C_dot_cap_orig"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $p_s_orig</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "p_s_orig"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -190,6 +205,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_d_orig</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_d_orig"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $R_omega_C_dot_d_orig</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "R_omega_C_dot_d_orig"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_omd_orig</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_omd_orig"</span>

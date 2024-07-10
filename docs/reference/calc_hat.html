@@ -12,7 +12,7 @@ stage (immediately after the substitution effect)."><!-- mathjax --><script src=
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,6 @@ stage (immediately after the substitution effect).</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calc_hat</span><span class="op">(</span></span>
 <span>  .star_data <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  use_sub_approx <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  t_life_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">t_life_star</span>,</span>
 <span>  R_alpha_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">R_alpha_star</span>,</span>
 <span>  R_omega_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">R_omega_star</span>,</span>
@@ -101,13 +100,16 @@ stage (immediately after the substitution effect).</p>
 <span>  eta_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">eta_hat</span>,</span>
 <span>  p_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">p_s_hat</span>,</span>
 <span>  C_dot_cap_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_cap_hat</span>,</span>
+<span>  R_alpha_C_dot_cap_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">R_alpha_C_dot_cap_hat</span>,</span>
 <span>  E_dot_emb_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">E_dot_emb_hat</span>,</span>
 <span>  M_dot_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">M_dot_hat</span>,</span>
 <span>  q_dot_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">q_dot_s_hat</span>,</span>
+<span>  p_E_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">p_E_hat</span>,</span>
 <span>  E_dot_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">E_dot_s_hat</span>,</span>
 <span>  C_dot_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_s_hat</span>,</span>
 <span>  C_d_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_d_hat</span>,</span>
 <span>  C_dot_d_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_d_hat</span>,</span>
+<span>  R_omega_C_dot_d_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">R_omega_C_dot_d_hat</span>,</span>
 <span>  C_dot_om_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_om_hat</span>,</span>
 <span>  C_dot_omd_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_omd_hat</span>,</span>
 <span>  C_dot_o_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_o_hat</span>,</span>
@@ -129,13 +131,6 @@ and star data,
 likely calculated by <code><a href="calc_star.html">calc_star()</a></code>.</p></dd>
 
 
-<dt>use_sub_approx</dt>
-<dd><p>Tells whether to use an approximate method for
-calculating the substitution effect.
-Default is <code>FALSE</code>.
-See details.</p></dd>
-
-
 <dt>t_life_star, C_dot_om_star, C_d_star, C_dot_d_star, C_dot_omd_star, R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot</dt>
 <dd><p>See <code><a href="star_vars.html">ReboundTools::star_vars</a></code>.</p></dd>
 
@@ -152,7 +147,7 @@ See details.</p></dd>
 <dd><p>See <code><a href="orig_vars.html">ReboundTools::orig_vars</a></code>.</p></dd>
 
 
-<dt>t_life_hat, C_d_hat, C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime</dt>
+<dt>t_life_hat, C_d_hat, C_dot_d_hat, R_omega_C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, R_alpha_C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime, p_E_hat</dt>
 <dd><p>See <code><a href="hat_vars.html">ReboundTools::hat_vars</a></code>.</p></dd>
 
 </dl></div>
@@ -162,23 +157,6 @@ See details.</p></dd>
 
 <p>A list or data frame of derived rebound values for the hat stage (after the substitution effect).</p>
     </div>
-    <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>By default, this function uses an exact method for calculating
-the substitution effect.
-The exact method uses a constant elasticity of substitution (CES)
-formulation of utility,
-which assumes constant elasticity of substitution (sigma) along
-the indifference curve.</p>
-<p>The approximate method is employed with
-<code>use_sub_approx = TRUE</code>.
-The approximate method
-assumes constant price elasticity of energy service consumption.
-(In fact, the price elasticity of energy service consumption
-is not constant along an indifference curve.)
-The approximation leads to a simple and elegant rebound expression
-but a different (and incorrect) consumption bundle after the substitution effect.</p>
-    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -186,19 +164,19 @@ but a different (and incorrect) consumption bundle after the substitution effect
 <span class="r-in"><span>  <span class="fu"><a href="calc_orig.html">calc_orig</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu"><a href="calc_star.html">calc_star</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu">calc_hat</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 93</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 102</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Reference Case       Original     Upgrade      r service_unit energy_engr_unit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> None yet  Car        Ford Fusion  Ford Fu…  0.03 mile         gal             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> None yet  Lamp       Incandescent LED       0.03 lm-hr        W-hr            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> None yet  Car, r = 0 Ford Fusion  Ford Fu…  0    mile         gal             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 86 more variables: `MJ/energy_engr_unit` &lt;dbl&gt;, I_E &lt;dbl&gt;, k &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 95 more variables: `MJ/energy_engr_unit` &lt;dbl&gt;, I_E &lt;dbl&gt;, k &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   p_E_engr_units &lt;dbl&gt;, e_qs_ps_UC_orig &lt;dbl&gt;, e_qs_M &lt;dbl&gt;, e_qo_M &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   eta_engr_units_orig &lt;dbl&gt;, eta_engr_units_star &lt;dbl&gt;, q_dot_s_orig &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   M_dot_orig &lt;dbl&gt;, C_cap_orig &lt;dbl&gt;, C_cap_star &lt;dbl&gt;, C_dot_om_orig &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   C_d_orig &lt;dbl&gt;, C_dot_om_star &lt;dbl&gt;, C_d_star &lt;dbl&gt;, E_emb_orig &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   t_life_orig &lt;dbl&gt;, E_emb_star &lt;dbl&gt;, t_life_star &lt;dbl&gt;, R_alpha_orig &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   R_omega_orig &lt;dbl&gt;, p_E &lt;dbl&gt;, eta_orig &lt;dbl&gt;, E_dot_s_orig &lt;dbl&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   R_omega_orig &lt;dbl&gt;, p_E &lt;dbl&gt;, p_E_orig &lt;dbl&gt;, eta_orig &lt;dbl&gt;, …</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

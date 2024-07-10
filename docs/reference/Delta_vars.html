@@ -14,7 +14,7 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A string list with 72 entries.</p><dl><dt>Delta_eta_star</dt>
+    <p>A string list with 84 entries.</p><dl><dt>Delta_eta_star</dt>
 <dd><p>Calculated as <code>eta_star - eta_orig</code>.</p></dd>
 
 <dt>Delta_p_s_star</dt>
@@ -113,6 +113,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_q_dot_s_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_q_dot_s_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_p_E_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_p_E_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_E_dot_s_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_E_dot_s_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -125,6 +128,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_cap_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_cap_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_alpha_C_dot_cap_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_alpha_C_dot_cap_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_om_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_om_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -133,6 +139,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_d_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_d_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_omega_C_dot_d_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_omega_C_dot_d_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_omd_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_omd_star"</span>
@@ -167,6 +176,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_q_dot_s_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_q_dot_s_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_p_E_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_p_E_hat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_E_dot_s_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_E_dot_s_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -179,6 +191,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_cap_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_cap_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_alpha_C_dot_cap_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_alpha_C_dot_cap_hat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_om_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_om_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -187,6 +202,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_d_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_d_hat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_omega_C_dot_d_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_omega_C_dot_d_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_omd_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_omd_hat"</span>
@@ -221,6 +239,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_q_dot_s_bar</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_q_dot_s_bar"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_p_E_bar</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_p_E_bar"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_E_dot_s_bar</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_E_dot_s_bar"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -233,6 +254,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_cap_bar</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_cap_bar"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_alpha_C_dot_cap_bar</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_alpha_C_dot_cap_bar"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_om_bar</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_om_bar"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -241,6 +265,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_d_bar</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_d_bar"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_omega_C_dot_d_bar</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_omega_C_dot_d_bar"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_omd_bar</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_omd_bar"</span>
@@ -275,6 +302,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_q_dot_s_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_q_dot_s_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_p_E_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_p_E_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_E_dot_s_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_E_dot_s_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -287,6 +317,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_cap_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_cap_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_alpha_C_dot_cap_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_alpha_C_dot_cap_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_om_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_om_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -295,6 +328,9 @@ stage is the rebound stage being considered (from ReboundTools::rebound_stages).
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_d_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_d_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_R_omega_C_dot_d_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_R_omega_C_dot_d_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Delta_C_dot_omd_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Delta_C_dot_omd_tilde"</span>

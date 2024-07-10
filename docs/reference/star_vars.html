@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A string list with 28 entries.</p><dl><dt>R_alpha_star</dt>
+    <p>A string list with 31 entries.</p><dl><dt>R_alpha_star</dt>
 <dd><p>The post-emplacement discount multiplier for beginning-of-life expenses, such as capital cost.</p></dd>
 
 <dt>R_omega_star</dt>
@@ -101,6 +101,9 @@
 <dt>C_dot_cap_star</dt>
 <dd><p>The capital expenditure rate of the device without discounting [$/yr], calculated by <code>C_cap/t_life</code>.</p></dd>
 
+<dt>R_alpha_C_dot_cap_star</dt>
+<dd><p>The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].</p></dd>
+
 <dt>C_dot_om_star</dt>
 <dd><p>The operations and maintenance expenditure rate of the device [$/yr].</p></dd>
 
@@ -109,6 +112,9 @@
 
 <dt>C_dot_d_star</dt>
 <dd><p>The disposal cost rate of the device without discounting [$/yr].</p></dd>
+
+<dt>R_omega_C_dot_d_star</dt>
+<dd><p>The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].</p></dd>
 
 <dt>C_dot_omd_star</dt>
 <dd><p>The operations, maintenance, and disposal expenditure rate of the device [$/yr].</p></dd>
@@ -142,6 +148,9 @@
 
 <dt>e_qo_ps_UC_star</dt>
 <dd><p>The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].</p></dd>
+
+<dt>p_E_star</dt>
+<dd><p>The price of energy [$/MJ],</p></dd>
 
 <dt>E_dot_s_star</dt>
 <dd><p>The upgraded (post-EEU) energy consumption rate [MJ/yr], calculated by <code>q_dot_s_star / eta_star</code>.</p></dd>
@@ -197,6 +206,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_cap_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_cap_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $R_alpha_C_dot_cap_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "R_alpha_C_dot_cap_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $E_dot_emb_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "E_dot_emb_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -211,6 +223,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_d_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_d_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $R_omega_C_dot_d_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "R_omega_C_dot_d_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_omd_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_omd_star"</span>
@@ -232,6 +247,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_UC_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_UC_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p_E_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "p_E_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $E_dot_s_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "E_dot_s_star"</span>
