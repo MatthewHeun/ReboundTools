@@ -3,7 +3,38 @@ title: "Release notes for `ReboundTools`"
 output: html_document
 ---
 
-# ReboundTools 0.1.38 (2023-07-05) 
+
+Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zenodo.4999846), 
+which always resolves to the latest release.
+
+
+# ReboundTools 0.1.40 (2024-07-09)
+
+* Removed the `sub_approx` option for `calc_hat()`
+  and other functions.
+  The substitution approximation is not recommended and 
+  not part of our framework. 
+  It doesn't belong in this package.
+* `stages_table()` now allows easy removal of the "tilde" column.
+* Added rows for R_alpha*C_dot_cap and 
+  R_omega*C_dot_d 
+  in stages table.
+* Now propagating energy price (p_E)
+  across all stages, despite the fact that it never changes.
+* Additional tests for new features.
+    - Now down to 517 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.39 (2024-05-15) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11199447.svg)](https://doi.org/10.5281/zenodo.11199447)
+
+* Use new budget constraint with discounting.
+* Additional tests for new features.
+    - Now up to 695 tests, all passing.
+    - Test coverage remains at 100%.
+
+
+# ReboundTools 0.1.38 (2023-07-05) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8117284.svg)](https://doi.org/10.5281/zenodo.8117284)
 
 * Fixed a bug in `calc_orig()`.
   Some calculated parameters were in the argument list.

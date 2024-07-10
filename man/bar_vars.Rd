@@ -5,12 +5,19 @@
 \alias{bar_vars}
 \title{EEU bar data}
 \format{
-A string list with 17 entries.
+A string list with 26 entries.
 \describe{
+\item{R_alpha_bar}{The post-income effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_hat}.}
+\item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_hat}.}
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}
-\item{C_dot_cap_bar}{The capital expenditure rate after the income effect [$/yr], exactly \code{C_dot_cap_hat}.}
-\item{C_dot_md_bar}{The maintenance and disposal expenditure rate after the income effect [$/yr], exactly \code{C_dot_md_hat}.}
+\item{C_dot_cap_bar}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
+\item{R_alpha_C_dot_cap_bar}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
+\item{C_dot_om_bar}{The operations and maintenance expenditure rate of the device [$/yr].}
+\item{C_d_bar}{The disposal cost for the device [$/yr].}
+\item{C_dot_d_bar}{The disposal cost rate of the device without discounting [$/yr].}
+\item{R_omega_C_dot_d_bar}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
+\item{C_dot_omd_bar}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_bar}{The embodied energy rate after the income effect [MJ/yr], exactly \code{E_dot_emb_hat}.}
 \item{M_dot_bar}{Real income after the income effect [MJ/yr], exactly \code{M_dot_hat}.}
 \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/yr], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)}.}
@@ -20,6 +27,7 @@ A string list with 17 entries.
 \item{e_qo_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qo_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{p_E_bar}{The price of energy [$/MJ],}
 \item{N_dot_bar}{The freed cash rate after the income effect [$/yr], exactly \code{0}.}
 }
 

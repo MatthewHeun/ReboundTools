@@ -5,18 +5,25 @@
 \alias{orig_vars}
 \title{EEU orig data}
 \format{
-A string list with 24 entries.
+A string list with 31 entries.
 \describe{
+\item{R_alpha_orig}{The original discount multiplier for beginning-of-life expenses, such as capital cost.}
+\item{R_omega_orig}{The original discount multiplier for end-of-life expenses, such as disposal cost.}
 \item{p_E}{The price of energy [$/MJ], calculated by \code{p_E_engr_units / MJ_engr_unit}.}
+\item{p_E_orig}{The price of energy [$/MJ].}
 \item{q_dot_s_orig}{The original (pre-EEU) consumption rate of the energy service. Example units are [miles/yr] [lumen-hours/yr].}
 \item{C_cap_orig}{The net capital expenditure of the original device: the sum of purchase price and financing costs less rebates and resale value at end of ownership [$].}
 \item{M_dot_orig}{The disposable income rate, exclusive of taxes and savings [$/yr].}
-\item{t_own_orig}{The expected ownership duration of the original device [yr].}
-\item{C_dot_md_orig}{The original (pre-EEU) maintenance and disposal expenditure rate [$/yr].}
 \item{eta_engr_units_orig}{The original (pre-EEU) energy service efficiency.  This number should have engineering units in the denominator, e.g., [miles/gallon] [lumens/kW]. Note that the denominator unit of \code{eta_engr_units_orig} is assumed to be the same as the denominator unit of \code{MJ_engr_unit}.}
 \item{eta_orig}{Energy service efficiency of the original (pre-EEU) device on a per-MJ basis [service/MJ], calculated by \code{eta_engr_units_orig / MJ_engr_unit}.}
 \item{E_dot_s_orig}{The final energy consumption rate of the original (pre-EEU) device [MJ/yr], calculated by \code{q_dot_s_orig / eta_orig}.}
-\item{C_dot_cap_orig}{The original (pre-EEU) capital expenditure rate [$/yr], calculated by \code{C_cap_orig / t_orig}.}
+\item{C_dot_cap_orig}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_own}.}
+\item{R_alpha_C_dot_cap_orig}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
+\item{C_dot_om_orig}{The operations and maintenance expenditure rate of the device [$/yr].}
+\item{C_d_orig}{The disposal cost for the device [$/yr].}
+\item{C_dot_d_orig}{The disposal cost rate of the device without discounting [$/yr].}
+\item{R_omega_C_dot_d_orig}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
+\item{C_dot_omd_orig}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{p_s_orig}{The original (pre-EEU) energy service price [$/service], calculated by \code{p_E / eta_orig}.}
 \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device [$/yr], calculated by \code{p_E * E_dot_s_orig}.}
 \item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods [$/yr], calculated by \code{M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig}.}

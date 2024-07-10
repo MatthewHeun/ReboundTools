@@ -43,5 +43,5 @@ load_eeu_data <- function(path = sample_eeu_data_path(),
   # Grab column names. Make sure each expected_col_name is present.
   cols_present <- which(expected_col_names %in% colnames(eeu_data))
   assertthat::assert_that(all(cols_present))
-  eeu_data
+  return(eeu_data)
 }

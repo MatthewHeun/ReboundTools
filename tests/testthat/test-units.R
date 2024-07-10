@@ -54,9 +54,6 @@ test_that("rebound_var_units() works as expected", {
   expect_equal(rebound_var_units("eta", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(eta = "[service/MJ]"))
   
-  expect_equal(rebound_var_units("t_own_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
-               c(t_own_orig = "[yr]"))
-  
   expect_equal(rebound_var_units("MJ/energy_engr_unit", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(`MJ/energy_engr_unit` = "[MJ/energy]"))
 
@@ -67,7 +64,6 @@ test_that("rebound_var_units() works as expected", {
   
   expect_equal(rebound_var_units("Re_md", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(Re_md = "[--]"))
-  
 })
 
 
@@ -94,4 +90,15 @@ test_that("rebound_var_units() works in a data.frame", {
   # Nothing should be unknown except for the first 5 items in the list.
   # First 6 items are Reference, Case, Original, and Upgrade.
   expect_equal(which(res$unit[5:nrow(res)] == "[unknown]") %>% length(), 0)
+})
+
+
+test_that("rebound_var_units() works with R_alpha_C_dot_cap and R_omega_C_dot_d", {
+  su <- "service"
+  eu <- "energy"
+  expect_equal(rebound_var_units("R_alpha_C_dot_cap_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(R_alpha_C_dot_cap_orig = "[\\$/yr]"))
+  expect_equal(rebound_var_units("R_omega_C_dot_d_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(R_omega_C_dot_d_orig = "[\\$/yr]"))
+  
 })

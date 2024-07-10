@@ -21,8 +21,8 @@ test_that("energy_paths() works as expected", {
                   line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_energy_path_abs$x, 73060.68051000000559724867)
   expect_equal(car_energy_path_abs$xend, 43488.50030357141804415733)
-  expect_equal(car_energy_path_abs$y, 77316.81880725323571823537)
-  expect_equal(car_energy_path_abs$yend, 77316.81880725323571823537)
+  expect_equal(car_energy_path_abs$y, 82759.2731666039326228)
+  expect_equal(car_energy_path_abs$yend, 82759.2731666039326228)
 })
 
 
@@ -38,8 +38,8 @@ test_that("expenditure_paths() works as expected", {
                   line_name == ReboundTools::rebound_segments$dempl)
   expect_equal(car_expenditure_path_abs$x, 1275.17)
   expect_equal(car_expenditure_path_abs$xend, 759.02976190476181272970)
-  expect_equal(car_expenditure_path_abs$y, 26126.10769302945845993236)
-  expect_equal(car_expenditure_path_abs$yend, 26126.10769302945845993236)
+  expect_equal(car_expenditure_path_abs$y, 26126.1076930294584599)
+  expect_equal(car_expenditure_path_abs$yend, 26126.1076930294584599)
   
   # Calculate the indexed paths
   expenditure_paths_indexed <- load_eeu_data() %>% 
@@ -52,28 +52,6 @@ test_that("expenditure_paths() works as expected", {
   expect_equal(car_expenditure_paths_indexed$xend, 0.59523809523809512179)
   expect_equal(car_expenditure_paths_indexed$y, 1)
   expect_equal(car_expenditure_paths_indexed$yend, 1)
-})
-
-
-test_that("consumption_paths() works as expected with approximated hat", {
-  cons_paths <- load_eeu_data() %>% 
-    rebound_analysis(use_sub_approx = TRUE) %>% 
-    consumption_paths()
-  
-  # Check values on the lighting graph.
-  lighting_cons_path <- cons_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption, line_name == ReboundTools::rebound_segments$isub)
-  expect_equal(lighting_cons_path$x, 1)
-  expect_equal(lighting_cons_path$y, 1)
-  expect_equal(lighting_cons_path$xend, 1)
-  expect_equal(lighting_cons_path$yend, 0.99971092431922392585)
-  
-  lighting_cons_path2 <- cons_paths %>% 
-    dplyr::filter(Case == "Lamp", graph_type == ReboundTools::graph_types$consumption, line_name == ReboundTools::rebound_segments$dsub)
-  expect_equal(lighting_cons_path2$x, 1)
-  expect_equal(lighting_cons_path2$y, 0.99971092431922392585)
-  expect_equal(lighting_cons_path2$xend, 2.43409438974531644462)
-  expect_equal(lighting_cons_path2$yend, 0.99971092431922392585)
 })
 
 
@@ -175,7 +153,7 @@ test_that("consumption path creation works with reverse drawing order", {
   expected <- ReboundTools::rebound_segments
   expected$dempl <- NULL
   expected$cap <- NULL
-  expected$md <- NULL
+  expected$omd <- NULL
   expected$emb <- NULL
   expected$macro <- NULL
   expected <- expected %>% unlist() %>% unname()
