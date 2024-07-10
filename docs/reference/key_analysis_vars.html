@@ -12,7 +12,7 @@ These variables are differenced later in the analysis."><!-- mathjax --><script 
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@ These variables are differenced later in the analysis.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A string list with 18 entries.</p><dl><dt>eta_engr_units</dt>
+    <p>A string list with 21 entries.</p><dl><dt>eta_engr_units</dt>
 <dd><p>Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service, in engineering units.</p></dd>
 
 <dt>eta</dt>
@@ -73,6 +73,9 @@ These variables are differenced later in the analysis.</p>
 
 <dt>q_dot_s</dt>
 <dd><p>The rate of energy service consumption [service/yr], calculated by <code>eta*E_dot_s</code>.</p></dd>
+
+<dt>p_E</dt>
+<dd><p>The price of energy [$/MJ]</p></dd>
 
 <dt>E_dot_s</dt>
 <dd><p>The rate of final energy consumption by the energy conversion device [MJ/yr].</p></dd>
@@ -113,16 +116,18 @@ These variables are differenced later in the analysis.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">key_analysis_vars</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           t_life          R_alpha          R_omega   eta_engr_units </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "t_life"        "R_alpha"        "R_omega" "eta_engr_units" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              eta              p_s          q_dot_s          E_dot_s </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            "eta"            "p_s"        "q_dot_s"        "E_dot_s" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        E_dot_emb          C_dot_s        C_dot_cap         C_dot_om </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      "E_dot_emb"        "C_dot_s"      "C_dot_cap"       "C_dot_om" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              C_d          C_dot_d        C_dot_omd          C_dot_o </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            "C_d"        "C_dot_d"      "C_dot_omd"        "C_dot_o" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            N_dot            M_dot </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          "N_dot"          "M_dot" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              t_life             R_alpha             R_omega      eta_engr_units </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            "t_life"           "R_alpha"           "R_omega"    "eta_engr_units" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 eta                 p_s             q_dot_s                 p_E </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               "eta"               "p_s"           "q_dot_s"               "p_E" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             E_dot_s           E_dot_emb             C_dot_s           C_dot_cap </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           "E_dot_s"         "E_dot_emb"           "C_dot_s"         "C_dot_cap" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   R_alpha_C_dot_cap            C_dot_om                 C_d             C_dot_d </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "R_alpha_C_dot_cap"          "C_dot_om"               "C_d"           "C_dot_d" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     R_omega_C_dot_d           C_dot_omd             C_dot_o               N_dot </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   "R_omega_C_dot_d"         "C_dot_omd"           "C_dot_o"             "N_dot" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               M_dot </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             "M_dot" </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A string list with 23 entries.</p><dl><dt>R_alpha_bar</dt>
+    <p>A string list with 26 entries.</p><dl><dt>R_alpha_bar</dt>
 <dd><p>The post-macro effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as <code>R_alpha_bar</code>.</p></dd>
 
 <dt>R_omega_bar</dt>
@@ -74,6 +74,9 @@
 <dt>C_dot_cap_tilde</dt>
 <dd><p>The capital expenditure rate of the device without discounting [$/yr], calculated by <code>C_cap/t_life</code>.</p></dd>
 
+<dt>R_alpha_C_dot_cap_tilde</dt>
+<dd><p>The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].</p></dd>
+
 <dt>C_dot_om_tilde</dt>
 <dd><p>The operations and maintenance expenditure rate of the device [$/yr].</p></dd>
 
@@ -82,6 +85,9 @@
 
 <dt>C_dot_d_tilde</dt>
 <dd><p>The disposal cost rate of the device without discounting [$/yr].</p></dd>
+
+<dt>R_omega_C_dot_d_tilde</dt>
+<dd><p>The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].</p></dd>
 
 <dt>C_dot_omd_tilde</dt>
 <dd><p>The operations, maintenance, and disposal expenditure rate of the device [$/yr].</p></dd>
@@ -112,6 +118,9 @@
 
 <dt>e_qo_ps_UC_tilde</dt>
 <dd><p>The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].</p></dd>
+
+<dt>p_E_tilde</dt>
+<dd><p>The price of energy [$/MJ],</p></dd>
 
 <dt>N_dot_tilde</dt>
 <dd><p>The freed cash rate after the macro effect [$/yr], exactly <code>0</code>.</p></dd>
@@ -144,6 +153,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_cap_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_cap_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $R_alpha_C_dot_cap_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "R_alpha_C_dot_cap_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $E_dot_emb_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "E_dot_emb_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -156,6 +168,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_d_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_d_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $R_omega_C_dot_d_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "R_omega_C_dot_d_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_omd_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_omd_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -164,6 +179,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $q_dot_s_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "q_dot_s_tilde"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p_E_tilde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "p_E_tilde"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $E_dot_s_tilde</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "E_dot_s_tilde"</span>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ReboundTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.39</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,25 +71,28 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">latex_key_analysis_vars</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          var_name         latex_var_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          t_life       $t_{li\\!f\\!e}$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         R_alpha            $R_\\alpha$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         R_omega            $R_\\omega$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  eta_engr_units                $\\eta$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             eta                $\\eta$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             p_s                  $p_s$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         q_dot_s           $\\dot{q}_s$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         E_dot_s           $\\dot{E}_s$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       E_dot_emb       $\\dot{E}_{emb}$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        C_dot_s           $\\dot{C}_s$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      C_dot_cap       $\\dot{C}_{cap}$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       C_dot_om     $\\dot{C}_{O\\!M}$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13            C_d                  $C_d$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        C_dot_d           $\\dot{C}_d$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      C_dot_omd $\\dot{C}_{O\\!M\\!d}$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16        C_dot_o           $\\dot{C}_o$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17          N_dot             $\\dot{N}$</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18          M_dot             $\\dot{M}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             var_name              latex_var_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             t_life            $t_{li\\!f\\!e}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            R_alpha                 $R_\\alpha$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            R_omega                 $R_\\omega$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     eta_engr_units                     $\\eta$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                eta                     $\\eta$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                p_s                       $p_s$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7            q_dot_s                $\\dot{q}_s$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                p_E                       $p_E$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9            E_dot_s                $\\dot{E}_s$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10         E_dot_emb            $\\dot{E}_{emb}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11           C_dot_s                $\\dot{C}_s$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12         C_dot_cap            $\\dot{C}_{cap}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 R_alpha_C_dot_cap $R_{\\alpha}\\dot{C}_{cap}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14          C_dot_om          $\\dot{C}_{O\\!M}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15               C_d                       $C_d$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16           C_dot_d                $\\dot{C}_d$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   R_omega_C_dot_d     $R_{\\omega}\\dot{C}_d$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18         C_dot_omd      $\\dot{C}_{O\\!M\\!d}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19           C_dot_o                $\\dot{C}_o$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20             N_dot                  $\\dot{N}$</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21             M_dot                  $\\dot{M}$</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
