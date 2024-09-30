@@ -8,6 +8,11 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+* The subscript "o" for other goods and services
+  consumption has been changed throughout to match
+  a nomenclature change in the first paper using this framework.
+
+
 # ReboundTools 0.1.40 (2024-07-09) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12702452.svg)](https://doi.org/10.5281/zenodo.12702452)
 
 * Removed the `sub_approx` option for `calc_hat()`
