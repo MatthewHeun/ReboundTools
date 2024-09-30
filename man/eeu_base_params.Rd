@@ -20,7 +20,7 @@ A string list with 14 entries.
 \item{p_E_engr_units}{The price of energy in engineering units, e.g., $/gal or $/kW-hr [$/energy_engr_unit].}
 \item{e_qs_ps_UC_orig}{The original uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
 \item{e_qs_M}{The income ("M") elasticity ("e") of energy service ("qs") consumption [--].}
-\item{e_qo_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption [--].}
+\item{e_qg_M}{The income ("M") elasticity ("e") of other goods ("qo") consumption [--].}
 }
 }
 \usage{

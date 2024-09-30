@@ -65,7 +65,7 @@ derived expression for rebound.</p>
 <span>  tol <span class="op">=</span> <span class="fl">1e-10</span>,</span>
 <span>  I_E <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">I_E</span>,</span>
 <span>  e_qs_M <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">e_qs_M</span>,</span>
-<span>  e_qo_M <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">e_qo_M</span>,</span>
+<span>  e_qg_M <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">e_qg_M</span>,</span>
 <span>  k <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">k</span>,</span>
 <span>  e_qs_ps_C <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">e_qs_ps_C</span>,</span>
 <span>  e_qo_ps_C <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">e_qo_ps_C</span>,</span>
@@ -121,7 +121,7 @@ derived expression for rebound.</p>
 <dd><p>The tolerance for checking internal consistency of rebound calculations. Default is <code>1e-10</code>.</p></dd>
 
 
-<dt>I_E, e_qs_M, e_qo_M, k</dt>
+<dt>I_E, e_qs_M, e_qg_M, k</dt>
 <dd><p>See <code><a href="eeu_base_params.html">ReboundTools::eeu_base_params</a></code>.</p></dd>
 
 
@@ -177,7 +177,7 @@ derived expression for rebound.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> None yet  Lamp       Incandescent LED       0.03 lm-hr        W-hr            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> None yet  Car, r = 0 Ford Fusion  Ford Fu…  0    mile         gal             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 249 more variables: `MJ/energy_engr_unit` &lt;dbl&gt;, I_E &lt;dbl&gt;, k &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   p_E_engr_units &lt;dbl&gt;, e_qs_ps_UC_orig &lt;dbl&gt;, e_qs_M &lt;dbl&gt;, e_qo_M &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   p_E_engr_units &lt;dbl&gt;, e_qs_ps_UC_orig &lt;dbl&gt;, e_qs_M &lt;dbl&gt;, e_qg_M &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   eta_engr_units_orig &lt;dbl&gt;, eta_engr_units_star &lt;dbl&gt;, q_dot_s_orig &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   M_dot_orig &lt;dbl&gt;, C_cap_orig &lt;dbl&gt;, C_cap_star &lt;dbl&gt;, C_dot_om_orig &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   C_d_orig &lt;dbl&gt;, C_dot_om_star &lt;dbl&gt;, C_d_star &lt;dbl&gt;, E_emb_orig &lt;dbl&gt;,</span></span>

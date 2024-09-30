@@ -39,25 +39,25 @@ indifference_lines <- function(.rebound_data,
   
   # Original data.  
   qs0 <- .rebound_data[[q_dot_s_orig]]
-  Co0 <- .rebound_data[[C_dot_g_orig]]
+  Cg0 <- .rebound_data[[C_dot_g_orig]]
   f_Cs0 <- .rebound_data[[f_Cs_orig]]
   sigma_val <- .rebound_data[[sigma]]
   
   # Indifference curve at the orig point (same as the star point, same as the hat point)
   qs1 <- qs0
-  Co1 <- Co0
+  Cg1 <- Cg0
   # Make sure we include the hat point in our curve.
   qs2 <- .rebound_data[[q_dot_s_hat]]
   
   qs1_qs0 <- qs1/qs0
-  Co1_Co0 <- Co1/Co0
+  Cg1_Cg0 <- Cg1/Cg0
   qs2_qs0 <- qs2/qs0
   
   icurves <- add_indifference_curve(meta = meta,
                                     graph_type = graph_type,
                                     line_name = ReboundTools::rebound_stages$orig,
                                     qs1_qs0 = qs1_qs0,
-                                    Co1_Co0 = Co1_Co0,
+                                    Cg1_Cg0 = Cg1_Cg0,
                                     qs2_qs0 = qs2_qs0,
                                     f_Cs_orig = f_Cs0,
                                     sigma = sigma_val, 
@@ -65,15 +65,15 @@ indifference_lines <- function(.rebound_data,
   
   # Indifference curve at the bar point (after income effect)
   qs1 <- .rebound_data[[q_dot_s_bar]]
-  Co1 <- .rebound_data[[C_dot_g_bar]]
+  Cg1 <- .rebound_data[[C_dot_g_bar]]
   qs1_qs0 <- qs1/qs0
-  Co1_Co0 <- Co1/Co0
+  Cg1_Cg0 <- Cg1/Cg0
   icurves <- icurves %>%
     add_indifference_curve(meta = meta,
                            graph_type = graph_type,
                            line_name = ReboundTools::rebound_stages$hat,
                            qs1_qs0 = qs1_qs0,
-                           Co1_Co0 = Co1_Co0, 
+                           Cg1_Cg0 = Cg1_Cg0, 
                            qs2_qs0 = NULL,
                            f_Cs_orig = f_Cs0,
                            sigma = sigma_val, 
@@ -106,7 +106,7 @@ indifference_lines <- function(.rebound_data,
 #' @param graph_type The graph type for the indifference curve.
 #'                   Default is `ReboundTools::graph_types$consumption`.
 #' @param line_name A name for this indifference curve.
-#' @param qs1_qs0,Co1_Co0 The (x,y) coordinates of a point on this indifference curve.
+#' @param qs1_qs0,Cg1_Cg0 The (x,y) coordinates of a point on this indifference curve.
 #' @param qs2_qs0 A second x value at which a a point on the indifference curve should be calculated. Default is `NULL`.
 #' @param f_Cs_orig The ratio of spending on the energy service to 
 #'                  the sum of initial spending on the energy service and other goods.
@@ -128,7 +128,7 @@ add_indifference_curve <- function(.DF = NULL,
                                    meta, 
                                    graph_type = ReboundTools::graph_types$consumption, 
                                    line_name, 
-                                   qs1_qs0, Co1_Co0, qs2_qs0 = NULL, f_Cs_orig, sigma,
+                                   qs1_qs0, Cg1_Cg0, qs2_qs0 = NULL, f_Cs_orig, sigma,
                                    graph_params = ReboundTools::path_graph_params,
                                    eeu_base_params = ReboundTools::eeu_base_params,
                                    graph_df_colnames = ReboundTools::graph_df_colnames) {
@@ -167,7 +167,7 @@ add_indifference_curve <- function(.DF = NULL,
       "{graph_df_colnames$linewidth_col}" := graph_params$cons_indiff_grid_linewidth,
       "{graph_df_colnames$linetype_col}" := graph_params$cons_indiff_grid_linetype, 
       "{graph_df_colnames$qs1_qs0_col}" := qs1_qs0,
-      "{graph_df_colnames$Co1_Co0_col}" := Co1_Co0,
+      "{graph_df_colnames$Cg1_Cg0_col}" := Cg1_Cg0,
       "{graph_df_colnames$f_Cs_orig_col}" := f_Cs_orig, 
       "{graph_df_colnames$sigma_col}" := sigma
     ) %>% 
@@ -176,7 +176,7 @@ add_indifference_curve <- function(.DF = NULL,
       # Now add y values via indifference_func()
       "{graph_df_colnames$y_col}" := indifference_func(qs_qs0 = .data[[graph_df_colnames$x_col]], 
                                                        qs1_qs0 = .data[[graph_df_colnames$qs1_qs0_col]], 
-                                                       Co1_Co0 = .data[[graph_df_colnames$Co1_Co0_col]], 
+                                                       Cg1_Cg0 = .data[[graph_df_colnames$Cg1_Cg0_col]], 
                                                        f_Cs_orig = .data[[graph_df_colnames$f_Cs_orig_col]], 
                                                        sigma = .data[[graph_df_colnames$sigma_col]])
     ) %>% 
@@ -203,7 +203,7 @@ add_indifference_curve <- function(.DF = NULL,
 #' @param qs_qs0 The ratio `q_dot_s/q_dot_s_orig`. Sweeping this variable (x) gives
 #'               the indifference curve parameterized by the other arguments.
 #' @param qs1_qs0 The x coordinate of a point on this indifference curve.
-#' @param Co1_Co0 The y coordinate of a point on this indifference curve.
+#' @param Cg1_Cg0 The y coordinate of a point on this indifference curve.
 #' @param f_Cs_orig The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_g_orig)`.
 #' @param sigma The elasticity of substitution between the energy service and other goods.
 #' @param rho The exponent in the CES utility function. Default is `(sigma-1)/sigma`.
@@ -214,20 +214,20 @@ add_indifference_curve <- function(.DF = NULL,
 #'
 #' @examples
 #' qs1_qs0 <- 1
-#' Co1_Co0 <- 1
+#' Cg1_Cg0 <- 1
 #' sigma <- 0.3
 #' f_Cs_orig <- 0.01
 #' DF <- data.frame(x = seq(0.5, 1.5, by = 0.1)) %>% 
 #'   dplyr::mutate(
-#'     y = indifference_func(x, qs1_qs0 = qs1_qs0, Co1_Co0 = Co1_Co0, 
+#'     y = indifference_func(x, qs1_qs0 = qs1_qs0, Cg1_Cg0 = Cg1_Cg0, 
 #'                           f_Cs_orig = f_Cs_orig, sigma = sigma)
 #'   )
 #' DF
-indifference_func <- function(qs_qs0, qs1_qs0, Co1_Co0, f_Cs_orig, sigma, rho = (sigma-1)/sigma) {
+indifference_func <- function(qs_qs0, qs1_qs0, Cg1_Cg0, f_Cs_orig, sigma, rho = (sigma-1)/sigma) {
   term1 <- f_Cs_orig/(1 - f_Cs_orig)
   term2 <- qs1_qs0^rho
   term3 <- qs_qs0^rho
-  term4 <- Co1_Co0^rho
+  term4 <- Cg1_Cg0^rho
   twominusthree <- term2 - term3
   (term1*twominusthree + term4)^(1/rho)
 }

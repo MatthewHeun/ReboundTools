@@ -9,7 +9,7 @@ calc_rebound(
   tol = 1e-10,
   I_E = ReboundTools::eeu_base_params$I_E,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
-  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+  e_qg_M = ReboundTools::eeu_base_params$e_qg_M,
   k = ReboundTools::eeu_base_params$k,
   e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
   e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
@@ -59,7 +59,7 @@ calc_rebound(
 
 \item{tol}{The tolerance for checking internal consistency of rebound calculations. Default is \code{1e-10}.}
 
-\item{I_E, e_qs_M, e_qo_M, k}{See \code{ReboundTools::eeu_base_params}.}
+\item{I_E, e_qs_M, e_qg_M, k}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{e_qs_ps_C, e_qo_ps_C, C_dot_g_orig, E_dot_s_orig}{See \code{ReboundTools::orig_vars}.}
 

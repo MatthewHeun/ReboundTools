@@ -18,9 +18,9 @@ calc_star(
   C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
   e_qs_ps_UC_orig = ReboundTools::orig_vars$e_qs_ps_UC_orig,
-  e_qo_ps_UC_orig = ReboundTools::orig_vars$e_qo_ps_UC_orig,
+  e_qg_ps_UC_orig = ReboundTools::orig_vars$e_qg_ps_UC_orig,
   e_qs_ps_C_orig = ReboundTools::orig_vars$e_qs_ps_C_orig,
-  e_qo_ps_C_orig = ReboundTools::orig_vars$e_qo_ps_C_orig,
+  e_qg_ps_C_orig = ReboundTools::orig_vars$e_qg_ps_C_orig,
   eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
   E_emb_star = ReboundTools::star_vars$E_emb_star,
   t_life_star = ReboundTools::star_vars$t_life_star,
@@ -48,9 +48,9 @@ calc_star(
   C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
   f_Cs_star = ReboundTools::star_vars$f_Cs_star,
   e_qs_ps_UC_star = ReboundTools::star_vars$e_qs_ps_UC_star,
-  e_qo_ps_UC_star = ReboundTools::star_vars$e_qo_ps_UC_star,
+  e_qg_ps_UC_star = ReboundTools::star_vars$e_qg_ps_UC_star,
   e_qs_ps_C_star = ReboundTools::star_vars$e_qs_ps_C_star,
-  e_qo_ps_C_star = ReboundTools::star_vars$e_qo_ps_C_star,
+  e_qg_ps_C_star = ReboundTools::star_vars$e_qg_ps_C_star,
   E_dot_s_star = ReboundTools::star_vars$E_dot_s_star
 )
 }
@@ -60,9 +60,9 @@ likely calculated by \code{calc_orig()}.}
 
 \item{r, MJ_engr_unit, p_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{R_alpha_orig, C_dot_omd_orig, C_dot_om_star, C_d_star, C_dot_d_star, R_omega_C_dot_d_star, C_dot_omd_star, eta_orig, E_dot_s_orig, q_dot_s_orig, M_dot_orig, C_dot_cap_orig, C_dot_g_orig, e_qs_ps_UC_orig, e_qo_ps_UC_orig, e_qs_ps_C_orig, e_qo_ps_C_orig}{See \code{ReboundTools::orig_vars}.}
+\item{R_alpha_orig, C_dot_omd_orig, C_dot_om_star, C_d_star, C_dot_d_star, R_omega_C_dot_d_star, C_dot_omd_star, eta_orig, E_dot_s_orig, q_dot_s_orig, M_dot_orig, C_dot_cap_orig, C_dot_g_orig, e_qs_ps_UC_orig, e_qg_ps_UC_orig, e_qs_ps_C_orig, e_qg_ps_C_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{R_alpha_star, R_omega_star, eta_engr_units_star, E_emb_star, t_life_star, C_cap_star, eta_star, eta_ratio, S_dot_dev, G_dot, p_s_star, q_dot_s_star, C_dot_cap_star, R_alpha_C_dot_cap_star, E_dot_emb_star, C_dot_s_star, M_dot_star, N_dot_star, C_dot_g_star, f_Cs_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, E_dot_s_star, p_E_star}{See \code{ReboundTools::star_vars}.}
+\item{R_alpha_star, R_omega_star, eta_engr_units_star, E_emb_star, t_life_star, C_cap_star, eta_star, eta_ratio, S_dot_dev, G_dot, p_s_star, q_dot_s_star, C_dot_cap_star, R_alpha_C_dot_cap_star, E_dot_emb_star, C_dot_s_star, M_dot_star, N_dot_star, C_dot_g_star, f_Cs_star, e_qs_ps_UC_star, e_qg_ps_UC_star, e_qs_ps_C_star, e_qg_ps_C_star, E_dot_s_star, p_E_star}{See \code{ReboundTools::star_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the star stage (after the emplacement effect).

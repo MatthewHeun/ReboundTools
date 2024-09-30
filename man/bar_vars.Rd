@@ -21,12 +21,12 @@ A string list with 26 entries.
 \item{E_dot_emb_bar}{The embodied energy rate after the income effect [MJ/yr], exactly \code{E_dot_emb_hat}.}
 \item{M_dot_bar}{Real income after the income effect [MJ/yr], exactly \code{M_dot_hat}.}
 \item{q_dot_s_bar}{The rate of energy service consumption after the income effect\ [service/yr], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qs_M)}.}
-\item{C_dot_g_bar}{The rate of other goods expenditures after the income effect [$/yr], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qo_M)}.}
+\item{C_dot_g_bar}{The rate of other goods expenditures after the income effect [$/yr], calculated by \code{(1 + N_dot_hat/M_dot_hat_prime)^(e_qg_M)}.}
 \item{f_Cs_bar}{The post-income effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_g_star)}.}
 \item{e_qs_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
-\item{e_qo_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qg_ps_C_bar}{The post-income effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
-\item{e_qo_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{e_qg_ps_UC_bar}{The post-income effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{p_E_bar}{The price of energy [$/MJ],}
 \item{N_dot_bar}{The freed cash rate after the income effect [$/yr], exactly \code{0}.}
 }

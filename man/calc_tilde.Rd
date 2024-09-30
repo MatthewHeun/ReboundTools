@@ -25,9 +25,9 @@ calc_tilde(
   C_dot_omd_bar = ReboundTools::bar_vars$C_dot_omd_bar,
   C_dot_g_bar = ReboundTools::bar_vars$C_dot_g_bar,
   e_qs_ps_UC_bar = ReboundTools::bar_vars$e_qs_ps_UC_bar,
-  e_qo_ps_UC_bar = ReboundTools::bar_vars$e_qo_ps_UC_bar,
+  e_qg_ps_UC_bar = ReboundTools::bar_vars$e_qg_ps_UC_bar,
   e_qs_ps_C_bar = ReboundTools::bar_vars$e_qs_ps_C_bar,
-  e_qo_ps_C_bar = ReboundTools::bar_vars$e_qo_ps_C_bar,
+  e_qg_ps_C_bar = ReboundTools::bar_vars$e_qg_ps_C_bar,
   N_dot_bar = ReboundTools::bar_vars$N_dot_bar,
   t_life_tilde = ReboundTools::tilde_vars$t_life_tilde,
   R_alpha_tilde = ReboundTools::tilde_vars$R_alpha_tilde,
@@ -51,9 +51,9 @@ calc_tilde(
   C_dot_g_tilde = ReboundTools::tilde_vars$C_dot_g_tilde,
   f_Cs_tilde = ReboundTools::tilde_vars$f_Cs_tilde,
   e_qs_ps_UC_tilde = ReboundTools::tilde_vars$e_qs_ps_UC_tilde,
-  e_qo_ps_UC_tilde = ReboundTools::tilde_vars$e_qo_ps_UC_tilde,
+  e_qg_ps_UC_tilde = ReboundTools::tilde_vars$e_qg_ps_UC_tilde,
   e_qs_ps_C_tilde = ReboundTools::tilde_vars$e_qs_ps_C_tilde,
-  e_qo_ps_C_tilde = ReboundTools::tilde_vars$e_qo_ps_C_tilde,
+  e_qg_ps_C_tilde = ReboundTools::tilde_vars$e_qg_ps_C_tilde,
   N_dot_tilde = ReboundTools::tilde_vars$N_dot_tilde
 )
 }
@@ -64,9 +64,9 @@ likely calculated by \code{calc_bar()}.}
 
 \item{p_E}{See \code{ReboundTools::orig_vars}}
 
-\item{t_life_bar, C_dot_om_bar, C_d_bar, C_dot_d_bar, C_dot_omd_bar, R_alpha_bar, R_omega_bar, eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_g_bar, e_qs_ps_UC_bar, e_qo_ps_UC_bar, e_qs_ps_C_bar, e_qo_ps_C_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
+\item{t_life_bar, C_dot_om_bar, C_d_bar, C_dot_d_bar, C_dot_omd_bar, R_alpha_bar, R_omega_bar, eta_engr_units_bar, eta_bar, p_s_bar, C_dot_cap_bar, E_dot_emb_bar, M_dot_bar, q_dot_s_bar, E_dot_s_bar, C_dot_s_bar, C_dot_g_bar, e_qs_ps_UC_bar, e_qg_ps_UC_bar, e_qs_ps_C_bar, e_qg_ps_C_bar, N_dot_bar}{See \code{ReboundTools::bar_vars}.}
 
-\item{t_life_tilde, C_dot_om_tilde, C_d_tilde, C_dot_d_tilde, R_omega_C_dot_d_tilde, C_dot_omd_tilde, R_alpha_tilde, R_omega_tilde, eta_engr_units_tilde, eta_tilde, p_s_tilde, C_dot_cap_tilde, R_alpha_C_dot_cap_tilde, E_dot_emb_tilde, M_dot_tilde, q_dot_s_tilde, E_dot_s_tilde, C_dot_s_tilde, C_dot_g_tilde, f_Cs_tilde, e_qs_ps_UC_tilde, e_qo_ps_UC_tilde, e_qs_ps_C_tilde, e_qo_ps_C_tilde, N_dot_tilde, p_E_tilde}{See \code{ReboundTools::tilde_vars}.}
+\item{t_life_tilde, C_dot_om_tilde, C_d_tilde, C_dot_d_tilde, R_omega_C_dot_d_tilde, C_dot_omd_tilde, R_alpha_tilde, R_omega_tilde, eta_engr_units_tilde, eta_tilde, p_s_tilde, C_dot_cap_tilde, R_alpha_C_dot_cap_tilde, E_dot_emb_tilde, M_dot_tilde, q_dot_s_tilde, E_dot_s_tilde, C_dot_s_tilde, C_dot_g_tilde, f_Cs_tilde, e_qs_ps_UC_tilde, e_qg_ps_UC_tilde, e_qs_ps_C_tilde, e_qg_ps_C_tilde, N_dot_tilde, p_E_tilde}{See \code{ReboundTools::tilde_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the bar stage (after the income effect).

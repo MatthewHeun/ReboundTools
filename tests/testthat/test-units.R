@@ -45,8 +45,8 @@ test_that("rebound_var_units() works as expected", {
                c(e_qo_ps_C = "[--]"))
   expect_equal(rebound_var_units("e_qs_M", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(e_qs_M = "[--]"))
-  expect_equal(rebound_var_units("e_qo_M", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
-               c(e_qo_M = "[--]"))
+  expect_equal(rebound_var_units("e_qg_M", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
+               c(e_qg_M = "[--]"))
   
   expect_equal(rebound_var_units("eta_engr_units_orig", service_unit = su, energy_engr_unit = eu, escape_latex = TRUE), 
                c(eta_engr_units_orig = "[service/energy]"))

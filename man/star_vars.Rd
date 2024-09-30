@@ -34,9 +34,9 @@ A string list with 31 entries.
 \item{C_dot_g_star}{The upgraded (post-EEU) other goods expenditure rate [$/yr], exactly \code{C_dot_g_orig}.}
 \item{f_Cs_star}{The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_g_star)}.}
 \item{e_qs_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
-\item{e_qo_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qg_ps_C_star}{The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
-\item{e_qo_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{e_qg_ps_UC_star}{The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{p_E_star}{The price of energy [$/MJ],}
 \item{E_dot_s_star}{The upgraded (post-EEU) energy consumption rate [MJ/yr], calculated by \code{q_dot_s_star / eta_star}.}
 }

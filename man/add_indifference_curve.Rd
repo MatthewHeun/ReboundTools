@@ -10,7 +10,7 @@ add_indifference_curve(
   graph_type = ReboundTools::graph_types$consumption,
   line_name,
   qs1_qs0,
-  Co1_Co0,
+  Cg1_Cg0,
   qs2_qs0 = NULL,
   f_Cs_orig,
   sigma,
@@ -32,7 +32,7 @@ Default is \code{ReboundTools::graph_types$consumption}.}
 
 \item{line_name}{A name for this indifference curve.}
 
-\item{qs1_qs0, Co1_Co0}{The (x,y) coordinates of a point on this indifference curve.}
+\item{qs1_qs0, Cg1_Cg0}{The (x,y) coordinates of a point on this indifference curve.}
 
 \item{qs2_qs0}{A second x value at which a a point on the indifference curve should be calculated. Default is \code{NULL}.}
 

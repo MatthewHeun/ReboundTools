@@ -119,7 +119,7 @@ into a data frame as follows:</p>
 <span><span class="co">#&gt; $ p_E_engr_units        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.2100000, 0.0001355, 2.2100000</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_UC_orig       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4, -0.1</span></span>
 <span><span class="co">#&gt; $ e_qs_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
-<span><span class="co">#&gt; $ e_qo_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
+<span><span class="co">#&gt; $ e_qg_M                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_orig   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25.000000, 8.833333, 25.000000</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_star   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8, 42.0</span></span>
 <span><span class="co">#&gt; $ q_dot_s_orig          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14425, 580350, 14425</span></span>
@@ -150,7 +150,7 @@ the example file and in the <code>eeu_data</code> data frame.</p>
 <span><span class="co">#&gt;  [4] "Upgrade"             "r"                   "service_unit"       </span></span>
 <span><span class="co">#&gt;  [7] "energy_engr_unit"    "MJ/energy_engr_unit" "I_E"                </span></span>
 <span><span class="co">#&gt; [10] "k"                   "p_E_engr_units"      "e_qs_ps_UC_orig"    </span></span>
-<span><span class="co">#&gt; [13] "e_qs_M"              "e_qo_M"              "eta_engr_units_orig"</span></span>
+<span><span class="co">#&gt; [13] "e_qs_M"              "e_qg_M"              "eta_engr_units_orig"</span></span>
 <span><span class="co">#&gt; [16] "eta_engr_units_star" "q_dot_s_orig"        "M_dot_orig"         </span></span>
 <span><span class="co">#&gt; [19] "C_cap_orig"          "C_cap_star"          "C_dot_om_orig"      </span></span>
 <span><span class="co">#&gt; [22] "C_d_orig"            "C_dot_om_star"       "C_d_star"           </span></span>
@@ -186,7 +186,7 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ p_E_engr_units                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.2100000, 0.0001355, 2.2100000</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_UC_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4, -0.1</span></span>
 <span><span class="co">#&gt; $ e_qs_M                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
-<span><span class="co">#&gt; $ e_qo_M                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
+<span><span class="co">#&gt; $ e_qg_M                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_orig           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 25.000000, 8.833333, 25.000000</span></span>
 <span><span class="co">#&gt; $ eta_engr_units_star           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.0, 81.8, 42.0</span></span>
 <span><span class="co">#&gt; $ q_dot_s_orig                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14425, 580350, 14425</span></span>
@@ -216,9 +216,9 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ C_dot_omd_orig                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2866.816, 0.000, 2868.277</span></span>
 <span><span class="co">#&gt; $ C_dot_g_orig                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20834.18, 27391.32, 21242.39</span></span>
 <span><span class="co">#&gt; $ f_Cs_orig                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0576756075, 0.0003249007, 0.0566300134</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_UC_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0550851141, -0.0001950038, -0.0540265…</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_UC_orig               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0550851141, -0.0001950038, -0.0540265…</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_C_orig                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.04232439, -0.39967510, -0.04336999</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_C_orig                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025904933, 0.0001298969, 0.0026034779</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_C_orig                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025904933, 0.0001298969, 0.0026034779</span></span>
 <span><span class="co">#&gt; $ sigma                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04491489, 0.39980500, 0.04597346</span></span>
 <span><span class="co">#&gt; $ rho                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -21.264334, -1.501219, -20.751678</span></span>
 <span><span class="co">#&gt; $ E_dot_emb_orig                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2428.571429, 1.222222, 2428.571429</span></span>
@@ -245,9 +245,9 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ E_dot_s_star                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43488.50030, 25.54108, 43488.50030</span></span>
 <span><span class="co">#&gt; $ f_Cs_star                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.515132e-02, 3.509521e-05, 3.449912e-02</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_UC_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.4, -0.1</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_UC_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0550851141, -0.0001950038, -0.0540265…</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_UC_star               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0550851141, -0.0001950038, -0.0540265…</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_C_star                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.04232439, -0.39967510, -0.04336999</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_C_star                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025904933, 0.0001298969, 0.0026034779</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_C_star                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0025904933, 0.0001298969, 0.0026034779</span></span>
 <span><span class="co">#&gt; $ t_life_hat                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 10, 14</span></span>
 <span><span class="co">#&gt; $ R_alpha_hat                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.203271, 1.138160, 1.000000</span></span>
 <span><span class="co">#&gt; $ R_omega_hat                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.7955036, 0.8468981, 1.0000000</span></span>
@@ -270,9 +270,9 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ C_dot_g_hat                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20811.86, 27386.95, 21219.52</span></span>
 <span><span class="co">#&gt; $ f_Cs_hat                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.595023e-02, 8.544544e-05, 3.530244e-02</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_C_hat                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.04330019, -0.39977083, -0.04435049</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_C_hat                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.614700e-03, 3.416152e-05, 1.622976e-03</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_C_hat                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.614700e-03, 3.416152e-05, 1.622976e-03</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_UC_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07925041, -0.39985628, -0.07965293</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_UC_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.433553e-02, -5.128393e-05, -3.367947e…</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_UC_hat                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.433553e-02, -5.128393e-05, -3.367947e…</span></span>
 <span><span class="co">#&gt; $ N_dot_hat                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 667.34404, 11.85078, 657.40189</span></span>
 <span><span class="co">#&gt; $ M_dot_hat_prime               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 21587.95, 27389.29, 21996.04</span></span>
 <span><span class="co">#&gt; $ t_life_bar                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 10, 14</span></span>
@@ -297,9 +297,9 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ C_dot_g_bar                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 21455.21, 27398.80, 21853.72</span></span>
 <span><span class="co">#&gt; $ f_Cs_bar                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.595023e-02, 8.544544e-05, 3.530244e-02</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_UC_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07925041, -0.39985628, -0.07965293</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_UC_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.433553e-02, -5.128393e-05, -3.367947e…</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_UC_bar                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.433553e-02, -5.128393e-05, -3.367947e…</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_C_bar                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.04330019, -0.39977083, -0.04435049</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_C_bar                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.614700e-03, 3.416152e-05, 1.622976e-03</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_C_bar                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.614700e-03, 3.416152e-05, 1.622976e-03</span></span>
 <span><span class="co">#&gt; $ N_dot_bar                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0</span></span>
 <span><span class="co">#&gt; $ t_life_tilde                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 10, 14</span></span>
 <span><span class="co">#&gt; $ R_alpha_tilde                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.203271, 1.138160, 1.000000</span></span>
@@ -323,9 +323,9 @@ results are added to the right of the data frame.</p>
 <span><span class="co">#&gt; $ C_dot_g_tilde                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 21455.21, 27398.80, 21853.72</span></span>
 <span><span class="co">#&gt; $ f_Cs_tilde                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.595023e-02, 8.544544e-05, 3.530244e-02</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_UC_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.07925041, -0.39985628, -0.07965293</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_UC_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.433553e-02, -5.128393e-05, -3.367947e…</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_UC_tilde              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.433553e-02, -5.128393e-05, -3.367947e…</span></span>
 <span><span class="co">#&gt; $ e_qs_ps_C_tilde               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.04330019, -0.39977083, -0.04435049</span></span>
-<span><span class="co">#&gt; $ e_qo_ps_C_tilde               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.614700e-03, 3.416152e-05, 1.622976e-03</span></span>
+<span><span class="co">#&gt; $ e_qg_ps_C_tilde               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.614700e-03, 3.416152e-05, 1.622976e-03</span></span>
 <span><span class="co">#&gt; $ N_dot_tilde                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0</span></span>
 <span><span class="co">#&gt; $ Delta_t_life_star             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0, 8.2, 0.0</span></span>
 <span><span class="co">#&gt; $ Delta_R_alpha_star            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0000000, 0.1263491, 0.0000000</span></span>
