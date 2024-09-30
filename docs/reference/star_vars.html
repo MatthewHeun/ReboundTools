@@ -131,22 +131,22 @@
 <dt>N_dot_star</dt>
 <dd><p>The freed cash rate [$/yr], calculated by <code>G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)</code>.</p></dd>
 
-<dt>C_dot_o_star</dt>
-<dd><p>The upgraded (post-EEU) other goods expenditure rate [$/yr], exactly <code>C_dot_o_orig</code>.</p></dd>
+<dt>C_dot_g_star</dt>
+<dd><p>The upgraded (post-EEU) other goods expenditure rate [$/yr], exactly <code>C_dot_g_orig</code>.</p></dd>
 
 <dt>f_Cs_star</dt>
-<dd><p>The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by <code>C_dot_s_star / (C_dot_s_star + C_dot_o_star)</code>.</p></dd>
+<dd><p>The upgraded (post-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by <code>C_dot_s_star / (C_dot_s_star + C_dot_g_star)</code>.</p></dd>
 
 <dt>e_qs_ps_C_star</dt>
 <dd><p>The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by <code>e_qs_ps_UC_orig + f_Cs_orig*e_qs_M</code>.</p></dd>
 
-<dt>e_qo_ps_C_star</dt>
+<dt>e_qg_ps_C_star</dt>
 <dd><p>The upgraded (post-EEU) compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by <code>f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)</code>.</p></dd>
 
 <dt>e_qs_ps_UC_star</dt>
 <dd><p>The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].</p></dd>
 
-<dt>e_qo_ps_UC_star</dt>
+<dt>e_qg_ps_UC_star</dt>
 <dd><p>The upgraded (post-EEU) uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].</p></dd>
 
 <dt>p_E_star</dt>
@@ -230,8 +230,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_omd_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_omd_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_o_star</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_o_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_g_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_g_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $f_Cs_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "f_Cs_star"</span>
@@ -242,11 +242,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $e_qs_ps_UC_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qs_ps_UC_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_C_star</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_C_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qg_ps_C_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qg_ps_C_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_UC_star</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_UC_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qg_ps_UC_star</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qg_ps_UC_star"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $p_E_star</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "p_E_star"</span>

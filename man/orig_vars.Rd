@@ -26,11 +26,11 @@ A string list with 31 entries.
 \item{C_dot_omd_orig}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{p_s_orig}{The original (pre-EEU) energy service price [$/service], calculated by \code{p_E / eta_orig}.}
 \item{C_dot_s_orig}{The original (pre-EEU) rate of energy expenditures for the device [$/yr], calculated by \code{p_E * E_dot_s_orig}.}
-\item{C_dot_o_orig}{The original (pre-EEU) rate of expenditure on other goods [$/yr], calculated by \code{M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig}.}
-\item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)}.}
+\item{C_dot_g_orig}{The original (pre-EEU) rate of expenditure on other goods [$/yr], calculated by \code{M_dot_orig - C_dot_s_orig - C_dot_cap_orig - C_dot_md_orig}.}
+\item{f_Cs_orig}{The original (pre-EEU) fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_g_orig)}.}
 \item{e_qs_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
-\item{e_qo_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
-\item{e_qo_ps_UC_orig}{The original uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{e_qg_ps_C_orig}{The original compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qg_ps_UC_orig}{The original uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{sigma}{The elasticity of substitution between energy service consumption and other goods consumption [--].}
 \item{rho}{The exponent in the CES utility model, defined as rho = 1/sigma - 1 [--].}
 \item{E_emb_orig}{The embodied energy of the original (pre-EEU) device [MJ].}

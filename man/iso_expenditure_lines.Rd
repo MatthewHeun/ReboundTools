@@ -13,17 +13,17 @@ iso_expenditure_lines(
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   G_dot = ReboundTools::star_vars$G_dot,
   C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
   R_alpha_star = ReboundTools::star_vars$R_alpha_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   C_dot_omd_star = ReboundTools::star_vars$C_dot_omd_star,
-  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+  C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
   R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
   C_dot_omd_hat = ReboundTools::hat_vars$C_dot_omd_hat,
-  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat
+  C_dot_g_hat = ReboundTools::hat_vars$C_dot_g_hat
 )
 }
 \arguments{
@@ -37,13 +37,13 @@ at its start.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
-\item{R_alpha_orig, C_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+\item{R_alpha_orig, C_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_g_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{R_alpha_star, C_dot_cap_star, C_dot_omd_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
+\item{R_alpha_star, C_dot_cap_star, C_dot_omd_star, C_dot_g_star}{See \code{ReboundTools::star_vars}.}
 
-\item{R_alpha_hat, C_dot_s_hat, C_dot_cap_hat, C_dot_omd_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
+\item{R_alpha_hat, C_dot_s_hat, C_dot_cap_hat, C_dot_omd_hat, C_dot_g_hat}{See \code{ReboundTools::hat_vars}.}
 }
 \value{
 A data frame of iso-expenditure lines for an expenditure path graph.

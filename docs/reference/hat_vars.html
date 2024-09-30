@@ -107,29 +107,29 @@
 <dt>E_dot_s_hat</dt>
 <dd><p>The rate of energy consumption after the substitution effect\ [service/yr], calculated by <code>q_dot_s_hat / eta_hat</code>.</p></dd>
 
-<dt>C_dot_o_hat</dt>
-<dd><p>The rate of other goods expenditures after the substitution effect [$/yr], calculated by <code>C_dot_o_star * eta_ratio^(-e_qo_ps_C)</code>.</p></dd>
+<dt>C_dot_g_hat</dt>
+<dd><p>The rate of other goods expenditures after the substitution effect [$/yr], calculated by <code>C_dot_g_star * eta_ratio^(-e_qo_ps_C)</code>.</p></dd>
 
 <dt>f_Cs_hat</dt>
-<dd><p>The post-substitution effect fraction of the energy and other budget spent on the energy service [--], calculated by <code>C_dot_s_star / (C_dot_s_star + C_dot_o_star)</code>.</p></dd>
+<dd><p>The post-substitution effect fraction of the energy and other budget spent on the energy service [--], calculated by <code>C_dot_s_star / (C_dot_s_star + C_dot_g_star)</code>.</p></dd>
 
 <dt>e_qs_ps_C_hat</dt>
 <dd><p>The post-substitution effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by <code>e_qs_ps_UC_orig + f_Cs_orig*e_qs_M</code>.</p></dd>
 
-<dt>e_qo_ps_C_hat</dt>
+<dt>e_qg_ps_C_hat</dt>
 <dd><p>The post-substitution effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by <code>f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)</code>.</p></dd>
 
 <dt>e_qs_ps_UC_hat</dt>
 <dd><p>The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].</p></dd>
 
-<dt>e_qo_ps_UC_hat</dt>
+<dt>e_qg_ps_UC_hat</dt>
 <dd><p>The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].</p></dd>
 
 <dt>N_dot_hat</dt>
 <dd><p>The freed cash rate [$/yr], calculated by <code>G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)</code>.</p></dd>
 
 <dt>M_dot_hat_prime</dt>
-<dd><p>Modified <code>M_dot</code> for the income effect [$/yr], calculated by <code>M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_o_hat - C_dot_o_star)</code></p></dd>
+<dd><p>Modified <code>M_dot</code> for the income effect [$/yr], calculated by <code>M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_g_hat - C_dot_g_star)</code></p></dd>
 
 
 </dl><p>[service/yr]: R:service/yr%5C
@@ -199,8 +199,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_omd_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_omd_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_o_hat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_o_hat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $C_dot_g_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C_dot_g_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $f_Cs_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "f_Cs_hat"</span>
@@ -211,11 +211,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $e_qs_ps_UC_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qs_ps_UC_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_C_hat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_C_hat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qg_ps_C_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qg_ps_C_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qo_ps_UC_hat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qo_ps_UC_hat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $e_qg_ps_UC_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "e_qg_ps_UC_hat"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $N_dot_hat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "N_dot_hat"</span>

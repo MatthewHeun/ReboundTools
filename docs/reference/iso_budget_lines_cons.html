@@ -69,7 +69,7 @@ The iso lines are described by slope and intercept.</p>
 <span>  R_alpha_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">R_alpha_orig</span>,</span>
 <span>  C_dot_cap_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">C_dot_cap_orig</span>,</span>
 <span>  C_dot_omd_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">C_dot_omd_orig</span>,</span>
-<span>  C_dot_o_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">C_dot_o_orig</span>,</span>
+<span>  C_dot_g_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">C_dot_g_orig</span>,</span>
 <span>  M_dot_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">M_dot_orig</span>,</span>
 <span>  R_alpha_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">R_alpha_star</span>,</span>
 <span>  C_dot_cap_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">C_dot_cap_star</span>,</span>
@@ -77,11 +77,11 @@ The iso lines are described by slope and intercept.</p>
 <span>  G_dot <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">G_dot</span>,</span>
 <span>  C_dot_omd_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">C_dot_omd_star</span>,</span>
 <span>  q_dot_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">q_dot_s_hat</span>,</span>
-<span>  C_dot_o_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_o_hat</span>,</span>
+<span>  C_dot_g_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="hat_vars.html">hat_vars</a></span><span class="op">$</span><span class="va">C_dot_g_hat</span>,</span>
 <span>  Delta_q_dot_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_q_dot_s_hat</span>,</span>
 <span>  Delta_C_dot_cap_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_cap_star</span>,</span>
 <span>  Delta_C_dot_omd_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_omd_star</span>,</span>
-<span>  Delta_C_dot_o_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_o_hat</span></span>
+<span>  Delta_C_dot_g_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_g_hat</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -100,7 +100,7 @@ likely created by <code><a href="rebound_analysis.html">rebound_analysis()</a></
 <dd><p>See <code>ReboundTools::graph_params</code>.</p></dd>
 
 
-<dt>R_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig, M_dot_orig</dt>
+<dt>R_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_g_orig, M_dot_orig</dt>
 <dd><p>See <code><a href="orig_vars.html">ReboundTools::orig_vars</a></code>.</p></dd>
 
 
@@ -108,11 +108,11 @@ likely created by <code><a href="rebound_analysis.html">rebound_analysis()</a></
 <dd><p>See <code><a href="star_vars.html">ReboundTools::star_vars</a></code>.</p></dd>
 
 
-<dt>q_dot_s_hat, C_dot_o_hat</dt>
+<dt>q_dot_s_hat, C_dot_g_hat</dt>
 <dd><p>See <code><a href="hat_vars.html">ReboundTools::hat_vars</a></code>.</p></dd>
 
 
-<dt>Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_o_hat</dt>
+<dt>Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_g_hat</dt>
 <dd><p>See <code><a href="Delta_vars.html">ReboundTools::Delta_vars</a></code>.</p></dd>
 
 </dl></div>

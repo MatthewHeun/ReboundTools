@@ -10,11 +10,11 @@ consumption_paths(
   rebound_segments = ReboundTools::rebound_segments,
   graph_type = ReboundTools::graph_types$consumption,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
-  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+  C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+  Delta_C_dot_g_hat = ReboundTools::Delta_vars$Delta_C_dot_g_hat,
   Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  Delta_C_dot_g_bar = ReboundTools::Delta_vars$Delta_C_dot_g_bar,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
@@ -28,9 +28,9 @@ likely created by \code{rebound_analysis()}.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
-\item{q_dot_s_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
+\item{q_dot_s_star, C_dot_g_star}{See \code{ReboundTools::star_vars}.}
 
-\item{Delta_q_dot_s_hat, Delta_C_dot_o_hat, Delta_q_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+\item{Delta_q_dot_s_hat, Delta_C_dot_g_hat, Delta_q_dot_s_bar, Delta_C_dot_g_bar}{See \code{ReboundTools::Delta_vars}.}
 
 \item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }

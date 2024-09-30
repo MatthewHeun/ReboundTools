@@ -35,9 +35,9 @@
 #'                   energy_engr_unit = "kW-hr") 
 #' rebound_var_units("p_s", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 #' rebound_var_units("p_s_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
-#' rebound_var_units("Delta_C_dot_o_hat", service_unit = "lm-hr",
+#' rebound_var_units("Delta_C_dot_g_hat", service_unit = "lm-hr",
 #'                   energy_engr_unit = "kW-hr") 
-#' rebound_var_units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), 
+#' rebound_var_units(c("eta_engr_units_orig", "Delta_C_dot_g_hat"), 
 #'                     service_unit = c("lm-hr", "lm-hr"), 
 #'                     energy_engr_unit = c(energy_engr_unit = "kW-hr"))
 rebound_var_units <- function(.var_name, service_unit, energy_engr_unit, 
