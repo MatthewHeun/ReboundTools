@@ -14,15 +14,15 @@ expenditure_paths(
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   G_dot = ReboundTools::star_vars$G_dot,
   R_alpha_star = ReboundTools::star_vars$R_alpha_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
   Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+  Delta_C_dot_g_hat = ReboundTools::Delta_vars$Delta_C_dot_g_hat,
   Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-  Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+  Delta_C_dot_g_bar = ReboundTools::Delta_vars$Delta_C_dot_g_bar,
   graph_df_colnames = ReboundTools::graph_df_colnames
 )
 }
@@ -39,11 +39,11 @@ at its start.}
 
 \item{graph_type}{See \code{ReboundTools::graph_types}.}
 
-\item{R_alpha_orig, C_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+\item{R_alpha_orig, C_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_g_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{R_alpha_star, C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_s_hat, Delta_C_dot_o_hat, Delta_C_dot_s_bar, Delta_C_dot_o_bar}{See \code{ReboundTools::Delta_vars}.}
+\item{R_alpha_star, C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_s_hat, Delta_C_dot_g_hat, Delta_C_dot_s_bar, Delta_C_dot_g_bar}{See \code{ReboundTools::Delta_vars}.}
 
 \item{graph_df_colnames}{See \code{ReboundTools::graph_df_colnames}.}
 }

@@ -9,9 +9,9 @@
 #'                      likely created by `rebound_analysis()`.
 #' @param graph_type See `ReboundTools::graph_types`. Default is `ReboundTools::graph_types$consumption`.
 #' @param graph_params Parameters that control the appearance of the graph. Default is `ReboundTools::path_graph_params`.
-#' @param q_dot_s_orig,C_dot_o_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
+#' @param q_dot_s_orig,C_dot_g_orig,f_Cs_orig,sigma See `ReboundTools::orig_vars`.
 #' @param q_dot_s_hat See `ReboundTools::hat_vars`.
-#' @param q_dot_s_bar,C_dot_o_bar See `ReboundTools::bar_vars`.
+#' @param q_dot_s_bar,C_dot_g_bar See `ReboundTools::bar_vars`.
 #'
 #' @return A data frame of indifference curves for a consumption path graph.
 #' 
@@ -26,20 +26,20 @@ indifference_lines <- function(.rebound_data,
                                graph_params = ReboundTools::path_graph_params,
                                
                                q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-                               C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                               C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
                                f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
                                sigma = ReboundTools::orig_vars$sigma,
                                
                                q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
 
                                q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar, 
-                               C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar) {
+                               C_dot_g_bar = ReboundTools::bar_vars$C_dot_g_bar) {
   
   meta <- extract_meta(.rebound_data)
   
   # Original data.  
   qs0 <- .rebound_data[[q_dot_s_orig]]
-  Co0 <- .rebound_data[[C_dot_o_orig]]
+  Co0 <- .rebound_data[[C_dot_g_orig]]
   f_Cs0 <- .rebound_data[[f_Cs_orig]]
   sigma_val <- .rebound_data[[sigma]]
   
@@ -65,7 +65,7 @@ indifference_lines <- function(.rebound_data,
   
   # Indifference curve at the bar point (after income effect)
   qs1 <- .rebound_data[[q_dot_s_bar]]
-  Co1 <- .rebound_data[[C_dot_o_bar]]
+  Co1 <- .rebound_data[[C_dot_g_bar]]
   qs1_qs0 <- qs1/qs0
   Co1_Co0 <- Co1/Co0
   icurves <- icurves %>%
@@ -193,10 +193,10 @@ add_indifference_curve <- function(.DF = NULL,
 #' An indifference curve
 #' 
 #' This function gives points along an indifference curve in 
-#' (q_dot_s/q_dot_s_orig, C_dot_o/C_dot_o_orig) space.
+#' (q_dot_s/q_dot_s_orig, C_dot_o/C_dot_g_orig) space.
 #' The indifference curve assumes CES utility. 
 #' The equation of the indifference curve is
-#' `u_dot/u_dot_orig = [f_Cs*(q_dot_s/q_dot_s_orig)^rho + (1-f_Cs)*(C_dot_o/C_dot_o_orig)^rho]^(1/rho)`.
+#' `u_dot/u_dot_orig = [f_Cs*(q_dot_s/q_dot_s_orig)^rho + (1-f_Cs)*(C_dot_o/C_dot_g_orig)^rho]^(1/rho)`.
 #' 
 #' This function is vectorized.
 #'
@@ -204,11 +204,11 @@ add_indifference_curve <- function(.DF = NULL,
 #'               the indifference curve parameterized by the other arguments.
 #' @param qs1_qs0 The x coordinate of a point on this indifference curve.
 #' @param Co1_Co0 The y coordinate of a point on this indifference curve.
-#' @param f_Cs_orig The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)`.
+#' @param f_Cs_orig The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by `C_dot_s_orig / (C_dot_s_orig + C_dot_g_orig)`.
 #' @param sigma The elasticity of substitution between the energy service and other goods.
 #' @param rho The exponent in the CES utility function. Default is `(sigma-1)/sigma`.
 #'
-#' @return The value of `C_dot_o/C_dot_o_orig`, given values of remaining arguments.
+#' @return The value of `C_dot_o/C_dot_g_orig`, given values of remaining arguments.
 #' 
 #' @export
 #'

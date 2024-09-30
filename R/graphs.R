@@ -145,8 +145,8 @@ path_graphs <- function(.analysis_data,
     g <- g +
       # Horizontal axis label q_dot_s/q_dot_s_orig
       ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^degree * " [-]")) + 
-      # Vertical axis label is C_dot_o/C_dot_o_orig
-      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^degree * " [-]"))
+      # Vertical axis label is C_dot_o/C_dot_g_orig
+      ggplot2::ylab(expression(dot(C)[g] / dot(C)[g]^degree * " [-]"))
   } 
   
   return(g)

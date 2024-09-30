@@ -21,8 +21,8 @@ A string list with 26 entries.
 \item{E_dot_emb_tilde}{The embodied energy rate after the macro effect [MJ/yr], exactly \code{E_dot_emb_bar}.}
 \item{M_dot_tilde}{Real income after the macro effect [MJ/yr], exactly \code{M_dot_bar}.}
 \item{q_dot_s_tilde}{The rate of energy service consumption after the macro effect\ [service/yr], exactly \code{q_dot_s_bar}.}
-\item{C_dot_o_tilde}{The rate of other goods expenditures after the macro effect [$/yr], exactly \code{C_dot_o_bar}.}
-\item{f_Cs_tilde}{The post-macro effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
+\item{C_dot_g_tilde}{The rate of other goods expenditures after the macro effect [$/yr], exactly \code{C_dot_g_bar}.}
+\item{f_Cs_tilde}{The post-macro effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_g_star)}.}
 \item{e_qs_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
 \item{e_qo_ps_C_tilde}{The post-macro effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_tilde}{The post-macro effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}

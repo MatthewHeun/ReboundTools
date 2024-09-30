@@ -1,12 +1,12 @@
 test_that("rebound_var_units() works as expected", {
   su <- "service"
   eu <- "energy"
-  expect_equal(rebound_var_units("Delta_C_dot_o_hat", service_unit = su, energy_engr_unit = eu), 
-               c(Delta_C_dot_o_hat = "[$/yr]"))
-  expect_equal(rebound_var_units("Delta_C_dot_o_hat", service_unit = su, energy_engr_unit = eu, surround_left = NULL), 
-               c(Delta_C_dot_o_hat = "$/yr"))
-  expect_equal(rebound_var_units("Delta_C_dot_o_hat", service_unit = su, energy_engr_unit = eu, surround_right = NULL), 
-               c(Delta_C_dot_o_hat = "$/yr"))
+  expect_equal(rebound_var_units("Delta_C_dot_g_hat", service_unit = su, energy_engr_unit = eu), 
+               c(Delta_C_dot_g_hat = "[$/yr]"))
+  expect_equal(rebound_var_units("Delta_C_dot_g_hat", service_unit = su, energy_engr_unit = eu, surround_left = NULL), 
+               c(Delta_C_dot_g_hat = "$/yr"))
+  expect_equal(rebound_var_units("Delta_C_dot_g_hat", service_unit = su, energy_engr_unit = eu, surround_right = NULL), 
+               c(Delta_C_dot_g_hat = "$/yr"))
   
   expect_equal(rebound_var_units("C_dot_s_orig", service_unit = su, energy_engr_unit = eu), 
                c(C_dot_s_orig = "[$/yr]"))
@@ -70,8 +70,8 @@ test_that("rebound_var_units() works as expected", {
 test_that("rebound_var_units() works with a vector", {
   su <- "service"
   eu <- "energy"
-  expect_equal(rebound_var_units(c("Delta_C_dot_o_hat", "t_own_orig"), service_unit = su, energy_engr_unit = eu), 
-               c(Delta_C_dot_o_hat = "[$/yr]", t_own_orig = "[yr]"))
+  expect_equal(rebound_var_units(c("Delta_C_dot_g_hat", "t_own_orig"), service_unit = su, energy_engr_unit = eu), 
+               c(Delta_C_dot_g_hat = "[$/yr]", t_own_orig = "[yr]"))
 })
 
 

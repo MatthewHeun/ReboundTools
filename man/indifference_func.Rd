@@ -21,21 +21,21 @@ the indifference curve parameterized by the other arguments.}
 
 \item{Co1_Co0}{The y coordinate of a point on this indifference curve.}
 
-\item{f_Cs_orig}{The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_o_orig)}.}
+\item{f_Cs_orig}{The fraction of original spending on the energy service relative to the sum of energy service and other goods spending, calculated by \code{C_dot_s_orig / (C_dot_s_orig + C_dot_g_orig)}.}
 
 \item{sigma}{The elasticity of substitution between the energy service and other goods.}
 
 \item{rho}{The exponent in the CES utility function. Default is \code{(sigma-1)/sigma}.}
 }
 \value{
-The value of \code{C_dot_o/C_dot_o_orig}, given values of remaining arguments.
+The value of \code{C_dot_o/C_dot_g_orig}, given values of remaining arguments.
 }
 \description{
 This function gives points along an indifference curve in
-(q_dot_s/q_dot_s_orig, C_dot_o/C_dot_o_orig) space.
+(q_dot_s/q_dot_s_orig, C_dot_o/C_dot_g_orig) space.
 The indifference curve assumes CES utility.
 The equation of the indifference curve is
-\verb{u_dot/u_dot_orig = [f_Cs*(q_dot_s/q_dot_s_orig)^rho + (1-f_Cs)*(C_dot_o/C_dot_o_orig)^rho]^(1/rho)}.
+\verb{u_dot/u_dot_orig = [f_Cs*(q_dot_s/q_dot_s_orig)^rho + (1-f_Cs)*(C_dot_o/C_dot_g_orig)^rho]^(1/rho)}.
 }
 \details{
 This function is vectorized.

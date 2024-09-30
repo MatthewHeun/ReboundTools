@@ -20,7 +20,7 @@ A string list with 21 entries.
 \item{C_d}{The disposal cost for the device [$/yr].}
 \item{C_dot_d}{The disposal cost rate of the device without discounting [$/yr].}
 \item{C_dot_omd}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
-\item{C_dot_o}{The other goods consumption rate [$/yr], calculated, initially, as a residual of the budget constraint.}
+\item{C_dot_g}{The other goods consumption rate [$/yr], calculated, initially, as a residual of the budget constraint.}
 \item{N_dot}{Net income [$/yr].}
 \item{M_dot}{Real income [$/yr].}
 }

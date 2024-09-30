@@ -69,7 +69,7 @@ derived expression for rebound.</p>
 <span>  k <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="eeu_base_params.html">eeu_base_params</a></span><span class="op">$</span><span class="va">k</span>,</span>
 <span>  e_qs_ps_C <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">e_qs_ps_C</span>,</span>
 <span>  e_qo_ps_C <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">e_qo_ps_C</span>,</span>
-<span>  C_dot_o_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">C_dot_o_orig</span>,</span>
+<span>  C_dot_g_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">C_dot_g_orig</span>,</span>
 <span>  E_dot_s_orig <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="orig_vars.html">orig_vars</a></span><span class="op">$</span><span class="va">E_dot_s_orig</span>,</span>
 <span>  S_dot_dev <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">S_dot_dev</span>,</span>
 <span>  eta_ratio <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="star_vars.html">star_vars</a></span><span class="op">$</span><span class="va">eta_ratio</span>,</span>
@@ -87,9 +87,9 @@ derived expression for rebound.</p>
 <span>  Delta_C_dot_om_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_om_star</span>,</span>
 <span>  Delta_C_dot_omd_star <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_omd_star</span>,</span>
 <span>  Delta_E_dot_s_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_E_dot_s_hat</span>,</span>
-<span>  Delta_C_dot_o_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_o_hat</span>,</span>
+<span>  Delta_C_dot_g_hat <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_g_hat</span>,</span>
 <span>  Delta_E_dot_s_bar <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_E_dot_s_bar</span>,</span>
-<span>  Delta_C_dot_o_bar <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_o_bar</span>,</span>
+<span>  Delta_C_dot_g_bar <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="Delta_vars.html">Delta_vars</a></span><span class="op">$</span><span class="va">Delta_C_dot_g_bar</span>,</span>
 <span>  Re_dempl <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="rebound_terms.html">rebound_terms</a></span><span class="op">$</span><span class="va">Re_dempl</span>,</span>
 <span>  Re_emb <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="rebound_terms.html">rebound_terms</a></span><span class="op">$</span><span class="va">Re_emb</span>,</span>
 <span>  Re_cap <span class="op">=</span> <span class="fu">ReboundTools</span><span class="fu">::</span><span class="va"><a href="rebound_terms.html">rebound_terms</a></span><span class="op">$</span><span class="va">Re_cap</span>,</span>
@@ -125,7 +125,7 @@ derived expression for rebound.</p>
 <dd><p>See <code><a href="eeu_base_params.html">ReboundTools::eeu_base_params</a></code>.</p></dd>
 
 
-<dt>e_qs_ps_C, e_qo_ps_C, C_dot_o_orig, E_dot_s_orig</dt>
+<dt>e_qs_ps_C, e_qo_ps_C, C_dot_g_orig, E_dot_s_orig</dt>
 <dd><p>See <code><a href="orig_vars.html">ReboundTools::orig_vars</a></code>.</p></dd>
 
 
@@ -145,7 +145,7 @@ derived expression for rebound.</p>
 <dd><p>See <code><a href="orig_vars.html">ReboundTools::orig_vars</a></code>.</p></dd>
 
 
-<dt>R_alpha_star, R_omega_star, C_dot_d_star, C_dot_cap_star, Delta_C_dot_om_star, Delta_C_dot_omd_star, Delta_E_dot_emb_star, Delta_E_dot_s_hat, Delta_C_dot_o_hat, Delta_E_dot_s_bar, Delta_C_dot_o_bar</dt>
+<dt>R_alpha_star, R_omega_star, C_dot_d_star, C_dot_cap_star, Delta_C_dot_om_star, Delta_C_dot_omd_star, Delta_E_dot_emb_star, Delta_E_dot_s_hat, Delta_C_dot_g_hat, Delta_E_dot_s_bar, Delta_C_dot_g_bar</dt>
 <dd><p>See <code><a href="Delta_vars.html">ReboundTools::Delta_vars</a></code>.</p></dd>
 
 

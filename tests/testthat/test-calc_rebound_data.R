@@ -34,8 +34,8 @@ test_that("calc_orig() works as expected", {
   expect_equal(res[[ReboundTools::orig_vars$C_dot_omd_orig]][[1]], 2866.8164256073246179)
   expect_equal(res[[ReboundTools::orig_vars$C_dot_omd_orig]][[2]], 0)
   
-  expect_equal(res[[ReboundTools::orig_vars$C_dot_o_orig]][[1]], 20834.1766716994206945)
-  expect_equal(res[[ReboundTools::orig_vars$C_dot_o_orig]][[2]], 27391.3186)
+  expect_equal(res[[ReboundTools::orig_vars$C_dot_g_orig]][[1]], 20834.1766716994206945)
+  expect_equal(res[[ReboundTools::orig_vars$C_dot_g_orig]][[2]], 27391.3186)
   
   expect_equal(res[[ReboundTools::orig_vars$f_Cs_orig]][[1]], 0.0576756074675084)
   expect_equal(res[[ReboundTools::orig_vars$f_Cs_orig]][[2]], 0.0003249006663864)
@@ -119,8 +119,8 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$C_dot_omd_star]][[1]], 2780.4071113133309154)
   expect_equal(res[[ReboundTools::star_vars$C_dot_omd_star]][[2]], 0)
 
-  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[1]], 20834.1766716994206945)
-  expect_equal(res[[ReboundTools::star_vars$C_dot_o_star]][[2]], 27391.3185624263605860)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_g_star]][[1]], 20834.1766716994206945)
+  expect_equal(res[[ReboundTools::star_vars$C_dot_g_star]][[2]], 27391.3185624263605860)
   
   expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[1]], 0.0351513224420219)
   expect_equal(res[[ReboundTools::star_vars$f_Cs_star]][[2]], 0.0000350952062932)
@@ -200,8 +200,8 @@ test_that("calc_hat() works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$C_dot_s_hat]][[1]], 776.0916724422515927)
   expect_equal(res[[ReboundTools::hat_vars$C_dot_s_hat]][[2]], 2.340289966606972083)
   
-  expect_equal(res[[ReboundTools::hat_vars$C_dot_o_hat]][[1]], 20811.8563816040004895)
-  expect_equal(res[[ReboundTools::hat_vars$C_dot_o_hat]][[2]], 27386.9489032208657591)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_g_hat]][[1]], 20811.8563816040004895)
+  expect_equal(res[[ReboundTools::hat_vars$C_dot_g_hat]][[2]], 27386.9489032208657591)
 
   expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[1]], 0.0359502288267174)
   expect_equal(res[[ReboundTools::hat_vars$f_Cs_hat]][[2]], 0.0000854454437645)
@@ -285,8 +285,8 @@ test_that("calc_bar() works as expected", {
   expect_equal(res[[ReboundTools::bar_vars$C_dot_s_bar]][[1]], 800.0828435163912218)
   expect_equal(res[[ReboundTools::bar_vars$C_dot_s_bar]][[2]], 2.3413025648719619)
   
-  expect_equal(res[[ReboundTools::bar_vars$C_dot_o_bar]][[1]], 21455.2092541457932384)
-  expect_equal(res[[ReboundTools::bar_vars$C_dot_o_bar]][[2]], 27398.7986730733282457)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_g_bar]][[1]], 21455.2092541457932384)
+  expect_equal(res[[ReboundTools::bar_vars$C_dot_g_bar]][[2]], 27398.7986730733282457)
   
   expect_equal(res[[ReboundTools::bar_vars$f_Cs_bar]][[1]], 0.0359502288267174)
   expect_equal(res[[ReboundTools::bar_vars$f_Cs_bar]][[2]], 0.0000854454437645)
@@ -368,8 +368,8 @@ test_that("calc_tilde() works as expected", {
   expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[1]], 800.0828435163912218)
   expect_equal(res[[ReboundTools::tilde_vars$C_dot_s_tilde]][[2]], 2.3413025648719619)
   
-  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[1]], 21455.2092541457932384)
-  expect_equal(res[[ReboundTools::tilde_vars$C_dot_o_tilde]][[2]], 27398.7986730733282457)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_g_tilde]][[1]], 21455.2092541457932384)
+  expect_equal(res[[ReboundTools::tilde_vars$C_dot_g_tilde]][[2]], 27398.7986730733282457)
   
   expect_equal(res[[ReboundTools::tilde_vars$f_Cs_tilde]][[1]], 0.0359502288267174)
   expect_equal(res[[ReboundTools::tilde_vars$f_Cs_tilde]][[2]], 0.0000854454437645)
