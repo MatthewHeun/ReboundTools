@@ -7,11 +7,11 @@ test_that("calc_orig() works as expected", {
   expect_equal(res[[ReboundTools::orig_vars$p_E_orig]],
                res[[ReboundTools::orig_vars$p_E]])
   
-  expect_equal(res[[ReboundTools::orig_vars$R_alpha_orig]][[1]], 1.20327063)
-  expect_equal(res[[ReboundTools::orig_vars$R_alpha_orig]][[2]], 1.01181118)
+  expect_equal(res[[ReboundTools::orig_vars$tau_alpha_orig]][[1]], 1.20327063)
+  expect_equal(res[[ReboundTools::orig_vars$tau_alpha_orig]][[2]], 1.01181118)
 
-  expect_equal(res[[ReboundTools::orig_vars$R_omega_orig]][[1]], 0.7955036367662678)
-  expect_equal(res[[ReboundTools::orig_vars$R_omega_orig]][[2]], 0.9593839991000015)
+  expect_equal(res[[ReboundTools::orig_vars$tau_omega_orig]][[1]], 0.7955036367662678)
+  expect_equal(res[[ReboundTools::orig_vars$tau_omega_orig]][[2]], 0.9593839991000015)
   
   expect_equal(res[[ReboundTools::orig_vars$eta_orig]][[1]], 0.19743862087385857795)
   expect_equal(res[[ReboundTools::orig_vars$eta_orig]][[2]], 2453.7037037)
@@ -74,11 +74,11 @@ test_that("calc_star() works as expected", {
   expect_equal(res[[ReboundTools::star_vars$p_E_star]], 
                res[[ReboundTools::orig_vars$p_E]])
   
-  expect_equal(res[[ReboundTools::star_vars$R_alpha_star]][[1]], 1.20327063)
-  expect_equal(res[[ReboundTools::star_vars$R_alpha_star]][[2]], 1.1381602583025194)
+  expect_equal(res[[ReboundTools::star_vars$tau_alpha_star]][[1]], 1.20327063)
+  expect_equal(res[[ReboundTools::star_vars$tau_alpha_star]][[2]], 1.1381602583025194)
   
-  expect_equal(res[[ReboundTools::star_vars$R_omega_star]][[1]], 0.7955036367662678)
-  expect_equal(res[[ReboundTools::star_vars$R_omega_star]][[2]], 0.8468981223801895)
+  expect_equal(res[[ReboundTools::star_vars$tau_omega_star]][[1]], 0.7955036367662678)
+  expect_equal(res[[ReboundTools::star_vars$tau_omega_star]][[2]], 0.8468981223801895)
   
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[1]], 0.33169688306808242650)
   expect_equal(res[[ReboundTools::star_vars$eta_star]][[2]], 22722.222222222)
@@ -151,15 +151,15 @@ test_that("calc_hat() works as expected", {
   expect_equal(res[[ReboundTools::hat_vars$p_E_hat]], 
                res[[ReboundTools::orig_vars$p_E]])
   
-  expect_equal(res[[ReboundTools::hat_vars$R_alpha_hat]][[1]], 
-               res[[ReboundTools::star_vars$R_alpha_star]][[1]])
-  expect_equal(res[[ReboundTools::hat_vars$R_alpha_hat]][[2]], 
-               res[[ReboundTools::star_vars$R_alpha_star]][[2]])
+  expect_equal(res[[ReboundTools::hat_vars$tau_alpha_hat]][[1]], 
+               res[[ReboundTools::star_vars$tau_alpha_star]][[1]])
+  expect_equal(res[[ReboundTools::hat_vars$tau_alpha_hat]][[2]], 
+               res[[ReboundTools::star_vars$tau_alpha_star]][[2]])
   
-  expect_equal(res[[ReboundTools::hat_vars$R_omega_hat]][[1]], 
-               res[[ReboundTools::star_vars$R_omega_star]][[1]])
-  expect_equal(res[[ReboundTools::hat_vars$R_omega_hat]][[2]], 
-               res[[ReboundTools::star_vars$R_omega_star]][[2]])
+  expect_equal(res[[ReboundTools::hat_vars$tau_omega_hat]][[1]], 
+               res[[ReboundTools::star_vars$tau_omega_star]][[1]])
+  expect_equal(res[[ReboundTools::hat_vars$tau_omega_hat]][[2]], 
+               res[[ReboundTools::star_vars$tau_omega_star]][[2]])
   
   expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[1]], 42)
   expect_equal(res[[ReboundTools::hat_vars$eta_engr_units_hat]][[2]], 81.8)
@@ -236,15 +236,15 @@ test_that("calc_bar() works as expected", {
   expect_equal(res[[ReboundTools::bar_vars$p_E_bar]], 
                res[[ReboundTools::orig_vars$p_E]])
   
-  expect_equal(res[[ReboundTools::bar_vars$R_alpha_bar]][[1]], 
-               res[[ReboundTools::star_vars$R_alpha_star]][[1]])
-  expect_equal(res[[ReboundTools::bar_vars$R_alpha_bar]][[2]], 
-               res[[ReboundTools::star_vars$R_alpha_star]][[2]])
+  expect_equal(res[[ReboundTools::bar_vars$tau_alpha_bar]][[1]], 
+               res[[ReboundTools::star_vars$tau_alpha_star]][[1]])
+  expect_equal(res[[ReboundTools::bar_vars$tau_alpha_bar]][[2]], 
+               res[[ReboundTools::star_vars$tau_alpha_star]][[2]])
   
-  expect_equal(res[[ReboundTools::bar_vars$R_omega_bar]][[1]], 
-               res[[ReboundTools::star_vars$R_omega_star]][[1]])
-  expect_equal(res[[ReboundTools::bar_vars$R_omega_bar]][[2]], 
-               res[[ReboundTools::star_vars$R_omega_star]][[2]])
+  expect_equal(res[[ReboundTools::bar_vars$tau_omega_bar]][[1]], 
+               res[[ReboundTools::star_vars$tau_omega_star]][[1]])
+  expect_equal(res[[ReboundTools::bar_vars$tau_omega_bar]][[2]], 
+               res[[ReboundTools::star_vars$tau_omega_star]][[2]])
   
   expect_equal(res[[ReboundTools::bar_vars$eta_engr_units_bar]][[1]], 42)
   expect_equal(res[[ReboundTools::bar_vars$eta_engr_units_bar]][[2]], 81.8)
@@ -319,15 +319,15 @@ test_that("calc_tilde() works as expected", {
   expect_equal(res[[ReboundTools::tilde_vars$p_E_tilde]], 
                res[[ReboundTools::orig_vars$p_E]])
   
-  expect_equal(res[[ReboundTools::tilde_vars$R_alpha_tilde]][[1]], 
-               res[[ReboundTools::star_vars$R_alpha_star]][[1]])
-  expect_equal(res[[ReboundTools::tilde_vars$R_alpha_tilde]][[2]], 
-               res[[ReboundTools::star_vars$R_alpha_star]][[2]])
+  expect_equal(res[[ReboundTools::tilde_vars$tau_alpha_tilde]][[1]], 
+               res[[ReboundTools::star_vars$tau_alpha_star]][[1]])
+  expect_equal(res[[ReboundTools::tilde_vars$tau_alpha_tilde]][[2]], 
+               res[[ReboundTools::star_vars$tau_alpha_star]][[2]])
   
-  expect_equal(res[[ReboundTools::tilde_vars$R_omega_tilde]][[1]], 
-               res[[ReboundTools::star_vars$R_omega_star]][[1]])
-  expect_equal(res[[ReboundTools::tilde_vars$R_omega_tilde]][[2]], 
-               res[[ReboundTools::star_vars$R_omega_star]][[2]])
+  expect_equal(res[[ReboundTools::tilde_vars$tau_omega_tilde]][[1]], 
+               res[[ReboundTools::star_vars$tau_omega_star]][[1]])
+  expect_equal(res[[ReboundTools::tilde_vars$tau_omega_tilde]][[2]], 
+               res[[ReboundTools::star_vars$tau_omega_star]][[2]])
   
   expect_equal(res[[ReboundTools::tilde_vars$eta_engr_units_tilde]][[1]], 42)
   expect_equal(res[[ReboundTools::tilde_vars$eta_engr_units_tilde]][[2]], 81.8)
