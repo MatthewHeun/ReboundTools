@@ -8,8 +8,10 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+* The term for adjusting for time-value of money (R)
+  has been changed to Greek letter tau.
 * The subscript "o" for other goods and services
-  consumption has been changed throughout to match
+  consumption has been changed to "g" throughout to match
   a nomenclature change in the first paper using this framework.
 
 
