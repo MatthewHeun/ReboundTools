@@ -7,6 +7,9 @@
 \format{
 A string list with 21 entries.
 \describe{
+\item{t_life}{The expected lifetime of the device.}
+\item{tau_alpha}{A parameter that accounts for discounting of beginning-of-life purchases.}
+\item{tau_omega}{A parameter that accounts for discounting of end-of-life purchases.}
 \item{eta_engr_units}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service, in engineering units.}
 \item{eta}{Energy service efficiency, calculated by energy service divided by final energy consumed to provide that service.}
 \item{p_s}{Energy service price [service/MJ], calculated by \code{p_E/eta}.}
@@ -19,6 +22,7 @@ A string list with 21 entries.
 \item{C_dot_om}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d}{The disposal cost for the device [$/yr].}
 \item{C_dot_d}{The disposal cost rate of the device without discounting [$/yr].}
+\item{tau_omega_C_dot_d}{A parameter that accounts for discounting of disposal costs.}
 \item{C_dot_omd}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{C_dot_g}{The other goods consumption rate [$/yr], calculated, initially, as a residual of the budget constraint.}
 \item{N_dot}{Net income [$/yr].}

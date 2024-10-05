@@ -10,12 +10,12 @@ iso_budget_lines_cons(
   graph_params = ReboundTools::path_graph_params,
   p_s_orig = ReboundTools::orig_vars$p_s_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+  tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
   C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
-  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+  tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   p_s_star = ReboundTools::star_vars$p_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
@@ -36,9 +36,9 @@ likely created by \code{rebound_analysis()}.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
-\item{R_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_g_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
+\item{tau_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_g_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{R_alpha_star, C_dot_cap_star, C_dot_omd_star, p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+\item{tau_alpha_star, C_dot_cap_star, C_dot_omd_star, p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
 \item{q_dot_s_hat, C_dot_g_hat}{See \code{ReboundTools::hat_vars}.}
 

@@ -21,18 +21,18 @@ calc_orig(
   C_d_orig = ReboundTools::orig_vars$C_d_orig,
   E_emb_orig = ReboundTools::orig_vars$E_emb_orig,
   t_life_orig = ReboundTools::orig_vars$t_life_orig,
-  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
-  R_omega_orig = ReboundTools::orig_vars$R_omega_orig,
+  tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
+  tau_omega_orig = ReboundTools::orig_vars$tau_omega_orig,
   p_E = ReboundTools::orig_vars$p_E,
   p_E_orig = ReboundTools::orig_vars$p_E_orig,
   eta_orig = ReboundTools::orig_vars$eta_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
-  R_alpha_C_dot_cap_orig = ReboundTools::orig_vars$R_alpha_C_dot_cap_orig,
+  tau_alpha_C_dot_cap_orig = ReboundTools::orig_vars$tau_alpha_C_dot_cap_orig,
   p_s_orig = ReboundTools::orig_vars$p_s_orig,
   C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig,
   C_dot_d_orig = ReboundTools::orig_vars$C_dot_d_orig,
-  R_omega_C_dot_d_orig = ReboundTools::orig_vars$R_omega_C_dot_d_orig,
+  tau_omega_C_dot_d_orig = ReboundTools::orig_vars$tau_omega_C_dot_d_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
   C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
@@ -53,7 +53,7 @@ See \code{ReboundTools::eeu_base_params}.}
 
 \item{r, MJ_engr_unit, p_E_engr_units, e_qs_ps_UC_orig, e_qs_M, e_qg_M}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{R_alpha_orig, R_omega_orig, eta_engr_units_orig, q_dot_s_orig, M_dot_orig, C_cap_orig, R_alpha_C_dot_cap_orig, C_d_orig, C_dot_omd_orig, C_dot_om_orig, C_dot_d_orig, R_omega_C_dot_d_orig, E_emb_orig, t_life_orig, p_E, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_g_orig, f_Cs_orig, e_qg_ps_UC_orig, e_qs_ps_C_orig, e_qg_ps_C_orig, sigma, rho, E_dot_emb_orig, N_dot_orig, p_E_orig}{See \code{ReboundTools::orig_vars}.}
+\item{tau_alpha_orig, tau_omega_orig, eta_engr_units_orig, q_dot_s_orig, M_dot_orig, C_cap_orig, tau_alpha_C_dot_cap_orig, C_d_orig, C_dot_omd_orig, C_dot_om_orig, C_dot_d_orig, tau_omega_C_dot_d_orig, E_emb_orig, t_life_orig, p_E, eta_orig, E_dot_s_orig, C_dot_cap_orig, p_s_orig, C_dot_s_orig, C_dot_g_orig, f_Cs_orig, e_qg_ps_UC_orig, e_qs_ps_C_orig, e_qg_ps_C_orig, sigma, rho, E_dot_emb_orig, N_dot_orig, p_E_orig}{See \code{ReboundTools::orig_vars}.}
 }
 \value{
 A list or data frame of derived rebound values.

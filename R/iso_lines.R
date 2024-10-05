@@ -177,10 +177,10 @@ iso_energy_lines <- function(.rebound_data,
 #'                at its start.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param graph_params See `ReboundTools::graph_params`.
-#' @param R_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
+#' @param tau_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
-#' @param R_alpha_star,C_dot_cap_star,C_dot_omd_star,C_dot_g_star See `ReboundTools::star_vars`.
-#' @param R_alpha_hat,C_dot_s_hat,C_dot_cap_hat,C_dot_omd_hat,C_dot_g_hat See `ReboundTools::hat_vars`.
+#' @param tau_alpha_star,C_dot_cap_star,C_dot_omd_star,C_dot_g_star See `ReboundTools::star_vars`.
+#' @param tau_alpha_hat,C_dot_s_hat,C_dot_cap_hat,C_dot_omd_hat,C_dot_g_hat See `ReboundTools::hat_vars`.
 #'
 #' @return A data frame of iso-expenditure lines for an expenditure path graph.
 #' 
@@ -195,7 +195,7 @@ iso_expenditure_lines <- function(.rebound_data,
                            graph_type = ReboundTools::graph_types$expenditure,
                            graph_params = ReboundTools::path_graph_params,
                            
-                           R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                           tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
                            C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                            C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                            C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig, 
@@ -203,11 +203,11 @@ iso_expenditure_lines <- function(.rebound_data,
                            
                            G_dot = ReboundTools::star_vars$G_dot,
                            C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat, 
-                           R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+                           tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
                            C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star, 
                            C_dot_omd_star = ReboundTools::star_vars$C_dot_omd_star, 
                            C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
-                           R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat,
+                           tau_alpha_hat = ReboundTools::hat_vars$tau_alpha_hat,
                            C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat, 
                            C_dot_omd_hat = ReboundTools::hat_vars$C_dot_omd_hat, 
                            C_dot_g_hat = ReboundTools::hat_vars$C_dot_g_hat) {
@@ -216,7 +216,7 @@ iso_expenditure_lines <- function(.rebound_data,
   
   # Iso-expenditure line at the orig point.
   x_orig <- .rebound_data[[C_dot_s_orig]]
-  y_orig <- .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] + 
+  y_orig <- .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] + 
             .rebound_data[[C_dot_omd_orig]] +
             .rebound_data[[C_dot_g_orig]]
   x <- x_orig
@@ -247,7 +247,7 @@ iso_expenditure_lines <- function(.rebound_data,
   
   # Iso-expenditure line after the emplacement effect (through the "star" point)
   # Same x value as iso-expenditure line through the "a" point
-  y <- .rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] + 
+  y <- .rebound_data[[tau_alpha_star]]*.rebound_data[[C_dot_cap_star]] + 
        .rebound_data[[C_dot_omd_star]] +
        .rebound_data[[C_dot_g_star]]
   isos <- isos %>% 
@@ -263,7 +263,7 @@ iso_expenditure_lines <- function(.rebound_data,
 
   # Iso-expenditure line after the substitution effect (through the "hat" point)
   x <- .rebound_data[[C_dot_s_hat]]
-  y <- .rebound_data[[R_alpha_hat]]*.rebound_data[[C_dot_cap_hat]] + 
+  y <- .rebound_data[[tau_alpha_hat]]*.rebound_data[[C_dot_cap_hat]] + 
        .rebound_data[[C_dot_omd_hat]] +
        .rebound_data[[C_dot_g_hat]]
   isos <- isos %>% 
@@ -293,8 +293,8 @@ iso_expenditure_lines <- function(.rebound_data,
 #'                      likely created by `rebound_analysis()`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param graph_params See `ReboundTools::graph_params`.
-#' @param R_alpha_orig,p_s_orig,q_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig,M_dot_orig See `ReboundTools::orig_vars`.
-#' @param R_alpha_star,C_dot_cap_star,C_dot_omd_star,p_s_star,G_dot See `ReboundTools::star_vars`.
+#' @param tau_alpha_orig,p_s_orig,q_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig,M_dot_orig See `ReboundTools::orig_vars`.
+#' @param tau_alpha_star,C_dot_cap_star,C_dot_omd_star,p_s_star,G_dot See `ReboundTools::star_vars`.
 #' @param q_dot_s_hat,C_dot_g_hat See `ReboundTools::hat_vars`.
 #' @param Delta_q_dot_s_hat,Delta_C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_g_hat See `ReboundTools::Delta_vars`.
 #'
@@ -312,13 +312,13 @@ iso_budget_lines_cons <- function(.rebound_data,
                                   
                                   p_s_orig = ReboundTools::orig_vars$p_s_orig, 
                                   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-                                  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                                  tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
                                   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
                                   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
                                   C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
                                   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
                                   
-                                  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+                                  tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
                                   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
                                   p_s_star = ReboundTools::star_vars$p_s_star,
                                   G_dot = ReboundTools::star_vars$G_dot,
@@ -338,10 +338,10 @@ iso_budget_lines_cons <- function(.rebound_data,
   # slope_orig <- -p_s_orig * q_dot_s_orig / C_dot_g_orig
   slope_orig <- -.rebound_data[[p_s_orig]] * .rebound_data[[q_dot_s_orig]] / .rebound_data[[C_dot_g_orig]]
   # intercept_orig <- (M_dot_orig - 
-  #                    R_alpha_orig*C_dot_cap_orig - 
+  #                    tau_alpha_orig*C_dot_cap_orig - 
   #                    C_dot_omd_orig) / C_dot_g_orig
   intercept_orig <- (.rebound_data[[M_dot_orig]] - 
-                       .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
+                       .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
                        .rebound_data[[C_dot_omd_orig]]) / 
     .rebound_data[[C_dot_g_orig]]
   out <- add_budget_line(meta = meta, 
@@ -357,11 +357,11 @@ iso_budget_lines_cons <- function(.rebound_data,
   # slope_star <- -p_s_star * q_dot_s_orig / C_dot_g_orig
   slope_star <- -.rebound_data[[p_s_star]] * .rebound_data[[q_dot_s_orig]] / .rebound_data[[C_dot_g_orig]]
   # intercept_star <- (M_dot_orig - 
-  #                    R_alpha_orig*C_dot_cap_orig - 
+  #                    tau_alpha_orig*C_dot_cap_orig - 
   #                    C_dot_omd_orig -
   #                    G_dot) / C_dot_g_orig
   intercept_star <- (.rebound_data[[M_dot_orig]] - 
-                       .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
+                       .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
                        .rebound_data[[C_dot_omd_orig]] - 
                        .rebound_data[[G_dot]]) / 
     .rebound_data[[C_dot_g_orig]]
@@ -379,13 +379,13 @@ iso_budget_lines_cons <- function(.rebound_data,
   # Iso-budget line at the hat point (after substitution, before income)
   slope_hat <- slope_star
   # intercept_hat <- (M_dot_orig -
-  #                   R_alpha_orig*C_dot_cap_orig - 
+  #                   tau_alpha_orig*C_dot_cap_orig - 
   #                   C_dot_omd_orig - 
   #                   G_dot + 
   #                   p_s_star*Delta_q_dot_s_hat + 
   #                   Delta_C_dot_g_hat) / C_dot_g_orig
   intercept_hat <- (.rebound_data[[M_dot_orig]] - 
-                      .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
+                      .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] - 
                       .rebound_data[[C_dot_omd_orig]] -
                       .rebound_data[[G_dot]] +
                       .rebound_data[[p_s_star]] * .rebound_data[[Delta_q_dot_s_hat]] + 
@@ -403,10 +403,10 @@ iso_budget_lines_cons <- function(.rebound_data,
   # Iso-budget line at the bar point (after income, before productivity)
   slope_bar <- slope_hat
   # intercept_bar <- (M_dot_orig - 
-  #                   R_alpha_star*C_dot_cap_star - 
+  #                   tau_alpha_star*C_dot_cap_star - 
   #                   C_dot_omd_star) / C_dot_g_orig
   intercept_bar <- (.rebound_data[[M_dot_orig]] -
-                      .rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] -
+                      .rebound_data[[tau_alpha_star]]*.rebound_data[[C_dot_cap_star]] -
                       .rebound_data[[C_dot_omd_star]]) /
     .rebound_data[[C_dot_g_orig]]
   out <- add_budget_line(out, meta = meta, 

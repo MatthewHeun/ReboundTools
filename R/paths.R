@@ -40,7 +40,7 @@ extract_meta <- function(.rebound_data,
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param k,I_E See `ReboundTools::eeu_base_params`.
-#' @param R_alpha_orig,E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
+#' @param tau_alpha_orig,E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
 #' @param Delta_E_dot_emb_star,Delta_C_dot_omd_star,Delta_E_dot_s_hat,Delta_C_dot_g_hat,Delta_E_dot_s_bar,Delta_C_dot_g_bar,N_dot_hat See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
@@ -62,7 +62,7 @@ energy_paths <- function(.rebound_data,
                          k = ReboundTools::eeu_base_params$k,
                          I_E = ReboundTools::eeu_base_params$I_E,
                          
-                         R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                         tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                          C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
@@ -249,9 +249,9 @@ energy_paths <- function(.rebound_data,
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
-#' @param R_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
+#' @param tau_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
-#' @param R_alpha_star,C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_g_hat,Delta_C_dot_s_bar,Delta_C_dot_g_bar See `ReboundTools::Delta_vars`.
+#' @param tau_alpha_star,C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_g_hat,Delta_C_dot_s_bar,Delta_C_dot_g_bar See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with cost rebound path segments.
@@ -268,7 +268,7 @@ expenditure_paths <- function(.rebound_data,
                        rebound_segments = ReboundTools::rebound_segments,
                        graph_type = ReboundTools::graph_types$expenditure,
                        
-                       R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                       tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
                        C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                        C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                        C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
@@ -276,7 +276,7 @@ expenditure_paths <- function(.rebound_data,
                        
                        G_dot = ReboundTools::star_vars$G_dot,
                        
-                       R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+                       tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
                        C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
 
                        # Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
@@ -298,7 +298,7 @@ expenditure_paths <- function(.rebound_data,
   
   # G_dot segment for cost graph (dempl)
   x_orig_cost <- .rebound_data[[C_dot_s_orig]]
-  y_orig_cost <- .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] +
+  y_orig_cost <- .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] +
                  .rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_g_orig]]
   xend <- x_orig_cost - .rebound_data[[G_dot]]
   yend <- y_orig_cost
@@ -317,8 +317,8 @@ expenditure_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   # yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
-  yend <- y + (.rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] - 
-               .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]])
+  yend <- y + (.rebound_data[[tau_alpha_star]]*.rebound_data[[C_dot_cap_star]] - 
+               .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]])
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$cap_colour, 

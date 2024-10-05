@@ -7,16 +7,16 @@
 \format{
 A string list with 26 entries.
 \describe{
-\item{R_alpha_bar}{The post-income effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_hat}.}
-\item{R_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_hat}.}
+\item{tau_alpha_bar}{The post-income effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{tau_alpha_hat}.}
+\item{tau_omega_bar}{The post-income effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{tau_omega_hat}.}
 \item{eta_bar}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_hat}.}
 \item{p_s_bar}{The energy service price after the income effect [$/service], exactly \code{p_s_hat}.}
 \item{C_dot_cap_bar}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
-\item{R_alpha_C_dot_cap_bar}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
+\item{tau_alpha_C_dot_cap_bar}{The product of tau_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_om_bar}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_bar}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_bar}{The disposal cost rate of the device without discounting [$/yr].}
-\item{R_omega_C_dot_d_bar}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
+\item{tau_omega_C_dot_d_bar}{The product of tau_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_omd_bar}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_bar}{The embodied energy rate after the income effect [MJ/yr], exactly \code{E_dot_emb_hat}.}
 \item{M_dot_bar}{Real income after the income effect [MJ/yr], exactly \code{M_dot_hat}.}

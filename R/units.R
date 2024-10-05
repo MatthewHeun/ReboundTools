@@ -22,7 +22,7 @@
 #'        These arguments describe string prefixes that identify variables for unit determination. 
 #' @param S_dot_dev,G_dot,f_Cs See `ReboundTools::star_vars`. 
 #'        These arguments describe string patterns that identify variables for unit determination. 
-#' @param elasticities,time,cost_rate,cost,energy_rate,rebound,R_alpha,R_omega Other arguments to identify variable names.
+#' @param elasticities,time,cost_rate,cost,energy_rate,rebound,tau_alpha,tau_omega Other arguments to identify variable names.
 #' @param trim_stage_pattern A regex that trims the rebound stage from a variable name. 
 #'        Default is "_\[^_\]*$", which trims all characters beyond the last "_" in a string.
 #'        
@@ -86,8 +86,8 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
                               cost = "C_",
                               energy_rate = "E_dot", 
                               rebound = "Re_", 
-                              R_alpha = "R_alpha", 
-                              R_omega = "R_omega"
+                              tau_alpha = "tau_alpha", 
+                              tau_omega = "tau_omega"
                               
 ) {
   
@@ -152,7 +152,7 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
              startsWith(v, income_rate) | 
              startsWith(v, freed_cash_rate) | 
              startsWith(v, G_dot) | 
-             ((startsWith(v, R_alpha) | startsWith(v, R_omega)) & grepl(cost_rate, v, fixed = TRUE))) {
+             ((startsWith(v, tau_alpha) | startsWith(v, tau_omega)) & grepl(cost_rate, v, fixed = TRUE))) {
       out <- paste0(currency, "/", time_unit)
     } else if (startsWith(v, cost) | 
                startsWith(v, income) | 
@@ -196,9 +196,9 @@ rebound_var_units <- function(.var_name, service_unit, energy_engr_unit,
       out <- inverse_time_unit
     }
     
-    # R_alpha and R_omega values
+    # tau_alpha and tau_omega values
     
-    else if (startsWith(v, R_alpha) | startsWith(v, R_omega)) {
+    else if (startsWith(v, tau_alpha) | startsWith(v, tau_omega)) {
       out <- unitless
     }
     

@@ -12,7 +12,7 @@ energy_paths(
   graph_type = ReboundTools::graph_types$energy,
   k = ReboundTools::eeu_base_params$k,
   I_E = ReboundTools::eeu_base_params$I_E,
-  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+  tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
@@ -43,7 +43,7 @@ at its start.}
 
 \item{k, I_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{R_alpha_orig, E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_g_orig}{See \code{ReboundTools::orig_vars}.}
+\item{tau_alpha_orig, E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_g_orig}{See \code{ReboundTools::orig_vars}.}
 
 \item{S_dot_dev}{See \code{ReboundTools::star_vars}.}
 
