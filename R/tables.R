@@ -42,7 +42,7 @@ stages_table <- function(.analysis_data,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
                          tilde_stage = ReboundTools::rebound_stages$tilde,
                          ..., 
-                         # internal names
+                         # internal column names
                          .var = ".var",
                          .stage = ".stage", 
                          .var_stage = ".var_stage", 
