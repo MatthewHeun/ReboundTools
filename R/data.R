@@ -121,6 +121,24 @@
 "latex_rebound_stages"
 
 
+#' A visibility mask for the `stages_table()`
+#' 
+#' This data frame contains a column
+#' that tells whether values are shown
+#' in the [stages_table()].
+#' 
+#' @format A data frame with three columns, "Variable", "Stage", and "Visible". 
+#' \describe{
+#' \item{Variable}{The name of the variable in the [stages_table()].}
+#' \item{Stage}{The name of the rebound in the [stages_table()].}
+#' \item{Visible}{A boolean that tells whether this combination of `Variable` and `Stage` should be visible.}
+#' }
+#' 
+#' @examples
+#' stages_table_visibility_mask
+"stages_table_visibility_mask"
+
+
 #' Rebound segment names
 #' 
 #' A list of rebound segment names used internally to the package.

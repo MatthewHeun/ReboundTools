@@ -94,6 +94,75 @@ usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
+# A mask for value visibility in a stages_table().
+# Only values before/after a change are visible.
+# Invisible values are indicated by NA
+# 
+
+stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |> 
+  magrittr::set_names(c("Variable", "Stage")) |> 
+  dplyr::mutate(
+    Variable = factor(Variable, levels = key_analysis_vars), 
+    Stage = factor(Stage, levels = rebound_stages)
+  ) |> 
+  dplyr::arrange(Variable, Stage) |> 
+  dplyr::mutate(
+    Visible = dplyr::case_when(
+      Variable == "t_life" & Stage == "orig" ~ TRUE, 
+      Variable == "t_life" & Stage == "star" ~ TRUE, 
+      Variable == "tau_alpha" & Stage == "orig" ~ TRUE, 
+      Variable == "tau_alpha" & Stage == "star" ~ TRUE, 
+      Variable == "tau_omega" & Stage == "orig" ~ TRUE, 
+      Variable == "tau_omega" & Stage == "star" ~ TRUE, 
+      Variable == "eta_engr_units" & Stage == "orig" ~ TRUE, 
+      Variable == "eta_engr_units" & Stage == "star" ~ TRUE, 
+      Variable == "eta" & Stage == "orig" ~ TRUE, 
+      Variable == "eta" & Stage == "star" ~ TRUE, 
+      Variable == "p_s" & Stage == "orig" ~ TRUE, 
+      Variable == "p_s" & Stage == "star" ~ TRUE, 
+      Variable == "q_dot_s" & Stage == "star" ~ TRUE, 
+      Variable == "q_dot_s" & Stage == "hat" ~ TRUE, 
+      Variable == "q_dot_s" & Stage == "bar" ~ TRUE, 
+      Variable == "p_E" & Stage == "orig" ~ TRUE, 
+      Variable == "E_dot_s" & Stage == "orig" ~ TRUE, 
+      Variable == "E_dot_s" & Stage == "star" ~ TRUE, 
+      Variable == "E_dot_s" & Stage == "hat" ~ TRUE, 
+      Variable == "E_dot_s" & Stage == "bar" ~ TRUE, 
+      Variable == "E_dot_emb" & Stage == "orig" ~ TRUE, 
+      Variable == "E_dot_emb" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_s" & Stage == "orig" ~ TRUE, 
+      Variable == "C_dot_s" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_s" & Stage == "hat" ~ TRUE, 
+      Variable == "C_dot_s" & Stage == "bar" ~ TRUE, 
+      Variable == "C_dot_cap" & Stage == "orig" ~ TRUE, 
+      Variable == "C_dot_cap" & Stage == "star" ~ TRUE, 
+      Variable == "tau_alpha_C_dot_cap" & Stage == "orig" ~ TRUE, 
+      Variable == "tau_alpha_C_dot_cap" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_om" & Stage == "orig" ~ TRUE, 
+      Variable == "C_dot_om" & Stage == "star" ~ TRUE, 
+      Variable == "C_d" & Stage == "orig" ~ TRUE, 
+      Variable == "C_d" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_d" & Stage == "orig" ~ TRUE, 
+      Variable == "C_dot_d" & Stage == "star" ~ TRUE, 
+      Variable == "tau_omega_C_dot_d" & Stage == "orig" ~ TRUE, 
+      Variable == "tau_omega_C_dot_d" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_omd" & Stage == "orig" ~ TRUE, 
+      Variable == "C_dot_omd" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_g" & Stage == "star" ~ TRUE, 
+      Variable == "C_dot_g" & Stage == "hat" ~ TRUE, 
+      Variable == "C_dot_g" & Stage == "bar" ~ TRUE, 
+      Variable == "N_dot" & Stage == "orig" ~ TRUE, 
+      Variable == "N_dot" & Stage == "star" ~ TRUE, 
+      Variable == "N_dot" & Stage == "hat" ~ TRUE, 
+      Variable == "N_dot" & Stage == "bar" ~ TRUE, 
+      Variable == "M_dot" & Stage == "orig" ~ TRUE, 
+      # Pick up all other cases
+      TRUE ~ FALSE
+    )
+  )
+
+
+#
 # Names of segments in path data frames.
 # Also gives sequential order in the path graphs.
 # 
