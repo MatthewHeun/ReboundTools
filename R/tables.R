@@ -3,21 +3,26 @@
 #' A stages table has variables in rows and stages in columns.
 #' These tables enable tracking of variables across the different stages of rebound.
 #'
-#' @param .analysis_data A data frame, usually the result of calling `rebound_analysis()`. Default is `rebound_analysis(load_eeu_data(file))`.
+#' @param .analysis_data A data frame, usually the result of calling [ReboundTools::rebound_analysis()].
 #' @param include_tilde_stage Tells whether to include the tilde column, which is identical to the bar column.
 #' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
 #' @param escape_latex When `TRUE` (the default), return LaTeX-compatible versions of strings.
-#' @param vars A list of variables for rows of the table. Default is `ReboundTools::key_analysis_vars`.
+#' @param visibility_mask A data frame that tells which data are visible in the [stages_table()].
+#'                        Default is `NULL`, meaning that all data are visible.
+#'                        A value that shows variables before and after changes only
+#'                        is [stages_table_visibility_mask].
+#'                        Modify [stages_table_visibility_mask] as needed.
+#' @param vars A list of variables for rows of the table. Default is [ReboundTools::key_analysis_vars].
 #'             Variable order is preserved in the table.
 #' @param latex_vars See `ReboundTools::latex_key_analysis_vars`. Set `NULL` to prevent conversion to LaTeX variable names.
-#' @param stages A list of stages for columns of the table. Default is `ReboundTools::rebound_stages`.
+#' @param stages A list of stages for columns of the table. Default is [ReboundTools::rebound_stages].
 #'               Stage order is preserved in the table.
-#' @param latex_stages See `ReboundTools::latex_rebound_stages`. Set `NULL` to prevent conversion to LaTeX stage names.
-#' @param case See `ReboundTools::eeu_base_params`.
+#' @param latex_stages See [ReboundTools::latex_rebound_stages]. Set `NULL` to prevent conversion to LaTeX stage names.
+#' @param case See [ReboundTools::eeu_base_params].
 #' @param service_unit,energy_engr_unit See `ReboundTools::eeu_base_params`.
 #' @param tilde_stage Used internally to identify the tilde column. 
-#'                    Default is `ReboundTools::rebound_stages$tilde`.
-#' @param ... Arguments passed to `xtable::xtable()`, possibly
+#'                    Default is [ReboundTools::rebound_stages]`$tilde`.
+#' @param ... Arguments passed to [xtable::xtable()], possibly
 #'            `label`, `caption`, `digits`, etc.
 #' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
 #'
@@ -33,6 +38,7 @@ stages_table <- function(.analysis_data,
                          include_tilde_stage = TRUE,
                          add_units = TRUE,
                          escape_latex = TRUE,
+                         visibility_mask = NULL, 
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 

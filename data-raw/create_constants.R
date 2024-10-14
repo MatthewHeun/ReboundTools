@@ -160,6 +160,7 @@ stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |
       TRUE ~ FALSE
     )
   )
+usethis::use_data(stages_table_visibility_mask, overwrite = TRUE)
 
 
 #

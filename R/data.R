@@ -123,7 +123,7 @@
 
 #' A visibility mask for the `stages_table()`
 #' 
-#' This data frame contains a column
+#' This data frame contains a boolean column ("Visible")
 #' that tells whether values are shown
 #' in the [stages_table()].
 #' 
