@@ -70,5 +70,5 @@ When \code{qs2_qs0} is non-\code{NULL}, the curve is generated over the range
 \examples{
 meta <- tibble::tibble(Case = "Test case")
 add_indifference_curve(meta = meta, line_name= "Test indifference curve",
-                       qs1_qs0 = 2, Co1_Co0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
+                       qs1_qs0 = 2, Cg1_Cg0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
 }
