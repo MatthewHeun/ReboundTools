@@ -8,6 +8,8 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+* `stages_table()` has new argument `visibility_mask`
+  that specifies which values to show.
 * The term for adjusting for time-value of money (R)
   has been changed to Greek letter tau.
 * The subscript "o" for other goods and services

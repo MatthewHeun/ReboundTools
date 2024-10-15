@@ -123,7 +123,7 @@ indifference_lines <- function(.rebound_data,
 #' @examples
 #' meta <- tibble::tibble(Case = "Test case")
 #' add_indifference_curve(meta = meta, line_name= "Test indifference curve",
-#'                        qs1_qs0 = 2, Co1_Co0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
+#'                        qs1_qs0 = 2, Cg1_Cg0 = 3, f_Cs_orig = 0.0001, sigma = 0.2)
 add_indifference_curve <- function(.DF = NULL, 
                                    meta, 
                                    graph_type = ReboundTools::graph_types$consumption, 
@@ -137,8 +137,6 @@ add_indifference_curve <- function(.DF = NULL,
     min_qs <- qs1_qs0
     max_qs <- qs1_qs0
   } else {
-    # min_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = min) %>% unlist()
-    # max_qs <- lapply(X = list(qs1_qs0, qs2_qs0), FUN = max) %>% unlist()
     min_qs <- Map(f = min, qs1_qs0, qs2_qs0) %>% unlist()
     max_qs <- Map(f = max, qs1_qs0, qs2_qs0) %>% unlist()
   }

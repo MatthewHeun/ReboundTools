@@ -121,3 +121,13 @@ test_that("stages_table() works with include_tilde_stage = FALSE", {
     stages_table(include_tilde_stage = FALSE)
   expect_true(!is.null(t1))
 })
+
+
+test_that("stages_table() works with a visibility_mask", {
+  t1 <- load_eeu_data() |> 
+    rebound_analysis() |> 
+    stages_table(include_tilde_stage = FALSE, 
+                 visibility_mask = stages_table_visibility_mask)
+  # Not a very good test at the moment.
+  expect_true(!is.null(t1))
+})

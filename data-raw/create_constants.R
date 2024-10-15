@@ -94,6 +94,77 @@ usethis::use_data(latex_rebound_stages, overwrite = TRUE)
 
 
 #
+# A mask for value visibility in a stages_table().
+# Only values before/after a change are visible.
+# Invisible values are indicated by NA
+# 
+
+stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |> 
+  magrittr::set_names(c(".name", ".stage")) |> 
+  dplyr::mutate(
+    .name = factor(.name, levels = key_analysis_vars), 
+    .stage = factor(.stage, levels = rebound_stages)
+  ) |> 
+  tibble::as_tibble() |> 
+  dplyr::arrange(.name, .stage) |> 
+  dplyr::mutate(
+    Visible = dplyr::case_when(
+      .name == "t_life" & .stage == "orig" ~ TRUE, 
+      .name == "t_life" & .stage == "star" ~ TRUE, 
+      .name == "tau_alpha" & .stage == "orig" ~ TRUE, 
+      .name == "tau_alpha" & .stage == "star" ~ TRUE, 
+      .name == "tau_omega" & .stage == "orig" ~ TRUE, 
+      .name == "tau_omega" & .stage == "star" ~ TRUE, 
+      .name == "eta_engr_units" & .stage == "orig" ~ TRUE, 
+      .name == "eta_engr_units" & .stage == "star" ~ TRUE, 
+      .name == "eta" & .stage == "orig" ~ TRUE, 
+      .name == "eta" & .stage == "star" ~ TRUE, 
+      .name == "p_s" & .stage == "orig" ~ TRUE, 
+      .name == "p_s" & .stage == "star" ~ TRUE, 
+      .name == "q_dot_s" & .stage == "star" ~ TRUE, 
+      .name == "q_dot_s" & .stage == "hat" ~ TRUE, 
+      .name == "q_dot_s" & .stage == "bar" ~ TRUE, 
+      .name == "p_E" & .stage == "orig" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "orig" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "star" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "hat" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "bar" ~ TRUE, 
+      .name == "E_dot_emb" & .stage == "orig" ~ TRUE, 
+      .name == "E_dot_emb" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "hat" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "bar" ~ TRUE, 
+      .name == "C_dot_cap" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_cap" & .stage == "star" ~ TRUE, 
+      .name == "tau_alpha_C_dot_cap" & .stage == "orig" ~ TRUE, 
+      .name == "tau_alpha_C_dot_cap" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_om" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_om" & .stage == "star" ~ TRUE, 
+      .name == "C_d" & .stage == "orig" ~ TRUE, 
+      .name == "C_d" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_d" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_d" & .stage == "star" ~ TRUE, 
+      .name == "tau_omega_C_dot_d" & .stage == "orig" ~ TRUE, 
+      .name == "tau_omega_C_dot_d" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_omd" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_omd" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_g" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_g" & .stage == "hat" ~ TRUE, 
+      .name == "C_dot_g" & .stage == "bar" ~ TRUE, 
+      .name == "N_dot" & .stage == "orig" ~ TRUE, 
+      .name == "N_dot" & .stage == "star" ~ TRUE, 
+      .name == "N_dot" & .stage == "hat" ~ TRUE, 
+      .name == "N_dot" & .stage == "bar" ~ TRUE, 
+      .name == "M_dot" & .stage == "orig" ~ TRUE, 
+      # Pick up all other cases
+      TRUE ~ FALSE
+    )
+  )
+usethis::use_data(stages_table_visibility_mask, overwrite = TRUE)
+
+
+#
 # Names of segments in path data frames.
 # Also gives sequential order in the path graphs.
 # 
