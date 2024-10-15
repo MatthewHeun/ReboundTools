@@ -25,6 +25,7 @@
 #' @param ... Arguments passed to [xtable::xtable()], possibly
 #'            `label`, `caption`, `digits`, etc.
 #' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
+#' @param orig,star,hat,bar,tilde Rebound stages. See [ReboundTools::rebound_stages].
 #'
 #' @return An `xtable` object suitable for printing.
 #' 
@@ -54,7 +55,14 @@ stages_table <- function(.analysis_data,
                          .var_stage = ".var_stage", 
                          .value = ".value", 
                          .name = ".name",
-                         .unit_col = ".unit_col") {
+                         .unit_col = ".unit_col", 
+                         visible = "Visible",
+                         # stage names
+                         orig = ReboundTools::rebound_stages$orig, 
+                         star = ReboundTools::rebound_stages$star, 
+                         hat = ReboundTools::rebound_stages$hat, 
+                         bar = ReboundTools::rebound_stages$bar, 
+                         tilde = ReboundTools::rebound_stages$tilde) {
   
   if (!include_tilde_stage) {
     stage_col_name <- colnames(latex_stages)[[1]] # The name of the stage column
@@ -102,19 +110,23 @@ stages_table <- function(.analysis_data,
     )
   
   if (!is.null(visibility_mask)) {
+    # If we have a visibility_mask, modify the table.
     rebound_table_data <- rebound_table_data |> 
-      tidyr::pivot_longer(cols = tidyr::any_of(c("orig", "star", "hat", "bar")), 
-                          names_to = ".stage", 
-                          values_to = "Value") |> 
-      dplyr::left_join(visibility_mask, by = c(".name", ".stage")) |> 
+      tidyr::pivot_longer(cols = tidyr::any_of(c(orig, star, hat, bar, tilde)), 
+                          names_to = .stage, 
+                          values_to = .value) |> 
+      dplyr::left_join(visibility_mask, by = c(.name, .stage)) |> 
       dplyr::mutate(
-        Value = dplyr::case_when(
-          !Visible ~ NA_real_, 
-          TRUE ~ Value
+        # Set value to NA if not supposed to be visible.
+        "{.value}" := dplyr::case_when(
+          !.data[[visible]] ~ NA_real_, 
+          TRUE ~ .data[[.value]]
         ), 
-        Visible = NULL
+        # Get rid of the visible column.
+        "{visible}" := NULL
       ) |> 
-      tidyr::pivot_wider(names_from = ".stage", values_from = "Value")
+      # Put back to original shape.
+      tidyr::pivot_wider(names_from = .stage, values_from = .value)
   }
     
   # Add LaTeX variable names, if not NULL.

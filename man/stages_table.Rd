@@ -24,7 +24,13 @@ stages_table(
   .var_stage = ".var_stage",
   .value = ".value",
   .name = ".name",
-  .unit_col = ".unit_col"
+  .unit_col = ".unit_col",
+  visible = "Visible",
+  orig = ReboundTools::rebound_stages$orig,
+  star = ReboundTools::rebound_stages$star,
+  hat = ReboundTools::rebound_stages$hat,
+  bar = ReboundTools::rebound_stages$bar,
+  tilde = ReboundTools::rebound_stages$tilde
 )
 }
 \arguments{
@@ -63,6 +69,8 @@ Default is \link{rebound_stages}\verb{$tilde}.}
 \code{label}, \code{caption}, \code{digits}, etc.}
 
 \item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
+
+\item{orig, star, hat, bar, tilde}{Rebound stages. See \link{rebound_stages}.}
 }
 \value{
 An \code{xtable} object suitable for printing.
