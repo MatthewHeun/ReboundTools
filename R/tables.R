@@ -24,7 +24,7 @@
 #'                    Default is [ReboundTools::rebound_stages]`$tilde`.
 #' @param ... Arguments passed to [xtable::xtable()], possibly
 #'            `label`, `caption`, `digits`, etc.
-#' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
+#' @param .var,.stage,.var_stage,.value,.name,.unit_col,visible Column names used internally.
 #' @param orig,star,hat,bar,tilde Rebound stages. See [ReboundTools::rebound_stages].
 #'
 #' @return An `xtable` object suitable for printing.

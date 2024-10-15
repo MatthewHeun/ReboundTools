@@ -68,7 +68,7 @@ Default is \link{rebound_stages}\verb{$tilde}.}
 \item{...}{Arguments passed to \code{\link[xtable:xtable]{xtable::xtable()}}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
 
-\item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
+\item{.var, .stage, .var_stage, .value, .name, .unit_col, visible}{Column names used internally.}
 
 \item{orig, star, hat, bar, tilde}{Rebound stages. See \link{rebound_stages}.}
 }
