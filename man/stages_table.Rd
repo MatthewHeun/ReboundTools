@@ -9,7 +9,7 @@ stages_table(
   include_tilde_stage = TRUE,
   add_units = TRUE,
   escape_latex = TRUE,
-  visibility_mask = NULL,
+  visibility_mask = ReboundTools::stages_table_visibility_mask,
   vars = ReboundTools::key_analysis_vars,
   latex_vars = ReboundTools::latex_key_analysis_vars,
   stages = ReboundTools::rebound_stages,
@@ -37,9 +37,9 @@ stages_table(
 \item{escape_latex}{When \code{TRUE} (the default), return LaTeX-compatible versions of strings.}
 
 \item{visibility_mask}{A data frame that tells which data are visible in the \code{\link[=stages_table]{stages_table()}}.
-Default is \code{NULL}, meaning that all data are visible.
-A value that shows variables before and after changes only
-is \link{stages_table_visibility_mask}.
+Default is \link{stages_table_visibility_mask},
+a value that shows variables before and after changes only.
+To see all variables, set to \code{NULL}.
 Modify \link{stages_table_visibility_mask} as needed.}
 
 \item{vars}{A list of variables for rows of the table. Default is \link{key_analysis_vars}.

@@ -8,9 +8,9 @@
 #' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
 #' @param escape_latex When `TRUE` (the default), return LaTeX-compatible versions of strings.
 #' @param visibility_mask A data frame that tells which data are visible in the [stages_table()].
-#'                        Default is `NULL`, meaning that all data are visible.
-#'                        A value that shows variables before and after changes only
-#'                        is [stages_table_visibility_mask].
+#'                        Default is [ReboundTools::stages_table_visibility_mask],
+#'                        a value that shows variables before and after changes only.
+#'                        To see all variables, set to `NULL`.
 #'                        Modify [stages_table_visibility_mask] as needed.
 #' @param vars A list of variables for rows of the table. Default is [ReboundTools::key_analysis_vars].
 #'             Variable order is preserved in the table.
@@ -38,7 +38,7 @@ stages_table <- function(.analysis_data,
                          include_tilde_stage = TRUE,
                          add_units = TRUE,
                          escape_latex = TRUE,
-                         visibility_mask = NULL, 
+                         visibility_mask = ReboundTools::stages_table_visibility_mask, 
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 
@@ -100,6 +100,22 @@ stages_table <- function(.analysis_data,
                                          energy_engr_unit = .data[[energy_engr_unit]], 
                                          escape_latex = escape_latex)
     )
+  
+  if (!is.null(visibility_mask)) {
+    rebound_table_data <- rebound_table_data |> 
+      tidyr::pivot_longer(cols = tidyr::any_of(c("orig", "star", "hat", "bar")), 
+                          names_to = ".stage", 
+                          values_to = "Value") |> 
+      dplyr::left_join(visibility_mask, by = c(".name", ".stage")) |> 
+      dplyr::mutate(
+        Value = dplyr::case_when(
+          !Visible ~ NA_real_, 
+          TRUE ~ Value
+        ), 
+        Visible = NULL
+      ) |> 
+      tidyr::pivot_wider(names_from = ".stage", values_from = "Value")
+  }
     
   # Add LaTeX variable names, if not NULL.
   if (!is.null(latex_vars)) {

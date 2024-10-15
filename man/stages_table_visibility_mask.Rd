@@ -7,9 +7,9 @@
 \format{
 A data frame with three columns, "Variable", "Stage", and "Visible".
 \describe{
-\item{Variable}{The name of the variable in the \code{\link[=stages_table]{stages_table()}}.}
-\item{Stage}{The name of the rebound in the \code{\link[=stages_table]{stages_table()}}.}
-\item{Visible}{A boolean that tells whether this combination of \code{Variable} and \code{Stage} should be visible.}
+\item{.name}{The name of the variable in the \code{\link[=stages_table]{stages_table()}}.}
+\item{.stage}{The name of the rebound in the \code{\link[=stages_table]{stages_table()}}.}
+\item{Visible}{A boolean that tells whether this combination of \code{.name} and \code{.stage} should be visible.}
 }
 }
 \usage{
