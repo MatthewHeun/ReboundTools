@@ -8,6 +8,8 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+* Changed order of rows for `stages_table()`
+  to be more visually pleasing.
 * `stages_table()` has new argument `visibility_mask`
   that specifies which values to show.
 * The term for adjusting for time-value of money (R)
@@ -15,6 +17,9 @@ which always resolves to the latest release.
 * The subscript "o" for other goods and services
   consumption has been changed to "g" throughout to match
   a nomenclature change in the first paper using this framework.
+* One additional test.
+    - Now up to 518 tests, all passing.
+    - Test coverage remains at 100%.
 
 
 # ReboundTools 0.1.40 (2024-07-09) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12702452.svg)](https://doi.org/10.5281/zenodo.12702452)
