@@ -36,25 +36,28 @@ usethis::use_data(rebound_units, overwrite = TRUE)
 # 
 
 latex_key_analysis_vars <- data.frame(
-  var_name = c("t_life", "tau_alpha", "tau_omega",
-               "eta_engr_units", "eta", "p_s", "q_dot_s", 
-               "p_E", "E_dot_s",
-               "E_dot_emb", "C_dot_s", "C_dot_cap",
+  var_name = c("M_dot", "p_E", 
+               "t_life", "tau_alpha", "tau_omega",
+               "eta_engr_units", "eta", "p_s", 
+               "E_dot_emb", "C_dot_cap",
                "tau_alpha_C_dot_cap",
                "C_dot_om", "C_d", "C_dot_d",
                "tau_omega_C_dot_d",
                "C_dot_omd", 
-               "C_dot_g", "N_dot", "M_dot"), 
-  latex_var_name = c("$t_{li\\!f\\!e}$", "${\\tau}_\\alpha$", "${\\tau}_\\omega$",
-                     "$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", 
-                     "$p_E$", "$\\dot{E}_s$",
-                     "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
+               "E_dot_s",
+               "C_dot_s", 
+               "N_dot", "q_dot_s", "C_dot_g"), 
+  latex_var_name = c("$\\dot{M}$", "$p_E$", 
+                     "$t_{li\\!f\\!e}$", "${\\tau}_\\alpha$", "${\\tau}_\\omega$",
+                     "$\\eta$", "$\\eta$", "$p_s$", 
+                     "$\\dot{E}_{emb}$", "$\\dot{C}_{cap}$",
                      "${\\tau}_{\\alpha}\\dot{C}_{cap}$", 
                      "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$",
                      "${\\tau}_{\\omega}\\dot{C}_d$",
                      "$\\dot{C}_{O\\!M\\!d}$", 
-                     "$\\dot{C}_g$", "$\\dot{N}$", "$\\dot{M}$")
-)
+                     "$\\dot{E}_s$",
+                     "$\\dot{C}_s$", 
+                     "$\\dot{N}$", "$\\dot{q}_s$", "$\\dot{C}_g$"))
 usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
 
 
@@ -109,6 +112,8 @@ stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |
   dplyr::arrange(.name, .stage) |> 
   dplyr::mutate(
     Visible = dplyr::case_when(
+      .name == "M_dot" & .stage == "orig" ~ TRUE, 
+      .name == "p_E" & .stage == "orig" ~ TRUE, 
       .name == "t_life" & .stage == "orig" ~ TRUE, 
       .name == "t_life" & .stage == "star" ~ TRUE, 
       .name == "tau_alpha" & .stage == "orig" ~ TRUE, 
@@ -124,7 +129,6 @@ stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |
       .name == "q_dot_s" & .stage == "star" ~ TRUE, 
       .name == "q_dot_s" & .stage == "hat" ~ TRUE, 
       .name == "q_dot_s" & .stage == "bar" ~ TRUE, 
-      .name == "p_E" & .stage == "orig" ~ TRUE, 
       .name == "E_dot_s" & .stage == "orig" ~ TRUE, 
       .name == "E_dot_s" & .stage == "star" ~ TRUE, 
       .name == "E_dot_s" & .stage == "hat" ~ TRUE, 
@@ -156,7 +160,6 @@ stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |
       .name == "N_dot" & .stage == "star" ~ TRUE, 
       .name == "N_dot" & .stage == "hat" ~ TRUE, 
       .name == "N_dot" & .stage == "bar" ~ TRUE, 
-      .name == "M_dot" & .stage == "orig" ~ TRUE, 
       # Pick up all other cases
       TRUE ~ FALSE
     )
