@@ -45,6 +45,7 @@
 #' 
 #' @format A data frame with `r length(latex_key_analysis_vars)` columns.
 #' \describe{
+#' \item{description}{Short description of the variable in this row.}
 #' \item{var_name}{The text name for key analysis variables.}
 #' \item{latex_var_name}{The LaTeX key analysis variable name.}
 #' }
