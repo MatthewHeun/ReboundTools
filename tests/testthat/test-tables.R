@@ -26,11 +26,16 @@ test_that("stages_table() works as expected", {
 
 
 test_that("stages_table() works with description column", {
-  t1 <- load_eeu_data() |> 
-    dplyr::filter(Case == "Car") |> 
+  load_eeu_data() |> 
     rebound_analysis() |> 
-    stages_table(include_description_column = TRUE)
-  
+    stages_table(include_description_column = FALSE) |> 
+    ncol() |> 
+    expect_equal(7)
+  load_eeu_data() |> 
+    rebound_analysis() |> 
+    stages_table(include_description_column = TRUE) |> 
+    ncol() |> 
+    expect_equal(8)
 })
 
 

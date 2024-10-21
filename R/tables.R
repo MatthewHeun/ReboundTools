@@ -153,7 +153,7 @@ stages_table <- function(.analysis_data,
                            "{latex_var_name}" := NULL
                          ) |> 
                          dplyr::rename(
-                           "{.name}" := .data[[var_name]]
+                           "{.name}" := dplyr::all_of(var_name)
                          ), 
                        by = .name) |> 
       # Move the description column to the immediate left of the variable name column
@@ -173,7 +173,7 @@ stages_table <- function(.analysis_data,
                            "{description}" := NULL
                          ) |> 
                          dplyr::rename(
-                           "{.name}" := .data[[var_name]]
+                           "{.name}" := dplyr::all_of(var_name)
                          ), 
                        by = .name) %>% 
       dplyr::mutate(
