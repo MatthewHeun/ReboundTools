@@ -36,6 +36,17 @@ usethis::use_data(rebound_units, overwrite = TRUE)
 # 
 
 latex_key_analysis_vars <- data.frame(
+  description = c("Income rate", "Energy price", 
+                  "Device lifetime", "TVM factor (BOL)", "TVM factor (EOL)",
+                  "Efficiency (engineering units)", "Efficiency", "Energy service price", 
+                  "Embodied energy rate", "Capital cost rate",
+                  "",
+                  "Ops.\\ \\& maint.\\ cost rate", "Disposal cost", "Disposal cost rate",
+                  "",
+                  "Ops.\\ \\& maint.\\ and disposal cost rate", 
+                  "Energy consumption rate",
+                  "Energy cost rate", 
+                  "Net income rate", "Energy service consumption rate", "Other goods cost rate"),
   var_name = c("M_dot", "p_E", 
                "t_life", "tau_alpha", "tau_omega",
                "eta_engr_units", "eta", "p_s", 

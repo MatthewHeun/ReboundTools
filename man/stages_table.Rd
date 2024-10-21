@@ -6,6 +6,7 @@
 \usage{
 stages_table(
   .analysis_data,
+  include_description_column = FALSE,
   include_tilde_stage = TRUE,
   add_units = TRUE,
   escape_latex = TRUE,
@@ -19,13 +20,16 @@ stages_table(
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
   tilde_stage = ReboundTools::rebound_stages$tilde,
   ...,
+  visible = "Visible",
+  description = "description",
+  var_name = "var_name",
+  latex_var_name = "latex_var_name",
   .var = ".var",
   .stage = ".stage",
   .var_stage = ".var_stage",
   .value = ".value",
   .name = ".name",
   .unit_col = ".unit_col",
-  visible = "Visible",
   orig = ReboundTools::rebound_stages$orig,
   star = ReboundTools::rebound_stages$star,
   hat = ReboundTools::rebound_stages$hat,
@@ -36,7 +40,9 @@ stages_table(
 \arguments{
 \item{.analysis_data}{A data frame, usually the result of calling \code{\link[=rebound_analysis]{rebound_analysis()}}.}
 
-\item{include_tilde_stage}{Tells whether to include the tilde column, which is identical to the bar column.}
+\item{include_description_column}{A boolean that tells whether to include a description column on the left.}
+
+\item{include_tilde_stage}{A boolean that tells whether to include the tilde column, which is identical to the bar column.}
 
 \item{add_units}{When \code{TRUE} (the default), adds a unit specification to variable names in the table.}
 
@@ -68,7 +74,12 @@ Default is \link{rebound_stages}\verb{$tilde}.}
 \item{...}{Arguments passed to \code{\link[xtable:xtable]{xtable::xtable()}}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
 
-\item{.var, .stage, .var_stage, .value, .name, .unit_col, visible}{Column names used internally.}
+\item{visible}{The name of a column in the \link{stages_table_visibility_mask}
+data frame.}
+
+\item{description, var_name, latex_var_name}{Names of columns in the \code{latex_vars} data frame.}
+
+\item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
 
 \item{orig, star, hat, bar, tilde}{Rebound stages. See \link{rebound_stages}.}
 }
