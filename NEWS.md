@@ -8,6 +8,8 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
+# ReboundTools 0.1.41 (2025-02-03)
+
 * Fixed a bug where Re_OMd was not visible in 
   rebound sensitivity graphs.
 * `stages_table()` now includes a new argument `include_description_column`.
@@ -21,7 +23,7 @@ which always resolves to the latest release.
   consumption has been changed to "g" throughout to match
   a nomenclature change in the first paper using this framework.
 * One additional test.
-    - Now up to 518 tests, all passing.
+    - Now up to 519 tests, all passing.
     - Test coverage remains at 100%.
 
 
