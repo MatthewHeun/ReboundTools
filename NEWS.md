@@ -8,7 +8,7 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
-* Fixed a bug where OMd rebound was not visible in 
+* Fixed a bug where Re_OMd was not visible in 
   rebound sensitivity graphs.
 * `stages_table()` now includes a new argument `include_description_column`.
 * Changed order of rows for `stages_table()`
