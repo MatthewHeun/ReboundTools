@@ -10,22 +10,22 @@ iso_budget_lines_cons(
   graph_params = ReboundTools::path_graph_params,
   p_s_orig = ReboundTools::orig_vars$p_s_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-  R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+  tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   M_dot_orig = ReboundTools::orig_vars$M_dot_orig,
-  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+  tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
   C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
   p_s_star = ReboundTools::star_vars$p_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
   C_dot_omd_star = ReboundTools::star_vars$C_dot_omd_star,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
-  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+  C_dot_g_hat = ReboundTools::hat_vars$C_dot_g_hat,
   Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
   Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
   Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
-  Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat
+  Delta_C_dot_g_hat = ReboundTools::Delta_vars$Delta_C_dot_g_hat
 )
 }
 \arguments{
@@ -36,13 +36,13 @@ likely created by \code{rebound_analysis()}.}
 
 \item{graph_params}{See \code{ReboundTools::graph_params}.}
 
-\item{R_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_o_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
+\item{tau_alpha_orig, p_s_orig, q_dot_s_orig, C_dot_cap_orig, C_dot_omd_orig, C_dot_g_orig, M_dot_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{R_alpha_star, C_dot_cap_star, C_dot_omd_star, p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+\item{tau_alpha_star, C_dot_cap_star, C_dot_omd_star, p_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{q_dot_s_hat, C_dot_o_hat}{See \code{ReboundTools::hat_vars}.}
+\item{q_dot_s_hat, C_dot_g_hat}{See \code{ReboundTools::hat_vars}.}
 
-\item{Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_o_hat}{See \code{ReboundTools::Delta_vars}.}
+\item{Delta_q_dot_s_hat, Delta_C_dot_cap_star, Delta_C_dot_omd_star, Delta_C_dot_g_hat}{See \code{ReboundTools::Delta_vars}.}
 }
 \value{
 A data frame of iso-budget lines for a consumption path graph.

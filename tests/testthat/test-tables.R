@@ -25,11 +25,17 @@ test_that("stages_table() works as expected", {
 })
 
 
-test_that("stages_table() includes eta in engr units", {
-  t1 <- load_eeu_data() %>% 
-    rebound_analysis() %>% 
-    stages_table()
-  expect_true(!is.null(t1))
+test_that("stages_table() works with description column", {
+  load_eeu_data() |> 
+    rebound_analysis() |> 
+    stages_table(include_description_column = FALSE) |> 
+    ncol() |> 
+    expect_equal(7)
+  load_eeu_data() |> 
+    rebound_analysis() |> 
+    stages_table(include_description_column = TRUE) |> 
+    ncol() |> 
+    expect_equal(8)
 })
 
 
@@ -121,3 +127,14 @@ test_that("stages_table() works with include_tilde_stage = FALSE", {
     stages_table(include_tilde_stage = FALSE)
   expect_true(!is.null(t1))
 })
+
+
+test_that("stages_table() works with a visibility_mask", {
+  t1 <- load_eeu_data() |> 
+    rebound_analysis() |> 
+    stages_table(include_tilde_stage = FALSE, 
+                 visibility_mask = stages_table_visibility_mask)
+  # Not a very good test at the moment.
+  expect_true(!is.null(t1))
+})
+

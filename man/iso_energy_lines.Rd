@@ -14,25 +14,25 @@ iso_energy_lines(
   E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
   E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
   C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   S_dot_dev = ReboundTools::star_vars$S_dot_dev,
   E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
   E_dot_emb_star = ReboundTools::star_vars$E_dot_emb_star,
   C_dot_omd_star = ReboundTools::star_vars$C_dot_omd_star,
-  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+  C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
   E_dot_s_hat = ReboundTools::hat_vars$E_dot_s_hat,
   E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
   C_dot_omd_hat = ReboundTools::hat_vars$C_dot_omd_hat,
-  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+  C_dot_g_hat = ReboundTools::hat_vars$C_dot_g_hat,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   E_dot_s_bar = ReboundTools::bar_vars$E_dot_s_bar,
   E_dot_emb_bar = ReboundTools::bar_vars$E_dot_emb_bar,
   C_dot_omd_bar = ReboundTools::bar_vars$C_dot_omd_bar,
-  C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar,
+  C_dot_g_bar = ReboundTools::bar_vars$C_dot_g_bar,
   E_dot_s_tilde = ReboundTools::tilde_vars$E_dot_s_tilde,
   E_dot_emb_tilde = ReboundTools::tilde_vars$E_dot_emb_tilde,
   C_dot_omd_tilde = ReboundTools::tilde_vars$C_dot_omd_tilde,
-  C_dot_o_tilde = ReboundTools::tilde_vars$C_dot_o_tilde
+  C_dot_g_tilde = ReboundTools::tilde_vars$C_dot_g_tilde
 )
 }
 \arguments{
@@ -48,15 +48,15 @@ at its start.}
 
 \item{I_E, k}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_o_orig}{See \code{ReboundTools::orig_vars}.}
+\item{E_dot_s_orig, E_dot_emb_orig, C_dot_omd_orig, C_dot_g_orig}{See \code{ReboundTools::orig_vars}.}
 
-\item{S_dot_dev, E_dot_s_star, E_dot_emb_star, C_dot_omd_star, C_dot_o_star}{See \code{ReboundTools::star_vars}.}
+\item{S_dot_dev, E_dot_s_star, E_dot_emb_star, C_dot_omd_star, C_dot_g_star}{See \code{ReboundTools::star_vars}.}
 
-\item{E_dot_s_hat, E_dot_emb_hat, C_dot_omd_hat, C_dot_o_hat, N_dot_hat}{See \code{ReboundTools::hat_vars}.}
+\item{E_dot_s_hat, E_dot_emb_hat, C_dot_omd_hat, C_dot_g_hat, N_dot_hat}{See \code{ReboundTools::hat_vars}.}
 
-\item{E_dot_s_bar, E_dot_emb_bar, C_dot_omd_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
+\item{E_dot_s_bar, E_dot_emb_bar, C_dot_omd_bar, C_dot_g_bar}{See \code{ReboundTools::bar_vars}.}
 
-\item{E_dot_s_tilde, E_dot_emb_tilde, C_dot_omd_tilde, C_dot_o_tilde}{See \code{ReboundTools::tilde_vars}.}
+\item{E_dot_s_tilde, E_dot_emb_tilde, C_dot_omd_tilde, C_dot_g_tilde}{See \code{ReboundTools::tilde_vars}.}
 }
 \value{
 A data frame containing iso-energy lines to be drawn on an energy rebound path graph.

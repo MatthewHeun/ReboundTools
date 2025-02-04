@@ -7,30 +7,30 @@
 \format{
 A string list with 28 entries.
 \describe{
-\item{R_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{R_alpha_star}.}
-\item{R_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{R_omega_star}.}
+\item{tau_alpha_hat}{The post-substitution effect discount multiplier for beginning-of-life expenses, such as capital cost. Same as \code{tau_alpha_star}.}
+\item{tau_omega_hat}{The post-substitution effect discount multiplier for end-of-life expenses, such as disposal cost. Same as \code{tau_omega_star}.}
 \item{eta_hat}{Energy service efficiency of the upgraded (post-EEU) device on a per-MJ basks [service/MJ], exactly \code{eta_star}.}
 \item{p_s_hat}{The energy service price after the substitution effect [$/service], exactly \code{p_s_star}.}
 \item{C_dot_cap_hat}{The capital expenditure rate of the device without discounting [$/yr], calculated by \code{C_cap/t_life}.}
-\item{R_alpha_C_dot_cap_hat}{The product of R_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
+\item{tau_alpha_C_dot_cap_hat}{The product of tau_alpha and the undiscounted capital cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_om_hat}{The operations and maintenance expenditure rate of the device [$/yr].}
 \item{C_d_hat}{The disposal cost for the device [$/yr].}
 \item{C_dot_d_hat}{The disposal cost rate of the device without discounting [$/yr].}
-\item{R_omega_C_dot_d_hat}{The product of R_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
+\item{tau_omega_C_dot_d_hat}{The product of tau_omega and the undiscounted disposal cost rate, itself annualized and discounted in [$/yr].}
 \item{C_dot_omd_hat}{The operations, maintenance, and disposal expenditure rate of the device [$/yr].}
 \item{E_dot_emb_hat}{The embodied energy rate after the substitution effect [MJ/yr], exactly \code{E_dot_emb_star}.}
 \item{M_dot_hat}{Real income after the substitution effect [MJ/yr], exactly \code{M_dot_star}.}
 \item{q_dot_s_hat}{The rate of energy service consumption after the substitution effect\ [service/yr], calculated by \code{q_dot_s_star * eta_ratio^(-e_qs_ps_C)}.}
 \item{p_E_hat}{The price of energy [$/MJ].}
 \item{E_dot_s_hat}{The rate of energy consumption after the substitution effect\ [service/yr], calculated by \code{q_dot_s_hat / eta_hat}.}
-\item{C_dot_o_hat}{The rate of other goods expenditures after the substitution effect [$/yr], calculated by \code{C_dot_o_star * eta_ratio^(-e_qo_ps_C)}.}
-\item{f_Cs_hat}{The post-substitution effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_o_star)}.}
+\item{C_dot_g_hat}{The rate of other goods expenditures after the substitution effect [$/yr], calculated by \code{C_dot_g_star * eta_ratio^(-e_qo_ps_C)}.}
+\item{f_Cs_hat}{The post-substitution effect fraction of the energy and other budget spent on the energy service [--], calculated by \code{C_dot_s_star / (C_dot_s_star + C_dot_g_star)}.}
 \item{e_qs_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of energy service ("qs") consumption [--], calculated by \code{e_qs_ps_UC_orig + f_Cs_orig*e_qs_M}.}
-\item{e_qo_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
+\item{e_qg_ps_C_hat}{The post-substitution effect compensated energy service price ("ps") elasticity ("e") of other goods ("qo") consumption [--], calculated by \code{f_Cs_orig*(f_Cs_orig + e_qs_ps_UC_orig) / (f_Cs_orig - 1)}.}
 \item{e_qs_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of energy service ("qs") consumption (own-price elasticity) [--].}
-\item{e_qo_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
+\item{e_qg_ps_UC_hat}{The post-substitution effect uncompensated ("UC") Marshallian energy service price ("ps") elasticity ("e") of other goods ("qo") consumption (cross-price elasticity) [--].}
 \item{N_dot_hat}{The freed cash rate [$/yr], calculated by \code{G_dot - (C_dot_cap_star - C_dot_cap_orig) - (C_dot_md_star - C_dot_md_orig)}.}
-\item{M_dot_hat_prime}{Modified \code{M_dot} for the income effect [$/yr], calculated by \code{M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_o_hat - C_dot_o_star)}}
+\item{M_dot_hat_prime}{Modified \code{M_dot} for the income effect [$/yr], calculated by \code{M_dot_hat - C_dot_cap_orig - C_dot_md_orig - G_dot + p_E*(E_dot_s_hat - E_dot_s_star) + (C_dot_g_hat - C_dot_g_star)}}
 }
 
 [service/yr]: R:service/yr\%5C

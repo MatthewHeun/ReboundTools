@@ -9,12 +9,12 @@ indifference_lines(
   graph_type = ReboundTools::graph_types$consumption,
   graph_params = ReboundTools::path_graph_params,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   sigma = ReboundTools::orig_vars$sigma,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
   q_dot_s_bar = ReboundTools::bar_vars$q_dot_s_bar,
-  C_dot_o_bar = ReboundTools::bar_vars$C_dot_o_bar
+  C_dot_g_bar = ReboundTools::bar_vars$C_dot_g_bar
 )
 }
 \arguments{
@@ -25,11 +25,11 @@ likely created by \code{rebound_analysis()}.}
 
 \item{graph_params}{Parameters that control the appearance of the graph. Default is \code{ReboundTools::path_graph_params}.}
 
-\item{q_dot_s_orig, C_dot_o_orig, f_Cs_orig, sigma}{See \code{ReboundTools::orig_vars}.}
+\item{q_dot_s_orig, C_dot_g_orig, f_Cs_orig, sigma}{See \code{ReboundTools::orig_vars}.}
 
 \item{q_dot_s_hat}{See \code{ReboundTools::hat_vars}.}
 
-\item{q_dot_s_bar, C_dot_o_bar}{See \code{ReboundTools::bar_vars}.}
+\item{q_dot_s_bar, C_dot_g_bar}{See \code{ReboundTools::bar_vars}.}
 }
 \value{
 A data frame of indifference curves for a consumption path graph.

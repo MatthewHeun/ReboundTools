@@ -6,9 +6,11 @@
 \usage{
 stages_table(
   .analysis_data,
+  include_description_column = FALSE,
   include_tilde_stage = TRUE,
   add_units = TRUE,
   escape_latex = TRUE,
+  visibility_mask = ReboundTools::stages_table_visibility_mask,
   vars = ReboundTools::key_analysis_vars,
   latex_vars = ReboundTools::latex_key_analysis_vars,
   stages = ReboundTools::rebound_stages,
@@ -18,44 +20,68 @@ stages_table(
   energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
   tilde_stage = ReboundTools::rebound_stages$tilde,
   ...,
+  visible = "Visible",
+  description = "description",
+  var_name = "var_name",
+  latex_var_name = "latex_var_name",
   .var = ".var",
   .stage = ".stage",
   .var_stage = ".var_stage",
   .value = ".value",
   .name = ".name",
-  .unit_col = ".unit_col"
+  .unit_col = ".unit_col",
+  orig = ReboundTools::rebound_stages$orig,
+  star = ReboundTools::rebound_stages$star,
+  hat = ReboundTools::rebound_stages$hat,
+  bar = ReboundTools::rebound_stages$bar,
+  tilde = ReboundTools::rebound_stages$tilde
 )
 }
 \arguments{
-\item{.analysis_data}{A data frame, usually the result of calling \code{rebound_analysis()}. Default is \code{rebound_analysis(load_eeu_data(file))}.}
+\item{.analysis_data}{A data frame, usually the result of calling \code{\link[=rebound_analysis]{rebound_analysis()}}.}
 
-\item{include_tilde_stage}{Tells whether to include the tilde column, which is identical to the bar column.}
+\item{include_description_column}{A boolean that tells whether to include a description column on the left.}
+
+\item{include_tilde_stage}{A boolean that tells whether to include the tilde column, which is identical to the bar column.}
 
 \item{add_units}{When \code{TRUE} (the default), adds a unit specification to variable names in the table.}
 
 \item{escape_latex}{When \code{TRUE} (the default), return LaTeX-compatible versions of strings.}
 
-\item{vars}{A list of variables for rows of the table. Default is \code{ReboundTools::key_analysis_vars}.
+\item{visibility_mask}{A data frame that tells which data are visible in the \code{\link[=stages_table]{stages_table()}}.
+Default is \link{stages_table_visibility_mask},
+a value that shows variables before and after changes only.
+To see all variables, set to \code{NULL}.
+Modify \link{stages_table_visibility_mask} as needed.}
+
+\item{vars}{A list of variables for rows of the table. Default is \link{key_analysis_vars}.
 Variable order is preserved in the table.}
 
 \item{latex_vars}{See \code{ReboundTools::latex_key_analysis_vars}. Set \code{NULL} to prevent conversion to LaTeX variable names.}
 
-\item{stages}{A list of stages for columns of the table. Default is \code{ReboundTools::rebound_stages}.
+\item{stages}{A list of stages for columns of the table. Default is \link{rebound_stages}.
 Stage order is preserved in the table.}
 
-\item{latex_stages}{See \code{ReboundTools::latex_rebound_stages}. Set \code{NULL} to prevent conversion to LaTeX stage names.}
+\item{latex_stages}{See \link{latex_rebound_stages}. Set \code{NULL} to prevent conversion to LaTeX stage names.}
 
-\item{case}{See \code{ReboundTools::eeu_base_params}.}
+\item{case}{See \link{eeu_base_params}.}
 
 \item{service_unit, energy_engr_unit}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{tilde_stage}{Used internally to identify the tilde column.
-Default is \code{ReboundTools::rebound_stages$tilde}.}
+Default is \link{rebound_stages}\verb{$tilde}.}
 
-\item{...}{Arguments passed to \code{xtable::xtable()}, possibly
+\item{...}{Arguments passed to \code{\link[xtable:xtable]{xtable::xtable()}}, possibly
 \code{label}, \code{caption}, \code{digits}, etc.}
 
+\item{visible}{The name of a column in the \link{stages_table_visibility_mask}
+data frame.}
+
+\item{description, var_name, latex_var_name}{Names of columns in the \code{latex_vars} data frame.}
+
 \item{.var, .stage, .var_stage, .value, .name, .unit_col}{Column names used internally.}
+
+\item{orig, star, hat, bar, tilde}{Rebound stages. See \link{rebound_stages}.}
 }
 \value{
 An \code{xtable} object suitable for printing.

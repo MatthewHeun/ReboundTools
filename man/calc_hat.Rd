@@ -7,17 +7,17 @@
 calc_hat(
   .star_data = NULL,
   t_life_star = ReboundTools::star_vars$t_life_star,
-  R_alpha_star = ReboundTools::star_vars$R_alpha_star,
-  R_omega_star = ReboundTools::star_vars$R_omega_star,
+  tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
+  tau_omega_star = ReboundTools::star_vars$tau_omega_star,
   e_qs_M = ReboundTools::eeu_base_params$e_qs_M,
-  e_qo_M = ReboundTools::eeu_base_params$e_qo_M,
+  e_qg_M = ReboundTools::eeu_base_params$e_qg_M,
   p_E = ReboundTools::orig_vars$p_E,
   e_qo_ps_C = ReboundTools::orig_vars$e_qo_ps_C,
   e_qs_ps_C = ReboundTools::orig_vars$e_qs_ps_C,
   C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig,
   f_Cs_orig = ReboundTools::orig_vars$f_Cs_orig,
   q_dot_s_orig = ReboundTools::orig_vars$q_dot_s_orig,
-  C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+  C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
   sigma = ReboundTools::orig_vars$sigma,
   rho = ReboundTools::orig_vars$rho,
   eta_engr_units_star = ReboundTools::star_vars$eta_engr_units_star,
@@ -32,22 +32,22 @@ calc_hat(
   M_dot_star = ReboundTools::star_vars$M_dot_star,
   q_dot_s_star = ReboundTools::star_vars$q_dot_s_star,
   eta_ratio = ReboundTools::star_vars$eta_ratio,
-  C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+  C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
   e_qs_ps_UC_star = ReboundTools::star_vars$e_qs_ps_UC_star,
-  e_qo_ps_UC_star = ReboundTools::star_vars$e_qo_ps_UC_star,
+  e_qg_ps_UC_star = ReboundTools::star_vars$e_qg_ps_UC_star,
   e_qs_ps_C_star = ReboundTools::star_vars$e_qs_ps_C_star,
-  e_qo_ps_C_star = ReboundTools::star_vars$e_qo_ps_C_star,
+  e_qg_ps_C_star = ReboundTools::star_vars$e_qg_ps_C_star,
   N_dot_star = ReboundTools::star_vars$N_dot_star,
   E_dot_s_star = ReboundTools::star_vars$E_dot_s_star,
   G_dot = ReboundTools::star_vars$G_dot,
   t_life_hat = ReboundTools::hat_vars$t_life_hat,
-  R_alpha_hat = ReboundTools::hat_vars$R_alpha_hat,
-  R_omega_hat = ReboundTools::hat_vars$R_omega_hat,
+  tau_alpha_hat = ReboundTools::hat_vars$tau_alpha_hat,
+  tau_omega_hat = ReboundTools::hat_vars$tau_omega_hat,
   eta_engr_units_hat = ReboundTools::hat_vars$eta_engr_units_hat,
   eta_hat = ReboundTools::hat_vars$eta_hat,
   p_s_hat = ReboundTools::hat_vars$p_s_hat,
   C_dot_cap_hat = ReboundTools::hat_vars$C_dot_cap_hat,
-  R_alpha_C_dot_cap_hat = ReboundTools::hat_vars$R_alpha_C_dot_cap_hat,
+  tau_alpha_C_dot_cap_hat = ReboundTools::hat_vars$tau_alpha_C_dot_cap_hat,
   E_dot_emb_hat = ReboundTools::hat_vars$E_dot_emb_hat,
   M_dot_hat = ReboundTools::hat_vars$M_dot_hat,
   q_dot_s_hat = ReboundTools::hat_vars$q_dot_s_hat,
@@ -56,15 +56,15 @@ calc_hat(
   C_dot_s_hat = ReboundTools::hat_vars$C_dot_s_hat,
   C_d_hat = ReboundTools::hat_vars$C_d_hat,
   C_dot_d_hat = ReboundTools::hat_vars$C_dot_d_hat,
-  R_omega_C_dot_d_hat = ReboundTools::hat_vars$R_omega_C_dot_d_hat,
+  tau_omega_C_dot_d_hat = ReboundTools::hat_vars$tau_omega_C_dot_d_hat,
   C_dot_om_hat = ReboundTools::hat_vars$C_dot_om_hat,
   C_dot_omd_hat = ReboundTools::hat_vars$C_dot_omd_hat,
-  C_dot_o_hat = ReboundTools::hat_vars$C_dot_o_hat,
+  C_dot_g_hat = ReboundTools::hat_vars$C_dot_g_hat,
   f_Cs_hat = ReboundTools::hat_vars$f_Cs_hat,
   e_qs_ps_UC_hat = ReboundTools::hat_vars$e_qs_ps_UC_hat,
-  e_qo_ps_UC_hat = ReboundTools::hat_vars$e_qo_ps_UC_hat,
+  e_qg_ps_UC_hat = ReboundTools::hat_vars$e_qg_ps_UC_hat,
   e_qs_ps_C_hat = ReboundTools::hat_vars$e_qs_ps_C_hat,
-  e_qo_ps_C_hat = ReboundTools::hat_vars$e_qo_ps_C_hat,
+  e_qg_ps_C_hat = ReboundTools::hat_vars$e_qg_ps_C_hat,
   N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
   M_dot_hat_prime = ReboundTools::hat_vars$M_dot_hat_prime
 )
@@ -74,15 +74,15 @@ calc_hat(
 and star data,
 likely calculated by \code{calc_star()}.}
 
-\item{t_life_star, C_dot_om_star, C_d_star, C_dot_d_star, C_dot_omd_star, R_alpha_star, R_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_o_star, e_qs_ps_UC_star, e_qo_ps_UC_star, e_qs_ps_C_star, e_qo_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
+\item{t_life_star, C_dot_om_star, C_d_star, C_dot_d_star, C_dot_omd_star, tau_alpha_star, tau_omega_star, eta_engr_units_star, eta_star, p_s_star, C_dot_cap_star, E_dot_emb_star, M_dot_star, q_dot_s_star, eta_ratio, C_dot_g_star, e_qs_ps_UC_star, e_qg_ps_UC_star, e_qs_ps_C_star, e_qg_ps_C_star, N_dot_star, E_dot_s_star, G_dot}{See \code{ReboundTools::star_vars}.}
 
-\item{e_qs_M, e_qo_M}{See \code{ReboundTools::eeu_base_params}.}
+\item{e_qs_M, e_qg_M}{See \code{ReboundTools::eeu_base_params}.}
 
 \item{p_E}{See \code{ReboundTools::eeu_base_params}.}
 
-\item{e_qo_ps_C, e_qs_ps_C, C_dot_cap_orig, f_Cs_orig, q_dot_s_orig, C_dot_o_orig, sigma, rho}{See \code{ReboundTools::orig_vars}.}
+\item{e_qo_ps_C, e_qs_ps_C, C_dot_cap_orig, f_Cs_orig, q_dot_s_orig, C_dot_g_orig, sigma, rho}{See \code{ReboundTools::orig_vars}.}
 
-\item{t_life_hat, C_d_hat, C_dot_d_hat, R_omega_C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, R_alpha_hat, R_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, R_alpha_C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_o_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qo_ps_UC_hat, e_qs_ps_C_hat, e_qo_ps_C_hat, N_dot_hat, M_dot_hat_prime, p_E_hat}{See \code{ReboundTools::hat_vars}.}
+\item{t_life_hat, C_d_hat, C_dot_d_hat, tau_omega_C_dot_d_hat, C_dot_om_hat, C_dot_omd_hat, tau_alpha_hat, tau_omega_hat, eta_engr_units_hat, eta_hat, p_s_hat, C_dot_cap_hat, tau_alpha_C_dot_cap_hat, E_dot_emb_hat, M_dot_hat, q_dot_s_hat, E_dot_s_hat, C_dot_s_hat, C_dot_g_hat, f_Cs_hat, e_qs_ps_UC_hat, e_qg_ps_UC_hat, e_qs_ps_C_hat, e_qg_ps_C_hat, N_dot_hat, M_dot_hat_prime, p_E_hat}{See \code{ReboundTools::hat_vars}.}
 }
 \value{
 A list or data frame of derived rebound values for the hat stage (after the substitution effect).

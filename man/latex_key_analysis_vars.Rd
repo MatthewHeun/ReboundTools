@@ -5,8 +5,9 @@
 \alias{latex_key_analysis_vars}
 \title{LaTeX key analysis variables}
 \format{
-A data frame with 2 columns.
+A data frame with 3 columns.
 \describe{
+\item{description}{Short description of the variable in this row.}
 \item{var_name}{The text name for key analysis variables.}
 \item{latex_var_name}{The LaTeX key analysis variable name.}
 }

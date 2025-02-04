@@ -3,23 +3,33 @@
 #' A stages table has variables in rows and stages in columns.
 #' These tables enable tracking of variables across the different stages of rebound.
 #'
-#' @param .analysis_data A data frame, usually the result of calling `rebound_analysis()`. Default is `rebound_analysis(load_eeu_data(file))`.
-#' @param include_tilde_stage Tells whether to include the tilde column, which is identical to the bar column.
+#' @param .analysis_data A data frame, usually the result of calling [ReboundTools::rebound_analysis()].
+#' @param include_description_column A boolean that tells whether to include a description column on the left.
+#' @param include_tilde_stage A boolean that tells whether to include the tilde column, which is identical to the bar column.
 #' @param add_units When `TRUE` (the default), adds a unit specification to variable names in the table.
 #' @param escape_latex When `TRUE` (the default), return LaTeX-compatible versions of strings.
-#' @param vars A list of variables for rows of the table. Default is `ReboundTools::key_analysis_vars`.
+#' @param visibility_mask A data frame that tells which data are visible in the [stages_table()].
+#'                        Default is [ReboundTools::stages_table_visibility_mask],
+#'                        a value that shows variables before and after changes only.
+#'                        To see all variables, set to `NULL`.
+#'                        Modify [stages_table_visibility_mask] as needed.
+#' @param vars A list of variables for rows of the table. Default is [ReboundTools::key_analysis_vars].
 #'             Variable order is preserved in the table.
 #' @param latex_vars See `ReboundTools::latex_key_analysis_vars`. Set `NULL` to prevent conversion to LaTeX variable names.
-#' @param stages A list of stages for columns of the table. Default is `ReboundTools::rebound_stages`.
+#' @param stages A list of stages for columns of the table. Default is [ReboundTools::rebound_stages].
 #'               Stage order is preserved in the table.
-#' @param latex_stages See `ReboundTools::latex_rebound_stages`. Set `NULL` to prevent conversion to LaTeX stage names.
-#' @param case See `ReboundTools::eeu_base_params`.
+#' @param latex_stages See [ReboundTools::latex_rebound_stages]. Set `NULL` to prevent conversion to LaTeX stage names.
+#' @param case See [ReboundTools::eeu_base_params].
 #' @param service_unit,energy_engr_unit See `ReboundTools::eeu_base_params`.
 #' @param tilde_stage Used internally to identify the tilde column. 
-#'                    Default is `ReboundTools::rebound_stages$tilde`.
-#' @param ... Arguments passed to `xtable::xtable()`, possibly
+#'                    Default is [ReboundTools::rebound_stages]`$tilde`.
+#' @param visible The name of a column in the [ReboundTools::stages_table_visibility_mask] 
+#'                data frame.
+#' @param description,var_name,latex_var_name Names of columns in the `latex_vars` data frame.
+#' @param ... Arguments passed to [xtable::xtable()], possibly
 #'            `label`, `caption`, `digits`, etc.
 #' @param .var,.stage,.var_stage,.value,.name,.unit_col Column names used internally.
+#' @param orig,star,hat,bar,tilde Rebound stages. See [ReboundTools::rebound_stages].
 #'
 #' @return An `xtable` object suitable for printing.
 #' 
@@ -30,9 +40,11 @@
 #'   rebound_analysis() %>% 
 #'   stages_table()
 stages_table <- function(.analysis_data, 
+                         include_description_column = FALSE,
                          include_tilde_stage = TRUE,
                          add_units = TRUE,
                          escape_latex = TRUE,
+                         visibility_mask = ReboundTools::stages_table_visibility_mask, 
                          vars = ReboundTools::key_analysis_vars, 
                          latex_vars = ReboundTools::latex_key_analysis_vars,
                          stages = ReboundTools::rebound_stages, 
@@ -42,13 +54,30 @@ stages_table <- function(.analysis_data,
                          energy_engr_unit = ReboundTools::eeu_base_params$energy_engr_unit,
                          tilde_stage = ReboundTools::rebound_stages$tilde,
                          ..., 
-                         # internal names
+                         visible = "Visible",
+                         description = "description",
+                         var_name = "var_name",
+                         latex_var_name = "latex_var_name",
+                         # internal column names
                          .var = ".var",
                          .stage = ".stage", 
                          .var_stage = ".var_stage", 
                          .value = ".value", 
                          .name = ".name",
-                         .unit_col = ".unit_col") {
+                         .unit_col = ".unit_col", 
+                         # stage names
+                         orig = ReboundTools::rebound_stages$orig, 
+                         star = ReboundTools::rebound_stages$star, 
+                         hat = ReboundTools::rebound_stages$hat, 
+                         bar = ReboundTools::rebound_stages$bar, 
+                         tilde = ReboundTools::rebound_stages$tilde) {
+  
+  if (!include_description_column) {
+    # Eliminate the description column from latex_key_analysis_vars.
+    latex_key_analysis_vars <- latex_key_analysis_vars |> 
+      dplyr::mutate(
+        "{description}" := NULL)
+  }
   
   if (!include_tilde_stage) {
     stage_col_name <- colnames(latex_stages)[[1]] # The name of the stage column
@@ -94,25 +123,71 @@ stages_table <- function(.analysis_data,
                                          energy_engr_unit = .data[[energy_engr_unit]], 
                                          escape_latex = escape_latex)
     )
+  
+  if (!is.null(visibility_mask)) {
+    # If we have a visibility_mask, modify the table.
+    rebound_table_data <- rebound_table_data |> 
+      tidyr::pivot_longer(cols = tidyr::any_of(c(orig, star, hat, bar, tilde)), 
+                          names_to = .stage, 
+                          values_to = .value) |> 
+      dplyr::left_join(visibility_mask, by = c(.name, .stage)) |> 
+      dplyr::mutate(
+        # Set value to NA if not supposed to be visible.
+        "{.value}" := dplyr::case_when(
+          !.data[[visible]] ~ NA_real_, 
+          TRUE ~ .data[[.value]]
+        ), 
+        # Get rid of the visible column.
+        "{visible}" := NULL
+      ) |> 
+      # Put back to original shape.
+      tidyr::pivot_wider(names_from = .stage, values_from = .value)
+  }
+  
+  # Add the description column, if desired
+  if (include_description_column) {
+    rebound_table_data <- rebound_table_data |> 
+      dplyr::left_join(latex_vars |> 
+                         dplyr::mutate(
+                           # Eliminate the LaTeX vars column, if it exists
+                           "{latex_var_name}" := NULL
+                         ) |> 
+                         dplyr::rename(
+                           "{.name}" := dplyr::all_of(var_name)
+                         ), 
+                       by = .name) |> 
+      # Move the description column to the immediate left of the variable name column
+      dplyr::relocate(dplyr::all_of(description), .before = dplyr::all_of(.name)) |> 
+      # Eliminate "description" title from description column. It looks stupid.
+      dplyr::rename(
+        `  ` = dplyr::all_of(description)
+      )
+  }
     
   # Add LaTeX variable names, if not NULL.
   if (!is.null(latex_vars)) {
-    rebound_table_data <- dplyr::left_join(rebound_table_data, latex_vars, 
-                                           # names(latex_vars))[[1]] is the name of the 
-                                           # first column in the latex_vars data frame.
-                                           # It is the column by which we want to join.
-                                           by = c(.name = names(latex_vars)[[1]]) ) %>% 
+    rebound_table_data <- rebound_table_data |> 
+      dplyr::left_join(latex_vars |> 
+                         dplyr::mutate(
+                           # Eliminate the description column, if it exists
+                           "{description}" := NULL
+                         ) |> 
+                         dplyr::rename(
+                           "{.name}" := dplyr::all_of(var_name)
+                         ), 
+                       by = .name) %>% 
       dplyr::mutate(
         "{.name}" := NULL
       ) %>% 
       dplyr::rename(
         # names(latex_vars)[[2]] is the name of the column in latex_vars
         # that contains the LaTeX version of the names.
-        "{.name}" := dplyr::all_of(names(latex_vars)[[2]])
+        "{.name}" := dplyr::all_of(latex_var_name)
       ) %>% 
       # stages[[1]] is the first stage, usually "orig".
       dplyr::relocate(dplyr::all_of(.name), .before = stages[[1]])
   }
+  
   # Now add the units to the variable name, if desired.
   if (add_units) {
     rebound_table_data <- rebound_table_data %>% 

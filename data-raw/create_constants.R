@@ -36,25 +36,39 @@ usethis::use_data(rebound_units, overwrite = TRUE)
 # 
 
 latex_key_analysis_vars <- data.frame(
-  var_name = c("t_life", "R_alpha", "R_omega",
-               "eta_engr_units", "eta", "p_s", "q_dot_s", 
-               "p_E", "E_dot_s",
-               "E_dot_emb", "C_dot_s", "C_dot_cap",
-               "R_alpha_C_dot_cap",
+  description = c("Income rate", "Energy price", 
+                  "Device lifetime", "TVM factor (BOL)", "TVM factor (EOL)",
+                  "Efficiency (engineering units)", "Efficiency", "Energy service price", 
+                  "Embodied energy rate", "Capital cost rate",
+                  "",
+                  "Ops.\\ \\& maint.\\ cost rate", "Disposal cost", "Disposal cost rate",
+                  "",
+                  "Ops.\\ \\& maint.\\ and disposal cost rate", 
+                  "Energy consumption rate",
+                  "Energy cost rate", 
+                  "Net income rate", "Energy service consumption rate", "Other goods cost rate"),
+  var_name = c("M_dot", "p_E", 
+               "t_life", "tau_alpha", "tau_omega",
+               "eta_engr_units", "eta", "p_s", 
+               "E_dot_emb", "C_dot_cap",
+               "tau_alpha_C_dot_cap",
                "C_dot_om", "C_d", "C_dot_d",
-               "R_omega_C_dot_d",
+               "tau_omega_C_dot_d",
                "C_dot_omd", 
-               "C_dot_o", "N_dot", "M_dot"), 
-  latex_var_name = c("$t_{li\\!f\\!e}$", "$R_\\alpha$", "$R_\\omega$",
-                     "$\\eta$", "$\\eta$", "$p_s$", "$\\dot{q}_s$", 
-                     "$p_E$", "$\\dot{E}_s$",
-                     "$\\dot{E}_{emb}$", "$\\dot{C}_s$", "$\\dot{C}_{cap}$",
-                     "$R_{\\alpha}\\dot{C}_{cap}$", 
+               "E_dot_s",
+               "C_dot_s", 
+               "N_dot", "q_dot_s", "C_dot_g"), 
+  latex_var_name = c("$\\dot{M}$", "$p_E$", 
+                     "$t_{life}$", "${\\tau}_\\alpha$", "${\\tau}_\\omega$",
+                     "$\\eta$", "$\\eta$", "$p_s$", 
+                     "$\\dot{E}_{emb}$", "$\\dot{C}_{cap}$",
+                     "${\\tau}_{\\alpha}\\dot{C}_{cap}$", 
                      "$\\dot{C}_{O\\!M}$", "$C_d$", "$\\dot{C}_d$",
-                     "$R_{\\omega}\\dot{C}_d$",
+                     "${\\tau}_{\\omega}\\dot{C}_d$",
                      "$\\dot{C}_{O\\!M\\!d}$", 
-                     "$\\dot{C}_o$", "$\\dot{N}$", "$\\dot{M}$")
-)
+                     "$\\dot{E}_s$",
+                     "$\\dot{C}_s$", 
+                     "$\\dot{N}$", "$\\dot{q}_s$", "$\\dot{C}_g$"))
 usethis::use_data(latex_key_analysis_vars, overwrite = TRUE)
 
 
@@ -91,6 +105,77 @@ latex_rebound_stages <- data.frame(
                        "After inc ($-$)",
                        "After macro ($\\sim$)"))
 usethis::use_data(latex_rebound_stages, overwrite = TRUE)
+
+
+#
+# A mask for value visibility in a stages_table().
+# Only values before/after a change are visible.
+# Invisible values are indicated by NA
+# 
+
+stages_table_visibility_mask <- expand.grid(key_analysis_vars, rebound_stages) |> 
+  magrittr::set_names(c(".name", ".stage")) |> 
+  dplyr::mutate(
+    .name = factor(.name, levels = key_analysis_vars), 
+    .stage = factor(.stage, levels = rebound_stages)
+  ) |> 
+  tibble::as_tibble() |> 
+  dplyr::arrange(.name, .stage) |> 
+  dplyr::mutate(
+    Visible = dplyr::case_when(
+      .name == "M_dot" & .stage == "orig" ~ TRUE, 
+      .name == "p_E" & .stage == "orig" ~ TRUE, 
+      .name == "t_life" & .stage == "orig" ~ TRUE, 
+      .name == "t_life" & .stage == "star" ~ TRUE, 
+      .name == "tau_alpha" & .stage == "orig" ~ TRUE, 
+      .name == "tau_alpha" & .stage == "star" ~ TRUE, 
+      .name == "tau_omega" & .stage == "orig" ~ TRUE, 
+      .name == "tau_omega" & .stage == "star" ~ TRUE, 
+      .name == "eta_engr_units" & .stage == "orig" ~ TRUE, 
+      .name == "eta_engr_units" & .stage == "star" ~ TRUE, 
+      .name == "eta" & .stage == "orig" ~ TRUE, 
+      .name == "eta" & .stage == "star" ~ TRUE, 
+      .name == "p_s" & .stage == "orig" ~ TRUE, 
+      .name == "p_s" & .stage == "star" ~ TRUE, 
+      .name == "q_dot_s" & .stage == "star" ~ TRUE, 
+      .name == "q_dot_s" & .stage == "hat" ~ TRUE, 
+      .name == "q_dot_s" & .stage == "bar" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "orig" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "star" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "hat" ~ TRUE, 
+      .name == "E_dot_s" & .stage == "bar" ~ TRUE, 
+      .name == "E_dot_emb" & .stage == "orig" ~ TRUE, 
+      .name == "E_dot_emb" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "hat" ~ TRUE, 
+      .name == "C_dot_s" & .stage == "bar" ~ TRUE, 
+      .name == "C_dot_cap" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_cap" & .stage == "star" ~ TRUE, 
+      .name == "tau_alpha_C_dot_cap" & .stage == "orig" ~ TRUE, 
+      .name == "tau_alpha_C_dot_cap" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_om" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_om" & .stage == "star" ~ TRUE, 
+      .name == "C_d" & .stage == "orig" ~ TRUE, 
+      .name == "C_d" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_d" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_d" & .stage == "star" ~ TRUE, 
+      .name == "tau_omega_C_dot_d" & .stage == "orig" ~ TRUE, 
+      .name == "tau_omega_C_dot_d" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_omd" & .stage == "orig" ~ TRUE, 
+      .name == "C_dot_omd" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_g" & .stage == "star" ~ TRUE, 
+      .name == "C_dot_g" & .stage == "hat" ~ TRUE, 
+      .name == "C_dot_g" & .stage == "bar" ~ TRUE, 
+      .name == "N_dot" & .stage == "orig" ~ TRUE, 
+      .name == "N_dot" & .stage == "star" ~ TRUE, 
+      .name == "N_dot" & .stage == "hat" ~ TRUE, 
+      .name == "N_dot" & .stage == "bar" ~ TRUE, 
+      # Pick up all other cases
+      TRUE ~ FALSE
+    )
+  )
+usethis::use_data(stages_table_visibility_mask, overwrite = TRUE)
 
 
 #
@@ -144,7 +229,7 @@ eeu_base_params <- list(reference = "Reference",
                         p_E_engr_units = "p_E_engr_units",
                         e_qs_ps_UC_orig = "e_qs_ps_UC_orig", 
                         e_qs_M = "e_qs_M", 
-                        e_qo_M = "e_qo_M")
+                        e_qg_M = "e_qg_M")
 usethis::use_data(eeu_base_params, overwrite = TRUE)
 
 
@@ -152,8 +237,8 @@ usethis::use_data(eeu_base_params, overwrite = TRUE)
 # Names of calculated variables at the "orig" stage.
 # 
 
-orig_vars <- list(R_alpha_orig = "R_alpha_orig", 
-                  R_omega_orig = "R_omega_orig",
+orig_vars <- list(tau_alpha_orig = "tau_alpha_orig", 
+                  tau_omega_orig = "tau_omega_orig",
                   p_E = "p_E",
                   p_E_orig = "p_E_orig",
                   q_dot_s_orig = "q_dot_s_orig",
@@ -163,20 +248,20 @@ orig_vars <- list(R_alpha_orig = "R_alpha_orig",
                   eta_orig = "eta_orig", 
                   E_dot_s_orig = "E_dot_s_orig",
                   C_dot_cap_orig = "C_dot_cap_orig",
-                  R_alpha_C_dot_cap_orig = "R_alpha_C_dot_cap_orig",
+                  tau_alpha_C_dot_cap_orig = "tau_alpha_C_dot_cap_orig",
                   p_s_orig = "p_s_orig", 
                   C_dot_s_orig = "C_dot_s_orig",
                   C_dot_om_orig = "C_dot_om_orig", 
                   C_d_orig = "C_d_orig", 
                   C_dot_d_orig = "C_dot_d_orig",
-                  R_omega_C_dot_d_orig = "R_omega_C_dot_d_orig",
+                  tau_omega_C_dot_d_orig = "tau_omega_C_dot_d_orig",
                   C_dot_omd_orig = "C_dot_omd_orig",
-                  C_dot_o_orig = "C_dot_o_orig",
+                  C_dot_g_orig = "C_dot_g_orig",
                   f_Cs_orig = "f_Cs_orig",
                   e_qs_ps_C_orig  = "e_qs_ps_C_orig",
                   e_qs_ps_UC_orig = "e_qs_ps_UC_orig",
-                  e_qo_ps_C_orig  = "e_qo_ps_C_orig", 
-                  e_qo_ps_UC_orig = "e_qo_ps_UC_orig", 
+                  e_qg_ps_C_orig  = "e_qg_ps_C_orig", 
+                  e_qg_ps_UC_orig = "e_qg_ps_UC_orig", 
                   sigma = "sigma",
                   rho = "rho",
                   E_emb_orig = "E_emb_orig",
@@ -190,8 +275,8 @@ usethis::use_data(orig_vars, overwrite = TRUE)
 # Names of calculated variables at the "star" stage.
 # 
 
-star_vars <- list(R_alpha_star = "R_alpha_star", 
-                  R_omega_star = "R_omega_star",
+star_vars <- list(tau_alpha_star = "tau_alpha_star", 
+                  tau_omega_star = "tau_omega_star",
                   C_cap_star	= "C_cap_star", 
                   C_dot_om_star = "C_dot_om_star", 
                   C_d_star = "C_d_star",
@@ -205,20 +290,20 @@ star_vars <- list(R_alpha_star = "R_alpha_star",
                   p_s_star = "p_s_star",
                   q_dot_s_star = "q_dot_s_star",
                   C_dot_cap_star = "C_dot_cap_star",
-                  R_alpha_C_dot_cap_star = "R_alpha_C_dot_cap_star",
+                  tau_alpha_C_dot_cap_star = "tau_alpha_C_dot_cap_star",
                   E_dot_emb_star = "E_dot_emb_star",
                   C_dot_s_star = "C_dot_s_star", 
                   M_dot_star = "M_dot_star",
                   N_dot_star = "N_dot_star",
                   C_dot_d_star = "C_dot_d_star", 
-                  R_omega_C_dot_d_star = "R_omega_C_dot_d_star",
+                  tau_omega_C_dot_d_star = "tau_omega_C_dot_d_star",
                   C_dot_omd_star = "C_dot_omd_star",
-                  C_dot_o_star = "C_dot_o_star", 
+                  C_dot_g_star = "C_dot_g_star", 
                   f_Cs_star = "f_Cs_star",
                   e_qs_ps_C_star  = "e_qs_ps_C_star",
                   e_qs_ps_UC_star = "e_qs_ps_UC_star",
-                  e_qo_ps_C_star  = "e_qo_ps_C_star", 
-                  e_qo_ps_UC_star = "e_qo_ps_UC_star", 
+                  e_qg_ps_C_star  = "e_qg_ps_C_star", 
+                  e_qg_ps_UC_star = "e_qg_ps_UC_star", 
                   p_E_star = "p_E_star",
                   E_dot_s_star = "E_dot_s_star")
 usethis::use_data(star_vars, overwrite = TRUE)
@@ -229,14 +314,14 @@ usethis::use_data(star_vars, overwrite = TRUE)
 # 
 
 hat_vars <- list(t_life_hat = "t_life_hat", 
-                 R_alpha_hat = "R_alpha_hat", 
-                 R_omega_hat = "R_omega_hat",
+                 tau_alpha_hat = "tau_alpha_hat", 
+                 tau_omega_hat = "tau_omega_hat",
                  eta_engr_units_hat = "eta_engr_units_hat", 
                  eta_hat = "eta_hat",
                  p_s_hat = "p_s_hat",
                  C_cap_hat = "C_cap_hat", 
                  C_dot_cap_hat = "C_dot_cap_hat",
-                 R_alpha_C_dot_cap_hat = "R_alpha_C_dot_cap_hat",
+                 tau_alpha_C_dot_cap_hat = "tau_alpha_C_dot_cap_hat",
                  E_dot_emb_hat = "E_dot_emb_hat",
                  M_dot_hat = "M_dot_hat",
                  q_dot_s_hat = "q_dot_s_hat",
@@ -246,14 +331,14 @@ hat_vars <- list(t_life_hat = "t_life_hat",
                  C_dot_om_hat = "C_dot_om_hat",
                  C_d_hat = "C_d_hat",
                  C_dot_d_hat = "C_dot_d_hat", 
-                 R_omega_C_dot_d_hat = "R_omega_C_dot_d_hat",
+                 tau_omega_C_dot_d_hat = "tau_omega_C_dot_d_hat",
                  C_dot_omd_hat = "C_dot_omd_hat",
-                 C_dot_o_hat = "C_dot_o_hat", 
+                 C_dot_g_hat = "C_dot_g_hat", 
                  f_Cs_hat = "f_Cs_hat",
                  e_qs_ps_C_hat  = "e_qs_ps_C_hat",
                  e_qs_ps_UC_hat = "e_qs_ps_UC_hat",
-                 e_qo_ps_C_hat  = "e_qo_ps_C_hat", 
-                 e_qo_ps_UC_hat = "e_qo_ps_UC_hat", 
+                 e_qg_ps_C_hat  = "e_qg_ps_C_hat", 
+                 e_qg_ps_UC_hat = "e_qg_ps_UC_hat", 
                  N_dot_hat = "N_dot_hat",
                  M_dot_hat_prime = "M_dot_hat_prime")
 usethis::use_data(hat_vars, overwrite = TRUE)
@@ -264,13 +349,13 @@ usethis::use_data(hat_vars, overwrite = TRUE)
 # 
 
 bar_vars <- list(t_life_bar = "t_life_bar", 
-                 R_alpha_bar = "R_alpha_bar", 
-                 R_omega_bar = "R_omega_bar",
+                 tau_alpha_bar = "tau_alpha_bar", 
+                 tau_omega_bar = "tau_omega_bar",
                  eta_engr_units_bar = "eta_engr_units_bar",
                  eta_bar = "eta_bar",
                  p_s_bar = "p_s_bar",
                  C_dot_cap_bar = "C_dot_cap_bar",
-                 R_alpha_C_dot_cap_bar = "R_alpha_C_dot_cap_bar",
+                 tau_alpha_C_dot_cap_bar = "tau_alpha_C_dot_cap_bar",
                  E_dot_emb_bar = "E_dot_emb_bar",
                  M_dot_bar = "M_dot_bar",
                  q_dot_s_bar = "q_dot_s_bar",
@@ -280,14 +365,14 @@ bar_vars <- list(t_life_bar = "t_life_bar",
                  C_dot_om_bar = "C_dot_om_bar",
                  C_d_bar = "C_d_bar",
                  C_dot_d_bar = "C_dot_d_bar", 
-                 R_omega_C_dot_d_bar = "R_omega_C_dot_d_bar",
+                 tau_omega_C_dot_d_bar = "tau_omega_C_dot_d_bar",
                  C_dot_omd_bar = "C_dot_omd_bar",
-                 C_dot_o_bar = "C_dot_o_bar", 
+                 C_dot_g_bar = "C_dot_g_bar", 
                  f_Cs_bar = "f_Cs_bar",
                  e_qs_ps_C_bar  = "e_qs_ps_C_bar",
                  e_qs_ps_UC_bar = "e_qs_ps_UC_bar",
-                 e_qo_ps_C_bar  = "e_qo_ps_C_bar", 
-                 e_qo_ps_UC_bar = "e_qo_ps_UC_bar", 
+                 e_qg_ps_C_bar  = "e_qg_ps_C_bar", 
+                 e_qg_ps_UC_bar = "e_qg_ps_UC_bar", 
                  N_dot_bar = "N_dot_bar")
 usethis::use_data(bar_vars, overwrite = TRUE)
 
@@ -297,30 +382,30 @@ usethis::use_data(bar_vars, overwrite = TRUE)
 # 
 
 tilde_vars <- list(t_life_tilde = "t_life_tilde", 
-                   R_alpha_tilde = "R_alpha_tilde", 
-                   R_omega_tilde = "R_omega_tilde",
+                   tau_alpha_tilde = "tau_alpha_tilde", 
+                   tau_omega_tilde = "tau_omega_tilde",
                    eta_engr_units_tilde = "eta_engr_units_tilde",
                    eta_tilde = "eta_tilde",
                    p_s_tilde = "p_s_tilde",
                    C_dot_cap_tilde = "C_dot_cap_tilde",
-                   R_alpha_C_dot_cap_tilde = "R_alpha_C_dot_cap_tilde",
+                   tau_alpha_C_dot_cap_tilde = "tau_alpha_C_dot_cap_tilde",
                    E_dot_emb_tilde = "E_dot_emb_tilde",
                    C_dot_om_tilde = "C_dot_om_tilde",
                    C_d_tilde = "C_d_tilde",
                    C_dot_d_tilde = "C_dot_d_tilde", 
-                   R_omega_C_dot_d_tilde = "R_omega_C_dot_d_tilde",
+                   tau_omega_C_dot_d_tilde = "tau_omega_C_dot_d_tilde",
                    C_dot_omd_tilde = "C_dot_omd_tilde",
                    M_dot_tilde = "M_dot_tilde",
                    q_dot_s_tilde = "q_dot_s_tilde",
                    p_E_tilde = "p_E_tilde",
                    E_dot_s_tilde = "E_dot_s_tilde",
                    C_dot_s_tilde = "C_dot_s_tilde",
-                   C_dot_o_tilde = "C_dot_o_tilde", 
+                   C_dot_g_tilde = "C_dot_g_tilde", 
                    f_Cs_tilde = "f_Cs_tilde",
                    e_qs_ps_C_tilde  = "e_qs_ps_C_tilde",
                    e_qs_ps_UC_tilde = "e_qs_ps_UC_tilde",
-                   e_qo_ps_C_tilde  = "e_qo_ps_C_tilde", 
-                   e_qo_ps_UC_tilde = "e_qo_ps_UC_tilde", 
+                   e_qg_ps_C_tilde  = "e_qg_ps_C_tilde", 
+                   e_qg_ps_UC_tilde = "e_qg_ps_UC_tilde", 
                    N_dot_tilde = "N_dot_tilde")
 usethis::use_data(tilde_vars, overwrite = TRUE)
 
@@ -373,7 +458,7 @@ latex_rebound_terms <- list(Re_dempl = "$Re_{dempl}$",
                             Re_cap = "$Re_{cap}$",
                             Re_om = "$Re_{O\\!M}$",
                             Re_d = "$Re_d$", 
-                            Re_omd = "$Re_{O\\!M\\!d}$",
+                            Re_omd = "$Re_{OMd}$",
                             Re_empl = "$Re_{empl}$",
                             Re_dsub = "$Re_{dsub}$", 
                             Re_isub = "$Re_{isub}$",
@@ -420,7 +505,7 @@ graph_df_colnames <- list(colour_col = "colour",
                           xend_col = "xend",
                           yend_col = "yend", 
                           qs1_qs0_col = "qs1_qs0", 
-                          Co1_Co0_col = "Co1_Co0", 
+                          Cg1_Cg0_col = "Cg1_Cg0", 
                           f_Cs_orig_col = "f_Cs_orig",
                           sigma_col = "sigma", 
                           start_point_col = "start_point",

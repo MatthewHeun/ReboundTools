@@ -40,9 +40,9 @@ extract_meta <- function(.rebound_data,
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
 #' @param k,I_E See `ReboundTools::eeu_base_params`.
-#' @param R_alpha_orig,E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param tau_alpha_orig,E_dot_s_orig,E_dot_emb_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
 #' @param S_dot_dev See `ReboundTools::star_vars`.
-#' @param Delta_E_dot_emb_star,Delta_C_dot_omd_star,Delta_E_dot_s_hat,Delta_C_dot_o_hat,Delta_E_dot_s_bar,Delta_C_dot_o_bar,N_dot_hat See `ReboundTools::Delta_vars`.
+#' @param Delta_E_dot_emb_star,Delta_C_dot_omd_star,Delta_E_dot_s_hat,Delta_C_dot_g_hat,Delta_E_dot_s_bar,Delta_C_dot_g_bar,N_dot_hat See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with energy rebound path segments.
@@ -62,11 +62,11 @@ energy_paths <- function(.rebound_data,
                          k = ReboundTools::eeu_base_params$k,
                          I_E = ReboundTools::eeu_base_params$I_E,
                          
-                         R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                         tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
                          E_dot_s_orig = ReboundTools::orig_vars$E_dot_s_orig,
                          E_dot_emb_orig = ReboundTools::orig_vars$E_dot_emb_orig,
                          C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
-                         C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                         C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
                          
                          S_dot_dev = ReboundTools::star_vars$S_dot_dev, 
                          
@@ -74,11 +74,11 @@ energy_paths <- function(.rebound_data,
                          Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                          
                          Delta_E_dot_s_hat = ReboundTools::Delta_vars$Delta_E_dot_s_hat,
-                         Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+                         Delta_C_dot_g_hat = ReboundTools::Delta_vars$Delta_C_dot_g_hat,
                          N_dot_hat = ReboundTools::hat_vars$N_dot_hat,
                          
                          Delta_E_dot_s_bar = ReboundTools::Delta_vars$Delta_E_dot_s_bar,
-                         Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar, 
+                         Delta_C_dot_g_bar = ReboundTools::Delta_vars$Delta_C_dot_g_bar, 
                          
                          graph_df_colnames = ReboundTools::graph_df_colnames) {
   
@@ -93,7 +93,7 @@ energy_paths <- function(.rebound_data,
   # S_dot_dev segment for energy graph (dempl)
   x_orig <- .rebound_data[[E_dot_s_orig]]
   y_orig <- .rebound_data[[E_dot_emb_orig]] + 
-            (.rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_o_orig]]) * .rebound_data[[I_E]]
+            (.rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_g_orig]]) * .rebound_data[[I_E]]
   x <- x_orig
   y <- y_orig
   xend <- x_orig - .rebound_data[[S_dot_dev]]
@@ -142,11 +142,11 @@ energy_paths <- function(.rebound_data,
   
   # Substitution effect
   
-  # Delta_C_dot_o_hat*I_E segment for energy graph (isub)
+  # Delta_C_dot_g_hat*I_E segment for energy graph (isub)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_hat]] * .rebound_data[[I_E]]
+  yend <- y + .rebound_data[[Delta_C_dot_g_hat]] * .rebound_data[[I_E]]
   paths <- paths %>%
     add_segment(indexed = indexed,
                 colour = graph_params$isub_colour,
@@ -192,11 +192,11 @@ energy_paths <- function(.rebound_data,
                 x_orig = x_orig, y_orig = y_orig,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_o_bar*I_E segment for energy graph (iinc)
+  # Delta_C_dot_g_bar*I_E segment for energy graph (iinc)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_bar]] * .rebound_data[[I_E]]
+  yend <- y + .rebound_data[[Delta_C_dot_g_bar]] * .rebound_data[[I_E]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$iinc_colour, 
@@ -249,9 +249,9 @@ energy_paths <- function(.rebound_data,
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
-#' @param R_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_o_orig See `ReboundTools::orig_vars`.
+#' @param tau_alpha_orig,C_dot_s_orig,C_dot_cap_orig,C_dot_omd_orig,C_dot_g_orig See `ReboundTools::orig_vars`.
 #' @param G_dot See `ReboundTools::star_vars`.
-#' @param R_alpha_star,C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_o_hat,Delta_C_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param tau_alpha_star,C_dot_cap_star,Delta_C_dot_omd_star,Delta_C_dot_s_hat,Delta_C_dot_g_hat,Delta_C_dot_s_bar,Delta_C_dot_g_bar See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #' 
 #' @return A data frame with cost rebound path segments.
@@ -268,23 +268,23 @@ expenditure_paths <- function(.rebound_data,
                        rebound_segments = ReboundTools::rebound_segments,
                        graph_type = ReboundTools::graph_types$expenditure,
                        
-                       R_alpha_orig = ReboundTools::orig_vars$R_alpha_orig,
+                       tau_alpha_orig = ReboundTools::orig_vars$tau_alpha_orig,
                        C_dot_s_orig = ReboundTools::orig_vars$C_dot_s_orig, 
                        C_dot_cap_orig = ReboundTools::orig_vars$C_dot_cap_orig, 
                        C_dot_omd_orig = ReboundTools::orig_vars$C_dot_omd_orig,
-                       C_dot_o_orig = ReboundTools::orig_vars$C_dot_o_orig,
+                       C_dot_g_orig = ReboundTools::orig_vars$C_dot_g_orig,
                        
                        G_dot = ReboundTools::star_vars$G_dot,
                        
-                       R_alpha_star = ReboundTools::star_vars$R_alpha_star,
+                       tau_alpha_star = ReboundTools::star_vars$tau_alpha_star,
                        C_dot_cap_star = ReboundTools::star_vars$C_dot_cap_star,
 
                        # Delta_C_dot_cap_star = ReboundTools::Delta_vars$Delta_C_dot_cap_star,
                        Delta_C_dot_omd_star = ReboundTools::Delta_vars$Delta_C_dot_omd_star,
                        Delta_C_dot_s_hat = ReboundTools::Delta_vars$Delta_C_dot_s_hat,
-                       Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+                       Delta_C_dot_g_hat = ReboundTools::Delta_vars$Delta_C_dot_g_hat,
                        Delta_C_dot_s_bar = ReboundTools::Delta_vars$Delta_C_dot_s_bar,
-                       Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar, 
+                       Delta_C_dot_g_bar = ReboundTools::Delta_vars$Delta_C_dot_g_bar, 
                        
                        graph_df_colnames = ReboundTools::graph_df_colnames) {
   
@@ -298,8 +298,8 @@ expenditure_paths <- function(.rebound_data,
   
   # G_dot segment for cost graph (dempl)
   x_orig_cost <- .rebound_data[[C_dot_s_orig]]
-  y_orig_cost <- .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] +
-                 .rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_o_orig]]
+  y_orig_cost <- .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]] +
+                 .rebound_data[[C_dot_omd_orig]] + .rebound_data[[C_dot_g_orig]]
   xend <- x_orig_cost - .rebound_data[[G_dot]]
   yend <- y_orig_cost
   paths <- add_segment(indexed = indexed,
@@ -317,8 +317,8 @@ expenditure_paths <- function(.rebound_data,
   y <- yend
   xend <- x
   # yend <- y + .rebound_data[[Delta_C_dot_cap_star]]
-  yend <- y + (.rebound_data[[R_alpha_star]]*.rebound_data[[C_dot_cap_star]] - 
-               .rebound_data[[R_alpha_orig]]*.rebound_data[[C_dot_cap_orig]])
+  yend <- y + (.rebound_data[[tau_alpha_star]]*.rebound_data[[C_dot_cap_star]] - 
+               .rebound_data[[tau_alpha_orig]]*.rebound_data[[C_dot_cap_orig]])
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$cap_colour, 
@@ -348,11 +348,11 @@ expenditure_paths <- function(.rebound_data,
   
   # Substitution effect
   
-  # Delta_C_dot_o_hat segment for cost graph (isub)
+  # Delta_C_dot_g_hat segment for cost graph (isub)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_hat]]
+  yend <- y + .rebound_data[[Delta_C_dot_g_hat]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$isub_colour, 
@@ -398,11 +398,11 @@ expenditure_paths <- function(.rebound_data,
                 x_orig = x_orig_cost, y_orig = y_orig_cost,
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_o_bar segment for cost graph (iinc)
+  # Delta_C_dot_g_bar segment for cost graph (iinc)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_bar]]
+  yend <- y + .rebound_data[[Delta_C_dot_g_bar]]
   paths <- paths %>% 
     add_segment(indexed = indexed,
                 colour = graph_params$iinc_colour, 
@@ -438,8 +438,8 @@ expenditure_paths <- function(.rebound_data,
 #' @param graph_params See `ReboundTools::graph_params`.
 #' @param rebound_segments See `ReboundTools::rebound_segments`.
 #' @param graph_type See `ReboundTools::graph_types`.
-#' @param q_dot_s_star,C_dot_o_star See `ReboundTools::star_vars`.
-#' @param Delta_q_dot_s_hat,Delta_C_dot_o_hat,Delta_q_dot_s_bar,Delta_C_dot_o_bar See `ReboundTools::Delta_vars`.
+#' @param q_dot_s_star,C_dot_g_star See `ReboundTools::star_vars`.
+#' @param Delta_q_dot_s_hat,Delta_C_dot_g_hat,Delta_q_dot_s_bar,Delta_C_dot_g_bar See `ReboundTools::Delta_vars`.
 #' @param graph_df_colnames See `ReboundTools::graph_df_colnames`.
 #'
 #' @return A data frame of information for creating consumption path graphs.
@@ -456,12 +456,12 @@ consumption_paths <- function(.rebound_data,
                               graph_type = ReboundTools::graph_types$consumption,
                               
                               q_dot_s_star = ReboundTools::star_vars$q_dot_s_star, 
-                              C_dot_o_star = ReboundTools::star_vars$C_dot_o_star,
+                              C_dot_g_star = ReboundTools::star_vars$C_dot_g_star,
                               
                               Delta_q_dot_s_hat = ReboundTools::Delta_vars$Delta_q_dot_s_hat,
-                              Delta_C_dot_o_hat = ReboundTools::Delta_vars$Delta_C_dot_o_hat,
+                              Delta_C_dot_g_hat = ReboundTools::Delta_vars$Delta_C_dot_g_hat,
                               Delta_q_dot_s_bar = ReboundTools::Delta_vars$Delta_q_dot_s_bar,
-                              Delta_C_dot_o_bar = ReboundTools::Delta_vars$Delta_C_dot_o_bar,
+                              Delta_C_dot_g_bar = ReboundTools::Delta_vars$Delta_C_dot_g_bar,
                               
                               graph_df_colnames = ReboundTools::graph_df_colnames) {
   
@@ -470,16 +470,16 @@ consumption_paths <- function(.rebound_data,
   
   # Starting point
   x_star <- .rebound_data[[q_dot_s_star]]
-  y_star <- .rebound_data[[C_dot_o_star]]
+  y_star <- .rebound_data[[C_dot_g_star]]
     
     
   # Substitution effect.
   
-  # Delta_C_dot_o_star segment for consumption path graph (isub)
+  # Delta_C_dot_g_star segment for consumption path graph (isub)
   x <- x_star
   y <- y_star
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_hat]]
+  yend <- y + .rebound_data[[Delta_C_dot_g_hat]]
   paths <- add_segment(indexed = TRUE,
                        colour = graph_params$isub_colour, 
                        linewidth = graph_params$isub_linewidth,
@@ -524,11 +524,11 @@ consumption_paths <- function(.rebound_data,
                 x_orig = x_star, y_orig = y_star, 
                 x = x, y = y, xend = xend, yend = yend)
   
-  # Delta_C_dot_o_bar segment for consumption path graph (iinc)
+  # Delta_C_dot_g_bar segment for consumption path graph (iinc)
   x <- xend
   y <- yend
   xend <- x
-  yend <- y + .rebound_data[[Delta_C_dot_o_bar]]
+  yend <- y + .rebound_data[[Delta_C_dot_g_bar]]
   paths <- paths %>% 
     add_segment(indexed = TRUE,
                 colour = graph_params$iinc_colour,

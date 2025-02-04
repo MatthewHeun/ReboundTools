@@ -55,8 +55,8 @@ rebound_var_units(
   cost = "C_",
   energy_rate = "E_dot",
   rebound = "Re_",
-  R_alpha = "R_alpha",
-  R_omega = "R_omega"
+  tau_alpha = "tau_alpha",
+  tau_omega = "tau_omega"
 )
 }
 \arguments{
@@ -80,7 +80,7 @@ Default is "\emph{[^}]*$", which trims all characters beyond the last "_" in a s
 \item{S_dot_dev, G_dot, f_Cs}{See \code{ReboundTools::star_vars}.
 These arguments describe string patterns that identify variables for unit determination.}
 
-\item{elasticities, time, cost_rate, cost, energy_rate, rebound, R_alpha, R_omega}{Other arguments to identify variable names.}
+\item{elasticities, time, cost_rate, cost, energy_rate, rebound, tau_alpha, tau_omega}{Other arguments to identify variable names.}
 }
 \value{
 A string for the units for \code{.var_name}.
@@ -104,9 +104,9 @@ rebound_var_units("eta_engr_units_orig", service_unit = "lm-hr",
                   energy_engr_unit = "kW-hr") 
 rebound_var_units("p_s", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
 rebound_var_units("p_s_orig", service_unit = "lm-hr", energy_engr_unit = "kW-hr") 
-rebound_var_units("Delta_C_dot_o_hat", service_unit = "lm-hr",
+rebound_var_units("Delta_C_dot_g_hat", service_unit = "lm-hr",
                   energy_engr_unit = "kW-hr") 
-rebound_var_units(c("eta_engr_units_orig", "Delta_C_dot_o_hat"), 
+rebound_var_units(c("eta_engr_units_orig", "Delta_C_dot_g_hat"), 
                     service_unit = c("lm-hr", "lm-hr"), 
                     energy_engr_unit = c(energy_engr_unit = "kW-hr"))
 }

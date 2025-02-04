@@ -145,8 +145,8 @@ path_graphs <- function(.analysis_data,
     g <- g +
       # Horizontal axis label q_dot_s/q_dot_s_orig
       ggplot2::xlab(expression(dot(q)[s] / dot(q)[s]^degree * " [-]")) + 
-      # Vertical axis label is C_dot_o/C_dot_o_orig
-      ggplot2::ylab(expression(dot(C)[o] / dot(C)[o]^degree * " [-]"))
+      # Vertical axis label is C_dot_o/C_dot_g_orig
+      ggplot2::ylab(expression(dot(C)[g] / dot(C)[g]^degree * " [-]"))
   } 
   
   return(g)
@@ -482,7 +482,6 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
       ggplot2::geom_path(data = line_data,
                          mapping = ggplot2::aes(x = .data[[x_var]],
                                                 y = .data[[y_vals_col]],
-                                                # size = .data[[line_var]],
                                                 linewidth = .data[[line_var]],
                                                 linetype = .data[[line_var]],
                                                 colour = .data[[line_var]]), 
@@ -490,7 +489,9 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
                          linejoin = graph_params$linejoin) + 
       ggplot2::geom_point(data = orig_data,
                           # Pick up the dot colour from the line colour.
-                          mapping = ggplot2::aes(x = .data[[x_var]], y = .data[[y_vals_col]], colour = .data[[line_var]]),
+                          mapping = ggplot2::aes(x = .data[[x_var]], 
+                                                 y = .data[[y_vals_col]], 
+                                                 colour = .data[[line_var]]),
                           size = graph_params$orig_point_size,
                           shape = graph_params$orig_point_shape,
                           stroke = graph_params$orig_point_stroke,
@@ -500,7 +501,9 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
     g <- g + 
       ggplot2::geom_point(data = orig_data,
                           # Pick up the dot colour from the line colour.
-                          mapping = ggplot2::aes(x = .data[[x_var]], y = .data[[y_vals_col]], colour = .data[[line_var]]),
+                          mapping = ggplot2::aes(x = .data[[x_var]], 
+                                                 y = .data[[y_vals_col]], 
+                                                 colour = .data[[line_var]]),
                           size = graph_params$orig_point_size,
                           shape = graph_params$orig_point_shape,
                           stroke = graph_params$orig_point_stroke,
@@ -508,7 +511,6 @@ sensitivity_graphs <- function(.parametric_data = parametric_analysis(rebound_da
       ggplot2::geom_path(data = line_data,
                          mapping = ggplot2::aes(x = .data[[x_var]],
                                                 y = .data[[y_vals_col]],
-                                                # size = .data[[line_var]],
                                                 linewidth = .data[[line_var]],
                                                 linetype = .data[[line_var]],
                                                 colour = .data[[line_var]]), 
@@ -603,6 +605,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                             Re_emb = graph_params$emb_colour,
                                             Re_cap = graph_params$cap_colour,
                                             Re_md = graph_params$md_colour, 
+                                            Re_omd = graph_params$omd_colour, 
                                             Re_empl = graph_params$empl_colour,
                                             Re_dsub = graph_params$dsub_colour,
                                             Re_isub = graph_params$isub_colour, 
@@ -621,6 +624,7 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                               Re_emb = graph_params$emb_linetype,
                                               Re_cap = graph_params$cap_linetype,
                                               Re_md = graph_params$md_linetype,
+                                              Re_omd = graph_params$omd_linetype,
                                               Re_empl = graph_params$empl_linetype,
                                               Re_dsub = graph_params$dsub_linetype,
                                               Re_isub = graph_params$isub_linetype,
@@ -635,28 +639,11 @@ rebound_terms_graph <- function(.parametric_data = parametric_analysis(rebound_d
                                               Re_tot = graph_params$tot_linetype), 
                                    labels = legend_labs,
                                    breaks = Re_terms) + 
-    # ggplot2::scale_size_manual(values = c(Re_dempl = graph_params$dempl_linewidth,
-    #                                       Re_emb = graph_params$emb_linewidth,
-    #                                       Re_md = graph_params$md_linewidth,
-    #                                       Re_cap = graph_params$cap_linewidth,
-    #                                       Re_empl = graph_params$empl_linewidth,
-    #                                       Re_dsub = graph_params$dsub_linewidth,
-    #                                       Re_isub = graph_params$isub_linewidth,
-    #                                       Re_sub = graph_params$sub_linewidth,
-    #                                       Re_dinc = graph_params$dinc_linewidth,
-    #                                       Re_iinc = graph_params$iinc_linewidth,
-    #                                       Re_inc = graph_params$inc_linewidth,
-    #                                       Re_micro = graph_params$micro_linewidth,
-    #                                       Re_macro = graph_params$macro_linewidth,
-    #                                       Re_dir = graph_params$dir_linewidth,
-    #                                       Re_indir = graph_params$indir_linewidth,
-    #                                       Re_tot = graph_params$tot_linewidth),
-    #                            labels = legend_labs,
-    #                            breaks = Re_terms)
   ggplot2::scale_discrete_manual(aesthetics = "linewidth", 
                                  values = c(Re_dempl = graph_params$dempl_linewidth,
                                             Re_emb = graph_params$emb_linewidth,
                                             Re_md = graph_params$md_linewidth,
+                                            Re_omd = graph_params$omd_linewidth,
                                             Re_cap = graph_params$cap_linewidth,
                                             Re_empl = graph_params$empl_linewidth,
                                             Re_dsub = graph_params$dsub_linewidth,
