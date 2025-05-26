@@ -1,6 +1,6 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.42
+Version: 0.1.43
 Date: 2025-05-25
 Authors@R: 
     person(given = "Matthew",
@@ -49,3 +49,5 @@ Config/testthat/start-first: graphs, calc_rebound_data, paths, tables
 Language: en-US
 Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
+URL: https://github.com/MatthewHeun/ReboundTools, https://matthewheun.github.io/ReboundTools/
+BugReports: https://github.com/MatthewHeun/ReboundTools/issues
