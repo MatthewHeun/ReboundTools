@@ -10,6 +10,7 @@ which always resolves to the latest release.
 
 # ReboundTools 0.1.42 (2025-05-25)
 
+* Now requiring R >= 4.1.0 due to use of the new pipe.
 * Updated GitHub actions for testing and code coverage.
 * No new tests.
     - Still at 519 tests, all passing.
