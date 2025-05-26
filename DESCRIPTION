@@ -49,3 +49,5 @@ Config/testthat/start-first: graphs, calc_rebound_data, paths, tables
 Language: en-US
 Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
+URL: https://github.com/MatthewHeun/ReboundTools, https://matthewheun.github.io/ReboundTools/
+BugReports: https://github.com/MatthewHeun/ReboundTools/issues
