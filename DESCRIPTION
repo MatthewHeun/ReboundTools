@@ -1,7 +1,7 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.41
-Date: 2025-02-03
+Version: 0.1.42
+Date: 2025-05-25
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",
@@ -47,6 +47,5 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/testthat/start-first: graphs, calc_rebound_data, paths, tables
 Language: en-US
-Depends: 
-    R (>= 3.5)
+Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
