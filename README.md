@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd -->
+
 <!-- badges: start -->
 
 [![CRAN
@@ -10,8 +11,10 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
-[![codecov](https://codecov.io/gh/MatthewHeun/ReboundTools/branch/main/graph/badge.svg?token=20kytlPnGF)](https://codecov.io/gh/MatthewHeun/ReboundTools)
+[![Codecov test
+coverage](https://codecov.io/gh/MatthewHeun/ReboundTools/graph/badge.svg)](https://app.codecov.io/gh/MatthewHeun/ReboundTools)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999846.svg)](https://doi.org/10.5281/zenodo.4999846)
+[![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # ReboundTools
@@ -31,9 +34,13 @@ framework* by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway,
 ## Installation
 
 <!-- You can install `ReboundTools` from CRAN with: -->
+
 <!-- ```{r CRAN-installation, eval = FALSE} -->
+
 <!-- install.packages("ReboundTools") -->
+
 <!-- ``` -->
+
 <!-- You can install a recent development version of `ReboundTools` from github with: -->
 
 You can install `IEATools` from github with:
