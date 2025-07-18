@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: references.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd -->
@@ -7,10 +8,9 @@ output: github_document
 [![CRAN status](https://www.r-pkg.org/badges/version/ReboundTools)](https://cran.r-project.org/package=ReboundTools)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/workflows/R-CMD-check/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions)
+[![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/MatthewHeun/ReboundTools/graph/badge.svg)](https://app.codecov.io/gh/MatthewHeun/ReboundTools)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999846.svg)](https://doi.org/10.5281/zenodo.4999846)
-[![R-CMD-check](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MatthewHeun/ReboundTools/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
@@ -38,9 +38,13 @@ create rebound path graphs in
 energy, expenditure, and consumption spaces.
 Other graphing functions create sensitivity graphs. 
 The functions in this package were used for the 
-analyses and graphs in the paper 
-*A comprehensive, partial-equilibrium energy rebound analysis framework*
-by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway, 2021.
+analyses and graphs in the following two papers: 
+
+* _Energetic and economic aspects of rebound, Part I: Foundations of a rigorous analytical framework_
+[@Heun:2025-1]
+and 
+* _Energetic and economic aspects of rebound, Part II: Applications of the framework_
+[@Heun:2025-2].
 
 
 ## Installation
@@ -63,15 +67,10 @@ devtools::install_github("MatthewHeun/ReboundTools", build_vignettes = TRUE)
 ```
 
 
-## History
-
-The functions in this package were used in the paper
-*A comprehensive, partial-equilibrium energy rebound analysis framework*
-by Matthew Kuperus Heun, Gregor Semieniuk, and Paul Brockway, 2021.
-
-
 ## More Information
 
 Find more information, including vignettes and function documentation, at 
 <https://MatthewHeun.github.io/ReboundTools/>.
 
+
+## References
