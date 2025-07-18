@@ -1,7 +1,7 @@
 Package: ReboundTools
 Title: Analyze and Display Estimates of Energy Rebound
-Version: 0.1.43
-Date: 2025-05-25
+Version: 0.1.44
+Date: 2025-07-18
 Authors@R: 
     person(given = "Matthew",
            family = "Heun",
@@ -17,8 +17,8 @@ Description: Energy rebound is the unanticipated reduction
              Other functions create rebound graphs in 
              energy, expenditure, and consumption spaces.
              The functions in this package were used for the 
-             analyses and graphs in the paper "A comprehensive, partial-equilibrium
-             energy rebound analysis framework".
+             analyses and graphs in a pair of papers 
+             published in The Energy Journal in 2015.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

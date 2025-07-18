@@ -3,7 +3,7 @@ CES
 CMD
 CPE
 CodeCov
-DOI
+Codecov
 EEU
 Gregor
 Iso
@@ -12,10 +12,10 @@ Lifecycle
 MJ
 Marshallian
 OMd
+Readme
+Rmd
 Semieniuk
 UC
-Viridis
-codecov
 colour
 colours
 doi
@@ -40,5 +40,4 @@ takebacks
 tidyr
 undiscounted
 unitless
-vectorized
 zenodo
