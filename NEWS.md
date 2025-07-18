@@ -8,7 +8,7 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
-# ReboundTools 0.1.44 (2025-07-18) 
+# ReboundTools 0.1.44 (2025-07-18) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16102061.svg)](https://doi.org/10.5281/zenodo.16102061)
 
 * Updated Readme.Rmd to reflect publication of papers!
 * No new tests.
