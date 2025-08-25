@@ -8,7 +8,7 @@ Cite all releases with doi [10.5281/zenodo.4999846](https://doi.org/10.5281/zeno
 which always resolves to the latest release.
 
 
-# ReboundTools 0.1.44 (2025-07-18) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16102061.svg)](https://doi.org/10.5281/zenodo.16102061)
+## ReboundTools 0.1.44 (2025-07-18) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16102061.svg)](https://doi.org/10.5281/zenodo.16102061)
 
 * Updated Readme.Rmd to reflect publication of papers!
 * No new tests.
@@ -16,7 +16,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.43 (2025-05-25) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15514621.svg)](https://doi.org/10.5281/zenodo.15514621)
+## ReboundTools 0.1.43 (2025-05-25) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15514621.svg)](https://doi.org/10.5281/zenodo.15514621)
 
 * Updated documentation
 * No new tests.
@@ -24,7 +24,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.42 (2025-05-25) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15514588.svg)](https://doi.org/10.5281/zenodo.15514588)
+## ReboundTools 0.1.42 (2025-05-25) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15514588.svg)](https://doi.org/10.5281/zenodo.15514588)
 
 * Now requiring R >= 4.1.0 due to use of the new pipe.
 * Updated GitHub actions for testing and code coverage.
@@ -33,7 +33,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.41 (2025-02-03) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14799086.svg)](https://doi.org/10.5281/zenodo.14799086)
+## ReboundTools 0.1.41 (2025-02-03) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14799086.svg)](https://doi.org/10.5281/zenodo.14799086)
 
 * Fixed a bug where Re_OMd was not visible in 
   rebound sensitivity graphs.
@@ -52,7 +52,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.40 (2024-07-09) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12702452.svg)](https://doi.org/10.5281/zenodo.12702452)
+## ReboundTools 0.1.40 (2024-07-09) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12702452.svg)](https://doi.org/10.5281/zenodo.12702452)
 
 * Removed the `sub_approx` option for `calc_hat()`
   and other functions.
@@ -70,7 +70,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.39 (2024-05-15) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11199447.svg)](https://doi.org/10.5281/zenodo.11199447)
+## ReboundTools 0.1.39 (2024-05-15) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11199447.svg)](https://doi.org/10.5281/zenodo.11199447)
 
 * Use new budget constraint with discounting.
 * Additional tests for new features.
@@ -78,13 +78,13 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.38 (2023-07-05) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8117284.svg)](https://doi.org/10.5281/zenodo.8117284)
+## ReboundTools 0.1.38 (2023-07-05) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8117284.svg)](https://doi.org/10.5281/zenodo.8117284)
 
 * Fixed a bug in `calc_orig()`.
   Some calculated parameters were in the argument list.
 
 
-# ReboundTools 0.1.37 (2023-01-28) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7579832.svg)](https://doi.org/10.5281/zenodo.7579832)
+## ReboundTools 0.1.37 (2023-01-28) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7579832.svg)](https://doi.org/10.5281/zenodo.7579832)
 
 * Update to latest versions of GitHub actions.
 * Fix text failures caused by
@@ -95,12 +95,12 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.36 (2023-01-08) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7514249.svg)](https://doi.org/10.5281/zenodo.7514249)
+## ReboundTools 0.1.36 (2023-01-08) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7514249.svg)](https://doi.org/10.5281/zenodo.7514249)
 
 * Switch to "yr" instead of "year" for default time unit.
 
 
-# ReboundTools 0.1.35 (2023-01-02) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7499769.svg)](https://doi.org/10.5281/zenodo.7499769)
+## ReboundTools 0.1.35 (2023-01-02) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7499769.svg)](https://doi.org/10.5281/zenodo.7499769)
 
 * Simplified calculations at the hat stage.
 * Fixed `linewidth`s in a few sensitivity graph examples.
@@ -115,7 +115,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.34 (2022-12-10) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg)](https://doi.org/10.5281/zenodo.7423306)
+## ReboundTools 0.1.34 (2022-12-10) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7423306.svg)](https://doi.org/10.5281/zenodo.7423306)
 
 * Finish the task of responding to the new `linewidth` aesthetic
   in `ggplot2`, especially for sensitivity graphs
@@ -131,7 +131,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.33 (2022-11-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7340040.svg)](https://doi.org/10.5281/zenodo.7340040)
+## ReboundTools 0.1.33 (2022-11-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7340040.svg)](https://doi.org/10.5281/zenodo.7340040)
 
 * Now using the `linewidth` aesthetic in `ggplot2` where possible.
 * Responded to changes in `tidyselect` and `ggplot2`.
@@ -141,7 +141,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.32 (2021-06-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999847.svg)](https://doi.org/10.5281/zenodo.4999847)
+## ReboundTools 0.1.32 (2021-06-20) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4999847.svg)](https://doi.org/10.5281/zenodo.4999847)
 
 * Final release before minting a DOI and submitting paper.
 * Changed lifecycle badge from experimental to stable in preparation for first submission of paper.
@@ -150,7 +150,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.31 (2021-05-31)
+## ReboundTools 0.1.31 (2021-05-31)
 
 * Changed default for dashed lines in sensitivity plots from "11" to "22"
   to improve visibility.
@@ -164,7 +164,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.30 (2021-05-03)
+## ReboundTools 0.1.30 (2021-05-03)
 
 * "preference path graphs" --> "consumption path graphs"
 * No new tests.
@@ -172,7 +172,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.29 (2021-04-29)
+## ReboundTools 0.1.29 (2021-04-29)
 
 * Added isoquant lines through the * and ^ point
   to the grid created by the `iso_expenditure_lines()` function.
@@ -181,7 +181,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.28 (2021-04-26)
+## ReboundTools 0.1.28 (2021-04-26)
 
 * Now calculating micro rebound.
 * New test for the new feature.
@@ -189,7 +189,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.27 (2021-04-23)
+## ReboundTools 0.1.27 (2021-04-23)
 
 * Added item `show_indifference_curves` to `graph_params` item of `path_graphs()` function.
 * New tests for the new argument.
@@ -197,7 +197,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.26 (2021-04-22)
+## ReboundTools 0.1.26 (2021-04-22)
 
 * Fixed a bug where missing meta columns would cause graphing failure.
 * New tests to trigger the bug.
@@ -205,7 +205,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.25 (2021-04-21)
+## ReboundTools 0.1.25 (2021-04-21)
 
 * New function `calibrate_k()` that calculates a value for `k`
   when a target value for `Re_tot` is provided.
@@ -214,7 +214,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.24 (2021-04-14)
+## ReboundTools 0.1.24 (2021-04-14)
 
 * Change names around elasticities:
     - e_qs_ps --> e_qs_ps_C (for "compensated")
@@ -224,7 +224,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.23 (2021-04-09)
+## ReboundTools 0.1.23 (2021-04-09)
 
 * Set up CodeCov from GitHub Actions.
 * No new tests.
@@ -232,7 +232,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.22 (2021-04-08)
+## ReboundTools 0.1.22 (2021-04-08)
 
 * Remove Travis continuous integration.
 * Add badges for GitHub actions and CodeCov.
@@ -242,7 +242,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.21 (2021-04-07)
+## ReboundTools 0.1.21 (2021-04-07)
 
 * Set up Travis continuous integration.
 * No new tests.
@@ -250,7 +250,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.20 (2021-04-06)
+## ReboundTools 0.1.20 (2021-04-06)
 
 * Improved website landing page.
 * Split graphs into their own vignette.
@@ -260,7 +260,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.19 (2021-04-06)
+## ReboundTools 0.1.19 (2021-04-06)
 
 * Change cost --> expenditure in many places.
 * No new tests.
@@ -268,7 +268,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.18 (2021-04-03)
+## ReboundTools 0.1.18 (2021-04-03)
 
 * Change nomenclature from productivity rebound to macro rebound.
 * No new tests.
@@ -276,7 +276,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.17 (2021-03-21)
+## ReboundTools 0.1.17 (2021-03-21)
 
 * Added rho to orig output.
 * Two new tests.
@@ -284,7 +284,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.16 (2021-03-18)
+## ReboundTools 0.1.16 (2021-03-18)
 
 * Adjusted some graph parameters:
   line widths and dashes for `rebound_terms_graph()`
@@ -295,7 +295,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.15 (2021-03-15)
+## ReboundTools 0.1.15 (2021-03-15)
 
 * Dots now take on colour of their lines in `sensitivity_graphs()`.
 * New option to use LaTeX for legend labels in
@@ -305,7 +305,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.14 (2021-03-14)
+## ReboundTools 0.1.14 (2021-03-14)
 
 * Fixed a bug with line layering in 
   `sensitivity_graphs()` and `rebound_terms_graph()`.
@@ -316,7 +316,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.13 (2021-03-11)
+## ReboundTools 0.1.13 (2021-03-11)
 
 * Many improvements to graphs.
 * New function `rebound_terms_graph()`
@@ -327,7 +327,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.12 (2021-03-10)
+## ReboundTools 0.1.12 (2021-03-10)
 
 * Removed `sensitivity_graphs()` for now.
 * New constants for sensitivity graphs, `sens_graph_params`.
@@ -340,7 +340,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.11 (2021-03-02)
+## ReboundTools 0.1.11 (2021-03-02)
 
 * New function `sensitivity_graphs()` makes graphs from parametric data.
 * `parametric_analysis()` now optionally returns the original point,
@@ -353,7 +353,7 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.10 (2021-02-09)
+## ReboundTools 0.1.10 (2021-02-09)
 
 * New colors for graphs, using the Viridis palette, plasma option.
 * Now allowing an approximation for the substitution effect.
@@ -367,14 +367,14 @@ which always resolves to the latest release.
     - Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.9 (2021-01-17)
+## ReboundTools 0.1.9 (2021-01-17)
 
 * Added efficiency in engineering units (e.g., mpg) to stages table.
 * Now at 344 tests, all passing.
 * Test coverage remains at 100%.
 
 
-# ReboundTools 0.1.8 (2021-01-16)
+## ReboundTools 0.1.8 (2021-01-16)
 
 * Fixed a bug where `Re_prod` was counted as a subtotal.
   It should not be.
@@ -382,7 +382,7 @@ which always resolves to the latest release.
 * Test coverage is at 100%
 
 
-# ReboundTools 0.1.7 (2021-01-16)
+## ReboundTools 0.1.7 (2021-01-16)
 
 * Added function `rebound_results_table()`.
 * Added a vignette.
@@ -390,14 +390,14 @@ which always resolves to the latest release.
 * Test coverage is at 100%
 
 
-# ReboundTools 0.1.6 (2021-01-10)
+## ReboundTools 0.1.6 (2021-01-10)
 
 * Now at 314 tests, all passing.
 * Test coverage is at 100%
 * Preferences graph now contains self-generated indifference curves.
 
 
-# ReboundTools 0.1.5 (2021-01-08)
+## ReboundTools 0.1.5 (2021-01-08)
 
 * Now at 303 tests, all passing.
 * Test coverage is 99.84 %. 
@@ -413,7 +413,7 @@ which always resolves to the latest release.
     - `arrow_type`
 
 
-# ReboundTools 0.1.4 (2021-01-07)
+## ReboundTools 0.1.4 (2021-01-07)
 
 * Added x and y labels for graphs, when possible.
 * Tests for graphs.
@@ -424,7 +424,7 @@ which always resolves to the latest release.
   `"{.unit_col}" = NULL` --> `"{.unit_col}" := NULL`
   
 
-# ReboundTools 0.1.3 (2021-01-05)
+## ReboundTools 0.1.3 (2021-01-05)
 
 * Still at 280 tests, all passing.
 * Package test coverage is 99%
@@ -432,7 +432,7 @@ which always resolves to the latest release.
 * Added documentation for functions.
 
 
-# ReboundTools 0.1.2 (2021-01-03)
+## ReboundTools 0.1.2 (2021-01-03)
 
 * Now at 280 tests, all passing.
 * New function `stages_table()` that produces an `xtable` for later printing.
@@ -440,7 +440,7 @@ which always resolves to the latest release.
   using heuristics from the naming system.
 
 
-# ReboundTools 0.1.1 (2021-01-02)
+## ReboundTools 0.1.1 (2021-01-02)
 
 * Now at 246 tests, all passing.
 * Test coverage is 99.78 %. 
